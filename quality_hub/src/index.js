@@ -9,7 +9,7 @@ import logger from "redux-logger";
 import "./index.css";
 import App from "./App";
 
-const store = createStore(appReducer, applyMiddleware(logger, thunk));
+const store = createStore(appReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>

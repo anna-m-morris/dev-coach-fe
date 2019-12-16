@@ -1,20 +1,11 @@
 import { combineReducers } from "redux";
 // import your reducers here
+import userReducer from './authentication';
 
-const initialState = {
-  title: "Test state"
-}
-
-const initialReducer = (state = initialState, action) => {
-  switch(action.type) {
-    default:
-      return state;
-  }
-}
 
 const appReducer = combineReducers({
   // add your reducers here
-  initialReducer,
+  userReducer,
 });
 
 /* const rootReducer = (state, action) => {

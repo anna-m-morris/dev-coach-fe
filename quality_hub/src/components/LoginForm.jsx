@@ -5,12 +5,16 @@ import { withFormik, Form, Field } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 
+import { login } from "../state/actions/actionCreators";
+
 function LoginForm(props) {
+    console.log(props.userReducer)
   return (
     <Form>
       <Field type="email" name="email" placeholder="Email" />
       <Field type="password" name="password" placeholder="Password" />
       <button>Submit!</button>
+      {props.userReducer.isLoading ? <h3>Loading</h3> : <h3>Couldn't fetch</h3>}
     </Form>
   );
 }
@@ -23,17 +27,9 @@ const FormikLoginForm = withFormik({
     };
   },
 
-  handleSubmit(values, props) {
-    axios
-      .post("https://reqres.in/api/login", values)
-      .then(res => {
-        localStorage.setItem('token', res.data.token);
-        props.props.history.push('/dashboard')
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+  handleSubmit(values, { props }) {
+    props.login("https://reqres.in/api/login", props, values);
+  },
 })(LoginForm);
 
-export default connect(state => state)(FormikLoginForm);
+export default connect(state => state, { login })(FormikLoginForm);
