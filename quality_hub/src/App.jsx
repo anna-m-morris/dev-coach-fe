@@ -1,9 +1,8 @@
 import React from "react";
-import { Route } from "react-router-dom";
-import { connect } from "react-redux";
-
 import LoginForm from "./components/LoginForm";
-import Dashboard from "./components/Dashboard";
+import { connect } from "react-redux";
+import { Route } from "react-router-dom";
+import "./App.css";
 
 function App() {
   return (

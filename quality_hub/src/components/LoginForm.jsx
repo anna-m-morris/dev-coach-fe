@@ -5,7 +5,7 @@ import { withFormik, Form, Field } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 
-function LoginForm() {
+function LoginForm(props) {
   return (
     <Form>
       <Field type="email" name="email" placeholder="Email" />
@@ -23,13 +23,12 @@ const FormikLoginForm = withFormik({
     };
   },
 
-  handleSubmit(values) {
-    console.log(values);
+  handleSubmit(values, props) {
     axios
       .post("https://reqres.in/api/login", values)
       .then(res => {
-        console.log(res);
         localStorage.setItem('token', res.data.token);
+        props.props.history.push('/dashboard')
       })
       .catch(err => {
         console.log(err);
