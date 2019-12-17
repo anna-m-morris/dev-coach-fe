@@ -1,22 +1,26 @@
-import * as types from "../actions/authenticationActions";
+import * as types from '../actions/actionTypes';
 
 const initialState = {
   user: {},
-  loadingUser: false,
-  loginError: undefined
+  loginError: '',
+  signUpError: '',
+  isLoading: false,
+  isLoggedIn: false
 };
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
-    case types.LOGIN:
+    case types.LOGIN_START:
       return {
         ...state,
-        userId: action.payload,
-        loginError: undefined,
-        signUpError: undefined
+        isLoading: true
       };
-    case types.LOADING_USER:
-      return { ...state, loadingUser: action.payload };
+    case types.LOGIN_SUCCESSFUL:
+      return {
+        ...state,
+        isLoading: false,
+        isLoggedIn: true
+      };
     case types.LOGIN_ERROR:
       return { ...state, loginError: action.payload };
     default:
