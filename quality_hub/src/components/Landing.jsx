@@ -206,7 +206,7 @@ const Landing = () => {
         </LandingTaglineContainer>
         <LandingRightContainer>
           <LandingVectorImageContainer>
-            <img src={require('./landingvector.png')} />
+            <img src={vector2} />
           </LandingVectorImageContainer>
         </LandingRightContainer>
       </TopLandingContainer>
