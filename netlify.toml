@@ -1,0 +1,4 @@
+[build]
+base = "quality_hub/"
+publish = "quality_hub/build/"
+command = "yarn build"
