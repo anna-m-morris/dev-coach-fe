@@ -18,6 +18,7 @@ export const login = (url, props, values) => dispatch => {
 
 export const register = (url, props, values) => dispatch => {
   dispatch({ type: types.SIGN_UP });
+  dispatch({ type: types.LOGIN_START });
   axios.post(url, values)
   .then(res => {
     dispatch({ type: types.SIGN_UP_SUCCESSFUL });
