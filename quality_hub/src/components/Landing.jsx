@@ -193,7 +193,7 @@ const Landing = () => {
           <a href="/login">
             <NavbarButton theme={buttonTheme}>LOGIN</NavbarButton>
           </a>
-          <a href="/signup">
+          <a href="/register">
             <NavbarButton theme={invertTheme}>SIGN UP</NavbarButton>
           </a>
         </LinksContainer>
