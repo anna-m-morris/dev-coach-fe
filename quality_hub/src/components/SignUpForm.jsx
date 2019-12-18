@@ -10,13 +10,13 @@ import { register } from '../state/actions/actionCreators';
 function SignUpForm(props) {
   return (
     <Form>
-      <Field type="text" name="first name" placeholder="first name" />
-      <Field type="text" name="last name" placeholder="last name" />
+      <Field type="text" name="first_name" placeholder="first name" />
+      <Field type="text" name="last_name" placeholder="last name" />
       <Field type="email" name="email" placeholder="Email" />
       <Field type="password" name="password" placeholder="Password" />
       <Field
         type="password"
-        name="confirm password"
+        name="confirmPassword"
         placeholder="confirm password"
       />
 
@@ -27,14 +27,14 @@ function SignUpForm(props) {
 
 const FormikSignUpForm = withFormik({
   mapPropsToValues(
-      { firstName, lastName, email, password, confirmPassword }
+      { first_name, last_name, email, password, confirm_password }
       ) {
     return {
-      firstName: 'first name' || '',
-      lastName: 'last name' || '',
+      first_name: 'first_name' || '',
+      last_name: 'last_name' || '',
       email: 'email' || '',
       password: 'password' || '',
-      confirmPassword: 'confirm password' || ''
+      confirm_password: 'confirm_password' || ''
     };
   },
   //   validationSchema: Yup.object().shape({
@@ -47,7 +47,7 @@ const FormikSignUpForm = withFormik({
   handleSubmit(values, { props }) {
       console.log(values)
     props.register(
-      'https://dev-coach-production.herokuapp.com/user/register',
+      'http://localhost:5000/user/register',
       props,
       values
     );
