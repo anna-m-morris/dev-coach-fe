@@ -13,10 +13,12 @@ import { register } from '../state/actions/actionCreators';
 const ShortInputContainer = styled.div`
   display: flex;
   width: 74%;
-  justify-content: space-around;
+  justify-content: space-between;
+
   input {
-    width: 50%;
+    width: 44%;
   }
+
 `;
 
 function SignUpForm(props) {
