@@ -58,17 +58,17 @@ const NavbarLink = styled.div`
   }
 `;
 
-const buttonTheme = {
+export const buttonTheme = {
   text: 'white',
   background: '#4fad65'
 };
 
-const invertTheme = ({ text, background }) => ({
-  text: background,
-  background: text
-});
+export const invertTheme = {
+  text: '#4fad65',
+  background: 'white'
+}
 
-const NavbarButton = styled.button`
+export const StyledButton = styled.button`
   background: ${props => props.theme.background};
   color: ${props => props.theme.text};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -168,7 +168,7 @@ const SignUp = () => {
   return (
     <SignupContainer>
       <input />
-      <NavbarButton theme={buttonTheme}>Get Started</NavbarButton>
+      <StyledButton theme={buttonTheme}>Get Started</StyledButton>
     </SignupContainer>
   );
 };
@@ -191,10 +191,10 @@ const Landing = () => {
             <a href="#">About</a>
           </NavbarLink>
           <a href="/login">
-            <NavbarButton theme={buttonTheme}>LOGIN</NavbarButton>
+            <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
           </a>
           <a href="/register">
-            <NavbarButton theme={invertTheme}>SIGN UP</NavbarButton>
+            <StyledButton theme={invertTheme}>SIGN UP</StyledButton>
           </a>
         </LinksContainer>
       </NavbarContainer>
