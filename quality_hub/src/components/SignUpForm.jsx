@@ -2,55 +2,75 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
-import * as yup from 'yup';
+import * as Yup from 'yup';
 import axios from 'axios';
+
+import { StyledButton, buttonTheme, invertTheme } from './Landing';
+import { GreyBackgroundContainer, FormCard, FormContainer } from './LoginForm';
 
 import { register } from '../state/actions/actionCreators';
 
+const ShortInputContainer = styled.div`
+  display: flex;
+  width: 74%;
+  justify-content: space-around;
+  input {
+    width: 50%;
+  }
+`;
+
 function SignUpForm(props) {
   return (
-    <Form>
-      <Field type="text" name="first_name" placeholder="first name" />
-      <Field type="text" name="last_name" placeholder="last name" />
-      <Field type="email" name="email" placeholder="Email" />
-      <Field type="password" name="password" placeholder="Password" />
-      <Field
-        type="password"
-        name="confirmPassword"
-        placeholder="confirm password"
-      />
+    <GreyBackgroundContainer>
+      <FormCard style={{ width: '30em', height: '35em' }}>
+        <h1>Sign up to get started now</h1>
+        <FormContainer>
+          <Form>
+            <ShortInputContainer>
+              <Field type="text" name="first_name" />
+              <Field type="text" name="last_name" />
+            </ShortInputContainer>
+            <Field type="email" name="email" />
+            <Field type="password" name="password" />
+            <Field
+              type="password"
+              name="confirmPassword"
+            />
 
-      <button>Submit!</button>
-    </Form>
+            <StyledButton theme={buttonTheme}>Submit!</StyledButton>
+          </Form>
+        </FormContainer>
+      </FormCard>
+    </GreyBackgroundContainer>
   );
 }
 
 const FormikSignUpForm = withFormik({
-  mapPropsToValues(
-      { first_name, last_name, email, password, confirm_password }
-      ) {
+  mapPropsToValues({
+    first_name,
+    last_name,
+    email,
+    password,
+    confirm_password
+  }) {
     return {
-      first_name: 'first_name' || '',
-      last_name: 'last_name' || '',
-      email: 'email' || '',
-      password: 'password' || '',
-      confirm_password: 'confirm_password' || ''
+      first_name: 'First Name' || '',
+      last_name: 'Last Name' || '',
+      email: 'Email Address' || '',
+      password: 'Password' || '',
+      confirm_password: 'Confirm Password' || ''
     };
   },
-  //   validationSchema: Yup.object().shape({
-  //     firstName: Yup.string().required('Please enter your first name'),
-  //     lastName: Yup.string().required('Please enter your last name'),
-  //     password: Yup.string().required('Please enter your password').min(6),
-  //     confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Your passwords don\'t match')
-  //  })
+    validationSchema: Yup.object().shape({
+      firstName: Yup.string().required('Please enter your first name'),
+      lastName: Yup.string().required('Please enter your last name'),
+      password: Yup.string().required('Please enter your password').min(6),
+      confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Your passwords don\'t match')
+   }),
 
   handleSubmit(values, { props }) {
-      console.log(values)
-    props.register(
-      'http://localhost:5000/user/register',
-      props,
-      values
-    );
+    console.log(values);
+    props.register('http://localhost:5000/user/register', props, values);
   }
 })(SignUpForm);
 

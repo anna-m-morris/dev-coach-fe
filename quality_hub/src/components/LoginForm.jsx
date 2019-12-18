@@ -8,7 +8,7 @@ import axios from 'axios';
 
 import { login } from '../state/actions/actionCreators';
 
-const LoginBackgroundContainer = styled.div`
+export const GreyBackgroundContainer = styled.div`
   height: 100vh;
   background: #f2f2f2;
   display: flex;
@@ -16,7 +16,7 @@ const LoginBackgroundContainer = styled.div`
   align-items: center;
 `;
 
-const LoginContainer = styled.div`
+export const FormCard = styled.div`
   background: white;
   height: 28em;
   width: 25em;
@@ -32,7 +32,7 @@ const LoginContainer = styled.div`
   }
 `;
 
-const FormContainer = styled.div`
+export const FormContainer = styled.div`
   height: 100%;
   width: 100%;
   margin-top: 1em;
@@ -123,8 +123,8 @@ const ExtraLoginDetails = () => {
 
 function LoginForm(props) {
   return (
-    <LoginBackgroundContainer>
-      <LoginContainer>
+    <GreyBackgroundContainer>
+      <FormCard>
         <h1>Welcome Back!</h1>
         <FormContainer>
           <Form>
@@ -139,8 +139,8 @@ function LoginForm(props) {
             )} */}
           </Form>
         </FormContainer>
-      </LoginContainer>
-    </LoginBackgroundContainer>
+      </FormCard>
+    </GreyBackgroundContainer>
   );
 }
 
