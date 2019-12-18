@@ -8,7 +8,6 @@ import axios from 'axios';
 import { login } from '../state/actions/actionCreators';
 
 function LoginForm(props) {
-  console.log(props.userReducer);
   return (
     <Form>
       <Field type="email" name="email" placeholder="Email" />
@@ -28,7 +27,12 @@ const FormikLoginForm = withFormik({
   },
 
   handleSubmit(values, { props }) {
-    props.login('https://reqres.in/api/login', props, values);
+    console.log(values)
+    props.login(
+      'https://dev-coach-production.herokuapp.com/user/login',
+      props,
+      values
+    );
   }
 })(LoginForm);
 

@@ -1,11 +1,15 @@
 import axios from 'axios';
 
-export default const axiosWithAuth = () => {
+export default function axiosWithAuth() {
   const token = localStorage.getItem('token');
 
-  return axios.create({
+  const axiosInstance = axios.create({
+    baseURL: 'https://dev-coach-production.herokuapp.com',
     headers: {
-      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      Authorization: token
     }
   });
-};
+
+  return axiosInstance;
+}
