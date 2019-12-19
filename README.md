@@ -1,6 +1,6 @@
 # Quality Hub Frontend
 
-[https://www.dev-coach.com/](https://www.dev-coach.com/)
+[dev-coach.com](https://www.dev-coach.com)
 
 [Notion Document](https://www.notion.so/EU3-QualityHub-503a434aa6b4425595d2b4fa03a1d406)
 
@@ -9,26 +9,26 @@
 # Table of Content
 
 - Front-End Dependencies
- - react
- - redux
- - redux-thunk
- - react-router
- - styled-components
- - dotenv
- - redux-logger
- - react-scripts
-
+- react
+- redux
+- redux-thunk
+- react-router
+- styled-components
+- dotenv
+- redux-logger
+- react-scripts
 
 ## Scripts
+
 `npm start`: starts the application on your local machine
 
 ## Tech-Stack
+
 ### Front-End Dependencies ( Production )
 
-### react 
+### react
 
 React is the current industry standard that offers a lot of out of the box benefits. It is fast, efficient, and scalable. Due to the large community, finding solutions to potential problems and reference material is much easier, even for a potential dev without a lot of experience who would like to contribute to Main Course
-
 
 ### react-router
 

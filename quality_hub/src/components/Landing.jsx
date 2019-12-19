@@ -58,17 +58,17 @@ const NavbarLink = styled.div`
   }
 `;
 
-const buttonTheme = {
+export const buttonTheme = {
   text: 'white',
-  background: '#4fad65'
+  background: '#4fad65',
 };
 
-const invertTheme = ({ text, background }) => ({
-  text: background,
-  background: text
-});
+export const invertTheme = {
+  text: '#4fad65',
+  background: 'white',
+};
 
-const NavbarButton = styled.button`
+export const StyledButton = styled.button`
   background: ${props => props.theme.background};
   color: ${props => props.theme.text};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -77,7 +77,7 @@ const NavbarButton = styled.button`
   width: 8em;
   padding: 1em;
   border: none;
-  font-family: Ubuntu;
+  font-family: ABeeZee;
   font-size: 14px;
 
   :focus {
@@ -168,7 +168,7 @@ const SignUp = () => {
   return (
     <SignupContainer>
       <input />
-      <NavbarButton theme={buttonTheme}>Get Started</NavbarButton>
+      <StyledButton theme={buttonTheme}>Get Started</StyledButton>
     </SignupContainer>
   );
 };
@@ -185,29 +185,30 @@ const Landing = () => {
         </LogoTitleContainer>
         <LinksContainer>
           <NavbarLink>
-            <a href="#">FAQ</a>
+            <a href='#'>FAQ</a>
           </NavbarLink>
           <NavbarLink>
-            <a href="#">About</a>
+            <a href='#'>About</a>
           </NavbarLink>
-          <a href="/login">
-            <NavbarButton theme={buttonTheme}>LOGIN</NavbarButton>
+          <a href='/login'>
+            <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
           </a>
-          <a href="/register">
-            <NavbarButton theme={invertTheme}>SIGN UP</NavbarButton>
+          <a href='/register'>
+            <StyledButton theme={invertTheme}>SIGN UP</StyledButton>
           </a>
         </LinksContainer>
       </NavbarContainer>
       <TopLandingContainer>
         <LandingTaglineContainer>
           <h1>
-            INTERVIEWING ISN'T EASY. THAT DOESN'T MEANT IT HAS TO BE STRESSFUL.
+            INTERVIEWING ISN'T EASY. THAT DOESN'T MEANT IT HAS TO BE
+            STRESSFUL.
           </h1>
           <h3>
-            We connect developers looking to improve their interviewing
-            technique with experienced pros who have mastered the technical
-            interview and can coach you through the process from start to
-            finish.
+            We connect developers looking to improve their
+            interviewing technique with experienced pros who have
+            mastered the technical interview and can coach you through
+            the process from start to finish.
           </h3>
           <SignUp />
         </LandingTaglineContainer>
