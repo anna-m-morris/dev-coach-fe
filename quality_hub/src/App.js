@@ -7,6 +7,7 @@ import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import Dashboard from './components/Dashboard';
 import Landing from './components/Landing';
+import Marketplace from './components/Marketplace';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route exact path="/" component={Landing} />
       <Route path="/login/" component={LoginForm} />
       <Route path="/register/" component={SignUpForm} />
+      <Route path="/marketplace" component={Marketplace} />
       <PrivateRoute path="/dashboard" component={Dashboard} />
     </>
   );
