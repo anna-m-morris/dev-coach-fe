@@ -139,6 +139,7 @@ function LoginForm(props) {
                   ? loadingButtonTheme
                   : buttonTheme
               }
+              type="submit"
             >
               Sign in to your account
             </StyledButton>
@@ -164,7 +165,7 @@ const FormikLoginForm = withFormik({
 
   handleSubmit(values, { props }) {
     console.log(values);
-    props.login('https://dev-coach-staging.herokuapp.com/', props, values);
+    props.login( props, values);
   },
 })(LoginForm);
 

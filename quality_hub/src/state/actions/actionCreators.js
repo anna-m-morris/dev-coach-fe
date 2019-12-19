@@ -2,9 +2,11 @@ import * as types from './actionTypes';
 import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 
-const url = process.env.REACT_APP_BASE_URL;
+const url = 'http://localhost:5000/'
+// process.env.REACT_APP_BASE_URL;
 
 export const login = (props, values) => dispatch => {
+  debugger
   dispatch({ type: types.LOGIN_START });
   axios
     .post(`${url}user/login`, values)
@@ -15,9 +17,10 @@ export const login = (props, values) => dispatch => {
       localStorage.setItem('username', res.data.token);
       props.history.push('/dashboard');
 
-      return axios
+      // return axiosWithAuth().get().then().catch()
     })
     .catch(err => {
+      debugger
       dispatch({ type: types.LOGIN_ERROR, payload: err });
     });
 };
@@ -28,7 +31,6 @@ export const register = (props, values) => dispatch => {
   axios
     .post(`${url}user/register`, values)
     .then(res => {
-      debugger
       dispatch({ type: types.SIGN_UP_SUCCESSFUL });
       localStorage.setItem('user', JSON.stringify(res.data));
       dispatch({ type: types.LOGIN_SUCCESSFUL });
@@ -37,7 +39,6 @@ export const register = (props, values) => dispatch => {
       props.history.push('/dashboard');
     })
     .catch(err => {
-      debugger
       dispatch({ type: types.SIGN_UP_ERROR, payload: err });
     });
 };
