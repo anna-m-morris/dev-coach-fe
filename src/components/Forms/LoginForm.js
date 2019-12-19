@@ -139,7 +139,7 @@ function LoginForm(props) {
                   ? loadingButtonTheme
                   : buttonTheme
               }
-              type="submit"
+              type='submit'
             >
               Sign in to your account
             </StyledButton>
@@ -165,7 +165,7 @@ const FormikLoginForm = withFormik({
 
   handleSubmit(values, { props }) {
     console.log(values);
-    props.login( props, values);
+    props.login(props, values);
   },
 })(LoginForm);
 

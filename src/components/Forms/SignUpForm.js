@@ -40,14 +40,30 @@ function SignUpForm(props) {
         <FormContainer>
           <Form>
             <ShortInputContainer>
-              <Field type='text' name='first_name' placeholder='First name'/>
-              <Field type='text' name='last_name' placeholder='Last name' />
+              <Field
+                type='text'
+                name='first_name'
+                placeholder='First name'
+              />
+              <Field
+                type='text'
+                name='last_name'
+                placeholder='Last name'
+              />
             </ShortInputContainer>
             <Field type='email' name='email' placeholder='Email' />
-            <Field type='password' name='password' placeholder='Password' />
-            <Field type='password' name='confirm_password' placeholder='Confirm Password' />
+            <Field
+              type='password'
+              name='password'
+              placeholder='Password'
+            />
+            <Field
+              type='password'
+              name='confirm_password'
+              placeholder='Confirm Password'
+            />
 
-            <StyledButton theme={buttonTheme} type="submit">
+            <StyledButton theme={buttonTheme} type='submit'>
               Get Started
             </StyledButton>
           </Form>
