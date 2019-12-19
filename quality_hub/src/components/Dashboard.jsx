@@ -18,7 +18,7 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-// import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems, secondaryListItems } from '../utils/dashboardList';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -41,9 +41,12 @@ const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+    backgroundColor: "#F2F2F2",
+
   },
   toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
+    backgroundColor: "#F2F2F2",
+    // paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
     display: 'flex',
@@ -53,6 +56,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
   },
   appBar: {
+    boxShadow: "none",
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -77,6 +81,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   drawerPaper: {
+    backgroundColor: "#F2F2F2",
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
@@ -131,8 +136,12 @@ export default function Dashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
+      <AppBar position="absolute"
+      className={clsx(classes.appBar, open && classes.appBarShift)}
+      >
+        <Toolbar 
+        className={classes.toolbar}
+        >
           <IconButton
             edge="start"
             color="inherit"
@@ -142,14 +151,14 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+          {/* <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Dashboard
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
-          </IconButton>
+          </IconButton> */}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -165,9 +174,9 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        {/* <List>{mainListItems}</List> */}
+        <List>{mainListItems}</List>
         <Divider />
-        {/* <List>{secondaryListItems}</List> */}
+        <List>{secondaryListItems}</List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
