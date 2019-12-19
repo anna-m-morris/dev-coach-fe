@@ -86,4 +86,6 @@ const FormikSignUpForm = withFormik({
   }
 })(SignUpForm);
 
-export default connect(state => state, { register })(FormikSignUpForm);
+export default connect(state => state, { register })(
+  FormikSignUpForm,
+);

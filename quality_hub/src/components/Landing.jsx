@@ -60,13 +60,13 @@ const NavbarLink = styled.div`
 
 export const buttonTheme = {
   text: 'white',
-  background: '#4fad65'
+  background: '#4fad65',
 };
 
 export const invertTheme = {
   text: '#4fad65',
-  background: 'white'
-}
+  background: 'white',
+};
 
 export const StyledButton = styled.button`
   background: ${props => props.theme.background};
@@ -185,15 +185,15 @@ const Landing = () => {
         </LogoTitleContainer>
         <LinksContainer>
           <NavbarLink>
-            <a href="#">FAQ</a>
+            <a href='#'>FAQ</a>
           </NavbarLink>
           <NavbarLink>
-            <a href="#">About</a>
+            <a href='#'>About</a>
           </NavbarLink>
-          <a href="/login">
+          <a href='/login'>
             <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
           </a>
-          <a href="/register">
+          <a href='/register'>
             <StyledButton theme={invertTheme}>SIGN UP</StyledButton>
           </a>
         </LinksContainer>
@@ -201,13 +201,14 @@ const Landing = () => {
       <TopLandingContainer>
         <LandingTaglineContainer>
           <h1>
-            INTERVIEWING ISN'T EASY. THAT DOESN'T MEANT IT HAS TO BE STRESSFUL.
+            INTERVIEWING ISN'T EASY. THAT DOESN'T MEANT IT HAS TO BE
+            STRESSFUL.
           </h1>
           <h3>
-            We connect developers looking to improve their interviewing
-            technique with experienced pros who have mastered the technical
-            interview and can coach you through the process from start to
-            finish.
+            We connect developers looking to improve their
+            interviewing technique with experienced pros who have
+            mastered the technical interview and can coach you through
+            the process from start to finish.
           </h3>
           <SignUp />
         </LandingTaglineContainer>

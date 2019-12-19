@@ -7,8 +7,7 @@ import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
 import Dashboard from './components/Dashboard';
 import Landing from './components/Landing';
-import InterviewerForm from './components/InterviewerForm';
-
+import StudentForm from './components/StudentForm';
 
 function App() {
   return (
