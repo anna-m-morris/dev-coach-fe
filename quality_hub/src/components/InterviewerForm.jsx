@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field, FieldArray } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
 
 import { StyledButton, buttonTheme, invertTheme } from './Landing';
 import {
@@ -28,7 +27,7 @@ const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
   font-family: ABeeZee;
 `;
 
-function InterviewerForm(props) {
+function StudentForm(props) {
   return (
     <ThisGreyBackgroundContainer>
       <RegisterCard>
@@ -63,7 +62,7 @@ function InterviewerForm(props) {
   );
 }
 
-const FormikInterviewerForm = withFormik({
+const FormikStudentForm = withFormik({
   validationSchema: Yup.object().shape({
     city: Yup.array(),
     level_of_experience: Yup.array(),
@@ -83,8 +82,6 @@ const FormikInterviewerForm = withFormik({
       values,
     );
   },
-})(InterviewerForm);
+})(StudentForm);
 
-export default connect(state => state, { register })(
-  FormikInterviewerForm,
-);
+export default FormikStudentForm;
