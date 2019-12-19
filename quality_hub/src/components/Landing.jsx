@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 import React from 'react';
+// import { makeStyles } from '@material-ui/core/styles';
+// import AppBar from '@material-ui/core/AppBar';
+// import Toolbar from '@material-ui/core/Toolbar';
+// import Typography from '@material-ui/core/Typography';
+// import Button from '@material-ui/core/Button';
+// import IconButton from '@material-ui/core/IconButton';
+// import MenuIcon from '@material-ui/icons/Menu';
 
 import logo from '../img/firelogo.png';
 const vector2 = require('../img/landingvector.png');
@@ -51,17 +58,17 @@ const NavbarLink = styled.div`
   }
 `;
 
-const buttonTheme = {
+export const buttonTheme = {
   text: 'white',
   background: '#4fad65'
 };
 
-const invertTheme = ({ text, background }) => ({
-  text: background,
-  background: text
-});
+export const invertTheme = {
+  text: '#4fad65',
+  background: 'white'
+}
 
-const NavbarButton = styled.button`
+export const StyledButton = styled.button`
   background: ${props => props.theme.background};
   color: ${props => props.theme.text};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -161,7 +168,7 @@ const SignUp = () => {
   return (
     <SignupContainer>
       <input />
-      <NavbarButton theme={buttonTheme}>Get Started</NavbarButton>
+      <StyledButton theme={buttonTheme}>Get Started</StyledButton>
     </SignupContainer>
   );
 };
@@ -184,10 +191,10 @@ const Landing = () => {
             <a href="#">About</a>
           </NavbarLink>
           <a href="/login">
-            <NavbarButton theme={buttonTheme}>LOGIN</NavbarButton>
+            <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
           </a>
-          <a href="/signup">
-            <NavbarButton theme={invertTheme}>SIGN UP</NavbarButton>
+          <a href="/register">
+            <StyledButton theme={invertTheme}>SIGN UP</StyledButton>
           </a>
         </LinksContainer>
       </NavbarContainer>
