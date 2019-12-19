@@ -4,7 +4,7 @@ import userReducer from './authentication';
 
 const appReducer = combineReducers({
   // add your reducers here
-  userReducer
+  userReducer,
 });
 
 /* const rootReducer = (state, action) => {

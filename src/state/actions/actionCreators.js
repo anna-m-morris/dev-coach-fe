@@ -1,5 +1,5 @@
-import * as types from './actionTypes';
 import axios from 'axios';
+import * as types from './actionTypes';
 
 const url = process.env.REACT_APP_BASE_URL;
 

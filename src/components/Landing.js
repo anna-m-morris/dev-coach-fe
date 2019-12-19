@@ -9,6 +9,7 @@ import React from 'react';
 // import MenuIcon from '@material-ui/icons/Menu';
 
 import logo from '../img/firelogo.png';
+
 const vector2 = require('../img/landingvector.png');
 const bgShape = require('../img/Rectangle5.png');
 const handshakeVector = require('../img/Group.png');
@@ -167,7 +168,6 @@ const LandingVectorImageContainer = styled.div`
 `;
 
 // middle section
-
 const MiddleSectionContainer = styled.div`
   height: 100vh;
   width: 100%;
@@ -303,10 +303,10 @@ const Landing = () => {
         </LogoTitleContainer>
         <LinksContainer>
           <NavbarLink>
-            <a href='#'>FAQ</a>
+            <a href='/faq'>FAQ</a>
           </NavbarLink>
           <NavbarLink>
-            <a href='#'>About</a>
+            <a href='/about'>About</a>
           </NavbarLink>
           <a href='/login'>
             <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
@@ -332,7 +332,7 @@ const Landing = () => {
         </LandingTaglineContainer>
         <LandingRightContainer>
           <LandingVectorImageContainer>
-            <img src={vector2} />
+            <img src={vector2} alt='vector' />
           </LandingVectorImageContainer>
         </LandingRightContainer>
       </TopLandingContainer>
@@ -348,7 +348,7 @@ const Landing = () => {
                 ability.
               </p>
               <ImgDiv>
-                <img src={handshakeVector} />
+                <img src={handshakeVector} alt='vector' />
               </ImgDiv>
             </SquareLeft>
             <SquareRight>
@@ -358,7 +358,7 @@ const Landing = () => {
                 and weaknesses, and a personalized plan to improve.
               </p>
               <OtherImgDiv>
-                <img src={feedbackVector} />
+                <img src={feedbackVector} alt='vector' />
               </OtherImgDiv>
             </SquareRight>
             <SquareRight>
@@ -368,7 +368,7 @@ const Landing = () => {
                 land the job of your dreams.
               </p>
               <OtherImgDiv>
-                <img src={hiredVetor} />
+                <img src={hiredVetor} alt='vector' />
               </OtherImgDiv>
             </SquareRight>
           </SquaresContainer>
