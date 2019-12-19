@@ -343,8 +343,9 @@ const Landing = () => {
             <SquareLeft>
               <h3>Find your coach.</h3>
               <p>
-                Match with an experienced professional, hand-selected by us for
-                interviewing experience and mentoring ability.
+                Match with an experienced professional, hand-selected
+                by us for interviewing experience and mentoring
+                ability.
               </p>
               <ImgDiv>
                 <img src={handshakeVector} />
@@ -353,8 +354,8 @@ const Landing = () => {
             <SquareRight>
               <h3>Get feedback.</h3>
               <p>
-                Get targeted feedback on your own individual strengths and
-                weaknesses, and a personalized plan to improve.
+                Get targeted feedback on your own individual strengths
+                and weaknesses, and a personalized plan to improve.
               </p>
               <OtherImgDiv>
                 <img src={feedbackVector} />
@@ -363,11 +364,11 @@ const Landing = () => {
             <SquareRight>
               <h3>Get hired!</h3>
               <p>
-                Take advantage of your newfound interview skills and land the
-                job of your dreams.
+                Take advantage of your newfound interview skills and
+                land the job of your dreams.
               </p>
               <OtherImgDiv>
-                <img src={hiredVetor}/>
+                <img src={hiredVetor} />
               </OtherImgDiv>
             </SquareRight>
           </SquaresContainer>
