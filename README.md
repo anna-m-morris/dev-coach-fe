@@ -1,68 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Quality Hub Frontend
 
-## Available Scripts
+[dev-coach.com](https://www.dev-coach.com)
+[Notion Document](https://www.notion.so/EU3-QualityHub-503a434aa6b4425595d2b4fa03a1d406)
+[Trello Board](https://trello.com/b/SlF9gway/quality-hub)
 
-In the project directory, you can run:
+# Table of Content
 
-### `yarn start`
+- Front-End Dependencies
+- react
+- redux
+- redux-thunk
+- react-router
+- styled-components
+- dotenv
+- redux-logger
+- react-scripts
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Scripts
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+`npm start`: starts the application on your local machine
 
-### `yarn test`
+## Tech-Stack
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Front-End Dependencies ( Production )
 
-### `yarn build`
+### react
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+React is the current industry standard that offers a lot of out of the box benefits. It is fast, efficient, and scalable. Due to the large community, finding solutions to potential problems and reference material is much easier, even for a potential dev without a lot of experience who would like to contribute to Main Course
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### react-router
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Declarative routing for React. Helps in the Routing of our application
 
-### `yarn eject`
+### dotenv
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Storing configuration in the environment separate from code is based on The Twelve-Factor App methodology. | View Dependency
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### styled components
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Has a thriving community and offers the ability to directly style multiple components within a file. The syntax used is familiar to JavaScript and improves code cleanliness and makes it easy to get up and going for those without a lot of css experience. Styled components are also very efficient, improving load time for users.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### redux
 
-## Learn More
+Redux is a predictable state container for JavaScript apps.
+It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. On top of that, it provides a great developer experience, such as live code editing combined with a time traveling debugger.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### redux-thunk
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+redux-thunk middleware, which allows simple asynchronous use of dispatch.
 
-### Code Splitting
+### redux-logger
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+A middleware which logs dispatched actions and the resulting new state.
+An enhancer which logs the time taken for the reducers to process each action
