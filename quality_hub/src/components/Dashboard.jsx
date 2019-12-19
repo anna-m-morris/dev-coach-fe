@@ -20,13 +20,14 @@ import { mainListItems } from '../utils/dashboardList';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
+import logo from '../img/firelogo.png';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        DevCoach
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
