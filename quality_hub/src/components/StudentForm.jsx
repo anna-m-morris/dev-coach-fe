@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
-import { StyledButton, buttonTheme, invertTheme } from './Landing';
+import { StyledButton, buttonTheme } from './Landing';
 import {
   GreyBackgroundContainer,
   FormCard,
