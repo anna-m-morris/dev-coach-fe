@@ -2,9 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
-import { StyledButton, buttonTheme, invertTheme } from './Landing';
-import * as yup from 'yup';
-import axios from 'axios';
+import { StyledButton, buttonTheme } from './Landing';
 
 import { login } from '../state/actions/actionCreators';
 
@@ -166,7 +164,7 @@ const FormikLoginForm = withFormik({
 
   handleSubmit(values, { props }) {
     console.log(values);
-    props.login(' https://dev-coach-staging.herokuapp.com/', props, values);
+    props.login('https://dev-coach-staging.herokuapp.com/', props, values);
   },
 })(LoginForm);
 
