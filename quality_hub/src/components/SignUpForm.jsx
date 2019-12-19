@@ -82,7 +82,7 @@ const FormikSignUpForm = withFormik({
 
   handleSubmit(values, { props }) {
     console.log(values);
-    props.register('http://localhost:5000/user/register', props, values);
+    props.register(' https://dev-coach-staging.herokuapp.com/', props, values);
   }
 })(SignUpForm);
 
