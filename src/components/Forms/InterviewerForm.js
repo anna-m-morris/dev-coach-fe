@@ -1,17 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { withFormik, Form, Field, FieldArray } from 'formik';
+import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
-import { StyledButton, buttonTheme, invertTheme } from './Landing';
+import { StyledButton, buttonTheme } from '../Landing';
 import {
   GreyBackgroundContainer,
   FormCard,
   FormContainer,
 } from './LoginForm';
-
-import { register } from '../state/actions/actionCreators';
 
 const RegisterCard = styled(FormCard)`
   width: 30em;

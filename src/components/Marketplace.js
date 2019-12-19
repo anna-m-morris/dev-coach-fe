@@ -1,57 +1,57 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import devices from './devices';
 import logo from '../img/firelogo.png';
 
 // DUMMY DATA //
- const marketplaceUsers = [{
-  first_name: 'Jayne',
-  last_name: 'Carmichael Norrie',
-  email: 'jayne@musicisourforte.co.uk',
-  password: 'chico',
-  role_id: 2,
-},
-{
-  first_name: 'Liam',
-  last_name: 'Sutton',
-  email: 'liam@google.com',
-  password: 'liam',
-  role_id: 2,
-},
-{
-  first_name: 'Funmi',
-  last_name: 'Talabi',
-  email: 'funmi@google.com',
-  password: 'funmi',
-  role_id: 2,
-}];
+const marketplaceUsers = [
+  {
+    first_name: 'Jayne',
+    last_name: 'Carmichael Norrie',
+    email: 'jayne@musicisourforte.co.uk',
+    password: 'chico',
+    role_id: 2,
+  },
+  {
+    first_name: 'Liam',
+    last_name: 'Sutton',
+    email: 'liam@google.com',
+    password: 'liam',
+    role_id: 2,
+  },
+  {
+    first_name: 'Funmi',
+    last_name: 'Talabi',
+    email: 'funmi@google.com',
+    password: 'funmi',
+    role_id: 2,
+  },
+];
 
-const marketplaceCoaches = [{
-  user_id: 1,
-  avatar_url: 'https://bit.ly/325XJrX',
-  experience_level: 1,
-  skill_level: 1,
-  description:
-    'Jayne is an expert in HTML',
-},
-{
-  user_id: 2,
-  avatar_url: 'https://bit.ly/36SwAec',
-  experience_level: 1,
-  skill_level: 1,
-  description:
-    'Funmi is an expert in React',
-},
-{
-  user_id: 3,
-  avatar_url: 'https://bit.ly/2Q0cbgm',
-  experience_level: 1,
-  skill_level: 1,
-  description:
-    'Liam is an expert in Node.js',
-}];
-
+const marketplaceCoaches = [
+  {
+    user_id: 1,
+    avatar_url: 'https://bit.ly/325XJrX',
+    experience_level: 1,
+    skill_level: 1,
+    description: 'Jayne is an expert in HTML',
+  },
+  {
+    user_id: 2,
+    avatar_url: 'https://bit.ly/36SwAec',
+    experience_level: 1,
+    skill_level: 1,
+    description: 'Funmi is an expert in React',
+  },
+  {
+    user_id: 3,
+    avatar_url: 'https://bit.ly/2Q0cbgm',
+    experience_level: 1,
+    skill_level: 1,
+    description: 'Liam is an expert in Node.js',
+  },
+];
 
 // STYLED COMPONENTS //
 const BackgroundContainer = styled.section`
@@ -65,7 +65,7 @@ const BackgroundContainer = styled.section`
   @media ${devices.tablet} {
     border: 3px solid orange;
   }
-  
+
   @media ${devices.mobile} {
     border: 3px solid green;
   }
@@ -106,7 +106,7 @@ const TitleContainer = styled.div`
   @media ${devices.tablet} {
     font-size: 16px;
   }
-  
+
   @media ${devices.mobile} {
     font-size: 12px;
   }
@@ -134,8 +134,7 @@ const NavLink = styled.h4`
   padding: 0px 10px;
 `;
 
-/////// MAIN SECTION COMPONENTS ////
-
+// MAIN SECTION COMPONENTS
 const MainContainer = styled.section`
   background-color: #ffffff;
   height: 80vh;
@@ -154,7 +153,7 @@ const MainContainer = styled.section`
   @media ${devices.tablet} {
     border: 3px solid yellow;
   }
-  
+
   @media ${devices.mobile} {
     border: 3px solid red;
   }
@@ -174,7 +173,7 @@ const CoachCard = styled.div`
   @media ${devices.tablet} {
     flex-wrap: wrap;
   }
-  
+
   @media ${devices.mobile} {
     border: 3px solid red;
   }
@@ -186,52 +185,46 @@ const CoachCard = styled.div`
     color: white;
 
     @media ${devices.tablet} {
-    background-color: #4fda65;
-  }
+      background-color: #4fda65;
+    }
     @media ${devices.mobile} {
-    border: 3px solid red;
-  }
-
+      border: 3px solid red;
+    }
   }
 `;
 
-
 function Marketplace(props) {
-  
   return (
     <BackgroundContainer>
-
       <NavigationContainer>
-
         <LogoAndNameContainer>
           <Logo />
-          <TitleContainer><h2>Dev Coach</h2></TitleContainer>
+          <TitleContainer>
+            <h2>Dev Coach</h2>
+          </TitleContainer>
         </LogoAndNameContainer>
 
         <NavLinkContainer>
           <NavLink>FAQ</NavLink>
           <NavLink>
-            <Link to="/dashboard">Settings</Link>
+            <Link to='/dashboard'>Settings</Link>
           </NavLink>
         </NavLinkContainer>
-
       </NavigationContainer>
 
       <h1>Choose your Dev Coach</h1>
       <MainContainer>
-          {
-            marketplaceCoaches.map((info) => (
-              <CoachCard>
-                <img src={info.avatar_url}/>
-                <h2>{info.first_name}</h2>
-                <p>{info.description}</p>
-                <button>Book Now</button>
-              </CoachCard>
-            ))
-          }
+        {marketplaceCoaches.map(info => (
+          <CoachCard>
+            <img src={info.avatar_url} />
+            <h2>{info.first_name}</h2>
+            <p>{info.description}</p>
+            <button>Book Now</button>
+          </CoachCard>
+        ))}
       </MainContainer>
     </BackgroundContainer>
-  )
+  );
 }
 
 export default Marketplace;

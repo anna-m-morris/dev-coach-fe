@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledUserType = styled.div`
+const StyledUserType = styled.div`
   .container {
     align-items: center;
     background: #f2f2f2;
@@ -69,3 +69,5 @@ export const StyledUserType = styled.div`
     }
   }
 `;
+
+export default StyledUserType;

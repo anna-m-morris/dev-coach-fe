@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { StyledButton, buttonTheme } from '../Landing';
-import { StyledUserType } from './styles';
+import StyledUserType from './styles';
 
-function UserType() {
+function UserTypePage() {
   return (
     <StyledUserType>
       <div className='container'>
@@ -76,4 +76,4 @@ function UserType() {
   );
 }
 
-export default UserType;
+export default UserTypePage;
