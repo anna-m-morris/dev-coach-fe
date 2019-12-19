@@ -120,7 +120,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Dashboard() {
+function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -198,3 +198,5 @@ export default function Dashboard() {
     </div>
   );
 }
+
+export default Dashboard;
