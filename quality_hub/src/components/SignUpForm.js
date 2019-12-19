@@ -45,9 +45,9 @@ function SignUpForm(props) {
             </ShortInputContainer>
             <Field type='email' name='email' placeholder='Email' />
             <Field type='password' name='password' placeholder='Password' />
-            <Field type='password' name='confirmPassword' placeholder='Confirm Password' />
+            <Field type='password' name='confirm_password' placeholder='Confirm Password' />
 
-            <StyledButton theme={buttonTheme}>
+            <StyledButton theme={buttonTheme} type="submit">
               Get Started
             </StyledButton>
           </Form>
@@ -73,17 +73,17 @@ const FormikSignUpForm = withFormik({
       confirm_password: confirm_password || '',
     };
   },
-  // validationSchema: Yup.object().shape({
-  //   firstName: Yup.string().required('Please enter your first name'),
-  //   lastName: Yup.string().required('Please enter your last name'),
-  //   password: Yup.string()
-  //     .required('Please enter your password')
-  //     .min(6),
-  //   confirmPassword: Yup.string().oneOf(
-  //     [Yup.ref('password'), null],
-  //     "Your passwords don't match",
-  //   ),
-  // }),
+  validationSchema: Yup.object().shape({
+    first_name: Yup.string().required('Please enter your first name'),
+    last_name: Yup.string().required('Please enter your last name'),
+    password: Yup.string()
+      .required('Please enter your password')
+      .min(6),
+    confirm_password: Yup.string().oneOf(
+      [Yup.ref('password'), null],
+      "Your passwords don't match",
+    ),
+  }),
 
   handleSubmit(values, { props }) {
     console.log(values);

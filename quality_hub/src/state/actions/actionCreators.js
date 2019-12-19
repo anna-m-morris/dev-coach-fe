@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 import axios from 'axios';
 
-const url = 'https://dev-coach-staging.herokuapp.com/';
+const url = process.env.REACT_APP_BASE_URL;
 
 export const login = (props, values) => dispatch => {
   dispatch({ type: types.LOGIN_START });
