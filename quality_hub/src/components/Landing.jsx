@@ -355,6 +355,59 @@ const BottomButton = styled.div`
   }
 `;
 
+//footer
+const FooterConatiner = styled.div`
+  height: 50vh;
+  width: 100%;
+  background: #292d38;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+const LogoFooter = styled.div`
+  margin-top: 2%;
+  margin-left: 10%;
+  height: 10em;
+  width: 5em;
+  background-image: url(${logo});
+  background-repeat: no-repeat;
+`;
+
+const LogoTitleContainerFooter = styled.div`
+  margin-top: 7%;
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+`;
+
+const FooterTextStyle = styled.div`
+  margin-top: 2%;
+
+  h3 {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+  }
+
+  p {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+  }
+`;
+
 // react components
 
 const SignUp = () => {
@@ -457,6 +510,35 @@ const Landing = () => {
           <BottomButton theme={buttonTheme}>Get Started</BottomButton>
         </BottomTextStyle>
       </BottomSectionContainer>
+      <FooterConatiner>
+        <LogoTitleContainerFooter>
+          <LogoFooter />
+          <NavTitleContainer>
+            <h1>DevCoach</h1>
+          </NavTitleContainer>
+        </LogoTitleContainerFooter>
+        <FooterTextStyle>
+          <h3>SUPPORT</h3>
+          <p>How it works</p>
+        </FooterTextStyle>
+        <FooterTextStyle>
+          <h3>PRODUCT</h3>
+          <p>Product feedback</p>
+          <p>About the team</p>
+        </FooterTextStyle>
+        <FooterTextStyle>
+          <h3>HELP</h3>
+          <p>FAQ</p>
+          <p>Contact us</p>
+          <p>Career</p>
+        </FooterTextStyle>
+        <FooterTextStyle>
+          <h3>LEGAL</h3>
+          <p>Privacy Policy</p>
+          <p>Terms and Conditions</p>
+          <p>Manage Cookies</p>
+        </FooterTextStyle>
+      </FooterConatiner>
     </div>
   );
 };
