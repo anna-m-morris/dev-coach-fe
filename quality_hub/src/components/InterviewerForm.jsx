@@ -6,7 +6,11 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 import { StyledButton, buttonTheme, invertTheme } from './Landing';
-import { GreyBackgroundContainer, FormCard, FormContainer } from './LoginForm';
+import {
+  GreyBackgroundContainer,
+  FormCard,
+  FormContainer,
+} from './LoginForm';
 
 import { register } from '../state/actions/actionCreators';
 
@@ -31,21 +35,25 @@ function InterviewerForm(props) {
         <h1> Interviewer Form </h1>
         <FormContainer>
           <Form>
-            <Field type="text" name="city" placeholder=" current city " />
             <Field
-              type="text"
-              name="level_of_experience"
-              placeholder=" select level of experience "
+              type='text'
+              name='city'
+              placeholder=' current city '
             />
             <Field
-              type="text"
-              name="skills"
-              placeholder=" what skill(s) do you have ? "
+              type='text'
+              name='level_of_experience'
+              placeholder=' select level of experience '
             />
             <Field
-              type="text"
-              name="value"
-              placeholder=" what value do you bring to dev coach ? "
+              type='text'
+              name='skills'
+              placeholder=' what skill(s) do you have ? '
+            />
+            <Field
+              type='text'
+              name='value'
+              placeholder=' what value do you bring to dev coach ? '
             />
             <StyledButton theme={buttonTheme}> Submit </StyledButton>
           </Form>
@@ -60,17 +68,23 @@ const FormikInterviewerForm = withFormik({
     city: Yup.array(),
     level_of_experience: Yup.array(),
     skills: Yup.array(),
-    value: Yup.string().required()
+    value: Yup.string().required(),
   }),
   mapPropsToValues: props => ({
     city: ['edinburgh', 'lagos', 'watford'],
     level_of_experience: ['less than a year', 'Over two years'],
     skills: ['Native JS', 'React JS', 'Node JS'],
-    value: ''
+    value: '',
   }),
   handleSubmit(values, { props }) {
-    props.register('http://localhost:5000/user/register', props, values);
-  }
+    props.register(
+      'http://localhost:5000/user/register',
+      props,
+      values,
+    );
+  },
 })(InterviewerForm);
 
-export default connect(state => state, { register })(FormikInterviewerForm);
+export default connect(state => state, { register })(
+  FormikInterviewerForm,
+);
