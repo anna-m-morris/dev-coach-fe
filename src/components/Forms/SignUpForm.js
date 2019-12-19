@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
 
-import { StyledButton, buttonTheme, invertTheme } from '../Landing';
+import { StyledButton, buttonTheme } from '../Landing';
 import {
   GreyBackgroundContainer,
   FormCard,
