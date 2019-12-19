@@ -1,9 +1,7 @@
 import * as types from './actionTypes';
 import axios from 'axios';
-import axiosWithAuth from '../../utils/axiosWithAuth';
 
-const url = 'http://localhost:5000/'
-// process.env.REACT_APP_BASE_URL;
+const url = process.env.REACT_APP_BASE_URL;
 
 export const login = (props, values) => dispatch => {
   debugger
@@ -12,12 +10,9 @@ export const login = (props, values) => dispatch => {
     .post(`${url}user/login`, values)
     .then(res => {
       debugger
-      dispatch({ type: types.LOGIN_SUCCESSFUL });
+      dispatch({ type: types.LOGIN_SUCCESSFUL, payload: res.data.user });
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('username', res.data.token);
       props.history.push('/dashboard');
-
-      // return axiosWithAuth().get().then().catch()
     })
     .catch(err => {
       debugger
@@ -35,7 +30,6 @@ export const register = (props, values) => dispatch => {
       localStorage.setItem('user', JSON.stringify(res.data));
       dispatch({ type: types.LOGIN_SUCCESSFUL });
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('username', res.data.token);
       props.history.push('/dashboard');
     })
     .catch(err => {
