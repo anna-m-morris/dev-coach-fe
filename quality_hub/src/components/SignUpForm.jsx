@@ -21,10 +21,20 @@ const ShortInputContainer = styled.div`
 
 `;
 
+const RegisterCard = styled(FormCard)`
+   width: 30em;
+   height: 35em;
+
+   h1 {
+     font-size: 24px;
+   }
+
+`
+
 function SignUpForm(props) {
   return (
     <GreyBackgroundContainer>
-      <FormCard style={{ width: '30em', height: '35em' }}>
+      <RegisterCard>
         <h1>Sign up to get started now</h1>
         <FormContainer>
           <Form>
@@ -39,10 +49,10 @@ function SignUpForm(props) {
               name="confirmPassword"
             />
 
-            <StyledButton theme={buttonTheme}>Submit!</StyledButton>
+            <StyledButton theme={buttonTheme}>Get Started</StyledButton>
           </Form>
         </FormContainer>
-      </FormCard>
+      </RegisterCard>
     </GreyBackgroundContainer>
   );
 }
