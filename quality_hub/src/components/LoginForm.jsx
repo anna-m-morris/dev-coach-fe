@@ -8,7 +8,7 @@ import axios from 'axios';
 
 import { login } from '../state/actions/actionCreators';
 
-const LoginBackgroundContainer = styled.div`
+export const GreyBackgroundContainer = styled.div`
   height: 100vh;
   background: #f2f2f2;
   display: flex;
@@ -16,7 +16,7 @@ const LoginBackgroundContainer = styled.div`
   align-items: center;
 `;
 
-const LoginContainer = styled.div`
+export const FormCard = styled.div`
   background: white;
   height: 28em;
   width: 25em;
@@ -32,7 +32,7 @@ const LoginContainer = styled.div`
   }
 `;
 
-const FormContainer = styled.div`
+export const FormContainer = styled.div`
   height: 100%;
   width: 100%;
   margin-top: 1em;
@@ -105,15 +105,15 @@ const StyledDetails = styled.div`
 const loadingButtonTheme = {
   text: '#292d38',
   background: 'lightgray',
-}
+};
 
 const ExtraLoginDetails = () => {
   return (
     <StyledDetails>
-      <input type="checkbox" />
+      <input type='checkbox' />
       <p>Remember Me</p>
       <div>
-        <a href="#">
+        <a href='#'>
           <p>Forgot your password?</p>
         </a>{' '}
       </div>
@@ -123,15 +123,27 @@ const ExtraLoginDetails = () => {
 
 function LoginForm(props) {
   return (
-    <LoginBackgroundContainer>
-      <LoginContainer>
+    <GreyBackgroundContainer>
+      <FormCard>
         <h1>Welcome Back!</h1>
         <FormContainer>
           <Form>
-            <Field type="email" name="email" placeholder="Email" />
-            <Field type="password" name="password" placeholder="Password" />
+            <Field type='email' name='email' placeholder='Email' />
+            <Field
+              type='password'
+              name='password'
+              placeholder='Password'
+            />
             <ExtraLoginDetails />
-            <StyledButton theme={props.userReducer.isLoading ? loadingButtonTheme : buttonTheme }>Sign in to your account</StyledButton>
+            <StyledButton
+              theme={
+                props.userReducer.isLoading
+                  ? loadingButtonTheme
+                  : buttonTheme
+              }
+            >
+              Sign in to your account
+            </StyledButton>
             {/*             {props.userReducer.isLoading ? (
               <h3>Loading</h3>
             ) : (
@@ -139,8 +151,8 @@ function LoginForm(props) {
             )} */}
           </Form>
         </FormContainer>
-      </LoginContainer>
-    </LoginBackgroundContainer>
+      </FormCard>
+    </GreyBackgroundContainer>
   );
 }
 
@@ -148,14 +160,14 @@ const FormikLoginForm = withFormik({
   mapPropsToValues({ email, password }) {
     return {
       email: email || '',
-      password: password || ''
+      password: password || '',
     };
   },
 
   handleSubmit(values, { props }) {
     console.log(values);
     props.login('http://localhost:5000/user/login', props, values);
-  }
+  },
 })(LoginForm);
 
 export default connect(state => state, { login })(FormikLoginForm);
