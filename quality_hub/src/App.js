@@ -9,7 +9,7 @@ import Dashboard from './components/Dashboard';
 import Landing from './components/Landing';
 import InterviewerForm from './components/Forms/InterviewerForm';
 import StudentForm from './components/Forms/StudentForm';
-import UserType from './components/UserType/UserType';
+import UserTypePage from './components/UserType/UserTypePage';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
       <Route path='/register' component={SignUpForm} />
       <Route path='/interviewer' component={InterviewerForm} />
       <Route path='/student' component={StudentForm} />
-      <Route path='/user/type' component={UserType} />
+      <Route path='/user/type' component={UserTypePage} />
       <PrivateRoute path='/dashboard' component={Dashboard} />
     </>
   );
