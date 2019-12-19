@@ -20,6 +20,10 @@ const RegisterCard = styled(FormCard)`
   }
   div {
     width: 75%;
+    margin: 0.5rem 0;
+    p {
+      margin: 0.2rem 0;
+    }
 
     input {
       width: 95%;
