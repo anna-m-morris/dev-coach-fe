@@ -10,14 +10,14 @@ import { register } from '../state/actions/actionCreators';
 function SignUpForm(props) {
   return (
     <Form>
-      <Field type="text" name="first_name" placeholder="first name" />
-      <Field type="text" name="last_name" placeholder="last name" />
-      <Field type="email" name="email" placeholder="Email" />
-      <Field type="password" name="password" placeholder="Password" />
+      <Field type='text' name='first_name' placeholder='first name' />
+      <Field type='text' name='last_name' placeholder='last name' />
+      <Field type='email' name='email' placeholder='Email' />
+      <Field type='password' name='password' placeholder='Password' />
       <Field
-        type="password"
-        name="confirmPassword"
-        placeholder="confirm password"
+        type='password'
+        name='confirmPassword'
+        placeholder='confirm password'
       />
 
       <button>Submit!</button>
@@ -26,15 +26,19 @@ function SignUpForm(props) {
 }
 
 const FormikSignUpForm = withFormik({
-  mapPropsToValues(
-      { first_name, last_name, email, password, confirm_password }
-      ) {
+  mapPropsToValues({
+    first_name,
+    last_name,
+    email,
+    password,
+    confirm_password,
+  }) {
     return {
       first_name: 'first_name' || '',
       last_name: 'last_name' || '',
       email: 'email' || '',
       password: 'password' || '',
-      confirm_password: 'confirm_password' || ''
+      confirm_password: 'confirm_password' || '',
     };
   },
   //   validationSchema: Yup.object().shape({
@@ -45,13 +49,15 @@ const FormikSignUpForm = withFormik({
   //  })
 
   handleSubmit(values, { props }) {
-      console.log(values)
+    console.log(values);
     props.register(
       'http://localhost:5000/user/register',
       props,
-      values
+      values,
     );
-  }
+  },
 })(SignUpForm);
 
-export default connect(state => state, { register })(FormikSignUpForm);
+export default connect(state => state, { register })(
+  FormikSignUpForm,
+);
