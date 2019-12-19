@@ -24,9 +24,9 @@ import logo from '../img/firelogo.png';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link color='inherit' href='https://material-ui.com/'>
         DevCoach
       </Link>{' '}
       {new Date().getFullYear()}
@@ -40,26 +40,28 @@ const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    backgroundColor: "#F2F2F2",
-
+    backgroundColor: '#F2F2F2',
   },
   toolbar: {
-    backgroundColor: "#F2F2F2",
+    backgroundColor: '#F2F2F2',
     // paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
     backgroundImage: `url(${logo})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundSize: "4rem",
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'left',
+    backgroundSize: '4rem',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
     ...theme.mixins.toolbar,
+    color: '#4fad65',
+    fontSize: '.8rem',
+    fontFamily: "ABeeZee"
   },
   appBar: {
-    boxShadow: "none",
+    boxShadow: 'none',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -84,7 +86,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   drawerPaper: {
-    backgroundColor: "#F2F2F2",
+    backgroundColor: '#F2F2F2',
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
@@ -139,31 +141,39 @@ function Dashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute"
-      className={clsx(classes.appBar, open && classes.appBarShift)}
+      <AppBar
+        position='absolute'
+        className={clsx(classes.appBar, open && classes.appBarShift)}
       >
-        <Toolbar 
-        className={classes.toolbar}
-        >
+        <Toolbar className={classes.toolbar}>
           <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
+            edge='start'
+            color='inherit'
+            aria-label='open drawer'
             onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            className={clsx(
+              classes.menuButton,
+              open && classes.menuButtonHidden,
+            )}
           >
             <MenuIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
-        variant="permanent"
+        variant='permanent'
         classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          paper: clsx(
+            classes.drawerPaper,
+            !open && classes.drawerPaperClose,
+          ),
         }}
         open={open}
       >
         <div className={classes.toolbarIcon}>
+          <h1>
+            DevCoach
+          </h1>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
@@ -174,7 +184,7 @@ function Dashboard() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+        <Container maxWidth='lg' className={classes.container}>
           <Grid container spacing={3}>
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>

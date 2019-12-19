@@ -13,12 +13,12 @@ import StudentForm from './components/StudentForm';
 function App() {
   return (
     <>
-      <Route exact path='/' component={Dashboard} />
+      <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
       <Route path='/register' component={SignUpForm} />
       <Route path='/interviewer' component={InterviewerForm} />
       <Route path='/student' component={StudentForm} />
-      {/* <PrivateRoute path='/dashboard' component={Dashboard} /> */}
+      <PrivateRoute path='/dashboard' component={Dashboard} />
     </>
   );
 }
