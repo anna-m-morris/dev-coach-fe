@@ -77,7 +77,7 @@ export const StyledButton = styled.button`
   width: 8em;
   padding: 1em;
   border: none;
-  font-family: Ubuntu;
+  font-family: ABeeZee;
   font-size: 14px;
 
   :focus {
