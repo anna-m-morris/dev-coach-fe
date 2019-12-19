@@ -48,6 +48,10 @@ const useStyles = makeStyles(theme => ({
     // paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
+    backgroundImage: `url(${logo})`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "4rem",
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
