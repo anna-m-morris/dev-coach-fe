@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { StyledButton, buttonTheme } from '../Landing';
-import { StyledUserType } from './styles';
+import StyledUserType from './styles';
 
 function UserTypePage() {
   return (

@@ -1,5 +1,5 @@
-import * as types from './actionTypes';
 import axios from 'axios';
+import * as types from './actionTypes';
 
 export const login = (url, props, values) => dispatch => {
   dispatch({ type: types.LOGIN_START });

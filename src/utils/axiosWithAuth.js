@@ -7,8 +7,8 @@ export default function axiosWithAuth() {
     baseURL: 'https://dev-coach-production.herokuapp.com',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: token
-    }
+      Authorization: token,
+    },
   });
 
   return axiosInstance;

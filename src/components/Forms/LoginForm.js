@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
-import { StyledButton, buttonTheme, invertTheme } from '../Landing';
-import * as yup from 'yup';
 import axios from 'axios';
+import * as yup from 'yup';
 
+import { StyledButton, buttonTheme, invertTheme } from '../Landing';
 import { login } from '../../state/actions/actionCreators';
 
 export const GreyBackgroundContainer = styled.div`

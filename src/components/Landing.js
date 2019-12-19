@@ -9,6 +9,7 @@ import React from 'react';
 // import MenuIcon from '@material-ui/icons/Menu';
 
 import logo from '../img/firelogo.png';
+
 const vector2 = require('../img/landingvector.png');
 const bgShape = require('../img/Rectangle5.png');
 const handshakeVector = require('../img/Group.png');
@@ -167,7 +168,6 @@ const LandingVectorImageContainer = styled.div`
 `;
 
 // middle section
-
 const MiddleSectionContainer = styled.div`
   height: 100vh;
   width: 100%;
