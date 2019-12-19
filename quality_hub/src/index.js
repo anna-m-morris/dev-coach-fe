@@ -9,7 +9,29 @@ import logger from 'redux-logger';
 import './index.css';
 import App from './App';
 
-const store = createStore(appReducer, applyMiddleware(logger, thunk));
+function saveToLocalStorage(state) {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("state", serializedState);
+  } catch (e) {
+  }
+}
+
+function loadFromLocalStorage() {
+  try {
+    const serializedState = localStorage.getItem("state");
+    if (serializedState === null) return undefined;
+    return JSON.parse(serializedState);
+  } catch (e) {
+    return undefined;
+  }
+}
+
+const persistedState = loadFromLocalStorage();
+
+const store = createStore(appReducer, persistedState, applyMiddleware(logger, thunk));
+
+store.subscribe(() => saveToLocalStorage(store.getState()));
 
 ReactDOM.render(
   <Provider store={store}>
