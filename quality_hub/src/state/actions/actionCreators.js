@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import axios from 'axios';
+import axiosWithAuth from '../../utils/axiosWithAuth';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -8,10 +9,13 @@ export const login = (props, values) => dispatch => {
   axios
     .post(`${url}user/login`, values)
     .then(res => {
+      debugger
       dispatch({ type: types.LOGIN_SUCCESSFUL });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('username', res.data.token);
       props.history.push('/dashboard');
+
+      return axios
     })
     .catch(err => {
       dispatch({ type: types.LOGIN_ERROR, payload: err });
