@@ -9,6 +9,7 @@ import appReducer from './state/reducers';
 import './index.css';
 import App from './App';
 
+
 function saveToLocalStorage(state) {
   try {
     const serializedState = JSON.stringify(state);
@@ -32,6 +33,7 @@ const persistedState = loadFromLocalStorage();
 const store = createStore(appReducer, persistedState, applyMiddleware(logger, thunk));
 
 store.subscribe(() => saveToLocalStorage(store.getState()));
+
 
 ReactDOM.render(
   <Provider store={store}>

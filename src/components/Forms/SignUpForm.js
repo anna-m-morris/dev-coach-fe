@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
+
 import { StyledButton, buttonTheme, invertTheme } from '../Landing';
+
 import {
   GreyBackgroundContainer,
   FormCard,
@@ -40,6 +42,7 @@ function SignUpForm(props) {
         <FormContainer>
           <Form>
             <ShortInputContainer>
+
               <Field
                 type='text'
                 name='first_name'
@@ -64,6 +67,7 @@ function SignUpForm(props) {
             />
 
             <StyledButton theme={buttonTheme} type='submit'>
+
               Get Started
             </StyledButton>
           </Form>
@@ -82,6 +86,7 @@ const FormikSignUpForm = withFormik({
     confirm_password,
   }) {
     return {
+
       first_name: first_name || '',
       last_name: last_name || '',
       email: email || '',
@@ -96,6 +101,7 @@ const FormikSignUpForm = withFormik({
       .required('Please enter your password')
       .min(6),
     confirm_password: Yup.string().oneOf(
+
       [Yup.ref('password'), null],
       "Your passwords don't match",
     ),
@@ -103,7 +109,9 @@ const FormikSignUpForm = withFormik({
 
   handleSubmit(values, { props }) {
     console.log(values);
+
     props.register(props, values);
+
   },
 })(SignUpForm);
 
