@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import devices from './devices';
 
-// RESPONSIVE SETTINGS //
 
 // STYLED COMPONENTS //
 const BackgroundContainer = styled.div`
@@ -10,6 +10,15 @@ const BackgroundContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 3px solid blue;
+
+  @media ${devices.tablet} {
+    border: 3px solid orange;
+  }
+  
+  @media ${devices.mobile} {
+    border: 3px solid green;
+  }
 `;
 
 function Marketplace(props) {
