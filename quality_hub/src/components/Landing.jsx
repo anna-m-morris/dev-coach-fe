@@ -14,6 +14,7 @@ const bgShape = require('../img/Rectangle5.png');
 const handshakeVector = require('../img/Group.png');
 const feedbackVector = require('../img/analytics1.png');
 const hiredVetor = require('../img/startup1.png');
+const getStartedVector = require('../img/getstartedVector.png');
 
 // styled components
 const Logo = styled.div`
@@ -280,6 +281,80 @@ const OtherImgDiv = styled.div`
     width: 70%;
   }
 `;
+
+// bottom section
+const BottomSectionContainer = styled.div`
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+`;
+const BottomImgDiv = styled.div`
+  width: 50%;
+
+  img {
+    height: 90%;
+    width: 90%;
+  }
+`;
+
+const BottomTextStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+
+  h2 {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 33px;
+    line-height: 46px;
+    width: 12em;
+    text-align: center;
+  }
+
+  input {
+    height: 3em;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #ada8a8;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 32px;
+    padding-left: 1em;
+  }
+`;
+
+const BottomButton = styled.div`
+  background: ${props => props.theme.background};
+  color: ${props => props.theme.text};
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  height: 1.5em;
+  width: 95%;
+  padding: 1em;
+  border: none;
+  font-family: Ubuntu;
+  font-size: 14px;
+  margin-top: 2em;
+  text-align: center;
+  vertical-align: middle;
+
+  :focus {
+    outline: none;
+  }
+
+  :active {
+    outline: none;
+    transform: translateY(2px);
+  }
+`;
+
 // react components
 
 const SignUp = () => {
@@ -366,12 +441,22 @@ const Landing = () => {
                 job of your dreams.
               </p>
               <OtherImgDiv>
-                <img src={hiredVetor}/>
+                <img src={hiredVetor} />
               </OtherImgDiv>
             </SquareRight>
           </SquaresContainer>
         </BgShape>
       </MiddleSectionContainer>
+      <BottomSectionContainer>
+        <BottomImgDiv>
+          <img src={getStartedVector} />
+        </BottomImgDiv>
+        <BottomTextStyle>
+          <h2>Ready to get started?</h2>
+          <input placeholder="Enter your email address" />
+          <BottomButton theme={buttonTheme}>Get Started</BottomButton>
+        </BottomTextStyle>
+      </BottomSectionContainer>
     </div>
   );
 };
