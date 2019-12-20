@@ -20,7 +20,6 @@ const ShortInputContainer = styled.div`
 
   input {
     width: 82%;
-    /* margin: 0; */
   }
 `;
 
@@ -97,13 +96,15 @@ function SignUpForm({ isSubmitting, errors, touched }) {
                 )}
             </div>
 
-            <StyledButton
-              disabled={isSubmitting}
-              theme={buttonTheme}
-              type='submit'
-            >
-              Get Started
-            </StyledButton>
+            <div>
+              <StyledButton
+                disabled={isSubmitting}
+                theme={buttonTheme}
+                type='submit'
+              >
+                Get Started
+              </StyledButton>
+            </div>
           </Form>
         </FormContainer>
       </RegisterCard>

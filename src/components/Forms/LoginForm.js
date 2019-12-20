@@ -36,8 +36,18 @@ export const FormContainer = styled.div`
   width: 100%;
   margin-top: 1em;
 
+  form {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
   div {
     width: 75%;
+    height: 50px;
   }
 
   input {
@@ -50,7 +60,6 @@ export const FormContainer = styled.div`
     padding: 0.5em;
     font-size: 16px;
     color: #808080;
-    /* margin-bottom: 0.5em; */
 
     :hover {
       background: #ffffff;
@@ -61,18 +70,9 @@ export const FormContainer = styled.div`
     }
   }
 
-  form {
-    width: 100%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-
   button {
-    width: 75%;
-    margin-top: 1em;
+    width: 96%;
+    /* margin-top: 1em; */
   }
 `;
 
