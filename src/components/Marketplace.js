@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import devices from './devices';
 import logo from '../img/firelogo.png';
+import StyledButton from './Landing';
 
 // DUMMY DATA //
 
@@ -174,6 +175,7 @@ const MainContainer = styled.section`
 `;
 
 const CoachCard = styled.div`
+  font-family: Ubuntu;
   display: flex;
   min-height: 350px;
   width: 250px;
@@ -185,6 +187,10 @@ const CoachCard = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: 1px solid #cdc7c7;
 
+  div {
+    background-colour: pink;
+  }
+
   h2 {
     margin: 5px 0px;
   }
@@ -195,6 +201,10 @@ const CoachCard = styled.div`
     font-size: 12px;
   }
 
+  p {
+    min-height: 60px;
+  }
+
   @media ${devices.tablet} {
     flex-wrap: wrap;
   }
@@ -202,20 +212,44 @@ const CoachCard = styled.div`
   @media ${devices.mobile} {
     border: 3px solid red;
   }
+`;
 
-  button {
-    width: 8vw;
-    border: none;
-    background-color: dodgerblue;
-    color: white;
+const CoachCardButton = styled.button`
+  width: 8vw;
+  border: none;
+  background-color: #4fad65;
+  color: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  height: 4em;
+  width: 8em;
+  padding: 1em;
+  border: none;
+  font-family: ABeeZee;
+  font-size: 16px;
 
-    @media ${devices.tablet} {
-      background-color: #4fda65;
-    }
-    @media ${devices.mobile} {
-      border: 3px solid red;
-    }
+  :focus {
+    outline: none;
   }
+
+  :active {
+    outline: none;
+    transform: translateY(2px);
+  }
+
+  @media ${devices.tablet} {
+    background-color: #4fda65;
+  }
+  @media ${devices.mobile} {
+    border: 3px solid red;
+  }
+`;
+
+const SkillExperienceDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 function Marketplace(props) {
@@ -267,9 +301,18 @@ function Marketplace(props) {
         {marketplaceCoaches.map(info => (
           <CoachCard>
             <img src={info.avatar_url} />
-            <h2>{info.first_name}</h2> <h5>Location: {info.location}</h5>
+            <h2>{info.first_name}</h2>{' '}
+            <h5>Location: {info.location}</h5>
             <p>{info.description}</p>
-            <button>Book Now</button>
+            <SkillExperienceDiv>
+              <div>
+                <h5>Skill: {info.skill_level}</h5>
+              </div>
+              <div>
+                <h5>Experience: {info.experience_level}</h5>
+              </div>
+            </SkillExperienceDiv>
+            <CoachCardButton>Book Now</CoachCardButton>
           </CoachCard>
         ))}
       </MainContainer>
