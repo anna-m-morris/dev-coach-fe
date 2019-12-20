@@ -1,6 +1,6 @@
-import React from 'react';
-
+import { React, useEffect } from 'react';
 import clsx from 'clsx';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
     color: '#4fad65',
     fontSize: '.8rem',
-    fontFamily: "ABeeZee"
+    fontFamily: 'ABeeZee',
   },
   appBar: {
     boxShadow: 'none',
@@ -139,6 +139,7 @@ function Dashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  useEffect(() => )
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -172,9 +173,7 @@ function Dashboard() {
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <h1>
-            DevCoach
-          </h1>
+          <h1>DevCoach</h1>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
@@ -211,9 +210,14 @@ function Dashboard() {
           </Box>
         </Container>
       </main>
-
     </div>
   );
 }
 
-export default Dashboard;
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user,
+  }
+}
+
+export default connect()(Dashboard);
