@@ -17,7 +17,7 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { mainListItems } from '../utils/dashboardList';
+import mainListItems from '../utils/dashboardList';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
     color: '#4fad65',
     fontSize: '.8rem',
-    fontFamily: "ABeeZee"
+    fontFamily: 'ABeeZee',
   },
   appBar: {
     boxShadow: 'none',
@@ -172,9 +172,7 @@ function Dashboard() {
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <h1>
-            DevCoach
-          </h1>
+          <h1>DevCoach</h1>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
@@ -211,7 +209,6 @@ function Dashboard() {
           </Box>
         </Container>
       </main>
-
     </div>
   );
 }
