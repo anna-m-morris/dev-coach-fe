@@ -23,9 +23,6 @@
     "func-names": "off",
     "no-unused-vars": "off",
     "import/no-unresolved": [2, { "caseSensitive": false }],
-    "camelcase": [
-      "error",
-      { "properties": "never", "ignoreDestructuring": true }
-    ]
+    "camelcase": "off"
   }
 }
