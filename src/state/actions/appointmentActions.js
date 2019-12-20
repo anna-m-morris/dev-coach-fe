@@ -16,7 +16,7 @@ export const getAppointment = (
     .then(res => {
       dispatch({
         type: GET_APPOINTMENTS_SUCCESSFUL,
-        payload: res.data.user,
+        payload: res.data.appointments,
       });
     })
     .catch(err => {
