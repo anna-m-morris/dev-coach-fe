@@ -1,55 +1,67 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 import devices from './devices';
 import logo from '../img/firelogo.png';
 
 // DUMMY DATA //
-const marketplaceUsers = [
-  {
-    first_name: 'Jayne',
-    last_name: 'Carmichael Norrie',
-    email: 'jayne@musicisourforte.co.uk',
-    password: 'chico',
-    role_id: 2,
-  },
-  {
-    first_name: 'Liam',
-    last_name: 'Sutton',
-    email: 'liam@google.com',
-    password: 'liam',
-    role_id: 2,
-  },
-  {
-    first_name: 'Funmi',
-    last_name: 'Talabi',
-    email: 'funmi@google.com',
-    password: 'funmi',
-    role_id: 2,
-  },
-];
 
 const marketplaceCoaches = [
   {
+    id: 1,
+    first_name: 'Jayne',
+    last_name: 'Carmichael Norrie',
+    email: 'jayne@musicisourforte.co.uk',
+    password:
+      '$2a$10$3LmQzlDtk/1NYys6kn5Ea.FH680/SzfqPWNTC3X9qZQ9.a.I1Z3vi',
+    location: null,
+    role_id: 2,
     user_id: 1,
     avatar_url: 'https://bit.ly/325XJrX',
     experience_level: 1,
     skill_level: 1,
-    description: 'Jayne is an expert in HTML',
+    description:
+      'Jayne worked as a singing teacher and is now studying with Lambda School',
+    rating: null,
+    hourly_rate: null,
+    contact_url: null,
   },
   {
+    id: 2,
+    first_name: 'Liam',
+    last_name: 'Sutton',
+    email: 'liam@google.com',
+    password:
+      '$2a$10$XgS80caZEgW20Uj38NE9zuSe5jALbx28C8s6Z80Rf4o4BMz4iEe9W',
+    location: null,
+    role_id: 2,
     user_id: 2,
-    avatar_url: 'https://bit.ly/36SwAec',
-    experience_level: 1,
-    skill_level: 1,
-    description: 'Funmi is an expert in React',
-  },
-  {
-    user_id: 3,
     avatar_url: 'https://bit.ly/2Q0cbgm',
     experience_level: 1,
     skill_level: 1,
     description: 'Liam is an expert in Node.js',
+    rating: null,
+    hourly_rate: null,
+    contact_url: null,
+  },
+  {
+    id: 3,
+    first_name: 'Funmi',
+    last_name: 'Talabi',
+    email: 'funmi@google.com',
+    password:
+      '$2a$10$GN5PGxtMHX5fkAugZ5KYB.Z3/xfZoFc033frjUlTW.0OaD6mY0n8K',
+    location: null,
+    role_id: 2,
+    user_id: 3,
+    avatar_url: 'https://bit.ly/36SwAec',
+    experience_level: 1,
+    skill_level: 1,
+    description: 'Funmi is an expert in React',
+    rating: null,
+    hourly_rate: null,
+    contact_url: null,
   },
 ];
 
@@ -134,6 +146,8 @@ const NavLink = styled.h4`
   padding: 0px 10px;
 `;
 
+// SEARCH SECTION
+
 // MAIN SECTION COMPONENTS
 const MainContainer = styled.section`
   background-color: #ffffff;
@@ -161,6 +175,7 @@ const MainContainer = styled.section`
 
 const CoachCard = styled.div`
   display: flex;
+  min-height: 350px;
   width: 250px;
   flex-direction: column;
   align-items: center;
@@ -194,6 +209,31 @@ const CoachCard = styled.div`
 `;
 
 function Marketplace(props) {
+  const [searchTerm, changeSearchTerm] = useState('');
+  const [coaches, setCoaches] = useState([]);
+
+  const handleChange = event => {
+    changeSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const search = event => {
+    event.preventDefault();
+    setCoaches(
+      marketplaceCoaches.filter(info => {
+        return info.name.includes(searchTerm);
+      }),
+    );
+  };
+
+  // useEffect(() => {
+  //   axios
+  //     .get('https://dev-coach-staging.herokuapp.com/profile/coaches')
+  //     .then(response => {
+  //       console.log(response);
+  //       // setCharacters(response.data.results);
+  //     });
+  // }, []);
+
   return (
     <BackgroundContainer>
       <NavigationContainer>
@@ -214,6 +254,7 @@ function Marketplace(props) {
 
       <h1>Choose your Dev Coach</h1>
       <MainContainer>
+        <h3>test</h3>
         {marketplaceCoaches.map(info => (
           <CoachCard>
             <img src={info.avatar_url} />
