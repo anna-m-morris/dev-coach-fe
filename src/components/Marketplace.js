@@ -79,7 +79,7 @@ const marketplaceCoaches = [
     avatar_url: 'https://bit.ly/35I1kOT',
     experience_level: 3,
     skill_level: 3,
-    description: 'Funmi is an expert in React',
+    description: 'Oladimeji is an expert in React',
     rating: 4.9,
     hourly_rate: 45,
     contact_url:
@@ -118,13 +118,12 @@ const LogoAndNameContainer = styled.div`
   align-items: center;
 `;
 const Logo = styled.div`
-  height: 10em;
-  width: 5em;
+  /* height: 10em;
+  width: 5em; */
   background-image: url(${logo});
   background-repeat: no-repeat;
   padding: none;
   margin: none;
-  position: 0;
 `;
 
 const TitleContainer = styled.div`
