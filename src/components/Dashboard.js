@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,6 +18,7 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems } from '../utils/dashboardList';
+import { getAppointment } from '../state/actions/appointmentActions';
 // import Chart from './Chart';
 // import Deposits from './Deposits';
 // import Orders from './Orders';
@@ -128,7 +129,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Dashboard() {
+function Dashboard(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -139,7 +140,9 @@ function Dashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-  useEffect(() => )
+  React.useEffect(() => {
+    props.getAppointment(props.user.id, props.user_role);
+  }, []);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -217,7 +220,9 @@ function Dashboard() {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, {})(Dashboard);
+export default connect(mapStateToProps, { getAppointment })(
+  Dashboard,
+);
