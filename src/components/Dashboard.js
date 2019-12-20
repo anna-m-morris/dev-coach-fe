@@ -220,4 +220,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect()(Dashboard);
+export default connect(mapStateToProps, {})(Dashboard);
