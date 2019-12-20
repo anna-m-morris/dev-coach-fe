@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
 import { StyledButton, buttonTheme } from '../Landing';
 
@@ -17,7 +18,7 @@ export const GreyBackgroundContainer = styled.div`
 
 export const FormCard = styled.div`
   background: white;
-  height: 28em;
+  height: 30em;
   width: 25em;
   display: flex;
   flex-direction: column;
@@ -27,18 +28,18 @@ export const FormCard = styled.div`
 
   h1 {
     color: #292d38;
-    margin-top: 1.5em;
+    margin: 1.2em;
   }
 `;
 
 export const FormContainer = styled.div`
   height: 100%;
   width: 100%;
-  margin-top: 1em;
+  /* margin-top: 1em; */
 
   form {
     width: 100%;
-    height: 90%;
+    height: 95%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -47,7 +48,7 @@ export const FormContainer = styled.div`
 
   div {
     width: 75%;
-    height: 50px;
+    height: 60px;
   }
 
   input {
@@ -72,7 +73,6 @@ export const FormContainer = styled.div`
 
   button {
     width: 96%;
-    /* margin-top: 1em; */
   }
 `;
 
@@ -106,6 +106,13 @@ const StyledDetails = styled.div`
   }
 `;
 
+const StyledError = styled.p`
+  padding: 0;
+  margin: 0;
+  color: red;
+  font-size: 0.8rem;
+`;
+
 const loadingButtonTheme = {
   text: '#292d38',
   background: 'lightgray',
@@ -125,30 +132,43 @@ const ExtraLoginDetails = () => {
   );
 };
 
-function LoginForm(props) {
+function LoginForm({ userReducer, errors, touched, isSubmitting }) {
   return (
     <GreyBackgroundContainer>
       <FormCard>
         <h1>Welcome Back!</h1>
         <FormContainer>
           <Form>
-            <Field type='email' name='email' placeholder='Email' />
-            <Field
-              type='password'
-              name='password'
-              placeholder='Password'
-            />
+            <div>
+              <Field type='email' name='email' placeholder='Email' />
+              {errors.email && touched.email && (
+                <StyledError>{errors.email}</StyledError>
+              )}
+            </div>
+            <div>
+              <Field
+                type='password'
+                name='password'
+                placeholder='Password'
+              />
+              {errors.password && touched.password && (
+                <StyledError>{errors.password}</StyledError>
+              )}
+            </div>
             <ExtraLoginDetails />
-            <StyledButton
-              theme={
-                props.userReducer.isLoading
-                  ? loadingButtonTheme
-                  : buttonTheme
-              }
-              type='submit'
-            >
-              Sign in to your account
-            </StyledButton>
+            <div>
+              <StyledButton
+                theme={
+                  userReducer.isLoading
+                    ? loadingButtonTheme
+                    : buttonTheme
+                }
+                type='submit'
+                disabled={isSubmitting}
+              >
+                Sign in to your account
+              </StyledButton>
+            </div>
             {/*             {props.userReducer.isLoading ? (
               <h3>Loading</h3>
             ) : (
@@ -168,9 +188,17 @@ const FormikLoginForm = withFormik({
       password: password || '',
     };
   },
-
-  handleSubmit(values, { props }) {
-    console.log(values);
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+      .email('Please enter a valid email')
+      .required('Please enter an email address'),
+    password: Yup.string()
+      .required('Please enter your password')
+      .min(6, 'Must be 6 characters minimun'),
+  }),
+  handleSubmit(values, { props, resetForm, setSubmitting }) {
+    resetForm();
+    setSubmitting(false);
 
     props.login(props, values);
   },

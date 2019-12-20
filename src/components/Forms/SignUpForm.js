@@ -136,10 +136,7 @@ const FormikSignUpForm = withFormik({
       .required('Please enter your email'),
     password: Yup.string()
       .required('Please enter your password')
-      .min(
-        6,
-        'Please make sure your password is 6 characters or longer',
-      ),
+      .min(6, 'Must be 6 character minimum'),
     confirm_password: Yup.string()
       .oneOf(
         [Yup.ref('password'), null],
