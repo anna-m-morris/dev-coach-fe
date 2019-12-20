@@ -23,6 +23,7 @@
     "func-names": "off",
     "no-unused-vars": "off",
     "import/no-unresolved": [2, { "caseSensitive": false }],
-    "camelcase": "off"
+    "camelcase": "off",
+    "no-underscore-dangle": "off"
   }
 }

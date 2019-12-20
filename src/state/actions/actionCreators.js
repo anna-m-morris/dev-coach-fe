@@ -1,15 +1,14 @@
 import axios from 'axios';
 import * as types from './actionTypes';
 
-const url = process.env.REACT_APP_BASE_URL;
+// const url = process.env.REACT_APP_BASE_URL;
+const url = 'http://localhost:3000/';
 
 export const login = (props, values) => dispatch => {
-  debugger;
   dispatch({ type: types.LOGIN_START });
   axios
     .post(`${url}user/login`, values)
     .then(res => {
-      debugger;
       dispatch({
         type: types.LOGIN_SUCCESSFUL,
         payload: res.data.user,
@@ -18,8 +17,6 @@ export const login = (props, values) => dispatch => {
       props.history.push('/dashboard');
     })
     .catch(err => {
-      debugger;
-
       dispatch({ type: types.LOGIN_ERROR, payload: err });
     });
 };

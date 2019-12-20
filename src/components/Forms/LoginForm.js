@@ -92,6 +92,7 @@ const StyledDetails = styled.div`
 
   p {
     color: #292d38;
+    margin: 0;
   }
 
   div {
@@ -103,6 +104,7 @@ const StyledDetails = styled.div`
   a {
     text-decoration: none;
     font-weight: bold;
+    margin-left: 2rem;
   }
 `;
 
@@ -123,11 +125,9 @@ const ExtraLoginDetails = () => {
     <StyledDetails>
       <input type='checkbox' />
       <p>Remember Me</p>
-      <div>
-        <a href='/forgot-password'>
-          <p>Forgot your password?</p>
-        </a>{' '}
-      </div>
+      <a href='/forgot-password'>
+        <p>Forgot your password?</p>
+      </a>{' '}
     </StyledDetails>
   );
 };
