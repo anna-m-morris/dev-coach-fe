@@ -15,7 +15,7 @@ const marketplaceCoaches = [
     email: 'jayne@musicisourforte.co.uk',
     password:
       '$2a$10$3LmQzlDtk/1NYys6kn5Ea.FH680/SzfqPWNTC3X9qZQ9.a.I1Z3vi',
-    location: null,
+    location: 'Aberdeen',
     role_id: 2,
     user_id: 1,
     avatar_url: 'https://bit.ly/325XJrX',
@@ -34,7 +34,7 @@ const marketplaceCoaches = [
     email: 'liam@google.com',
     password:
       '$2a$10$XgS80caZEgW20Uj38NE9zuSe5jALbx28C8s6Z80Rf4o4BMz4iEe9W',
-    location: null,
+    location: 'London',
     role_id: 2,
     user_id: 2,
     avatar_url: 'https://bit.ly/2Q0cbgm',
@@ -52,7 +52,7 @@ const marketplaceCoaches = [
     email: 'funmi@google.com',
     password:
       '$2a$10$GN5PGxtMHX5fkAugZ5KYB.Z3/xfZoFc033frjUlTW.0OaD6mY0n8K',
-    location: null,
+    location: 'Lagos',
     role_id: 2,
     user_id: 3,
     avatar_url: 'https://bit.ly/36SwAec',
@@ -185,6 +185,16 @@ const CoachCard = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: 1px solid #cdc7c7;
 
+  h2 {
+    margin: 5px 0px;
+  }
+
+  h5 {
+    margin: 0px;
+    padding: 5px 0px;
+    font-size: 12px;
+  }
+
   @media ${devices.tablet} {
     flex-wrap: wrap;
   }
@@ -254,11 +264,10 @@ function Marketplace(props) {
 
       <h1>Choose your Dev Coach</h1>
       <MainContainer>
-        <h3>test</h3>
         {marketplaceCoaches.map(info => (
           <CoachCard>
             <img src={info.avatar_url} />
-            <h2>{info.first_name}</h2>
+            <h2>{info.first_name}</h2> <h5>Location: {info.location}</h5>
             <p>{info.description}</p>
             <button>Book Now</button>
           </CoachCard>
