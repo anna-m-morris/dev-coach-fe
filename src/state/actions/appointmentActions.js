@@ -6,12 +6,14 @@ const GET_APPOINTMENTS_SUCCESSFUL = 'GET_APPOINTMENTS_SUCCESSFUL';
 
 const url = process.env.REACT_APP_BASE_URL;
 
-const getAppointment = (coach_student_id, role_id) => dispatch => {
+export const getAppointment = (
+  coach_student_id,
+  role_id,
+) => dispatch => {
   dispatch({ type: GET_APPOINTMENTS_START });
   axiosWithAuth()
-    .post(`${url}appointment/${coach_student_id}`, { role: role_id })
+    .get(`${url}appointment/${coach_student_id}`, { role: role_id })
     .then(res => {
-      debugger;
       dispatch({
         type: GET_APPOINTMENTS_SUCCESSFUL,
         payload: res.data.user,
@@ -21,5 +23,3 @@ const getAppointment = (coach_student_id, role_id) => dispatch => {
       dispatch({ type: GET_APPOINTMENTS_ERROR, payload: err });
     });
 };
-
-export default getAppointment;

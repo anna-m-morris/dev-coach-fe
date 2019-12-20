@@ -141,7 +141,7 @@ function Dashboard(props) {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   React.useEffect(() => {
-    props.getAppointment(props.user.id, props.user_role);
+    props.getAppointment(props.user.id, props.user.role_id);
   }, []);
   return (
     <div className={classes.root}>
