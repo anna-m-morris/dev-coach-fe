@@ -36,17 +36,21 @@ export const FormContainer = styled.div`
   width: 100%;
   margin-top: 1em;
 
+  div {
+    width: 75%;
+  }
+
   input {
     background: #f2f2f2;
     height: 2em;
-    width: 70%;
+    width: 91%;
     font-family: Ubuntu, sans-serif;
     border-radius: 4px;
     border: 1px solid #c8c8c8;
     padding: 0.5em;
     font-size: 16px;
     color: #808080;
-    margin-bottom: 0.5em;
+    /* margin-bottom: 0.5em; */
 
     :hover {
       background: #ffffff;
@@ -59,9 +63,10 @@ export const FormContainer = styled.div`
 
   form {
     width: 100%;
+    height: 90%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
   }
 

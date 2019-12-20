@@ -15,11 +15,12 @@ import { register } from '../../state/actions/actionCreators';
 
 const ShortInputContainer = styled.div`
   display: flex;
-  width: 74%;
+  width: 75%;
   justify-content: space-between;
 
   input {
-    width: 44%;
+    width: 82%;
+    /* margin: 0; */
   }
 `;
 
@@ -32,6 +33,13 @@ const RegisterCard = styled(FormCard)`
   }
 `;
 
+const StyledError = styled.p`
+  padding: 0;
+  margin: 0;
+  color: red;
+  font-size: 0.8rem;
+`;
+
 function SignUpForm({ isSubmitting, errors, touched }) {
   return (
     <GreyBackgroundContainer>
@@ -41,52 +49,52 @@ function SignUpForm({ isSubmitting, errors, touched }) {
           <Form>
             <ShortInputContainer>
               <div>
-                {errors.firstName && touched.firstName && (
-                  <p>{errors.firstName}</p>
-                )}
                 <Field
                   type='text'
-                  name='firstName'
+                  name='first_name'
                   placeholder='First name'
-                />
+                />{' '}
+                {errors.first_name && touched.first_name && (
+                  <StyledError>{errors.first_name}</StyledError>
+                )}
               </div>
               <div>
-                {' '}
-                {errors.lastName && touched.lastName && (
-                  <p>{errors.lastName}</p>
-                )}
                 <Field
                   type='text'
-                  name='lastName'
+                  name='last_name'
                   placeholder='Last name'
-                />
+                />{' '}
+                {errors.last_name && touched.last_name && (
+                  <StyledError>{errors.last_name}</StyledError>
+                )}
               </div>
             </ShortInputContainer>
             <div>
-              {errors.email && touched.email && <p>{errors.email}</p>}
               <Field type='email' name='email' placeholder='Email' />
+              {errors.email && touched.email && (
+                <StyledError>{errors.email}</StyledError>
+              )}
             </div>
             <div>
-              {' '}
-              {errors.password && touched.password && (
-                <p>{errors.password}</p>
-              )}
               <Field
                 type='password'
                 name='password'
                 placeholder='Password'
-              />
+              />{' '}
+              {errors.password && touched.password && (
+                <StyledError>{errors.password}</StyledError>
+              )}
             </div>
             <div>
-              {' '}
-              {errors.confirmPassword && touched.confirmPassword && (
-                <p>{errors.confirmPassword}</p>
-              )}
               <Field
                 type='password'
-                name='confirmPassword'
+                name='confirm_password'
                 placeholder='Confirm Password'
-              />
+              />{' '}
+              {errors.confirm_password &&
+                touched.confirm_password && (
+                  <StyledError>{errors.confirm_password}</StyledError>
+                )}
             </div>
 
             <StyledButton
@@ -105,23 +113,23 @@ function SignUpForm({ isSubmitting, errors, touched }) {
 
 const FormikSignUpForm = withFormik({
   mapPropsToValues({
-    firstName,
-    lastName,
+    first_name,
+    last_name,
     email,
     password,
-    confirmPassword,
+    confirm_password,
   }) {
     return {
-      firstName: firstName || '',
-      lastName: lastName || '',
+      first_name: first_name || '',
+      last_name: last_name || '',
       email: email || '',
       password: password || '',
-      confirmPassword: confirmPassword || '',
+      confirm_password: confirm_password || '',
     };
   },
   validationSchema: Yup.object().shape({
-    firstName: Yup.string().required('Please enter your first name'),
-    lastName: Yup.string().required('Please enter your last name'),
+    first_name: Yup.string().required('Please enter your first name'),
+    last_name: Yup.string().required('Please enter your last name'),
     email: Yup.string()
       .email('Please enter a valid email')
       .required('Please enter your email'),
@@ -131,7 +139,7 @@ const FormikSignUpForm = withFormik({
         6,
         'Please make sure your password is 6 characters or longer',
       ),
-    confirmPassword: Yup.string()
+    confirm_password: Yup.string()
       .oneOf(
         [Yup.ref('password'), null],
         "Your passwords don't match",
