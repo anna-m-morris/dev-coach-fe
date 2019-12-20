@@ -22,11 +22,11 @@ const marketplaceCoaches = [
     avatar_url: 'https://bit.ly/325XJrX',
     experience_level: 1,
     skill_level: 1,
-    description:
-      'Jayne worked as a singing teacher and is now studying with Lambda School',
-    rating: null,
-    hourly_rate: null,
-    contact_url: null,
+    description: 'Jayne is an expert in HTML',
+    rating: 4.7,
+    hourly_rate: 30,
+    contact_url:
+      'https://grok.appointedd.com/app/5df3a618fd49237ee763a793',
   },
   {
     id: 2,
@@ -39,12 +39,13 @@ const marketplaceCoaches = [
     role_id: 2,
     user_id: 2,
     avatar_url: 'https://bit.ly/2Q0cbgm',
-    experience_level: 1,
-    skill_level: 1,
+    experience_level: 2,
+    skill_level: 2,
     description: 'Liam is an expert in Node.js',
-    rating: null,
-    hourly_rate: null,
-    contact_url: null,
+    rating: 4.8,
+    hourly_rate: 35,
+    contact_url:
+      'https://grok.appointedd.com/app/5dee69e59fec053a906edd03',
   },
   {
     id: 3,
@@ -57,12 +58,32 @@ const marketplaceCoaches = [
     role_id: 2,
     user_id: 3,
     avatar_url: 'https://bit.ly/36SwAec',
-    experience_level: 1,
-    skill_level: 1,
+    experience_level: 3,
+    skill_level: 3,
     description: 'Funmi is an expert in React',
-    rating: null,
-    hourly_rate: null,
-    contact_url: null,
+    rating: 4.9,
+    hourly_rate: 40,
+    contact_url:
+      'https://grok.appointedd.com/app/5dee6934c5b42f3bcf70b393',
+  },
+  {
+    id: 3,
+    first_name: 'Oladimeji',
+    last_name: 'Ojo',
+    email: 'ola@google.com',
+    password:
+      '$2a$10$GN5PGxtMHX5fkAugZ5KYB.Z3/xfZoFc033frjUlTW.0OaD6mY0n8K',
+    location: 'Lagos',
+    role_id: 2,
+    user_id: 3,
+    avatar_url: 'https://bit.ly/35I1kOT',
+    experience_level: 3,
+    skill_level: 3,
+    description: 'Funmi is an expert in React',
+    rating: 4.9,
+    hourly_rate: 45,
+    contact_url:
+      'https://grok.appointedd.com/app/5dee6a896dd393114b473a73',
   },
 ];
 
@@ -73,14 +94,11 @@ const BackgroundContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 3px solid blue;
 
   @media ${devices.tablet} {
-    border: 3px solid orange;
   }
 
   @media ${devices.mobile} {
-    border: 3px solid green;
   }
 `;
 
@@ -152,25 +170,24 @@ const NavLink = styled.h4`
 // MAIN SECTION COMPONENTS
 const MainContainer = styled.section`
   background-color: #ffffff;
-  height: 80vh;
-  width: 98vw;
+  /* min-height: 80vh; */
+  min-width: 98vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: 3px solid pink;
 
   img {
     width: 8vw;
     border-radius: 50%;
-  }
 
-  @media ${devices.tablet} {
-    border: 3px solid yellow;
-  }
-
-  @media ${devices.mobile} {
-    border: 3px solid red;
+    @media ${devices.tablet} {
+      width: 10vw;
+    }
+    @media ${devices.mobile} {
+      width: 20vw;
+    }
   }
 `;
 
@@ -178,20 +195,27 @@ const CoachCard = styled.div`
   font-family: Ubuntu;
   display: flex;
   min-height: 350px;
-  width: 250px;
+  min-width: 250px;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
   padding: 10px;
   margin: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: 1px solid #cdc7c7;
 
-  div {
-    background-colour: pink;
+  img {
+    padding: 0px 10px;
   }
 
   h2 {
+    margin: 5px 0px;
+    padding: 10px 0px;
+    font-size: 30px;
+    color: darkblue;
+  }
+
+  h3 {
+    font-size: 16px;
     margin: 5px 0px;
   }
 
@@ -199,18 +223,24 @@ const CoachCard = styled.div`
     margin: 0px;
     padding: 5px 0px;
     font-size: 12px;
+    font-weight: normal;
   }
 
   p {
-    min-height: 60px;
+    font-weight: 900;
+    min-height: 45px;
+    padding: 10px 0px;
+    @media ${devices.tablet} {
+      min-height: 30px;
+    }
   }
 
   @media ${devices.tablet} {
+    min-height: 250px;
     flex-wrap: wrap;
   }
 
   @media ${devices.mobile} {
-    border: 3px solid red;
   }
 `;
 
@@ -224,9 +254,11 @@ const CoachCardButton = styled.button`
   height: 4em;
   width: 8em;
   padding: 1em;
+  margin: 1em;
   border: none;
   font-family: ABeeZee;
   font-size: 16px;
+  text-decoration: none;
 
   :focus {
     outline: none;
@@ -237,11 +269,16 @@ const CoachCardButton = styled.button`
     transform: translateY(2px);
   }
 
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
   @media ${devices.tablet} {
-    background-color: #4fda65;
+    background-color: darkgreen;
   }
   @media ${devices.mobile} {
-    border: 3px solid red;
+    background-color: olive;
   }
 `;
 
@@ -250,6 +287,9 @@ const SkillExperienceDiv = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  min-width: 240px;
+  padding: 2px;
+  margin: 0px;
 `;
 
 function Marketplace(props) {
@@ -295,24 +335,29 @@ function Marketplace(props) {
           </NavLink>
         </NavLinkContainer>
       </NavigationContainer>
-
       <h1>Choose your Dev Coach</h1>
       <MainContainer>
         {marketplaceCoaches.map(info => (
           <CoachCard>
-            <img src={info.avatar_url} />
-            <h2>{info.first_name}</h2>{' '}
-            <h5>Location: {info.location}</h5>
-            <p>{info.description}</p>
             <SkillExperienceDiv>
+              <img src={info.avatar_url} />
               <div>
-                <h5>Skill: {info.skill_level}</h5>
-              </div>
-              <div>
-                <h5>Experience: {info.experience_level}</h5>
+                <h2>{info.first_name}</h2>
+                <h3>Rating: {info.rating}</h3>
               </div>
             </SkillExperienceDiv>
-            <CoachCardButton>Book Now</CoachCardButton>
+            <p>{info.description}</p>
+            <SkillExperienceDiv>
+              <h5>Location: {info.location}</h5>
+              <h5>Hourly rate: £{info.hourly_rate}</h5>
+            </SkillExperienceDiv>
+            <SkillExperienceDiv>
+              <h5>Skill: {info.skill_level}</h5>
+              <h5>Experience: {info.experience_level}</h5>
+            </SkillExperienceDiv>
+            <CoachCardButton>
+              <Link to={info.contact_url}>Book Now</Link>
+            </CoachCardButton>
           </CoachCard>
         ))}
       </MainContainer>
