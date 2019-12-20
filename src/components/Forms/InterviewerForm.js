@@ -12,30 +12,24 @@ import TextField from '@material-ui/core/TextField';
 import InputBase from '@material-ui/core/InputBase';
 import * as Yup from 'yup';
 import axios from 'axios';
-
-import { StyledButton, buttonTheme, invertTheme } from './Landing';
+import { StyledButton, buttonTheme, invertTheme } from '../Landing';
 import {
   GreyBackgroundContainer,
   FormCard,
   FormContainer,
 } from './LoginForm';
-
-import { register } from '../state/actions/actionCreators';
-
+import { register } from '../../state/actions/actionCreators';
 const RegisterCard = styled(FormCard)`
   width: 30em;
   height: 35em;
   font-family: ABeeZee;
-
   h1 {
     font-size: 24px;
   }
 `;
-
 const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
   font-family: ABeeZee;
 `;
-
 const BootstrapInput = withStyles(theme => ({
   root: {
     'label + &': {
@@ -61,29 +55,23 @@ const BootstrapInput = withStyles(theme => ({
     },
   },
 }))(InputBase);
-
 const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(1),
   },
 }));
-
 const options = {
   city: '',
   experienceLevel: '',
   skills: '',
   description: '',
 };
-
 function InterviewerForm(props) {
   const classes = useStyles();
-
   const [state, setState] = useState(options);
-
   const handleChange = event => {
     setState(event.target.value);
   };
-
   return (
     <ThisGreyBackgroundContainer>
       <RegisterCard>
@@ -97,7 +85,7 @@ function InterviewerForm(props) {
               <NativeSelect
                 id='current city'
                 name='city'
-                value={city}
+                // value={city}
                 onChange={handleChange}
                 input={<BootstrapInput />}
               >
@@ -114,7 +102,7 @@ function InterviewerForm(props) {
               <NativeSelect
                 id='demo-customized-select-native'
                 name='level_of_experience'
-                value={experienceLevel}
+                // value={experienceLevel}
                 onChange={handleChange}
                 input={<BootstrapInput />}
               >
@@ -133,7 +121,7 @@ function InterviewerForm(props) {
               <NativeSelect
                 id='demo-customized-select-native'
                 name='skills'
-                value={skills}
+                // value={skills}
                 onChange={handleChange}
                 input={<BootstrapInput />}
               >
@@ -159,7 +147,6 @@ function InterviewerForm(props) {
     </ThisGreyBackgroundContainer>
   );
 }
-
 const FormikInterviewerForm = withFormik({
   validationSchema: Yup.object().shape({
     city: Yup.array(),
@@ -181,7 +168,6 @@ const FormikInterviewerForm = withFormik({
     );
   },
 })(InterviewerForm);
-
 export default connect(state => state, { register })(
   FormikInterviewerForm,
 );

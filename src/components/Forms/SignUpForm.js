@@ -2,18 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
-
 import * as Yup from 'yup';
-import axios from 'axios';
 
-import { StyledButton, buttonTheme, invertTheme } from './Landing';
+
+import { StyledButton, buttonTheme, invertTheme } from '../Landing';
+
 import {
   GreyBackgroundContainer,
   FormCard,
   FormContainer,
 } from './LoginForm';
 
-import { register } from '../state/actions/actionCreators';
+import { register } from '../../state/actions/actionCreators';
 
 const ShortInputContainer = styled.div`
   display: flex;
@@ -42,14 +42,32 @@ function SignUpForm(props) {
         <FormContainer>
           <Form>
             <ShortInputContainer>
-              <Field type='text' name='first_name' />
-              <Field type='text' name='last_name' />
-            </ShortInputContainer>
-            <Field type='email' name='email' />
-            <Field type='password' name='password' />
-            <Field type='password' name='confirmPassword' />
 
-            <StyledButton theme={buttonTheme}>
+              <Field
+                type='text'
+                name='first_name'
+                placeholder='First name'
+              />
+              <Field
+                type='text'
+                name='last_name'
+                placeholder='Last name'
+              />
+            </ShortInputContainer>
+            <Field type='email' name='email' placeholder='Email' />
+            <Field
+              type='password'
+              name='password'
+              placeholder='Password'
+            />
+            <Field
+              type='password'
+              name='confirm_password'
+              placeholder='Confirm Password'
+            />
+
+            <StyledButton theme={buttonTheme} type='submit'>
+
               Get Started
             </StyledButton>
           </Form>
@@ -68,20 +86,22 @@ const FormikSignUpForm = withFormik({
     confirm_password,
   }) {
     return {
-      first_name: 'First Name' || '',
-      last_name: 'Last Name' || '',
-      email: 'Email Address' || '',
-      password: 'Password' || '',
-      confirm_password: 'Confirm Password' || '',
+
+      first_name: first_name || '',
+      last_name: last_name || '',
+      email: email || '',
+      password: password || '',
+      confirm_password: confirm_password || '',
     };
   },
   validationSchema: Yup.object().shape({
-    firstName: Yup.string().required('Please enter your first name'),
-    lastName: Yup.string().required('Please enter your last name'),
+    first_name: Yup.string().required('Please enter your first name'),
+    last_name: Yup.string().required('Please enter your last name'),
     password: Yup.string()
       .required('Please enter your password')
       .min(6),
-    confirmPassword: Yup.string().oneOf(
+    confirm_password: Yup.string().oneOf(
+
       [Yup.ref('password'), null],
       "Your passwords don't match",
     ),
@@ -89,11 +109,9 @@ const FormikSignUpForm = withFormik({
 
   handleSubmit(values, { props }) {
     console.log(values);
-    props.register(
-      'http://localhost:5000/user/register',
-      props,
-      values,
-    );
+
+    props.register(props, values);
+
   },
 })(SignUpForm);
 

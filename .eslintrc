@@ -12,11 +12,20 @@
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "rules": {
     "prettier/prettier": ["error"],
     "no-console": "off",
-    "func-names": "off"
+    "func-names": "off",
+    "no-unused-vars": "off",
+    "import/no-unresolved": [2, { "caseSensitive": false }],
+    "camelcase": [
+      "error",
+      { "properties": "never", "ignoreDestructuring": true }
+    ]
   }
 }

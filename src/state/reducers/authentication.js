@@ -5,7 +5,7 @@ const initialState = {
   loginError: '',
   signUpError: '',
   isLoading: false,
-  isLoggedIn: false
+  isLoggedIn: false,
 };
 
 function userReducer(state = initialState, action) {
@@ -13,13 +13,16 @@ function userReducer(state = initialState, action) {
     case types.LOGIN_START:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
     case types.LOGIN_SUCCESSFUL:
       return {
         ...state,
         isLoading: false,
-        isLoggedIn: true
+        isLoggedIn: true,
+
+        user: action.payload
+
       };
     case types.LOGIN_ERROR:
       return { ...state, loginError: action.payload };
