@@ -17,7 +17,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard() {
+export default function MediaCard(props) {
+  const {
+    first_name,
+    last_name,
+    avatar_url,
+    appointment_date,
+    appointment_topic,
+  } = props;
   const classes = useStyles();
 
   return (
@@ -30,7 +37,7 @@ export default function MediaCard() {
         />
         <CardContent>
           <Typography gutterBottom variant='h5' component='h2'>
-            Lizard
+            {`props.first_name ${props.last_name}`}
           </Typography>
           <Typography
             variant='body2'
@@ -45,10 +52,7 @@ export default function MediaCard() {
       </CardActionArea>
       <CardActions>
         <Button size='small' color='primary'>
-          Share
-        </Button>
-        <Button size='small' color='primary'>
-          Learn More
+          Message
         </Button>
       </CardActions>
     </Card>
