@@ -24,6 +24,7 @@ export default function MediaCard(props) {
     avatar_url,
     appointment_date,
     appointment_topic,
+    description,
   } = props;
   const classes = useStyles();
 
@@ -32,21 +33,30 @@ export default function MediaCard(props) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image='/static/images/cards/contemplative-reptile.jpg'
-          title='Contemplative Reptile'
+          image={
+            avatar_url
+              ? avatar_url
+              : 'https://images.pexels.com/photos/1749900/pexels-photo-1749900.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+          }
+          title='Coach / Student'
         />
         <CardContent>
           <Typography gutterBottom variant='h5' component='h2'>
-            {`props.first_name ${props.last_name}`}
+            {`${first_name} ${last_name}`}
           </Typography>
           <Typography
             variant='body2'
             color='textSecondary'
             component='p'
           >
-            Lizards are a widespread group of squamate reptiles, with
-            over 6,000 species, ranging across all continents except
-            Antarctica
+            {`${appointment_topic} ${appointment_date}`}
+          </Typography>
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            component='p'
+          >
+            {description}
           </Typography>
         </CardContent>
       </CardActionArea>
