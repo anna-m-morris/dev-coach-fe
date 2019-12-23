@@ -14,6 +14,7 @@ const useStyles = makeStyles({
   },
   media: {
     height: 140,
+    borderRadius: '50%',
   },
 });
 
@@ -26,6 +27,7 @@ export default function MediaCard(props) {
     appointment_topic,
     description,
     canceled,
+    cancel,
   } = props;
   const classes = useStyles();
 
@@ -60,13 +62,11 @@ export default function MediaCard(props) {
             {description}
           </Typography>
 
-          <Typography
-            variant='body2'
-            color='textSecondary'
-            component='p'
-          >
-            {canceled}
-          </Typography>
+          {canceled ? (
+            'Canceled'
+          ) : (
+            <button onClick={cancel}>Cancel</button>
+          )}
         </CardContent>
       </CardActionArea>
       <CardActions>
