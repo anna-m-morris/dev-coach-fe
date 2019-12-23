@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import uuid from 'uuid';
 import {
   getAppointment,
   cancelAppointment,
@@ -9,6 +10,7 @@ import AppointmentCard from '../../components/Cards/AppointmentCard';
 const UserDashboard = props => {
   React.useEffect(() => {
     props.getAppointment(props.user.id, props.user.role_id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -16,6 +18,7 @@ const UserDashboard = props => {
       {props.appointments
         ? props.appointments.map(appointment => (
             <AppointmentCard
+              key={uuid()}
               first_name={appointment.first_name}
               last_name={appointment.last_name}
               avatar_url={appointment.avatar_url}

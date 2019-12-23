@@ -25,7 +25,6 @@ function appointmentsReducer(state = initialState, action) {
       return { ...state, error: action.payload };
 
     case types.CANCEL_APPOINTMENT_SUCCESSFUL:
-
       return {
         ...state,
         isLoading: false,

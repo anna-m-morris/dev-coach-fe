@@ -25,6 +25,6 @@
     "import/no-unresolved": [2, { "caseSensitive": false }],
     "camelcase": "off",
     "import/prefer-default-export": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
   }
 }
