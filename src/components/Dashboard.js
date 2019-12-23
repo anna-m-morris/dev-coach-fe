@@ -18,6 +18,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems } from '../utils/dashboardList';
 import logo from '../img/firelogo.png';
+import UserDashboard from '../views/UserDashboard/UserDashboard';
 
 function Copyright() {
   return (
@@ -182,7 +183,7 @@ function Dashboard(props) {
         <Container maxWidth='lg' className={classes.container}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={8} lg={9}>
-              {' '}
+              <UserDashboard />{' '}
               <Paper className={fixedHeightPaper}></Paper>
             </Grid>
 

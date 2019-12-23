@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAppointment } from '../../state/actions/appointmentActions';
+import { getAppointment, cancelAppointment } from '../../state/actions/appointmentActions';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 
 const UserDashboard = props => {
@@ -20,6 +20,7 @@ const UserDashboard = props => {
               appointment_topic={appointment.appointment_topic}
               description={appointment.description}
               canceled={appointment.canceled}
+              cancel={() => props.cancelAppointment(appointment.id)}
             />
           ))
         : null}
@@ -34,6 +35,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getAppointment })(
+export default connect(mapStateToProps, { getAppointment, cancelAppointment })(
   UserDashboard,
 );
