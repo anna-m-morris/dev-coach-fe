@@ -17,7 +17,6 @@ function appointmentsReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-
         appointments: action.payload,
       };
     case types.LOGIN_ERROR:
