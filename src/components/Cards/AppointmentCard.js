@@ -22,9 +22,10 @@ export default function MediaCard(props) {
     first_name,
     last_name,
     avatar_url,
-    appointment_date,
+    appointment_datetime,
     appointment_topic,
     description,
+    canceled,
   } = props;
   const classes = useStyles();
 
@@ -49,7 +50,7 @@ export default function MediaCard(props) {
             color='textSecondary'
             component='p'
           >
-            {`${appointment_topic} ${appointment_date}`}
+            {`${appointment_topic} ${appointment_datetime}`}
           </Typography>
           <Typography
             variant='body2'
@@ -57,6 +58,14 @@ export default function MediaCard(props) {
             component='p'
           >
             {description}
+          </Typography>
+
+          <Typography
+            variant='body2'
+            color='textSecondary'
+            component='p'
+          >
+            {canceled}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -85,5 +94,5 @@ export default function MediaCard(props) {
 // </IconButton>
 // }
 // title={props.appointment_topic}
-// subheader={props.appointment_date}
+// subheader={props.appointment_datetime}
 // />

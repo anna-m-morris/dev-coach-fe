@@ -1,4 +1,4 @@
-import * as types from '../actions/actionTypes';
+import * as types from '../actions/appointmentActions';
 
 const initialState = {
   appointments: {},
@@ -8,18 +8,18 @@ const initialState = {
 
 function appointmentsReducer(state = initialState, action) {
   switch (action.type) {
-    case types.LOGIN_START:
+    case types.GET_APPOINTMENTS_START:
       return {
         ...state,
         isLoading: true,
       };
-    case types.LOGIN_SUCCESSFUL:
+    case types.GET_APPOINTMENTS_SUCCESSFUL:
       return {
         ...state,
         isLoading: false,
         appointments: action.payload,
       };
-    case types.LOGIN_ERROR:
+    case types.GET_APPOINTMENTS_ERROR:
       return { ...state, error: action.payload };
     default:
       return state;

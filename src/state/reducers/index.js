@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 // import your reducers here
 import userReducer from './authentication';
+import appointmentsReducer from './appointments';
 
 const appReducer = combineReducers({
   // add your reducers here
   userReducer,
+  appointmentsReducer,
 });
 
 /* const rootReducer = (state, action) => {

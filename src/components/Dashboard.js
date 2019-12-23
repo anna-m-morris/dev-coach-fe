@@ -188,9 +188,24 @@ function Dashboard(props) {
         <Container maxWidth='lg' className={classes.container}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <AppointmentCard />
-              </Paper>
+              {props.appointments
+                ? props.appointments.map(appointment => (
+                    <AppointmentCard
+                      first_name={appointment.first_name}
+                      last_name={appointment.last_name}
+                      avatar_url={appointment.avatar_url}
+                      appointment_datetime={
+                        appointment.appointment_datetime
+                      }
+                      appointment_topic={
+                        appointment.appointment_topic
+                      }
+                      description={appointment.description}
+                      canceled={appointment.canceled}
+                    />
+                  ))
+                : null}{' '}
+              <Paper className={fixedHeightPaper}></Paper>
             </Grid>
 
             <Grid item xs={12} md={4} lg={3}>
@@ -213,7 +228,7 @@ function Dashboard(props) {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
-    appointment: state.appointmentsReducer.appointment,
+    appointments: state.appointmentsReducer.appointments,
   };
 };
 
