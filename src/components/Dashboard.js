@@ -190,19 +190,15 @@ function Dashboard(props) {
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
                 <AppointmentCard />
-
               </Paper>
             </Grid>
 
             <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-
-              </Paper>
+              <Paper className={fixedHeightPaper}></Paper>
             </Grid>
 
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
-              </Paper>
+              <Paper className={classes.paper}></Paper>
             </Grid>
           </Grid>
           <Box pt={4}>
@@ -217,6 +213,7 @@ function Dashboard(props) {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
+    appointment: state.appointmentsReducer.appointment,
   };
 };
 
