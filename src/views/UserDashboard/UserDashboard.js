@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAppointment, cancelAppointment } from '../../state/actions/appointmentActions';
+import {
+  getAppointment,
+  cancelAppointment,
+} from '../../state/actions/appointmentActions';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 
 const UserDashboard = props => {
@@ -35,6 +38,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getAppointment, cancelAppointment })(
-  UserDashboard,
-);
+export default connect(mapStateToProps, {
+  getAppointment,
+  cancelAppointment,
+})(UserDashboard);

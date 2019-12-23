@@ -77,22 +77,3 @@ export default function MediaCard(props) {
     </Card>
   );
 }
-
-// <img
-// src={
-//   props.avatar_url
-//     ? props.avatar_url
-//     : 'https://clkde.tradedoubler.com/click?p=264311&a=3045532&g=24328740&epi=search_attention&url=https://stock.adobe.com/images/exclamation-point-of-attention-against-the-sky-triangular-sign-danger-warning/284208732?as_channel=affiliate&as_campaign=pexels&as_source=arvato'
-// }
-// alt='coach or student'
-// />
-// </Avatar>
-// }
-// action={
-// <IconButton aria-label='settings'>
-// <MoreVertIcon />
-// </IconButton>
-// }
-// title={props.appointment_topic}
-// subheader={props.appointment_datetime}
-// />
