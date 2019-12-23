@@ -15,6 +15,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { defaultProps } from 'react-select/src/Select';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -39,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -52,7 +53,14 @@ export default function RecipeReviewCard() {
       <CardHeader
         avatar={
           <Avatar aria-label='recipe' className={classes.avatar}>
-            R
+            <img
+              src={
+                props.avatar_url
+                  ? props.avatar_url
+                  : 'https://clkde.tradedoubler.com/click?p=264311&a=3045532&g=24328740&epi=search_attention&url=https://stock.adobe.com/images/exclamation-point-of-attention-against-the-sky-triangular-sign-danger-warning/284208732?as_channel=affiliate&as_campaign=pexels&as_source=arvato'
+              }
+              alt='coach or student'
+            />
           </Avatar>
         }
         action={
@@ -60,8 +68,8 @@ export default function RecipeReviewCard() {
             <MoreVertIcon />
           </IconButton>
         }
-        title='Shrimp and Chorizo Paella'
-        subheader='September 14, 2016'
+        title={props.appointment_topic}
+        subheader={props.appointment_date}
       />
       <CardMedia
         className={classes.media}

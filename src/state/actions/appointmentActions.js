@@ -14,6 +14,7 @@ export const getAppointment = (
   axiosWithAuth()
     .get(`${url}appointment/${coach_student_id}`, { role: role_id })
     .then(res => {
+      debugger
       dispatch({
         type: GET_APPOINTMENTS_SUCCESSFUL,
         payload: res.data.appointments,

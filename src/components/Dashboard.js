@@ -19,9 +19,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems } from '../utils/dashboardList';
 import { getAppointment } from '../state/actions/appointmentActions';
-// import Chart from './Chart';
-// import Deposits from './Deposits';
-// import Orders from './Orders';
+import AppointmentCard from './Cards/AppointmentCard';
 import logo from '../img/firelogo.png';
 
 function Copyright() {
@@ -189,22 +187,21 @@ function Dashboard(props) {
         <div className={classes.appBarSpacer} />
         <Container maxWidth='lg' className={classes.container}>
           <Grid container spacing={3}>
-          
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-              
+                <AppointmentCard />
+
               </Paper>
             </Grid>
-           
+
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-              
+
               </Paper>
             </Grid>
-           
+
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-              
               </Paper>
             </Grid>
           </Grid>
