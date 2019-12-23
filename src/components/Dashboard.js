@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -18,8 +17,6 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems } from '../utils/dashboardList';
-import { getAppointment } from '../state/actions/appointmentActions';
-import AppointmentCard from './Cards/AppointmentCard';
 import logo from '../img/firelogo.png';
 
 function Copyright() {
@@ -138,9 +135,6 @@ function Dashboard(props) {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-  React.useEffect(() => {
-    props.getAppointment(props.user.id, props.user.role_id);
-  }, []);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -188,23 +182,7 @@ function Dashboard(props) {
         <Container maxWidth='lg' className={classes.container}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={8} lg={9}>
-              {props.appointments
-                ? props.appointments.map(appointment => (
-                    <AppointmentCard
-                      first_name={appointment.first_name}
-                      last_name={appointment.last_name}
-                      avatar_url={appointment.avatar_url}
-                      appointment_datetime={
-                        appointment.appointment_datetime
-                      }
-                      appointment_topic={
-                        appointment.appointment_topic
-                      }
-                      description={appointment.description}
-                      canceled={appointment.canceled}
-                    />
-                  ))
-                : null}{' '}
+              {' '}
               <Paper className={fixedHeightPaper}></Paper>
             </Grid>
 
@@ -225,13 +203,4 @@ function Dashboard(props) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.userReducer.user,
-    appointments: state.appointmentsReducer.appointments,
-  };
-};
-
-export default connect(mapStateToProps, { getAppointment })(
-  Dashboard,
-);
+export default Dashboard;
