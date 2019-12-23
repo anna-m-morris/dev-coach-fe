@@ -61,15 +61,16 @@ export default function MediaCard(props) {
           >
             {description}
           </Typography>
-
-          {canceled ? (
-            'Canceled'
-          ) : (
-            <button onClick={cancel}>Cancel</button>
-          )}
         </CardContent>
       </CardActionArea>
       <CardActions>
+        {canceled ? (
+          <p>Canceled</p>
+        ) : (
+          <Button onClick={cancel} size='small' color='primary'>
+            Do you want to Cancel
+          </Button>
+        )}
         <Button size='small' color='primary'>
           Message
         </Button>
