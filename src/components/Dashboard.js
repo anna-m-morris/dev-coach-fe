@@ -182,7 +182,7 @@ function Dashboard(props) {
         <div className={classes.appBarSpacer} />
         <Container maxWidth='lg' className={classes.container}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={8} lg={9}>
+            {/* <Grid item xs={12} md={8} lg={9}>
               <UserDashboard />{' '}
               <Paper className={fixedHeightPaper}></Paper>
             </Grid>
@@ -192,7 +192,8 @@ function Dashboard(props) {
             </Grid>
             <Grid item xs={12}>
               <Paper className={classes.paper}></Paper>
-            </Grid>
+            </Grid> */}
+            {this.props.routes}
           </Grid>
           <Box pt={4}>
             <Copyright />
