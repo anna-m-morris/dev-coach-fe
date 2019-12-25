@@ -7,7 +7,7 @@ import {
 } from '../../state/actions/appointmentActions';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 
-const UserDashboard = props => {
+const UserDashboard = props => { 
   React.useEffect(() => {
     props.getAppointment(props.user.id, props.user.role_id);
     // eslint-disable-next-line react-hooks/exhaustive-deps

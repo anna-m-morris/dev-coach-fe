@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import Calendar from 'react-calendar';
 import TimePicker from './TimePicker';
 
-export default class MyApp extends Component {
-  state = {
+const DatePicker = props => {
+   state = {
     date: new Date(),
     timePicker: false,
   };
@@ -14,13 +14,17 @@ export default class MyApp extends Component {
     console.log(date);
   };
 
-  render() {
     return (
       <div>
         {this.state.timePicker ? <TimePicker /> : <Calendar onChange={this.onChange} value={this.state.date} />}
       </div>
     );
-  }
 }
 
-export default connect(mapStateToProps, {})(Calendar)
+const mapStateToProps = state => {
+  return {
+
+  }
+};
+
+export default connect(mapStateToProps, {})(DatePicker)
