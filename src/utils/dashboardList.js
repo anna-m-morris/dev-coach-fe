@@ -27,23 +27,29 @@ export const mainListItems = (
         <ListItemText primary='Coaches' />
       </ListItem>
     </Link>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary='Feedback' />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary='FAQ' />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary='Blog' />
-    </ListItem>
+    <Link to='/feedback'>
+      <ListItem button>
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+        <ListItemText primary='Feedback' />
+      </ListItem>
+    </Link>
+    <Link to='/faq'>
+      <ListItem button>
+        <ListItemIcon>
+          <LayersIcon />
+        </ListItemIcon>
+        <ListItemText primary='FAQ' />
+      </ListItem>
+    </Link>
+    <Link to='/blog'>
+      <ListItem button>
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary='Blog' />
+      </ListItem>
+    </Link>
   </div>
 );

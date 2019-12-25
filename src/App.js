@@ -18,6 +18,8 @@ function App(props) {
     <Switch>
       <PrivateRoute path={'/dashboard'} component={UserDashboard} />
       <PrivateRoute path={'/marketplace'} component={Marketplace} />
+      <PrivateRoute path={'/faq'} component={Marketplace} />
+      <PrivateRoute path={'/settings'} component={Marketplace} />
     </Switch>
   );
   return props.isLoggedIn ? (
