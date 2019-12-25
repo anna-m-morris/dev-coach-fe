@@ -181,7 +181,7 @@ function Dashboard(props) {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth='lg' className={classes.container}>
-          <Grid container spacing={3}>
+          {/* <Grid container spacing={3}>
             <Grid item xs={12} md={8} lg={9}>
               <UserDashboard />{' '}
               <Paper className={fixedHeightPaper}></Paper>
@@ -193,7 +193,12 @@ function Dashboard(props) {
             <Grid item xs={12}>
               <Paper className={classes.paper}></Paper>
             </Grid>
-          </Grid>
+          </Grid> */}
+          {this.props.routes}
+          {this.props.location.pathname === "/dashboard" ||
+            this.props.location.pathname === "/marketplace" ||
+            this.props.location.pathname === "/faq" ||
+            this.props.location.pathname === "/blog"}
           <Box pt={4}>
             <Copyright />
           </Box>
