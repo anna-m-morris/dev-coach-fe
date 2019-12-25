@@ -7,6 +7,7 @@ export const GET_APPOINTMENTS_SUCCESSFUL =
   'GET_APPOINTMENTS_SUCCESSFUL';
 export const CANCEL_APPOINTMENT_SUCCESSFUL =
   'CANCEL_APPOINTMENT_SUCCESSFUL';
+export const SAVE_DATE = 'SAVE_DATE';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -46,3 +47,7 @@ export const cancelAppointment = appointment_id => dispatch => {
       dispatch({ type: APPOINTMENTS_ERROR, payload: err });
     });
 };
+
+export const saveDate = (date) => {
+  return { type: SAVE_DATE, payload: date}
+}
