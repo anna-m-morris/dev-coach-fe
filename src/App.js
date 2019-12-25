@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import PrivateRoute from './utils/PrivateRoute';
@@ -16,22 +16,26 @@ import UserTypePage from './components/UserType/UserTypePage';
 function App(props) {
   const routes = (
     <Switch>
-      <PrivateRoute path={'/dashboard'} component={UserDashboard} />
-      <PrivateRoute path={'/marketplace'} component={Marketplace} />
-      <PrivateRoute path={'/faq'} component={Marketplace} />
-      <PrivateRoute path={'/settings'} component={Marketplace} />
+      <Route path={'/dashboard'} component={UserDashboard} />
+      <Route path={'/marketplace'} component={Marketplace} />
+      <Route path={'/faq'} component={Marketplace} />
+      <Route path={'/feedback'} component={Marketplace} />
+      <Route path={'/settings'} component={Marketplace} />
     </Switch>
   );
   return props.isLoggedIn ? (
     <Dashboard routes={routes} />
   ) : (
     <>
-      <Route exact path='/' component={Landing} />
-      <Route path='/login/' component={LoginForm} />
-      <Route path='/register' component={SignUpForm} />
-      <Route path='/interviewer' component={InterviewerForm} />
-      <Route path='/student' component={StudentForm} />
-      <Route path='/user/type' component={UserTypePage} />
+      <Switch>
+        <Route exact path='/' component={Landing} />
+        <Route path='/login/' component={LoginForm} />
+        <Route path='/register' component={SignUpForm} />
+        <Route path='/interviewer' component={InterviewerForm} />
+        <Route path='/student' component={StudentForm} />
+        <Route path='/user/type' component={UserTypePage} />
+        <Redirect to='/' />
+      </Switch>
     </>
   );
 }

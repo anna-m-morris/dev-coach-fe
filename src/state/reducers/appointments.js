@@ -1,7 +1,7 @@
 import * as types from '../actions/appointmentActions';
 
 const initialState = {
-  appointments: {},
+  appointments: null,
   error: '',
   isLoading: false,
 };

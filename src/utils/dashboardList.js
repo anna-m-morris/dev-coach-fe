@@ -43,7 +43,7 @@ export const mainListItems = (
         <ListItemText primary='FAQ' />
       </ListItem>
     </Link>
-    <Link to='/blog'>
+    <Link to='/settings'>
       <ListItem button>
         <ListItemIcon>
           <ShoppingCartIcon />
