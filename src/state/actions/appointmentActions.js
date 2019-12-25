@@ -52,3 +52,8 @@ export const saveDate = (date) => {
   debugger
   return { type: SAVE_DATE, payload: date}
 }
+
+export const saveDayTime = (date) => {
+  debugger
+  return { type: SAVE_DATE, payload: date}
+}

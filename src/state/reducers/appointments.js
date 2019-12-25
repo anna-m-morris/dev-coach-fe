@@ -41,7 +41,7 @@ function appointmentsReducer(state = initialState, action) {
     case types.SAVE_DATE:
       return {
         ...state,
-        timePicker: true,
+        timePicker: !state.timePicker,
         date: action.payload,
       };
 
