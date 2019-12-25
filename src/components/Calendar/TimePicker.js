@@ -7,30 +7,30 @@ import {
     KeyboardTimePicker,
 } from '@material-ui/pickers';
 
-export default function MaterialUIPickers() {
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+export default function TimePicker(props) {
+    // const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
-    const handleDateChange = date => {
-        setSelectedDate(date);
-        console.log(date)
-    };
+    // const handleDateChange = date => {
+    //     setSelectedDate(date);
+    //     console.log(date)
+    // };
 
     return (
         <MuiPickersUtilsProvider
          utils={DateFnsUtils}
          >
-        {/* <Grid container justify="space-around"> */}
+        <Grid container justify="space-around">
             <KeyboardTimePicker
                 margin="normal"
                 id="time-picker"
                 label="Time picker"
-                value={selectedDate}
-                onChange={handleDateChange}
+                value={props.date}
+                onChange={props.saveDayTime}
                 KeyboardButtonProps={{
                     'aria-label': 'change time',
                 }}
             />
-        {/* </Grid> */}
+        </Grid>
         </MuiPickersUtilsProvider>
     );
 }

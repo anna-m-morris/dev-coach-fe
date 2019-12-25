@@ -4,6 +4,8 @@ const initialState = {
   appointments: null,
   error: '',
   isLoading: false,
+  timePicker: false,
+  date: null,
 };
 
 function appointmentsReducer(state = initialState, action) {
@@ -35,6 +37,14 @@ function appointmentsReducer(state = initialState, action) {
           return appointment;
         }),
       };
+
+    case types.SAVE_DATE:
+      return {
+        ...state,
+        timePicker: true,
+        date: action.payload,
+      };
+
     default:
       return state;
   }
