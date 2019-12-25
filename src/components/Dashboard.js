@@ -12,13 +12,11 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems } from '../utils/dashboardList';
 import logo from '../img/firelogo.png';
-import UserDashboard from '../views/UserDashboard/UserDashboard';
 
 function Copyright() {
   return (
@@ -134,7 +132,6 @@ function Dashboard(props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
@@ -181,8 +178,8 @@ function Dashboard(props) {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth='lg' className={classes.container}>
-          {/* <Grid container spacing={3}>
-            <Grid item xs={12} md={8} lg={9}>
+          <Grid container spacing={3}>
+            {/* <Grid item xs={12} md={8} lg={9}>
               <UserDashboard />{' '}
               <Paper className={fixedHeightPaper}></Paper>
             </Grid>
@@ -192,13 +189,9 @@ function Dashboard(props) {
             </Grid>
             <Grid item xs={12}>
               <Paper className={classes.paper}></Paper>
-            </Grid>
-          </Grid> */}
-          {this.props.routes}
-          {this.props.location.pathname === "/dashboard" ||
-            this.props.location.pathname === "/marketplace" ||
-            this.props.location.pathname === "/faq" ||
-            this.props.location.pathname === "/blog"}
+            </Grid> */}
+            {props.routes}
+          </Grid>
           <Box pt={4}>
             <Copyright />
           </Box>

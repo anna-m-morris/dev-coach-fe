@@ -1,3 +1,4 @@
+import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 
 export const APPOINTMENTS_START = 'GET_APPOINTMENTS_START';
@@ -15,7 +16,9 @@ export const getAppointment = (
 ) => dispatch => {
   dispatch({ type: APPOINTMENTS_START });
   axiosWithAuth()
-    .get(`${url}appointment/${coach_student_id}`, { role: role_id })
+    .get(`${url}appointment/${coach_student_id}`, {
+      params: { role: role_id },
+    })
     .then(res => {
       debugger;
       dispatch({
@@ -33,7 +36,7 @@ export const cancelAppointment = appointment_id => dispatch => {
   axiosWithAuth()
     .put(`${url}appointment/${appointment_id}`)
     .then(res => {
-      debugger
+      debugger;
       dispatch({
         type: CANCEL_APPOINTMENT_SUCCESSFUL,
         payload: res.data.appointment,
