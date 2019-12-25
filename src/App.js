@@ -13,14 +13,16 @@ import InterviewerForm from './components/Forms/InterviewerForm';
 import StudentForm from './components/Forms/StudentForm';
 import UserTypePage from './components/UserType/UserTypePage';
 
-function App() {
+function App(props) {
   const routes = (
     <Switch>
       <PrivateRoute path={'/dashboard'} component={UserDashboard} />
       <PrivateRoute path={'/marketplace'} component={Marketplace} />
     </Switch>
   );
-  return (
+  return props.isLoggedIn ? (
+    <Dashboard routes={routes} />
+  ) : (
     <>
       <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
@@ -28,12 +30,14 @@ function App() {
       <Route path='/interviewer' component={InterviewerForm} />
       <Route path='/student' component={StudentForm} />
       <Route path='/user/type' component={UserTypePage} />
-      <PrivateRoute
-        path='/dashboard'
-        render={() => <Dashboard routes={routes} />}
-      />
     </>
   );
 }
 
-export default connect(state => state)(App);
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.userReducer.isLoggedIn,
+  };
+};
+
+export default connect(mapStateToProps)(App);

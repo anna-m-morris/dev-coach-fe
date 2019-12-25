@@ -193,7 +193,7 @@ function Dashboard(props) {
             <Grid item xs={12}>
               <Paper className={classes.paper}></Paper>
             </Grid> */}
-            {this.props.routes}
+            {props.routes}
           </Grid>
           <Box pt={4}>
             <Copyright />
