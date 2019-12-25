@@ -12,11 +12,14 @@ export default function MaterialUIPickers() {
 
     const handleDateChange = date => {
         setSelectedDate(date);
+        console.log(date)
     };
 
     return (
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Grid container justify="space-around">
+        <MuiPickersUtilsProvider
+         utils={DateFnsUtils}
+         >
+        {/* <Grid container justify="space-around"> */}
             <KeyboardTimePicker
                 margin="normal"
                 id="time-picker"
@@ -27,7 +30,7 @@ export default function MaterialUIPickers() {
                     'aria-label': 'change time',
                 }}
             />
-        </Grid>
-        // </MuiPickersUtilsProvider>
+        {/* </Grid> */}
+        </MuiPickersUtilsProvider>
     );
 }

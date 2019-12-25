@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Calendar from 'react-calendar';
 import TimePicker from './TimePicker';
 
@@ -21,3 +22,5 @@ export default class MyApp extends Component {
     );
   }
 }
+
+export default connect(mapStateToProps, {})(Calendar)
