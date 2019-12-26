@@ -6,15 +6,20 @@ import {
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
+import styled from 'styled-components';
 
-const UserDashboard = props => { 
+const StyledUserDashboard = styled.div`
+  display: flex;
+`;
+
+const UserDashboard = props => {
   React.useEffect(() => {
     props.getAppointment(props.user.id, props.user.role_id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div>
+    <StyledUserDashboard>
       {props.appointments
         ? props.appointments.map(appointment => (
             <AppointmentCard
@@ -30,7 +35,7 @@ const UserDashboard = props => {
             />
           ))
         : null}
-    </div>
+    </StyledUserDashboard>
   );
 };
 
