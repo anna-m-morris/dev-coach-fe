@@ -97,30 +97,47 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+let data = {'topic-select': null, 'length-select': null}; 
+// global value for now => later handle change with redux
+
 export default function GroupedSelect() {
     const [length, setLength] = React.useState('');
 
     const handleChange = event => {
         setLength(event.target.value);
-        console.log(event.target.name)
         // check event target name and decide which input (handle with redux)
+        
+        data[event.target.name] = event.target.value;
+
+        // safe data object as redux state and if longer than 1 so the last 
+        // data got added let the screen disappear and let the student make the payment
+        
+        console.log(event.target.name, event.target.value, data)
     };
 
     const classes = useStyles();
 
     return (
         <div>
-            <FormControl className={classes.formControl}>
+            {/* <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="grouped-native-select">Length</InputLabel>
                 <Select native defaultValue=""
                     input={<Input onChange={handleChange} name="length-select" id="length-select" />}>
-                    <option value="" />
+                    <MenuItem value={1}>30 Minutes</MenuItem>
+                    <MenuItem value={2}>1 Hour</MenuItem>
+                </Select>
+            </FormControl> */}
+
+            <FormControl className={classes.formControl}>
+                <InputLabel htmlFor="grouped-select">Length</InputLabel>
+                <Select defaultValue="Frontend" input={<Input onChange={handleChange} name="length-select" id="length-select" />}>
                     <MenuItem value={1}>30 Minutes</MenuItem>
                     <MenuItem value={2}>1 Hour</MenuItem>
                 </Select>
             </FormControl>
+
             <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="grouped-select">Grouping</InputLabel>
+                <InputLabel htmlFor="grouped-select">Topic</InputLabel>
                 <Select defaultValue="Frontend" input={<Input onChange={handleChange} name="topic-select" id="topic-select" />}>
                     <MenuItem value={1}>Frontend</MenuItem>
                     <MenuItem value={2}>Backend</MenuItem>
