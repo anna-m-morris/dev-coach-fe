@@ -47,7 +47,7 @@ const NavTitleContainer = styled.div`
   font-family: Ubuntu;
   font-style: normal;
   font-weight: normal;
-  color: #459a59;
+  color: grey;
   font-size: 18px;
 `;
 
@@ -360,7 +360,7 @@ const BottomButton = styled.div`
   }
 `;
 
-//footer
+// footer
 const FooterConatiner = styled.div`
   height: 50vh;
   width: 100%;
@@ -540,7 +540,7 @@ const Landing = () => {
         </BottomImgDiv>
         <BottomTextStyle>
           <h2>Ready to get started?</h2>
-          <input placeholder="Enter your email address" />
+          <input placeholder='Enter your email address' />
           <BottomButton theme={buttonTheme}>Get Started</BottomButton>
         </BottomTextStyle>
       </BottomSectionContainer>
@@ -593,7 +593,8 @@ const Landing = () => {
         </FooterBottomSection>
         <p>
           {' '}
-          hello@dev-coach.com - copyright © Devcoach 2019. All rights reserved.
+          hello@dev-coach.com - copyright © Devcoach 2019. All rights
+          reserved.
         </p>
       </FooterConatiner>
     </div>

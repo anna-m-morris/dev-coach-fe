@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
     color: '#4fad65',
     fontSize: '.8rem',
-    fontFamily: "ABeeZee"
+    fontFamily: 'ABeeZee',
   },
   appBar: {
     boxShadow: 'none',
@@ -172,9 +172,7 @@ function Dashboard() {
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <h1>
-            DevCoach
-          </h1>
+          <h1>DevCoach</h1>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
@@ -211,7 +209,6 @@ function Dashboard() {
           </Box>
         </Container>
       </main>
-
     </div>
   );
 }
