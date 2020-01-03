@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -7,18 +6,33 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import styled from 'styled-components';
 
-const useStyles = makeStyles({
-  card: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-    borderRadius: '50%',
-  },
-});
+const StyledAppointmentCard = styled.div`
+  width: 100%;
+  .card {
+    width: 33%;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-export default function MediaCard(props) {
+  .content {
+  }
+  .media {
+    height: 10rem;
+    border-radius: 50%;
+    background-size: 50%;
+
+    /* img {
+      width: 60%;
+    } */
+  }
+`;
+
+export default function AppointmentCard(props) {
   const {
     first_name,
     last_name,
@@ -29,52 +43,60 @@ export default function MediaCard(props) {
     canceled,
     cancel,
   } = props;
-  const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={
-            avatar_url
-              ? avatar_url
-              : 'https://images.pexels.com/photos/1749900/pexels-photo-1749900.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-          }
-          title='Coach / Student'
-        />
-        <CardContent>
-          <Typography gutterBottom variant='h5' component='h2'>
-            {`${first_name} ${last_name}`}
-          </Typography>
-          <Typography
-            variant='body2'
-            color='textSecondary'
-            component='p'
-          >
-            {`${appointment_topic} ${appointment_datetime}`}
-          </Typography>
-          <Typography
-            variant='body2'
-            color='textSecondary'
-            component='p'
-          >
-            {description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        {canceled ? (
-          <p>Canceled</p>
-        ) : (
-          <Button onClick={cancel} size='small' color='primary'>
-            Do you want to Cancel
+    <StyledAppointmentCard>
+      <Card className='card'>
+        <CardActionArea classname='content'>
+          <CardMedia
+            className='media'
+            image={
+              avatar_url
+                ? avatar_url
+                : 'https://images.pexels.com/photos/1261427/pexels-photo-1261427.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+            }
+            title='Coach / Student'
+          />
+          <CardContent>
+            <Typography gutterBottom variant='h5' component='h2'>
+              {`${first_name} ${last_name}`}
+            </Typography>
+            <Typography
+              variant='body2'
+              color='textSecondary'
+              component='p'
+            >
+              {appointment_topic}
+            </Typography>
+            <Typography
+              variant='body2'
+              color='textSecondary'
+              component='p'
+            >
+              {appointment_datetime}
+            </Typography>
+            <Typography
+              variant='body2'
+              color='textSecondary'
+              component='p'
+            >
+              {description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          {canceled ? (
+            <p>Canceled</p>
+          ) : (
+            <Button onClick={cancel} size='small' color='primary'>
+              Do you want to Cancel
+            </Button>
+          )}
+          <Button size='small' color='primary'>
+            Message
           </Button>
-        )}
-        <Button size='small' color='primary'>
-          Message
-        </Button>
-      </CardActions>
-    </Card>
+        </CardActions>
+      </Card>
+    </StyledAppointmentCard>
   );
 }

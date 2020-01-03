@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
+import styled from 'styled-components';
 import {
   getAppointment,
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
-import styled from 'styled-components';
 
 const StyledUserDashboard = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const UserDashboard = props => {

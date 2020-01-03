@@ -107,6 +107,9 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -176,6 +179,7 @@ function Dashboard(props) {
         <Divider />
       </Drawer>
       <main className={classes.content}>
+        {props.routes}
         <div className={classes.appBarSpacer} />
         <Container maxWidth='lg' className={classes.container}>
           <Grid container spacing={3}>
@@ -190,7 +194,6 @@ function Dashboard(props) {
             <Grid item xs={12}>
               <Paper className={classes.paper}></Paper>
             </Grid> */}
-            {props.routes}
           </Grid>
           <Box pt={4}>
             <Copyright />
