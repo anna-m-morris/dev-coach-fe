@@ -6,6 +6,7 @@ export const BOOKING_APPOINTMENT_SUCCESSFUL =
   'BOOKING_APPOINTMENT_SUCCESSFUL';
 export const BOOKING_APPOINTMENT_ERROR = 'BOOKING_APPOINTMENT_ERROR';
 export const SAVE_DATE = 'SAVE_DATE';
+export const SAVE_SELECT = 'SAVE_SELECT';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -46,4 +47,8 @@ const url = process.env.REACT_APP_BASE_URL;
 
 export const saveDate = date => {
   return { type: SAVE_DATE, payload: date };
+};
+
+export const saveSelect = event => {
+  return { type: SAVE_SELECT, payload: event };
 };
