@@ -1,8 +1,8 @@
 import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 
-export const APPOINTMENTS_START = 'GET_APPOINTMENTS_START';
-export const APPOINTMENTS_ERROR = 'GET_APPOINTMENTS_ERROR';
+export const APPOINTMENTS_START = 'APPOINTMENTS_START';
+export const APPOINTMENTS_ERROR = 'APPOINTMENTS_ERROR';
 export const GET_APPOINTMENTS_SUCCESSFUL =
   'GET_APPOINTMENTS_SUCCESSFUL';
 export const CANCEL_APPOINTMENT_SUCCESSFUL =
