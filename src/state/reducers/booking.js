@@ -9,13 +9,13 @@ const initialState = {
 
 function bookingReducer(state = initialState, action) {
   switch (action.type) {
-    case types.BOOKING_APPOINTMENTS_START:
+    case types.BOOKING_APPOINTMENT_START:
       return {
         ...state,
         isLoading: true,
       };
 
-    case types.BOOKING_APPOINTMENTS_ERROR:
+    case types.BOOKING_APPOINTMENT_ERROR:
       return { ...state, error: action.payload };
 
     case types.BOOKING_APPOINTMENT_SUCCESSFUL:

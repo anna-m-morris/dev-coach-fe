@@ -1,6 +1,6 @@
 import React from 'react';
 import Calendar from './Calendar';
-import Select from './Select';
+import Select from './SelectInfo';
 
 const Booking = () => {
   return (

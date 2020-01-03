@@ -5,6 +5,8 @@ import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { connect } from 'react-redux';
+import { saveSelect } from '../../state/actions/bookingActions';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -16,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 let data = { 'topic-select': null, 'length-select': null };
 // global value for now => later handle change with redux
 
-export default function GroupedSelect() {
+const SelectInfo = () => {
   const [length, setLength] = React.useState('');
 
   const handleChange = event => {
@@ -38,7 +40,7 @@ export default function GroupedSelect() {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor='grouped-select'>Length</InputLabel>
         <Select
-          defaultValue='Frontend'
+          defaultValue=''
           input={
             <Input
               onChange={handleChange}
@@ -55,7 +57,7 @@ export default function GroupedSelect() {
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor='grouped-select'>Topic</InputLabel>
         <Select
-          defaultValue='Frontend'
+          defaultValue=''
           input={
             <Input
               onChange={handleChange}
@@ -74,4 +76,13 @@ export default function GroupedSelect() {
       </FormControl>
     </div>
   );
-}
+};
+
+// const mapStateToProps = state => {
+//   return {
+//     timePicker: state.bookingReducer.timePicker,
+//     date: state.bookingReducer.date,
+//   };
+// };
+
+export default connect(null, { saveSelect })(SelectInfo);
