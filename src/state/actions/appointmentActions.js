@@ -1,4 +1,3 @@
-import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 
 export const APPOINTMENTS_START = 'APPOINTMENTS_START';
@@ -7,7 +6,6 @@ export const GET_APPOINTMENTS_SUCCESSFUL =
   'GET_APPOINTMENTS_SUCCESSFUL';
 export const CANCEL_APPOINTMENT_SUCCESSFUL =
   'CANCEL_APPOINTMENT_SUCCESSFUL';
-export const SAVE_DATE = 'SAVE_DATE';
 
 const url = process.env.REACT_APP_BASE_URL;
 
