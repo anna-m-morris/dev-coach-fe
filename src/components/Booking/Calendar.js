@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Calendar from 'react-calendar';
-import { saveDate } from '../../state/actions/appointmentActions';
+import { saveDate } from '../../state/actions/bookingActions';
 import TimePicker from './TimePicker';
 
 // We need topic_id, coach_id, student_id, date, length,
@@ -26,8 +26,8 @@ const DatePicker = props => {
 
 const mapStateToProps = state => {
   return {
-    timePicker: state.appointmentsReducer.timePicker,
-    date: state.appointmentsReducer.date,
+    timePicker: state.bookingReducer.timePicker,
+    date: state.bookingReducer.date,
   };
 };
 
