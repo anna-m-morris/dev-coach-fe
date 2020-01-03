@@ -30,7 +30,7 @@ function bookingReducer(state = initialState, action) {
       return {
         ...state,
         timePicker: !state.timePicker,
-        date: action.payload,
+        date: action.payload.toString(),
       };
 
     case types.SAVE_SELECT:

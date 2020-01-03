@@ -33,6 +33,7 @@ const Booking = props => {
   return (
     <div>
       <Calendar />
+      <h1>{props.date.slice(0, 21)}</h1>
       <Select />
       <StripeCheckout
         stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // this key is only for testing we
