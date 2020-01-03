@@ -50,7 +50,5 @@ export const saveDate = date => {
 };
 
 export const saveSelect = event => {
-  let e = event.target.name;
-  debugger;
   return { type: SAVE_SELECT, payload: event };
 };

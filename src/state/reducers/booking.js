@@ -1,11 +1,12 @@
 import * as types from '../actions/bookingActions';
 
 const initialState = {
-  error: '',
-  isLoading: false,
+  coach_id: null,
   timePicker: false,
   date: null,
   select: {},
+  error: '',
+  isLoading: false,
 };
 
 function bookingReducer(state = initialState, action) {
