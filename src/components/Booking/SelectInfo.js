@@ -15,24 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-// let data = { 'topic-select': null, 'length-select': null };
-// // global value for now => later handle change with redux
-
 const SelectInfo = props => {
-  // const [length, setLength] = React.useState('');
-
-  // const handleChange = event => {
-  //   setLength(event.target.value);
-  //   // check event target name and decide which input (handle with redux)
-
-  //   data[event.target.name] = event.target.value;
-
-  //   // safe data object as redux state and if longer than 1 so the last
-  //   // data got added let the screen disappear and let the student make the payment
-
-  //   console.log(event.target.name, event.target.value, data);
-  // };
-
   const classes = useStyles();
 
   return (
@@ -44,7 +27,7 @@ const SelectInfo = props => {
           input={
             <Input
               onChange={props.saveSelect}
-              name='length-select'
+              name='length_id'
               id='length-select'
             />
           }
@@ -61,7 +44,7 @@ const SelectInfo = props => {
           input={
             <Input
               onChange={props.saveSelect}
-              name='topic-select'
+              name='topic_id'
               id='topic-select'
             />
           }
@@ -77,12 +60,5 @@ const SelectInfo = props => {
     </div>
   );
 };
-
-// const mapStateToProps = state => {
-//   return {
-//     timePicker: state.bookingReducer.timePicker,
-//     date: state.bookingReducer.date,
-//   };
-// };
 
 export default connect(null, { saveSelect })(SelectInfo);

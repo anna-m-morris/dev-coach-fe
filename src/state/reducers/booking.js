@@ -5,6 +5,7 @@ const initialState = {
   isLoading: false,
   timePicker: false,
   date: null,
+  select: {},
 };
 
 function bookingReducer(state = initialState, action) {
@@ -29,6 +30,17 @@ function bookingReducer(state = initialState, action) {
         ...state,
         timePicker: !state.timePicker,
         date: action.payload,
+      };
+
+    case types.SAVE_SELECT:
+      const copyOfSelect = { ...state.select };
+
+      copyOfSelect[action.payload.target.name] =
+        action.payload.target.value;
+
+      return {
+        ...state,
+        select: copyOfSelect,
       };
 
     default:
