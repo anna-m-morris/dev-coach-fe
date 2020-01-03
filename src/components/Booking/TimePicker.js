@@ -16,7 +16,7 @@ export default function TimePicker(props) {
           id='time-picker'
           label='Time picker'
           value={props.date}
-          onChange={props.saveDayTime}
+          onChange={props.saveDate}
           KeyboardButtonProps={{
             'aria-label': 'change time',
           }}

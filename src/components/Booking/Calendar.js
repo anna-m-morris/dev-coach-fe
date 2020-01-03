@@ -11,7 +11,7 @@ const DatePicker = props => {
     <div>
       {props.timePicker ? (
         <TimePicker
-          saveDayTime={date => props.saveDayTime(date)}
+          saveDate={date => props.saveDate(date)}
           date={props.date}
         />
       ) : (

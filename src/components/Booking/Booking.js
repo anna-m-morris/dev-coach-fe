@@ -1,11 +1,11 @@
 import React from 'react';
-import TimePicker from './TimePicker';
+import Calendar from './Calendar';
 import Select from './Select';
 
 const Booking = () => {
   return (
     <div>
-      <TimePicker />
+      <Calendar />
       <Select />
     </div>
   );
