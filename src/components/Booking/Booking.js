@@ -1,35 +1,64 @@
 import React from 'react';
+import StripeCheckout from 'react-stripe-checkout';
+import { toast } from 'react-toastify';
+import { connect } from 'react-redux';
+import axios from 'axios';
 import Calendar from './Calendar';
 import Select from './SelectInfo';
+import 'react-toastify/dist/ReactToastify.css';
 
-// async handleToken(token, title, price) {
-//   const product = {
-//     name: title, price: price
-//   }
+toast.configure();
 
-//   console.log(token, product)
-//   const response = await axios.post(
-//     "https://bookr-build-week.herokuapp.com/payment",
-//     { token, product }
-//   );
-//   const { status } = response.data;
-//   console.log("Response:", response.data);
-//   if (status === "success") {
-//     toast("Success! Check email for details", { type: "success" });
-//   } else {
-//     toast("Something went wrong", { type: "error" });
-//   }
-// };
-// "react-stripe-checkout": "^2.6.3",
-//     "react-toastify": "^5.3.2",
+const Booking = props => {
+  async function handleToken(token, title, price) {
+    const product = {
+      name: title,
+      price,
+    };
 
-const Booking = () => {
+    console.log(token, product);
+    const response = await axios.post(
+      'https://dev-coach-staging.herokuapp.com/payment/stripe',
+      { token, product },
+    );
+    const { status } = response.data;
+    console.log('Response:', response.data);
+    if (status === 'success') {
+      toast('Success! Check email for details', { type: 'success' });
+    } else {
+      toast('Something went wrong', { type: 'error' });
+    }
+  }
+
   return (
     <div>
       <Calendar />
       <Select />
+      <StripeCheckout
+        stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // this key is only for testing we
+        // will add later our real key to the env file
+        token={token =>
+          handleToken(
+            token,
+            'title', // title should be appointment topic
+            props.price,
+          )
+        }
+        amount={props.price * 100}
+        name={'name'}
+        billingAddress
+        shippingAddress
+      />
     </div>
   );
 };
 
-export default Booking;
+const mapStateToProps = state => {
+  return {
+    price: 20, // we need to get the price from the coach here
+    select: state.bookingReducer.select,
+    date: state.bookingReducer.date,
+  };
+};
+
+export default connect(mapStateToProps)(Booking);
