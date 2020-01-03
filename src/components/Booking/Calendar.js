@@ -3,15 +3,23 @@ import { connect } from 'react-redux';
 import Calendar from 'react-calendar';
 import { saveDate } from '../../state/actions/appointmentActions';
 import TimePicker from './TimePicker';
-import Select from './Select';
 
 // We need topic_id, coach_id, student_id, date, length,
 
 const DatePicker = props => {
   return (
     <div>
-      <Select />
-      {/* {props.timePicker ? <TimePicker saveDayTime={date => props.saveDayTime(date)} date={props.date} /> : <Calendar onChange={date => props.saveDate(date)} value={new Date()} />} */}
+      {props.timePicker ? (
+        <TimePicker
+          saveDayTime={date => props.saveDayTime(date)}
+          date={props.date}
+        />
+      ) : (
+        <Calendar
+          onChange={date => props.saveDate(date)}
+          value={new Date()}
+        />
+      )}
     </div>
   );
 };

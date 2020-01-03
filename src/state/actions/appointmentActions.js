@@ -21,7 +21,6 @@ export const getAppointment = (
       params: { role: role_id },
     })
     .then(res => {
-      // debugger;
       dispatch({
         type: GET_APPOINTMENTS_SUCCESSFUL,
         payload: res.data.appointments,
@@ -37,7 +36,6 @@ export const cancelAppointment = appointment_id => dispatch => {
   axiosWithAuth()
     .put(`${url}appointment/${appointment_id}`)
     .then(res => {
-      debugger;
       dispatch({
         type: CANCEL_APPOINTMENT_SUCCESSFUL,
         payload: res.data.appointment,
@@ -49,6 +47,5 @@ export const cancelAppointment = appointment_id => dispatch => {
 };
 
 export const saveDate = date => {
-  debugger;
   return { type: SAVE_DATE, payload: date };
 };

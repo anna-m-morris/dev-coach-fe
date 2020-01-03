@@ -12,14 +12,14 @@ import Landing from './components/Landing';
 import InterviewerForm from './components/Forms/InterviewerForm';
 import StudentForm from './components/Forms/StudentForm';
 import UserTypePage from './components/UserType/UserTypePage';
-import Calendar from './components/Calendar/Calendar';
+import Booking from './components/Booking/Booking';
 
 function App(props) {
   const routes = (
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
       <Route path={'/marketplace'} component={Marketplace} />
-      <Route path={'/faq'} component={Calendar} />
+      <Route path={'/faq'} component={Booking} />
       <Route path={'/feedback'} component={Marketplace} />
       <Route path={'/settings'} component={Marketplace} />
     </Switch>
