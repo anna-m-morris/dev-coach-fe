@@ -45,8 +45,3 @@ export const cancelAppointment = appointment_id => dispatch => {
       dispatch({ type: APPOINTMENTS_ERROR, payload: err });
     });
 };
-
-export const saveDate = date => {
-  debugger
-  return { type: SAVE_DATE, payload: date };
-};
