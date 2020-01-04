@@ -46,37 +46,56 @@ const useStyles1 = makeStyles(theme => ({
   },
 }));
 
-function MySnackbarContentWrapper(props) {
+export default function Notification(props) {
   const classes = useStyles1();
-  const { className, message, onClose, variant, ...other } = props;
+  const {
+    className,
+    message,
+    onClose,
+    variant,
+    open,
+    ...other
+  } = props;
   const Icon = variantIcon[variant];
 
   return (
-    <SnackbarContent
-      className={clsx(classes[variant], className)}
-      aria-describedby='client-snackbar'
-      message={
-        <span id='client-snackbar' className={classes.message}>
-          <Icon className={clsx(classes.icon, classes.iconVariant)} />
-          {message}
-        </span>
-      }
-      action={[
-        <IconButton
-          key='close'
-          aria-label='close'
-          color='inherit'
-          onClick={onClose}
-        >
-          <CloseIcon className={classes.icon} />
-        </IconButton>,
-      ]}
-      {...other}
-    />
+    <Snackbar
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={open}
+      autoHideDuration={6000}
+      // onClose={handleClose}
+    >
+      <SnackbarContent
+        className={clsx(classes[variant], className)}
+        aria-describedby='client-snackbar'
+        message={
+          <span id='client-snackbar' className={classes.message}>
+            <Icon
+              className={clsx(classes.icon, classes.iconVariant)}
+            />
+            {message}
+          </span>
+        }
+        action={[
+          <IconButton
+            key='close'
+            aria-label='close'
+            color='inherit'
+            onClick={onClose}
+          >
+            <CloseIcon className={classes.icon} />
+          </IconButton>,
+        ]}
+        {...other}
+      />
+    </Snackbar>
   );
 }
 
-MySnackbarContentWrapper.propTypes = {
+Notification.propTypes = {
   className: PropTypes.string,
   message: PropTypes.string,
   onClose: PropTypes.func,

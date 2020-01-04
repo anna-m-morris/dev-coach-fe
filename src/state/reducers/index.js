@@ -3,12 +3,14 @@ import { combineReducers } from 'redux';
 import userReducer from './authentication';
 import appointmentsReducer from './appointments';
 import bookingReducer from './booking';
+import notificationsReducer from './notifications';
 
 const appReducer = combineReducers({
   // add your reducers here
   userReducer,
   appointmentsReducer,
   bookingReducer,
+  notificationsReducer,
 });
 
 /* const rootReducer = (state, action) => {

@@ -1,15 +1,31 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import Snackbar from '@material-ui/core/Snackbar';
 import Calendar from './Calendar';
 import Select from './SelectInfo';
-import 'react-toastify/dist/ReactToastify.css';
+// import 'react-toastify/dist/ReactToastify.css';
+import Notification from '../Notifications/Notification';
 
-toast.configure();
+// toast.configure();
 
 const Booking = props => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   async function handleToken(token, title, price) {
     const product = {
       name: title,
@@ -24,14 +40,30 @@ const Booking = props => {
     const { status } = response.data;
     console.log('Response:', response.data);
     if (status === 'success') {
-      toast('Success! Check email for details', { type: 'success' });
+      // toast('Success! Check email for details', { type: 'success' });
+      handleClick();
     } else {
-      toast('Something went wrong', { type: 'error' });
+      // toast('Something went wrong', { type: 'error' });
     }
   }
 
   return (
     <div>
+      {/* <Snackbar
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+      > */}
+      <Notification
+        onClose={handleClose}
+        variant='success'
+        message='This is a success message!'
+      />
+      {/* </Snackbar> */}
       <Calendar />
       <h1>{props.date.slice(0, 21)}</h1>
       <Select />
