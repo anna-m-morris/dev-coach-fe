@@ -13,6 +13,7 @@ import InterviewerForm from './components/Forms/InterviewerForm';
 import StudentForm from './components/Forms/StudentForm';
 import UserTypePage from './components/UserType/UserTypePage';
 import Booking from './components/Booking/Booking';
+import Notification from './components/Notifications/Notification';
 
 function App(props) {
   const routes = (
@@ -20,7 +21,7 @@ function App(props) {
       <Route path={'/dashboard'} component={UserDashboard} />
       <Route path={'/marketplace'} component={Marketplace} />
       <Route path={'/faq'} component={Booking} />
-      <Route path={'/feedback'} component={Marketplace} />
+      <Route path={'/feedback'} component={Notification} />
       <Route path={'/settings'} component={Marketplace} />
     </Switch>
   );
