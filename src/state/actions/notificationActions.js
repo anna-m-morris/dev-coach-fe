@@ -8,6 +8,7 @@ export const showSuccessMessage = () => {
 };
 
 export const showErrorMessage = () => {
+  debugger
   return { type: SHOW_ERROR_MESSAGE };
 };
 

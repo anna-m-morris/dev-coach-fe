@@ -1,49 +1,58 @@
 import axios from 'axios';
-import axiosWithAuth from '../../utils/axiosWithAuth';
 
-export const BOOKING_APPOINTMENT_START = 'BOOKING_APPOINTMENT_START';
-export const BOOKING_APPOINTMENT_SUCCESSFUL =
-  'BOOKING_APPOINTMENT_SUCCESSFUL';
-export const BOOKING_APPOINTMENT_ERROR = 'BOOKING_APPOINTMENT_ERROR';
+export const STRIPE_PAYMENT_START = 'STRIPE_PAYMENT_START';
+export const STRIPE_PAYMENT_ERROR = 'STRIPE_PAYMENT_ERROR';
+export const STRIPE_PAYMENT_SUCCESSFUL = 'STRIPE_PAYMENT_SUCCESSFUL';
 export const SAVE_DATE = 'SAVE_DATE';
 export const SAVE_SELECT = 'SAVE_SELECT';
 
 const url = process.env.REACT_APP_BASE_URL;
 
-// export const getAppointment = (
-//   coach_student_id,
-//   role_id,
-// ) => dispatch => {
-//   dispatch({ type: APPOINTMENTS_START });
-//   axiosWithAuth()
-//     .get(`${url}appointment/${coach_student_id}`, {
-//       params: { role: role_id },
-//     })
-//     .then(res => {
-//       dispatch({
-//         type: GET_APPOINTMENTS_SUCCESSFUL,
-//         payload: res.data.appointments,
-//       });
-//     })
-//     .catch(err => {
-//       dispatch({ type: APPOINTMENTS_ERROR, payload: err });
-//     });
-// };
+// async function handleStripePayment(token, title, price) {
+//   const product = {
+//     name: title,
+//     price,
+//   };
 
-// export const cancelAppointment = appointment_id => dispatch => {
-//   dispatch({ type: APPOINTMENTS_START });
-//   axiosWithAuth()
-//     .put(`${url}appointment/${appointment_id}`)
-//     .then(res => {
-//       dispatch({
-//         type: CANCEL_APPOINTMENT_SUCCESSFUL,
-//         payload: res.data.appointment,
-//       });
-//     })
-//     .catch(err => {
-//       dispatch({ type: APPOINTMENTS_ERROR, payload: err });
-//     });
-// };
+//   const response = await axios.post(
+//     'https://dev-coach-staging.herokuapp.com/payment/stripe',
+//     { token, product },
+//   );
+//   const { status } = response.data;
+//   console.log(status);
+//   if (status === 'success') {
+//     props.showSuccessMessage();
+//   } else {
+//     props.showErrorMessage();
+//   }
+// }
+
+export const handleStripePayment = (
+  token,
+  title,
+  price,
+  success,
+  error,
+) => async dispatch => {
+  dispatch({ type: STRIPE_PAYMENT_START });
+
+  const product = {
+    name: title,
+    price,
+  };
+
+  const response = await axios.post(`${url}payment/stripe`, {
+    token,
+    product,
+  });
+  const { status } = response.data;
+  console.log(status);
+  if (status === 'success') {
+    success();
+  } else {
+    error();
+  }
+};
 
 export const saveDate = date => {
   return { type: SAVE_DATE, payload: date };
