@@ -11,16 +11,16 @@ function notificationsReducer(state = initialState, action) {
     case types.SHOW_SUCCESS_MESSAGE:
       return {
         ...state,
-        isLoading: true,
+        success: true,
       };
 
     case types.SHOW_ERROR_MESSAGE:
-      return { ...state, error: action.payload };
+      return { ...state, error: true };
 
     case types.SHOW_INFO_MESSAGE:
       return {
         ...state,
-        isLoading: false,
+        info: false,
       };
 
     default:

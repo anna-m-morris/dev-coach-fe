@@ -1,15 +1,15 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
-// import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
+import {
+  showErrorMessage,
+  showSuccessMessage,
+} from '../../state/actions/notificationActions';
 import Calendar from './Calendar';
 import Select from './SelectInfo';
-// import 'react-toastify/dist/ReactToastify.css';
 import Notification from '../Notifications/Notification';
-
-// toast.configure();
 
 const Booking = props => {
   const [open, setOpen] = React.useState(false);
@@ -41,9 +41,11 @@ const Booking = props => {
     console.log('Response:', response.data);
     if (status === 'success') {
       // toast('Success! Check email for details', { type: 'success' });
+      props.showSuccessMessage();
       handleClick();
     } else {
       // toast('Something went wrong', { type: 'error' });
+      props.showErrorMessage();
     }
   }
 
@@ -62,6 +64,13 @@ const Booking = props => {
         onClose={handleClose}
         variant='success'
         message='This is a success message!'
+        open={props.success}
+      />
+      <Notification
+        onClose={handleClose}
+        variant='error'
+        message={`Your payment wasn't successful`}
+        open={props.error}
       />
       {/* </Snackbar> */}
       <Calendar />
@@ -94,4 +103,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Booking);
+export default connect(mapStateToProps, {
+  showErrorMessage,
+  showSuccessMessage,
+})(Booking);
