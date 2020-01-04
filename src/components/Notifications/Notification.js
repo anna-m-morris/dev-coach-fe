@@ -66,7 +66,7 @@ export default function Notification(props) {
       }}
       open={open}
       autoHideDuration={6000}
-      // onClose={handleClose}
+      onClose={onClose}
     >
       <SnackbarContent
         className={clsx(classes[variant], className)}

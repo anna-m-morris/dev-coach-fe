@@ -2,30 +2,16 @@ import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import Snackbar from '@material-ui/core/Snackbar';
 import {
   showErrorMessage,
   showSuccessMessage,
+  closeMessage,
 } from '../../state/actions/notificationActions';
 import Calendar from './Calendar';
 import Select from './SelectInfo';
 import Notification from '../Notifications/Notification';
 
 const Booking = props => {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
   async function handleToken(token, title, price) {
     const product = {
       name: title,
@@ -40,36 +26,24 @@ const Booking = props => {
     const { status } = response.data;
     console.log('Response:', response.data);
     if (status === 'success') {
-      // toast('Success! Check email for details', { type: 'success' });
       props.showSuccessMessage();
-      handleClick();
     } else {
-      // toast('Something went wrong', { type: 'error' });
       props.showErrorMessage();
     }
   }
 
   return (
     <div>
-      {/* <Snackbar
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-      > */}
       <Notification
-        onClose={handleClose}
+        onClose={props.closeMessage}
         variant='success'
-        message='This is a success message!'
+        message='Your payment was successful!'
         open={props.success}
       />
       <Notification
-        onClose={handleClose}
+        onClose={props.closeMessage}
         variant='error'
-        message={`Your payment wasn't successful`}
+        message={`Your payment wasn't successful!`}
         open={props.error}
       />
       {/* </Snackbar> */}
@@ -100,10 +74,13 @@ const mapStateToProps = state => {
     price: 20, // we need to get the price from the coach here
     select: state.bookingReducer.select,
     date: state.bookingReducer.date,
+    success: state.notificationsReducer.success,
+    error: state.notificationsReducer.error,
   };
 };
 
 export default connect(mapStateToProps, {
   showErrorMessage,
   showSuccessMessage,
+  closeMessage,
 })(Booking);

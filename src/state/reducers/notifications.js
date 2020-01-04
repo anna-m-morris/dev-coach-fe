@@ -20,6 +20,13 @@ function notificationsReducer(state = initialState, action) {
     case types.SHOW_INFO_MESSAGE:
       return {
         ...state,
+        info: true,
+      };
+
+    case types.CLOSE_MESSAGE:
+      return {
+        success: false,
+        error: false,
         info: false,
       };
 
