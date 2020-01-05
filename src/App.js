@@ -23,6 +23,7 @@ function App(props) {
       <Route path={'/faq'} component={Booking} />
       <Route path={'/feedback'} component={Notification} />
       <Route path={'/settings'} component={Marketplace} />
+      <Redirect to='/dashboard' />
     </Switch>
   );
   return props.isLoggedIn ? (
