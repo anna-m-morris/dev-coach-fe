@@ -29,17 +29,15 @@ function App(props) {
   return props.isLoggedIn ? (
     <Dashboard routes={routes} />
   ) : (
-    <>
-      <Switch>
-        <Route exact path='/' component={Landing} />
-        <Route path='/login/' component={LoginForm} />
-        <Route path='/register' component={SignUpForm} />
-        <Route path='/interviewer' component={InterviewerForm} />
-        <Route path='/student' component={StudentForm} />
-        <Route path='/user/type' component={UserTypePage} />
-        <Redirect to='/' />
-      </Switch>
-    </>
+    <Switch>
+      <Route exact path='/' component={Landing} />
+      <Route path='/login/' component={LoginForm} />
+      <Route path='/register' component={SignUpForm} />
+      <Route path='/interviewer' component={InterviewerForm} />
+      <Route path='/student' component={StudentForm} />
+      <Route path='/user/type' component={UserTypePage} />
+      <Redirect to='/' />
+    </Switch>
   );
 }
 
