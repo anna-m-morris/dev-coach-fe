@@ -9,9 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
 
 const StyledAppointmentCard = styled.div`
-  width: 100%;
   .card {
-    width: 33%;
+    width: 100%;
     margin: 1rem;
     display: flex;
     flex-direction: column;

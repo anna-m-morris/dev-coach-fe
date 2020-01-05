@@ -11,6 +11,8 @@ import AppointmentCard from '../../components/Cards/AppointmentCard';
 const StyledUserDashboard = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 const UserDashboard = props => {
