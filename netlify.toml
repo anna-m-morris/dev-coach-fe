@@ -1,4 +1,0 @@
-[build]
-base = "quality_hub/"
-publish = "build/"
-command = "yarn build"
