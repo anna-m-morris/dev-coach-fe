@@ -109,9 +109,7 @@ const FormikSignUpForm = withFormik({
 
   handleSubmit(values, { props }) {
     console.log(values);
-
     props.register(props, values);
-
   },
 })(SignUpForm);
 

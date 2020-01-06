@@ -16,10 +16,10 @@ const StyledUserDashboard = styled.div`
 `;
 
 const UserDashboard = props => {
-  React.useEffect(() => {
+/*   React.useEffect(() => {
     props.getAppointment(props.user.id, props.user.role_id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); */
 
   return (
     <StyledUserDashboard>
