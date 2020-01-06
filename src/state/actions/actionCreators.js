@@ -14,6 +14,7 @@ export const login = (props, values) => dispatch => {
       });
       localStorage.setItem('token', res.data.token);
       props.history.push('/dashboard');
+      console.log(res.data.user);
     })
     .catch(err => {
       dispatch({ type: types.LOGIN_ERROR, payload: err });

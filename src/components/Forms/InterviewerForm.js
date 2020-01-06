@@ -60,6 +60,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
   },
 }));
+
 const options = {
   city: '',
   experienceLevel: '',
@@ -68,9 +69,11 @@ const options = {
 };
 function InterviewerForm(props) {
   const classes = useStyles();
+
   const [state, setState] = useState(options);
+
   const handleChange = event => {
-    setState(event.target.value);
+    setState({ ...state, [event.target.name]: event.target.value });
   };
   return (
     <ThisGreyBackgroundContainer>
@@ -85,7 +88,7 @@ function InterviewerForm(props) {
               <NativeSelect
                 id='current city'
                 name='city'
-                // value={city}
+                value={options.city}
                 onChange={handleChange}
                 input={<BootstrapInput />}
               >

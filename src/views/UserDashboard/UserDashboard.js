@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 import styled from 'styled-components';
@@ -16,15 +16,17 @@ const StyledUserDashboard = styled.div`
 `;
 
 const UserDashboard = props => {
-  React.useEffect(() => {
-    props.getAppointment(props.user.id, props.user.role_id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  const { user, appointments } = props;
+  useEffect(() => {
+    props.getAppointment(user.id, user.role_id);
   }, []);
+
+  console.log(appointments);
 
   return (
     <StyledUserDashboard>
-      {props.appointments
-        ? props.appointments.map(appointment => (
+      {appointments
+        ? appointments.map(appointment => (
             <AppointmentCard
               key={uuid()}
               first_name={appointment.first_name}
