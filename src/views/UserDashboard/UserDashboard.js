@@ -16,17 +16,16 @@ const StyledUserDashboard = styled.div`
 `;
 
 const UserDashboard = props => {
-  const { user, appointments } = props;
-  useEffect(() => {
-    props.getAppointment(user.id, user.role_id);
+  React.useEffect(() => {
+    setTimeout(
+      () => props.getAppointment(props.user.id, props.user.role_id),
+      1000,
+    );
   }, []);
-
-  console.log(appointments);
-
   return (
     <StyledUserDashboard>
-      {appointments
-        ? appointments.map(appointment => (
+      {props.appointments
+        ? props.appointments.map(appointment => (
             <AppointmentCard
               key={uuid()}
               first_name={appointment.first_name}
