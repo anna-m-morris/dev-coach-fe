@@ -16,6 +16,7 @@ import Booking from './components/Booking/Booking';
 import Notification from './components/Notifications/Notification';
 
 function App(props) {
+  console.log(props);
   const routes = (
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
@@ -26,8 +27,10 @@ function App(props) {
       <Redirect to='/dashboard' />
     </Switch>
   ); 
-  if (props.isLoggedIn) {
+  if (props.isLoggedIn && props.userHasChosenRole) {
     return <Dashboard routes={routes} />
+  }  else if (props.isLoggedIn){
+    return <UserTypePage />
   }
   else return (
     <Switch>
@@ -42,6 +45,7 @@ function App(props) {
 const mapStateToProps = state => {
   return {
     isLoggedIn: state.userReducer.isLoggedIn,
+    userHasChosenRole: state.userReducer.userHasChosenRole,
   };
 };
 

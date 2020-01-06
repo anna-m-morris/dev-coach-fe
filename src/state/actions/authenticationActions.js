@@ -36,3 +36,7 @@ export const register = (props, values) => dispatch => {
       dispatch({ type: types.SIGN_UP_ERROR, payload: err });
     });
 };
+
+export const chooseUserRole = (role) => {
+  return { type: types.USER_ROLE_CHOSEN, role }
+}
