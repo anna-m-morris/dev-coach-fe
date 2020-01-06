@@ -168,6 +168,12 @@ const NavLink = styled.h4`
 // SEARCH SECTION
 
 const SearchDiv = styled.section`
+  padding-top: 40px;
+  margin-top: 40px;
+  @media ${devices.tablet} {
+    padding-top: 40px;
+    margin-top: 90px;
+  }
   background: #f2f2f2;
   /* border: 1px solid orange; */
   display: flex;
@@ -176,7 +182,8 @@ const SearchDiv = styled.section`
 
   img {
     width: 15vw;
-    padding: 0px 20px;
+    margin-top: 30px;
+    padding: 20px 20px;
 
     @media ${devices.tablet} {
       display: none;
@@ -186,13 +193,13 @@ const SearchDiv = styled.section`
 
 const SearchBar = styled.div`
   margin: 0px;
-  padding: 10px 0px;
+  padding: 70px 0px;
   input {
     background-color: white;
     padding: 5px;
-    width: 12vw;
+    min-width: 25vw;
     @media ${devices.tablet} {
-      width: 25vw;
+      min-width: 40vw;
     }
     @media ${devices.mobile} {
       width: 45vw;
@@ -219,9 +226,12 @@ const SearchBar = styled.div`
 
 // MAIN SECTION COMPONENTS
 const MainContainer = styled.section`
-  background-color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.25);
   /* min-height: 80vh; */
-  min-width: 98vw;
+  min-width: 80vw;
+  @media ${devices.tablet} {
+    min-width: 70vw;
+  }
   display: flex;
   align-items: center;
   justify-content: center;
@@ -233,7 +243,7 @@ const MainContainer = styled.section`
     border-radius: 50%;
 
     @media ${devices.tablet} {
-      width: 10vw;
+      width: 15vw;
     }
     @media ${devices.mobile} {
       width: 20vw;
@@ -242,31 +252,37 @@ const MainContainer = styled.section`
 `;
 
 const CoachCard = styled.div`
+  background-color: white;
   font-family: Ubuntu;
   display: flex;
   min-height: 350px;
   min-width: 250px;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
   margin: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: 1px solid #cdc7c7;
 
   img {
-    padding: 0px 10px;
+    padding-top: 10px;
+    padding: 5px;
   }
 
   h2 {
-    margin: 5px 0px;
-    padding: 10px 0px;
-    font-size: 30px;
-    color: darkblue;
+    margin: 0px;
+    padding: 5px 0px;
+    font-size: 35px;
+    line-height: 30px;
+    color: #044511;
   }
 
   h3 {
-    font-size: 16px;
-    margin: 5px 0px;
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
   }
 
   h5 {
@@ -277,7 +293,8 @@ const CoachCard = styled.div`
   }
 
   p {
-    font-weight: 900;
+    font-size: 16px;
+    font-weight: 500;
     min-height: 45px;
     padding: 10px 0px;
     @media ${devices.tablet} {
@@ -295,13 +312,12 @@ const CoachCard = styled.div`
 `;
 
 const CoachCardButton = styled.button`
-  width: 8vw;
   border: none;
   background-color: #4fad65;
   color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
-  height: 4em;
+  height: 3em;
   width: 8em;
   padding: 1em;
   margin: 1em;
@@ -350,7 +366,7 @@ function Marketplace(props) {
   //   setSearchTerm(event.target.value);
   // };
   const handleChange = event => {
-    setSearchTerm(event.target.value);
+    setSearchTerm(event.target.value.toLowerCase());
     
     setTimeout(() => setCoaches(
       marketplaceCoaches.filter(info => {
@@ -397,7 +413,7 @@ function Marketplace(props) {
 
   return (
     <BackgroundContainer>
-      <NavigationContainer>
+      {/* <NavigationContainer>
         <LogoAndNameContainer>
           <Logo />
           <TitleContainer>
@@ -413,7 +429,7 @@ function Marketplace(props) {
             <Link to='/dashboard'>Settings</Link>
           </NavLink>
         </NavLinkContainer>
-      </NavigationContainer>
+      </NavigationContainer> */}
       <SearchDiv>
         <img src={vector} />
         <SearchBar>
@@ -431,13 +447,9 @@ function Marketplace(props) {
       <MainContainer>
         {coaches.map(info => (
           <CoachCard>
-            <SkillExperienceDiv>
               <img src={info.avatar_url} />
-              <div>
-                <h2>{info.first_name}</h2>
-                <h3>Rating: {info.rating}</h3>
-              </div>
-            </SkillExperienceDiv>
+              <h2>{info.first_name}</h2>
+              <h3>Rating: {info.rating}</h3>
             <p>{info.description}</p>
             <SkillExperienceDiv>
               <h5>Location: {info.location}</h5>

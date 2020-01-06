@@ -31,7 +31,6 @@ function App(props) {
   ) : (
     <Switch>
       <Route exact path='/' component={Landing} />
-      <Route path={'/marketplace'} component={Marketplace} />
       <Route path='/login/' component={LoginForm} />
       <Route path='/register' component={SignUpForm} />
       <Route path='/interviewer' component={InterviewerForm} />
