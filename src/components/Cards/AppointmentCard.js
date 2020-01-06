@@ -24,10 +24,6 @@ const StyledAppointmentCard = styled.div`
     height: 10rem;
     border-radius: 50%;
     background-size: 50%;
-
-    /* img {
-      width: 60%;
-    } */
   }
 `;
 
@@ -46,7 +42,7 @@ export default function AppointmentCard(props) {
   return (
     <StyledAppointmentCard>
       <Card className='card'>
-        <CardActionArea classname='content'>
+        <CardActionArea className='content'>
           <CardMedia
             className='media'
             image={
