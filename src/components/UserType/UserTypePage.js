@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { connect } from 'react-redux'
+import { chooseUserRole } from '../../state/actions/authenticationActions'
 import { StyledButton, buttonTheme } from '../Landing';
 import StyledUserType from './styles';
 
-function UserTypePage() {
+function UserTypePage(props) {
+
+  const handleRoleSubmit = role => {
+    props.chooseUserRole(role);
+    console.log(props);
+  }
+  
   return (
     <StyledUserType>
       <div className='container'>
@@ -39,7 +46,7 @@ function UserTypePage() {
             </div>
             <div className='user-decision'>
               <Link to='/dashboard'>
-                <StyledButton theme={buttonTheme} type='submit'>
+                <StyledButton theme={buttonTheme} type='submit' onClick={() => chooseUserRole("COACH")}>
                   Join As Coach
                 </StyledButton>
               </Link>
@@ -47,7 +54,7 @@ function UserTypePage() {
           </div>
           <div className='user-type-container'>
             <div className='user-description'>
-              <h3>As A Student</h3>
+              <h3>As A Student</h3> 
               <ul>
                 <li>
                   <strong>Master</strong> the technical interview
@@ -64,7 +71,7 @@ function UserTypePage() {
             </div>
             <div className='user-decision'>
               <Link to='/dashboard'>
-                <StyledButton theme={buttonTheme} type='submit'>
+                <StyledButton theme={buttonTheme} type='submit' onClick={handleRoleSubmit}>
                   Join As Student
                 </StyledButton>
               </Link>
@@ -76,4 +83,4 @@ function UserTypePage() {
   );
 }
 
-export default UserTypePage;
+export default connect(state => state, { chooseUserRole })(UserTypePage);

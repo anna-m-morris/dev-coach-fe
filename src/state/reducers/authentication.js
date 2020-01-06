@@ -30,6 +30,7 @@ function userReducer(state = initialState, action) {
     default:
       return state;
     case types.USER_ROLE_CHOSEN:
+      console.log("received action")
       return {
         ...state,
         userHasChosenRole: true,
