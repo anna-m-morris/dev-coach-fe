@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import devices from './devices';
 import logo from '../img/firelogo.png';
-import StyledButton from './Landing';
+// import StyledButton from './Landing';
 
 // DUMMY DATA //
 
@@ -122,7 +122,7 @@ const Logo = styled.div`
   width: 5em; */
   background-image: url(${logo});
   background-repeat: no-repeat;
-  padding: none;
+  padding: 5px;
   margin: none;
 `;
 
@@ -165,6 +165,35 @@ const NavLink = styled.h4`
 `;
 
 // SEARCH SECTION
+
+const SearchDiv = styled.section`
+  background: #f2f2f2;
+  border: 1px solid orange;
+
+`;
+
+const SearchBar = styled.div`
+  margin: 0px;
+  padding: 10px 0px;
+  input {
+    background-color: white;
+    padding: 5px;
+    width: 12vw;
+    border: 1px solid black;
+    margin: 10px;
+  }
+  button {
+    border: none;
+    background-color: #4fad65;
+    border-radius: 4px;
+    color: white;
+    margin: 5px;
+    padding: 5px 20px;
+  }
+  h1 {
+    font-size: 30px;
+  }
+`;
 
 // MAIN SECTION COMPONENTS
 const MainContainer = styled.section`
@@ -292,18 +321,26 @@ const SkillExperienceDiv = styled.div`
 `;
 
 function Marketplace(props) {
-  const [searchTerm, changeSearchTerm] = useState('');
-  const [coaches, setCoaches] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [coaches, setCoaches] = useState(marketplaceCoaches);
 
   const handleChange = event => {
-    changeSearchTerm(event.target.value.toLowerCase());
+    setSearchTerm(event.target.value);
   };
 
   const search = event => {
     event.preventDefault();
     setCoaches(
       marketplaceCoaches.filter(info => {
-        return info.name.includes(searchTerm);
+        if (info.first_name.toLowerCase().includes(searchTerm)) {
+          return info.first_name.toLowerCase().includes(searchTerm);
+        } else if (
+          info.description.toLowerCase().includes(searchTerm)
+        ) {
+          return info.description.toLowerCase().includes(searchTerm);
+        } else {
+          return info.location.toLowerCase().includes(searchTerm);
+        }
       }),
     );
   };
@@ -313,7 +350,7 @@ function Marketplace(props) {
   //     .get('https://dev-coach-staging.herokuapp.com/profile/coaches')
   //     .then(response => {
   //       console.log(response);
-  //       // setCharacters(response.data.results);
+  //       // setCoaches(response.data.results);
   //     });
   // }, []);
 
@@ -328,15 +365,30 @@ function Marketplace(props) {
         </LogoAndNameContainer>
 
         <NavLinkContainer>
-          <NavLink>FAQ</NavLink>
+          <NavLink>
+            <Link to='/faq'>FAQ</Link>
+          </NavLink>
           <NavLink>
             <Link to='/dashboard'>Settings</Link>
           </NavLink>
         </NavLinkContainer>
       </NavigationContainer>
-      <h1>Choose your Dev Coach</h1>
+      <SearchDiv>
+      <img src='' />
+        <SearchBar>
+          <h1>Choose your Dev Coach</h1>
+          <input
+            type='text'
+            name='searchTerm'
+            placeholder='search topic, name, or location'
+            value={searchTerm}
+            onChange={handleChange}
+          />
+          <button onClick={search}>Search</button>
+        </SearchBar>
+      </SearchDiv>
       <MainContainer>
-        {marketplaceCoaches.map(info => (
+        {coaches.map(info => (
           <CoachCard>
             <SkillExperienceDiv>
               <img src={info.avatar_url} />

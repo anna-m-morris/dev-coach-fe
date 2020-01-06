@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
-  user: {},
+  user: null,
   loginError: '',
   signUpError: '',
   isLoading: false,
@@ -21,8 +21,7 @@ function userReducer(state = initialState, action) {
         isLoading: false,
         isLoggedIn: true,
 
-        user: action.payload
-
+        user: action.payload,
       };
     case types.LOGIN_ERROR:
       return { ...state, loginError: action.payload };
