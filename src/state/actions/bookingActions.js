@@ -8,25 +8,6 @@ export const SAVE_SELECT = 'SAVE_SELECT';
 
 const url = process.env.REACT_APP_BASE_URL;
 
-// async function handleStripePayment(token, title, price) {
-//   const product = {
-//     name: title,
-//     price,
-//   };
-
-//   const response = await axios.post(
-//     'https://dev-coach-staging.herokuapp.com/payment/stripe',
-//     { token, product },
-//   );
-//   const { status } = response.data;
-//   console.log(status);
-//   if (status === 'success') {
-//     props.showSuccessMessage();
-//   } else {
-//     props.showErrorMessage();
-//   }
-// }
-
 export const handleStripePayment = (
   token,
   title,
@@ -46,7 +27,6 @@ export const handleStripePayment = (
     product,
   });
   const { status } = response.data;
-  console.log(status);
   if (status === 'success') {
     success();
   } else {

@@ -2,7 +2,7 @@ import * as types from '../actions/bookingActions';
 
 const initialState = {
   coach_id: 1,
-  coach_price: 20,
+  coach_price: 20, // we need to add the coach here
   timePicker: false,
   date: null,
   select: {},
