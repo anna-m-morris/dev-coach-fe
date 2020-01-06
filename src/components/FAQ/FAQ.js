@@ -83,7 +83,6 @@ export const StyledButton = styled.button`
   }
 `;
 
-
 const BodyDiv = styled.div`
   background: #f6f9fc;
   margin-top: 0px;
