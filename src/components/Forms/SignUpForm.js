@@ -13,7 +13,7 @@ import {
   FormContainer,
 } from './LoginForm';
 
-import { register } from '../../state/actions/actionCreators';
+import { register } from '../../state/actions/authenticationActions';
 
 const ShortInputContainer = styled.div`
   display: flex;

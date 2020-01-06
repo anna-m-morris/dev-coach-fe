@@ -6,7 +6,7 @@ import { withFormik, Form, Field } from 'formik';
 import { StyledButton, buttonTheme } from '../Landing';
 
 
-import { login } from '../../state/actions/actionCreators';
+import { login } from '../../state/actions/authenticationActions';
 
 export const GreyBackgroundContainer = styled.div`
   height: 100vh;

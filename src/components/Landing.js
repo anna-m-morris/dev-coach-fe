@@ -247,7 +247,6 @@ const InfoboxContainer = styled.div`
   @media only screen and (max-width: 600px) {
     height: 360vh;
     background-size: auto;
-    background-repeat: ;
   }
 `;
 
@@ -323,7 +322,6 @@ const BottomSectionContainer = styled.div`
 `;
 const BottomImgDiv = styled.div`
   width: 50%;
-  }
 `;
 
 const BottomTextStyle = styled.div`
