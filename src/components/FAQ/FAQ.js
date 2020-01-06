@@ -1,93 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import logo from '../../img/firelogo.png';
 import plusIcon from '../../img/plus-icon.svg';
 import minusIcon from '../../img/minus-icon.svg';
 
-const Logo = styled.div`
-  height: 10em;
-  width: 5em;
-  background-image: url(${logo});
-  background-repeat: no-repeat;
-`;
-const NavbarContainer = styled.div`
-  height: 5em;
-  width: 100vw;
-  background: white;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const LogoTitleContainer = styled.div`
-  width: 30%;
-  display: flex;
-  justify-content: flex-start;
-`;
-
-const NavTitleContainer = styled.div`
-  font-family: Ubuntu;
-  font-style: normal;
-  font-weight: normal;
-  color: grey;
-  font-size: 18px;
-`;
-
-const LinksContainer = styled.div`
-  width: 30%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-const NavbarLink = styled.div`
-  font-family: Ubuntu;
-  font-size: 18px;
-  color: black;
-
-  a {
-    text-decoration: none;
-    color: black;
-  }
-`;
-
-export const buttonTheme = {
-  text: 'white',
-  background: '#4fad65',
-};
-
-export const invertTheme = {
-  text: '#4fad65',
-  background: 'white',
-};
-
-export const StyledButton = styled.button`
-  background: ${props => props.theme.background};
-  color: ${props => props.theme.text};
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
-  height: 4em;
-  width: 8em;
-  padding: 1em;
-  border: none;
-  font-family: ABeeZee;
-  font-size: 14px;
-
-  :focus {
-    outline: none;
-  }
-
-  :active {
-    outline: none;
-    transform: translateY(2px);
-  }
-`;
-
 const BodyDiv = styled.div`
   background: #f6f9fc;
-  margin-top: 0px;
-  box-sizing: border-box;
-  height: 100%;
+  height: 100vh;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const FAQContainer = styled.div`
@@ -167,28 +89,6 @@ const Questions = () => {
 
   return (
     <div>
-      <NavbarContainer>
-        <LogoTitleContainer>
-          <Logo />
-          <NavTitleContainer>
-            <h1>DevCoach</h1>
-          </NavTitleContainer>
-        </LogoTitleContainer>
-        <LinksContainer>
-          <NavbarLink>
-            <a href='/faq'>FAQ</a>
-          </NavbarLink>
-          <NavbarLink>
-            <a href='/about'>About</a>
-          </NavbarLink>
-          <a href='/login'>
-            <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
-          </a>
-          <a href='/register'>
-            <StyledButton theme={invertTheme}>SIGN UP</StyledButton>
-          </a>
-        </LinksContainer>
-      </NavbarContainer>
       <BodyDiv>
         <FAQContainer>
           <HeadSection>
