@@ -25,10 +25,11 @@ function App(props) {
       <Route path={'/settings'} component={Marketplace} />
       <Redirect to='/dashboard' />
     </Switch>
-  );
-  return props.isLoggedIn ? (
-    <Dashboard routes={routes} />
-  ) : (
+  ); 
+  if (props.isLoggedIn) {
+    return <Dashboard routes={routes} />
+  }
+  else return (
     <Switch>
       <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
