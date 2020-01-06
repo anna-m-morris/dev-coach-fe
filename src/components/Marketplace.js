@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import devices from './devices';
 import logo from '../img/firelogo.png';
+import vector from '../img/landingvector.png';
 // import StyledButton from './Landing';
 
 // DUMMY DATA //
@@ -168,8 +169,19 @@ const NavLink = styled.h4`
 
 const SearchDiv = styled.section`
   background: #f2f2f2;
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
+  display: flex;
+  align-items: center;
+  margin: 15px;
 
+  img {
+    width: 15vw;
+    padding: 0px 20px;
+
+    @media ${devices.tablet} {
+      display: none;
+    }
+  }
 `;
 
 const SearchBar = styled.div`
@@ -179,6 +191,12 @@ const SearchBar = styled.div`
     background-color: white;
     padding: 5px;
     width: 12vw;
+    @media ${devices.tablet} {
+      width: 25vw;
+    }
+    @media ${devices.mobile} {
+      width: 45vw;
+    }
     border: 1px solid black;
     margin: 10px;
   }
@@ -192,6 +210,10 @@ const SearchBar = styled.div`
   }
   h1 {
     font-size: 30px;
+    @media ${devices.tablet} {
+      padding: 0px;
+      margin: 5px;
+    }
   }
 `;
 
@@ -374,7 +396,7 @@ function Marketplace(props) {
         </NavLinkContainer>
       </NavigationContainer>
       <SearchDiv>
-      <img src='' />
+        <img src={vector} />
         <SearchBar>
           <h1>Choose your Dev Coach</h1>
           <input
