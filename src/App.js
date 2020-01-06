@@ -23,9 +23,6 @@ function App(props) {
       <Route path={'/faq'} component={Booking} />
       <Route path={'/feedback'} component={Notification} />
       <Route path={'/settings'} component={Marketplace} />
-      <Route path='/interviewer' component={InterviewerForm} />
-      <Route path='/student' component={StudentForm} />
-      <Route path='/user/type' component={UserTypePage} />
       <Redirect to='/dashboard' />
     </Switch>
   );
