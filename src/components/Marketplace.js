@@ -346,8 +346,27 @@ function Marketplace(props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [coaches, setCoaches] = useState(marketplaceCoaches);
 
+  // const handleChange = event => {
+  //   setSearchTerm(event.target.value);
+  // };
   const handleChange = event => {
     setSearchTerm(event.target.value);
+    
+    setTimeout(() => setCoaches(
+      marketplaceCoaches.filter(info => {
+        if (
+          info.first_name.toLowerCase().includes(searchTerm)
+        ) {
+          return info.first_name.toLowerCase().includes(searchTerm);
+        } else if (
+          info.description.toLowerCase().includes(searchTerm)
+        ) {
+          return info.description.toLowerCase().includes(searchTerm);
+        } else {
+          return info.location.toLowerCase().includes(searchTerm);
+        }
+      }),
+    ), 1000)
   };
 
   const search = event => {
@@ -406,7 +425,7 @@ function Marketplace(props) {
             value={searchTerm}
             onChange={handleChange}
           />
-          <button onClick={search}>Search</button>
+          <button onSubmit={search}>Search</button>
         </SearchBar>
       </SearchDiv>
       <MainContainer>
