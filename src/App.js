@@ -37,7 +37,7 @@ function App(props) {
       <Route path='/interviewer' component={InterviewerForm} />
       <Route path='/student' component={StudentForm} />
       <Route path='/user/type' component={UserTypePage} />
-      <Route path='/faq/general' component={MainFaq} />
+      <Route path='/faq' component={MainFaq} />
       <Redirect to='/' />
     </Switch>
   );

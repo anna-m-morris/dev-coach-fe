@@ -15,7 +15,6 @@ const BodyDiv = styled.div`
 
 const FAQContainer = styled.div`
   margin: 0 auto;
-  /* width: 1000px; */
   max-width: 100%;
   background-color: #f6f9fc;
 `;
