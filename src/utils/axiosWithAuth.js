@@ -4,7 +4,7 @@ export default function axiosWithAuth() {
   const token = localStorage.getItem('token');
 
   const axiosInstance = axios.create({
-    baseURL: 'https://dev-coach-production.herokuapp.com',
+    baseURL: process.env.REACT_APP_BASE_URL,
     headers: {
       'Content-Type': 'application/json',
       Authorization: token,
