@@ -39,11 +39,13 @@ export const register = (props, values) => dispatch => {
     });
 };
 
-export const chooseUserRole = role => {
+export const chooseUserRole = (role) => dispatch => {
   // temp token is for the final signup state of choosing a user role - once this is done, log them in fully.
   // this is only applicable to users that have just signed up and are logging in for the first time
   const token = localStorage.getItem('temptoken');
   localStorage.removeItem('temptoken');
   localStorage.setItem('token', token);
+  axios.post(`${url}user/role`, role)
+    // TODO: post data to BE
   return { type: types.USER_ROLE_CHOSEN, role };
 };

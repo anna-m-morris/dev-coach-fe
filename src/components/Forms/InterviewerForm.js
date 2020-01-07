@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
@@ -28,33 +28,28 @@ const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
 `;
 
 function StudentForm(props) {
+  const handleUserRoleSubmit = () => {};
   return (
     <ThisGreyBackgroundContainer>
       <RegisterCard>
         <h1> Interviewer Form </h1>
         <FormContainer>
           <Form>
-            <Field
-              type='text'
-              name='city'
-              placeholder=' current city '
-            />
+            <Field type='text' name='city' />
             <Field
               type='text'
               name='level_of_experience'
               placeholder=' select level of experience '
             />
-            <Field
-              type='text'
-              name='skills'
-              placeholder=' what skill(s) do you have ? '
-            />
-            <Field
-              type='text'
-              name='value'
-              placeholder=' what value do you bring to dev coach ? '
-            />
-            <StyledButton theme={buttonTheme}> Submit </StyledButton>
+            <Field type='text' name='skills' />
+            <Field type='text' name='description' />
+            <StyledButton
+              theme={buttonTheme}
+              onClick={handleUserRoleSubmit}
+            >
+              {' '}
+              Submit{' '}
+            </StyledButton>
           </Form>
         </FormContainer>
       </RegisterCard>
@@ -70,10 +65,10 @@ const FormikStudentForm = withFormik({
     value: Yup.string().required(),
   }),
   mapPropsToValues: props => ({
-    city: ['edinburgh', 'lagos', 'watford'],
-    level_of_experience: ['less than a year', 'Over two years'],
-    skills: ['Native JS', 'React JS', 'Node JS'],
-    value: '',
+    city: 'Location',
+    level_of_experience: 'Experience',
+    skills: 'Skills',
+    description: 'Describe yourself in one line',
   }),
   handleSubmit(values, { props }) {
     props.register(
@@ -84,4 +79,4 @@ const FormikStudentForm = withFormik({
   },
 })(StudentForm);
 
-export default FormikStudentForm;
+export default connect(state => state)(FormikStudentForm);

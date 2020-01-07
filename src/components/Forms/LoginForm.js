@@ -5,7 +5,6 @@ import { withFormik, Form, Field } from 'formik';
 
 import { StyledButton, buttonTheme } from '../Landing';
 
-
 import { login } from '../../state/actions/authenticationActions';
 
 export const GreyBackgroundContainer = styled.div`
@@ -141,9 +140,7 @@ function LoginForm(props) {
                   ? loadingButtonTheme
                   : buttonTheme
               }
-
               type='submit'
-
             >
               Sign in to your account
             </StyledButton>
@@ -171,7 +168,6 @@ const FormikLoginForm = withFormik({
     console.log(values);
 
     props.login(props, values);
-
   },
 })(LoginForm);
 
