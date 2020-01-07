@@ -5,6 +5,7 @@ import axios from 'axios';
 import devices from './devices';
 import logo from '../img/firelogo.png';
 import vector from '../img/landingvector.png';
+import CoachCard from '../components/CoachCard';
 // import StyledButton from './Landing';
 
 // DUMMY DATA //
@@ -68,7 +69,7 @@ const marketplaceCoaches = [
       'https://grok.appointedd.com/app/5dee6934c5b42f3bcf70b393',
   },
   {
-    id: 3,
+    id: 4,
     first_name: 'Oladimeji',
     last_name: 'Ojo',
     email: 'ola@google.com',
@@ -86,6 +87,24 @@ const marketplaceCoaches = [
     contact_url:
       'https://grok.appointedd.com/app/5dee6a896dd393114b473a73',
   },
+  {
+    id: 4,
+    first_name: 'Dom',
+    last_name: 'Eccleston',
+    email: 'dom@google.com',
+    password:
+      '$2a$10$GN5PGxtMHX5fkAugZ5KYB.Z3/xfZoFc033frjUlTW.0OaD6mY0n8K',
+    location: 'Sheffield',
+    role_id: 2,
+    user_id: 3,
+    avatar_url: 'https://bit.ly/2FtdD5O',
+    experience_level: 3,
+    skill_level: 3,
+    description: 'Dom is an expert in React',
+    rating: 4.9,
+    hourly_rate: 40,
+    contact_url: 'https://www.youtube.com/watch?v=_EPM2vlPHpE',
+  },
 ];
 
 // STYLED COMPONENTS //
@@ -101,68 +120,6 @@ const BackgroundContainer = styled.section`
 
   @media ${devices.mobile} {
   }
-`;
-
-// NAVIGATION STYLED COMPONENTS //
-const NavigationContainer = styled.div`
-  display: flex;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: 1px solid #cdc7c7;
-`;
-const LogoAndNameContainer = styled.div`
-  font-family: Ubuntu;
-  font-size: 18px;
-  background: white;
-  height: 3em;
-  width: 70vw;
-  display: flex;
-  align-items: center;
-`;
-const Logo = styled.div`
-  /* height: 10em;
-  width: 5em; */
-  background-image: url(${logo});
-  background-repeat: no-repeat;
-  padding: 5px;
-  margin: none;
-`;
-
-const TitleContainer = styled.div`
-  font-family: Ubuntu;
-  font-style: normal;
-  font-weight: normal;
-  color: #459a59;
-  font-size: 18px;
-
-  @media ${devices.tablet} {
-    font-size: 16px;
-  }
-
-  @media ${devices.mobile} {
-    font-size: 12px;
-  }
-`;
-
-const NavLinkContainer = styled.div`
-  font-family: Ubuntu;
-  font-size: 18px;
-  background: white;
-  height: 3em;
-  width: 28vw;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-
-  a {
-    text-decoration: none;
-    color: black;
-  }
-`;
-
-const NavLink = styled.h4`
-  font-family: Ubuntu;
-  color: black;
-  padding: 0px 10px;
 `;
 
 // SEARCH SECTION
@@ -251,113 +208,6 @@ const MainContainer = styled.section`
   }
 `;
 
-const CoachCard = styled.div`
-  background-color: white;
-  font-family: Ubuntu;
-  display: flex;
-  min-height: 350px;
-  min-width: 250px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  margin: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: 1px solid #cdc7c7;
-
-  img {
-    padding-top: 10px;
-    padding: 5px;
-  }
-
-  h2 {
-    margin: 0px;
-    padding: 5px 0px;
-    font-size: 35px;
-    line-height: 30px;
-    color: #044511;
-  }
-
-  h3 {
-    font-size: 14px;
-    margin: 0px;
-    padding: 0px;
-    align-items: center;
-  }
-
-  h5 {
-    margin: 0px;
-    padding: 5px 0px;
-    font-size: 12px;
-    font-weight: normal;
-  }
-
-  p {
-    font-size: 16px;
-    font-weight: 500;
-    min-height: 45px;
-    padding: 10px 0px;
-    @media ${devices.tablet} {
-      min-height: 30px;
-    }
-  }
-
-  @media ${devices.tablet} {
-    min-height: 250px;
-    flex-wrap: wrap;
-  }
-
-  @media ${devices.mobile} {
-  }
-`;
-
-const CoachCardButton = styled.button`
-  border: none;
-  background-color: #4fad65;
-  color: white;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
-  height: 3em;
-  width: 8em;
-  padding: 1em;
-  margin: 1em;
-  border: none;
-  font-family: ABeeZee;
-  font-size: 16px;
-  text-decoration: none;
-
-  :focus {
-    outline: none;
-  }
-
-  :active {
-    outline: none;
-    transform: translateY(2px);
-  }
-
-  a {
-    text-decoration: none;
-    color: white;
-  }
-
-  @media ${devices.tablet} {
-    background-color: darkgreen;
-  }
-  @media ${devices.mobile} {
-    background-color: olive;
-  }
-`;
-
-const SkillExperienceDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  min-width: 240px;
-  padding: 2px;
-  margin: 0px;
-`;
-
 function Marketplace(props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [coaches, setCoaches] = useState(marketplaceCoaches);
@@ -367,22 +217,26 @@ function Marketplace(props) {
   // };
   const handleChange = event => {
     setSearchTerm(event.target.value.toLowerCase());
-    
-    setTimeout(() => setCoaches(
-      marketplaceCoaches.filter(info => {
-        if (
-          info.first_name.toLowerCase().includes(searchTerm)
-        ) {
-          return info.first_name.toLowerCase().includes(searchTerm);
-        } else if (
-          info.description.toLowerCase().includes(searchTerm)
-        ) {
-          return info.description.toLowerCase().includes(searchTerm);
-        } else {
-          return info.location.toLowerCase().includes(searchTerm);
-        }
-      }),
-    ), 1000)
+
+    setTimeout(
+      () =>
+        setCoaches(
+          marketplaceCoaches.filter(info => {
+            if (info.first_name.toLowerCase().includes(searchTerm)) {
+              return info.first_name
+                .toLowerCase()
+                .includes(searchTerm);
+            }
+            if (info.description.toLowerCase().includes(searchTerm)) {
+              return info.description
+                .toLowerCase()
+                .includes(searchTerm);
+            }
+            return info.location.toLowerCase().includes(searchTerm);
+          }),
+        ),
+      1000,
+    );
   };
 
   const search = event => {
@@ -391,13 +245,11 @@ function Marketplace(props) {
       marketplaceCoaches.filter(info => {
         if (info.first_name.toLowerCase().includes(searchTerm)) {
           return info.first_name.toLowerCase().includes(searchTerm);
-        } else if (
-          info.description.toLowerCase().includes(searchTerm)
-        ) {
-          return info.description.toLowerCase().includes(searchTerm);
-        } else {
-          return info.location.toLowerCase().includes(searchTerm);
         }
+        if (info.description.toLowerCase().includes(searchTerm)) {
+          return info.description.toLowerCase().includes(searchTerm);
+        }
+        return info.location.toLowerCase().includes(searchTerm);
       }),
     );
   };
@@ -413,25 +265,8 @@ function Marketplace(props) {
 
   return (
     <BackgroundContainer>
-      {/* <NavigationContainer>
-        <LogoAndNameContainer>
-          <Logo />
-          <TitleContainer>
-            <h2>Dev Coach</h2>
-          </TitleContainer>
-        </LogoAndNameContainer>
-
-        <NavLinkContainer>
-          <NavLink>
-            <Link to='/faq'>FAQ</Link>
-          </NavLink>
-          <NavLink>
-            <Link to='/dashboard'>Settings</Link>
-          </NavLink>
-        </NavLinkContainer>
-      </NavigationContainer> */}
       <SearchDiv>
-        <img src={vector} />
+        <img src={vector} alt='vector illustration'/>
         <SearchBar>
           <h1>Choose your Dev Coach</h1>
           <input
@@ -445,24 +280,8 @@ function Marketplace(props) {
         </SearchBar>
       </SearchDiv>
       <MainContainer>
-        {coaches.map(info => (
-          <CoachCard>
-              <img src={info.avatar_url} />
-              <h2>{info.first_name}</h2>
-              <h3>Rating: {info.rating}</h3>
-            <p>{info.description}</p>
-            <SkillExperienceDiv>
-              <h5>Location: {info.location}</h5>
-              <h5>Hourly rate: £{info.hourly_rate}</h5>
-            </SkillExperienceDiv>
-            <SkillExperienceDiv>
-              <h5>Skill: {info.skill_level}</h5>
-              <h5>Experience: {info.experience_level}</h5>
-            </SkillExperienceDiv>
-            <CoachCardButton>
-              <Link to={info.contact_url}>Book Now</Link>
-            </CoachCardButton>
-          </CoachCard>
+        {coaches.map(coach => (
+          <CoachCard key={coach.first_name} coach={coach} />
         ))}
       </MainContainer>
     </BackgroundContainer>
