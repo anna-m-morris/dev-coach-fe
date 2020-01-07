@@ -26,17 +26,18 @@ function App(props) {
       <Route path={'/settings'} component={Marketplace} />
       <Redirect to='/dashboard' />
     </Switch>
-  ); 
-  if (props.isLoggedIn && props.userHasChosenRole) {
-    return <Dashboard routes={routes} />
-  }  else if (props.isLoggedIn){
-    return <UserTypePage />
+  );
+  if (props.isLoggedIn) {
+    return <Dashboard routes={routes} />;
   }
-  else return (
+  return (
     <Switch>
       <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
       <Route path='/register' component={SignUpForm} />
+      <Route path='/userrole' component={UserTypePage} />
+      <Route path='/interviewer' component={InterviewerForm} />
+      <Route path='/student' component={StudentForm} />
       <Redirect to='/' />
     </Switch>
   );

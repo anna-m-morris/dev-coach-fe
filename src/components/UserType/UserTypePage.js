@@ -1,16 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { chooseUserRole } from '../../state/actions/authenticationActions'
+import { login } from '../../state/actions/authenticationActions'
 import { StyledButton, buttonTheme } from '../Landing';
 import StyledUserType from './styles';
 
 function UserTypePage(props) {
-
-  const handleRoleSubmit = role => {
-    props.chooseUserRole(role);
-    console.log(props);
-  }
   
   return (
     <StyledUserType>
@@ -45,8 +40,8 @@ function UserTypePage(props) {
               </ul>
             </div>
             <div className='user-decision'>
-              <Link to='/dashboard'>
-                <StyledButton theme={buttonTheme} type='submit' onClick={() => chooseUserRole("COACH")}>
+              <Link to='/interviewer'>
+                <StyledButton theme={buttonTheme} type='submit'>
                   Join As Coach
                 </StyledButton>
               </Link>
@@ -70,8 +65,8 @@ function UserTypePage(props) {
               </ul>
             </div>
             <div className='user-decision'>
-              <Link to='/dashboard'>
-                <StyledButton theme={buttonTheme} type='submit' onClick={handleRoleSubmit}>
+              <Link to='/student'>
+                <StyledButton theme={buttonTheme} type='submit'>
                   Join As Student
                 </StyledButton>
               </Link>
@@ -83,4 +78,4 @@ function UserTypePage(props) {
   );
 }
 
-export default connect(state => state, { chooseUserRole })(UserTypePage);
+export default connect(state => state, { login })(UserTypePage);
