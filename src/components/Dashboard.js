@@ -17,6 +17,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems } from '../utils/dashboardList';
 import logo from '../img/firelogo.png';
+import styled from 'styled-components';
+import DashboardNav from './DashboardNav';
 
 function Copyright() {
   return (
@@ -33,15 +35,73 @@ function Copyright() {
 
 const drawerWidth = 240;
 
+function Dashboard(props) {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(true);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar
+        position='absolute'
+        className={clsx(classes.appBar, open && classes.appBarShift)}
+      >
+        <DashboardNav />
+      </AppBar>
+      <Drawer
+        variant='permanent'
+        classes={{
+          paper: clsx(
+            classes.drawerPaper,
+            !open && classes.drawerPaperClose,
+          ),
+        }}
+        open={open}
+      >
+        <div className={classes.toolbarIcon}>
+          <h1>DevCoach</h1>
+          <IconButton onClick={handleDrawerClose}>
+            <ChevronLeftIcon />
+          </IconButton>
+        </div>
+        <Divider />
+        <List>{mainListItems}</List>
+        <Divider />
+      </Drawer>
+      <main className={classes.content}>
+        {props.routes}
+        <div className={classes.appBarSpacer} />
+        <Container maxWidth='lg' className={classes.container}>
+          <Grid container spacing={3}>
+         
+          </Grid>
+          <Box pt={4}>
+            <Copyright />
+          </Box>
+        </Container>
+      </main>
+    </div>
+  );
+}
+
+export default Dashboard;
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    backgroundColor: '#F2F2F2',
+    backgroundColor: '#f9f7ff',
   },
   toolbar: {
-    backgroundColor: '#F2F2F2',
+    // backgroundColor: '#f9f7ff',
     // paddingRight: 24, // keep right padding when drawer closed
   },
+
   toolbarIcon: {
     backgroundImage: `url(${logo})`,
     backgroundRepeat: 'no-repeat',
@@ -54,10 +114,10 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
     color: '#4fad65',
     fontSize: '.8rem',
-    fontFamily: 'ABeeZee',
   },
   appBar: {
     boxShadow: 'none',
+    fontFamily: 'ABeeZee',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -82,7 +142,8 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   drawerPaper: {
-    backgroundColor: '#F2F2F2',
+    backgroundColor: '#ffff',
+    fontFamily: 'ABeeZee',
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
@@ -125,83 +186,3 @@ const useStyles = makeStyles(theme => ({
     height: 240,
   },
 }));
-
-function Dashboard(props) {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position='absolute'
-        className={clsx(classes.appBar, open && classes.appBarShift)}
-      >
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge='start'
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden,
-            )}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant='permanent'
-        classes={{
-          paper: clsx(
-            classes.drawerPaper,
-            !open && classes.drawerPaperClose,
-          ),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <h1>DevCoach</h1>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-      </Drawer>
-      <main className={classes.content}>
-        {props.routes}
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth='lg' className={classes.container}>
-          <Grid container spacing={3}>
-            {/* <Grid item xs={12} md={8} lg={9}>
-              <UserDashboard />{' '}
-              <Paper className={fixedHeightPaper}></Paper>
-            </Grid>
-
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}></Paper>
-            </Grid>
-            <Grid item xs={12}>
-              <Paper className={classes.paper}></Paper>
-            </Grid> */}
-          </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
-      </main>
-    </div>
-  );
-}
-
-export default Dashboard;

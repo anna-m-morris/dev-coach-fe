@@ -26,6 +26,7 @@ export default function AppointmentCard(props) {
     cancel,
   } = props;
 
+
   const [openCancelModal, setOpenCancelModal] = useState(false);
 
   const Transition = React.forwardRef(function Transition(
@@ -45,10 +46,10 @@ export default function AppointmentCard(props) {
 
   return (
     <StyledAppointmentCard>
-      <Card className='card'>
-        <CardActionArea className='content'>
+      <Card>
+        <CardActionArea>
           <CardMedia
-            className='media'
+            class='card-thumbnail'
             image={
               avatar_url
                 ? avatar_url
@@ -56,7 +57,7 @@ export default function AppointmentCard(props) {
             }
             title='Coach / Student'
           />
-          <CardContent>
+          <CardContent class-className='card-description'>
             <Typography gutterBottom variant='h5' component='h2'>
               {`${first_name} ${last_name}`}
             </Typography>
@@ -94,7 +95,7 @@ export default function AppointmentCard(props) {
           <Button
             size='small'
             color='primary'
-            onClick={handleCancelModalOpen}
+            // onClick={handleCancelModalOpen}
           >
             message
           </Button>
@@ -116,10 +117,10 @@ export default function AppointmentCard(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCancelModalClose} color='primary'>
-            cancel
+            No
           </Button>
           <Button onClick={cancel} color='primary'>
-            ok
+            Yes
           </Button>
         </DialogActions>
       </Dialog>
@@ -134,6 +135,7 @@ const StyledAppointmentCard = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #ffff;
   }
 
   .content {
@@ -142,5 +144,121 @@ const StyledAppointmentCard = styled.div`
     height: 10rem;
     border-radius: 50%;
     background-size: 50%;
+  }
+  .card-description {
+    margin: 1.5rem 0 0;
+    color: #000;
+    font-family: ABeeZee;
+  }
+
+  .card-thumbnail {
+    height: 80px;
+    width: 80px;
+    border-radius: 10px;
+    font-family:ABeeZee;
+
+    /* position: relative; */
+
+    img {
+      /* position: absolute; */
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      font-family:ABeeZee;
+
+    }
+  }
+`;
+
+const StyledContainer = styled.div`
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 2em;
+  border: 2px solid red;
+  justify-content: space-between;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: 768px) {
+    max-width: 650px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 500px) {
+    max-width: 350px;
+    grid-template-columns: 1fr;
+  }
+
+  & > div.appointment-card {
+    background: #fff;
+    border-radius: 5px;
+    padding: 1rem;
+    box-shadow: 0px 0px 4px rgba(82, 68, 110, 0.3);
+  }
+
+  .flx-top-sb {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+  }
+
+  .flx-center-sb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-thumbnail {
+    height: 80px;
+    width: 80px;
+    border-radius: 5px;
+    position: relative;
+
+    img {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .card-description {
+    margin: 1.5rem 0 0;
+    color: #000;
+
+    h2,
+    h3 {
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      font-weight: 600;
+      font-weight: 1.2rem;
+      margin-bottom: 0;
+    }
+  }
+
+  .upvote-btn {
+    border: 1px solid #101010;
+    border-radius: 5px;
+    padding: 0.25rem 1.15rem;
+    min-width: 60px;
+    height: 30px;
+    background: transparent;
+
+    span {
+      display: inline-block;
+    }
   }
 `;
