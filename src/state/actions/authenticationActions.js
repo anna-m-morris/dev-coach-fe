@@ -26,7 +26,7 @@ export const register = (props, values) => dispatch => {
     .post(`${url}user/register`, values)
     .then(res => {
       dispatch({ type: types.SIGN_UP_SUCCESSFUL });
-      localStorage.setItem('user', JSON.stringify(res.data));
+      // localStorage.setItem('user', JSON.stringify(res.data));
       props.history.push('/userrole');
     })
     .catch(err => {
@@ -34,6 +34,6 @@ export const register = (props, values) => dispatch => {
     });
 };
 
-export const chooseUserRole = (role) => {
-  return { type: types.USER_ROLE_CHOSEN, role }
-}
+export const chooseUserRole = role => {
+  return { type: types.USER_ROLE_CHOSEN, role };
+};

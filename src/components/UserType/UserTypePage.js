@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux'
-import { login } from '../../state/actions/authenticationActions'
+import { connect } from 'react-redux';
+import { login } from '../../state/actions/authenticationActions';
 import { StyledButton, buttonTheme } from '../Landing';
 import StyledUserType from './styles';
 
 function UserTypePage(props) {
-  
   return (
     <StyledUserType>
       <div className='container'>
@@ -49,7 +48,7 @@ function UserTypePage(props) {
           </div>
           <div className='user-type-container'>
             <div className='user-description'>
-              <h3>As A Student</h3> 
+              <h3>As A Student</h3>
               <ul>
                 <li>
                   <strong>Master</strong> the technical interview
