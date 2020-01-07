@@ -12,7 +12,7 @@ import Landing from './components/Landing';
 import InterviewerForm from './components/Forms/InterviewerForm';
 import StudentForm from './components/Forms/StudentForm';
 import UserTypePage from './components/UserType/UserTypePage';
-import Questions from './components/FAQ/FAQ';
+import MainFaq from './components/FAQ/Main';
 import Booking from './components/Booking/Booking';
 import Notification from './components/Notifications/Notification';
 
@@ -37,7 +37,7 @@ function App(props) {
       <Route path='/interviewer' component={InterviewerForm} />
       <Route path='/student' component={StudentForm} />
       <Route path='/user/type' component={UserTypePage} />
-      <Route path='/faq' component={Questions} />
+      <Route path='/faq/general' component={MainFaq} />
       <Redirect to='/' />
     </Switch>
   );

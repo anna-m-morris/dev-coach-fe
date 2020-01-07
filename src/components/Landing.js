@@ -463,7 +463,7 @@ const Landing = () => {
         </LogoTitleContainer>
         <LinksContainer>
           <NavbarLink>
-            <a href='/faq'>FAQ</a>
+            <a href='/faq/general'>FAQ</a>
           </NavbarLink>
           <NavbarLink>
             <a href='/about'>About</a>
