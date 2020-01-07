@@ -22,7 +22,6 @@ function userReducer(state = initialState, action) {
         ...state,
         isLoading: false,
         isLoggedIn: true,
-
         user: action.payload,
       };
     case types.LOGIN_ERROR:
@@ -30,11 +29,12 @@ function userReducer(state = initialState, action) {
     default:
       return state;
     case types.USER_ROLE_CHOSEN:
+      console.log(action);
       return {
         ...state,
         userHasChosenRole: true,
-        userRole: action.role
-      }
+        userRole: action.role,
+      };
   }
 }
 

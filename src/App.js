@@ -27,7 +27,7 @@ function App(props) {
       <Redirect to='/dashboard' />
     </Switch>
   );
-  if (props.isLoggedIn) {
+  if (localStorage.getItem('token')) {
     return <Dashboard routes={routes} />;
   }
   return (

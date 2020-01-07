@@ -36,6 +36,7 @@ const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
 `;
 
 function StudentForm({ touched, errors, isSubmitting }) {
+  const handleUserRoleSubmit = () => {};
   return (
     <ThisGreyBackgroundContainer>
       <RegisterCard>
@@ -77,6 +78,7 @@ function StudentForm({ touched, errors, isSubmitting }) {
               type='submit'
               disabled={isSubmitting}
               theme={buttonTheme}
+              onClick={handleUserRoleSubmit}
             >
               Submit
             </StyledButton>
