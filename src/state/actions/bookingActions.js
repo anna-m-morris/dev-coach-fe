@@ -41,4 +41,3 @@ export const saveDate = date => {
 export const saveSelect = event => {
   return { type: SAVE_SELECT, payload: event };
 };
-

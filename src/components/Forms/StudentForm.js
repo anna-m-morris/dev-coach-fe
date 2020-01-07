@@ -108,7 +108,7 @@ const FormikStudentForm = withFormik({
   handleSubmit(values, { resetForm, setSubmitting, props }) {
     resetForm();
     setSubmitting(false);
-    chooseUserRole(values);
+    props.chooseUserRole(props, values);
   },
 })(StudentForm);
 
