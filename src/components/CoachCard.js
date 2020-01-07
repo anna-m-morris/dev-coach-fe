@@ -20,7 +20,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
-
 const StyledButton = withStyles({
   root: {
     color: 'white',
@@ -34,10 +33,14 @@ const StyledButton = withStyles({
     margin: 1,
     fontSize: 16,
     textDecoration: 0,
+    '&:hover': {
+      backgroundColor: green[300],
+    },
   },
-  // label: {
-  //   textTransform: 'capitalize',
-  // },
+
+  label: {
+    textTransform: 'capitalize',
+  },
 })(Button);
 
 const useStyles = makeStyles(theme => ({
@@ -77,7 +80,10 @@ export default function RecipeReviewCard(props) {
     <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar alt={props.coach.first_name} className={classes.avatar}>
+          <Avatar
+            alt={props.coach.first_name}
+            className={classes.avatar}
+          >
             {props.coach.first_name.charAt(0)}
           </Avatar>
         }
