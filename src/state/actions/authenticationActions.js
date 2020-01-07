@@ -40,6 +40,14 @@ export const register = (props, values) => dispatch => {
 
 export const chooseUserRole = (props, values) => dispatch => {
   const token = localStorage.getItem('tempuser');
+  const id = localStorage.getItem('id');
+  console.log(`${url}user/${id}`);
+  axios
+    .put(`${url}user/${id}`, {
+      role_id: '1',
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
   localStorage.setItem('token', token);
   localStorage.removeItem('tempuser');
   localStorage.removeItem('id');
