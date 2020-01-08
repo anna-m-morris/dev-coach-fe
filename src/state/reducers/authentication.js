@@ -7,7 +7,8 @@ const initialState = {
   isLoading: false,
   isLoggedIn: false,
   userHasChosenRole: false,
-  userRole: '',
+  id: null,
+  role_id: null,
 };
 
 function userReducer(state = initialState, action) {
