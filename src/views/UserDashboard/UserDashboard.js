@@ -45,7 +45,6 @@ const UserDashboard = props => {
 };
 
 const mapStateToProps = state => {
-  debugger;
   return {
     user: state.userReducer.user,
     appointments: state.appointmentsReducer.appointments,

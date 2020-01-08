@@ -40,7 +40,7 @@ const StyledError = styled.p`
   font-size: 0.8rem;
 `;
 
-function SignUpForm({ isSubmitting, errors, touched }) {
+function SignUpForm({ userReducer, isSubmitting, errors, touched }) {
   return (
     <GreyBackgroundContainer>
       <RegisterCard>
@@ -71,8 +71,13 @@ function SignUpForm({ isSubmitting, errors, touched }) {
             </ShortInputContainer>
             <div>
               <Field type='email' name='email' placeholder='Email' />
-              {errors.email && touched.email && (
-                <StyledError>{errors.email}</StyledError>
+              {userReducer.signUpError ? (
+                <StyledError>{userReducer.signUpError}</StyledError>
+              ) : (
+                errors.email &&
+                touched.email && (
+                  <StyledError>{errors.email}</StyledError>
+                )
               )}
             </div>
             <div>

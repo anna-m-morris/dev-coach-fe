@@ -156,16 +156,19 @@ function LoginForm({ userReducer, errors, touched, isSubmitting }) {
               )}
             </div>
             <ExtraLoginDetails />
-            <StyledButton
-              theme={
-                userReducer.isLoading
-                  ? loadingButtonTheme
-                  : buttonTheme
-              }
-              type='submit'
-            >
-              Sign in to your account
-            </StyledButton>
+            <div>
+              <StyledButton
+                theme={
+                  userReducer.isLoading
+                    ? loadingButtonTheme
+                    : buttonTheme
+                }
+                type='submit'
+                disabled={isSubmitting}
+              >
+                Sign in to your account
+              </StyledButton>
+            </div>
             {/*             {props.userReducer.isLoading ? (
               <h3>Loading</h3>
             ) : (

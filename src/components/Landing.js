@@ -376,7 +376,7 @@ const BottomButton = styled.div`
   }
 `;
 
-//footer
+// footer
 const FooterConatiner = styled.div`
   height: 50vh;
   width: 100%;

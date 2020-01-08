@@ -20,11 +20,11 @@ export const login = (props, values) => dispatch => {
       props.history.push('/dashboard');
     })
     .catch(err => {
-      debugger;
       dispatch({
         type: types.LOGIN_ERROR,
         payload: err.response.data.message,
       });
+      debugger;
     });
 };
 
@@ -42,7 +42,10 @@ export const register = (props, values) => dispatch => {
       props.history.push('/userrole');
     })
     .catch(err => {
-      dispatch({ type: types.SIGN_UP_ERROR, payload: err });
+      dispatch({
+        type: types.SIGN_UP_ERROR,
+        payload: err.response.data.message,
+      });
     });
 };
 

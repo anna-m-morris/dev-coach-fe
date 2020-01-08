@@ -34,14 +34,14 @@ function userReducer(state = initialState, action) {
         ...state,
         loginError: action.payload,
         isLoading: false,
-        isLoggedIn: true,
+        isLoggedIn: false,
       };
     case types.SIGN_UP_ERROR:
       return {
         ...state,
         signUpError: action.payload,
         isLoading: false,
-        isLoggedIn: true,
+        isLoggedIn: false,
       };
     default:
       return state;
