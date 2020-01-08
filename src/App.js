@@ -21,7 +21,7 @@ function App(props) {
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
       <Route path={'/marketplace'} component={Marketplace} />
-      {/* <Route path={'/faq'} component={Booking} /> */}
+      <Route path={'/booking'} component={Booking} />
       <Route path={'/feedback'} component={Notification} />
       <Route path={'/settings'} component={Marketplace} />
       <Redirect to='/dashboard' />

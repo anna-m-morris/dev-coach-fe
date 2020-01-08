@@ -4,7 +4,7 @@ import userReducer from './authentication';
 import appointmentsReducer from './appointments';
 import bookingReducer from './booking';
 import notificationsReducer from './notifications';
-import * as faqReducers from './faqReducers';
+import faqReducers from './faqReducers';
 
 const appReducer = combineReducers({
   // add your reducers here
@@ -12,12 +12,7 @@ const appReducer = combineReducers({
   appointmentsReducer,
   bookingReducer,
   notificationsReducer,
-  faqTextState1: faqReducers.faqShowTextReducer1,
-  faqTextState2: faqReducers.faqShowTextReducer2,
-  faqTextState3: faqReducers.faqShowTextReducer3,
-  faqImageState1: faqReducers.faqShowImageReducer1,
-  faqImageState2: faqReducers.faqShowImageReducer2,
-  faqImageState3: faqReducers.faqShowImageReducer3,
+  faqReducers,
 });
 
 /* const rootReducer = (state, action) => {
