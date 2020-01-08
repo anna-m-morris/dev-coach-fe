@@ -111,6 +111,7 @@ const MainContainer = styled.div`
     margin-top: 50px;
     font-family: 'Ubuntu', sans-serif;
     color: #4fad65;
+    font-size: 40px;
   }
 `;
 
@@ -254,11 +255,11 @@ const MainFaq = () => {
             <a href='#'>About</a>
           </NavbarLink>
           <NavbarLink>
-            <a href='#'>Logout</a>
+            <a href='/login'>Login</a>
           </NavbarLink>
         </LinksContainer>
       </NavbarContainer>
-      <h2>FAQ's</h2>
+      <h2>FAQs</h2>
       <CategoryContainer>
         <NavLink
           className='styledBox'

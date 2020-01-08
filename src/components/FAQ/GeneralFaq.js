@@ -104,4 +104,7 @@ const General = props => {
   );
 };
 
-export default connect(state => state, actionCreators)(General);
+export default connect(
+  state => state.faqReducers,
+  actionCreators,
+)(General);

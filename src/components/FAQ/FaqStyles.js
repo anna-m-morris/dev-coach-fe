@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const BodyDiv = styled.div`
   background: #f6f9fc;
-  height: 100vh;
+  height: 60vh;
   max-width: 100%;
   display: flex;
   flex-direction: column;
