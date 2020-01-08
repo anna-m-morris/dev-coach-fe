@@ -17,7 +17,6 @@ import Booking from './components/Booking/Booking';
 import Notification from './components/Notifications/Notification';
 
 function App(props) {
-  console.log(props);
   const routes = (
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
@@ -28,7 +27,8 @@ function App(props) {
       <Redirect to='/dashboard' />
     </Switch>
   );
-  if (localStorage.getItem('token')) {
+  // if (localStorage.getItem('token')) {
+  if (props.isLoggedIn) {
     return <Dashboard routes={routes} />;
   }
   return (

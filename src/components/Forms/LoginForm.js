@@ -199,7 +199,7 @@ const FormikLoginForm = withFormik({
       .required('Please enter an email address'),
     password: Yup.string()
       .required('Please enter your password')
-      .min(6, 'Must be 6 characters minimun'),
+      .min(3, 'Must be 6 characters minimun'),
   }),
   handleSubmit(values, { props, resetForm, setSubmitting }) {
     resetForm();
