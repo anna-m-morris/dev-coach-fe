@@ -1,39 +1,52 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import {
   BodyDiv,
   FAQContainer,
   AskedQuestionDiv,
   AnsweredQuestionDiv,
 } from './FaqStyles';
+import * as actionCreators from '../../state/actions/faqActions';
 
 import plusIcon from '../../img/plus-icon.svg';
 import minusIcon from '../../img/minus-icon.svg';
 
 const icons = { plusIcon, minusIcon };
 
-const Profile = () => {
-  const [showText1, setShowText1] = useState(false);
-  const [showText2, setShowText2] = useState(false);
-  const [image1, setImage1] = useState(true);
-  const [image2, setImage2] = useState(true);
+const Profile = props => {
+  const {
+    faqTextState1,
+    faqTextState2,
+    faqTextState3,
+    showText1,
+    showText2,
+    showText3,
+    faqImageState1,
+    faqImageState2,
+    faqImageState3,
+    showImage1,
+    showImage2,
+    showImage3,
+  } = props;
 
-  const getImage1 = () => (image1 ? 'plusIcon' : 'minusIcon');
-  const getImage2 = () => (image2 ? 'plusIcon' : 'minusIcon');
+  const getImage1 = () => (faqImageState1 ? 'plusIcon' : 'minusIcon');
+  const getImage2 = () => (faqImageState2 ? 'plusIcon' : 'minusIcon');
+  const getImage3 = () => (faqImageState3 ? 'plusIcon' : 'minusIcon');
 
   return (
     <div>
       <BodyDiv>
         <FAQContainer>
           <AskedQuestionDiv
-            onClick={() => {
-              setShowText1(!showText1);
-              setImage1(!image1);
+            onClick={display => {
+              showText1(display);
+              showImage1(display);
             }}
           >
             <p>How do I update my profile?</p>
             {<img src={icons[getImage1()]} />}
           </AskedQuestionDiv>
-          {showText1 && (
+          {faqTextState1 && (
             <AnsweredQuestionDiv>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Nulla id tristique magna, et gravida nibh. Phasellus
@@ -46,15 +59,36 @@ const Profile = () => {
           )}
 
           <AskedQuestionDiv
-            onClick={() => {
-              setShowText2(!showText2);
-              setImage2(!image2);
+            onClick={display => {
+              showText2(display);
+              showImage2(display);
             }}
           >
             <p>Is it compulsory to have a picture?</p>
             {<img src={icons[getImage2()]} />}
           </AskedQuestionDiv>
-          {showText2 && (
+          {faqTextState2 && (
+            <AnsweredQuestionDiv>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Nulla id tristique magna, et gravida nibh. Phasellus
+              tempus sem a mi consectetur, ac ultricies mauris
+              condimentum. Duis nec metus ante. Morbi feugiat mauris
+              non lectus sodales sodales. Proin eu auctor elit,
+              facilisis tincidunt velit. Sed in lectus non urna varius
+              eleifend ac ut ligula. In eleifend at mi in molestie.
+            </AnsweredQuestionDiv>
+          )}
+
+          <AskedQuestionDiv
+            onClick={display => {
+              showText3(display);
+              showImage3(display);
+            }}
+          >
+            <p>Is it compulsory to have a picture?</p>
+            {<img src={icons[getImage3()]} />}
+          </AskedQuestionDiv>
+          {faqTextState3 && (
             <AnsweredQuestionDiv>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Nulla id tristique magna, et gravida nibh. Phasellus
@@ -71,4 +105,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default connect(state => state, actionCreators)(Profile);
