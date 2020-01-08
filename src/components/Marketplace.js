@@ -6,6 +6,8 @@ import devices from './devices';
 import logo from '../img/firelogo.png';
 import vector from '../img/landingvector.png';
 import CoachCard from '../components/CoachCard';
+import { connect } from 'react-redux';
+import { getCoaches, searchCoaches } from '../state/actions/marketplaceActions';
 // import StyledButton from './Landing';
 
 // DUMMY DATA //
@@ -217,26 +219,9 @@ function Marketplace(props) {
   // };
   const handleChange = event => {
     setSearchTerm(event.target.value.toLowerCase());
+    props.searchCoaches(searchTerm);
 
-    setTimeout(
-      () =>
-        setCoaches(
-          marketplaceCoaches.filter(info => {
-            if (info.first_name.toLowerCase().includes(searchTerm)) {
-              return info.first_name
-                .toLowerCase()
-                .includes(searchTerm);
-            }
-            if (info.description.toLowerCase().includes(searchTerm)) {
-              return info.description
-                .toLowerCase()
-                .includes(searchTerm);
-            }
-            return info.location.toLowerCase().includes(searchTerm);
-          }),
-        ),
-      1000,
-    );
+    
   };
 
   const search = event => {
@@ -254,19 +239,14 @@ function Marketplace(props) {
     );
   };
 
-  // useEffect(() => {
-  //   axios
-  //     .get('https://dev-coach-staging.herokuapp.com/profile/coaches')
-  //     .then(response => {
-  //       console.log(response);
-  //       // setCoaches(response.data.results);
-  //     });
-  // }, []);
+  useEffect(() => {
+    props.getCoaches();
+  }, []);
 
   return (
     <BackgroundContainer>
       <SearchDiv>
-        <img src={vector} alt='vector illustration'/>
+        <img src={vector} alt='vector illustration' />
         <SearchBar>
           <h1>Choose your Dev Coach</h1>
           <input
@@ -280,12 +260,17 @@ function Marketplace(props) {
         </SearchBar>
       </SearchDiv>
       <MainContainer>
-        {coaches.map(coach => (
+        {props.coaches.map(coach => (
           <CoachCard key={coach.first_name} coach={coach} />
         ))}
       </MainContainer>
     </BackgroundContainer>
   );
 }
+const mapStateToProps = state => {
+  return {
+    coaches: state.marketplaceReducer.coaches,
+  };
+};
 
-export default Marketplace;
+export default connect(mapStateToProps, { getCoaches, searchCoaches })(Marketplace);
