@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
 import devices from './devices';
-import logo from '../img/firelogo.png';
-import vector from '../img/landingvector.png';
+import server from '../img/server.png';
+import thinking from '../img/thinking.png';
 import CoachCard from '../components/CoachCard';
 import { connect } from 'react-redux';
 import {
@@ -115,7 +115,7 @@ const marketplaceCoaches = [
 // STYLED COMPONENTS //
 const BackgroundContainer = styled.section`
   height: 100vh;
-  background: #f2f2f2;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -130,17 +130,29 @@ const BackgroundContainer = styled.section`
 // SEARCH SECTION
 
 const SearchDiv = styled.section`
+  /* background-image: '../img/breathe.jpg'; */
+  background-image: url(${thinking});
+  height: 500px;
+  min-height: 50vh;
   padding-top: 40px;
   margin-top: 40px;
   @media ${devices.tablet} {
-    padding-top: 40px;
+    padding-top: 60px;
     margin-top: 90px;
   }
-  background: #f2f2f2;
+  /* background: #ffffff; */
   /* border: 1px solid orange; */
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin: 15px;
+  min-width: 80vw;
+  margin: 10px 0px 0px 0px;
+  border-bottom: 10px solid black;
+
+  h1 {
+    color: white;
+    margin: 30px 0px 5px 0px;
+  }
 
   img {
     width: 15vw;
@@ -155,11 +167,11 @@ const SearchDiv = styled.section`
 
 const SearchBar = styled.div`
   margin: 0px;
-  padding: 70px 0px;
+  padding: 70px 0px 10px 0px;
   input {
     background-color: white;
     padding: 5px;
-    min-width: 25vw;
+    min-width: 17vw;
     @media ${devices.tablet} {
       min-width: 40vw;
     }
@@ -167,12 +179,13 @@ const SearchBar = styled.div`
       width: 45vw;
     }
     border: 1px solid black;
-    margin: 10px;
+    margin: 10px 10px 10px 0px;
+    border-radius: 2px;
   }
   button {
     border: none;
     background-color: #4fad65;
-    border-radius: 4px;
+    border-radius: 2px;
     color: white;
     margin: 5px;
     padding: 5px 20px;
@@ -188,9 +201,9 @@ const SearchBar = styled.div`
 
 // MAIN SECTION COMPONENTS
 const MainContainer = styled.section`
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.115);
   /* min-height: 80vh; */
-  min-width: 80vw;
+  max-width: 80vw;
   @media ${devices.tablet} {
     min-width: 70vw;
   }
@@ -247,9 +260,9 @@ function Marketplace(props) {
   return (
     <BackgroundContainer>
       <SearchDiv>
-        <img src={vector} alt='vector illustration' />
+        {/* <img src={vector} alt='vector illustration' /> */}
         <SearchBar>
-          <h1>Choose your Dev Coach</h1>
+          <h1>Take your career seriously</h1>
           <input
             type='text'
             name='searchTerm'
@@ -261,11 +274,15 @@ function Marketplace(props) {
         </SearchBar>
       </SearchDiv>
       <MainContainer>
-        {props.coaches
+        {marketplaceCoaches.map(coach => (
+          <CoachCard key={coach.first_name} coach={coach} />
+        ))}
+
+        {/* {props.coaches
           ? props.coaches.map(coach => (
               <CoachCard key={coach.first_name} coach={coach} />
             ))
-          : null}
+          : null} */}
       </MainContainer>
     </BackgroundContainer>
   );

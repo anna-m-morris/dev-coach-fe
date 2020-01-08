@@ -11,11 +11,12 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { green } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import WhatshotIcon from '@material-ui/icons/Whatshot';
+import RateReviewIcon from '@material-ui/icons/RateReview';
+import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
+import WorkIcon from '@material-ui/icons/Work';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
@@ -48,9 +49,9 @@ const useStyles = makeStyles(theme => ({
     margin: 10,
     minWidth: 250,
     maxWidth: 345,
+    maxHeight: 500,
   },
   media: {
-    height: 0,
     paddingTop: '56.25%', // 16:9
   },
   expand: {
@@ -63,9 +64,9 @@ const useStyles = makeStyles(theme => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-  avatar: {
-    backgroundColor: green[800],
-  },
+  // avatar: {
+  //   backgroundColor: green[800],
+  // },
 }));
 
 export default function RecipeReviewCard(props) {
@@ -80,37 +81,43 @@ export default function RecipeReviewCard(props) {
   return (
     <Card className={classes.card}>
       <CardHeader
+        style={{ height: 90, width: 90, marginTop: 10 }}
         avatar={
           <Avatar
+            style={{ height: 90, width: 90, marginTop: 10 }}
             alt={props.coach.first_name}
             className={classes.avatar}
-          >
-            {props.coach.first_name.charAt(0)}
-          </Avatar>
+            src={props.coach.avatar_url}
+          />
         }
-        action={
-          <IconButton aria-label='settings'>
-            <MoreVertIcon />
-          </IconButton>
-        }
+        // action={
+        //   <IconButton aria-label='settings'>
+        //     <MoreVertIcon />
+        //   </IconButton>
+        // }
+      />
+      <CardHeader
+        style={{ height: 30, width: 30, marginTop: 20 }}
         title={props.coach.first_name}
         subheader={props.coach.location}
-      />
-      <CardMedia
+      ></CardHeader>
+      {/* <CardMedia
+        // style={{ height: 50, borderRadius: 50, width: 50, }}
         className={classes.media}
         image={props.coach.avatar_url}
         title={props.coach.first_name}
-      />
+      /> */}
       <CardContent>
         <Typography
-          variant='body2'
-          color='textSecondary'
+          style={{ marginTop: 10, minHeight: 30 }}
+          variant='body1'
+          color='textPrimary'
           component='p'
         >
           {props.coach.description}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      {/* <CardActions disableSpacing>
         <IconButton aria-label='add to favorites'>
           <WhatshotIcon style={{ color: green[800] }} />
         </IconButton>
@@ -128,39 +135,60 @@ export default function RecipeReviewCard(props) {
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
-      <Collapse in={expanded} timeout='auto' unmountOnExit>
-        <CardContent>
-          <Typography paragraph style={{ fontWeight: 800 }}>
-            About {props.coach.first_name}
-          </Typography>
-          <Typography paragraph style={{ fontWeight: 600 }}>
-            Rating: {props.coach.rating}
-          </Typography>
-          <Typography paragraph>
-            Skill Level: {props.coach.skill_level}
-          </Typography>
-          <Typography paragraph>
-            Years Experience: {props.coach.experience_level}
-          </Typography>
-          <Typography paragraph>
-            Hourly Rate: £ {props.coach.hourly_rate}
-          </Typography>
-          <CardContent style={{ align: 'right', minWidth: 250 }}>
-            <StyledButton style={{ minWidth: 250 }}>
-              <Link
-                style={{
-                  textDecoration: 'none',
-                  color: 'white',
-                  align: 'center',
-                }}
-                to={props.coach.contact_url}
-              >
-                Book Now
-              </Link>
-            </StyledButton>
-          </CardContent>
+      <Collapse in={expanded} timeout='auto' unmountOnExit> */}
+      <CardContent>
+        <Typography variant='body2'>
+          <IconButton
+            aria-label='rate review of coach'
+            style={{ margin: 0, padding: 0, paddingRight: 5 }}
+          >
+            <RateReviewIcon />
+          </IconButton>
+          Rating: {props.coach.rating}
+        </Typography>
+        <Typography variant='body2'>
+          <IconButton
+            aria-label='rate review of coach'
+            style={{ margin: 0, padding: 0, paddingRight: 5 }}
+          >
+            <WorkOutlineIcon />
+          </IconButton>
+          Skill Level: {props.coach.skill_level}
+        </Typography>
+        <Typography variant='body2'>
+          <IconButton
+            aria-label='rate review of coach'
+            style={{ margin: 0, padding: 0, paddingRight: 5 }}
+          >
+            <WorkIcon />
+          </IconButton>
+          Experience: {props.coach.experience_level}
+        </Typography>
+        <Typography variant='body2'>
+          <IconButton
+            aria-label='rate review of coach'
+            style={{ margin: 0, padding: 0, paddingRight: 5 }}
+          >
+            <MonetizationOnIcon />
+          </IconButton>
+          Rate: £ {props.coach.hourly_rate} per hr
+        </Typography>
+        <CardContent style={{ align: 'right', minWidth: 250 }}>
+          <StyledButton style={{ minWidth: 250 }}>
+            <Link
+              style={{
+                textDecoration: 'none',
+                color: 'white',
+                align: 'center',
+              }}
+              to={props.coach.contact_url}
+            >
+              Book Now
+            </Link>
+          </StyledButton>
         </CardContent>
-      </Collapse>
+      </CardContent>
+      {/* </Collapse> */}
     </Card>
   );
 }
