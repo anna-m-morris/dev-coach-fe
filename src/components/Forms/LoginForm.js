@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
 import { StyledButton, buttonTheme } from '../Landing';
 
@@ -17,7 +18,7 @@ export const GreyBackgroundContainer = styled.div`
 
 export const FormCard = styled.div`
   background: white;
-  height: 28em;
+  height: 30em;
   width: 25em;
   display: flex;
   flex-direction: column;
@@ -27,26 +28,39 @@ export const FormCard = styled.div`
 
   h1 {
     color: #292d38;
-    margin-top: 1.5em;
+    margin: 1.2em;
   }
 `;
 
 export const FormContainer = styled.div`
   height: 100%;
   width: 100%;
-  margin-top: 1em;
+  /* margin-top: 1em; */
+
+  form {
+    width: 100%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  div {
+    width: 75%;
+    height: 60px;
+  }
 
   input {
     background: #f2f2f2;
     height: 2em;
-    width: 70%;
+    width: 91%;
     font-family: Ubuntu, sans-serif;
     border-radius: 4px;
     border: 1px solid #c8c8c8;
     padding: 0.5em;
     font-size: 16px;
     color: #808080;
-    margin-bottom: 0.5em;
 
     :hover {
       background: #ffffff;
@@ -57,17 +71,8 @@ export const FormContainer = styled.div`
     }
   }
 
-  form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
   button {
-    width: 75%;
-    margin-top: 1em;
+    width: 96%;
   }
 `;
 
@@ -87,6 +92,7 @@ const StyledDetails = styled.div`
 
   p {
     color: #292d38;
+    margin: 0;
   }
 
   div {
@@ -98,7 +104,15 @@ const StyledDetails = styled.div`
   a {
     text-decoration: none;
     font-weight: bold;
+    margin-left: 2rem;
   }
+`;
+
+const StyledError = styled.p`
+  padding: 0;
+  margin: 0;
+  color: red;
+  font-size: 0.8rem;
 `;
 
 const loadingButtonTheme = {
@@ -111,39 +125,55 @@ const ExtraLoginDetails = () => {
     <StyledDetails>
       <input type='checkbox' />
       <p>Remember Me</p>
-      <div>
-        <a href='/forgot-password'>
-          <p>Forgot your password?</p>
-        </a>{' '}
-      </div>
+      <a href='/forgot-password'>
+        <p>Forgot your password?</p>
+      </a>{' '}
     </StyledDetails>
   );
 };
 
-function LoginForm(props) {
+function LoginForm({ userReducer, errors, touched, isSubmitting }) {
   return (
     <GreyBackgroundContainer>
       <FormCard>
         <h1>Welcome Back!</h1>
         <FormContainer>
           <Form>
-            <Field type='email' name='email' placeholder='Email' />
-            <Field
-              type='password'
-              name='password'
-              placeholder='Password'
-            />
+            <div>
+              <Field type='email' name='email' placeholder='Email' />
+              {errors.email && touched.email && (
+                <StyledError>{errors.email}</StyledError>
+              )}
+            </div>
+            <div>
+              <Field
+                type='password'
+                name='password'
+                placeholder='Password'
+              />
+              {userReducer.loginError ? (
+                <StyledError>{userReducer.loginError}</StyledError>
+              ) : (
+                errors.password &&
+                touched.password && (
+                  <StyledError>{errors.password}</StyledError>
+                )
+              )}
+            </div>
             <ExtraLoginDetails />
-            <StyledButton
-              theme={
-                props.userReducer.isLoading
-                  ? loadingButtonTheme
-                  : buttonTheme
-              }
-              type='submit'
-            >
-              Sign in to your account
-            </StyledButton>
+            <div>
+              <StyledButton
+                theme={
+                  userReducer.isLoading
+                    ? loadingButtonTheme
+                    : buttonTheme
+                }
+                type='submit'
+                disabled={isSubmitting}
+              >
+                Sign in to your account
+              </StyledButton>
+            </div>
             {/*             {props.userReducer.isLoading ? (
               <h3>Loading</h3>
             ) : (
@@ -163,9 +193,17 @@ const FormikLoginForm = withFormik({
       password: password || '',
     };
   },
-
-  handleSubmit(values, { props }) {
-    console.log(values);
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+      .email('Please enter a valid email')
+      .required('Please enter an email address'),
+    password: Yup.string()
+      .required('Please enter your password')
+      .min(6, 'Must be 6 characters minimun'),
+  }),
+  handleSubmit(values, { props, resetForm, setSubmitting }) {
+    resetForm();
+    setSubmitting(false);
 
     props.login(props, values);
   },
