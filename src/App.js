@@ -16,6 +16,7 @@ import Booking from './components/Booking/Booking';
 import Notification from './components/Notifications/Notification';
 
 function App(props) {
+  console.log(props);
   const routes = (
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
@@ -26,16 +27,17 @@ function App(props) {
       <Redirect to='/dashboard' />
     </Switch>
   );
-  return props.isLoggedIn ? (
-    <Dashboard routes={routes} />
-  ) : (
+  if (localStorage.getItem('token')) {
+    return <Dashboard routes={routes} />;
+  }
+  return (
     <Switch>
       <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
       <Route path='/register' component={SignUpForm} />
+      <Route path='/userrole' component={UserTypePage} />
       <Route path='/interviewer' component={InterviewerForm} />
       <Route path='/student' component={StudentForm} />
-      <Route path='/user/type' component={UserTypePage} />
       <Redirect to='/' />
     </Switch>
   );
@@ -44,6 +46,7 @@ function App(props) {
 const mapStateToProps = state => {
   return {
     isLoggedIn: state.userReducer.isLoggedIn,
+    userHasChosenRole: state.userReducer.userHasChosenRole,
   };
 };
 

@@ -35,12 +35,29 @@ export const register = (props, values) => dispatch => {
     .post(`${url}user/register`, values)
     .then(res => {
       dispatch({ type: types.SIGN_UP_SUCCESSFUL });
-      localStorage.setItem('user', JSON.stringify(res.data));
       dispatch({ type: types.LOGIN_SUCCESSFUL });
-      localStorage.setItem('token', res.data.token);
-      props.history.push('/dashboard');
+      console.log(res.data);
+      localStorage.setItem('tempuser', res.data.token);
+      localStorage.setItem('id', res.data.user_id);
+      props.history.push('/userrole');
     })
     .catch(err => {
       dispatch({ type: types.SIGN_UP_ERROR, payload: err });
     });
+};
+
+export const chooseUserRole = (props, values) => dispatch => {
+  const token = localStorage.getItem('tempuser');
+  const id = localStorage.getItem('id');
+  console.log(`${url}user/${id}`);
+  axios
+    .put(`${url}user/${id}`, {
+      role_id: '1',
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+  localStorage.setItem('token', token);
+  localStorage.removeItem('tempuser');
+  localStorage.removeItem('id');
+  window.location.reload();
 };

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { connect } from 'react-redux';
+import { login } from '../../state/actions/authenticationActions';
 import { StyledButton, buttonTheme } from '../Landing';
 import StyledUserType from './styles';
 
-function UserTypePage() {
+function UserTypePage(props) {
   return (
     <StyledUserType>
       <div className='container'>
@@ -38,7 +39,7 @@ function UserTypePage() {
               </ul>
             </div>
             <div className='user-decision'>
-              <Link to='/dashboard'>
+              <Link to='/interviewer'>
                 <StyledButton theme={buttonTheme} type='submit'>
                   Join As Coach
                 </StyledButton>
@@ -63,7 +64,7 @@ function UserTypePage() {
               </ul>
             </div>
             <div className='user-decision'>
-              <Link to='/dashboard'>
+              <Link to='/student'>
                 <StyledButton theme={buttonTheme} type='submit'>
                   Join As Student
                 </StyledButton>
@@ -76,4 +77,4 @@ function UserTypePage() {
   );
 }
 
-export default UserTypePage;
+export default connect(state => state, { login })(UserTypePage);

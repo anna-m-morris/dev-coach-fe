@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 import { StyledButton, buttonTheme } from '../Landing';
 
-import { login } from '../../state/actions/actionCreators';
+import { login } from '../../state/actions/authenticationActions';
 
 export const GreyBackgroundContainer = styled.div`
   height: 100vh;
@@ -156,19 +156,16 @@ function LoginForm({ userReducer, errors, touched, isSubmitting }) {
               )}
             </div>
             <ExtraLoginDetails />
-            <div>
-              <StyledButton
-                theme={
-                  userReducer.isLoading
-                    ? loadingButtonTheme
-                    : buttonTheme
-                }
-                type='submit'
-                disabled={isSubmitting}
-              >
-                Sign in to your account
-              </StyledButton>
-            </div>
+            <StyledButton
+              theme={
+                userReducer.isLoading
+                  ? loadingButtonTheme
+                  : buttonTheme
+              }
+              type='submit'
+            >
+              Sign in to your account
+            </StyledButton>
             {/*             {props.userReducer.isLoading ? (
               <h3>Loading</h3>
             ) : (
