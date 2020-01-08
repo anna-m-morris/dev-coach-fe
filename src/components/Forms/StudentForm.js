@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-
+import { connect } from 'react-redux';
 import { StyledButton, buttonTheme } from '../Landing';
+import { chooseUserRole } from '../../state/actions/authenticationActions';
 import {
   GreyBackgroundContainer,
   FormCard,
@@ -35,7 +36,7 @@ const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
   font-family: ABeeZee;
 `;
 
-function StudentForm({ touched, errors, isSubmitting }) {
+function StudentForm({ touched, errors, isSubmitting }, props) {
   return (
     <ThisGreyBackgroundContainer>
       <RegisterCard>
@@ -104,10 +105,13 @@ const FormikStudentForm = withFormik({
       'Please enter your confidence level',
     ),
   }),
-  handleSubmit(values, { resetForm, setSubmitting }) {
+  handleSubmit(values, { resetForm, setSubmitting, props }) {
     resetForm();
     setSubmitting(false);
+    props.chooseUserRole(props, values);
   },
 })(StudentForm);
 
-export default FormikStudentForm;
+export default connect(state => state, { chooseUserRole })(
+  FormikStudentForm,
+);

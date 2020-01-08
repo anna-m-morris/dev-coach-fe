@@ -246,7 +246,6 @@ const InfoboxContainer = styled.div`
   @media only screen and (max-width: 600px) {
     height: 360vh;
     background-size: auto;
-    background-repeat: no-repeat;
   }
 `;
 

@@ -16,12 +16,12 @@ const StyledUserDashboard = styled.div`
 `;
 
 const UserDashboard = props => {
-  React.useEffect(() => {
-    setTimeout(
-      () => props.getAppointment(props.user.id, props.user.role_id),
-      1000,
-    );
-  }, []);
+  // React.useEffect(() => {
+  //   setTimeout(
+  //     () => props.getAppointment(props.user.id, props.user.role_id),
+  //     1000,
+  //   );
+  // }, []);
 
   return (
     <StyledUserDashboard>
