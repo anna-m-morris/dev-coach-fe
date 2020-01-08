@@ -7,7 +7,10 @@ import logo from '../img/firelogo.png';
 import vector from '../img/landingvector.png';
 import CoachCard from '../components/CoachCard';
 import { connect } from 'react-redux';
-import { getCoaches, searchCoaches } from '../state/actions/marketplaceActions';
+import {
+  getCoaches,
+  searchCoaches,
+} from '../state/actions/marketplaceActions';
 // import StyledButton from './Landing';
 
 // DUMMY DATA //
@@ -220,24 +223,22 @@ function Marketplace(props) {
   const handleChange = event => {
     setSearchTerm(event.target.value.toLowerCase());
     props.searchCoaches(searchTerm);
-
-    
   };
 
-  const search = event => {
-    event.preventDefault();
-    setCoaches(
-      marketplaceCoaches.filter(info => {
-        if (info.first_name.toLowerCase().includes(searchTerm)) {
-          return info.first_name.toLowerCase().includes(searchTerm);
-        }
-        if (info.description.toLowerCase().includes(searchTerm)) {
-          return info.description.toLowerCase().includes(searchTerm);
-        }
-        return info.location.toLowerCase().includes(searchTerm);
-      }),
-    );
-  };
+  // const search = event => {
+  //   event.preventDefault();
+  //   setCoaches(
+  //     marketplaceCoaches.filter(info => {
+  //       if (info.first_name.toLowerCase().includes(searchTerm)) {
+  //         return info.first_name.toLowerCase().includes(searchTerm);
+  //       }
+  //       if (info.description.toLowerCase().includes(searchTerm)) {
+  //         return info.description.toLowerCase().includes(searchTerm);
+  //       }
+  //       return info.location.toLowerCase().includes(searchTerm);
+  //     }),
+  //   );
+  // };
 
   useEffect(() => {
     props.getCoaches();
@@ -256,13 +257,15 @@ function Marketplace(props) {
             value={searchTerm}
             onChange={handleChange}
           />
-          <button onSubmit={search}>Search</button>
+          <button onSubmit={handleChange}>Search</button>
         </SearchBar>
       </SearchDiv>
       <MainContainer>
-        {props.coaches.map(coach => (
-          <CoachCard key={coach.first_name} coach={coach} />
-        ))}
+        {props.coaches
+          ? props.coaches.map(coach => (
+              <CoachCard key={coach.first_name} coach={coach} />
+            ))
+          : null}
       </MainContainer>
     </BackgroundContainer>
   );
@@ -273,4 +276,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getCoaches, searchCoaches })(Marketplace);
+export default connect(mapStateToProps, {
+  getCoaches,
+  searchCoaches,
+})(Marketplace);
