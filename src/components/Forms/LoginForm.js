@@ -151,8 +151,13 @@ function LoginForm({ userReducer, errors, touched, isSubmitting }) {
                 name='password'
                 placeholder='Password'
               />
-              {errors.password && touched.password && (
-                <StyledError>{errors.password}</StyledError>
+              {userReducer.loginError ? (
+                <StyledError>{userReducer.loginError}</StyledError>
+              ) : (
+                errors.password &&
+                touched.password && (
+                  <StyledError>{errors.password}</StyledError>
+                )
               )}
             </div>
             <ExtraLoginDetails />
