@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import { connect } from 'react-redux';
+
 import styled from 'styled-components';
 import { withFormik, Form, Field, FieldArray } from 'formik';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -70,80 +72,29 @@ const options = {
 function InterviewerForm(props) {
   const classes = useStyles();
 
-  const [state, setState] = useState(options);
-
-  const handleChange = event => {
-    setState({ ...state, [event.target.name]: event.target.value });
-  };
+  // export function StudentForm(props) {
+  const handleUserRoleSubmit = () => {};
   return (
     <ThisGreyBackgroundContainer>
       <RegisterCard>
         <h1> Interviewer Form </h1>
         <FormContainer>
           <Form>
-            <FormControl className={classes.margin}>
-              <InputLabel htmlFor='current city'>
-                current city
-              </InputLabel>
-              <NativeSelect
-                id='current city'
-                name='city'
-                value={options.city}
-                onChange={handleChange}
-                input={<BootstrapInput />}
-              >
-                <option>select a city </option>
-                <option value={10}>Edinburgh</option>
-                <option value={20}>Lagos</option>
-                <option value={30}>Watford</option>
-              </NativeSelect>
-            </FormControl>
-            <FormControl className={classes.margin}>
-              <InputLabel htmlFor='demo-customized-select-native'>
-                level of experience
-              </InputLabel>
-              <NativeSelect
-                id='demo-customized-select-native'
-                name='level_of_experience'
-                // value={experienceLevel}
-                onChange={handleChange}
-                input={<BootstrapInput />}
-              >
-                {' '}
-                <option> select your level of experience </option>
-                <option value={10}> less than 1 year</option>
-                <option value={20}>2 years and a above</option>
-                <option value={20}>4 years and a above</option>
-                <option value={30}>10 years and above</option>
-              </NativeSelect>
-            </FormControl>
-            <FormControl className={classes.margin}>
-              <InputLabel htmlFor='demo-customized-select-native'>
-                skills
-              </InputLabel>
-              <NativeSelect
-                id='demo-customized-select-native'
-                name='skills'
-                // value={skills}
-                onChange={handleChange}
-                input={<BootstrapInput />}
-              >
-                <option>select your top skill </option>
-                <option value={10}>Vanilla JS</option>
-                <option value={20}> React JS</option>
-              </NativeSelect>
-            </FormControl>
-            <FormControl className={classes.margin}>
-              <TextField
-                className={classes.margin}
-                id='outlined-multiline-static'
-                label='Not more than 300 words'
-                multiline
-                rows='4'
-                variant='outlined'
-              />
-            </FormControl>
-            <StyledButton theme={buttonTheme}> Submit </StyledButton>
+            <Field type='text' name='city' />
+            <Field
+              type='text'
+              name='level_of_experience'
+              placeholder=' select level of experience '
+            />
+            <Field type='text' name='skills' />
+            <Field type='text' name='description' />
+            <StyledButton
+              theme={buttonTheme}
+              onClick={handleUserRoleSubmit}
+            >
+              {' '}
+              Submit{' '}
+            </StyledButton>
           </Form>
         </FormContainer>
       </RegisterCard>
@@ -158,10 +109,10 @@ const FormikInterviewerForm = withFormik({
     value: Yup.string().required(),
   }),
   mapPropsToValues: props => ({
-    // city: ['edinburgh', 'lagos', 'watford'],
-    // level_of_experience: ['less than a year', 'Over two years'],
-    // skills: ['Native JS', 'React JS', 'Node JS'],
-    // value: '',
+    city: 'Location',
+    level_of_experience: 'Experience',
+    skills: 'Skills',
+    description: 'Describe yourself in one line',
   }),
   handleSubmit(values, { props }) {
     props.register(
@@ -171,6 +122,5 @@ const FormikInterviewerForm = withFormik({
     );
   },
 })(InterviewerForm);
-export default connect(state => state, { register })(
-  FormikInterviewerForm,
-);
+
+export default connect(state => state)(FormikInterviewerForm);

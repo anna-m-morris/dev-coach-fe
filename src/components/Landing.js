@@ -7,11 +7,11 @@ const greenBackgroundSVG = require('../img/green-slanted-bg-shape.png');
 const handshakeImg = require('../img/handshake.png');
 const analytics = require('../img/analytics-1.png');
 const startup = require('../img/startup-1.png');
-const getStartedVector = require('../img/getstartedvector.png');
+const getStartedVector = require('../img/getstartedVector.png');
 const facebookIcon = require('../img/fb.png');
 const githubIcon = require('../img/github-1.png');
 const instagramIcon = require('../img/instagram-logo-1.png');
-const linkedInIcon = require('../img/linkedin.png');
+const linkedInIcon = require('../img/linkedIn.png');
 const twitterIcon = require('../img/twitter-1.png');
 
 // media queries
@@ -64,7 +64,7 @@ const NavTitleContainer = styled.div`
   font-family: 'Ubuntu';
   font-style: normal;
   font-weight: normal;
-  color: #459a59;
+  color: grey;
   font-size: 18px;
 `;
 
@@ -246,7 +246,6 @@ const InfoboxContainer = styled.div`
   @media only screen and (max-width: 600px) {
     height: 360vh;
     background-size: auto;
-    background-repeat: no-repeat;
   }
 `;
 
@@ -377,7 +376,7 @@ const BottomButton = styled.div`
   }
 `;
 
-//footer
+// footer
 const FooterConatiner = styled.div`
   height: 50vh;
   width: 100%;
@@ -477,7 +476,7 @@ const Landing = () => {
           </LogoTitleContainer>
           <LinksContainer>
             <NavbarLink>
-              <a href='#'>FAQ</a>
+              <a href='/faq/general'>FAQ</a>
             </NavbarLink>
             <NavbarLink>
               <a href='#'>About</a>

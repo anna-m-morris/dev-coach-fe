@@ -4,6 +4,7 @@ import userReducer from './authentication';
 import appointmentsReducer from './appointments';
 import bookingReducer from './booking';
 import notificationsReducer from './notifications';
+import faqReducers from './faqReducers';
 
 const appReducer = combineReducers({
   // add your reducers here
@@ -11,6 +12,7 @@ const appReducer = combineReducers({
   appointmentsReducer,
   bookingReducer,
   notificationsReducer,
+  faqReducers,
 });
 
 /* const rootReducer = (state, action) => {

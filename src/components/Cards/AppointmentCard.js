@@ -26,7 +26,6 @@ export default function AppointmentCard(props) {
     cancel,
   } = props;
 
-
   const [openCancelModal, setOpenCancelModal] = useState(false);
 
   const Transition = React.forwardRef(function Transition(
@@ -155,9 +154,7 @@ const StyledAppointmentCard = styled.div`
     height: 80px;
     width: 80px;
     border-radius: 10px;
-    font-family:ABeeZee;
-
-    /* position: relative; */
+    font-family: ABeeZee;
 
     img {
       /* position: absolute; */
@@ -165,8 +162,7 @@ const StyledAppointmentCard = styled.div`
       width: 100%;
       object-fit: cover;
       border-radius: 50%;
-      font-family:ABeeZee;
-
+      font-family: ABeeZee;
     }
   }
 `;

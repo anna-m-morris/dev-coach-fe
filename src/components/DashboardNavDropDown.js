@@ -7,7 +7,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 export default function DashboardNavDropDown(props) {
   return (
     <div>
-      <Button onClick={props.handleClick}>
+      <Button
+        onClick={props.handleClick}
+        aria-controls='simple-menu'
+        aria-haspopup='true'
+      >
         <ArrowDropDownRoundedIcon />
       </Button>
       <Menu

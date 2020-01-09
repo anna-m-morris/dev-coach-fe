@@ -35,7 +35,7 @@ export const mainListItems = (
         <ListItemText primary='Feedback' />
       </ListItem>
     </Link>
-    <Link to='/faq'>
+    <Link to='/booking'>
       <ListItem button>
         <ListItemIcon>
           <LayersIcon />

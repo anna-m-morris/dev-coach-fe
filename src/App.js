@@ -12,6 +12,7 @@ import Landing from './components/Landing';
 import InterviewerForm from './components/Forms/InterviewerForm';
 import StudentForm from './components/Forms/StudentForm';
 import UserTypePage from './components/UserType/UserTypePage';
+import MainFaq from './components/FAQ/Main';
 import Booking from './components/Booking/Booking';
 import Notification from './components/Notifications/Notification';
 
@@ -20,22 +21,26 @@ function App(props) {
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
       <Route path={'/marketplace'} component={Marketplace} />
-      <Route path={'/faq'} component={Booking} />
+      <Route path={'/booking'} component={Booking} />
       <Route path={'/feedback'} component={Notification} />
       <Route path={'/settings'} component={Marketplace} />
       <Redirect to='/dashboard' />
     </Switch>
   );
-  return props.isLoggedIn ? (
-    <Dashboard routes={routes} />
-  ) : (
+  // if (localStorage.getItem('token')) {
+  if (props.isLoggedIn) {
+    return <Dashboard routes={routes} />;
+  }
+  return (
     <Switch>
       <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
       <Route path='/register' component={SignUpForm} />
+      <Route path='/userrole' component={UserTypePage} />
       <Route path='/interviewer' component={InterviewerForm} />
       <Route path='/student' component={StudentForm} />
       <Route path='/user/type' component={UserTypePage} />
+      <Route path='/faq' component={MainFaq} />
       <Redirect to='/' />
     </Switch>
   );
@@ -44,6 +49,7 @@ function App(props) {
 const mapStateToProps = state => {
   return {
     isLoggedIn: state.userReducer.isLoggedIn,
+    userHasChosenRole: state.userReducer.userHasChosenRole,
   };
 };
 
