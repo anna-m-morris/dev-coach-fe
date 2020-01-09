@@ -64,7 +64,7 @@ const NavTitleContainer = styled.div`
   font-family: 'Ubuntu';
   font-style: normal;
   font-weight: normal;
-  color: #459a59;
+  color: grey;
   font-size: 18px;
 `;
 
@@ -376,7 +376,7 @@ const BottomButton = styled.div`
   }
 `;
 
-//footer
+// footer
 const FooterConatiner = styled.div`
   height: 50vh;
   width: 100%;
@@ -476,7 +476,7 @@ const Landing = () => {
           </LogoTitleContainer>
           <LinksContainer>
             <NavbarLink>
-              <a href='#'>FAQ</a>
+              <a href='/faq/general'>FAQ</a>
             </NavbarLink>
             <NavbarLink>
               <a href='#'>About</a>
