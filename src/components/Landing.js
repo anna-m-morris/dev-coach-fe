@@ -7,11 +7,11 @@ const greenBackgroundSVG = require('../img/green-slanted-bg-shape.png');
 const handshakeImg = require('../img/handshake.png');
 const analytics = require('../img/analytics-1.png');
 const startup = require('../img/startup-1.png');
-const getStartedVector = require('../img/getstartedvector.png');
+const getStartedVector = require('../img/getstartedVector.png');
 const facebookIcon = require('../img/fb.png');
 const githubIcon = require('../img/github-1.png');
 const instagramIcon = require('../img/instagram-logo-1.png');
-const linkedInIcon = require('../img/linkedin.png');
+const linkedInIcon = require('../img/linkedIn.png');
 const twitterIcon = require('../img/twitter-1.png');
 
 // media queries
@@ -114,10 +114,11 @@ export const StyledButton = styled.button`
   border: none;
   font-family: Ubuntu;
   font-size: 14px;
-  transition: opacity 0.2s;
-  transition: transform 0.1s;
+  transition: ease-out 0.2s;
 
   :hover {
+    cursor: pointer;
+    transition: ease-in 0.2s;
     opacity: 0.8;
   }
 
@@ -381,12 +382,19 @@ const BottomButton = styled.div`
   margin-top: 2em;
   text-align: center;
   vertical-align: middle;
+  transition: ease-out 0.2s;
+
   :focus {
     outline: none;
   }
   :active {
     outline: none;
     transform: translateY(2px);
+  }
+  :hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: ease-in 0.2s;
   }
 `;
 
