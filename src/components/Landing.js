@@ -78,7 +78,7 @@ const NavTitleContainer = styled.div`
 const LinksContainer = styled.div`
   width: 30%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding-right: 0.2em;
 `;
@@ -110,8 +110,6 @@ export const StyledButton = styled.button`
   color: ${props => props.theme.text};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
-  height: 100%;
-  width: 100%;
   padding: 1em 2em;
   border: none;
   font-family: Ubuntu;
@@ -241,7 +239,6 @@ const LandingVectorImageContainer = styled.div`
   z-index: 1;
 
   img {
-    padding-right: 3em;
     padding-top: 2em;
     height: 100%;
     transform: scale(1.05);
@@ -303,8 +300,8 @@ const BottomLandingContainer = styled.div`
 `;
 
 const InfoCard = styled.div`
-  height: 20em;
-  width: 16em;
+  height: 120%;
+  width: 25%;
   background: white;
   border: 1px solid #a3a3a3;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
