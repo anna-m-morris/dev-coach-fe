@@ -39,7 +39,7 @@ function CoachForm({ errors, touched }) {
     <div>
       <ThisGreyBackgroundContainer>
         <RegisterCard>
-          <Link to='/'>
+          <Link to='/userrole'>
             <Logo />
           </Link>
           <h1>Coach Form</h1>

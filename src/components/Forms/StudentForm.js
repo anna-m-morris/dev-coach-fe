@@ -47,7 +47,7 @@ function StudentForm({ touched, errors, isSubmitting }) {
     <div>
       <ThisGreyBackgroundContainer>
         <RegisterCard>
-          <Link to='/'>
+          <Link to='/userrole'>
             <NavLogo />
           </Link>
           <h1>Student Form</h1>
