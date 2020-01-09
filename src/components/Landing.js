@@ -32,9 +32,9 @@ const NavbarContainer = styled.div`
   height: 4em;
   width: 100%;
   background: white;
-  display: flex;
-  justify-content: space-between;
   position: sticky;
+  display: flex;
+  justify-content: center;
   top: 0;
   z-index: 11;
   box-shadow: 0px 3px 4px -2px rgba(150, 150, 150, 1);
@@ -42,6 +42,13 @@ const NavbarContainer = styled.div`
   @media only screen and (max-width: 600px) {
     justify-content: space-evenly;
   }
+`;
+
+const NavbarSubContainer = styled.div`
+  width: 95%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Logo = styled.div`
@@ -468,26 +475,30 @@ const Landing = () => {
     <div>
       <LandingWrapper>
         <NavbarContainer>
-          <LogoTitleContainer>
-            <Logo />
-            <NavTitleContainer>
-              <h1>DevCoach</h1>
-            </NavTitleContainer>
-          </LogoTitleContainer>
-          <LinksContainer>
-            <NavbarLink>
-              <a href='/faq/general'>FAQ</a>
-            </NavbarLink>
-            <NavbarLink>
-              <a href='#'>About</a>
-            </NavbarLink>
-            <a href='/login'>
-              <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
-            </a>
-            <a href='/register'>
-              <StyledButton theme={invertTheme}>SIGN UP</StyledButton>
-            </a>
-          </LinksContainer>
+          <NavbarSubContainer>
+            <LogoTitleContainer>
+              <Logo />
+              <NavTitleContainer>
+                <h1>DevCoach</h1>
+              </NavTitleContainer>
+            </LogoTitleContainer>
+            <LinksContainer>
+              <NavbarLink>
+                <a href='/faq/general'>FAQ</a>
+              </NavbarLink>
+              <NavbarLink>
+                <a href='#'>About</a>
+              </NavbarLink>
+              <a href='/login'>
+                <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
+              </a>
+              <a href='/register'>
+                <StyledButton theme={invertTheme}>
+                  SIGN UP
+                </StyledButton>
+              </a>
+            </LinksContainer>
+          </NavbarSubContainer>
         </NavbarContainer>
         <TopLandingContainer>
           <LandingTaglineContainer>
