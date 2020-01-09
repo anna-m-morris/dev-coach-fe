@@ -42,7 +42,7 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         userRoleError: action.error,
-      }
+      };
   }
 }
 
