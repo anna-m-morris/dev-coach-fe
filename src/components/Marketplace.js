@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
-import devices from './devices';
-import server from '../img/server.png';
-import thinking from '../img/thinking.png';
-import CoachCard from '../components/CoachCard';
 import { connect } from 'react-redux';
+import devices from './devices';
+import thinking from '../img/thinking.png';
+import woman from '../img/woman.jpg';
+import pink from '../img/pink.jpg';
+import stare from '../img/stare.jpg';
+import mobileCard from '../img/mobileCard.jpg';
+import CoachCard from './CoachCard';
+
 import {
   getCoaches,
   searchCoaches,
@@ -114,39 +118,38 @@ const marketplaceCoaches = [
 
 // STYLED COMPONENTS //
 const BackgroundContainer = styled.section`
+  position: fixed;
+  margin-top: 70px;
   height: 100vh;
   background: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @media ${devices.tablet} {
-  }
-
-  @media ${devices.mobile} {
-  }
 `;
 
 // SEARCH SECTION
 
 const SearchDiv = styled.section`
-  /* background-image: '../img/breathe.jpg'; */
-  background-image: url(${thinking});
-  height: 500px;
-  min-height: 50vh;
-  padding-top: 40px;
-  margin-top: 40px;
-  @media ${devices.tablet} {
-    padding-top: 60px;
-    margin-top: 90px;
+  background-image: url(${stare});
+  @media ${devices.large} {
+    min-width: 80vw;
+    min-height: 10vh;
   }
-  /* background: #ffffff; */
-  /* border: 1px solid orange; */
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  min-height: 40vh;
   min-width: 80vw;
-  margin: 10px 0px 0px 0px;
+  @media ${devices.tablet} {
+    min-height: 20vh;
+  }
+  @media ${devices.mobile} {
+    background-image: url(${mobileCard});
+    /* background-color: #4fad65; */
+    min-height: 20vh;
+  }
+  margin: 0px;
   border-bottom: 10px solid black;
 
   h1 {
@@ -166,20 +169,50 @@ const SearchDiv = styled.section`
 `;
 
 const SearchBar = styled.div`
-  margin: 0px;
-  padding: 70px 0px 10px 0px;
+  margin: 10px;
+
+  @media ${devices.large} {
+    min-width: 80vw;
+    max-height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  min-width: 80vw;
+  min-height: 30vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  @media ${devices.tablet} {
+    min-width: 80vw;
+    max-height: 15vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  @media ${devices.mobile} {
+    min-width: 30vw;
+    min-height: 15vh;
+    justify-content: center;
+    align-items: center;
+  }
+
   input {
     background-color: white;
     padding: 5px;
     min-width: 17vw;
     @media ${devices.tablet} {
-      min-width: 40vw;
+      min-width: 35vw;
     }
     @media ${devices.mobile} {
-      width: 45vw;
+      min-width: 50vw;
     }
     border: 1px solid black;
-    margin: 10px 10px 10px 0px;
+    margin: 5px 5px 5px 0px;
     border-radius: 2px;
   }
   button {
@@ -189,12 +222,19 @@ const SearchBar = styled.div`
     color: white;
     margin: 5px;
     padding: 5px 20px;
+    @media ${devices.tablet} {
+      background-color: black;
+    }
   }
   h1 {
     font-size: 30px;
+    color: black;
     @media ${devices.tablet} {
       padding: 0px;
       margin: 5px;
+    }
+    @media ${devices.mobile} {
+      font-size: 20px;
     }
   }
 `;
@@ -202,10 +242,9 @@ const SearchBar = styled.div`
 // MAIN SECTION COMPONENTS
 const MainContainer = styled.section`
   background-color: rgba(0, 0, 0, 0.115);
-  /* min-height: 80vh; */
   max-width: 80vw;
-  @media ${devices.tablet} {
-    min-width: 70vw;
+  @media ${devices.large} {
+    max-width: 80vw;
   }
   display: flex;
   align-items: center;
@@ -230,28 +269,10 @@ function Marketplace(props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [coaches, setCoaches] = useState(marketplaceCoaches);
 
-  // const handleChange = event => {
-  //   setSearchTerm(event.target.value);
-  // };
   const handleChange = event => {
     setSearchTerm(event.target.value.toLowerCase());
     props.searchCoaches(searchTerm);
   };
-
-  // const search = event => {
-  //   event.preventDefault();
-  //   setCoaches(
-  //     marketplaceCoaches.filter(info => {
-  //       if (info.first_name.toLowerCase().includes(searchTerm)) {
-  //         return info.first_name.toLowerCase().includes(searchTerm);
-  //       }
-  //       if (info.description.toLowerCase().includes(searchTerm)) {
-  //         return info.description.toLowerCase().includes(searchTerm);
-  //       }
-  //       return info.location.toLowerCase().includes(searchTerm);
-  //     }),
-  //   );
-  // };
 
   useEffect(() => {
     props.getCoaches();
@@ -260,7 +281,6 @@ function Marketplace(props) {
   return (
     <BackgroundContainer>
       <SearchDiv>
-        {/* <img src={vector} alt='vector illustration' /> */}
         <SearchBar>
           <h1>Take your career seriously</h1>
           <input
