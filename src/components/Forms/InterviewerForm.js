@@ -10,6 +10,7 @@ import {
   FormCard,
   FormContainer,
 } from './LoginForm';
+
 const RegisterCard = styled(FormCard)`
   width: 30em;
   height: 35em;
@@ -22,7 +23,6 @@ const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
   font-family: ABeeZee;
 `;
 function StudentForm(props) {
-  const handleUserRoleSubmit = () => {};
   return (
     <ThisGreyBackgroundContainer>
       <RegisterCard>
@@ -50,11 +50,7 @@ function StudentForm(props) {
               />
             </div>
             <div>
-              <StyledButton
-                theme={buttonTheme}
-                onClick={handleUserRoleSubmit}
-                type='submit'
-              >
+              <StyledButton theme={buttonTheme} type='submit'>
                 {' '}
                 Submit{' '}
               </StyledButton>
