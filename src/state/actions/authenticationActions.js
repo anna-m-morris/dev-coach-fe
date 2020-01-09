@@ -12,12 +12,16 @@ export const login = (props, values) => dispatch => {
       dispatch({
         type: types.LOGIN_SUCCESSFUL,
         payload: res.data.user,
+        message: res.data.message,
       });
       localStorage.setItem('token', res.data.token);
-      props.history.push('/dashboard');
+      // props.history.push('/dashboard');
     })
     .catch(err => {
-      dispatch({ type: types.LOGIN_ERROR, payload: err });
+      dispatch({
+        type: types.LOGIN_ERROR,
+        payload: err.response.data.message,
+      });
     });
 };
 
@@ -28,14 +32,15 @@ export const register = (props, values) => dispatch => {
     .post(`${url}user/register`, values)
     .then(res => {
       dispatch({ type: types.SIGN_UP_SUCCESSFUL });
-      dispatch({ type: types.LOGIN_SUCCESSFUL });
-      console.log(res.data);
       localStorage.setItem('tempuser', res.data.token);
       localStorage.setItem('id', res.data.user_id);
       props.history.push('/userrole');
     })
     .catch(err => {
-      dispatch({ type: types.SIGN_UP_ERROR, payload: err });
+      dispatch({
+        type: types.SIGN_UP_ERROR,
+        payload: err.response.data.message,
+      });
     });
 };
 
@@ -67,7 +72,6 @@ export const chooseUserRole = (props, values, role) => dispatch => {
   // tempuser is a temporary token for when we have registered, but not completed part 2 of signup
   const token = localStorage.getItem('tempuser');
   const id = localStorage.getItem('id');
-
   axios
     // set the user's role to coach or student
     .put(`${url}user/${id}`, {
