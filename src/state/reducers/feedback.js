@@ -18,7 +18,7 @@ function feedback(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        appointments: action.payload,
+        feedback: action.payload,
       };
 
     case types.GET_FEEDBACK_ERROR:

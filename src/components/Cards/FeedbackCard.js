@@ -14,41 +14,35 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImgMediaCard() {
+export default function FeedbackCard(props) {
   const classes = useStyles();
-
+  const {
+    rating,
+    feedback,
+    date,
+    coachFirstName,
+    coachLastName,
+  } = props;
   return (
     <Card className={classes.card}>
       <CardActionArea>
-        <CardMedia
-          component='img'
-          alt='Contemplative Reptile'
-          height='140'
-          image='/static/images/cards/contemplative-reptile.jpg'
-          title='Contemplative Reptile'
-        />
+        {rating}
         <CardContent>
           <Typography gutterBottom variant='h5' component='h2'>
-            Lizard
+            {`${coachFirstName} ${coachLastName}`}
           </Typography>
           <Typography
             variant='body2'
             color='textSecondary'
             component='p'
           >
-            Lizards are a widespread group of squamate reptiles, with
-            over 6,000 species, ranging across all continents except
-            Antarctica
+            {feedback}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size='small' color='primary'>
-          Share
-        </Button>
-        <Button size='small' color='primary'>
-          Learn More
-        </Button>
+        <div>{coachFirstName[0] + coachLastName[0]}</div>
+        <div>{date}</div>
       </CardActions>
     </Card>
   );
