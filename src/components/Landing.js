@@ -144,12 +144,22 @@ const TopLandingContainer = styled.div`
   height: 60vh;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: nowrap;
 
   @media only screen and (max-width: 600px) {
     flex-direction: column;
     height: 120vh;
   }
+`;
+
+const TopLandingSubContainer = styled.div`
+  width: 95%;
+  padding-top: 1em;
+  height: 60vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 `;
 
 const LandingTaglineContainer = styled.div`
@@ -501,24 +511,26 @@ const Landing = () => {
           </NavbarSubContainer>
         </NavbarContainer>
         <TopLandingContainer>
-          <LandingTaglineContainer>
-            <h1>
-              INTERVIEWING ISN'T EASY. THAT DOESN'T MEANT IT HAS TO BE
-              STRESSFUL.
-            </h1>
-            <h3>
-              We connect developers looking to improve their
-              interviewing technique with experienced pros who have
-              mastered the technical interview and can coach you
-              through the process from start to finish.
-            </h3>
-            <SignUp />
-          </LandingTaglineContainer>
-          <LandingRightContainer>
-            <LandingVectorImageContainer>
-              <img src={vector2} />
-            </LandingVectorImageContainer>
-          </LandingRightContainer>
+          <TopLandingSubContainer>
+            <LandingTaglineContainer>
+              <h1>
+                INTERVIEWING ISN'T EASY. THAT DOESN'T MEANT IT HAS TO
+                BE STRESSFUL.
+              </h1>
+              <h3>
+                We connect developers looking to improve their
+                interviewing technique with experienced pros who have
+                mastered the technical interview and can coach you
+                through the process from start to finish.
+              </h3>
+              <SignUp />
+            </LandingTaglineContainer>
+            <LandingRightContainer>
+              <LandingVectorImageContainer>
+                <img src={vector2} />
+              </LandingVectorImageContainer>
+            </LandingRightContainer>
+          </TopLandingSubContainer>
         </TopLandingContainer>
         <InfoboxContainer>
           <InfoBoxTitleContainer>
