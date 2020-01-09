@@ -44,7 +44,7 @@ const NavbarContainer = styled.div`
   }
 `;
 
-const Logo = styled.div`
+export const Logo = styled.div`
   width: 4.5em;
   height: 5em;
   background-image: url(${logo});

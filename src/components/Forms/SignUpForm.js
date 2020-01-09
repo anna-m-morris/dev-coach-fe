@@ -1,10 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
-import { StyledButton, buttonTheme, invertTheme } from '../Landing';
+import {
+  StyledButton,
+  buttonTheme,
+  invertTheme,
+  Logo,
+} from '../Landing';
 import {
   GreyBackgroundContainer,
   FormCard,
@@ -32,6 +38,13 @@ const RegisterCard = styled(FormCard)`
   }
 `;
 
+const NavLogo = styled(Logo)`
+  a {
+    width: 1.5rem;
+    height: 1rem;
+  }
+`;
+
 const StyledError = styled.p`
   padding: 0;
   margin: 0;
@@ -42,79 +55,90 @@ const StyledError = styled.p`
 
 function SignUpForm({ userReducer, isSubmitting, errors, touched }) {
   return (
-    <GreyBackgroundContainer>
-      <RegisterCard>
-        <h1>Sign Up To Get Started Now</h1>
-        <FormContainer>
-          <Form>
-            <ShortInputContainer>
+    <div>
+      <GreyBackgroundContainer>
+        <RegisterCard>
+          <Link to='/'>
+            <NavLogo />
+          </Link>
+          <h1>Sign Up To Get Started Now</h1>
+          <FormContainer>
+            <Form>
+              <ShortInputContainer>
+                <div>
+                  <Field
+                    type='text'
+                    name='first_name'
+                    placeholder='First Name'
+                  />
+                  {errors.first_name && touched.first_name && (
+                    <StyledError>{errors.first_name}</StyledError>
+                  )}
+                </div>
+                <div>
+                  <Field
+                    type='text'
+                    name='last_name'
+                    placeholder='Last Name'
+                  />
+                  {errors.last_name && touched.last_name && (
+                    <StyledError>{errors.last_name}</StyledError>
+                  )}
+                </div>
+              </ShortInputContainer>
               <div>
                 <Field
-                  type='text'
-                  name='first_name'
-                  placeholder='First Name'
+                  type='email'
+                  name='email'
+                  placeholder='Email'
                 />
-                {errors.first_name && touched.first_name && (
-                  <StyledError>{errors.first_name}</StyledError>
+                {userReducer.signUpError ? (
+                  <StyledError>{userReducer.signUpError}</StyledError>
+                ) : (
+                  errors.email &&
+                  touched.email && (
+                    <StyledError>{errors.email}</StyledError>
+                  )
                 )}
               </div>
               <div>
                 <Field
-                  type='text'
-                  name='last_name'
-                  placeholder='Last Name'
+                  type='password'
+                  name='password'
+                  placeholder='Password'
                 />
-                {errors.last_name && touched.last_name && (
-                  <StyledError>{errors.last_name}</StyledError>
+                {errors.password && touched.password && (
+                  <StyledError>{errors.password}</StyledError>
                 )}
               </div>
-            </ShortInputContainer>
-            <div>
-              <Field type='email' name='email' placeholder='Email' />
-              {userReducer.signUpError ? (
-                <StyledError>{userReducer.signUpError}</StyledError>
-              ) : (
-                errors.email &&
-                touched.email && (
-                  <StyledError>{errors.email}</StyledError>
-                )
-              )}
-            </div>
-            <div>
-              <Field
-                type='password'
-                name='password'
-                placeholder='Password'
-              />
-              {errors.password && touched.password && (
-                <StyledError>{errors.password}</StyledError>
-              )}
-            </div>
-            <div>
-              <Field
-                type='password'
-                name='confirm_password'
-                placeholder='Confirm Password'
-              />
-              {errors.confirm_password &&
-                touched.confirm_password && (
-                  <StyledError>{errors.confirm_password}</StyledError>
-                )}
-            </div>
+              <div>
+                <Field
+                  type='password'
+                  name='confirm_password'
+                  placeholder='Confirm Password'
+                />
+                {errors.confirm_password &&
+                  touched.confirm_password && (
+                    <StyledError>
+                      {errors.confirm_password}
+                    </StyledError>
+                  )}
+              </div>
 
-            <div>
-              <StyledButton
-                disabled={isSubmitting}
-                theme={buttonTheme}
-                type='submit'
-              >
-                Get Started
-              </StyledButton>
-            </div>
-          </Form>
-        </FormContainer>
-      </RegisterCard>
-    </GreyBackgroundContainer>
+              <div>
+                <StyledButton
+                  disabled={isSubmitting}
+                  theme={buttonTheme}
+                  type='submit'
+                >
+                  Get Started
+                </StyledButton>
+              </div>
+            </Form>
+          </FormContainer>
+        </RegisterCard>
+      </GreyBackgroundContainer>
+    </div>
   );
 }
 
