@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// import PrivateRoute from './utils/PrivateRoute';
 import LoginForm from './components/Forms/LoginForm';
 import SignUpForm from './components/Forms/SignUpForm';
 import Dashboard from './components/Dashboard';
@@ -14,7 +13,6 @@ import StudentForm from './components/Forms/StudentForm';
 import UserTypePage from './components/UserType/UserTypePage';
 import MainFaq from './components/FAQ/Main';
 import Booking from './components/Booking/Booking';
-import Notification from './components/Notifications/Notification';
 import Feedback from './views/Feedback/Feedback';
 
 function App(props) {
