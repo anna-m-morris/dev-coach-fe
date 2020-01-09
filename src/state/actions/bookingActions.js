@@ -22,10 +22,13 @@ export const handleStripePayment = (
     price,
   };
 
-  const response = await axiosWithAuth.post(`${url}payment/stripe`, {
-    token,
-    product,
-  });
+  const response = await axiosWithAuth().post(
+    `${url}payment/stripe`,
+    {
+      token,
+      product,
+    },
+  );
   const { status } = response.data;
   if (status === 'success') {
     success();
