@@ -1,14 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import Rating from '../../components/DataVisualization/Rating';
+import FeedbackRating from '../../components/DataVisualization/Rating';
 
 const StyledFeedback = styled.div``;
 
-const Feedback = () => {
+const Feedback = props => {
+  React.useEffect(() => {
+    props.getFeedback(props.user.id, props.user.role_id);
+  });
   return (
     <StyledFeedback>
-      <Rating />
+      <FeedbackRating
+        rating={props.feedback && props.feedback.rating}
+      />
     </StyledFeedback>
   );
 };
@@ -16,6 +21,7 @@ const Feedback = () => {
 const mapStateToProps = state => {
   return {
     feedback: state.feedbackReducer.feedback,
+    user: state.userReducer.user,
   };
 };
 
