@@ -1,9 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { getFeedback } from '../../state/actions/feedbackActions';
 import FeedbackRating from '../../components/DataVisualization/Rating';
 
 const StyledFeedback = styled.div``;
+
+// first_name: "Liam"
+// last_name: "Sutton"
+// email: "liam@google.com"
+// experience_level: 1
+// skill_level: 1
+// avatar_url: null
+// id: 6
+// created_at: "2020-01-09T11:42:50.284Z"
+// appointment_datetime: "Wed Mar 25 2015 01:00:00 GMT"
+// canceled: false
+// appointment_topic: "System Design"
+// appointment_length: "30 Minutes"
+// feedback: "Great work Bob! You did an amazing job. I don't have any improvements for you"
+// rating: 5
 
 const Feedback = props => {
   React.useEffect(() => {
@@ -11,8 +27,9 @@ const Feedback = props => {
   });
   return (
     <StyledFeedback>
+      {props.feedback && props.feedback.map(feedback => )}
       <FeedbackRating
-        rating={props.feedback && props.feedback.rating}
+        rating={feedback.rating}
       />
     </StyledFeedback>
   );
@@ -25,4 +42,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Feedback);
+export default connect(mapStateToProps, { getFeedback })(Feedback);

@@ -6,11 +6,13 @@ export const GET_FEEDBACK_SUCCESSFUL = 'GET_FEEDBACK_SUCCESSFUL';
 
 const url = process.env.REACT_APP_BASE_URL;
 
-export const getFeedback = coachStudentId => dispatch => {
+export const getFeedback = (coach_student_id, role) => dispatch => {
   dispatch({ type: GET_FEEDBACK_START });
 
-  axiosWithAuth
-    .get(`${url}feedback/${coachStudentId}`)
+  axiosWithAuth()
+    .get(`${url}feedback/${coach_student_id}`, {
+      params: { role },
+    })
     .then(res => {
       dispatch({
         type: GET_FEEDBACK_SUCCESSFUL,
