@@ -85,7 +85,7 @@ function SignUpForm({ userReducer, isSubmitting, errors, touched }) {
                 type='password'
                 name='password'
                 placeholder='Password'
-              />{' '}
+              />
               {errors.password && touched.password && (
                 <StyledError>{errors.password}</StyledError>
               )}
@@ -95,7 +95,7 @@ function SignUpForm({ userReducer, isSubmitting, errors, touched }) {
                 type='password'
                 name='confirm_password'
                 placeholder='Confirm Password'
-              />{' '}
+              />
               {errors.confirm_password &&
                 touched.confirm_password && (
                   <StyledError>{errors.confirm_password}</StyledError>
@@ -135,8 +135,8 @@ const FormikSignUpForm = withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    first_name: Yup.string().required('Please enter your first name'),
-    last_name: Yup.string().required('Please enter your last name'),
+    first_name: Yup.string().required('Please enter first name'),
+    last_name: Yup.string().required('Please enter last name'),
     email: Yup.string()
       .email('Please enter a valid email')
       .required('Please enter your email'),
