@@ -38,18 +38,18 @@ export const register = (props, values) => dispatch => {
     });
 };
 
-export const chooseUserRole = (props, values) => dispatch => {
+export const chooseUserRole = (props, values, role) => dispatch => {
   const token = localStorage.getItem('tempuser');
   const id = localStorage.getItem('id');
-  console.log(`${url}user/${id}`);
   axios
     .put(`${url}user/${id}`, {
-      role_id: '1',
+      role_id: role,
     })
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+    .then(res => dispatch({ type: types.USER_ROLE_CHOSEN, role }))
+    .catch(err =>
+      dispatch({ type: types.USER_ROLE_ERROR, error: err }),
+    );
   localStorage.setItem('token', token);
   localStorage.removeItem('tempuser');
   localStorage.removeItem('id');
-  window.location.reload();
 };

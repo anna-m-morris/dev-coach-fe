@@ -7,6 +7,7 @@ const initialState = {
   isLoading: false,
   isLoggedIn: false,
   userHasChosenRole: false,
+  userRoleError: '',
   id: null,
   role_id: null,
 };
@@ -36,6 +37,12 @@ function userReducer(state = initialState, action) {
         userHasChosenRole: true,
         userRole: action.role,
       };
+    case types.USER_ROLE_ERROR:
+      console.log(action);
+      return {
+        ...state,
+        userRoleError: action.error,
+      }
   }
 }
 
