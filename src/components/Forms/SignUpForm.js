@@ -5,7 +5,6 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
 import { StyledButton, buttonTheme, invertTheme } from '../Landing';
-
 import {
   GreyBackgroundContainer,
   FormCard,
@@ -16,8 +15,8 @@ import { register } from '../../state/actions/authenticationActions';
 
 const ShortInputContainer = styled.div`
   display: flex;
-  width: 75%;
   justify-content: space-between;
+  align-items: center;
 
   input {
     width: 82%;
@@ -38,6 +37,7 @@ const StyledError = styled.p`
   margin: 0;
   color: red;
   font-size: 0.8rem;
+  align-self: flex-start;
 `;
 
 function SignUpForm({ userReducer, isSubmitting, errors, touched }) {
@@ -52,8 +52,8 @@ function SignUpForm({ userReducer, isSubmitting, errors, touched }) {
                 <Field
                   type='text'
                   name='first_name'
-                  placeholder='First name'
-                />{' '}
+                  placeholder='First Name'
+                />
                 {errors.first_name && touched.first_name && (
                   <StyledError>{errors.first_name}</StyledError>
                 )}
@@ -62,8 +62,8 @@ function SignUpForm({ userReducer, isSubmitting, errors, touched }) {
                 <Field
                   type='text'
                   name='last_name'
-                  placeholder='Last name'
-                />{' '}
+                  placeholder='Last Name'
+                />
                 {errors.last_name && touched.last_name && (
                   <StyledError>{errors.last_name}</StyledError>
                 )}

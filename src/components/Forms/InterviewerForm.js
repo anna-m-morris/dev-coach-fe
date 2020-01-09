@@ -13,7 +13,7 @@ import {
 } from './LoginForm';
 
 const RegisterCard = styled(FormCard)`
-  width: 30em;
+  width: 27em;
   height: 35em;
   font-family: ABeeZee;
 
@@ -22,20 +22,30 @@ const RegisterCard = styled(FormCard)`
   }
 `;
 
+const StyledError = styled.p`
+  padding: 0;
+  margin: 0;
+  color: red;
+  font-size: 0.8rem;
+`;
+
 const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
   font-family: ABeeZee;
 `;
 
-function StudentForm(props) {
+function CoachForm({ errors, touched }) {
   const handleUserRoleSubmit = () => {};
   return (
     <ThisGreyBackgroundContainer>
       <RegisterCard>
-        <h1> Interviewer Form </h1>
+        <h1>Coach Form</h1>
         <FormContainer>
           <Form>
             <div>
               <Field type='text' name='city' placeholder='Location' />
+              {errors.city && touched.city && (
+                <StyledError>{errors.city}</StyledError>
+              )}
             </div>
             <div>
               <Field
@@ -43,9 +53,15 @@ function StudentForm(props) {
                 name='experience'
                 placeholder='Select Level Of Experience'
               />
+              {errors.experience && touched.experience && (
+                <StyledError>{errors.experience}</StyledError>
+              )}
             </div>
             <div>
               <Field type='text' name='skills' placeholder='Skills' />
+              {errors.skills && touched.skills && (
+                <StyledError>{errors.skills}</StyledError>
+              )}
             </div>
             <div>
               <Field
@@ -53,6 +69,9 @@ function StudentForm(props) {
                 name='description'
                 placeholder='Description'
               />
+              {errors.description && touched.description && (
+                <StyledError>{errors.description}</StyledError>
+              )}
             </div>
             <div>
               <StyledButton
@@ -71,7 +90,7 @@ function StudentForm(props) {
   );
 }
 
-const FormikStudentForm = withFormik({
+const FormikCoachForm = withFormik({
   mapPropsToValues({ city, experience, skills, description }) {
     return {
       city: city || '',
@@ -81,17 +100,15 @@ const FormikStudentForm = withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    city: Yup.string(),
-    experience: Yup.string(),
-    skills: Yup.string(),
-    description: Yup.string().required(),
+    city: Yup.string().required('Please enter your location'),
+    experience: Yup.string().required('Please enter your experience'),
+    skills: Yup.string().required('Please enter your skills'),
+    description: Yup.string().required('Please enter a description'),
   }),
   handleSubmit(values, { props, resetForm }) {
     resetForm();
     props.register(props, values);
   },
-})(StudentForm);
+})(CoachForm);
 
-export default connect(state => state, { register })(
-  FormikStudentForm,
-);
+export default connect(state => state, { register })(FormikCoachForm);
