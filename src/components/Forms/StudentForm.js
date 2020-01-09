@@ -36,7 +36,7 @@ const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
   font-family: ABeeZee;
 `;
 
-function StudentForm({ touched, errors, isSubmitting }, props) {
+function StudentForm({ touched, errors, isSubmitting }) {
   return (
     <ThisGreyBackgroundContainer>
       <RegisterCard>

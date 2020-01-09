@@ -1,11 +1,10 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
-
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
+import { register } from '../../state/actions/authenticationActions';
 import { StyledButton, buttonTheme } from '../Landing';
 import {
   GreyBackgroundContainer,
@@ -35,21 +34,36 @@ function StudentForm(props) {
         <h1> Interviewer Form </h1>
         <FormContainer>
           <Form>
-            <Field type='text' name='city' />
-            <Field
-              type='text'
-              name='level_of_experience'
-              placeholder=' select level of experience '
-            />
-            <Field type='text' name='skills' />
-            <Field type='text' name='description' />
-            <StyledButton
-              theme={buttonTheme}
-              onClick={handleUserRoleSubmit}
-            >
-              {' '}
-              Submit{' '}
-            </StyledButton>
+            <div>
+              <Field type='text' name='city' placeholder='Location' />
+            </div>
+            <div>
+              <Field
+                type='text'
+                name='experience'
+                placeholder='Select Level Of Experience'
+              />
+            </div>
+            <div>
+              <Field type='text' name='skills' placeholder='Skills' />
+            </div>
+            <div>
+              <Field
+                type='text'
+                name='description'
+                placeholder='Description'
+              />
+            </div>
+            <div>
+              <StyledButton
+                theme={buttonTheme}
+                onClick={handleUserRoleSubmit}
+                type='submit'
+              >
+                {' '}
+                Submit{' '}
+              </StyledButton>
+            </div>
           </Form>
         </FormContainer>
       </RegisterCard>
@@ -58,25 +72,26 @@ function StudentForm(props) {
 }
 
 const FormikStudentForm = withFormik({
+  mapPropsToValues({ city, experience, skills, description }) {
+    return {
+      city: city || '',
+      experience: experience || '',
+      skills: skills || '',
+      description: description || '',
+    };
+  },
   validationSchema: Yup.object().shape({
-    city: Yup.array(),
-    level_of_experience: Yup.array(),
-    skills: Yup.array(),
-    value: Yup.string().required(),
+    city: Yup.string(),
+    experience: Yup.string(),
+    skills: Yup.string(),
+    description: Yup.string().required(),
   }),
-  mapPropsToValues: props => ({
-    city: 'Location',
-    level_of_experience: 'Experience',
-    skills: 'Skills',
-    description: 'Describe yourself in one line',
-  }),
-  handleSubmit(values, { props }) {
-    props.register(
-      'http://localhost:5000/user/register',
-      props,
-      values,
-    );
+  handleSubmit(values, { props, resetForm }) {
+    resetForm();
+    props.register(props, values);
   },
 })(StudentForm);
 
-export default connect(state => state)(FormikStudentForm);
+export default connect(state => state, { register })(
+  FormikStudentForm,
+);
