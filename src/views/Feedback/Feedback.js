@@ -8,4 +8,10 @@ const Feedback = () => {
   return <StyledFeedback></StyledFeedback>;
 };
 
-export default Feedback;
+const mapStateToProps = state => {
+  return {
+    feedback: state.feedbackReducer.feedback,
+  };
+};
+
+export default connect(mapStateToProps)(Feedback);
