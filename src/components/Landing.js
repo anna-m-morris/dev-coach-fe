@@ -503,7 +503,10 @@ const Landing = () => {
                 <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
               </a>
               <a href='/register'>
-                <StyledButton theme={invertTheme}>
+                <StyledButton
+                  theme={invertTheme}
+                  style={{ 'white-space': 'nowrap' }}
+                >
                   SIGN UP
                 </StyledButton>
               </a>
