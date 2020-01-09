@@ -4,7 +4,10 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { StyledButton, buttonTheme } from '../Landing';
-import { chooseUserRole } from '../../state/actions/authenticationActions';
+import {
+  chooseUserRole,
+  setStudentDetails,
+} from '../../state/actions/authenticationActions';
 import {
   GreyBackgroundContainer,
   FormCard,
@@ -120,10 +123,11 @@ const FormikStudentForm = withFormik({
   handleSubmit(values, { resetForm, setSubmitting, props }) {
     resetForm();
     setSubmitting(false);
-    props.chooseUserRole(props, values);
+    props.chooseUserRole(props, values, 2);
   },
 })(StudentForm);
 
-export default connect(state => state, { chooseUserRole })(
-  FormikStudentForm,
-);
+export default connect(state => state, {
+  chooseUserRole,
+  setStudentDetails,
+})(FormikStudentForm);

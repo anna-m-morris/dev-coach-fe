@@ -94,7 +94,7 @@ export const buttonTheme = {
 };
 
 export const invertTheme = {
-  text: '#408f53',
+  text: '#4fad65',
   background: 'white',
 };
 

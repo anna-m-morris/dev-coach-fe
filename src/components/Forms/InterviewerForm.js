@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-
-import { register } from '../../state/actions/authenticationActions';
+import { chooseUserRole } from '../../state/actions/authenticationActions';
 import { StyledButton, buttonTheme } from '../Landing';
 import {
   GreyBackgroundContainer,
@@ -16,7 +15,6 @@ const RegisterCard = styled(FormCard)`
   width: 27em;
   height: 35em;
   font-family: ABeeZee;
-
   h1 {
     font-size: 24px;
   }
@@ -107,8 +105,10 @@ const FormikCoachForm = withFormik({
   }),
   handleSubmit(values, { props, resetForm }) {
     resetForm();
-    props.register(props, values);
+    props.chooseUserRole(props, values, 1);
   },
 })(CoachForm);
 
-export default connect(state => state, { register })(FormikCoachForm);
+export default connect(state => state, { chooseUserRole })(
+  FormikCoachForm,
+);
