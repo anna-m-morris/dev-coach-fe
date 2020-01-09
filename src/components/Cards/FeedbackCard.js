@@ -4,9 +4,8 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import FeedbackModal from '../Modals/FeedbackModal';
 
 const useStyles = makeStyles({
   card: {
@@ -22,6 +21,7 @@ export default function FeedbackCard(props) {
     date,
     coachFirstName,
     coachLastName,
+    topic,
   } = props;
   return (
     <Card className={classes.card}>
@@ -29,7 +29,7 @@ export default function FeedbackCard(props) {
         {rating}
         <CardContent>
           <Typography gutterBottom variant='h5' component='h2'>
-            {`${coachFirstName} ${coachLastName}`}
+            {topic}
           </Typography>
           <Typography
             variant='body2'
@@ -38,6 +38,11 @@ export default function FeedbackCard(props) {
           >
             {feedback}
           </Typography>
+          <FeedbackModal
+            coachFirstName={coachFirstName}
+            coachLastName={coachLastName}
+            feedback={feedback}
+          />
         </CardContent>
       </CardActionArea>
       <CardActions>

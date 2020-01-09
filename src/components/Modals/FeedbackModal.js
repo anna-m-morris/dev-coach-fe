@@ -28,11 +28,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function FeedbackModal() {
+export default function FeedbackModal(props) {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
+  const { coachFirstName, coachLastName, feedback } = props;
 
   const handleOpen = () => {
     setOpen(true);
@@ -44,9 +45,9 @@ export default function FeedbackModal() {
 
   return (
     <div>
-      <button type='button' onClick={handleOpen}>
-        Open Modal
-      </button>
+      <p type='button' onClick={handleOpen}>
+        Read full review
+      </p>
       <Modal
         aria-labelledby='simple-modal-title'
         aria-describedby='simple-modal-description'
@@ -54,12 +55,8 @@ export default function FeedbackModal() {
         onClose={handleClose}
       >
         <div style={modalStyle} className={classes.paper}>
-          <h2 id='simple-modal-title'>Text in a modal</h2>
-          <p id='simple-modal-description'>
-            Duis mollis, est non commodo luctus, nisi erat porttitor
-            ligula.
-          </p>
-          <SimpleModal />
+          <h2 id='simple-modal-title'>{`${coachFirstName} ${coachLastName}`}</h2>
+          <p id='simple-modal-description'>{feedback}</p>
         </div>
       </Modal>
     </div>

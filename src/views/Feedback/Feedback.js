@@ -8,21 +8,6 @@ import FeedbackCard from '../../components/Cards/FeedbackCard';
 
 const StyledFeedback = styled.div``;
 
-// first_name: "Liam"
-// last_name: "Sutton"
-// email: "liam@google.com"
-// experience_level: 1
-// skill_level: 1
-// avatar_url: null
-// id: 6
-// created_at: "2020-01-09T11:42:50.284Z"
-// appointment_datetime: "Wed Mar 25 2015 01:00:00 GMT"
-// canceled: false
-// appointment_topic: "System Design"
-// appointment_length: "30 Minutes"
-// feedback: "Great work Bob! You did an amazing job. I don't have any improvements for you"
-// rating: 5
-
 const Feedback = props => {
   React.useEffect(() => {
     props.getFeedback(props.user.id, props.user.role_id);
