@@ -44,7 +44,7 @@ function SignUpForm({ userReducer, isSubmitting, errors, touched }) {
   return (
     <GreyBackgroundContainer>
       <RegisterCard>
-        <h1>Sign up to get started now</h1>
+        <h1>Sign Up To Get Started Now</h1>
         <FormContainer>
           <Form>
             <ShortInputContainer>

@@ -24,7 +24,8 @@ export const FormCard = styled.div`
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: 1px solid #cdc7c7;
+  /* border: 1px solid #cdc7c7; */
+  border-radius: 6px;
 
   h1 {
     color: #292d38;
@@ -52,7 +53,7 @@ export const FormContainer = styled.div`
   }
 
   input {
-    background: #f2f2f2;
+    background: #fcfcfc;
     height: 2em;
     width: 91%;
     font-family: Ubuntu, sans-serif;
@@ -61,9 +62,11 @@ export const FormContainer = styled.div`
     padding: 0.5em;
     font-size: 16px;
     color: #808080;
+    transition: ease-out 0.1s;
 
     :hover {
       background: #ffffff;
+      transition: ease-in 0.1s;
     }
 
     :focus {
@@ -73,6 +76,12 @@ export const FormContainer = styled.div`
 
   button {
     width: 96%;
+    transition: ease-out 0.1s;
+
+    &:hover {
+      cursor: pointer;
+      transition: ease-in 0.1s;
+    }
   }
 `;
 
