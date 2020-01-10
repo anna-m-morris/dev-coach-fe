@@ -4,6 +4,12 @@ import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 import { StyledButton, buttonTheme, Logo } from '../Landing';
 import {
@@ -15,6 +21,16 @@ import {
   FormCard,
   FormContainer,
 } from './LoginForm';
+
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 500,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 const NavLogo = styled(Logo)`
   a {

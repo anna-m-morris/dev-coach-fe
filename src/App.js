@@ -48,6 +48,7 @@ function App(props) {
       <Route path='/register' component={SignUpForm} />
       <Route path='/faq' component={MainFaq} />
       <Route path='/select' component={Select} />
+      <Route path='/student' component={StudentForm} />
       <Redirect to='/' />
     </Switch>
   );
