@@ -49,17 +49,18 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
     background: '#4FAD65',
+    display: 'none',
   },
   toolbarIcon: {
     backgroundImage: `url(${logo})`,
-    transform: 'scale(0.9)',
+    transform: 'scale(0.8)',
+    marginLeft: '-0.5em',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'left',
     backgroundSize: '4rem',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: '0 8px',
     ...theme.mixins.toolbar,
     color: '#4fad65',
     fontSize: '.8rem',
@@ -149,6 +150,9 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
   },
   styledDivider: {
+    // TODO
+  },
+  hidden: {
     display: 'none',
   },
 }));
@@ -267,7 +271,7 @@ function Dashboard(props) {
         </div>
         <Divider className={classes.styledDivider} />
         <ListComponent className={classes.listStyles}></ListComponent>
-        <Divider className={classes.styledDivider} />
+        <Divider className={classes.hidden} />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
