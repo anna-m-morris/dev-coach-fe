@@ -10,11 +10,18 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
+// import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+// import NotificationsIcon from '@material-ui/icons/Notifications';
+// import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 import { mainListItems } from '../utils/dashboardList';
 import logo from '../img/firelogo.png';
 
@@ -22,8 +29,8 @@ function Copyright() {
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
-      <Link color='inherit' href='https://material-ui.com/'>
-        DevCoach
+      <Link color='inherit' href='https://dev-coach.com/'>
+        Dev-Coach
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -36,11 +43,10 @@ const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    backgroundColor: '#F2F2F2',
   },
   toolbar: {
-    backgroundColor: '#F2F2F2',
-    // paddingRight: 24, // keep right padding when drawer closed
+    paddingRight: 24, // keep right padding when drawer closed
+    background: '#4FAD65',
   },
   toolbarIcon: {
     backgroundImage: `url(${logo})`,
@@ -53,11 +59,10 @@ const useStyles = makeStyles(theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
     color: '#4fad65',
-    fontSize: '.8rem',
+    fontSize: '.7rem',
     fontFamily: 'ABeeZee',
   },
   appBar: {
-    boxShadow: 'none',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -80,9 +85,9 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+    color: '#4fad65',
   },
   drawerPaper: {
-    backgroundColor: '#F2F2F2',
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
@@ -110,25 +115,50 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
+    alignItems: 'center',
   },
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-  },
-  paper: {
-    padding: theme.spacing(2),
+    height: '100vh',
     display: 'flex',
-    overflow: 'auto',
     flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  fixedHeight: {
-    height: 240,
+  gridContainer: {
+    // height: '100vh',
+  },
+  // paper: {
+  //   // padding: theme.spacing(2),
+  //   display: 'flex',
+  //   // overflow: 'auto',
+  //   // flexDirection: 'column',
+  //   width: '100%',
+  // },
+  // fixedHeight: {
+  //   height: '80vh',
+  // },
+  copyright: {
+    textAlign: 'center',
   },
 }));
+// const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-function Dashboard(props) {
+export default function Dashboard(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const openMenu = Boolean(anchorEl);
+
+  const handleMenu = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -138,6 +168,7 @@ function Dashboard(props) {
 
   return (
     <div className={classes.root}>
+      {/* <Settings/> */}
       <CssBaseline />
       <AppBar
         position='absolute'
@@ -156,6 +187,49 @@ function Dashboard(props) {
           >
             <MenuIcon />
           </IconButton>
+          <Typography
+            component='h1'
+            variant='h6'
+            color='inherit'
+            noWrap
+            className={classes.title}
+          >
+            Dashboard
+          </Typography>
+          {/* <IconButton color='inherit'>
+            <Badge badgeContent={4} color='secondary'>
+              <NotificationsIcon />
+            </Badge>
+          </IconButton> */}
+          <div>
+            <IconButton
+              aria-label='account of current user'
+              aria-controls='menu-appbar'
+              aria-haspopup='true'
+              onClick={handleMenu}
+              color='inherit'
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id='menu-appbar'
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={openMenu}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+            </Menu>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -179,23 +253,34 @@ function Dashboard(props) {
         <Divider />
       </Drawer>
       <main className={classes.content}>
-        {props.routes}
         <div className={classes.appBarSpacer} />
         <Container maxWidth='lg' className={classes.container}>
-          <Grid container spacing={3}>
-            {/* <Grid item xs={12} md={8} lg={9}>
-              <UserDashboard />{' '}
-              <Paper className={fixedHeightPaper}></Paper>
-            </Grid>
-
+          <Grid
+            container
+            spacing={3}
+            className={classes.gridContainer}
+          >
+            {props.routes}
+            {/* Chart */}
+            {/* <Grid item xs={12} md={8} lg={9}> */}
+            {/* <Paper className={fixedHeightPaper}> */}
+            {/* <Chart /> */}
+            {/* </Paper> */}
+            {/* </Grid> */}
+            {/* Recent Deposits
             <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}></Paper>
+              <Paper className={fixedHeightPaper}>
+                <Deposits />
+              </Paper>
             </Grid>
+            Recent Orders
             <Grid item xs={12}>
-              <Paper className={classes.paper}></Paper>
-            </Grid> */}
+              <Paper className={classes.paper}>
+                <Orders />
+              </Paper>
+            </Grid>  */}
           </Grid>
-          <Box pt={4}>
+          <Box pt={4} className={classes.copyright}>
             <Copyright />
           </Box>
         </Container>
@@ -203,5 +288,3 @@ function Dashboard(props) {
     </div>
   );
 }
-
-export default Dashboard;
