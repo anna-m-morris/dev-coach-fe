@@ -30,6 +30,16 @@ function App(props) {
   if (localStorage.getItem('token')) {
     return <Dashboard routes={routes} />;
   }
+  if (localStorage.getItem('tempuser')) {
+    return (
+      <Switch>
+        <Route exact path='/' component={Landing} />
+        <Route path='/userrole' component={UserTypePage} />
+        <Route path='/interviewer' component={InterviewerForm} />
+        <Route path='/student' component={StudentForm} />
+      </Switch>
+    );
+  }
   return (
     <Switch>
       <Route exact path='/' component={Landing} />
@@ -39,7 +49,6 @@ function App(props) {
       <Route path='/userrole' component={UserTypePage} />
       <Route path='/interviewer' component={InterviewerForm} />
       <Route path='/student' component={StudentForm} />
-      <Route path='/user/type' component={UserTypePage} />
       <Route path='/faq' component={MainFaq} />
       <Route path='/select' component={Select} />
       <Redirect to='/' />
