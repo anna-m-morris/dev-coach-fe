@@ -1,7 +1,11 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7c3d3c09-dc9d-426b-aba2-28da9fee44e3/deploy-status)](https://app.netlify.com/sites/eager-euclid-bdab76/deploys)
+
 # Quality Hub Frontend
 
 [dev-coach.com](https://www.dev-coach.com)
+
 [Notion Document](https://www.notion.so/EU3-QualityHub-503a434aa6b4425595d2b4fa03a1d406)
+
 [Trello Board](https://trello.com/b/SlF9gway/quality-hub)
 
 # Table of Content

@@ -42,7 +42,7 @@ function marketplaceReducer(state = initialState, action) {
               .toLowerCase()
               .includes(action.payload);
           }
-          // return info.location.toLowerCase().includes(action.payload);
+          return info.location.toLowerCase().includes(action.payload);
         }),
       };
 

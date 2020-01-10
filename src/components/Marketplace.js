@@ -130,19 +130,19 @@ const BackgroundContainer = styled.section`
 // SEARCH SECTION
 
 const SearchDiv = styled.section`
-  background-image: url(${stare});
-  @media ${devices.large} {
-    min-width: 80vw;
-    min-height: 10vh;
-  }
+  background-image: url(${pink});
+  background-repeat: no-repeat;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  min-height: 40vh;
-  min-width: 80vw;
-  @media ${devices.tablet} {
+  min-height: 35vh;
+  max-width: 80vw;
+  @media ${devices.large} {
     min-height: 20vh;
+  }
+  @media ${devices.tablet} {
+    background-image: url(${stare});
+    min-height: 15vh;
   }
   @media ${devices.mobile} {
     background-image: url(${mobileCard});
@@ -170,21 +170,17 @@ const SearchDiv = styled.section`
 
 const SearchBar = styled.div`
   margin: 10px;
-
-  @media ${devices.large} {
-    min-width: 80vw;
-    max-height: 15vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-  }
   min-width: 80vw;
   min-height: 30vh;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media ${devices.large} {
+    max-height: 15vh;
+    min-width: 80vw;
+  }
 
   @media ${devices.tablet} {
     min-width: 80vw;
@@ -289,8 +285,7 @@ function Marketplace(props) {
             placeholder='search topic, name, or location'
             value={searchTerm}
             onChange={handleChange}
-          />
-          <button onSubmit={handleChange}>Search</button>
+          /> <button onSubmit={handleChange}>Search</button>
         </SearchBar>
       </SearchDiv>
       <MainContainer>
