@@ -11,7 +11,10 @@ function UserTypePage(props) {
       <div className='container'>
         <div className='user-type-intro'>
           <h2>
-            How Would You Like To Use <span>DevCoach?</span>
+            How Would You Like To Use
+            <Link to='/'>
+              <span> DevCoach?</span>
+            </Link>
           </h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
