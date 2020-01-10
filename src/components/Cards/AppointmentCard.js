@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -13,8 +14,20 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import styled from 'styled-components';
+// import { sizing } from '@material-ui/system'
+
+const useStyles = makeStyles({
+  card: {
+    maxWidth: '100px',
+    // width: 150,
+  },
+  media: {
+    height: 250,
+  },
+});
 
 export default function AppointmentCard(props) {
+  const classes = useStyles();
   const {
     first_name,
     last_name,
@@ -44,11 +57,12 @@ export default function AppointmentCard(props) {
   };
 
   return (
-    <StyledAppointmentCard>
+    <>
       <Card>
         <CardActionArea>
           <CardMedia
-            class='card-thumbnail'
+            className={classes.media}
+            width={150}
             image={
               avatar_url
                 ? avatar_url
@@ -123,138 +137,139 @@ export default function AppointmentCard(props) {
           </Button>
         </DialogActions>
       </Dialog>
-    </StyledAppointmentCard>
+    </>
   );
 }
-const StyledAppointmentCard = styled.div`
-  .card {
-    width: 100%;
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffff;
-  }
 
-  .content {
-  }
-  .media {
-    height: 10rem;
-    border-radius: 50%;
-    background-size: 50%;
-  }
-  .card-description {
-    margin: 1.5rem 0 0;
-    color: #000;
-    font-family: ABeeZee;
-  }
+// const StyledAppointmentCard = styled.div`
+//   .card {
+//     width: 100%;
+//     margin: 1rem;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     background-color: #ffff;
+//   }
 
-  .card-thumbnail {
-    height: 80px;
-    width: 80px;
-    border-radius: 10px;
-    font-family: ABeeZee;
+//   .content {
+//   }
+//   .media {
+//     height: 10rem;
+//     border-radius: 50%;
+//     background-size: 50%;
+//   }
+//   .card-description {
+//     margin: 1.5rem 0 0;
+//     color: #000;
+//     font-family: ABeeZee;
+//   }
 
-    img {
-      /* position: absolute; */
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      font-family: ABeeZee;
-    }
-  }
-`;
+//   .card-thumbnail {
+//     height: 80px;
+//     width: 80px;
+//     border-radius: 10px;
+//     font-family: ABeeZee;
 
-const StyledContainer = styled.div`
-  width: 100%;
-  max-width: 1024px;
-  margin: 0 auto;
-  display: grid;
-  grid-gap: 2em;
-  border: 2px solid red;
-  justify-content: space-between;
-  grid-template-columns: repeat(3, 1fr);
+//     img {
+//       /* position: absolute; */
+//       height: 100%;
+//       width: 100%;
+//       object-fit: cover;
+//       border-radius: 50%;
+//       font-family: ABeeZee;
+//     }
+//   }
+// `;
 
-  @media (max-width: 768px) {
-    max-width: 650px;
-    grid-template-columns: repeat(2, 1fr);
-  }
+// const StyledContainer = styled.div`
+//   width: 100%;
+//   max-width: 1024px;
+//   margin: 0 auto;
+//   display: grid;
+//   grid-gap: 2em;
+//   border: 2px solid red;
+//   justify-content: space-between;
+//   grid-template-columns: repeat(3, 1fr);
 
-  @media (max-width: 500px) {
-    max-width: 350px;
-    grid-template-columns: 1fr;
-  }
+//   @media (max-width: 768px) {
+//     max-width: 650px;
+//     grid-template-columns: repeat(2, 1fr);
+//   }
 
-  & > div.appointment-card {
-    background: #fff;
-    border-radius: 5px;
-    padding: 1rem;
-    box-shadow: 0px 0px 4px rgba(82, 68, 110, 0.3);
-  }
+//   @media (max-width: 500px) {
+//     max-width: 350px;
+//     grid-template-columns: 1fr;
+//   }
 
-  .flx-top-sb {
-    display: flex;
-    justify-content: space-between;
-    align-items: top;
-  }
+//   & > div.appointment-card {
+//     background: #fff;
+//     border-radius: 5px;
+//     padding: 1rem;
+//     box-shadow: 0px 0px 4px rgba(82, 68, 110, 0.3);
+//   }
 
-  .flx-center-sb {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+//   .flx-top-sb {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: top;
+//   }
 
-  .card-thumbnail {
-    height: 80px;
-    width: 80px;
-    border-radius: 5px;
-    position: relative;
+//   .flx-center-sb {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//   }
 
-    img {
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
-  }
+//   .card-thumbnail {
+//     height: 80px;
+//     width: 80px;
+//     border-radius: 5px;
+//     position: relative;
 
-  .card-description {
-    margin: 1.5rem 0 0;
-    color: #000;
+//     img {
+//       position: absolute;
+//       height: 100%;
+//       width: 100%;
+//       object-fit: cover;
+//     }
+//   }
 
-    h2,
-    h3 {
-      font-weight: bold;
-    }
+//   .card-description {
+//     margin: 1.5rem 0 0;
+//     color: #000;
 
-    h2 {
-      font-size: 1.5rem;
-      text-transform: uppercase;
-    }
+//     h2,
+//     h3 {
+//       font-weight: bold;
+//     }
 
-    h3 {
-      font-size: 1.4rem;
-    }
+//     h2 {
+//       font-size: 1.5rem;
+//       text-transform: uppercase;
+//     }
 
-    p {
-      font-weight: 600;
-      font-weight: 1.2rem;
-      margin-bottom: 0;
-    }
-  }
+//     h3 {
+//       font-size: 1.4rem;
+//     }
 
-  .upvote-btn {
-    border: 1px solid #101010;
-    border-radius: 5px;
-    padding: 0.25rem 1.15rem;
-    min-width: 60px;
-    height: 30px;
-    background: transparent;
+//     p {
+//       font-weight: 600;
+//       font-weight: 1.2rem;
+//       margin-bottom: 0;
+//     }
+//   }
 
-    span {
-      display: inline-block;
-    }
-  }
-`;
+//   .upvote-btn {
+//     border: 1px solid #101010;
+//     border-radius: 5px;
+//     padding: 0.25rem 1.15rem;
+//     min-width: 60px;
+//     height: 30px;
+//     background: transparent;
+
+//     span {
+//       display: inline-block;
+//     }
+//   }
+// `;
