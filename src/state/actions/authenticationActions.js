@@ -104,3 +104,9 @@ export const chooseUserRole = (props, values, role) => dispatch => {
       dispatch({ type: types.USER_ROLE_ERROR, error: err }),
     );
 };
+
+export const logout = () => {
+  window.localStorage.remove('token');
+  window.localStorage.remove('state');
+  return { type: types.LOGOUT };
+};

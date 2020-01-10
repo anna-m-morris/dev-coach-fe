@@ -15,6 +15,8 @@ const initialState = {
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
+    default:
+      return state;
     case types.LOGIN_START:
       return {
         ...state,
@@ -46,25 +48,27 @@ function userReducer(state = initialState, action) {
         isLoading: false,
         isLoggedIn: false,
       };
-    default:
-      return state;
     case types.USER_ROLE_CHOSEN:
       console.log(action);
       return {
         ...state,
         userHasChosenRole: true,
         user: {
-          ...state.user,
-          role_id: action.role,
           id: action.id,
-        },
+          role_id: action.role,
+        }
       };
     case types.USER_ROLE_ERROR:
-      console.log(action);
       return {
         ...state,
         userRoleError: action.error,
       };
+    case types.LOGOUT:
+      return {
+        ...state,
+        isLoggedIn: false,
+        user: null,
+      }
   }
 }
 

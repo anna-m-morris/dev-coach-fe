@@ -46,9 +46,6 @@ function App(props) {
       <Route path='/login/' component={LoginForm} />
       <Route path='/marketplace' component={Marketplace} />
       <Route path='/register' component={SignUpForm} />
-      <Route path='/userrole' component={UserTypePage} />
-      <Route path='/interviewer' component={InterviewerForm} />
-      <Route path='/student' component={StudentForm} />
       <Route path='/faq' component={MainFaq} />
       <Route path='/select' component={Select} />
       <Redirect to='/' />

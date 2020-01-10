@@ -22,8 +22,10 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { connect } from 'react-redux';
 import { mainListItems } from '../utils/dashboardList';
 import logo from '../img/firelogo.png';
+import { logout } from '../state/actions/authenticationActions';
 
 function Copyright() {
   return (
@@ -145,11 +147,16 @@ const useStyles = makeStyles(theme => ({
 }));
 // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-export default function Dashboard(props) {
+function Dashboard(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMenu = Boolean(anchorEl);
+
+  const handleLogout = event => {
+    setAnchorEl(null);
+    props.logout();
+  };
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -228,6 +235,7 @@ export default function Dashboard(props) {
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
               <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </div>
         </Toolbar>
@@ -288,3 +296,5 @@ export default function Dashboard(props) {
     </div>
   );
 }
+
+export default connect(state => state, { logout })(Dashboard);
