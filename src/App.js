@@ -14,6 +14,7 @@ import UserTypePage from './components/UserType/UserTypePage';
 import MainFaq from './components/FAQ/Main';
 import Booking from './components/Booking/Booking';
 import Feedback from './views/Feedback/Feedback';
+import Select from './components/Forms/selectComponent';
 
 function App(props) {
   const routes = (
@@ -26,8 +27,7 @@ function App(props) {
       <Redirect to='/dashboard' />
     </Switch>
   );
-  // if (localStorage.getItem('token')) {
-  if (props.isLoggedIn) {
+  if (localStorage.getItem('token')) {
     return <Dashboard routes={routes} />;
   }
   return (
@@ -41,6 +41,7 @@ function App(props) {
       <Route path='/student' component={StudentForm} />
       <Route path='/user/type' component={UserTypePage} />
       <Route path='/faq' component={MainFaq} />
+      <Route path='/select' component={Select} />
       <Redirect to='/' />
     </Switch>
   );
