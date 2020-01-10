@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -162,8 +163,15 @@ export default function Dashboard(props) {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('state');
+    setAnchorEl(null);
   };
 
   return (
@@ -227,7 +235,8 @@ export default function Dashboard(props) {
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>My Account</MenuItem>
+              <MenuItem onClick={logout}>Logout</MenuItem>
             </Menu>
           </div>
         </Toolbar>

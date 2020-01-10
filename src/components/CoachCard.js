@@ -1,5 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -17,10 +18,9 @@ import RateReviewIcon from '@material-ui/icons/RateReview';
 import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
 import WorkIcon from '@material-ui/icons/Work';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-import card from '../img/card.jpg';
-import { withStyles } from '@material-ui/core/styles';
+// import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import card from '../img/card.jpg';
 
 const StyledButton = withStyles({
   root: {
@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
   },
   top: {
     // backgroundColor: 'red',
-    backgroundImage: `url(${card})`
+    backgroundImage: `url(${card})`,
   },
 }));
 
@@ -115,7 +115,14 @@ export default function RecipeReviewCard(props) {
         title={props.coach.first_name}
         subheader={props.coach.location}
       ></CardHeader>
-      <CardContent style={{ margin: 10, padding: 0, marginTop: 5, maxHeight: 20 }}>
+      <CardContent
+        style={{
+          margin: 10,
+          padding: 0,
+          marginTop: 5,
+          maxHeight: 20,
+        }}
+      >
         <Typography
           style={{
             marginTop: 5,
