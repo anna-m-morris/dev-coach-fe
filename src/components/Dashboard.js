@@ -52,6 +52,7 @@ const useStyles = makeStyles(theme => ({
   },
   toolbarIcon: {
     backgroundImage: `url(${logo})`,
+    transform: 'scale(0.85)',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'left',
     backgroundSize: '4rem',
@@ -61,7 +62,7 @@ const useStyles = makeStyles(theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
     color: '#4fad65',
-    fontSize: '.7rem',
+    fontSize: '0.8rem',
     fontFamily: 'ABeeZee',
   },
   appBar: {
@@ -172,12 +173,6 @@ function Dashboard(props) {
 
   const handleDrawerClose = () => {
     setOpen(false);
-  };
-
-  const logout = () => {
-    localStorage.clear();
-    setAnchorEl(null);
-    window.location.reload();
   };
 
   return (
