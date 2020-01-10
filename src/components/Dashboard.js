@@ -23,7 +23,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { mainListItems } from '../utils/dashboardList';
+import { ListComponent, mainListItems } from '../utils/dashboardList';
 import logo from '../img/firelogo.png';
 import { logout } from '../state/actions/authenticationActions';
 
@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
   },
   toolbarIcon: {
     backgroundImage: `url(${logo})`,
-    transform: 'scale(0.85)',
+    transform: 'scale(0.9)',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'left',
     backgroundSize: '4rem',
@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
     color: '#4fad65',
-    fontSize: '0.8rem',
+    fontSize: '.8rem',
     fontFamily: 'ABeeZee',
   },
   appBar: {
@@ -89,6 +89,9 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
     color: '#4fad65',
+  },
+  drawer: {
+    // todo
   },
   drawerPaper: {
     position: 'relative',
@@ -144,6 +147,9 @@ const useStyles = makeStyles(theme => ({
   // },
   copyright: {
     textAlign: 'center',
+  },
+  styledDivider: {
+    display: 'none',
   },
 }));
 // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
@@ -246,6 +252,7 @@ function Dashboard(props) {
         variant='permanent'
         classes={{
           paper: clsx(
+            classes.drawer,
             classes.drawerPaper,
             !open && classes.drawerPaperClose,
           ),
@@ -253,14 +260,14 @@ function Dashboard(props) {
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <h1>DevCoach</h1>
+          <h1 className={classes.toolbarTitle}>DevCoach</h1>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
+        <Divider className={classes.styledDivider} />
+        <ListComponent className={classes.listStyles}></ListComponent>
+        <Divider className={classes.styledDivider} />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

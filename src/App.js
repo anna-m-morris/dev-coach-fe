@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { connect } from 'react-redux';
-
 import LoginForm from './components/Forms/LoginForm';
 import SignUpForm from './components/Forms/SignUpForm';
 import Dashboard from './components/Dashboard';
@@ -16,6 +16,12 @@ import Booking from './components/Booking/Booking';
 import Feedback from './views/Feedback/Feedback';
 import Select from './components/Forms/selectComponent';
 
+const globalTheme = createMuiTheme({
+  typography: {
+    fontFamily: ['Ubuntu', 'Abeezee'].join(','),
+  },
+});
+
 function App(props) {
   const routes = (
     <Switch>
@@ -27,8 +33,13 @@ function App(props) {
       <Redirect to='/dashboard' />
     </Switch>
   );
+
   if (localStorage.getItem('token')) {
-    return <Dashboard routes={routes} />;
+    return (
+      <ThemeProvider theme={globalTheme}>
+        <Dashboard routes={routes} />
+      </ThemeProvider>
+    );
   }
   if (localStorage.getItem('tempuser')) {
     return (

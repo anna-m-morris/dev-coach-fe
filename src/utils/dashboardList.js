@@ -1,4 +1,6 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core';
+import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -8,6 +10,63 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import { Link } from 'react-router-dom';
+
+const useStyles = makeStyles(theme => ({
+  listItem: {
+    textDecoration: 'none',
+    color: 'black',
+  },
+}));
+
+export const ListComponent = props => {
+  const classes = useStyles();
+  return (
+    <List>
+      <div>
+        <Link to='/dashboard' className={classes.listItem}>
+          <ListItem button>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary='Dashboard' />
+          </ListItem>
+        </Link>
+        <Link to='/marketplace' className={classes.listItem}>
+          <ListItem button>
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText primary='Coaches' />
+          </ListItem>
+        </Link>
+        <Link to='/feedback' className={classes.listItem}>
+          <ListItem button>
+            <ListItemIcon>
+              <BarChartIcon />
+            </ListItemIcon>
+            <ListItemText primary='Feedback' />
+          </ListItem>
+        </Link>
+        <Link to='/booking' className={classes.listItem}>
+          <ListItem button>
+            <ListItemIcon>
+              <LayersIcon />
+            </ListItemIcon>
+            <ListItemText primary='FAQ' />
+          </ListItem>
+        </Link>
+        <Link to='/settings' className={classes.listItem}>
+          <ListItem button>
+            <ListItemIcon>
+              <ShoppingCartIcon />
+            </ListItemIcon>
+            <ListItemText primary='Blog' />
+          </ListItem>
+        </Link>
+      </div>
+    </List>
+  );
+};
 
 export const mainListItems = (
   <div>
