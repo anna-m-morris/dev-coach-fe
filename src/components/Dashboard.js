@@ -172,6 +172,7 @@ export default function Dashboard(props) {
     localStorage.removeItem('token');
     localStorage.removeItem('state');
     setAnchorEl(null);
+    window.location.reload();
   };
 
   return (
