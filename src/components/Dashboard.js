@@ -47,24 +47,31 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-    background: '#4FAD65',
     display: 'none',
   },
   toolbarIcon: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...theme.mixins.toolbar,
+    color: '#4fad65',
+    fontSize: '.8rem',
+    paddingLeft: '3.5em',
+  },
+  toolbarIconClosed: {
+    marginLeft: '-0.4em',
     backgroundImage: `url(${logo})`,
-    transform: 'scale(0.8)',
-    marginLeft: '-0.5em',
+    width: '100%',
+    transform: 'scale(0.7)',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'left',
-    backgroundSize: '4rem',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
     ...theme.mixins.toolbar,
     color: '#4fad65',
     fontSize: '.8rem',
-    fontFamily: 'ABeeZee',
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -153,7 +160,9 @@ const useStyles = makeStyles(theme => ({
     // TODO
   },
   hidden: {
-    display: 'none',
+    visibility: 'hidden',
+    opacity: 0,
+    transition: 'visibility 5s, opacity 0s linear',
   },
 }));
 // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
@@ -263,11 +272,26 @@ function Dashboard(props) {
         }}
         open={open}
       >
-        <div className={classes.toolbarIcon}>
-          <h1 className={classes.toolbarTitle}>DevCoach</h1>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
+        <div
+          className={
+            open ? classes.toolbarIcon : classes.toolbarIconClosed
+          }
+          onClick={() => setOpen(!open)}
+        >
+          <img className={classes.toolbarLogoImg}></img>
+          <h1
+            className={open ? classes.toolbarTitle : classes.hidden}
+          >
+            DevCoach
+          </h1>
+          {
+            <IconButton
+              className={!open && classes.hidden}
+              onClick={handleDrawerClose}
+            >
+              <ChevronLeftIcon />
+            </IconButton>
+          }
         </div>
         <Divider className={classes.styledDivider} />
         <ListComponent className={classes.listStyles}></ListComponent>
