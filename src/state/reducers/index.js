@@ -6,6 +6,7 @@ import bookingReducer from './booking';
 import notificationsReducer from './notifications';
 import faqReducers from './faqReducers';
 import feedbackReducer from './feedback';
+import marketplaceReducer from './marketplace';
 
 const appReducer = combineReducers({
   // add your reducers here
@@ -15,6 +16,7 @@ const appReducer = combineReducers({
   notificationsReducer,
   faqReducers,
   feedbackReducer,
+  marketplaceReducer,
 });
 
 const rootReducer = (state, action) => {
