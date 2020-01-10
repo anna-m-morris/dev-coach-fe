@@ -169,8 +169,7 @@ export default function Dashboard(props) {
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('state');
+    localStorage.clear();
     setAnchorEl(null);
     window.location.reload();
   };
