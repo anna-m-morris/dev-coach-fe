@@ -24,6 +24,7 @@ function userReducer(state = initialState, action) {
         welcomeMessage: '',
       };
     case types.LOGIN_SUCCESSFUL:
+      console.log(action);
       return {
         ...state,
         isLoading: false,
@@ -52,7 +53,11 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         userHasChosenRole: true,
-        userRole: action.role,
+        user: {
+          ...state.user,
+          role_id: action.role,
+          id: action.id,
+        },
       };
     case types.USER_ROLE_ERROR:
       console.log(action);

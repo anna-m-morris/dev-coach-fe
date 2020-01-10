@@ -31,7 +31,13 @@ export const register = (props, values) => dispatch => {
   axios
     .post(`${url}user/register`, values)
     .then(res => {
+      console.log(res.data);
       dispatch({ type: types.SIGN_UP_SUCCESSFUL });
+      dispatch({
+        type: types.LOGIN_SUCCESSFUL,
+        payload: res.data.user,
+        message: res.data.message,
+      });
       localStorage.setItem('tempuser', res.data.token);
       localStorage.setItem('id', res.data.user_id);
       props.history.push('/userrole');
@@ -80,7 +86,7 @@ export const chooseUserRole = (props, values, role) => dispatch => {
     })
     .then(res => {
       console.log(res);
-      dispatch({ type: types.USER_ROLE_CHOSEN, role });
+      dispatch({ type: types.USER_ROLE_CHOSEN, role, id });
       if (role === 2) {
         setStudentDetails(values);
       } else {
