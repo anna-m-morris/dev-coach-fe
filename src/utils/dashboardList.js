@@ -25,8 +25,8 @@ const customListItemStyles = {
   root: {
     borderRadius: '15px',
     border: '8px solid white',
-    paddingTop: '6x',
-    paddingBottom: '6px',
+    paddingTop: '5px',
+    paddingBottom: '5px',
     marginBottom: '-0.2em',
     marginTop: '-0.2em',
     height: '90%',

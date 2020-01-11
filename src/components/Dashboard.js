@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
     color: '#4fad65',
     fontSize: '.8rem',
-    paddingLeft: '3.5em',
+    paddingLeft: '3em',
   },
   toolbarIconClosed: {
     marginLeft: '-0.4em',
