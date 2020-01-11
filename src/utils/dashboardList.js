@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, withStyles } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -16,7 +16,27 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'none',
     color: 'black',
   },
+  green: {
+    background: 'green',
+  },
 }));
+
+const customListItemStyles = {
+  root: {
+    borderRadius: '15px',
+    border: '8px solid white',
+    paddingTop: '4px',
+    paddingBottom: '4px',
+    marginBottom: '-0.4em',
+    height: '90%',
+    '&:hover': {
+      background: 'green',
+      color: 'white',
+    },
+  },
+};
+
+const CustomListItem = withStyles(customListItemStyles)(ListItem);
 
 export const ListComponent = props => {
   const classes = useStyles();
@@ -24,44 +44,44 @@ export const ListComponent = props => {
     <List>
       <div>
         <Link to='/dashboard' className={classes.listItem}>
-          <ListItem button>
+          <CustomListItem button>
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary='Dashboard' />
-          </ListItem>
+          </CustomListItem>
         </Link>
         <Link to='/marketplace' className={classes.listItem}>
-          <ListItem button>
+          <CustomListItem button>
             <ListItemIcon>
               <PeopleIcon />
             </ListItemIcon>
             <ListItemText primary='Coaches' />
-          </ListItem>
+          </CustomListItem>
         </Link>
         <Link to='/feedback' className={classes.listItem}>
-          <ListItem button>
+          <CustomListItem button>
             <ListItemIcon>
               <BarChartIcon />
             </ListItemIcon>
             <ListItemText primary='Feedback' />
-          </ListItem>
+          </CustomListItem>
         </Link>
         <Link to='/booking' className={classes.listItem}>
-          <ListItem button>
+          <CustomListItem button>
             <ListItemIcon>
               <LayersIcon />
             </ListItemIcon>
             <ListItemText primary='FAQ' />
-          </ListItem>
+          </CustomListItem>
         </Link>
         <Link to='/settings' className={classes.listItem}>
-          <ListItem button>
+          <CustomListItem button>
             <ListItemIcon>
               <ShoppingCartIcon />
             </ListItemIcon>
             <ListItemText primary='Blog' />
-          </ListItem>
+          </CustomListItem>
         </Link>
       </div>
     </List>
