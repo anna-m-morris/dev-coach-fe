@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     color: 'black',
   },
   green: {
-    background: 'green',
+    background: '#4fad65',
   },
 }));
 
@@ -25,13 +25,21 @@ const customListItemStyles = {
   root: {
     borderRadius: '15px',
     border: '8px solid white',
-    paddingTop: '4px',
-    paddingBottom: '4px',
-    marginBottom: '-0.4em',
+    paddingTop: '6x',
+    paddingBottom: '6px',
+    marginBottom: '-0.2em',
+    marginTop: '-0.2em',
     height: '90%',
+    transition: '0.1s',
     '&:hover': {
-      background: 'green',
+      background: '#4fad65',
       color: 'white',
+      transform: 'scale(1.03)',
+      '& div': {
+        '& svg': {
+          color: 'white',
+        },
+      },
     },
   },
 };
@@ -46,7 +54,7 @@ export const ListComponent = props => {
         <Link to='/dashboard' className={classes.listItem}>
           <CustomListItem button>
             <ListItemIcon>
-              <DashboardIcon />
+              <DashboardIcon className={classes.listIcon} />
             </ListItemIcon>
             <ListItemText primary='Dashboard' />
           </CustomListItem>
