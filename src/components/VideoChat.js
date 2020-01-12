@@ -1,8 +1,9 @@
-import React from 'react';
-import MediaHandler from '../utils/MediaHandler';
-import styled from 'styled-components';
+import React, { Component } from 'react';
 import Pusher from 'pusher-js';
 import Peer from 'simple-peer';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import MediaHandler from '../utils/MediaHandler';
 
 const StyledVideoChat = styled.div`
   width: 500px;
@@ -36,76 +37,96 @@ const StyledVideoChat = styled.div`
 
 const APP_KEY = '9ebd578e6fc08eeb098e';
 
-class VideoChat extends React.Component {
-  constructor(props) {
-    super(props);
+class VideoChat extends Component {
+  constructor() {
+    super();
+
     this.state = {
       hasMedia: false,
       otherUserId: null,
+      user: null,
     };
 
-    this.user = window.user;
     this.peers = {};
-    this.user.stream = null;
 
     this.mediaHandler = new MediaHandler();
 
-    this.setupPusher();
+    // this.callTo = this.callTo.bind(this);
+    // this.setupPusher = this.setupPusher.bind(this);
+    // this.startPeer = this.startPeer.bind(this);
   }
 
   componentWillMount = () => {
-    this.mediaHandler.getPermissions().then(stream => {
-      this.setState({ hasMedia: true });
-      this.user.stream = stream;
-
-      try {
-        this.myVideo.srcObject = stream;
-      } catch (e) {
-        this.myVideo.src = URL.createObjectURL(stream);
-      }
-
-      this.myVideo.play();
-    });
-  };
-
-  setupPusher = () => {
-    this.pusher = new Pusher(APP_KEY, {
-      authEndpoint: 'http://localhost:5000/pusher',
-      cluster: 'eu',
-      auth: {
-        params: this.user.id,
-        headers: {
-          'X-CRSF-Token': window.crsfToken,
-        },
+    this.setState({
+      user: {
+        id: this.props.user.user_id,
+        name: this.props.user.email,
       },
     });
 
-    this.channel = this.pusher.subscribe('presence-video-channel');
+    setTimeout(
+      () =>
+        this.mediaHandler.getPermissions().then(stream => {
+          this.setState({
+            hasMedia: true,
+            user: { ...this.state.user, stream: stream },
+          });
 
-    this.channel.bind(`client-signal-${this.user.id}`, signal => {
-      let peer = this.peers[signal.userId];
+          try {
+            this.myVideo.srcObject = stream;
+          } catch (e) {
+            this.myVideo.src = URL.createObjectURL(stream);
+          }
 
-      // if peer not already exists, we got an incoming call
-      if (peer === undefined) {
-        this.setState({ otherUserId: signal.userId });
-        peer = this.startPeer(signal.userId, false);
-      }
+          this.myVideo.play();
+        }),
+      1000,
+    );
+    setTimeout(() => this.setupPusher(), 2000);
+  };
 
-      peer.signal(signal.data);
+  setupPusher = () => {
+    Pusher.logToConsole = true;
+    this.pusher = new Pusher(APP_KEY, {
+      authEndpoint: 'http://localhost:5000/video',
+      cluster: 'eu',
+      // auth: {
+      //   params: this.state.user.id,
+      //   headers: {
+      //     'X-CRSF-Token': localStorage.getItem('token'),
+      //   },
+      // },
     });
+
+    this.channel = this.pusher.subscribe(`private-video-channel`);
+
+    this.channel.bind(
+      `client-signal-${this.state.user.id}`,
+      signal => {
+        let peer = this.peers[signal.userId];
+
+        // if peer is not already exists, we got an incoming call
+        if (peer === undefined) {
+          this.setState({ otherUserId: signal.userId });
+          peer = this.startPeer(signal.userId, false);
+        }
+
+        peer.signal(signal.data);
+      },
+    );
   };
 
   startPeer = (userId, initiator = true) => {
     const peer = new Peer({
       initiator,
-      stream: this.user.stream,
+      stream: this.state.user.stream,
       trickle: false,
     });
 
     peer.on('signal', data => {
       this.channel.trigger(`client-signal-${userId}`, {
         type: 'signal',
-        userId: this.user.id,
+        userId: this.state.user.id,
         data: data,
       });
     });
@@ -125,42 +146,61 @@ class VideoChat extends React.Component {
       if (peer !== undefined) {
         peer.destroy();
       }
-      this.peers[userId] = null;
+
+      this.peers[userId] = undefined;
     });
 
     return peer;
   };
 
   callTo = userId => {
+    console.log('yeah')
     this.peers[userId] = this.startPeer(userId);
   };
 
   render() {
     return (
-      <StyledVideoChat>
-        {[1, 2, 3, 4].map(userId =>
-          this.user.id !== userId ? (
-            <button onClick={() => this.callTo(userId)}>
-              Call {userId}
-            </button>
-          ) : null,
-        )}
+      <div>
 
-        <video
-          className='my-video'
-          ref={ref => {
-            this.myVideo = ref;
-          }}
-        />
-        <video
-          className='user-video'
-          ref={ref => {
-            this.userVideo = ref;
-          }}
-        />
+        {this.state.user
+          ? [1, 2, 3, 4].map(userId => {
+            return this.state.user.id !== userId ? (
+              <button
+              key={userId}
+              onClick={() => this.callTo(userId)}
+              >
+                  Call {userId}
+                </button>
+              ) : null;
+            })
+          : null}
+      <StyledVideoChat>
+
+        <div className='video-container'>
+          <video
+            className='my-video'
+            ref={ref => {
+              this.myVideo = ref;
+            }}
+            ></video>
+          <video
+            className='user-video'
+            ref={ref => {
+              this.userVideo = ref;
+            }}
+            ></video>
+        </div>
       </StyledVideoChat>
+</div>
     );
   }
 }
 
-export default VideoChat;
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user,
+    channel: state.videoReducer.channel
+  };
+};
+
+export default connect(mapStateToProps)(VideoChat);

@@ -15,6 +15,7 @@ import {
   getCoaches,
   searchCoaches,
 } from '../state/actions/marketplaceActions';
+import { startVideo } from '../state/actions/videoActions';
 // import StyledButton from './Landing';
 
 // DUMMY DATA //
@@ -285,12 +286,17 @@ function Marketplace(props) {
             placeholder='search topic, name, or location'
             value={searchTerm}
             onChange={handleChange}
-          /> <button onSubmit={handleChange}>Search</button>
+          />{' '}
+          <button onSubmit={handleChange}>Search</button>
         </SearchBar>
       </SearchDiv>
       <MainContainer>
         {marketplaceCoaches.map(coach => (
-          <CoachCard key={coach.first_name} coach={coach} />
+          <CoachCard
+            key={coach.first_name}
+            coach={coach}
+            video={() => props.startVideo(coach.email)}
+          />
         ))}
 
         {/* {props.coaches
@@ -310,5 +316,6 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   getCoaches,
+  startVideo,
   searchCoaches,
 })(Marketplace);

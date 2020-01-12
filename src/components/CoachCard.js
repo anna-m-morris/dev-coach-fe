@@ -197,15 +197,16 @@ export default function RecipeReviewCard(props) {
               padding: 5,
             }}
           >
-            <Link
+            <a
               style={{
                 textDecoration: 'none',
                 color: 'white',
               }}
-              to={props.coach.contact_url}
+              href='/settings'
+              onClick={props.video}
             >
               Book Now
-            </Link>
+            </a>
           </StyledButton>
         </CardContent>
       </CardContent>
