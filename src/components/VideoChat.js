@@ -1,0 +1,166 @@
+import React from 'react';
+import MediaHandler from '../utils/MediaHandler';
+import styled from 'styled-components';
+import Pusher from 'pusher-js';
+import Peer from 'simple-peer';
+
+const StyledVideoChat = styled.div`
+  width: 500px;
+  height: 380px;
+  margin: 0px auto;
+  border: 2px solid #645cff;
+  position: relative;
+  box-shadow: 1px 1px 11px #9e9e9e;
+
+  .my-video {
+    width: 130px;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    border: 6px solid #2196f3;
+    border-radius: 6px;
+    z-index: 2;
+  }
+
+  .user-video {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+`;
+
+const APP_KEY = '9ebd578e6fc08eeb098e';
+
+class VideoChat extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasMedia: false,
+      otherUserId: null,
+    };
+
+    this.user = window.user;
+    this.peers = {};
+    this.user.stream = null;
+
+    this.mediaHandler = new MediaHandler();
+
+    this.setupPusher();
+  }
+
+  componentWillMount = () => {
+    this.mediaHandler.getPermissions().then(stream => {
+      this.setState({ hasMedia: true });
+      this.user.stream = stream;
+
+      try {
+        this.myVideo.srcObject = stream;
+      } catch (e) {
+        this.myVideo.src = URL.createObjectURL(stream);
+      }
+
+      this.myVideo.play();
+    });
+  };
+
+  setupPusher = () => {
+    this.pusher = new Pusher(APP_KEY, {
+      authEndpoint: 'http://localhost:5000/pusher',
+      cluster: 'eu',
+      auth: {
+        params: this.user.id,
+        headers: {
+          'X-CRSF-Token': window.crsfToken,
+        },
+      },
+    });
+
+    this.channel = this.pusher.subscribe('presence-video-channel');
+
+    this.channel.bind(`client-signal-${this.user.id}`, signal => {
+      let peer = this.peers[signal.userId];
+
+      // if peer not already exists, we got an incoming call
+      if (peer === undefined) {
+        this.setState({ otherUserId: signal.userId });
+        peer = this.startPeer(signal.userId, false);
+      }
+
+      peer.signal(signal.data);
+    });
+  };
+
+  startPeer = (userId, initiator = true) => {
+    const peer = new Peer({
+      initiator,
+      stream: this.user.stream,
+      trickle: false,
+    });
+
+    peer.on('signal', data => {
+      this.channel.trigger(`client-signal-${userId}`, {
+        type: 'signal',
+        userId: this.user.id,
+        data: data,
+      });
+    });
+
+    peer.on('stream', stream => {
+      try {
+        this.userVideo.srcObject = stream;
+      } catch (e) {
+        this.userVideo.src = URL.createObjectURL(stream);
+      }
+
+      this.userVideo.play();
+    });
+
+    peer.on('close', () => {
+      let peer = this.peers[userId];
+      if (peer !== undefined) {
+        peer.destroy();
+      }
+      this.peers[userId] = null;
+    });
+
+    return peer;
+  };
+
+  callTo = userId => {
+    this.peers[userId] = this.startPeer(userId);
+  };
+
+  render() {
+    return (
+      <StyledVideoChat>
+        {[1, 2, 3, 4].map(userId =>
+          this.user.id !== userId ? (
+            <button onClick={() => this.callTo(userId)}>
+              Call {userId}
+            </button>
+          ) : null,
+        )}
+
+        <video
+          className='my-video'
+          ref={ref => {
+            this.myVideo = ref;
+          }}
+        />
+        <video
+          className='user-video'
+          ref={ref => {
+            this.userVideo = ref;
+          }}
+        />
+      </StyledVideoChat>
+    );
+  }
+}
+
+export default VideoChat;

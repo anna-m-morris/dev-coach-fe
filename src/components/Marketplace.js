@@ -118,8 +118,8 @@ const marketplaceCoaches = [
 
 // STYLED COMPONENTS //
 const BackgroundContainer = styled.section`
-  position: fixed;
-  margin-top: 70px;
+  /* position: fixed; */
+  /* margin-top: 70px; */
   height: 100vh;
   background: #ffffff;
   display: flex;
