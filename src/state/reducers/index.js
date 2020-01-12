@@ -7,7 +7,7 @@ import notificationsReducer from './notifications';
 import faqReducers from './faqReducers';
 import feedbackReducer from './feedback';
 import marketplaceReducer from './marketplace';
-import videoReducer from './video';
+import interviewReducer from './interview';
 
 const appReducer = combineReducers({
   // add your reducers here
@@ -18,7 +18,7 @@ const appReducer = combineReducers({
   faqReducers,
   feedbackReducer,
   marketplaceReducer,
-  videoReducer,
+  interviewReducer,
 });
 
 const rootReducer = (state, action) => {

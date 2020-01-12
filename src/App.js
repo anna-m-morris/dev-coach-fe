@@ -24,6 +24,7 @@ function App(props) {
       <Route path={'/booking'} component={Booking} />
       <Route path={'/feedback'} component={Feedback} />
       <Route path={'/settings'} component={VideoChat} />
+      <Route path={'/interview'} component={VideoChat} />
       <Redirect to='/dashboard' />
     </Switch>
   );

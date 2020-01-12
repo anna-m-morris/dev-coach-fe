@@ -1,12 +1,12 @@
-import * as types from '../actions/videoActions';
+import * as types from '../actions/interviewActions';
 
 const initialState = {
-  channel: null,
+  peerId: null,
   error: '',
   isLoading: false,
 };
 
-function videoReducer(state = initialState, action) {
+function interviewReducer(state = initialState, action) {
   switch (action.type) {
     case types.VIDEO_START:
       return {
@@ -18,7 +18,7 @@ function videoReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        channel: action.payload,
+        peerId: action.payload,
       };
 
     case types.VIDEO_ERROR:
@@ -29,4 +29,4 @@ function videoReducer(state = initialState, action) {
   }
 }
 
-export default videoReducer;
+export default interviewReducer;

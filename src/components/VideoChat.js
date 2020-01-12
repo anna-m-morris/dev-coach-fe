@@ -50,10 +50,6 @@ class VideoChat extends Component {
     this.peers = {};
 
     this.mediaHandler = new MediaHandler();
-
-    // this.callTo = this.callTo.bind(this);
-    // this.setupPusher = this.setupPusher.bind(this);
-    // this.startPeer = this.startPeer.bind(this);
   }
 
   componentWillMount = () => {
@@ -88,7 +84,7 @@ class VideoChat extends Component {
   setupPusher = () => {
     Pusher.logToConsole = true;
     this.pusher = new Pusher(APP_KEY, {
-      authEndpoint: 'http://localhost:5000/video',
+      authEndpoint: `${process.env.REACT_APP_BASE_URL}video`,
       cluster: 'eu',
       // auth: {
       //   params: this.state.user.id,
@@ -154,44 +150,39 @@ class VideoChat extends Component {
   };
 
   callTo = userId => {
-    console.log('yeah')
     this.peers[userId] = this.startPeer(userId);
   };
 
   render() {
     return (
       <div>
-
-        {this.state.user
-          ? [1, 2, 3, 4].map(userId => {
-            return this.state.user.id !== userId ? (
+        {this.props.peerId
+          ? [this.props.peerId].map(userId => (
               <button
-              key={userId}
-              onClick={() => this.callTo(userId)}
+                key={userId}
+                onClick={() => this.callTo(userId)}
               >
-                  Call {userId}
-                </button>
-              ) : null;
-            })
+                Call to Person
+              </button>
+            ))
           : null}
-      <StyledVideoChat>
-
-        <div className='video-container'>
-          <video
-            className='my-video'
-            ref={ref => {
-              this.myVideo = ref;
-            }}
+        <StyledVideoChat>
+          <div className='video-container'>
+            <video
+              className='my-video'
+              ref={ref => {
+                this.myVideo = ref;
+              }}
             ></video>
-          <video
-            className='user-video'
-            ref={ref => {
-              this.userVideo = ref;
-            }}
+            <video
+              className='user-video'
+              ref={ref => {
+                this.userVideo = ref;
+              }}
             ></video>
-        </div>
-      </StyledVideoChat>
-</div>
+          </div>
+        </StyledVideoChat>
+      </div>
     );
   }
 }
@@ -199,7 +190,7 @@ class VideoChat extends Component {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
-    channel: state.videoReducer.channel
+    peerId: state.interviewReducer.peerId,
   };
 };
 
