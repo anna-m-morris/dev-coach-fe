@@ -73,6 +73,9 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
     color: '#4fad65',
     fontSize: '.8rem',
+    '&:hover': {
+      transform: 'scale(0.65)',
+    },
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -221,7 +224,7 @@ function Dashboard(props) {
               open && classes.menuButtonHidden,
             )}
           >
-            <MenuIcon className={classes.menuIcon}/>
+            <MenuIcon className={classes.menuIcon} />
           </IconButton>
           <Typography
             component='h1'
