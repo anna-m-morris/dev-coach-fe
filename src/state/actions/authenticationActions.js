@@ -40,7 +40,7 @@ export const register = (props, values) => dispatch => {
       });
       localStorage.setItem('tempuser', res.data.token);
       localStorage.setItem('id', res.data.user_id);
-      props.history.push('/userrole');
+      window.location.reload();
     })
     .catch(err => {
       dispatch({
@@ -106,7 +106,7 @@ export const chooseUserRole = (props, values, role) => dispatch => {
 };
 
 export const logout = () => {
-  window.localStorage.remove('token');
-  window.localStorage.remove('state');
+  window.localStorage.removeItem('token');
+  window.localStorage.removeItem('state');
   return { type: types.LOGOUT };
 };

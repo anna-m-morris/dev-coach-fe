@@ -48,6 +48,7 @@ function App(props) {
         <Route path='/userrole' component={UserTypePage} />
         <Route path='/interviewer' component={InterviewerForm} />
         <Route path='/student' component={StudentForm} />
+        <Redirect to='/userrole' />
       </Switch>
     );
   }
@@ -55,11 +56,10 @@ function App(props) {
     <Switch>
       <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
-      <Route path='/marketplace' component={Marketplace} />
       <Route path='/register' component={SignUpForm} />
+      <Route path='/marketplace' component={Marketplace} />
       <Route path='/faq' component={MainFaq} />
       <Route path='/select' component={Select} />
-      <Route path='/student' component={StudentForm} />
       <Redirect to='/' />
     </Switch>
   );
