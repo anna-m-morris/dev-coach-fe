@@ -18,7 +18,7 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-// import NotificationsIcon from '@material-ui/icons/Notifications';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 // import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -224,11 +224,11 @@ function Dashboard(props) {
           >
             Dashboard
           </Typography>
-          {/* <IconButton color='inherit'>
+          <IconButton color='inherit'>
             <Badge badgeContent={4} color='secondary'>
               <NotificationsIcon />
             </Badge>
-          </IconButton> */}
+          </IconButton>
           <div>
             <IconButton
               aria-label='account of current user'
