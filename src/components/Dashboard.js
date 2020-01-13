@@ -48,6 +48,7 @@ const useStyles = makeStyles(theme => ({
   },
   toolbar: {
     background: '#FAFAFA',
+    zIndex: -10,
   },
   toolbarIcon: {
     width: '100%',
@@ -61,7 +62,6 @@ const useStyles = makeStyles(theme => ({
   },
   toolbarIconClosed: {
     marginLeft: '-0.4em',
-    backgroundImage: `url(${logo})`,
     width: '100%',
     transform: 'scale(0.7)',
     backgroundRepeat: 'no-repeat',
@@ -117,6 +117,7 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   drawerPaperClose: {
+    zIndex: 10000,
     overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
@@ -219,7 +220,7 @@ function Dashboard(props) {
               open && classes.menuButtonHidden,
             )}
           >
-            <MenuIcon />
+            <MenuIcon className={classes.menuIcon}/>
           </IconButton>
           <Typography
             component='h1'
