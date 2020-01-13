@@ -61,6 +61,7 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: '3em',
   },
   toolbarIconClosed: {
+    backgroundImage: `url(${logo})`,
     marginLeft: '-0.4em',
     width: '100%',
     transform: 'scale(0.7)',
