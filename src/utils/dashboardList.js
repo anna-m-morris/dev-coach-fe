@@ -41,6 +41,15 @@ const customListItemStyles = {
         },
       },
     },
+    '&:focus': {
+      background: '#4fad65',
+      color: 'white',
+      '& div': {
+        '& svg': {
+          color: 'white',
+        },
+      },
+    },
   },
 };
 

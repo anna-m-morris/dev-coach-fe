@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
     backgroundImage: `url(${logo})`,
     marginLeft: '-0.4em',
     width: '100%',
-    transform: 'scale(0.7)',
+    transform: 'scale(0.55)',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'left',
     display: 'flex',
@@ -73,6 +73,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
     color: '#4fad65',
     fontSize: '.8rem',
+    transition: '',
     '&:hover': {
       transform: 'scale(0.65)',
     },
