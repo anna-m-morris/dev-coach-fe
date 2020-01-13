@@ -84,7 +84,7 @@ class VideoChat extends Component {
   setupPusher = () => {
     Pusher.logToConsole = true;
     this.pusher = new Pusher(APP_KEY, {
-      authEndpoint: `${process.env.REACT_APP_BASE_URL}video`,
+      authEndpoint: `http://localhost:5000/video`,
       cluster: 'eu',
       // auth: {
       //   params: this.state.user.id,
