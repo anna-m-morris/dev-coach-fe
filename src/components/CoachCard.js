@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function RecipeReviewCard(props) {
+const RecipeReviewCard = props => {
   console.log(props);
   const classes = useStyles();
   // const [expanded, setExpanded] = React.useState(false);
@@ -206,4 +206,6 @@ export default function RecipeReviewCard(props) {
       {/* </Collapse> */}
     </Card>
   );
-}
+};
+
+export default RecipeReviewCard;

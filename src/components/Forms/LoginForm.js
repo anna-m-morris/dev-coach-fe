@@ -136,7 +136,12 @@ const ExtraLoginDetails = () => {
   );
 };
 
-function LoginForm({ userReducer, errors, touched, isSubmitting }) {
+const LoginForm = ({
+  userReducer,
+  errors,
+  touched,
+  isSubmitting,
+}) => {
   return (
     <div>
       <GreyBackgroundContainer>
@@ -197,7 +202,7 @@ function LoginForm({ userReducer, errors, touched, isSubmitting }) {
       </GreyBackgroundContainer>
     </div>
   );
-}
+};
 
 const FormikLoginForm = withFormik({
   mapPropsToValues({ email, password }) {

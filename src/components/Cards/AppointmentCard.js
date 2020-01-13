@@ -27,7 +27,7 @@ const StyledAppointmentCard = styled.div`
   }
 `;
 
-export default function AppointmentCard(props) {
+const AppointmentCard = props => {
   const {
     first_name,
     last_name,
@@ -99,4 +99,6 @@ export default function AppointmentCard(props) {
       </Card>
     </StyledAppointmentCard>
   );
-}
+};
+
+export default AppointmentCard;
