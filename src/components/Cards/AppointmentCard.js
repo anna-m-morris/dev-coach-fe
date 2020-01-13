@@ -27,7 +27,7 @@ const StyledAppointmentCard = styled.div`
   }
 `;
 
-export default function AppointmentCard(props) {
+const AppointmentCard = props => {
   const {
     first_name,
     last_name,
@@ -37,6 +37,7 @@ export default function AppointmentCard(props) {
     description,
     canceled,
     cancel,
+    startInterview,
   } = props;
 
   return (
@@ -87,11 +88,17 @@ export default function AppointmentCard(props) {
               Do you want to Cancel
             </Button>
           )}
-          <Button size='small' color='primary'>
-            Message
+          <Button
+            size='small'
+            color='primary'
+            onClick={startInterview}
+          >
+            Start Interview
           </Button>
         </CardActions>
       </Card>
     </StyledAppointmentCard>
   );
-}
+};
+
+export default AppointmentCard;
