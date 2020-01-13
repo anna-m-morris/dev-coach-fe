@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
     backgroundImage: `url(${logo})`,
     marginLeft: '-0.4em',
     width: '100%',
-    transform: 'scale(0.55)',
+    transform: 'scale(0.6)',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'left',
     display: 'flex',
