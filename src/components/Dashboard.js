@@ -18,7 +18,7 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+// import NotificationsIcon from '@material-ui/icons/Notifications';
 // import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   toolbar: {
-    display: 'none',
+    background: '#FAFAFA',
   },
   toolbarIcon: {
     width: '100%',
@@ -79,6 +79,8 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    boxShadow: 'none',
+    color: 'grey',
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -87,6 +89,10 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+  },
+  profileMenu: {
+    color: 'grey',
+    transform: 'scale(1.25)',
   },
   menuButton: {
     marginRight: 36,
@@ -221,15 +227,13 @@ function Dashboard(props) {
             color='inherit'
             noWrap
             className={classes.title}
-          >
-            Dashboard
-          </Typography>
-          <IconButton color='inherit'>
+          ></Typography>
+          {/* <IconButton color='inherit'>
             <Badge badgeContent={4} color='secondary'>
               <NotificationsIcon />
             </Badge>
-          </IconButton>
-          <div>
+          </IconButton> */}
+          <div className={classes.profileMenu}>
             <IconButton
               aria-label='account of current user'
               aria-controls='menu-appbar'
