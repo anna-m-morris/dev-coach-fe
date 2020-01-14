@@ -29,7 +29,7 @@ function App(props) {
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
       <Route path={'/marketplace'} component={Marketplace} />
-      <Route path={'/booking'} component={Booking} />
+      <Route path={'/appointment'} component={Booking} />
       <Route path={'/feedback'} component={Feedback} />
       <Route path={'/settings'} component={VideoChat} />
       <Route path={'/interview'} component={VideoChat} />

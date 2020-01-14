@@ -9,56 +9,69 @@ import {
 import {
   handleStripePayment,
   handlePaypalPayment,
+  saveDate,
 } from '../../state/actions/bookingActions';
-import Calendar from './Calendar';
+import DatePicker from './DatePicker';
 import Select from '../Inputs/SelectInfo';
 import Notification from '../Notifications/Notification';
 import Paypal from './Paypal';
 
 const Booking = props => {
+  const {
+    date,
+    coach,
+    closeMessage,
+    success,
+    error,
+    showErrorMessage,
+    showSuccessMessage,
+    handleStripePayment,
+    handlePaypalPayment,
+    saveDate,
+  } = props;
+
   return (
     <div>
       <Notification
-        onClose={props.closeMessage}
+        onClose={closeMessage}
         variant='success'
         message='Your payment was successful!'
-        open={props.success}
+        open={success}
       />
       <Notification
-        onClose={props.closeMessage}
+        onClose={closeMessage}
         variant='error'
         message={`Your payment wasn't successful!`}
-        open={props.error}
+        open={error}
       />
-      <Calendar />
-      <h1>{props.date ? props.date.slice(0, 21) : null}</h1>
+      <DatePicker date={date} saveDate={saveDate} />
       <Select />
       <StripeCheckout
         stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // this key is only for testing we
         // will add later our real key to the env file
         token={token =>
-          props.handleStripePayment(
+          handleStripePayment(
             token,
             'title', // title should be appointment topic
-            props.coach_price,
-            props.showSuccessMessage,
-            props.showErrorMessage,
+            coach.hourly_rate,
+            showSuccessMessage,
+            showErrorMessage,
           )
         }
-        amount={props.coach_price * 100}
+        amount={coach.hourly_rate * 100}
         name={'name'}
         billingAddress
         shippingAddress
       />
       <Paypal
-        price={props.coach_price}
+        price={coach.hourly_rate}
         name={'Appointment topic'}
         description={
           'Appointment_topic, coach_name, coach_price, appointment_length'
         }
-        handlePaypalPayment={props.handlePaypalPayment}
-        success={props.showSuccessMessage}
-        error={props.showErrorMessage}
+        handlePaypalPayment={handlePaypalPayment}
+        success={showSuccessMessage}
+        error={showErrorMessage}
       />
     </div>
   );
@@ -66,7 +79,7 @@ const Booking = props => {
 
 const mapStateToProps = state => {
   return {
-    coach_price: state.bookingReducer.coach_price,
+    coach: state.bookingReducer.coach,
     select: state.bookingReducer.select,
     date: state.bookingReducer.date,
     success: state.notificationsReducer.success,
@@ -80,4 +93,5 @@ export default connect(mapStateToProps, {
   showSuccessMessage,
   closeMessage,
   handlePaypalPayment,
+  saveDate,
 })(Booking);

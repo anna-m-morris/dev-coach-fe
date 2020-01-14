@@ -11,13 +11,22 @@ import {
   getCoaches,
   searchForKeyword,
   searchForPrice,
+  searchForExperience,
 } from '../../state/actions/marketplaceActions';
+import { saveCoach } from '../../state/actions/bookingActions';
 import SelectPrice from '../../components/Inputs/SelectPrice';
+import SelectExperience from '../../components/Inputs/SelectExperience';
 import SearchForKeyword from '../../components/Inputs/SearchForKeyword';
 
 const StyledMarketplace = styled.div`
   display: flex;
   flex-direction: column;
+
+  .top {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 
   .coaches {
     display: flex;
@@ -69,6 +78,8 @@ const Marketplace = ({
   getCoaches,
   coaches,
   searchForPrice,
+  searchForExperience,
+  saveCoach,
 }) => {
   // const [searchTerm, setSearchTerm] = useState('');
   const [minValue, setMinValue] = useState(0);
@@ -77,11 +88,6 @@ const Marketplace = ({
   useEffect(() => {
     getCoaches();
   }, [getCoaches]);
-
-  // const handleChange = event => {
-  //   setSearchTerm(event.target.value.toLowerCase());
-  //   searchForKeyword(searchTerm);
-  // };
 
   const handlePagination = value => {
     if (value <= 1) {
@@ -95,16 +101,23 @@ const Marketplace = ({
 
   return (
     <StyledMarketplace>
-      <SelectPrice searchForPrice={searchForPrice} />
-      <SearchForKeyword
-        searchForKeyword={e => searchForKeyword(e.target.value)}
-      />
+      <div className='top'>
+        <SelectPrice searchForPrice={searchForPrice} />
+        <SearchForKeyword
+          searchForKeyword={e => searchForKeyword(e.target.value)}
+        />
+        <SelectExperience searchForExperience={searchForExperience} />
+      </div>
       <div className='coaches'>
         {coaches &&
           coaches
             .slice(minValue, maxValue)
             .map(coach => (
-              <CoachCard key={coach.first_name} coach={coach} />
+              <CoachCard
+                key={coach.first_name}
+                coach={coach}
+                saveCoach={saveCoach}
+              />
             ))}
       </div>
       <div className='pagination'>
@@ -128,4 +141,6 @@ export default connect(mapStateToProps, {
   getCoaches,
   searchForKeyword,
   searchForPrice,
+  searchForExperience,
+  saveCoach,
 })(Marketplace);

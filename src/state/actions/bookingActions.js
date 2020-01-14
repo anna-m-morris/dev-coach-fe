@@ -7,6 +7,7 @@ export const PAYPAL_PAYMENT_ERROR = 'PAYPAL_PAYMENT_ERROR';
 export const PAYPAL_PAYMENT_SUCCESSFUL = 'PAYPAL_PAYMENT_SUCCESSFUL';
 export const SAVE_DATE = 'SAVE_DATE';
 export const SAVE_SELECT = 'SAVE_SELECT';
+export const SAVE_COACH = 'SAVE_COACH';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -82,4 +83,8 @@ export const saveDate = date => {
 
 export const saveSelect = event => {
   return { type: SAVE_SELECT, payload: event };
+};
+
+export const saveCoach = coach => {
+  return { type: SAVE_COACH, payload: coach };
 };

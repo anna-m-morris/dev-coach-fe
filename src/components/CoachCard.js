@@ -2,6 +2,7 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import CoachModal from './Modals/CoachModal';
 
 const StyledCoachCard = styled.div`
@@ -63,7 +64,7 @@ const StyledCoachCard = styled.div`
 `;
 
 const CoachCard = props => {
-  const { coach } = props;
+  const { coach, saveCoach } = props;
   return (
     <StyledCoachCard>
       <div className='header'>
@@ -105,13 +106,15 @@ const CoachCard = props => {
       </div>
 
       <div className='footer'>
-        <Button
-          className='button'
-          variant='contained'
-          color='primary'
-        >
-          Request
-        </Button>
+        <Link to='/appointment' onClick={() => saveCoach(coach)}>
+          <Button
+            className='button'
+            variant='contained'
+            color='primary'
+          >
+            Request
+          </Button>
+        </Link>
       </div>
     </StyledCoachCard>
   );

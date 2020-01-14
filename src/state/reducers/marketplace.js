@@ -62,6 +62,14 @@ function marketplaceReducer(state = initialState, action) {
         ),
       };
 
+    case types.SEARCH_EXPERIENCE:
+      return {
+        ...state,
+        coaches: state.copyOfCoaches.filter(
+          coach => coach.experience_level >= action.payload,
+        ),
+      };
+
     default:
       return state;
   }
