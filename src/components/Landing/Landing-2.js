@@ -5,7 +5,7 @@ import Header from './Header/Header';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
 
-import mainImage from '../../img/main-image.jpg';
+import mainImage from './img/landing-1.jpg';
 // import vector2 from '../img/landingvector.png';
 // import greenBackgroundSVG from '../img/green-slanted-bg-shape.png';
 // import handshakeImg from '../img/handshake.png';
