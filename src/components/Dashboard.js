@@ -295,7 +295,7 @@ const Dashboard = props => {
           </h1>
           {
             <IconButton
-              className={!open && classes.hidden}
+              className={!open ? classes.hidden : null}
               onClick={handleDrawerClose}
             >
               <ChevronLeftIcon />
