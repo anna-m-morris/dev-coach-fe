@@ -9,8 +9,6 @@ const initialState = {
   welcomeMessage: '',
   userHasChosenRole: false,
   userRoleError: '',
-  id: null,
-  role_id: null,
 };
 
 function userReducer(state = initialState, action) {

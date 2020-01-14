@@ -72,6 +72,12 @@ export const chooseUserRole = (props, values, role) => dispatch => {
               id: studentRes.data.student.id,
             });
           })
+          .then(() => {
+            localStorage.setItem('token', token);
+            localStorage.removeItem('tempuser');
+            localStorage.removeItem('id');
+            window.location.reload();
+          })
           .catch(err => {});
       } else {
         axiosWithAuth()
@@ -86,15 +92,14 @@ export const chooseUserRole = (props, values, role) => dispatch => {
               id: coachRes.data.coach.id,
             });
           })
-          .catch(coachErr => {
-          });
+          .then(() => {
+            localStorage.setItem('token', token);
+            localStorage.removeItem('tempuser');
+            localStorage.removeItem('id');
+            window.location.reload();
+          })
+          .catch(coachErr => {});
       }
-    })
-    .then(() => {
-      localStorage.setItem('token', token);
-      localStorage.removeItem('tempuser');
-      localStorage.removeItem('id');
-      window.location.reload();
     })
     .catch(err =>
       dispatch({ type: types.USER_ROLE_ERROR, error: err }),
