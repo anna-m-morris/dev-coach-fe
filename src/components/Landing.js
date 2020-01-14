@@ -2,17 +2,17 @@ import styled, { css } from 'styled-components';
 import React from 'react';
 import logo from '../img/firelogo.png';
 
-const vector2 = require('../img/landingvector.png');
-const greenBackgroundSVG = require('../img/green-slanted-bg-shape.png');
-const handshakeImg = require('../img/handshake.png');
-const analytics = require('../img/analytics-1.png');
-const startup = require('../img/startup-1.png');
-const getStartedVector = require('../img/getstartedvector.png');
-const facebookIcon = require('../img/fb.png');
-const githubIcon = require('../img/github-1.png');
-const instagramIcon = require('../img/instagram-logo-1.png');
-const linkedInIcon = require('../img/linkedin.png');
-const twitterIcon = require('../img/twitter-1.png');
+import vector2 from '../img/landingvector.png';
+import greenBackgroundSVG from '../img/green-slanted-bg-shape.png';
+import handshakeImg from '../img/handshake.png';
+import analytics from '../img/analytics-1.png';
+import startup from '../img/startup-1.png';
+import getStartedVector from '../img/getstartedvector.png';
+import facebookIcon from '../img/fb.png';
+import githubIcon from '../img/github-1.png';
+import instagramIcon from '../img/instagram-logo-1.png';
+import linkedInIcon from '../img/linkedin.png';
+import twitterIcon from '../img/twitter-1.png';
 
 // media queries
 
@@ -296,10 +296,6 @@ const InfoCardsContainer = styled.div`
   }
 `;
 
-const BottomLandingContainer = styled.div`
-  height: 100vh;
-`;
-
 const InfoCard = styled.div`
   height: 120%;
   width: 25%;
@@ -490,55 +486,46 @@ const Landing = () => {
     <div>
       <LandingWrapper>
         <NavbarContainer>
-          <NavbarSubContainer>
-            <LogoTitleContainer>
-              <Logo />
-              <NavTitleContainer>
-                <h1>DevCoach</h1>
-              </NavTitleContainer>
-            </LogoTitleContainer>
-            <LinksContainer>
-              <NavbarLink>
-                <a href='/faq/general'>FAQ</a>
-              </NavbarLink>
-              <NavbarLink>
-                <a href='#'>About</a>
-              </NavbarLink>
-              <a href='/login'>
-                <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
-              </a>
-              <a href='/register'>
-                <StyledButton
-                  theme={invertTheme}
-                  style={{ 'white-space': 'nowrap' }}
-                >
-                  SIGN UP
-                </StyledButton>
-              </a>
-            </LinksContainer>
-          </NavbarSubContainer>
+          <LogoTitleContainer>
+            <Logo />
+            <NavTitleContainer>
+              <h1>DevCoach</h1>
+            </NavTitleContainer>
+          </LogoTitleContainer>
+          <LinksContainer>
+            <NavbarLink>
+              <a href='/faq/general'>FAQ</a>
+            </NavbarLink>
+            <NavbarLink>
+              <a href='/about'>About</a>
+            </NavbarLink>
+            <a href='/login'>
+              <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
+            </a>
+            <a href='/register'>
+              <StyledButton theme={invertTheme}>SIGN UP</StyledButton>
+            </a>
+          </LinksContainer>
         </NavbarContainer>
         <TopLandingContainer>
-          <TopLandingSubContainer>
-            <LandingTaglineContainer>
-              <h1>
-                INTERVIEWING ISN'T EASY. THAT DOESN'T MEANT IT HAS TO
-                BE STRESSFUL.
-              </h1>
-              <h3>
-                We connect developers looking to improve their
-                interviewing technique with experienced pros who have
-                mastered the technical interview and can coach you
-                through the process from start to finish.
-              </h3>
-              <SignUp />
-            </LandingTaglineContainer>
-            <LandingRightContainer>
-              <LandingVectorImageContainer>
-                <img src={vector2} />
-              </LandingVectorImageContainer>
-            </LandingRightContainer>
-          </TopLandingSubContainer>
+          <LandingTaglineContainer>
+            <h1>
+              INTERVIEWING ISN'T EASY. THAT DOESN'T MEANT IT HAS TO BE
+              STRESSFUL.
+            </h1>
+            <h3>
+              We connect developers looking to improve their
+              interviewing technique with experienced pros who have
+              mastered the technical interview and can coach you
+              through the process from start to finish.
+            </h3>
+            <SignUp />
+          </LandingTaglineContainer>
+          <LandingRightContainer>
+            <LandingVectorImageContainer>
+              <img src={vector2} alt='main' />
+            </LandingVectorImageContainer>
+          </LandingRightContainer>
         </TopLandingContainer>
         <InfoboxContainer>
           <InfoBoxTitleContainer>
@@ -552,7 +539,7 @@ const Landing = () => {
                 by us for interviewing experience and mentoring
                 ability.
               </p>
-              <img src={handshakeImg} />
+              <img src={handshakeImg} alt='feature' />
             </InfoCard>
             <InfoCard>
               <h3>Find your coach.</h3>
@@ -561,7 +548,7 @@ const Landing = () => {
                 by us for interviewing experience and mentoring
                 ability.
               </p>
-              <img src={analytics} />
+              <img src={analytics} alt='feature' />
             </InfoCard>
             <InfoCard>
               <h3>Get hired! </h3>
@@ -569,13 +556,13 @@ const Landing = () => {
                 Take advantage of your newfound interview skills and
                 land the job of your dreams.
               </p>
-              <img src={startup} />
+              <img src={startup} alt='feature' />
             </InfoCard>
           </InfoCardsContainer>
         </InfoboxContainer>
         <BottomSectionContainer>
           <BottomImgDiv>
-            <img src={getStartedVector} />
+            <img src={getStartedVector} alt='call to action' />
           </BottomImgDiv>
           <BottomTextStyle>
             <h2>Ready to get started?</h2>
@@ -617,19 +604,19 @@ const Landing = () => {
           </FooterTopSection>
           <FooterBottomSection>
             <Icons>
-              <img src={githubIcon} />
+              <img src={githubIcon} alt='icon' />
             </Icons>
             <Icons>
-              <img src={facebookIcon} />
+              <img src={facebookIcon} alt='icon' />
             </Icons>
             <Icons>
-              <img src={instagramIcon} />
+              <img src={instagramIcon} alt='icon' />
             </Icons>
             <Icons>
-              <img src={linkedInIcon} />
+              <img src={linkedInIcon} alt='icon' />
             </Icons>
             <Icons>
-              <img src={twitterIcon} />
+              <img src={twitterIcon} alt='icon' />
             </Icons>
           </FooterBottomSection>
           <p>

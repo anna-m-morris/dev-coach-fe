@@ -5,12 +5,7 @@ import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
-import {
-  StyledButton,
-  buttonTheme,
-  invertTheme,
-  Logo,
-} from '../Landing';
+import { StyledButton, buttonTheme, Logo } from '../Landing';
 import {
   GreyBackgroundContainer,
   FormCard,
@@ -53,7 +48,12 @@ const StyledError = styled.p`
   align-self: flex-start;
 `;
 
-function SignUpForm({ userReducer, isSubmitting, errors, touched }) {
+const SignUpForm = ({
+  userReducer,
+  isSubmitting,
+  errors,
+  touched,
+}) => {
   return (
     <div>
       <GreyBackgroundContainer>
@@ -140,7 +140,7 @@ function SignUpForm({ userReducer, isSubmitting, errors, touched }) {
       </GreyBackgroundContainer>
     </div>
   );
-}
+};
 
 const FormikSignUpForm = withFormik({
   mapPropsToValues({

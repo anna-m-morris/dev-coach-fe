@@ -58,7 +58,7 @@ const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
   font-family: ABeeZee;
 `;
 
-function StudentForm({ touched, errors, isSubmitting }) {
+const StudentForm = ({ touched, errors, isSubmitting }) => {
   return (
     <div>
       <ThisGreyBackgroundContainer>
@@ -117,7 +117,7 @@ function StudentForm({ touched, errors, isSubmitting }) {
       </ThisGreyBackgroundContainer>
     </div>
   );
-}
+};
 
 const FormikStudentForm = withFormik({
   mapPropsToValues({ studentLocation, experience, confidence }) {

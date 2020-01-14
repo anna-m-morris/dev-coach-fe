@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -11,7 +10,6 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 // import Paper from '@material-ui/core/Paper';
@@ -23,6 +21,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { connect } from 'react-redux';
 import { ListComponent, mainListItems } from '../utils/dashboardList';
 import logo from '../img/firelogo.png';
 import { logout } from '../state/actions/authenticationActions';
@@ -179,7 +178,7 @@ const useStyles = makeStyles(theme => ({
 }));
 // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-function Dashboard(props) {
+const Dashboard = props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -342,6 +341,6 @@ function Dashboard(props) {
       </main>
     </div>
   );
-}
+};
 
 export default connect(state => state, { logout })(Dashboard);

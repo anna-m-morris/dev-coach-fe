@@ -5,7 +5,7 @@ import { login } from '../../state/actions/authenticationActions';
 import { StyledButton, buttonTheme } from '../Landing';
 import StyledUserType from './styles';
 
-function UserTypePage(props) {
+const UserTypePage = () => {
   return (
     <StyledUserType>
       <div className='container'>
@@ -78,6 +78,6 @@ function UserTypePage(props) {
       </div>
     </StyledUserType>
   );
-}
+};
 
 export default connect(state => state, { login })(UserTypePage);
