@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // import pink from '../img/pink.jpg';
 // import stare from '../img/stare.jpg';
 // import mobileCard from '../img/mobileCard.jpg';
+import { Pagination } from 'antd';
 import CoachCard from './CoachCard';
 
 import {
@@ -14,10 +15,22 @@ import {
 
 const StyledMarketplace = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  width: 1080px;
-  justify-content: space-evenly;
-  padding-top: 1rem;
+  flex-direction: column;
+
+  .coaches {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1080px;
+    justify-content: space-evenly;
+    padding-top: 1rem;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 `;
 
 // // DUMMY DATA
@@ -264,23 +277,46 @@ const StyledMarketplace = styled.div`
 
 const Marketplace = ({ searchCoaches, getCoaches, coaches }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  // const [coaches, setCoaches] = useState(marketplaceCoaches);
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(6);
+
+  useEffect(() => {
+    getCoaches();
+  }, [getCoaches]);
 
   const handleChange = event => {
     setSearchTerm(event.target.value.toLowerCase());
     searchCoaches(searchTerm);
   };
 
-  useEffect(() => {
-    getCoaches();
-  }, [getCoaches]);
+  const handlePagination = value => {
+    if (value <= 1) {
+      setMinValue(0);
+      setMaxValue(6);
+    } else {
+      setMinValue(value * 6 - 6);
+      setMaxValue(value * 6);
+    }
+  };
 
   return (
     <StyledMarketplace>
-      {coaches &&
-        coaches.map(coach => (
-          <CoachCard key={coach.first_name} coach={coach} />
-        ))}
+      <div className='coaches'>
+        {coaches &&
+          coaches
+            .slice(minValue, maxValue)
+            .map(coach => (
+              <CoachCard key={coach.first_name} coach={coach} />
+            ))}
+      </div>
+      <div className='pagination'>
+        <Pagination
+          defaultCurrent={1}
+          defaultPageSize={6}
+          onChange={handlePagination}
+          total={coaches.length}
+        />
+      </div>
     </StyledMarketplace>
     // <BackgroundContainer>
     //   <SearchDiv>
