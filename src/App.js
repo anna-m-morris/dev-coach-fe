@@ -14,7 +14,7 @@ import UserTypePage from './components/UserType/UserTypePage';
 import MainFaq from './components/FAQ/Main';
 import Booking from './components/Booking/Booking';
 import Feedback from './views/Feedback/Feedback';
-import Select from './components/Forms/selectComponent';
+import VideoChat from './components/VideoChat';
 
 const globalTheme = createMuiTheme({
   typography: {
@@ -29,7 +29,8 @@ function App(props) {
       <Route path={'/marketplace'} component={Marketplace} />
       <Route path={'/booking'} component={Booking} />
       <Route path={'/feedback'} component={Feedback} />
-      <Route path={'/settings'} component={Marketplace} />
+      <Route path={'/settings'} component={VideoChat} />
+      <Route path={'/interview'} component={VideoChat} />
       <Redirect to='/dashboard' />
     </Switch>
   );
@@ -59,7 +60,6 @@ function App(props) {
       <Route path='/register' component={SignUpForm} />
       <Route path='/marketplace' component={Marketplace} />
       <Route path='/faq' component={MainFaq} />
-      <Route path='/select' component={Select} />
       <Redirect to='/' />
     </Switch>
   );

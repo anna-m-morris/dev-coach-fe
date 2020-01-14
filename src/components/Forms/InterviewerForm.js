@@ -33,7 +33,7 @@ const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
   font-family: ABeeZee;
 `;
 
-function CoachForm({ errors, touched }) {
+const CoachForm = ({ errors, touched }) => {
   const handleUserRoleSubmit = () => {};
   return (
     <div>
@@ -101,7 +101,7 @@ function CoachForm({ errors, touched }) {
       </ThisGreyBackgroundContainer>
     </div>
   );
-}
+};
 
 const FormikCoachForm = withFormik({
   mapPropsToValues({ userLocation, experience, skills, description }) {

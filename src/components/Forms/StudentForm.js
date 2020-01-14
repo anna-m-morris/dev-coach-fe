@@ -2,14 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
-import { Select } from 'formik-material-ui';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 
 import { StyledButton, buttonTheme, Logo } from '../Landing';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
@@ -18,16 +12,6 @@ import {
   FormCard,
   FormContainer,
 } from './LoginForm';
-
-const useStyles = makeStyles(theme => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 500,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
 
 const NavLogo = styled(Logo)`
   a {
@@ -49,25 +33,11 @@ const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
    */
 `;
 
-const StudentCard = styled(FormCard)`
-  width: 80%;
-`;
-
-const FormSelect = () => {
-  return (
-    <Select>
-      <MenuItem></MenuItem>
-      <MenuItem></MenuItem>
-      <MenuItem></MenuItem>
-    </Select>
-  );
-};
-
-function StudentForm({ touched, errors, isSubmitting }) {
+const StudentForm = ({ touched, errors, isSubmitting }) => {
   return (
     <div>
       <ThisGreyBackgroundContainer>
-        <StudentCard>
+        <FormCard>
           <Link to='/userrole'>
             <NavLogo />
           </Link>
@@ -115,11 +85,11 @@ function StudentForm({ touched, errors, isSubmitting }) {
               </div>
             </Form>
           </FormContainer>
-        </StudentCard>
+        </FormCard>
       </ThisGreyBackgroundContainer>
     </div>
   );
-}
+};
 
 const FormikStudentForm = withFormik({
   mapPropsToValues({ userLocation, experience, confidence }) {

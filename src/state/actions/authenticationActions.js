@@ -9,7 +9,6 @@ export const login = (props, values) => dispatch => {
   axios
     .post(`${url}user/login`, values)
     .then(res => {
-      console.log(res);
       dispatch({
         type: types.LOGIN_SUCCESSFUL,
         payload: res.data.user,
@@ -19,7 +18,6 @@ export const login = (props, values) => dispatch => {
       window.location.reload();
     })
     .catch(err => {
-      console.log(err)
       dispatch({
         type: types.LOGIN_ERROR,
         payload: err.data.message,
