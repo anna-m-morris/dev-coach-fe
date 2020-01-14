@@ -59,14 +59,14 @@ export const MainContainer = styled.div`
 
     .about-card {
       border-radius: 6px;
-      box-shadow: 0px 6px 10px black;
+      box-shadow: 0px 10px 10px #161616;
       background: #efefef;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       height: 25rem;
-      max-width: 20rem;
+      max-width: 25rem;
 
       .vector {
         width: 100%;
@@ -95,8 +95,10 @@ export const MainContainer = styled.div`
 
       p {
         font-size: 1rem;
-        padding: 0 1rem;
+        padding: 0 2.2rem;
         text-align: center;
+        color: #545454;
+        line-height: 1.3;
       }
     }
   }

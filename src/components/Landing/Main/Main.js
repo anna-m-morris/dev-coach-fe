@@ -28,7 +28,7 @@ const Main = () => (
       <div className='about-cards'>
         <div className='about-card'>
           <div className='vector'>
-            <img src={aboutOne} alt='hand shake´' />
+            <img src={aboutTwo} alt='hand shake´' />
           </div>
           <div className='card-info'>
             <h6>Find Your Coach</h6>
@@ -39,7 +39,7 @@ const Main = () => (
         </div>
         <div className='about-card'>
           <div className='vector'>
-            <img src={aboutTwo} alt='analytics´' />
+            <img src={aboutOne} alt='analytics´' />
           </div>
           <div className='card-info'>
             <h6>Enhance Your Skills</h6>
