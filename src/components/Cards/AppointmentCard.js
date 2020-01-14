@@ -19,46 +19,52 @@ import calendarIcon from '../../img/calendar.svg';
 const AppointmentCardDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  max-width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
 
   .cardContainer {
     width: 85%;
     height: 100%;
     background: white;
-    border-radius: 5px;
+    border-radius: 8px;
     justify-content: center;
     border: 1px solid #dadce0;
     padding: 25px;
+    box-shadow: 0 6px 10px rgba(50, 50, 93, 0.1);
 
-    /* .topSection {
+    .topSection {
       display: flex;
-      align-items: center; */
+      align-items: center;
 
-    .imgDiv {
-      width: 120px;
-      height: 120px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 50%;
-      margin: 0 auto;
-      img {
-        display: inline;
-        margin: 0 auto;
-        height: 100%;
-        width: auto;
-      }
-    }
-
-    /* } */
-
-    .textDiv {
       h3 {
         font-family: 'Gelasio', serif;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 600;
         font-style: normal;
         color: black;
         text-align: center;
       }
+
+      .imgDiv {
+        width: 90px;
+        height: 90px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        margin: 0 auto;
+        img {
+          display: inline;
+          margin: 0 auto;
+          height: 100%;
+          width: auto;
+        }
+      }
+    }
+
+    .textDiv {
+      margin-top: 30px;
 
       .flexText {
         display: flex;
@@ -80,8 +86,8 @@ const AppointmentCardDiv = styled.div`
 `;
 
 const ButtonDiv = styled.div`
-margin-left: -10px;
-  margin-top: -20px;
+  /* margin-left: -10px; */
+  /* margin-top: -20px; */
   display: flex;
 `;
 
@@ -89,8 +95,9 @@ const ButtonDividerDiv = styled.div`
   margin-left: 25%;
 `;
 const iconStyles = {
-  color: '#4fad65',
+  color: 'white',
   fontSize: 13,
+  background: 'green',
 };
 
 export default function AppointmentCard(props) {
@@ -133,19 +140,19 @@ export default function AppointmentCard(props) {
     <>
       <AppointmentCardDiv>
         <div className='cardContainer'>
-          {/* <div className='topSection'> */}
-          <div className='imgDiv'>
-            <img
-              src={
-                avatar_url
-                  ? avatar_url
-                  : 'https://images.pexels.com/photos/1261427/pexels-photo-1261427.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-              }
-            />
-          </div>
-          {/* </div> */}
-          <div className='textDiv'>
+          <div className='topSection'>
             <h3>{`${first_name} ${last_name}`}</h3>
+            <div className='imgDiv'>
+              <img
+                src={
+                  avatar_url
+                    ? avatar_url
+                    : 'https://images.pexels.com/photos/1261427/pexels-photo-1261427.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+                }
+              />
+            </div>
+          </div>
+          <div className='textDiv'>
             <div className='flexText'>
               <i class='fas fa-shopping-bag'></i>
               <p>{appointment_topic}</p>
