@@ -9,6 +9,7 @@ export const NavContainer = styled.nav`
   .logo {
     display: flex;
     align-items: center;
+    margin-left: 3.3rem;
   }
 
   .logo-name {
