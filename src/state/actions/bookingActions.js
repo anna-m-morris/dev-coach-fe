@@ -56,7 +56,6 @@ export const handlePaypalPayment = (
   success,
   error,
 ) => async dispatch => {
-
   window.paypal
     .Buttons({
       createOrder: (data, actions) => {
