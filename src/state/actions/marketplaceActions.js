@@ -4,6 +4,7 @@ export const GET_COACHES_START = 'GET_COACHES_START';
 export const GET_COACHES_ERROR = 'GET_COACHES_ERROR';
 export const GET_COACHES_SUCCESSFUL = 'GET_COACHES_SUCCESSFUL';
 export const SEARCH_COACHES = 'SEARCH_COACHES';
+export const SELECT_PRICE = 'SELECT_PRICE';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -24,6 +25,10 @@ export const getCoaches = () => dispatch => {
         payload: error.response.data,
       });
     });
+};
+
+export const searchCoaches = searchTerm => {
+  return { type: SEARCH_COACHES, payload: searchTerm };
 };
 
 export const searchCoaches = searchTerm => {

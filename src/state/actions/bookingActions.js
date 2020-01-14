@@ -41,14 +41,6 @@ export const handleStripePayment = (
   }
 };
 
-export const saveDate = date => {
-  return { type: SAVE_DATE, payload: date };
-};
-
-export const saveSelect = event => {
-  return { type: SAVE_SELECT, payload: event };
-};
-
 export const handlePaypalPayment = (
   description,
   price,
@@ -82,4 +74,12 @@ export const handlePaypalPayment = (
       },
     })
     .render(paypalRef.current);
+};
+
+export const saveDate = date => {
+  return { type: SAVE_DATE, payload: date };
+};
+
+export const saveSelect = event => {
+  return { type: SAVE_SELECT, payload: event };
 };
