@@ -47,7 +47,7 @@ export const MainContainer = styled.div`
       font-size: 2rem;
       text-align: center;
       margin: 1rem 0;
-      color: white;
+      color: #efefef;
     }
 
     .about-cards {
@@ -58,28 +58,33 @@ export const MainContainer = styled.div`
     }
 
     .about-card {
-      border-radius: 4px;
+      border-radius: 6px;
       box-shadow: 0px 6px 10px black;
-      background: white;
+      background: #efefef;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-evenly;
+      justify-content: space-between;
       height: 25rem;
       max-width: 20rem;
 
       .vector {
-        width: 8rem;
+        width: 100%;
       }
 
       img {
+        border-radius: 6px 6px 0 0;
         width: 100%;
+        height: 12rem;
+        object-fit: cover;
       }
 
       .card-info {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
+        height: 100%;
       }
 
       h6 {
@@ -90,7 +95,8 @@ export const MainContainer = styled.div`
 
       p {
         font-size: 1rem;
-        padding: 0 0.6rem;
+        padding: 0 1rem;
+        text-align: center;
       }
     }
   }

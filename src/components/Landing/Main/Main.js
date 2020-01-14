@@ -1,9 +1,9 @@
 import React from 'react';
 import { MainContainer } from './Main-styles';
 
-import vector1 from '../../../img/handshake.png';
-import analytics from '../../../img/analytics-1.png';
-import startup from '../../../img/startup-1.png';
+import aboutOne from './img/how-it-works-1.jpg';
+import aboutTwo from './img/how-it-works-2.jpg';
+import aboutThree from './img/how-it-works-3.jpg';
 import personOne from './img/person-1.jpg';
 import personTwo from './img/person-2.jpg';
 import personThree from './img/person-3.jpg';
@@ -28,7 +28,7 @@ const Main = () => (
       <div className='about-cards'>
         <div className='about-card'>
           <div className='vector'>
-            <img src={vector1} alt='hand shake´' />
+            <img src={aboutOne} alt='hand shake´' />
           </div>
           <div className='card-info'>
             <h6>Find Your Coach</h6>
@@ -39,7 +39,7 @@ const Main = () => (
         </div>
         <div className='about-card'>
           <div className='vector'>
-            <img src={analytics} alt='analytics´' />
+            <img src={aboutTwo} alt='analytics´' />
           </div>
           <div className='card-info'>
             <h6>Enhance Your Skills</h6>
@@ -48,7 +48,7 @@ const Main = () => (
         </div>
         <div className='about-card'>
           <div className='vector'>
-            <img src={startup} alt='analytics´' />
+            <img src={aboutThree} alt='analytics´' />
           </div>
           <div className='card-info'>
             <h6>Get Hired</h6>
