@@ -44,12 +44,12 @@ const NavbarContainer = styled.div`
   }
 `;
 
-const NavbarSubContainer = styled.div`
-  width: 95%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
+// const NavbarSubContainer = styled.div`
+//   width: 95%;
+//   height: 100%;
+//   display: flex;
+//   justify-content: space-between;
+// `;
 
 export const Logo = styled.div`
   width: 4.5em;
@@ -152,14 +152,14 @@ const TopLandingContainer = styled.div`
   }
 `;
 
-const TopLandingSubContainer = styled.div`
-  width: 95%;
-  padding-top: 1em;
-  height: 60vh;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-`;
+// const TopLandingSubContainer = styled.div`
+//   width: 95%;
+//   padding-top: 1em;
+//   height: 60vh;
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: nowrap;
+// `;
 
 const LandingTaglineContainer = styled.div`
   height: 100%;

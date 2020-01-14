@@ -75,7 +75,7 @@ export const handlePaypalPayment = (
         });
       },
       onApprove: async (data, actions) => {
-        const order = await actions.order.capture();
+        await actions.order.capture();
         success();
         dispatch({ type: PAYPAL_PAYMENT_SUCCESSFUL });
       },

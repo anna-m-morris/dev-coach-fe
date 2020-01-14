@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 const Paypal = props => {
   const {
@@ -18,7 +18,7 @@ const Paypal = props => {
       success,
       error,
     );
-  }, [description, price]);
+  }, [description, price, handlePaypalPayment, success, error]);
 
   return (
     <div>
