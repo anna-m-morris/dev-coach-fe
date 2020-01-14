@@ -6,7 +6,10 @@ import {
   showSuccessMessage,
   closeMessage,
 } from '../../state/actions/notificationActions';
-import { handleStripePayment } from '../../state/actions/bookingActions';
+import {
+  handleStripePayment,
+  handlePaypalPayment,
+} from '../../state/actions/bookingActions';
 import Calendar from './Calendar';
 import Select from './SelectInfo';
 import Notification from '../Notifications/Notification';
@@ -48,13 +51,14 @@ const Booking = props => {
         shippingAddress
       />
       <Paypal
-        product={{
-          price: props.coach_price,
-          name: 'Appointment topic',
-          description:
-            'Appointment_topic, coach_name, coach_price, appointment_length',
-          // image: chair,
-        }}
+        price={props.coach_price}
+        name={'Appointment topic'}
+        description={
+          'Appointment_topic, coach_name, coach_price, appointment_length'
+        }
+        handlePaypalPayment={props.handlePaypalPayment}
+        success={props.showSuccessMessage}
+        error={props.showErrorMessage}
       />
     </div>
   );
@@ -75,4 +79,5 @@ export default connect(mapStateToProps, {
   showErrorMessage,
   showSuccessMessage,
   closeMessage,
+  handlePaypalPayment,
 })(Booking);
