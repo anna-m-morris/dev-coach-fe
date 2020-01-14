@@ -10,7 +10,6 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 // import Paper from '@material-ui/core/Paper';
@@ -203,7 +202,7 @@ const useStyles = makeStyles(theme => ({
 }));
 // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-export default function Dashboard(props) {
+const Dashboard = props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -220,8 +219,15 @@ export default function Dashboard(props) {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    setAnchorEl(null);
+    window.location.reload();
   };
 
   return (
@@ -285,7 +291,8 @@ export default function Dashboard(props) {
               onClose={handleClose}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>My Account</MenuItem>
+              <MenuItem onClick={logout}>Logout</MenuItem>
             </Menu>
           </div>
         </Toolbar>
@@ -345,4 +352,6 @@ export default function Dashboard(props) {
       </main>
     </div>
   );
-}
+};
+
+export default Dashboard;

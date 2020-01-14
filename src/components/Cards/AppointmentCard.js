@@ -111,6 +111,7 @@ export default function AppointmentCard(props) {
     description,
     canceled,
     cancel,
+    startInterview,
   } = props;
 
   const [openCancelModal, setOpenCancelModal] = useState(false);

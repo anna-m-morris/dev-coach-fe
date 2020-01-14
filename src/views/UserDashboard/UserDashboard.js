@@ -6,6 +6,7 @@ import {
   getAppointment,
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
+import { startInterview } from '../../state/actions/interviewActions';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 
 const StyledUserDashboard = styled.div`
@@ -38,7 +39,9 @@ const UserDashboard = props => {
               description={appointment.description}
               canceled={appointment.canceled}
               cancel={() => props.cancelAppointment(appointment.id)}
-              className='appointment-card'
+              startInterview={() =>
+                props.startInterview(appointment.user_id, props)
+              }
             />
           ))
         : null}
@@ -56,6 +59,7 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   getAppointment,
   cancelAppointment,
+  startInterview,
 })(UserDashboard);
 
 const StyledContainer = styled.div`

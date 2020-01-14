@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
-import { StyledButton, buttonTheme } from '../Landing';
+import { StyledButton, buttonTheme, Logo } from '../Landing';
 
 import { login } from '../../state/actions/authenticationActions';
 
@@ -13,31 +14,28 @@ export const GreyBackgroundContainer = styled.div`
   background: #f2f2f2;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 `;
 
 export const FormCard = styled.div`
   background: white;
   height: 30em;
-  margin-top: 6rem;
+  margin-top: 2rem;
   width: 25em;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  /* border: 1px solid #cdc7c7; */
   border-radius: 6px;
 
   h1 {
     color: #292d38;
-    margin-top: 1em;
+    margin-top: 0.5rem;
   }
 `;
 
 export const FormContainer = styled.div`
   height: 100%;
   width: 100%;
-  /* margin-top: 1em; */
 
   form {
     width: 100%;
@@ -138,59 +136,73 @@ const ExtraLoginDetails = () => {
   );
 };
 
-function LoginForm({ userReducer, errors, touched, isSubmitting }) {
+const LoginForm = ({
+  userReducer,
+  errors,
+  touched,
+  isSubmitting,
+}) => {
   return (
-    <GreyBackgroundContainer>
-      <FormCard>
-        <h1>Welcome Back!</h1>
-        <FormContainer>
-          <Form>
-            <div>
-              <Field type='email' name='email' placeholder='Email' />
-              {errors.email && touched.email && (
-                <StyledError>{errors.email}</StyledError>
-              )}
-            </div>
-            <div>
-              <Field
-                type='password'
-                name='password'
-                placeholder='Password'
-              />
-              {userReducer.loginError ? (
-                <StyledError>{userReducer.loginError}</StyledError>
-              ) : (
-                errors.password &&
-                touched.password && (
-                  <StyledError>{errors.password}</StyledError>
-                )
-              )}
-            </div>
-            <ExtraLoginDetails />
-            <div>
-              <StyledButton
-                theme={
-                  userReducer.isLoading
-                    ? loadingButtonTheme
-                    : buttonTheme
-                }
-                type='submit'
-                disabled={isSubmitting}
-              >
-                Sign in to your account
-              </StyledButton>
-            </div>
-            {/*             {props.userReducer.isLoading ? (
+    <div>
+      <GreyBackgroundContainer>
+        <FormCard>
+          <Link to='/'>
+            <Logo />
+          </Link>
+          <h1>Welcome Back!</h1>
+          <FormContainer>
+            <Form>
+              <div>
+                <Field
+                  type='email'
+                  name='email'
+                  placeholder='Email'
+                />
+                {errors.email && touched.email && (
+                  <StyledError>{errors.email}</StyledError>
+                )}
+              </div>
+              <div>
+                <Field
+                  type='password'
+                  name='password'
+                  placeholder='Password'
+                />
+                {userReducer.loginError ? (
+                  <StyledError>{userReducer.loginError}</StyledError>
+                ) : (
+                  errors.password &&
+                  touched.password && (
+                    <StyledError>{errors.password}</StyledError>
+                  )
+                )}
+              </div>
+              <ExtraLoginDetails />
+              <div>
+                <StyledButton
+                  theme={
+                    userReducer.isLoading
+                      ? loadingButtonTheme
+                      : buttonTheme
+                  }
+                  type='submit'
+                  disabled={isSubmitting}
+                >
+                  Sign in to your account
+                </StyledButton>
+              </div>
+              {/*             {props.userReducer.isLoading ? (
               <h3>Loading</h3>
             ) : (
               <h3>Couldn't fetch</h3>
             )} */}
-          </Form>
-        </FormContainer>
-      </FormCard>
-    </GreyBackgroundContainer>
+            </Form>
+          </FormContainer>
+        </FormCard>
+      </GreyBackgroundContainer>
+    </div>
   );
-}
+};
 
 const FormikLoginForm = withFormik({
   mapPropsToValues({ email, password }) {
