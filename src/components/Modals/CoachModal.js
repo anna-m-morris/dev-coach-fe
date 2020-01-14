@@ -1,6 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import styled from 'styled-components';
+
+const StyledCoachModal = styled.div`
+  .see-more {
+    color: #4fad65;
+  }
+`;
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -44,8 +51,8 @@ const CoachModal = props => {
   };
 
   return (
-    <div>
-      <p type='button' onClick={handleOpen}>
+    <StyledCoachModal>
+      <p className='see-more' onClick={handleOpen}>
         See more
       </p>
       <Modal
@@ -59,7 +66,7 @@ const CoachModal = props => {
           <p id='simple-modal-description'>{description}</p>
         </div>
       </Modal>
-    </div>
+    </StyledCoachModal>
   );
 };
 

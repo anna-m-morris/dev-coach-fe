@@ -8,19 +8,19 @@ const StyledCoachCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 20rem;
-  height: 25rem;
+  width: 17rem;
+  height: 22rem;
   padding: 2.4rem;
   border: 1px solid #dadce0;
   border-radius: 0.8rem;
-  margin-bottom: 1.2rem;
+  margin: 0.5rem;
   color: #595959;
   font-weight: 300;
   text-align: left;
 
   h3 {
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #3c4043;
   }
 
@@ -29,7 +29,6 @@ const StyledCoachCard = styled.div`
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    /* margin: 1rem; */
     .header-text {
       width: 100%;
     }
@@ -40,8 +39,8 @@ const StyledCoachCard = styled.div`
       justify-content: center;
       align-items: center;
       .picture {
-        width: 6rem;
-        height: 6rem;
+        width: 5rem;
+        height: 5rem;
       }
     }
   }
@@ -58,7 +57,7 @@ const StyledCoachCard = styled.div`
     width: 100%;
     justify-content: flex-end;
     .button {
-      background-color: #4FAD65;
+      background-color: #4fad65;
       font-weight: 200;
     }
   }

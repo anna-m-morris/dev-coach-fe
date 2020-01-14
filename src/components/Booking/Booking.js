@@ -11,7 +11,7 @@ import {
   handlePaypalPayment,
 } from '../../state/actions/bookingActions';
 import Calendar from './Calendar';
-import Select from './SelectInfo';
+import Select from '../Inputs/SelectInfo';
 import Notification from '../Notifications/Notification';
 import Paypal from './Paypal';
 
