@@ -6,7 +6,7 @@ import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
+// import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
@@ -21,8 +21,10 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { mainListItems } from '../utils/dashboardList';
+import { connect } from 'react-redux';
+import { ListComponent } from '../utils/dashboardList';
 import logo from '../img/firelogo.png';
+import { logout } from '../state/actions/authenticationActions';
 
 function Copyright() {
   return (
@@ -44,22 +46,36 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
-    background: '#4FAD65',
+    background: '#FAFAFA',
+    zIndex: -10,
   },
   toolbarIcon: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...theme.mixins.toolbar,
+    color: '#4fad65',
+    fontSize: '.8rem',
+    paddingLeft: '3em',
+  },
+  toolbarIconClosed: {
     backgroundImage: `url(${logo})`,
+    marginLeft: '-0.4em',
+    width: '100%',
+    transform: 'scale(0.6)',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'left',
-    backgroundSize: '4rem',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: '0 8px',
     ...theme.mixins.toolbar,
     color: '#4fad65',
-    fontSize: '.7rem',
-    fontFamily: 'ABeeZee',
+    fontSize: '.8rem',
+    transition: '',
+    '&:hover': {
+      transform: 'scale(0.65)',
+    },
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -67,6 +83,8 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    boxShadow: 'none',
+    color: 'grey',
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -75,6 +93,10 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+  },
+  profileMenu: {
+    color: 'grey',
+    transform: 'scale(1.25)',
   },
   menuButton: {
     marginRight: 36,
@@ -86,6 +108,9 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     color: '#4fad65',
   },
+  drawer: {
+    // todo
+  },
   drawerPaper: {
     position: 'relative',
     whiteSpace: 'nowrap',
@@ -96,6 +121,7 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   drawerPaperClose: {
+    zIndex: 10000,
     overflowX: 'hidden',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
@@ -141,6 +167,14 @@ const useStyles = makeStyles(theme => ({
   copyright: {
     textAlign: 'center',
   },
+  styledDivider: {
+    // TODO
+  },
+  hidden: {
+    visibility: 'hidden',
+    opacity: 0,
+    transition: 'visibility 5s, opacity 0s linear',
+  },
 }));
 // const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -149,6 +183,11 @@ const Dashboard = props => {
   const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMenu = Boolean(anchorEl);
+
+  const handleLogout = event => {
+    setAnchorEl(null);
+    props.logout();
+  };
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -164,12 +203,6 @@ const Dashboard = props => {
 
   const handleDrawerClose = () => {
     setOpen(false);
-  };
-
-  const logout = () => {
-    localStorage.clear();
-    setAnchorEl(null);
-    window.location.reload();
   };
 
   return (
@@ -191,7 +224,7 @@ const Dashboard = props => {
               open && classes.menuButtonHidden,
             )}
           >
-            <MenuIcon />
+            <MenuIcon className={classes.menuIcon} />
           </IconButton>
           <Typography
             component='h1'
@@ -199,15 +232,13 @@ const Dashboard = props => {
             color='inherit'
             noWrap
             className={classes.title}
-          >
-            Dashboard
-          </Typography>
+          ></Typography>
           {/* <IconButton color='inherit'>
             <Badge badgeContent={4} color='secondary'>
               <NotificationsIcon />
             </Badge>
           </IconButton> */}
-          <div>
+          <div className={classes.profileMenu}>
             <IconButton
               aria-label='account of current user'
               aria-controls='menu-appbar'
@@ -234,7 +265,7 @@ const Dashboard = props => {
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
               <MenuItem onClick={handleClose}>My Account</MenuItem>
-              <MenuItem onClick={logout}>Logout</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </div>
         </Toolbar>
@@ -243,21 +274,37 @@ const Dashboard = props => {
         variant='permanent'
         classes={{
           paper: clsx(
+            classes.drawer,
             classes.drawerPaper,
             !open && classes.drawerPaperClose,
           ),
         }}
         open={open}
       >
-        <div className={classes.toolbarIcon}>
-          <h1>DevCoach</h1>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
+        <div
+          className={
+            open ? classes.toolbarIcon : classes.toolbarIconClosed
+          }
+          onClick={() => setOpen(!open)}
+        >
+          <img alt='logo' className={classes.toolbarLogoImg}></img>
+          <h1
+            className={open ? classes.toolbarTitle : classes.hidden}
+          >
+            DevCoach
+          </h1>
+          {
+            <IconButton
+              className={!open ? classes.hidden : null}
+              onClick={handleDrawerClose}
+            >
+              <ChevronLeftIcon />
+            </IconButton>
+          }
         </div>
-        <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
+        <Divider className={classes.styledDivider} />
+        <ListComponent className={classes.listStyles}></ListComponent>
+        <Divider className={classes.hidden} />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
@@ -296,4 +343,4 @@ const Dashboard = props => {
   );
 };
 
-export default Dashboard;
+export default connect(state => state, { logout })(Dashboard);
