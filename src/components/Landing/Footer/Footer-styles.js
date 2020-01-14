@@ -5,39 +5,55 @@ export const FooterContainer = styled.div`
   height: 15rem;
   background: #292d38;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 
-  p {
-    color: white;
-  }
-
-  .footer-copyright {
+  .footer-top {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin-top: 1.6rem;
 
-    span {
-      color: #818082;
+    .cta-message {
+      margin-bottom: 1.6rem;
+
+      h2 {
+        color: #efefef;
+        font-size: 2rem;
+        font-weight: bold;
+      }
     }
+  }
 
-    div {
-      margin: 0 auto;
+  .footer-bottom {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 1.6rem;
+    color: #efefef;
+
+    .footer-content {
+      width: 20rem;
     }
   }
 
   .footer-icons {
     display: flex;
-    justify-content: space-evenly;
-    width: 30%;
+    justify-content: space-between;
 
     .footer-icon {
+      opacity: 0.3;
+
       img {
         width: 25px;
         height: 25px;
-        color: white;
       }
     }
+  }
+
+  .footer-tribute {
+    text-align: center;
   }
 `;
