@@ -19,27 +19,27 @@ const SelectPrice = props => {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor='grouped-select'>Length</InputLabel>
+        <InputLabel htmlFor='grouped-select'>Price</InputLabel>
         <Select
           defaultValue=''
           input={
             <Input
-              onChange={props.searchForPrice}
+              onChange={e => props.searchForPrice(e.target.value)}
               name='price'
               id='price-select'
             />
           }
         >
-          <MenuItem value={0}>All</MenuItem>
-          <MenuItem value={20}>$20</MenuItem>
-          <MenuItem value={50}>$21 - $50</MenuItem>
-          <MenuItem value={80}>$51 - $80</MenuItem>
-          <MenuItem value={100}>$81 - $100</MenuItem>
-          <MenuItem value={150}>>$100</MenuItem>
+          <MenuItem value={1000}>All</MenuItem>
+          <MenuItem value={20}>under 20$</MenuItem>
+          <MenuItem value={40}>under 40$</MenuItem>
+          <MenuItem value={60}>under 60$</MenuItem>
+          <MenuItem value={80}>under 80$</MenuItem>
+          <MenuItem value={100}>under 100$</MenuItem>
         </Select>
       </FormControl>
     </div>
   );
 };
 
-export default SelectPrice
+export default SelectPrice;

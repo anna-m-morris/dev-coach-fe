@@ -63,7 +63,12 @@ const StyledMarketplace = styled.div`
   }
 `;
 
-const Marketplace = ({ searchCoaches, getCoaches, coaches }) => {
+const Marketplace = ({
+  searchCoaches,
+  getCoaches,
+  coaches,
+  searchForPrice,
+}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(6);

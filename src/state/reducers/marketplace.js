@@ -2,6 +2,7 @@ import * as types from '../actions/marketplaceActions';
 
 const initialState = {
   coaches: null,
+  copyOfCoaches: null,
   isLoading: false,
   error: null,
 };
@@ -22,6 +23,7 @@ function marketplaceReducer(state = initialState, action) {
         ...state,
         isLoading: false,
         coaches: action.payload,
+        copyOfCoaches: action.payload,
       };
 
     case types.SEARCH_COACHES:
@@ -44,6 +46,14 @@ function marketplaceReducer(state = initialState, action) {
           }
           return info.location.toLowerCase().includes(action.payload);
         }),
+      };
+
+    case types.SEARCH_PRICE:
+      return {
+        ...state,
+        coaches: state.copyOfCoaches.filter(
+          coach => coach.hourly_rate < action.payload,
+        ),
       };
 
     default:
