@@ -17,105 +17,106 @@ const StyledMarketplace = styled.div`
   flex-wrap: wrap;
   width: 1080px;
   justify-content: space-evenly;
+  padding-top: 1rem;
 `;
 
-// DUMMY DATA
-const marketplaceCoaches = [
-  {
-    id: 1,
-    first_name: 'Jayne',
-    last_name: 'Carmichael Norrie',
-    email: 'jayne@musicisourforte.co.uk',
-    password:
-      '$2a$10$3LmQzlDtk/1NYys6kn5Ea.FH680/SzfqPWNTC3X9qZQ9.a.I1Z3vi',
-    location: 'Aberdeen',
-    role_id: 2,
-    user_id: 1,
-    avatar_url: 'https://bit.ly/325XJrX',
-    experience_level: 1,
-    skill_level: 1,
-    description: 'Jayne is an expert in HTML',
-    rating: 4.7,
-    hourly_rate: 30,
-    contact_url:
-      'https://grok.appointedd.com/app/5df3a618fd49237ee763a793',
-  },
-  {
-    id: 2,
-    first_name: 'Liam',
-    last_name: 'Sutton',
-    email: 'liam@google.com',
-    password:
-      '$2a$10$XgS80caZEgW20Uj38NE9zuSe5jALbx28C8s6Z80Rf4o4BMz4iEe9W',
-    location: 'London',
-    role_id: 2,
-    user_id: 2,
-    avatar_url: 'https://bit.ly/2Q0cbgm',
-    experience_level: 2,
-    skill_level: 2,
-    description: 'Liam is an expert in Node.js',
-    rating: 4.8,
-    hourly_rate: 35,
-    contact_url:
-      'https://grok.appointedd.com/app/5dee69e59fec053a906edd03',
-  },
-  {
-    id: 3,
-    first_name: 'Funmi',
-    last_name: 'Talabi',
-    email: 'funmi@google.com',
-    password:
-      '$2a$10$GN5PGxtMHX5fkAugZ5KYB.Z3/xfZoFc033frjUlTW.0OaD6mY0n8K',
-    location: 'Lagos',
-    role_id: 2,
-    user_id: 3,
-    avatar_url: 'https://bit.ly/36SwAec',
-    experience_level: 3,
-    skill_level: 3,
-    description: 'Funmi is an expert in React',
-    rating: 4.9,
-    hourly_rate: 40,
-    contact_url:
-      'https://grok.appointedd.com/app/5dee6934c5b42f3bcf70b393',
-  },
-  {
-    id: 4,
-    first_name: 'Oladimeji',
-    last_name: 'Ojo',
-    email: 'ola@google.com',
-    password:
-      '$2a$10$GN5PGxtMHX5fkAugZ5KYB.Z3/xfZoFc033frjUlTW.0OaD6mY0n8K',
-    location: 'Lagos',
-    role_id: 2,
-    user_id: 3,
-    avatar_url: 'https://bit.ly/35I1kOT',
-    experience_level: 3,
-    skill_level: 3,
-    description: 'Oladimeji is an expert in React',
-    rating: 4.9,
-    hourly_rate: 45,
-    contact_url:
-      'https://grok.appointedd.com/app/5dee6a896dd393114b473a73',
-  },
-  {
-    id: 4,
-    first_name: 'Dom',
-    last_name: 'Eccleston',
-    email: 'dom@google.com',
-    password:
-      '$2a$10$GN5PGxtMHX5fkAugZ5KYB.Z3/xfZoFc033frjUlTW.0OaD6mY0n8K',
-    location: 'Sheffield',
-    role_id: 2,
-    user_id: 3,
-    avatar_url: 'https://bit.ly/2FtdD5O',
-    experience_level: 3,
-    skill_level: 3,
-    description: 'Dom is an expert in React',
-    rating: 4.9,
-    hourly_rate: 40,
-    contact_url: 'https://www.youtube.com/watch?v=_EPM2vlPHpE',
-  },
-];
+// // DUMMY DATA
+// const marketplaceCoaches = [
+//   {
+//     id: 1,
+//     first_name: 'Jayne',
+//     last_name: 'Norrie',
+//     email: 'jayne@musicisourforte.co.uk',
+//     password:
+//       '$2a$10$3LmQzlDtk/1NYys6kn5Ea.FH680/SzfqPWNTC3X9qZQ9.a.I1Z3vi',
+//     location: 'Aberdeen',
+//     role_id: 2,
+//     user_id: 1,
+//     avatar_url: 'https://bit.ly/325XJrX',
+//     experience_level: 1,
+//     skill_level: 1,
+//     description: 'Jayne is an expert in HTML',
+//     rating: 4.7,
+//     hourly_rate: 30,
+//     contact_url:
+//       'https://grok.appointedd.com/app/5df3a618fd49237ee763a793',
+//   },
+//   {
+//     id: 2,
+//     first_name: 'Liam',
+//     last_name: 'Sutton',
+//     email: 'liam@google.com',
+//     password:
+//       '$2a$10$XgS80caZEgW20Uj38NE9zuSe5jALbx28C8s6Z80Rf4o4BMz4iEe9W',
+//     location: 'London',
+//     role_id: 2,
+//     user_id: 2,
+//     avatar_url: 'https://bit.ly/2Q0cbgm',
+//     experience_level: 2,
+//     skill_level: 2,
+//     description: 'Liam is an expert in Node.js',
+//     rating: 4.8,
+//     hourly_rate: 35,
+//     contact_url:
+//       'https://grok.appointedd.com/app/5dee69e59fec053a906edd03',
+//   },
+//   {
+//     id: 3,
+//     first_name: 'Funmi',
+//     last_name: 'Talabi',
+//     email: 'funmi@google.com',
+//     password:
+//       '$2a$10$GN5PGxtMHX5fkAugZ5KYB.Z3/xfZoFc033frjUlTW.0OaD6mY0n8K',
+//     location: 'Lagos',
+//     role_id: 2,
+//     user_id: 3,
+//     avatar_url: 'https://bit.ly/36SwAec',
+//     experience_level: 3,
+//     skill_level: 3,
+//     description: 'Funmi is an expert in React',
+//     rating: 4.9,
+//     hourly_rate: 40,
+//     contact_url:
+//       'https://grok.appointedd.com/app/5dee6934c5b42f3bcf70b393',
+//   },
+//   {
+//     id: 4,
+//     first_name: 'Oladimeji',
+//     last_name: 'Ojo',
+//     email: 'ola@google.com',
+//     password:
+//       '$2a$10$GN5PGxtMHX5fkAugZ5KYB.Z3/xfZoFc033frjUlTW.0OaD6mY0n8K',
+//     location: 'Lagos',
+//     role_id: 2,
+//     user_id: 3,
+//     avatar_url: 'https://bit.ly/35I1kOT',
+//     experience_level: 3,
+//     skill_level: 3,
+//     description: 'Oladimeji is an expert in React',
+//     rating: 4.9,
+//     hourly_rate: 45,
+//     contact_url:
+//       'https://grok.appointedd.com/app/5dee6a896dd393114b473a73',
+//   },
+//   {
+//     id: 4,
+//     first_name: 'Dom',
+//     last_name: 'Eccleston',
+//     email: 'dom@google.com',
+//     password:
+//       '$2a$10$GN5PGxtMHX5fkAugZ5KYB.Z3/xfZoFc033frjUlTW.0OaD6mY0n8K',
+//     location: 'Sheffield',
+//     role_id: 2,
+//     user_id: 3,
+//     avatar_url: 'https://bit.ly/2FtdD5O',
+//     experience_level: 3,
+//     skill_level: 3,
+//     description: 'Dom is an expert in React',
+//     rating: 4.9,
+//     hourly_rate: 40,
+//     contact_url: 'https://www.youtube.com/watch?v=_EPM2vlPHpE',
+//   },
+// ];
 
 // // STYLED COMPONENTS //
 // const BackgroundContainer = styled.section`
@@ -261,7 +262,7 @@ const marketplaceCoaches = [
 //   }
 // `;
 
-const Marketplace = ({ searchCoaches, getCoaches }) => {
+const Marketplace = ({ searchCoaches, getCoaches, coaches }) => {
   const [searchTerm, setSearchTerm] = useState('');
   // const [coaches, setCoaches] = useState(marketplaceCoaches);
 
@@ -276,9 +277,10 @@ const Marketplace = ({ searchCoaches, getCoaches }) => {
 
   return (
     <StyledMarketplace>
-      {marketplaceCoaches.map(coach => (
-        <CoachCard key={coach.first_name} coach={coach} />
-      ))}
+      {coaches &&
+        coaches.map(coach => (
+          <CoachCard key={coach.first_name} coach={coach} />
+        ))}
     </StyledMarketplace>
     // <BackgroundContainer>
     //   <SearchDiv>
