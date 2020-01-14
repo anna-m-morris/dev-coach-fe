@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import chair from './chair.jpg';
-import gif from './giphy.gif';
 
-function Product({ product }) {
+const Paypal = ({ product }) => {
   const [paidFor, setPaidFor] = useState(false);
   const [error, setError] = useState(null);
   const paypalRef = useRef();
@@ -24,13 +22,11 @@ function Product({ product }) {
           });
         },
         onApprove: async (data, actions) => {
-          const order = await actions.order.capture();
+          await actions.order.capture();
           setPaidFor(true);
-          console.log(order);
         },
         onError: err => {
           setError(err);
-          console.error(err);
         },
       })
       .render(paypalRef.current);
@@ -40,7 +36,6 @@ function Product({ product }) {
     return (
       <div>
         <h1>Congrats, you just bought {product.name}!</h1>
-        <img alt={product.description} src={gif} />
       </div>
     );
   }
@@ -51,29 +46,9 @@ function Product({ product }) {
       <h1>
         {product.description} for ${product.price}
       </h1>
-      <img
-        alt={product.description}
-        src={product.image}
-        width='200'
-      />
       <div ref={paypalRef} />
     </div>
   );
-}
+};
 
-function App() {
-  const product = {
-    price: 777.77,
-    name: 'comfy chair',
-    description: 'fancy chair, like new',
-    image: chair,
-  };
-
-  return (
-    <div className='App'>
-      <Product product={product} />
-    </div>
-  );
-}
-
-export default App;
+export default Paypal;

@@ -10,6 +10,7 @@ import { handleStripePayment } from '../../state/actions/bookingActions';
 import Calendar from './Calendar';
 import Select from './SelectInfo';
 import Notification from '../Notifications/Notification';
+import Paypal from './Paypal';
 
 const Booking = props => {
   return (
@@ -45,6 +46,15 @@ const Booking = props => {
         name={'name'}
         billingAddress
         shippingAddress
+      />
+      <Paypal
+        product={{
+          price: props.coach_price,
+          name: 'Appointment topic',
+          description:
+            'Appointment_topic, coach_name, coach_price, appointment_length',
+          // image: chair,
+        }}
       />
     </div>
   );
