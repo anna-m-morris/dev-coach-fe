@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
+import { Select } from 'formik-material-ui';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,13 +10,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 
 import { StyledButton, buttonTheme, Logo } from '../Landing';
-import {
-  chooseUserRole,
-  setStudentDetails,
-} from '../../state/actions/authenticationActions';
+import { chooseUserRole } from '../../state/actions/authenticationActions';
 import {
   GreyBackgroundContainer,
   FormCard,
@@ -39,14 +36,6 @@ const NavLogo = styled(Logo)`
   }
 `;
 
-const RegisterCard = styled(FormCard)`
-  font-family: ABeeZee;
-
-  h1 {
-    font-size: 24px;
-  }
-`;
-
 const StyledError = styled.p`
   padding: 0;
   margin: 0;
@@ -55,14 +44,30 @@ const StyledError = styled.p`
 `;
 
 const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
+  /* fonts should be global
   font-family: ABeeZee;
+   */
 `;
+
+const StudentCard = styled(FormCard)`
+  width: 80%;
+`;
+
+const FormSelect = () => {
+  return (
+    <Select>
+      <MenuItem></MenuItem>
+      <MenuItem></MenuItem>
+      <MenuItem></MenuItem>
+    </Select>
+  );
+};
 
 function StudentForm({ touched, errors, isSubmitting }) {
   return (
     <div>
       <ThisGreyBackgroundContainer>
-        <RegisterCard>
+        <StudentCard>
           <Link to='/userrole'>
             <NavLogo />
           </Link>
@@ -72,15 +77,12 @@ function StudentForm({ touched, errors, isSubmitting }) {
               <div>
                 <Field
                   type='text'
-                  name='studentLocation'
+                  name='userLocation'
                   placeholder='Location'
                 />
-                {errors.studentLocation &&
-                  touched.studentLocation && (
-                    <StyledError>
-                      {errors.studentLocation}
-                    </StyledError>
-                  )}
+                {errors.userLocation && touched.userLocation && (
+                  <StyledError>{errors.userLocation}</StyledError>
+                )}
               </div>
               <div>
                 <Field
@@ -113,22 +115,22 @@ function StudentForm({ touched, errors, isSubmitting }) {
               </div>
             </Form>
           </FormContainer>
-        </RegisterCard>
+        </StudentCard>
       </ThisGreyBackgroundContainer>
     </div>
   );
 }
 
 const FormikStudentForm = withFormik({
-  mapPropsToValues({ studentLocation, experience, confidence }) {
+  mapPropsToValues({ userLocation, experience, confidence }) {
     return {
-      studentLocation: studentLocation || '',
+      userLocation: userLocation || '',
       experience: experience || '',
       confidence: confidence || '',
     };
   },
   validationSchema: Yup.object().shape({
-    studentLocation: Yup.string().required('Please enter a location'),
+    userLocation: Yup.string().required('Please enter a location'),
     experience: Yup.string().required(
       'Please enter Your experience level',
     ),
@@ -145,5 +147,4 @@ const FormikStudentForm = withFormik({
 
 export default connect(state => state, {
   chooseUserRole,
-  setStudentDetails,
 })(FormikStudentForm);

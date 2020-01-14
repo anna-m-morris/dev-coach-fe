@@ -9,85 +9,80 @@ import Select from '@material-ui/core/Select';
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 500,
+    minWidth: 850,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
 }));
 
+const studentConfidence = [
+  {
+    value: 1,
+    text: "I'm not confident in my ability to interview successfully",
+  },
+  {
+    value: 2,
+    text: "I'm neither confident nor unconfident",
+  },
+  {
+    value: 3,
+    text: "I'm somewhat confident, but want to improve",
+  },
+  {
+    value: 4,
+    text: "I'm completely confident in my interviewing ability",
+  },
+];
+
+export const studentExperience = [
+  {
+    value: 1,
+    text:
+      "I've taken some online courses and built some personal projects",
+  },
+  {
+    value: 2,
+    text: "I've completed a coding bootcamp or similar program",
+  },
+  {
+    value: 3,
+    text: "I've completed a computer science undergraduate degree",
+  },
+  {
+    value: 4,
+    text: 'I have experience working as a professional developer',
+  },
+  {
+    value: 5,
+    text:
+      'I have significant experience working as a professional developer',
+  },
+];
+
+const coachSkill = [];
+
+const coachExperience =  [];
+
+export const UserDetailsForm = function(props) {
+  const classes = useStyles();
+  return (
+    <div>
+      <FormControl className={classes.formControl}>
+        <InputLabel>{props.title}</InputLabel>
+        <Select>
+          {props.data.map(el => (
+            <MenuItem value={el.value}>{el.text}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </div>
+  );
+};
+
 export default function SimpleSelect() {
   const classes = useStyles();
   const inputLabel = React.useRef(null);
-
-  const studentConfidence = [
-    {
-      value: 1,
-      text:
-        "I'm not confident in my ability to interview successfully",
-    },
-    {
-      value: 2,
-      text: "I'm neither confident nor unconfident",
-    },
-    {
-      value: 3,
-      text: "I'm somewhat confident, but want to improve",
-    },
-    {
-      value: 4,
-      text: "I'm completely confident in my interviewing ability",
-    },
-  ];
-
-  const studentExperience = [
-    {
-      value: 1,
-      text:
-        "I've taken some online courses and built some personal projects",
-    },
-    {
-      value: 2,
-      text: "I've completed a coding bootcamp or similar program",
-    },
-    {
-      value: 3,
-      text: "I've completed a computer science undergraduate degree",
-    },
-    {
-      value: 4,
-      text: 'I have experience working as a professional developer',
-    },
-    {
-      value: 5,
-      text:
-        'I have significant experience working as a professional developer',
-    },
-  ];
-
-  const coachSkill = [];
-
-  const coachExperience = [];
-
-  const UserDetailsForm = function(props) {
-    return (
-      <div>
-        <FormControl className={classes.formControl}>
-          <InputLabel
-            ref={inputLabel}
-            id='demo-simple-select-outlined-label'
-          >
-            {props.title}
-          </InputLabel>
-          <Select>
-            {props.data.map(el => (
-              <MenuItem value={el.value}>{el.text}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </div>
-    );
-  };
 
   return (
     <>
@@ -126,7 +121,7 @@ export default function SimpleSelect() {
               I'm somewhat confident, but want to improve
             </MenuItem>
             <MenuItem value={4}>
-              I'm completely confident in my interviewing ability
+                
             </MenuItem>
           </Select>
         </FormControl>
