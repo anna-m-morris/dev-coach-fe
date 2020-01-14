@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import devices from './devices';
-import pink from '../img/pink.jpg';
-import stare from '../img/stare.jpg';
-import mobileCard from '../img/mobileCard.jpg';
+// import devices from './devices';
+// import pink from '../img/pink.jpg';
+// import stare from '../img/stare.jpg';
+// import mobileCard from '../img/mobileCard.jpg';
 import CoachCard from './CoachCard';
 
 import {
   getCoaches,
   searchCoaches,
 } from '../state/actions/marketplaceActions';
+
+const StyledMarketplace = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 1080px;
+  justify-content: space-evenly;
+`;
 
 // DUMMY DATA
 const marketplaceCoaches = [
@@ -110,149 +117,149 @@ const marketplaceCoaches = [
   },
 ];
 
-// STYLED COMPONENTS //
-const BackgroundContainer = styled.section`
-  /* position: fixed; */
-  /* margin-top: 70px; */
-  height: 100vh;
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+// // STYLED COMPONENTS //
+// const BackgroundContainer = styled.section`
+//   /* position: fixed; */
+//   /* margin-top: 70px; */
+//   height: 100vh;
+//   background: #ffffff;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// `;
 
-// SEARCH SECTION
-const SearchDiv = styled.section`
-  background-image: url(${pink});
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 35vh;
-  max-width: 80vw;
-  @media ${devices.large} {
-    min-height: 20vh;
-  }
-  @media ${devices.tablet} {
-    background-image: url(${stare});
-    min-height: 15vh;
-  }
-  @media ${devices.mobile} {
-    background-image: url(${mobileCard});
-    /* background-color: #4fad65; */
-    min-height: 20vh;
-  }
-  margin: 0px;
-  border-bottom: 10px solid black;
+// // SEARCH SECTION
+// const SearchDiv = styled.section`
+//   background-image: url(${pink});
+//   background-repeat: no-repeat;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   min-height: 35vh;
+//   max-width: 80vw;
+//   @media ${devices.large} {
+//     min-height: 20vh;
+//   }
+//   @media ${devices.tablet} {
+//     background-image: url(${stare});
+//     min-height: 15vh;
+//   }
+//   @media ${devices.mobile} {
+//     background-image: url(${mobileCard});
+//     /* background-color: #4fad65; */
+//     min-height: 20vh;
+//   }
+//   margin: 0px;
+//   border-bottom: 10px solid black;
 
-  h1 {
-    color: white;
-    margin: 30px 0px 5px 0px;
-  }
+//   h1 {
+//     color: white;
+//     margin: 30px 0px 5px 0px;
+//   }
 
-  img {
-    width: 15vw;
-    margin-top: 30px;
-    padding: 20px 20px;
+//   img {
+//     width: 15vw;
+//     margin-top: 30px;
+//     padding: 20px 20px;
 
-    @media ${devices.tablet} {
-      display: none;
-    }
-  }
-`;
+//     @media ${devices.tablet} {
+//       display: none;
+//     }
+//   }
+// `;
 
-const SearchBar = styled.div`
-  margin: 10px;
-  min-width: 80vw;
-  min-height: 30vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+// const SearchBar = styled.div`
+//   margin: 10px;
+//   min-width: 80vw;
+//   min-height: 30vh;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
 
-  @media ${devices.large} {
-    max-height: 15vh;
-    min-width: 80vw;
-  }
+//   @media ${devices.large} {
+//     max-height: 15vh;
+//     min-width: 80vw;
+//   }
 
-  @media ${devices.tablet} {
-    min-width: 80vw;
-    max-height: 15vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-  }
-  @media ${devices.mobile} {
-    min-width: 30vw;
-    min-height: 15vh;
-    justify-content: center;
-    align-items: center;
-  }
+//   @media ${devices.tablet} {
+//     min-width: 80vw;
+//     max-height: 15vh;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-end;
+//     align-items: flex-end;
+//   }
+//   @media ${devices.mobile} {
+//     min-width: 30vw;
+//     min-height: 15vh;
+//     justify-content: center;
+//     align-items: center;
+//   }
 
-  input {
-    background-color: white;
-    padding: 5px;
-    min-width: 17vw;
-    @media ${devices.tablet} {
-      min-width: 35vw;
-    }
-    @media ${devices.mobile} {
-      min-width: 50vw;
-    }
-    border: 1px solid black;
-    margin: 5px 5px 5px 0px;
-    border-radius: 2px;
-  }
-  button {
-    border: none;
-    background-color: #4fad65;
-    border-radius: 2px;
-    color: white;
-    margin: 5px;
-    padding: 5px 20px;
-    @media ${devices.tablet} {
-      background-color: black;
-    }
-  }
-  h1 {
-    font-size: 30px;
-    color: black;
-    @media ${devices.tablet} {
-      padding: 0px;
-      margin: 5px;
-    }
-    @media ${devices.mobile} {
-      font-size: 20px;
-    }
-  }
-`;
+//   input {
+//     background-color: white;
+//     padding: 5px;
+//     min-width: 17vw;
+//     @media ${devices.tablet} {
+//       min-width: 35vw;
+//     }
+//     @media ${devices.mobile} {
+//       min-width: 50vw;
+//     }
+//     border: 1px solid black;
+//     margin: 5px 5px 5px 0px;
+//     border-radius: 2px;
+//   }
+//   button {
+//     border: none;
+//     background-color: #4fad65;
+//     border-radius: 2px;
+//     color: white;
+//     margin: 5px;
+//     padding: 5px 20px;
+//     @media ${devices.tablet} {
+//       background-color: black;
+//     }
+//   }
+//   h1 {
+//     font-size: 30px;
+//     color: black;
+//     @media ${devices.tablet} {
+//       padding: 0px;
+//       margin: 5px;
+//     }
+//     @media ${devices.mobile} {
+//       font-size: 20px;
+//     }
+//   }
+// `;
 
-// MAIN SECTION COMPONENTS
-const MainContainer = styled.section`
-  background-color: rgba(0, 0, 0, 0.115);
-  max-width: 80vw;
-  @media ${devices.large} {
-    max-width: 80vw;
-  }
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+// // MAIN SECTION COMPONENTS
+// const MainContainer = styled.section`
+//   background-color: rgba(0, 0, 0, 0.115);
+//   max-width: 80vw;
+//   @media ${devices.large} {
+//     max-width: 80vw;
+//   }
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   flex-wrap: wrap;
+//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  img {
-    width: 8vw;
-    border-radius: 50%;
+//   img {
+//     width: 8vw;
+//     border-radius: 50%;
 
-    @media ${devices.tablet} {
-      width: 15vw;
-    }
-    @media ${devices.mobile} {
-      width: 20vw;
-    }
-  }
-`;
+//     @media ${devices.tablet} {
+//       width: 15vw;
+//     }
+//     @media ${devices.mobile} {
+//       width: 20vw;
+//     }
+//   }
+// `;
 
 const Marketplace = ({ searchCoaches, getCoaches }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -268,32 +275,34 @@ const Marketplace = ({ searchCoaches, getCoaches }) => {
   }, [getCoaches]);
 
   return (
-    <BackgroundContainer>
-      <SearchDiv>
-        <SearchBar>
-          <h1>Take your career seriously</h1>
-          <input
-            type='text'
-            name='searchTerm'
-            placeholder='search topic, name, or location'
-            value={searchTerm}
-            onChange={handleChange}
-          />{' '}
-          <button onSubmit={handleChange}>Search</button>
-        </SearchBar>
-      </SearchDiv>
-      <MainContainer>
-        {marketplaceCoaches.map(coach => (
-          <CoachCard key={coach.first_name} coach={coach} />
-        ))}
+    <StyledMarketplace>
+      {marketplaceCoaches.map(coach => (
+        <CoachCard key={coach.first_name} coach={coach} />
+      ))}
+    </StyledMarketplace>
+    // <BackgroundContainer>
+    //   <SearchDiv>
+    //     <SearchBar>
+    //       <h1>Take your career seriously</h1>
+    //       <input
+    //         type='text'
+    //         name='searchTerm'
+    //         placeholder='search topic, name, or location'
+    //         value={searchTerm}
+    //         onChange={handleChange}
+    //       />{' '}
+    //       <button onSubmit={handleChange}>Search</button>
+    //     </SearchBar>
+    //   </SearchDiv>
+    //   <MainContainer>
 
-        {/* {props.coaches
+    /* {props.coaches
           ? props.coaches.map(coach => (
               <CoachCard key={coach.first_name} coach={coach} />
             ))
-          : null} */}
-      </MainContainer>
-    </BackgroundContainer>
+          : null} */
+    //   </MainContainer>
+    // </BackgroundContainer>
   );
 };
 const mapStateToProps = state => {

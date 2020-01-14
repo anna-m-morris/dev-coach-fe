@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   toolbar: {
-    background: '#FAFAFA',
+    background: '#FFFFFF',
     zIndex: -10,
   },
   toolbarIcon: {
@@ -143,6 +143,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   container: {
+    background: '#FFFFFF',
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
     height: '100vh',
