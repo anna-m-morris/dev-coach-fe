@@ -42,60 +42,60 @@ function Copyright() {
 
 const drawerWidth = 240;
 
-function Dashboard(props) {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+// function Dashboard(props) {
+//   const classes = useStyles();
+//   const [open, setOpen] = React.useState(true);
+//   const handleDrawerOpen = () => {
+//     setOpen(true);
+//   };
+//   const handleDrawerClose = () => {
+//     setOpen(false);
+//   };
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position='absolute'
-        className={clsx(classes.appBar, open && classes.appBarShift)}
-      >
-        <DashboardNav />
-      </AppBar>
-      <Drawer
-        variant='permanent'
-        classes={{
-          paper: clsx(
-            classes.drawerPaper,
-            !open && classes.drawerPaperClose,
-          ),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <h1>DevCoach</h1>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-      </Drawer>
-      <main className={classes.content}>
-        {props.routes}
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth='lg' className={classes.container}>
-          <Grid container spacing={3}></Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
-      </main>
-    </div>
-  );
-}
+//   return (
+//     <div className={classes.root}>
+//       <CssBaseline />
+//       <AppBar
+//         position='absolute'
+//         className={clsx(classes.appBar, open && classes.appBarShift)}
+//       >
+//         <DashboardNav />
+//       </AppBar>
+//       <Drawer
+//         variant='permanent'
+//         classes={{
+//           paper: clsx(
+//             classes.drawerPaper,
+//             !open && classes.drawerPaperClose,
+//           ),
+//         }}
+//         open={open}
+//       >
+//         <div className={classes.toolbarIcon}>
+//           <h1>DevCoach</h1>
+//           <IconButton onClick={handleDrawerClose}>
+//             <ChevronLeftIcon />
+//           </IconButton>
+//         </div>
+//         <Divider />
+//         <List>{mainListItems}</List>
+//         <Divider />
+//       </Drawer>
+//       <main className={classes.content}>
+//         {props.routes}
+//         <div className={classes.appBarSpacer} />
+//         <Container maxWidth='lg' className={classes.container}>
+//           <Grid container spacing={3}></Grid>
+//           <Box pt={4}>
+//             <Copyright />
+//           </Box>
+//         </Container>
+//       </main>
+//     </div>
+//   );
+// }
 
-export default Dashboard;
+// export default Dashboard;
 
 const useStyles = makeStyles(theme => ({
   root: {

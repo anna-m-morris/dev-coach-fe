@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+// import CardActionArea from '@material-ui/core/CardActionArea';
+// import CardActions from '@material-ui/core/CardActions';
+// import CardContent from '@material-ui/core/CardContent';
+// import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -14,20 +14,87 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import styled from 'styled-components';
-// import { sizing } from '@material-ui/system'
+import calendarIcon from '../../img/calendar.svg';
 
-const useStyles = makeStyles({
-  card: {
-    maxWidth: '100px',
-    // width: 150,
-  },
-  media: {
-    height: 250,
-  },
-});
+const AppointmentCardDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  .cardContainer {
+    width: 85%;
+    height: 100%;
+    background: white;
+    border-radius: 5px;
+    justify-content: center;
+    border: 1px solid #dadce0;
+    padding: 25px;
+
+    /* .topSection {
+      display: flex;
+      align-items: center; */
+
+    .imgDiv {
+      width: 120px;
+      height: 120px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 50%;
+      margin: 0 auto;
+      img {
+        display: inline;
+        margin: 0 auto;
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    /* } */
+
+    .textDiv {
+      h3 {
+        font-family: 'Gelasio', serif;
+        font-size: 1.3rem;
+        font-weight: 600;
+        font-style: normal;
+        color: black;
+        text-align: center;
+      }
+
+      .flexText {
+        display: flex;
+        align-items: center;
+        margin-top: -30px;
+        color: #4fad65;
+
+        p {
+          font-family: 'Nunito', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 1.02rem;
+          color: black;
+          margin-left: 12px;
+        }
+      }
+    }
+  }
+`;
+
+const ButtonDiv = styled.div`
+margin-left: -10px;
+  margin-top: -20px;
+  display: flex;
+`;
+
+const ButtonDividerDiv = styled.div`
+  margin-left: 25%;
+`;
+const iconStyles = {
+  color: '#4fad65',
+  fontSize: 13,
+};
 
 export default function AppointmentCard(props) {
-  const classes = useStyles();
+  // const classes = useStyles();
   const {
     first_name,
     last_name,
@@ -56,64 +123,63 @@ export default function AppointmentCard(props) {
     setOpenCancelModal(false);
   };
 
+  const date = appointment_datetime;
+  const dateSliced = date.slice(0, 15);
+
+  const time = appointment_datetime;
+  const timeSliced = time.slice(16);
+
   return (
     <>
-      <Card>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            width={150}
-            image={
-              avatar_url
-                ? avatar_url
-                : 'https://images.pexels.com/photos/1261427/pexels-photo-1261427.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-            }
-            title='Coach / Student'
-          />
-          <CardContent class-className='card-description'>
-            <Typography gutterBottom variant='h5' component='h2'>
-              {`${first_name} ${last_name}`}
-            </Typography>
-            <Typography
-              variant='body2'
-              color='textSecondary'
-              component='p'
+      <AppointmentCardDiv>
+        <div className='cardContainer'>
+          {/* <div className='topSection'> */}
+          <div className='imgDiv'>
+            <img
+              src={
+                avatar_url
+                  ? avatar_url
+                  : 'https://images.pexels.com/photos/1261427/pexels-photo-1261427.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+              }
+            />
+          </div>
+          {/* </div> */}
+          <div className='textDiv'>
+            <h3>{`${first_name} ${last_name}`}</h3>
+            <div className='flexText'>
+              <i class='fas fa-shopping-bag'></i>
+              <p>{appointment_topic}</p>
+            </div>
+            <div className='flexText'>
+              {/* <img src={calendarIcon} /> */}
+              <i class='far fa-calendar-check'></i>
+              <p className='dateTime'>{dateSliced}</p>
+            </div>
+            <div className='flexText'>
+              <i class='far fa-clock'></i>
+              <p>{timeSliced}</p>
+            </div>
+            <p>{description}</p>
+          </div>
+          <ButtonDiv>
+            <Button
+              onClick={handleCancelModalOpen}
+              style={iconStyles}
             >
-              {appointment_topic}
-            </Typography>
-            <Typography
-              variant='body2'
-              color='textSecondary'
-              component='p'
-            >
-              {appointment_datetime}
-            </Typography>
-            <Typography
-              variant='body2'
-              color='textSecondary'
-              component='p'
-            >
-              {description}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button
-            onClick={handleCancelModalOpen}
-            size='small'
-            color='primary'
-          >
-            cancel
-          </Button>
-          <Button
-            size='small'
-            color='primary'
-            // onClick={handleCancelModalOpen}
-          >
-            message
-          </Button>
-        </CardActions>
-      </Card>
+              cancel
+            </Button>
+            <ButtonDividerDiv>
+              <Button
+                style={iconStyles}
+                // onClick={handleCancelModalOpen}
+              >
+                message
+              </Button>
+            </ButtonDividerDiv>
+          </ButtonDiv>
+        </div>
+      </AppointmentCardDiv>
+
       <Dialog
         open={openCancelModal}
         TransitionComponent={Transition}
