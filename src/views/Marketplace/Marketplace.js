@@ -9,10 +9,11 @@ import { Pagination } from 'antd';
 import CoachCard from '../../components/CoachCard';
 import {
   getCoaches,
-  searchCoaches,
+  searchForKeyword,
   searchForPrice,
 } from '../../state/actions/marketplaceActions';
 import SelectPrice from '../../components/Inputs/SelectPrice';
+import SearchForKeyword from '../../components/Inputs/SearchForKeyword';
 
 const StyledMarketplace = styled.div`
   display: flex;
@@ -64,12 +65,12 @@ const StyledMarketplace = styled.div`
 `;
 
 const Marketplace = ({
-  searchCoaches,
+  searchForKeyword,
   getCoaches,
   coaches,
   searchForPrice,
 }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  // const [searchTerm, setSearchTerm] = useState('');
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(6);
 
@@ -77,10 +78,10 @@ const Marketplace = ({
     getCoaches();
   }, [getCoaches]);
 
-  const handleChange = event => {
-    setSearchTerm(event.target.value.toLowerCase());
-    searchCoaches(searchTerm);
-  };
+  // const handleChange = event => {
+  //   setSearchTerm(event.target.value.toLowerCase());
+  //   searchForKeyword(searchTerm);
+  // };
 
   const handlePagination = value => {
     if (value <= 1) {
@@ -94,8 +95,11 @@ const Marketplace = ({
 
   return (
     <StyledMarketplace>
+      <SelectPrice searchForPrice={searchForPrice} />
+      <SearchForKeyword
+        searchForKeyword={e => searchForKeyword(e.target.value)}
+      />
       <div className='coaches'>
-        <SelectPrice searchForPrice={searchForPrice} />
         {coaches &&
           coaches
             .slice(minValue, maxValue)
@@ -122,6 +126,6 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   getCoaches,
-  searchCoaches,
+  searchForKeyword,
   searchForPrice,
 })(Marketplace);

@@ -26,25 +26,31 @@ function marketplaceReducer(state = initialState, action) {
         copyOfCoaches: action.payload,
       };
 
-    case types.SEARCH_COACHES:
+    case types.SEARCH_FOR_KEYWORD:
       return {
         ...state,
-        coaches: state.coaches.filter(info => {
+        coaches: state.copyOfCoaches.filter(coach => {
           if (
-            info.first_name.toLowerCase().includes(action.payload)
-          ) {
-            return info.first_name
+            coach.first_name
               .toLowerCase()
-              .includes(action.payload);
+              .includes(action.payload.toLowerCase())
+          ) {
+            return coach.first_name
+              .toLowerCase()
+              .includes(action.payload.toLowerCase());
           }
           if (
-            info.description.toLowerCase().includes(action.payload)
-          ) {
-            return info.description
+            coach.description
               .toLowerCase()
-              .includes(action.payload);
+              .includes(action.payload.toLowerCase())
+          ) {
+            return coach.description
+              .toLowerCase()
+              .includes(action.payload.toLowerCase());
           }
-          return info.location.toLowerCase().includes(action.payload);
+          return coach.location
+            .toLowerCase()
+            .includes(action.payload.toLowerCase());
         }),
       };
 
