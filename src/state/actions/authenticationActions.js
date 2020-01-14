@@ -9,6 +9,7 @@ export const login = (props, values) => dispatch => {
   axios
     .post(`${url}user/login`, values)
     .then(res => {
+      console.log(res);
       dispatch({
         type: types.LOGIN_SUCCESSFUL,
         payload: res.data.user,
@@ -18,6 +19,7 @@ export const login = (props, values) => dispatch => {
       window.location.reload();
     })
     .catch(err => {
+      console.log(err)
       dispatch({
         type: types.LOGIN_ERROR,
         payload: err.data.message,
@@ -59,7 +61,7 @@ export const chooseUserRole = (props, values, role) => dispatch => {
     })
     .then(res => {
       dispatch({ type: types.USER_ROLE_CHOSEN, role });
-      if (role === 2) {
+      if (role === 1) {
         axiosWithAuth()
           .post(`${url}profile/students`, {
             experience_level: values.experience,

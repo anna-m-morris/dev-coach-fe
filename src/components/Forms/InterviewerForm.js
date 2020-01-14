@@ -120,7 +120,7 @@ const FormikCoachForm = withFormik({
   }),
   handleSubmit(values, { props, resetForm }) {
     resetForm();
-    props.chooseUserRole(props, values, 1);
+    props.chooseUserRole(props, values, 2);
   },
 })(CoachForm);
 
