@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -8,7 +7,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import styled from 'styled-components';
-import calendarIcon from '../../img/calendar.svg';
 
 const AppointmentCardDiv = styled.div`
   display: flex;
@@ -81,13 +79,11 @@ const AppointmentCardDiv = styled.div`
 `;
 
 const ButtonDiv = styled.div`
-  /* margin-left: -10px; */
-  /* margin-top: -20px; */
   display: flex;
   justify-content: space-between;
 
   button {
-    background: #3a7f4a;
+    background: #4fad65;
     border: none;
     color: white;
     width: 38%;
@@ -98,21 +94,10 @@ const ButtonDiv = styled.div`
 
   button:hover {
     background: #1e3f1f;
-  } 
+  }
 `;
 
-// // const ButtonDividerDiv = styled.div`
-// //   margin-left: 25%;
-// `;
-// const iconStyles = {
-//   color: 'white',
-//   fontSize: 13,
-//   background: 'green',
-//   width: '35%',
-// };
-
 export default function AppointmentCard(props) {
-  // const classes = useStyles();
   const {
     first_name,
     last_name,
@@ -154,7 +139,6 @@ export default function AppointmentCard(props) {
         <div className='cardContainer'>
           <div className='topSection'>
             <h3>{`${first_name} ${last_name}`}</h3>
-            {/* <h3>Nicklaus Michaelson</h3> */}
             <div className='imgDiv'>
               <img
                 src={
@@ -181,20 +165,12 @@ export default function AppointmentCard(props) {
             <p>{description}</p>
           </div>
           <ButtonDiv>
+            <button onClick={handleCancelModalOpen}>Cancel</button>
             <button
-              onClick={handleCancelModalOpen}
-              // style={iconStyles}
-            >
-              Cancel
-            </button>
-            {/* <ButtonDividerDiv> */}
-            <button
-            // style={iconStyles}
             // onClick={handleCancelModalOpen}
             >
               Message
             </button>
-            {/* </ButtonDividerDiv> */}
           </ButtonDiv>
         </div>
       </AppointmentCardDiv>
@@ -225,136 +201,3 @@ export default function AppointmentCard(props) {
     </>
   );
 }
-
-// const StyledAppointmentCard = styled.div`
-//   .card {
-//     width: 100%;
-//     margin: 1rem;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     background-color: #ffff;
-//   }
-
-//   .content {
-//   }
-//   .media {
-//     height: 10rem;
-//     border-radius: 50%;
-//     background-size: 50%;
-//   }
-//   .card-description {
-//     margin: 1.5rem 0 0;
-//     color: #000;
-//     font-family: ABeeZee;
-//   }
-
-//   .card-thumbnail {
-//     height: 80px;
-//     width: 80px;
-//     border-radius: 10px;
-//     font-family: ABeeZee;
-
-//     img {
-//       /* position: absolute; */
-//       height: 100%;
-//       width: 100%;
-//       object-fit: cover;
-//       border-radius: 50%;
-//       font-family: ABeeZee;
-//     }
-//   }
-// `;
-
-// const StyledContainer = styled.div`
-//   width: 100%;
-//   max-width: 1024px;
-//   margin: 0 auto;
-//   display: grid;
-//   grid-gap: 2em;
-//   border: 2px solid red;
-//   justify-content: space-between;
-//   grid-template-columns: repeat(3, 1fr);
-
-//   @media (max-width: 768px) {
-//     max-width: 650px;
-//     grid-template-columns: repeat(2, 1fr);
-//   }
-
-//   @media (max-width: 500px) {
-//     max-width: 350px;
-//     grid-template-columns: 1fr;
-//   }
-
-//   & > div.appointment-card {
-//     background: #fff;
-//     border-radius: 5px;
-//     padding: 1rem;
-//     box-shadow: 0px 0px 4px rgba(82, 68, 110, 0.3);
-//   }
-
-//   .flx-top-sb {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: top;
-//   }
-
-//   .flx-center-sb {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//   }
-
-//   .card-thumbnail {
-//     height: 80px;
-//     width: 80px;
-//     border-radius: 5px;
-//     position: relative;
-
-//     img {
-//       position: absolute;
-//       height: 100%;
-//       width: 100%;
-//       object-fit: cover;
-//     }
-//   }
-
-//   .card-description {
-//     margin: 1.5rem 0 0;
-//     color: #000;
-
-//     h2,
-//     h3 {
-//       font-weight: bold;
-//     }
-
-//     h2 {
-//       font-size: 1.5rem;
-//       text-transform: uppercase;
-//     }
-
-//     h3 {
-//       font-size: 1.4rem;
-//     }
-
-//     p {
-//       font-weight: 600;
-//       font-weight: 1.2rem;
-//       margin-bottom: 0;
-//     }
-//   }
-
-//   .upvote-btn {
-//     border: 1px solid #101010;
-//     border-radius: 5px;
-//     padding: 0.25rem 1.15rem;
-//     min-width: 60px;
-//     height: 30px;
-//     background: transparent;
-
-//     span {
-//       display: inline-block;
-//     }
-//   }
-// `;
