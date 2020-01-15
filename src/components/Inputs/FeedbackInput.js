@@ -29,7 +29,6 @@ export default function MultilineTextFields() {
           label='Multiline'
           multiline
           rows='4'
-          defaultValue='Default Value'
           variant='outlined'
         />
       </div>
