@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
@@ -10,6 +10,7 @@ import {
   InputLabel,
   withStyles,
   makeStyles,
+  lighten,
   MenuItem,
   Button,
   InputBase,
@@ -25,12 +26,6 @@ import {
   FormContainer,
 } from './LoginForm';
 import { countries } from './countries';
-
-const films = [
-  { title: 'The Shawshank Redemption', year: 1994 },
-  { title: 'The Godfather', year: 1972 },
-  { title: 'The Godfather: Part II', year: 1974 },
-];
 
 const NavLogo = styled(Logo)`
   a {
@@ -53,6 +48,7 @@ const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
 `;
 
 const StudentCard = styled(FormCard)`
+  height: 85%;
   display: flex;
   width: 50%;
   h1 {
@@ -69,7 +65,7 @@ const StudentFormContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: -3.5em;
+  margin-top: -4em;
 `;
 
 const FormButton = styled(StyledButton)`
@@ -80,15 +76,20 @@ const FormButton = styled(StyledButton)`
 const InfoParagraph = styled.p`
   width: 85%;
   text-align: center;
+  padding-bottom: 0.8em;
 `;
 
 const useStyles = makeStyles(theme => ({
+  progress: {
+    transition: 'width 2s',
+  },
   formControl: {
     width: 600,
   },
   textField: {
     width: 600,
-    marginBottom: '-0.1em',
+    marginTop: '0.6em',
+    marginBottom: '0.3em',
   },
   box: {
     '& > *': {
@@ -100,6 +101,19 @@ const useStyles = makeStyles(theme => ({
 
 const StudentForm = props => {
   const classes = useStyles();
+  const [formValues, setFormValues] = useState({
+    location: '',
+    experience: '',
+    confidence: '',
+    github: '',
+    linkedin: '',
+  });
+  const handleFormChange = event =>
+    setFormValues({
+      ...formValues,
+      [event.target.name]: event.target.value,
+    });
+  const handleFormSubmit = event => console.log(formValues);
   return (
     <div>
       <ThisGreyBackgroundContainer>
@@ -122,15 +136,19 @@ const StudentForm = props => {
               alignItems='center'
             >
               <FormControl className={classes.formControl}>
-                {/*                 <TextField
-                  placeholder='Location'
-                  className={classes.textField}
-                /> */}
                 <Autocomplete
+                  name='location'
                   options={countries}
                   getOptionLabel={option => option.name}
+                  onChange={event =>
+                    setFormValues({
+                      ...formValues,
+                      location: event.target.innerText,
+                    })
+                  }
                   renderInput={params => (
                     <TextField
+                      name='location'
                       {...params}
                       label='Select your location'
                       fullWidth
@@ -144,6 +162,13 @@ const StudentForm = props => {
                   placeholder='experience'
                   displayEmpty
                   className={classes.selectEmpty}
+                  name='experience'
+                  onChange={event =>
+                    setFormValues({
+                      ...formValues,
+                      experience: event.target.value,
+                    })
+                  }
                 >
                   <MenuItem value=''>
                     <em>None</em>
@@ -169,16 +194,64 @@ const StudentForm = props => {
               </FormControl>
               <FormControl className={classes.formControl}>
                 <InputLabel>Confidence</InputLabel>
-                <Select>
-                  <MenuItem value='1'>I'm not very confident in my ability to interview successfully</MenuItem>
-                  <MenuItem value='2'>I'm not as confident at interviewing as I'd like to be</MenuItem>
-                  <MenuItem value='3'>I'm not confident, but not unconfident either</MenuItem>
-                  <MenuItem value='4'>I'm pretty confident in my interview ability</MenuItem>
-                  <MenuItem value='5'>I'm completely confident at interviewing</MenuItem>
+                <Select
+                  onChange={event =>
+                    setFormValues({
+                      ...formValues,
+                      confidence: event.target.value,
+                    })
+                  }
+                >
+                  <MenuItem value={1}>
+                    I'm not very confident in my ability to interview
+                    successfully
+                  </MenuItem>
+                  <MenuItem value={2}>
+                    I'm not as confident at interviewing as I'd like
+                    to be
+                  </MenuItem>
+                  <MenuItem value={3}>
+                    I'm not confident, but not unconfident either
+                  </MenuItem>
+                  <MenuItem value={4}>
+                    I'm pretty confident in my interview ability
+                  </MenuItem>
+                  <MenuItem value={5}>
+                    I'm completely confident at interviewing
+                  </MenuItem>
                 </Select>
               </FormControl>
+              <FormControl>
+                <TextField
+                  onChange={event =>
+                    setFormValues({
+                      ...formValues,
+                      github: event.target.value,
+                    })
+                  }
+                  placeholder='Link to your GitHub profile (optional)'
+                  className={classes.textField}
+                />
+              </FormControl>
+              <FormControl>
+                <TextField
+                  onChange={event =>
+                    setFormValues({
+                      ...formValues,
+                      linkedin: event.target.value,
+                    })
+                  }
+                  placeholder='Link to your LinkedIn profile (optional)'
+                  className={classes.textField}
+                />
+              </FormControl>
             </Box>
-            <FormButton theme={buttonTheme}>Submit</FormButton>
+            <FormButton
+              theme={buttonTheme}
+              onClick={handleFormSubmit}
+            >
+              Submit
+            </FormButton>
           </StudentFormContainer>
         </StudentCard>
       </ThisGreyBackgroundContainer>
@@ -224,7 +297,7 @@ const StudentForm = props => {
                   placeholder='Select Confidence Level'
                 />
                 {errors.confidence && touched.confidence && (
-                  <StyledError>{errors.confidence}</StyledError>
+                  <StyledError>{errors.confidence}</id>
                 )}
               </div>
               <div>

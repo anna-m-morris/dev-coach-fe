@@ -1,3 +1,4 @@
+// thanks to @keeguon for this list of countries in JSON https://gist.github.com/keeguon/2310008
 export const countries = [ 
     {name: 'Afghanistan', code: 'AF'}, 
     {name: 'Åland Islands', code: 'AX'}, 
