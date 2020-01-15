@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import uuid from 'uuid';
@@ -8,15 +8,15 @@ import FeedbackCard from '../../components/Cards/FeedbackCard';
 
 const StyledFeedback = styled.div``;
 
-const Feedback = props => {
-  React.useEffect(() => {
-    props.getFeedback(props.user.id, props.user.role_id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+const Feedback = ({ user, getFeedback, feedback }) => {
+  useEffect(() => {
+    getFeedback(user.id, user.role_id);
+  }, [getFeedback, user]);
+
   return (
     <StyledFeedback>
-      {props.feedback &&
-        props.feedback.map(feedback => (
+      {feedback &&
+        feedback.map(feedback => (
           <FeedbackCard
             key={uuid()}
             rating={<FeedbackRating rating={feedback.rating} />}
