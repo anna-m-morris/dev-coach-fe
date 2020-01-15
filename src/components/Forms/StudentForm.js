@@ -4,6 +4,18 @@ import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
+import {
+  FormControl,
+  Select,
+  InputLabel,
+  withStyles,
+  makeStyles,
+  MenuItem,
+  Button,
+  InputBase,
+  TextField,
+  Box,
+} from '@material-ui/core';
 
 import { StyledButton, buttonTheme, Logo } from '../Landing';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
@@ -33,7 +45,112 @@ const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
    */
 `;
 
-const StudentForm = ({ touched, errors, isSubmitting }) => {
+const StudentCard = styled(FormCard)`
+  display: flex;
+  h1 {
+    margin: 0;
+    margin-top: -0.2em;
+    margin-bottom: 0.1em;
+  }
+`;
+const StudentFormContainer = styled(FormContainer)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -2em;
+`;
+
+const FormButton = styled(StyledButton)`
+  width: 50% !important;
+  margin-top: 1.6em;
+`;
+
+const InfoParagraph = styled.p`
+  width: 85%;
+  text-align: center;
+  margin-top: 0.4em;
+`;
+
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    width: 240,
+  },
+  textField: {
+    width: 240,
+    marginBottom: '-0.1em',
+  },
+  box: {
+    '& > *': {
+      marginTop: '0.1em',
+      marginBottom: '0.2em',
+    },
+  },
+}));
+
+const StudentForm = props => {
+  const classes = useStyles();
+  return (
+    <div>
+      <ThisGreyBackgroundContainer>
+        <StudentCard>
+          <Link to='/userrole'>
+            <NavLogo />
+          </Link>
+          <h1>Get started</h1>
+          <InfoParagraph>
+            Get started by letting us know where you're based, and
+            your background in coding. We'll use this information to
+            make sure you end up matched with the coach you need.
+          </InfoParagraph>
+          <StudentFormContainer>
+            <Box
+              className={classes.box}
+              display='flex'
+              flexDirection='column'
+              justifyContent='space-evenly'
+              alignItems='center'
+            >
+              <FormControl className={classes.formControl}>
+                <TextField
+                  variant='outlined'
+                  placeholder='Location'
+                  className={classes.textField}
+                />
+              </FormControl>
+              <FormControl className={classes.formControl}>
+                <InputLabel>Experience</InputLabel>
+                <Select
+                  placeholder='experience'
+                  displayEmpty
+                  className={classes.selectEmpty}
+                >
+                  <MenuItem value=''>
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value='none'>None</MenuItem>
+                  <MenuItem value='some'>Some</MenuItem>
+                  <MenuItem value='lots'>Lots</MenuItem>
+                </Select>
+              </FormControl>
+              <FormControl className={classes.formControl}>
+                <InputLabel>Confidence</InputLabel>
+                <Select>
+                  <MenuItem value='none'>None</MenuItem>
+                  <MenuItem value='some'>Some</MenuItem>
+                  <MenuItem value='lots'>Lots</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <FormButton theme={buttonTheme}>Submit</FormButton>
+          </StudentFormContainer>
+        </StudentCard>
+      </ThisGreyBackgroundContainer>
+    </div>
+  );
+};
+
+/* const StudentForm = ({ touched, errors, isSubmitting }) => {
   return (
     <div>
       <ThisGreyBackgroundContainer>
@@ -117,4 +234,8 @@ const FormikStudentForm = withFormik({
 
 export default connect(state => state, {
   chooseUserRole,
-})(FormikStudentForm);
+})(FormikStudentForm); */
+
+export default connect(state => state, { chooseUserRole })(
+  StudentForm,
+);
