@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-// import CardActionArea from '@material-ui/core/CardActionArea';
-// import CardActions from '@material-ui/core/CardActions';
-// import CardContent from '@material-ui/core/CardContent';
-// import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-// import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -37,14 +31,15 @@ const AppointmentCardDiv = styled.div`
     .topSection {
       display: flex;
       align-items: center;
+      justify-content: space-between;
 
       h3 {
-        font-family: 'Gelasio', serif;
-        font-size: 1.2rem;
+        font-family: 'Roboto', sans-serif;
         font-weight: 600;
         font-style: normal;
         color: black;
         text-align: center;
+        width: 40%;
       }
 
       .imgDiv {
@@ -73,11 +68,11 @@ const AppointmentCardDiv = styled.div`
         color: #4fad65;
 
         p {
-          font-family: 'Nunito', sans-serif;
+          font-family: 'Ubuntu, sans-serif';
           font-style: normal;
-          font-weight: 400;
-          font-size: 1.02rem;
-          color: black;
+          font-weight: 500;
+          font-size: 1.03rem;
+          color: #3c4043;
           margin-left: 12px;
         }
       }
@@ -89,16 +84,32 @@ const ButtonDiv = styled.div`
   /* margin-left: -10px; */
   /* margin-top: -20px; */
   display: flex;
+  justify-content: space-between;
+
+  button {
+    background: #3a7f4a;
+    border: none;
+    color: white;
+    width: 38%;
+    height: 2.1rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #1e3f1f;
+  } 
 `;
 
-const ButtonDividerDiv = styled.div`
-  margin-left: 25%;
-`;
-const iconStyles = {
-  color: 'white',
-  fontSize: 13,
-  background: 'green',
-};
+// // const ButtonDividerDiv = styled.div`
+// //   margin-left: 25%;
+// `;
+// const iconStyles = {
+//   color: 'white',
+//   fontSize: 13,
+//   background: 'green',
+//   width: '35%',
+// };
 
 export default function AppointmentCard(props) {
   // const classes = useStyles();
@@ -143,6 +154,7 @@ export default function AppointmentCard(props) {
         <div className='cardContainer'>
           <div className='topSection'>
             <h3>{`${first_name} ${last_name}`}</h3>
+            {/* <h3>Nicklaus Michaelson</h3> */}
             <div className='imgDiv'>
               <img
                 src={
@@ -159,7 +171,6 @@ export default function AppointmentCard(props) {
               <p>{appointment_topic}</p>
             </div>
             <div className='flexText'>
-              {/* <img src={calendarIcon} /> */}
               <i class='far fa-calendar-check'></i>
               <p className='dateTime'>{dateSliced}</p>
             </div>
@@ -170,20 +181,20 @@ export default function AppointmentCard(props) {
             <p>{description}</p>
           </div>
           <ButtonDiv>
-            <Button
+            <button
               onClick={handleCancelModalOpen}
-              style={iconStyles}
+              // style={iconStyles}
             >
-              cancel
-            </Button>
-            <ButtonDividerDiv>
-              <Button
-                style={iconStyles}
-                // onClick={handleCancelModalOpen}
-              >
-                message
-              </Button>
-            </ButtonDividerDiv>
+              Cancel
+            </button>
+            {/* <ButtonDividerDiv> */}
+            <button
+            // style={iconStyles}
+            // onClick={handleCancelModalOpen}
+            >
+              Message
+            </button>
+            {/* </ButtonDividerDiv> */}
           </ButtonDiv>
         </div>
       </AppointmentCardDiv>
