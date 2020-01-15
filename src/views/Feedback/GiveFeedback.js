@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { giveFeedback } from '../../state/actions/feedbackActions';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
+import { giveFeedback } from '../../state/actions/feedbackActions';
 import GiveRating from '../../components/DataVisualization/GiveRating';
 import FeedbackInput from '../../components/Inputs/FeedbackInput';
 
