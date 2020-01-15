@@ -15,6 +15,7 @@ import MainFaq from './components/FAQ/Main';
 import Booking from './components/Booking/Booking';
 import Feedback from './views/Feedback/Feedback';
 import VideoChat from './components/VideoChat';
+import GiveFeedback from './views/Feedback/GiveFeedback';
 import 'antd/dist/antd.css';
 
 const globalTheme = createMuiTheme({
@@ -30,8 +31,8 @@ function App() {
       <Route path={'/marketplace'} component={Marketplace} />
       <Route path={'/appointment'} component={Booking} />
       <Route path={'/feedback'} component={Feedback} />
-      <Route path={'/faq'} component={MainFaq} />
       <Route path={'/interview'} component={VideoChat} />
+      <Route path={'/givefeedback'} component={GiveFeedback} />
       <Redirect to='/dashboard' />
     </Switch>
   );

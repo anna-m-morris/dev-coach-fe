@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { getFeedback } from '../../state/actions/feedbackActions';
 import GiveRating from '../../components/DataVisualization/GiveRating';
