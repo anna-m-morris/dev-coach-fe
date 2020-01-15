@@ -79,7 +79,7 @@ const CardContainer = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
-    flex: 1;
+    /* flex: 1; */
     margin: 3rem 0;
     padding: 0 2rem;
 

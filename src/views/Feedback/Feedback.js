@@ -10,7 +10,7 @@ const StyledFeedback = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 `;
 
 const Feedback = ({ user, getFeedback, feedback }) => {
