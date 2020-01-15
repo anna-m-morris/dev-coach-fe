@@ -5,7 +5,6 @@
 // import CardActions from '@material-ui/core/CardActions';
 // import CardContent from '@material-ui/core/CardContent';
 // import Typography from '@material-ui/core/Typography';
-// import FeedbackModal from '../Modals/FeedbackModal';
 
 // const useStyles = makeStyles({
 //   card: {
@@ -56,13 +55,14 @@
 // export default FeedbackCard;
 import React from 'react';
 import styled from 'styled-components';
+import FeedbackModal from '../Modals/FeedbackModal';
 
 const CardContainer = styled.div`
   max-width: 28rem;
   background: white;
   border-radius: 4px;
   box-shadow: 2px 4px 6px #d3d3d3;
-  margin-bottom: 2rem;
+  margin: 2rem;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -85,13 +85,6 @@ const CardContainer = styled.div`
 
     .feedback-text-container {
       margin-left: 2rem;
-    }
-
-    .expand-text {
-      color: #4fad65;
-      font-size: 0.8rem;
-      font-weight: bold;
-      margin-top: 0.5rem;
     }
   }
 
@@ -125,8 +118,12 @@ const FeedbackCard = ({
       <div className='feedback'>
         <div className='rating'>{rating}</div>
         <div className='feedback-text-container'>
-          <p className='feedback-text'>{feedback}</p>
-          <p className='expand-text'>Read full review</p>
+          <p className='feedback-text'>{feedback.slice(0, 65)}...</p>
+          <FeedbackModal
+            coachFirstName={coachFirstName}
+            coachLastName={coachLastName}
+            feedback={feedback}
+          />
         </div>
       </div>
 

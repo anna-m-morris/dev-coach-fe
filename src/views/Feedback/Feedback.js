@@ -6,7 +6,12 @@ import { getFeedback } from '../../state/actions/feedbackActions';
 import FeedbackRating from '../../components/DataVisualization/Rating';
 import FeedbackCard from '../../components/Cards/FeedbackCard';
 
-const StyledFeedback = styled.div``;
+const StyledFeedback = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`;
 
 const Feedback = ({ user, getFeedback, feedback }) => {
   useEffect(() => {
@@ -14,7 +19,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
   }, [getFeedback, user]);
 
   return (
-    <StyledFeedback>
+    <StyledFeedback className='feedback-card-container'>
       {feedback &&
         feedback.map(feedback => (
           <FeedbackCard

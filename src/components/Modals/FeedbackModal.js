@@ -26,6 +26,13 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  expandText: {
+    color: '#4fad65',
+    fontSize: '0.8rem',
+    fontWeight: 'bold',
+    marginTop: '0.5rem',
+    cursor: 'pointer',
+  },
 }));
 
 const FeedbackModal = props => {
@@ -45,7 +52,11 @@ const FeedbackModal = props => {
 
   return (
     <div>
-      <p type='button' onClick={handleOpen}>
+      <p
+        type='button'
+        className={classes.expandText}
+        onClick={handleOpen}
+      >
         Read full review
       </p>
       <Modal
