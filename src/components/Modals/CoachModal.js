@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Modal } from 'antd';
+import { Modal, Divider } from 'antd';
 import Avatar from '@material-ui/core/Avatar';
 import uuid from 'uuid';
 import Rating from '../DataVisualization/Rating';
@@ -37,7 +37,7 @@ export default function App(props) {
         footer={null}
       >
         <div>
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
             <p style={{ width: '75%' }}>{coach.description}</p>
             <Avatar
               style={{ width: '25%', height: '4rem' }}
@@ -49,7 +49,20 @@ export default function App(props) {
             {feedback &&
               feedback.map(feedback => (
                 <div key={uuid()}>
-                  <Rating rating={feedback.rating} />
+                  <Divider>{`${feedback.first_name} ${feedback.last_name}`}</Divider>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-around',
+                      alignItems: 'center',
+                      width: '100%',
+                    }}
+                  >
+                    <p>{feedback.appointment_topic}</p>
+                    <p>{feedback.appointment_datetime}</p>
+                    <Rating rating={feedback.rating} />
+                  </div>
+                  <p>{feedback.feedback}</p>
                 </div>
               ))}
           </div>
