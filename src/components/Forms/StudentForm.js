@@ -102,7 +102,7 @@ const useStyles = makeStyles(theme => ({
 const StudentForm = props => {
   const classes = useStyles();
   const [formValues, setFormValues] = useState({
-    location: '',
+    userLocation: '',
     experience: '',
     confidence: '',
     github: '',
@@ -143,7 +143,7 @@ const StudentForm = props => {
                   onChange={event =>
                     setFormValues({
                       ...formValues,
-                      location: event.target.innerText,
+                      userLocation: event.target.innerText,
                     })
                   }
                   renderInput={params => (
@@ -248,7 +248,7 @@ const StudentForm = props => {
             </Box>
             <FormButton
               theme={buttonTheme}
-              onClick={handleFormSubmit}
+              onClick={() => props.chooseUserRole(props, formValues, 1)}
             >
               Submit
             </FormButton>
