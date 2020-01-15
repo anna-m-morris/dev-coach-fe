@@ -58,7 +58,6 @@ const useStyles = makeStyles(theme => ({
     color: '#4fad65',
     fontSize: '.8rem',
     paddingLeft: '3em',
-    background: '#FAFAFA',
   },
   toolbarIconClosed: {
     backgroundImage: `url(${logo})`,
