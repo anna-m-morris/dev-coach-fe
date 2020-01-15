@@ -58,10 +58,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
+  max-width: 28rem;
   background: white;
   border-radius: 4px;
   box-shadow: 2px 4px 6px #d3d3d3;
-  margin: 2rem 1rem;
+  margin-bottom: 2rem;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -76,15 +77,21 @@ const CardContainer = styled.div`
   .feedback {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     flex: 1;
     margin: 3rem 0;
     padding: 0 2rem;
 
     .feedback-text-container {
-      max-width: 60%;
       margin-left: 2rem;
+    }
+
+    .expand-text {
+      color: #4fad65;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-top: 0.5rem;
     }
   }
 
@@ -93,10 +100,11 @@ const CardContainer = styled.div`
     justify-content: space-between;
     padding: 0.5rem 1rem 0 1rem;
     width: 95%;
-    border-top: 1px solid #d3d3d3;
+    border-top: 1px solid #eaeaea;
 
-    p {
+    .footer-text {
       color: #a8a8a8;
+      font-weight: 500;
     }
   }
 `;
@@ -118,17 +126,18 @@ const FeedbackCard = ({
         <div className='rating'>{rating}</div>
         <div className='feedback-text-container'>
           <p className='feedback-text'>{feedback}</p>
+          <p className='expand-text'>Read full review</p>
         </div>
       </div>
 
       <div className='footer'>
         <div className='coach-info'>
-          <p>
+          <p className='footer-text'>
             {coachFirstName} {coachLastName}
           </p>
         </div>
-        <div className='date'>
-          <p>{date}</p>
+        <div>
+          <p className='date footer-text'>{date}</p>
         </div>
       </div>
     </CardContainer>
