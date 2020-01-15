@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const FooterContainer = styled.div`
   width: 100%;
-  height: 15rem;
   background: #292d38;
   display: flex;
   flex-direction: column;
@@ -12,7 +11,7 @@ export const FooterContainer = styled.div`
   .footer-top {
     display: flex;
     flex-direction: column;
-    margin-top: 1.6rem;
+    margin: 2rem 0 4rem 0;
 
     .cta-message {
       margin-bottom: 1.6rem;
@@ -31,7 +30,7 @@ export const FooterContainer = styled.div`
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 1.6rem;
+    padding-bottom: 1.6rem;
     color: #efefef;
 
     .footer-content {

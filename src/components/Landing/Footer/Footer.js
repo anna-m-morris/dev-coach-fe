@@ -9,7 +9,7 @@ import twitter from '../../../img/twitter-1.png';
 import instagram from '../../../img/instagram-logo-1.png';
 
 const Footer = () => (
-  <FooterContainer>
+  <FooterContainer className='footer-container'>
     <div className='footer-top'>
       <div className='cta-message'>
         <h2>What are you waiting for?</h2>

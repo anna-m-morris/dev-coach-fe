@@ -1,58 +1,3 @@
-// import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-// import Card from '@material-ui/core/Card';
-// import CardActionArea from '@material-ui/core/CardActionArea';
-// import CardActions from '@material-ui/core/CardActions';
-// import CardContent from '@material-ui/core/CardContent';
-// import Typography from '@material-ui/core/Typography';
-
-// const useStyles = makeStyles({
-//   card: {
-//     maxWidth: 345,
-//   },
-// });
-
-// const FeedbackCard = props => {
-//   const classes = useStyles();
-//   const {
-//     rating,
-//     feedback,
-//     date,
-//     coachFirstName,
-//     coachLastName,
-//     topic,
-//   } = props;
-//   return (
-//     <Card className={classes.card}>
-//       <CardActionArea>
-//         {rating}
-//         <CardContent>
-//           <Typography gutterBottom variant='h5' component='h2'>
-//             {topic}
-//           </Typography>
-//           <Typography
-//             variant='body2'
-//             color='textSecondary'
-//             component='p'
-//           >
-//             {feedback}
-//           </Typography>
-//           <FeedbackModal
-//             coachFirstName={coachFirstName}
-//             coachLastName={coachLastName}
-//             feedback={feedback}
-//           />
-//         </CardContent>
-//       </CardActionArea>
-//       <CardActions>
-//         <div>{coachFirstName[0] + coachLastName[0]}</div>
-//         <div>{date}</div>
-//       </CardActions>
-//     </Card>
-//   );
-// };
-
-// export default FeedbackCard;
 import React from 'react';
 import styled from 'styled-components';
 import FeedbackModal from '../Modals/FeedbackModal';
@@ -79,7 +24,6 @@ const CardContainer = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
-    /* flex: 1; */
     margin: 3rem 0;
     padding: 0 2rem;
 
