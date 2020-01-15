@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Pagination } from 'antd';
-// import devices from './devices';
-// import pink from '../img/pink.jpg';
-// import stare from '../img/stare.jpg';
-// import mobileCard from '../img/mobileCard.jpg';
-import CoachCard from '../../components/CoachCard';
+import CoachCard from '../../components/Cards/CoachCard';
 import {
   getCoaches,
   searchForKeyword,
@@ -125,7 +121,7 @@ const Marketplace = ({
           defaultCurrent={1}
           defaultPageSize={6}
           onChange={handlePagination}
-          total={coaches.length}
+          total={coaches && coaches.length}
         />
       </div>
     </StyledMarketplace>

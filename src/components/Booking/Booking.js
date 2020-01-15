@@ -1,6 +1,7 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import {
   showErrorMessage,
   showSuccessMessage,
@@ -16,6 +17,14 @@ import Select from '../Inputs/SelectInfo';
 import Notification from '../Notifications/Notification';
 import Paypal from './Paypal';
 
+const StyledBooking = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+
 const Booking = props => {
   const {
     date,
@@ -28,10 +37,11 @@ const Booking = props => {
     handleStripePayment,
     handlePaypalPayment,
     saveDate,
+    select,
   } = props;
 
   return (
-    <div>
+    <StyledBooking>
       <Notification
         onClose={closeMessage}
         variant='success'
@@ -46,34 +56,39 @@ const Booking = props => {
       />
       <DatePicker date={date} saveDate={saveDate} />
       <Select />
-      <StripeCheckout
-        stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // this key is only for testing we
-        // will add later our real key to the env file
-        token={token =>
-          handleStripePayment(
-            token,
-            'title', // title should be appointment topic
-            coach.hourly_rate,
-            showSuccessMessage,
-            showErrorMessage,
-          )
-        }
-        amount={coach.hourly_rate * 100}
-        name={'name'}
-        billingAddress
-        shippingAddress
-      />
-      <Paypal
-        price={coach.hourly_rate}
-        name={'Appointment topic'}
-        description={
-          'Appointment_topic, coach_name, coach_price, appointment_length'
-        }
-        handlePaypalPayment={handlePaypalPayment}
-        success={showSuccessMessage}
-        error={showErrorMessage}
-      />
-    </div>
+      {Object.keys(select).length > 1 &&
+      date.slice(16, 24) !== '00:00:00' ? (
+        <div>
+          <StripeCheckout
+            stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // this key is only for testing we
+            // will add later our real key to the env file
+            token={token =>
+              handleStripePayment(
+                token,
+                'title', // title should be appointment topic
+                coach.hourly_rate,
+                showSuccessMessage,
+                showErrorMessage,
+              )
+            }
+            amount={coach.hourly_rate * 100}
+            name={'name'}
+            billingAddress
+            shippingAddress
+          />
+          <Paypal
+            price={coach.hourly_rate}
+            name={'Appointment topic'}
+            description={
+              'Appointment_topic, coach_name, coach_price, appointment_length'
+            }
+            handlePaypalPayment={handlePaypalPayment}
+            success={showSuccessMessage}
+            error={showErrorMessage}
+          />
+        </div>
+      ) : null}
+    </StyledBooking>
   );
 };
 
@@ -84,6 +99,7 @@ const mapStateToProps = state => {
     date: state.bookingReducer.date,
     success: state.notificationsReducer.success,
     error: state.notificationsReducer.error,
+    user: state.userReducer.user,
   };
 };
 
