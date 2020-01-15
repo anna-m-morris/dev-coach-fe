@@ -59,7 +59,9 @@ export default function App(props) {
                     }}
                   >
                     <p>{feedback.appointment_topic}</p>
-                    <p>{feedback.appointment_datetime}</p>
+                    <p>
+                      {feedback.appointment_datetime.slice(0, 15)}
+                    </p>
                     <Rating rating={feedback.rating} />
                   </div>
                   <p>{feedback.feedback}</p>
