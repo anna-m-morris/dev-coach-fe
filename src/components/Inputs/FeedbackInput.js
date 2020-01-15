@@ -26,9 +26,9 @@ export default function MultilineTextFields() {
           value={value}
           onChange={handleChange}
           id='outlined-multiline-static'
-          label='Multiline'
+          label='Review'
           multiline
-          rows='4'
+          rows='10'
           variant='outlined'
         />
       </div>
