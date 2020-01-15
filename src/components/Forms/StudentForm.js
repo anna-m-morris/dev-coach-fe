@@ -16,7 +16,7 @@ import {
   TextField,
   Box,
 } from '@material-ui/core';
-
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import { StyledButton, buttonTheme, Logo } from '../Landing';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
 import {
@@ -24,6 +24,13 @@ import {
   FormCard,
   FormContainer,
 } from './LoginForm';
+import { countries } from './countries';
+
+const films = [
+  { title: 'The Shawshank Redemption', year: 1994 },
+  { title: 'The Godfather', year: 1972 },
+  { title: 'The Godfather: Part II', year: 1974 },
+];
 
 const NavLogo = styled(Logo)`
   a {
@@ -67,7 +74,7 @@ const StudentFormContainer = styled.div`
 
 const FormButton = styled(StyledButton)`
   width: 50% !important;
-  margin-top: 1.6em;
+  margin-top: 2em;
 `;
 
 const InfoParagraph = styled.p`
@@ -115,9 +122,20 @@ const StudentForm = props => {
               alignItems='center'
             >
               <FormControl className={classes.formControl}>
-                <TextField
+                {/*                 <TextField
                   placeholder='Location'
                   className={classes.textField}
+                /> */}
+                <Autocomplete
+                  options={countries}
+                  getOptionLabel={option => option.name}
+                  renderInput={params => (
+                    <TextField
+                      {...params}
+                      label='Select your location'
+                      fullWidth
+                    />
+                  )}
                 />
               </FormControl>
               <FormControl className={classes.formControl}>
@@ -152,9 +170,11 @@ const StudentForm = props => {
               <FormControl className={classes.formControl}>
                 <InputLabel>Confidence</InputLabel>
                 <Select>
-                  <MenuItem value='none'>None</MenuItem>
-                  <MenuItem value='some'>Some</MenuItem>
-                  <MenuItem value='lots'>Lots</MenuItem>
+                  <MenuItem value='1'>I'm not very confident in my ability to interview successfully</MenuItem>
+                  <MenuItem value='2'>I'm not as confident at interviewing as I'd like to be</MenuItem>
+                  <MenuItem value='3'>I'm not confident, but not unconfident either</MenuItem>
+                  <MenuItem value='4'>I'm pretty confident in my interview ability</MenuItem>
+                  <MenuItem value='5'>I'm completely confident at interviewing</MenuItem>
                 </Select>
               </FormControl>
             </Box>
