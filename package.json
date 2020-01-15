@@ -16,6 +16,7 @@
     "clsx": "^1.0.4",
     "date-fns": "^2.8.1",
     "formik": "^2.0.8",
+    "formik-material-ui": "^1.0.0",
     "prop-types": "^15.7.2",
     "pusher-js": "^5.0.3",
     "react": "^16.12.0",
