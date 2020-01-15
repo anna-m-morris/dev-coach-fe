@@ -56,7 +56,7 @@ function userReducer(state = initialState, action) {
         user: {
           id: action.id,
           role_id: action.role,
-        }
+        },
       };
     case types.USER_ROLE_ERROR:
       return {
@@ -68,7 +68,7 @@ function userReducer(state = initialState, action) {
         ...state,
         isLoggedIn: false,
         user: null,
-      }
+      };
   }
 }
 

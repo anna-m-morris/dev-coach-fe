@@ -1,6 +1,6 @@
 import React from 'react';
 import { Logo } from '../Landing-styles';
-import { NavContainer } from './styles';
+import { NavContainer } from './NavigationStyles';
 
 const Navigation = () => (
   <NavContainer className='navigation'>
