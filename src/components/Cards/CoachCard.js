@@ -28,7 +28,7 @@ const StyledCoachCard = styled.div`
 
   .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     .header-text {
@@ -51,6 +51,11 @@ const StyledCoachCard = styled.div`
   }
 
   .description {
+  }
+
+  .reviews {
+    display: flex;
+    justify-content: space-between;
   }
 
   .footer {
@@ -99,15 +104,15 @@ const CoachCard = props => {
 
       <div className='description'>
         <p>{`${coach.description.slice(0, 50)}...`}</p>{' '}
+      </div>
+
+      <div className='reviews'>
+        <Rating rating={coach.rating} size='small' />
         <CoachModal
           coach={coach}
           getFeedback={getFeedback}
           feedback={feedback}
         />
-      </div>
-
-      <div className='reviews'>
-        <Rating rating={coach.rating} />
       </div>
 
       <div className='footer'>
