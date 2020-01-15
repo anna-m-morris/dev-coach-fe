@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { getFeedback } from '../../state/actions/feedbackActions';
+import { giveFeedback } from '../../state/actions/feedbackActions';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
 import GiveRating from '../../components/DataVisualization/GiveRating';
 import FeedbackInput from '../../components/Inputs/FeedbackInput';
 
@@ -12,7 +13,7 @@ const StyledGiveFeedback = styled.div`
   }
 `;
 
-export default function GiveFeedback() {
+function GiveFeedback(props) {
   return (
     <StyledGiveFeedback>
       <GiveRating />
@@ -23,3 +24,14 @@ export default function GiveFeedback() {
     </StyledGiveFeedback>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    coaches: state.marketplaceReducer.coaches,
+    feedback: state.feedbackReducer.feedback,
+  };
+};
+
+export default connect(mapStateToProps, {
+  giveFeedback,
+})(GiveFeedback);
