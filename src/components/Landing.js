@@ -44,12 +44,12 @@ const NavbarContainer = styled.div`
   }
 `;
 
-// const NavbarSubContainer = styled.div`
-//   width: 95%;
-//   height: 100%;
-//   display: flex;
-//   justify-content: space-between;
-// `;
+const NavbarSubContainer = styled.div`
+  width: 95%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
 
 export const Logo = styled.div`
   width: 4.5em;
@@ -152,14 +152,14 @@ const TopLandingContainer = styled.div`
   }
 `;
 
-// const TopLandingSubContainer = styled.div`
-//   width: 95%;
-//   padding-top: 1em;
-//   height: 60vh;
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: nowrap;
-// `;
+const TopLandingSubContainer = styled.div`
+  width: 95%;
+  padding-top: 1em;
+  height: 60vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+`;
 
 const LandingTaglineContainer = styled.div`
   height: 100%;
@@ -486,46 +486,55 @@ const Landing = () => {
     <div>
       <LandingWrapper>
         <NavbarContainer>
-          <LogoTitleContainer>
-            <Logo />
-            <NavTitleContainer>
-              <h1>DevCoach</h1>
-            </NavTitleContainer>
-          </LogoTitleContainer>
-          <LinksContainer>
-            <NavbarLink>
-              <a href='/faq/general'>FAQ</a>
-            </NavbarLink>
-            <NavbarLink>
-              <a href='/about'>About</a>
-            </NavbarLink>
-            <a href='/login'>
-              <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
-            </a>
-            <a href='/register'>
-              <StyledButton theme={invertTheme}>SIGN UP</StyledButton>
-            </a>
-          </LinksContainer>
+          <NavbarSubContainer>
+            <LogoTitleContainer>
+              <Logo />
+              <NavTitleContainer>
+                <h1>DevCoach</h1>
+              </NavTitleContainer>
+            </LogoTitleContainer>
+            <LinksContainer>
+              <NavbarLink>
+                <a href='/faq/general'>FAQ</a>
+              </NavbarLink>
+              <NavbarLink>
+                <a href='#'>About</a>
+              </NavbarLink>
+              <a href='/login'>
+                <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
+              </a>
+              <a href='/register'>
+                <StyledButton
+                  theme={invertTheme}
+                  style={{ 'white-space': 'nowrap' }}
+                >
+                  SIGN UP
+                </StyledButton>
+              </a>
+            </LinksContainer>
+          </NavbarSubContainer>
         </NavbarContainer>
         <TopLandingContainer>
-          <LandingTaglineContainer>
-            <h1>
-              INTERVIEWING ISN'T EASY. THAT DOESN'T MEANT IT HAS TO BE
-              STRESSFUL.
-            </h1>
-            <h3>
-              We connect developers looking to improve their
-              interviewing technique with experienced pros who have
-              mastered the technical interview and can coach you
-              through the process from start to finish.
-            </h3>
-            <SignUp />
-          </LandingTaglineContainer>
-          <LandingRightContainer>
-            <LandingVectorImageContainer>
-              <img src={vector2} alt='main' />
-            </LandingVectorImageContainer>
-          </LandingRightContainer>
+          <TopLandingSubContainer>
+            <LandingTaglineContainer>
+              <h1>
+                INTERVIEWING ISN'T EASY. THAT DOESN'T MEANT IT HAS TO
+                BE STRESSFUL.
+              </h1>
+              <h3>
+                We connect developers looking to improve their
+                interviewing technique with experienced pros who have
+                mastered the technical interview and can coach you
+                through the process from start to finish.
+              </h3>
+              <SignUp />
+            </LandingTaglineContainer>
+            <LandingRightContainer>
+              <LandingVectorImageContainer>
+                <img src={vector2} />
+              </LandingVectorImageContainer>
+            </LandingRightContainer>
+          </TopLandingSubContainer>
         </TopLandingContainer>
         <InfoboxContainer>
           <InfoBoxTitleContainer>

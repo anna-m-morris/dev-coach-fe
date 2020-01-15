@@ -15,7 +15,6 @@ import MainFaq from './components/FAQ/Main';
 import Booking from './components/Booking/Booking';
 import Feedback from './views/Feedback/Feedback';
 import VideoChat from './components/VideoChat';
-import Select from './components/Forms/selectComponent';
 
 const globalTheme = createMuiTheme({
   typography: {
@@ -61,7 +60,6 @@ function App(props) {
       <Route path='/register' component={SignUpForm} />
       <Route path='/marketplace' component={Marketplace} />
       <Route path='/faq' component={MainFaq} />
-      <Route path='/select' component={Select} />
       <Redirect to='/' />
     </Switch>
   );

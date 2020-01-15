@@ -39,7 +39,6 @@ function bookingReducer(state = initialState, action) {
 
       copyOfSelect[action.payload.target.name] =
         action.payload.target.value;
-
       return {
         ...state,
         select: copyOfSelect,
