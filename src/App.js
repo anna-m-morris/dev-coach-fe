@@ -30,7 +30,7 @@ function App(props) {
       <Route path={'/marketplace'} component={Marketplace} />
       <Route path={'/appointment'} component={Booking} />
       <Route path={'/feedback'} component={Feedback} />
-      <Route path={'/settings'} component={VideoChat} />
+      <Route path={'/faq'} component={MainFaq} />
       <Route path={'/interview'} component={VideoChat} />
       <Redirect to='/dashboard' />
     </Switch>
