@@ -1,7 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
 import styled from 'styled-components';
+import { Modal } from 'antd';
+import Avatar from '@material-ui/core/Avatar';
+import uuid from 'uuid';
+import Rating from '../DataVisualization/Rating';
 
 const StyledCoachModal = styled.div`
   .see-more {
@@ -9,65 +11,50 @@ const StyledCoachModal = styled.div`
   }
 `;
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
+export default function App(props) {
+  const { getFeedback, coach, feedback } = props;
+  const [visible, setVisible] = React.useState(false);
 
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
-
-const CoachModal = props => {
-  const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
-  const { firstName, lastName, description } = props;
-
-  const handleOpen = () => {
-    setOpen(true);
+  const showModal = () => {
+    getFeedback(coach.id, '2');
+    setVisible(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCancel = e => {
+    setVisible(false);
   };
 
   return (
     <StyledCoachModal>
-      <p className='see-more' onClick={handleOpen}>
+      <p className='see-more' onClick={showModal}>
         See more
       </p>
       <Modal
-        aria-labelledby='simple-modal-title'
-        aria-describedby='simple-modal-description'
-        open={open}
-        onClose={handleClose}
+        zIndex={10000}
+        title={`${coach.first_name} ${coach.last_name}`}
+        visible={visible}
+        onCancel={handleCancel}
+        footer={null}
       >
-        <div style={modalStyle} className={classes.paper}>
-          <h2 id='simple-modal-title'>{`${firstName} ${lastName}`}</h2>
-          <p id='simple-modal-description'>{description}</p>
+        <div>
+          <div style={{ display: 'flex' }}>
+            <p style={{ width: '75%' }}>{coach.description}</p>
+            <Avatar
+              style={{ width: '25%', height: '4rem' }}
+              alt='Coach'
+              src={coach.avatar_url}
+            />
+          </div>
+          <div>
+            {feedback &&
+              feedback.map(feedback => (
+                <div key={uuid()}>
+                  <Rating rating={feedback.rating} />
+                </div>
+              ))}
+          </div>
         </div>
       </Modal>
     </StyledCoachModal>
   );
-};
-
-export default CoachModal;
+}

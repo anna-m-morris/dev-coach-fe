@@ -10,6 +10,7 @@ import {
   searchForExperience,
 } from '../../state/actions/marketplaceActions';
 import { saveCoach } from '../../state/actions/bookingActions';
+import { getFeedback } from '../../state/actions/feedbackActions';
 import SelectPrice from '../../components/Inputs/SelectPrice';
 import SelectExperience from '../../components/Inputs/SelectExperience';
 import SearchForKeyword from '../../components/Inputs/SearchForKeyword';
@@ -76,8 +77,9 @@ const Marketplace = ({
   searchForPrice,
   searchForExperience,
   saveCoach,
+  getFeedback,
+  feedback,
 }) => {
-  // const [searchTerm, setSearchTerm] = useState('');
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(6);
 
@@ -113,6 +115,8 @@ const Marketplace = ({
                 key={coach.first_name}
                 coach={coach}
                 saveCoach={saveCoach}
+                getFeedback={getFeedback}
+                feedback={feedback}
               />
             ))}
       </div>
@@ -130,6 +134,7 @@ const Marketplace = ({
 const mapStateToProps = state => {
   return {
     coaches: state.marketplaceReducer.coaches,
+    feedback: state.feedbackReducer.feedback,
   };
 };
 
@@ -139,4 +144,5 @@ export default connect(mapStateToProps, {
   searchForPrice,
   searchForExperience,
   saveCoach,
+  getFeedback,
 })(Marketplace);

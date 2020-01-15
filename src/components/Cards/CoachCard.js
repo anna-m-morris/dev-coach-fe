@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import CoachModal from '../Modals/CoachModal';
+import Rating from '../DataVisualization/Rating';
 
 const StyledCoachCard = styled.div`
   display: flex;
@@ -64,7 +65,7 @@ const StyledCoachCard = styled.div`
 `;
 
 const CoachCard = props => {
-  const { coach, saveCoach } = props;
+  const { coach, saveCoach, getFeedback, feedback } = props;
   return (
     <StyledCoachCard>
       <div className='header'>
@@ -99,10 +100,14 @@ const CoachCard = props => {
       <div className='description'>
         <p>{`${coach.description.slice(0, 50)}...`}</p>{' '}
         <CoachModal
-          firstName={coach.first_name}
-          lastName={coach.last_name}
-          description={coach.description}
+          coach={coach}
+          getFeedback={getFeedback}
+          feedback={feedback}
         />
+      </div>
+
+      <div className='reviews'>
+        <Rating rating={coach.rating} />
       </div>
 
       <div className='footer'>
