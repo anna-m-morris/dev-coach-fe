@@ -58,6 +58,7 @@ const useStyles = makeStyles(theme => ({
     color: '#4fad65',
     fontSize: '.8rem',
     paddingLeft: '3em',
+    background: '#FAFAFA'
   },
   toolbarIconClosed: {
     backgroundImage: `url(${logo})`,
@@ -287,7 +288,6 @@ const Dashboard = props => {
           }
           onClick={() => setOpen(!open)}
         >
-          <img alt='logo' className={classes.toolbarLogoImg}></img>
           <h1
             className={open ? classes.toolbarTitle : classes.hidden}
           >
