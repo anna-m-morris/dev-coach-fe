@@ -71,6 +71,7 @@ const StyledCoachCard = styled.div`
 
 const CoachCard = props => {
   const { coach, saveCoach, getFeedback, feedback } = props;
+
   return (
     <StyledCoachCard>
       <div className='header'>

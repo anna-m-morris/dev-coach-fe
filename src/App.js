@@ -23,7 +23,7 @@ const globalTheme = createMuiTheme({
   },
 });
 
-function App(props) {
+function App() {
   const routes = (
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
