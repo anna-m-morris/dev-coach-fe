@@ -15,11 +15,12 @@ const AppointmentCardDiv = styled.div`
   justify-content: space-evenly;
   max-width: 100%;
   box-sizing: border-box;
-  max-width: 100%;
+  width: 19rem;
+  height: 19rem;
+  margin: 0.5rem;
 
   .cardContainer {
     width: 85%;
-    height: 100%;
     background: white;
     border-radius: 8px;
     justify-content: center;
@@ -75,6 +76,7 @@ const AppointmentCardDiv = styled.div`
       }
 
       a {
+        width: 38%;
         text-decoration: none;
       }
     }

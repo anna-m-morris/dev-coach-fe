@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 import styled from 'styled-components';
+import Pagination from 'antd/lib/pagination';
+import 'antd/lib/pagination/style/index.css';
 import {
   getAppointment,
   cancelAppointment,
@@ -15,11 +17,33 @@ const StyledContainer = styled.div`
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
-  display: grid;
-  grid-gap: 2em;
+  /* display: grid; */
+  /* grid-gap: 2em; */
   justify-content: space-between;
-  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-columns: repeat(3, 1fr); */
   padding-top: 65px;
+
+  .appointments {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .ant-pagination-item-active {
+      border-color: #4fad65;
+    }
+
+    .ant-pagination-item-active a {
+      color: #4fad65;
+    }
+  }
 
   @media (max-width: 768px) {
     max-width: 650px;
@@ -72,7 +96,6 @@ const StyledContainer = styled.div`
 
     p {
       font-weight: 600;
-      font-weight: 1.2rem;
       margin-bottom: 0;
     }
   }
@@ -87,32 +110,55 @@ const UserDashboard = props => {
     startInterview,
     saveIdRole,
   } = props;
+
+  const [minValue, setMinValue] = React.useState(0);
+  const [maxValue, setMaxValue] = React.useState(6);
+
   React.useEffect(() => {
     setTimeout(() => getAppointment(user.id, user.role_id), 1000);
   }, [getAppointment, user.id, user.role_id]);
 
+  const handlePagination = value => {
+    if (value <= 1) {
+      setMinValue(0);
+      setMaxValue(6);
+    } else {
+      setMinValue(value * 6 - 6);
+      setMaxValue(value * 6);
+    }
+  };
   return (
     <StyledContainer>
       {appointments ? (
-        appointments.map(appointment => (
-          <AppointmentCard
-            key={uuid()}
-            first_name={appointment.first_name}
-            last_name={appointment.last_name}
-            avatar_url={appointment.avatar_url}
-            appointment_datetime={appointment.appointment_datetime}
-            appointment_topic={appointment.appointment_topic}
-            description={appointment.description}
-            canceled={appointment.canceled}
-            cancel={() => cancelAppointment(appointment.id)}
-            startInterview={() =>
-              startInterview(appointment.user_id, props)
-            }
-            saveIdRole={() =>
-              saveIdRole(appointment.role_id, appointment.id)
-            }
-          />
-        ))
+        <div className='appointments'>
+          {appointments.slice(minValue, maxValue).map(appointment => (
+            <AppointmentCard
+              key={uuid()}
+              first_name={appointment.first_name}
+              last_name={appointment.last_name}
+              avatar_url={appointment.avatar_url}
+              appointment_datetime={appointment.appointment_datetime}
+              appointment_topic={appointment.appointment_topic}
+              description={appointment.description}
+              canceled={appointment.canceled}
+              cancel={() => cancelAppointment(appointment.id)}
+              startInterview={() =>
+                startInterview(appointment.user_id, props)
+              }
+              saveIdRole={() =>
+                saveIdRole(appointment.role_id, appointment.id)
+              }
+            />
+          ))}
+          <div className='pagination'>
+            <Pagination
+              defaultCurrent={1}
+              defaultPageSize={6}
+              onChange={handlePagination}
+              total={appointments.length}
+            />
+          </div>
+        </div>
       ) : (
         <EmptyAppointment />
       )}
