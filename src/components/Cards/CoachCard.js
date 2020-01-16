@@ -13,13 +13,13 @@ const StyledCoachCard = styled.div`
   width: 17rem;
   height: 22rem;
   padding: 2.4rem;
-  border: 1px solid #dadce0;
   border-radius: 0.8rem;
   margin: 0.5rem;
   color: #595959;
   font-weight: 300;
   text-align: left;
   background: white;
+  box-shadow: 0 6px 10px #d3d3d3;
 
   h3 {
     font-weight: 400;
