@@ -66,6 +66,7 @@ const CoachForm = props => {
     userLocation: '',
     experience: '',
     skills: '',
+    description: '',
     github: '',
     linkedin: '',
   });
@@ -175,6 +176,12 @@ const CoachForm = props => {
                   fullWidth
                   multiline
                   label='Description'
+                  onChange={event =>
+                    setFormValues({
+                      ...formValues,
+                      skills: event.target.value,
+                    })
+                  }
                 ></TextField>
               </FormControl>
               <FormButton
