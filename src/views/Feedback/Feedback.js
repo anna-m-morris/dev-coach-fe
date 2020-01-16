@@ -11,6 +11,7 @@ const StyledFeedback = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 1rem;
 `;
 
 const Feedback = ({ user, getFeedback, feedback }) => {
