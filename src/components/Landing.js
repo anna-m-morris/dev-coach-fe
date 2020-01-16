@@ -498,7 +498,13 @@ const Landing = () => {
                 <a href='/faq/general'>FAQ</a>
               </NavbarLink>
               <NavbarLink>
+<<<<<<< HEAD
                 <a href='/'>About</a>
+=======
+                <a href='/' alt='about'>
+                  About
+                </a>
+>>>>>>> dd6ec929884f0f6d2ead471d488cbd81d41d7a63
               </NavbarLink>
               <a href='/login'>
                 <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
@@ -531,7 +537,7 @@ const Landing = () => {
             </LandingTaglineContainer>
             <LandingRightContainer>
               <LandingVectorImageContainer>
-                <img alt='vector2' src={vector2} />
+                <img src={vector2} alt='woman coding' />
               </LandingVectorImageContainer>
             </LandingRightContainer>
           </TopLandingSubContainer>
