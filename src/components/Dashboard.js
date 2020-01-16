@@ -241,9 +241,7 @@ const Dashboard = props => {
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
               <MenuItem onClick={handleClose}>My Account</MenuItem>
-              <MenuItem onClick={() => handleLogout(props)}>
-                Logout
-              </MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </div>
         </Toolbar>
