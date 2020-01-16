@@ -105,6 +105,7 @@ export default function AppointmentCard(props) {
     appointment_topic,
     description,
     cancel,
+    savePartner,
   } = props;
 
   const [openCancelModal, setOpenCancelModal] = useState(false);
@@ -164,7 +165,7 @@ export default function AppointmentCard(props) {
           </div>
           <ButtonDiv>
             <button onClick={handleCancelModalOpen}>Cancel</button>
-            <button>Message</button>
+            <button onClick={savePartner}>Interview</button>
           </ButtonDiv>
         </div>
       </AppointmentCardDiv>
