@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function MultilineTextFields(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState('Controlled');
+  const [value, setValue] = React.useState('');
 
   const handleChange = event => {
     setValue(event.target.value);
