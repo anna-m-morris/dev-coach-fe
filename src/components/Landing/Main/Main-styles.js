@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// import devices from '../../devices';
+import devices from '../../devices';
 
 export const MainContainer = styled.div`
   max-width: 100%;
@@ -44,18 +44,17 @@ export const MainContainer = styled.div`
     background: #292d38;
     width: 100%;
     margin: 10rem 0;
+    padding: 3rem 0;
 
     h4 {
       font-size: 2rem;
       text-align: center;
-      margin: 1rem 0;
       color: #efefef;
     }
 
     .about-cards {
       display: flex;
       justify-content: space-evenly;
-      margin: 2rem 0;
       flex-wrap: wrap;
     }
 
@@ -69,6 +68,7 @@ export const MainContainer = styled.div`
       justify-content: space-between;
       height: 25rem;
       max-width: 25rem;
+      margin-top: 3rem;
 
       .vector {
         width: 100%;
@@ -106,7 +106,7 @@ export const MainContainer = styled.div`
   }
 
   .user-stories-container {
-    margin: 0 auto;
+    margin-bottom: 10rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -116,10 +116,15 @@ export const MainContainer = styled.div`
       font-weight: bold;
       font-size: 2.2rem;
       margin-bottom: 5rem;
-      width: 70%;
+      max-width: 60rem;
+      padding: 0 2rem;
       text-align: center;
       line-height: 1.3;
       color: #141414;
+
+      @media ${devices.tablet} {
+        margin-bottom: 2.5rem;
+      }
     }
 
     .user-stories {
@@ -127,6 +132,7 @@ export const MainContainer = styled.div`
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
+      width: 100%;
     }
 
     .user-story {
@@ -139,9 +145,12 @@ export const MainContainer = styled.div`
 
       p {
         line-height: 2;
-        /* font-weight: bold; */
         font-size: 1.1rem;
         color: #545454;
+
+        @media ${devices.tablet} {
+          text-align: center;
+        }
       }
     }
 
@@ -149,8 +158,12 @@ export const MainContainer = styled.div`
       width: 100%;
       display: flex;
       align-items: center;
-
       margin: 1rem 0;
+
+      @media ${devices.tablet} {
+        justify-content: center;
+        flex-direction: column;
+      }
 
       img {
         width: 5rem;
@@ -158,6 +171,10 @@ export const MainContainer = styled.div`
         border-radius: 50%;
         object-fit: cover;
         margin-right: 1.2rem;
+
+        @media ${devices.tablet} {
+          margin: 0 0 1rem 0;
+        }
       }
 
       h3 {
