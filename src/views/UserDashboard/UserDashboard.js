@@ -6,6 +6,7 @@ import {
   getAppointment,
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
+import { saveIdRole } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
@@ -84,6 +85,7 @@ const UserDashboard = props => {
     user,
     cancelAppointment,
     startInterview,
+    saveIdRole,
   } = props;
   React.useEffect(() => {
     setTimeout(() => getAppointment(user.id, user.role_id), 1000);
@@ -106,6 +108,9 @@ const UserDashboard = props => {
             startInterview={() =>
               startInterview(appointment.user_id, props)
             }
+            saveIdRole={() =>
+              saveIdRole(appointment.role_id, appointment.id)
+            }
           />
         ))
       ) : (
@@ -126,4 +131,5 @@ export default connect(mapStateToProps, {
   getAppointment,
   cancelAppointment,
   startInterview,
+  saveIdRole,
 })(UserDashboard);

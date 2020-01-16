@@ -8,7 +8,7 @@ export const GIVE_FEEDBACK_ERROR = 'GIVE_FEEDBACK_ERROR';
 export const GIVE_FEEDBACK_SUCCESSFUL = 'GIVE_FEEDBACK_SUCCESSFUL';
 export const SAVE_RATING = 'SAVE_RATING';
 export const SAVE_FEEDBACK = 'SAVE_FEEDBACK';
-export const SAVE_PARTNER = 'SAVE_PARTNER';
+export const SAVE_ID_ROLE = 'SAVE_ID_ROLE';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -33,22 +33,13 @@ export const getFeedback = (coach_student_id, role) => dispatch => {
     });
 };
 
-export const giveFeedback = (
-  user_role,
-  appointment_id,
-  rating,
-  feedback,
-) => dispatch => {
+export const giveFeedback = (feedback, props) => dispatch => {
   dispatch({ type: GIVE_FEEDBACK_START });
 
   axiosWithAuth()
-    .post(`${url}feedback`, {
-      user_role,
-      appointment_id,
-      rating,
-      feedback,
-    })
+    .post(`${url}feedback`, feedback)
     .then(res => {
+      props.history.push('dashboard');
       dispatch({
         type: GIVE_FEEDBACK_SUCCESSFUL,
         payload: res.data.feedback,
@@ -70,6 +61,9 @@ export const saveRating = rating => {
   return { type: SAVE_RATING, payload: rating };
 };
 
-export const savePartner = partner => {
-  return { type: SAVE_PARTNER, payload: partner };
+export const saveIdRole = (user_role_id, appointment_id) => {
+  return {
+    type: SAVE_ID_ROLE,
+    payload: { user_role_id, appointment_id },
+  };
 };

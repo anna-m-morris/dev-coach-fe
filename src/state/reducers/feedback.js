@@ -2,7 +2,7 @@ import * as types from '../actions/feedbackActions';
 
 const initialState = {
   feedback: null,
-  partner: null,
+  idRole: null,
   giveFeedback: null,
   rating: null,
   isLoading: false,
@@ -33,8 +33,8 @@ function feedback(state = initialState, action) {
     case types.SAVE_RATING:
       return { ...state, rating: action.payload };
 
-    case types.SAVE_PARTNER:
-      return { ...state, partner: action.payload };
+    case types.SAVE_ID_ROLE:
+      return { ...state, idRole: action.payload };
     default:
       return state;
   }

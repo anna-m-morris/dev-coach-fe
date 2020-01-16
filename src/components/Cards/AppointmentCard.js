@@ -7,6 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const AppointmentCardDiv = styled.div`
   display: flex;
@@ -55,6 +56,29 @@ const AppointmentCardDiv = styled.div`
       }
     }
 
+    .button {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        background: #4fad65;
+        border: none;
+        color: white;
+        width: 38%;
+        height: 2.1rem;
+        border-radius: 0.4rem;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #1e3f1f;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+
     .textDiv {
       margin-top: 30px;
 
@@ -76,26 +100,6 @@ const AppointmentCardDiv = styled.div`
     }
   }
 `;
-
-const ButtonDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-
-  button {
-    background: #4fad65;
-    border: none;
-    color: white;
-    width: 38%;
-    height: 2.1rem;
-    border-radius: 0.4rem;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background: #1e3f1f;
-  }
-`;
-
 export default function AppointmentCard(props) {
   const {
     first_name,
@@ -105,7 +109,7 @@ export default function AppointmentCard(props) {
     appointment_topic,
     description,
     cancel,
-    savePartner,
+    saveIdRole,
   } = props;
 
   const [openCancelModal, setOpenCancelModal] = useState(false);
@@ -163,10 +167,14 @@ export default function AppointmentCard(props) {
             </div>
             <p>{description}</p>
           </div>
-          <ButtonDiv>
+          <div className='button'>
             <button onClick={handleCancelModalOpen}>Cancel</button>
-            <button onClick={savePartner}>Interview</button>
-          </ButtonDiv>
+            <Link to='/givefeedback'>
+              <button style={{ width: '100%' }} onClick={saveIdRole}>
+                Interview
+              </button>
+            </Link>
+          </div>
         </div>
       </AppointmentCardDiv>
 
