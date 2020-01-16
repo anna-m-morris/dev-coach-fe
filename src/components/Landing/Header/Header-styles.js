@@ -9,6 +9,9 @@ export const HeaderContainer = styled.div`
 
   @media ${devices.tablet} {
     top: 16rem;
+    margin: 0;
+    text-align: center;
+    padding: 0 2rem;
   }
 
   h2 {
@@ -21,5 +24,9 @@ export const HeaderContainer = styled.div`
   .cta-button {
     width: 15rem;
     margin-top: 2rem;
+
+    @media ${devices.tablet} {
+      margin: 2rem auto;
+    }
   }
 `;
