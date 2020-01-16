@@ -13,7 +13,7 @@ import {
   showSuccessMessage,
   closeMessage,
 } from '../../state/actions/notificationActions';
-import Notification from '../Notifications/Notification';
+import Notification from '../../components/Notifications/Notification';
 import { updateUserInfo } from '../../state/actions/settingActions';
 
 const StyledSettings = styled.div`
