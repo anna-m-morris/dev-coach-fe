@@ -19,6 +19,7 @@ const StyledCoachCard = styled.div`
   color: #595959;
   font-weight: 300;
   text-align: left;
+  background: white;
 
   h3 {
     font-weight: 400;
