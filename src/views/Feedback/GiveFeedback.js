@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import { giveFeedback } from '../../state/actions/feedbackActions';
+import {
+  giveFeedback,
+  saveRating,
+  saveFeedback,
+} from '../../state/actions/feedbackActions';
 import GiveRating from '../../components/DataVisualization/GiveRating';
 import FeedbackInput from '../../components/Inputs/FeedbackInput';
 
@@ -14,10 +18,11 @@ const StyledGiveFeedback = styled.div`
 `;
 
 function GiveFeedback(props) {
+  const { saveFeedback, saveRating } = props;
   return (
     <StyledGiveFeedback>
-      <GiveRating />
-      <FeedbackInput />
+      <GiveRating saveRating={saveRating} />
+      <FeedbackInput saveFeedback={saveFeedback} />
       <Button className='button' variant='contained' color='primary'>
         Submit
       </Button>
