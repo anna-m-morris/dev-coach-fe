@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import devices from '../../devices';
 
 export const FooterContainer = styled.div`
   width: 100%;
@@ -33,8 +34,18 @@ export const FooterContainer = styled.div`
     padding-bottom: 1.6rem;
     color: #efefef;
 
+    @media ${devices.tablet} {
+      flex-direction: column;
+    }
+
     .footer-content {
-      width: 20rem;
+      width: 15rem;
+      opacity: 0.3;
+
+      @media ${devices.tablet} {
+        padding: 0.5rem 0;
+        text-align: center;
+      }
     }
   }
 
@@ -42,17 +53,13 @@ export const FooterContainer = styled.div`
     display: flex;
     justify-content: space-between;
 
-    .footer-icon {
-      opacity: 0.3;
-
-      img {
-        width: 25px;
-        height: 25px;
-      }
+    img {
+      width: 25px;
+      height: 25px;
     }
   }
 
   .footer-tribute {
-    text-align: center;
+    text-align: right;
   }
 `;
