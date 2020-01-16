@@ -15,6 +15,7 @@ import SelectPrice from '../../components/Inputs/SelectPrice';
 import SelectExperience from '../../components/Inputs/SelectExperience';
 import SearchForKeyword from '../../components/Inputs/SearchForKeyword';
 
+
 const StyledMarketplace = styled.div`
   display: flex;
   flex-direction: column;

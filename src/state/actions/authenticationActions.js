@@ -106,8 +106,8 @@ export const chooseUserRole = (props, values, role) => dispatch => {
     );
 };
 
-export const logout = () => {
-  window.localStorage.removeItem('token');
-  window.localStorage.removeItem('state');
+export const logout = props => {
+  localStorage.clear();
+  props.history.push('/');
   return { type: types.LOGOUT };
 };
