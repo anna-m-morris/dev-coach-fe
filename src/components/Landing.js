@@ -498,13 +498,9 @@ const Landing = () => {
                 <a href='/faq/general'>FAQ</a>
               </NavbarLink>
               <NavbarLink>
-<<<<<<< HEAD
-                <a href='/'>About</a>
-=======
                 <a href='/' alt='about'>
                   About
                 </a>
->>>>>>> dd6ec929884f0f6d2ead471d488cbd81d41d7a63
               </NavbarLink>
               <a href='/login'>
                 <StyledButton theme={buttonTheme}>LOGIN</StyledButton>
