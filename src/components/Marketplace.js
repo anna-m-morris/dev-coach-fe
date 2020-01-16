@@ -112,8 +112,6 @@ const marketplaceCoaches = [
 
 // STYLED COMPONENTS //
 const BackgroundContainer = styled.section`
-  /* position: fixed; */
-  /* margin-top: 70px; */
   height: 100vh;
   background: #ffffff;
   display: flex;
@@ -139,7 +137,6 @@ const SearchDiv = styled.section`
   }
   @media ${devices.mobile} {
     background-image: url(${mobileCard});
-    /* background-color: #4fad65; */
     min-height: 20vh;
   }
   margin: 0px;
@@ -256,7 +253,6 @@ const MainContainer = styled.section`
 
 const Marketplace = ({ searchCoaches, getCoaches }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  // const [coaches, setCoaches] = useState(marketplaceCoaches);
 
   const handleChange = event => {
     setSearchTerm(event.target.value.toLowerCase());
@@ -286,12 +282,6 @@ const Marketplace = ({ searchCoaches, getCoaches }) => {
         {marketplaceCoaches.map(coach => (
           <CoachCard key={coach.first_name} coach={coach} />
         ))}
-
-        {/* {props.coaches
-          ? props.coaches.map(coach => (
-              <CoachCard key={coach.first_name} coach={coach} />
-            ))
-          : null} */}
       </MainContainer>
     </BackgroundContainer>
   );

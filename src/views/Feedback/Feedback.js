@@ -11,7 +11,6 @@ const StyledFeedback = styled.div``;
 const Feedback = props => {
   React.useEffect(() => {
     props.getFeedback(props.user.id, props.user.role_id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <StyledFeedback>
