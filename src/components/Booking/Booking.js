@@ -69,8 +69,8 @@ const Booking = props => {
     select.topic_id,
     showErrorMessage,
     showSuccessMessage,
+    user,
   ]);
-
   return (
     <StyledBooking>
       <Notification
