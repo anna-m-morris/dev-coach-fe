@@ -65,7 +65,7 @@ const CoachForm = props => {
   const [formValues, setFormValues] = useState({
     userLocation: '',
     experience: '',
-    skill: '',
+    skills: '',
     github: '',
     linkedin: '',
   });
@@ -148,7 +148,7 @@ const CoachForm = props => {
                   onChange={event =>
                     setFormValues({
                       ...formValues,
-                      confidence: event.target.value,
+                      skills: event.target.value,
                     })
                   }
                 >
@@ -180,12 +180,11 @@ const CoachForm = props => {
               <FormButton
                 theme={buttonTheme}
                 onClick={() =>
-                  props.chooseUserRole(props, formValues, 1)
+                  props.chooseUserRole(props, formValues, 2)
                 }
               >
                 Submit
               </FormButton>
-              \|
             </Box>
           </CoachFormContainer>
         </CoachCard>
