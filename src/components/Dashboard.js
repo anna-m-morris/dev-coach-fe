@@ -166,7 +166,7 @@ const Dashboard = props => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMenu = Boolean(anchorEl);
 
-  const handleLogout = event => {
+  const handleLogout = () => {
     setAnchorEl(null);
     props.logout();
   };

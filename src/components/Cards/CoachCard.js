@@ -11,7 +11,7 @@ const StyledCoachCard = styled.div`
   flex-direction: column;
   justify-content: space-around;
   width: 17rem;
-  height: 22rem;
+  height: 24rem;
   padding: 2.4rem;
   border-radius: 0.8rem;
   margin: 0.5rem;
@@ -63,9 +63,13 @@ const StyledCoachCard = styled.div`
     display: flex;
     width: 100%;
     justify-content: flex-end;
+
+    a {
+      text-decoration: none;
+    }
+
     .button {
       background-color: #4fad65;
-      font-weight: 200;
     }
   }
 `;
