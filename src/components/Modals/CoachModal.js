@@ -41,7 +41,11 @@ export default function App(props) {
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <p style={{ width: '75%' }}>{coach.description}</p>
             <Avatar
-              style={{ width: '25%', height: '6rem' }}
+              style={{
+                width: '25%',
+                height: '25%',
+                'border-radius': '50%',
+              }}
               alt='Coach'
               src={coach.avatar_url}
             />
