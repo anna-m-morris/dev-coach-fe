@@ -5,7 +5,7 @@ export const MainContainer = styled.div`
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  margin: 5rem 0 10rem 0;
+  margin-top: 10rem;
 
   .main-about-top {
     display: flex;
@@ -13,6 +13,8 @@ export const MainContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    padding: 0 2rem;
+    text-align: center;
   }
 
   .main-about-title {
