@@ -36,7 +36,7 @@ export const NavContainer = styled.nav`
     width: 30rem;
 
     @media ${devices.tablet} {
-      width: 70%;
+      width: 20rem;
     }
 
     ul {
