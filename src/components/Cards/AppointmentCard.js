@@ -128,7 +128,7 @@ export default function AppointmentCard(props) {
   const dateSliced = date.slice(0, 15);
 
   const time = appointment_datetime;
-  const timeSliced = time.slice(16);
+  const timeSliced = time.slice(16, 28);
 
   return (
     <>
