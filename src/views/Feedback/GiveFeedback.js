@@ -18,12 +18,17 @@ const StyledGiveFeedback = styled.div`
 `;
 
 function GiveFeedback(props) {
-  const { saveFeedback, saveRating } = props;
+  const { saveFeedback, saveRating, giveFeedback } = props;
   return (
     <StyledGiveFeedback>
       <GiveRating saveRating={saveRating} />
       <FeedbackInput saveFeedback={saveFeedback} />
-      <Button className='button' variant='contained' color='primary'>
+      <Button
+        onClick={giveFeedback}
+        className='button'
+        variant='contained'
+        color='primary'
+      >
         Submit
       </Button>
     </StyledGiveFeedback>
@@ -34,9 +39,12 @@ const mapStateToProps = state => {
   return {
     coaches: state.marketplaceReducer.coaches,
     feedback: state.feedbackReducer.feedback,
+    user: state.userReducer.user,
   };
 };
 
 export default connect(mapStateToProps, {
   giveFeedback,
+  saveRating,
+  saveFeedback,
 })(GiveFeedback);

@@ -6,6 +6,9 @@ export const GET_FEEDBACK_SUCCESSFUL = 'GET_FEEDBACK_SUCCESSFUL';
 export const GIVE_FEEDBACK_START = 'GIVE_FEEDBACK_START';
 export const GIVE_FEEDBACK_ERROR = 'GIVE_FEEDBACK_ERROR';
 export const GIVE_FEEDBACK_SUCCESSFUL = 'GIVE_FEEDBACK_SUCCESSFUL';
+export const SAVE_RATING = 'SAVE_RATING';
+export const SAVE_FEEDBACK = 'SAVE_FEEDBACK';
+export const SAVE_INTERVIEW_PARTNER = 'SAVE_INTERVIEW_PARTNER';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -57,4 +60,16 @@ export const giveFeedback = (
         payload: err.response.data.message,
       });
     });
+};
+
+export const saveFeedback = feedback => {
+  return { type: SAVE_FEEDBACK, payload: feedback };
+};
+
+export const saveRating = rating => {
+  return { type: SAVE_RATING, payload: rating };
+};
+
+export const savePartner = partner => {
+  return { type: partner, payload: partner };
 };
