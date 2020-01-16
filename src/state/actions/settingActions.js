@@ -11,7 +11,7 @@ export const updateUserInfo = (
 ) => dispatch => {
   dispatch({ type: types.USER_INFO_UPDATE });
   axios
-    .put(`${url}${userId}`, userInfo)
+    .put(`${url}user/${userId}`, userInfo)
     .then(res => {
       showSuccess();
       dispatch({
@@ -24,27 +24,6 @@ export const updateUserInfo = (
       showError();
       dispatch({
         type: types.USER_INFO_UPDATE_FAILED,
-        payload: err.response.data.message,
-      });
-    });
-};
-
-export const fetchUser = () => dispatch => {
-  const userId = localStorage.getItem('id');
-
-  dispatch({ type: types.FECTH_USER });
-  axios
-    .get(`${url}${userId}`)
-    .then(res => {
-      dispatch({
-        type: types.FECTH_USER_SUCCESSFULLY,
-        payload: res.data.user,
-      });
-      window.location.reload();
-    })
-    .catch(err => {
-      dispatch({
-        type: types.FECTH_USER_FAILED,
         payload: err.response.data.message,
       });
     });

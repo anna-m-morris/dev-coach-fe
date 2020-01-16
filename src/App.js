@@ -16,6 +16,7 @@ import Booking from './components/Booking/Booking';
 import Feedback from './views/Feedback/Feedback';
 import VideoChat from './components/VideoChat';
 import GiveFeedback from './views/Feedback/GiveFeedback';
+import Settings from './components/Forms/Settings';
 
 const globalTheme = createMuiTheme({
   typography: {
@@ -32,6 +33,7 @@ function App() {
       <Route path={'/feedback'} component={Feedback} />
       <Route path={'/interview'} component={VideoChat} />
       <Route path={'/givefeedback'} component={GiveFeedback} />
+      <Route path={'/Settings'} component={Settings} />
       <Redirect to='/dashboard' />
     </Switch>
   );

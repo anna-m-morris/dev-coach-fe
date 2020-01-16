@@ -92,14 +92,6 @@ export const ListComponent = () => {
             <ListItemText primary='FAQ' />
           </CustomListItem>
         </Link>
-        <Link to='/settings' className={classes.listItem}>
-          <CustomListItem button>
-            <ListItemIcon>
-              <ShoppingCartIcon />
-            </ListItemIcon>
-            <ListItemText primary='Blog' />
-          </CustomListItem>
-        </Link>
       </div>
     </List>
   );
