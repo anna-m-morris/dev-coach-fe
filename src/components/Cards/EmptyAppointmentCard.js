@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Empty } from 'antd';
+import { Link } from 'react-router-dom';
 import EmptyImg from '../../img/not-found.svg';
+
 
 const StyledContainer = styled.div`
   width: 700px;
@@ -49,7 +51,9 @@ const EmptyAppointment = () => {
       <div className='imgDiv'>
         <Empty description={false} />
       </div>
-      <button>Book A Coach</button>
+      <button>
+        <Link to='/marketplace'>Book A Coach</Link>
+      </button>
     </StyledContainer>
   );
 };
