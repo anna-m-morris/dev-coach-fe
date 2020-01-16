@@ -8,7 +8,7 @@ export const GIVE_FEEDBACK_ERROR = 'GIVE_FEEDBACK_ERROR';
 export const GIVE_FEEDBACK_SUCCESSFUL = 'GIVE_FEEDBACK_SUCCESSFUL';
 export const SAVE_RATING = 'SAVE_RATING';
 export const SAVE_FEEDBACK = 'SAVE_FEEDBACK';
-export const SAVE_INTERVIEW_PARTNER = 'SAVE_INTERVIEW_PARTNER';
+export const SAVE_PARTNER = 'SAVE_PARTNER';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -71,5 +71,5 @@ export const saveRating = rating => {
 };
 
 export const savePartner = partner => {
-  return { type: partner, payload: partner };
+  return { type: SAVE_PARTNER, payload: partner };
 };
