@@ -22,7 +22,6 @@ import {
   FormButton,
   InfoParagraph,
 } from './StudentForm';
-
 const CoachCard = styled(StudentCard)`
   width: 50%;
   height: 35em;
