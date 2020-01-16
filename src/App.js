@@ -16,7 +16,6 @@ import Booking from './components/Booking/Booking';
 import Feedback from './views/Feedback/Feedback';
 import VideoChat from './components/VideoChat';
 import GiveFeedback from './views/Feedback/GiveFeedback';
-import 'antd/dist/antd.css';
 
 const globalTheme = createMuiTheme({
   typography: {

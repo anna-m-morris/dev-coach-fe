@@ -166,7 +166,7 @@ const Dashboard = props => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMenu = Boolean(anchorEl);
 
-  const handleLogout = event => {
+  const handleLogout = () => {
     setAnchorEl(null);
     props.logout();
   };
@@ -241,7 +241,9 @@ const Dashboard = props => {
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
               <MenuItem onClick={handleClose}>My Account</MenuItem>
-              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              <MenuItem onClick={() => handleLogout(props)}>
+                Logout
+              </MenuItem>
             </Menu>
           </div>
         </Toolbar>
