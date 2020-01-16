@@ -111,7 +111,7 @@ const useStyles = makeStyles(theme => ({
   },
   link: {
     textDecoration: 'none',
-    color: 'rgba(0, 0, 0, 0.87);'
+    color: 'rgba(0, 0, 0, 0.87)',
   },
   drawerPaper: {
     position: 'relative',
