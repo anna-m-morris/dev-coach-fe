@@ -238,7 +238,9 @@ const Dashboard = props => {
               open={openMenu}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <Link to='/profilesettings'>
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+              </Link>
               <MenuItem onClick={handleClose}>My Account</MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>

@@ -1,7 +1,9 @@
 import axios from 'axios';
+import axiosWithAuth from '../../utils/axiosWithAuth';
 import * as types from './actionTypes';
 
-const url = process.env.REACT_APP_BASE_URL;
+// const url = process.env.REACT_APP_BASE_URL;
+const url = 'http://localhost:5000/';
 
 export const updateUserInfo = (
   userId,
@@ -11,9 +13,9 @@ export const updateUserInfo = (
 ) => dispatch => {
   dispatch({ type: types.USER_INFO_UPDATE });
   axios
-    .put(`${url}${userId}`, userInfo)
+    .put(`${url}user/${userId}`, userInfo)
     .then(res => {
-      showSuccess();
+      showSuccess(); // ?
       dispatch({
         type: types.USER_INFO_UPDATE_SUCCESSFUL,
         payload: res.data.updatedUser,
@@ -21,11 +23,11 @@ export const updateUserInfo = (
       });
     })
     .catch(err => {
-      showError();
-      dispatch({
+        debugger
+      showError(); // ?
+/*       dispatch({
         type: types.USER_INFO_UPDATE_FAILED,
         payload: err.response.data.message,
-      });
+      }); */
     });
 };
-
