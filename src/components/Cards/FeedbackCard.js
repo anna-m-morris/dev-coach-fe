@@ -5,6 +5,7 @@ import FeedbackModal from '../Modals/FeedbackModal';
 
 const CardContainer = styled.div`
   max-width: 28rem;
+  width: 100%;
   background: white;
   border-radius: 4px;
   box-shadow: 0 6px 8px #d3d3d3;
@@ -15,6 +16,13 @@ const CardContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 0;
+  transition: all ease-out 0.2s;
+
+  &:hover {
+    transition: all ease-in 0.1s;
+    transform: scale(1.018);
+    box-shadow: 0 16px 12px #e8e8e8;
+  }
 
   .title-container {
     text-align: center;
