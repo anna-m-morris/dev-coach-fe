@@ -9,8 +9,6 @@ const initialState = {
   welcomeMessage: '',
   userHasChosenRole: false,
   userRoleError: '',
-  id: null,
-  role_id: null,
 };
 
 function userReducer(state = initialState, action) {
@@ -26,7 +24,6 @@ function userReducer(state = initialState, action) {
         welcomeMessage: '',
       };
     case types.LOGIN_SUCCESSFUL:
-      console.log(action);
       return {
         ...state,
         isLoading: false,
@@ -49,12 +46,11 @@ function userReducer(state = initialState, action) {
         isLoggedIn: false,
       };
     case types.USER_ROLE_CHOSEN:
-      console.log(action);
       return {
         ...state,
         userHasChosenRole: true,
         user: {
-          id: action.id,
+          ...state.user,
           role_id: action.role,
         },
       };
@@ -62,6 +58,22 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         userRoleError: action.error,
+      };
+    case types.SET_COACH_ID:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          coach_id: action.id,
+        },
+      };
+    case types.SET_STUDENT_ID:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          student_id: action.id,
+        },
       };
     case types.LOGOUT:
       return {

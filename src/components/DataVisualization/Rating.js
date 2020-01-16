@@ -1,8 +1,8 @@
 import React from 'react';
-import Rating from '@material-ui/lab/Rating';
+import MatRating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 
-const FeedbackRating = props => {
+const Rating = props => {
   return (
     <Box component='fieldset' borderColor='transparent'>
       <Rating name='read-only' value={props.rating} readOnly />
@@ -10,4 +10,4 @@ const FeedbackRating = props => {
   );
 };
 
-export default FeedbackRating;
+export default Rating;

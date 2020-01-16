@@ -52,13 +52,7 @@ const FeedbackModal = props => {
 
   return (
     <div>
-      <p
-        type='button'
-        className={classes.expandText}
-        onClick={handleOpen}
-      >
-        Read full review
-      </p>
+      <p onClick={handleOpen}>Read full review</p>
       <Modal
         aria-labelledby='simple-modal-title'
         aria-describedby='simple-modal-description'

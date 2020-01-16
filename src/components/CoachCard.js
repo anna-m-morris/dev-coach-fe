@@ -53,7 +53,6 @@ const useStyles = makeStyles(theme => ({
     paddingTop: 5, // 16:9
   },
   top: {
-    // backgroundColor: 'red',
     backgroundImage: `url(${card})`,
   },
 }));
@@ -61,19 +60,12 @@ const useStyles = makeStyles(theme => ({
 const RecipeReviewCard = props => {
   console.log(props);
   const classes = useStyles();
-  // const [expanded, setExpanded] = React.useState(false);
-
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded);
-  // };
-
   return (
     <Card className={classes.card}>
       <CardHeader
         className={classes.top}
         style={{
           height: 60,
-          // backgroundImage: url('../img/card.jpg'),
         }}
       />
       <CardHeader
@@ -203,7 +195,6 @@ const RecipeReviewCard = props => {
           </StyledButton>
         </CardContent>
       </CardContent>
-      {/* </Collapse> */}
     </Card>
   );
 };
