@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import devices from '../devices';
 import FeedbackModal from '../Modals/FeedbackModal';
 
 const CardContainer = styled.div`
   max-width: 28rem;
   background: white;
   border-radius: 4px;
-  box-shadow: 2px 4px 6px #d3d3d3;
+  box-shadow: 0 6px 8px #d3d3d3;
   margin: 2rem;
   display: flex;
   flex-wrap: wrap;
@@ -14,6 +15,11 @@ const CardContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 0;
+
+  .title-container {
+    text-align: center;
+    padding: 0 1rem;
+  }
 
   .title {
     font-size: 1.2rem;
@@ -27,21 +33,38 @@ const CardContainer = styled.div`
     margin: 1.6rem 0;
     padding: 0 2rem;
 
+    @media ${devices.tablet} {
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+    }
+
     .feedback-text-container {
       margin-left: 2rem;
+
+      @media ${devices.tablet} {
+        margin: 0;
+        text-align: center;
+      }
     }
   }
 
   .footer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0.5rem 1rem 0 1rem;
     width: 95%;
     border-top: 1px solid #eaeaea;
 
+    @media ${devices.tablet} {
+      flex-direction: column;
+    }
+
     .footer-text {
       color: #a8a8a8;
       font-weight: 500;
+      margin: 0;
     }
   }
 `;
@@ -72,14 +95,10 @@ const FeedbackCard = ({
       </div>
 
       <div className='footer'>
-        <div className='coach-info'>
-          <p className='footer-text'>
-            {coachFirstName} {coachLastName}
-          </p>
-        </div>
-        <div>
-          <p className='date footer-text'>{date}</p>
-        </div>
+        <p className='footer-text'>
+          {coachFirstName} {coachLastName}
+        </p>
+        <p className='date footer-text'>{date}</p>
       </div>
     </CardContainer>
   );
