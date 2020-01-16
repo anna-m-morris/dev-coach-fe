@@ -2,49 +2,46 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 import styled from 'styled-components';
+
 import {
   getAppointment,
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
 import { startInterview } from '../../state/actions/interviewActions';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
-
-const StyledUserDashboard = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-`;
+import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 
 const UserDashboard = props => {
-  React.useEffect(() => {
-    setTimeout(
-      () => props.getAppointment(props.user.id, props.user.role_id),
-      1000,
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // React.useEffect(() => {
+  //   setTimeout(
+  //     () => props.getAppointment(props.user.id, props.user.role_id),
+  //     1000,
+  //   );
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <StyledContainer>
-      {props.appointments
-        ? props.appointments.map(appointment => (
-            <AppointmentCard
-              key={uuid()}
-              first_name={appointment.first_name}
-              last_name={appointment.last_name}
-              avatar_url={appointment.avatar_url}
-              appointment_datetime={appointment.appointment_datetime}
-              appointment_topic={appointment.appointment_topic}
-              description={appointment.description}
-              canceled={appointment.canceled}
-              cancel={() => props.cancelAppointment(appointment.id)}
-              startInterview={() =>
-                props.startInterview(appointment.user_id, props)
-              }
-            />
-          ))
-        : null}
+      {props.appointments ? (
+        props.appointments.map(appointment => (
+          <AppointmentCard
+            key={uuid()}
+            first_name={appointment.first_name}
+            last_name={appointment.last_name}
+            avatar_url={appointment.avatar_url}
+            appointment_datetime={appointment.appointment_datetime}
+            appointment_topic={appointment.appointment_topic}
+            description={appointment.description}
+            canceled={appointment.canceled}
+            cancel={() => props.cancelAppointment(appointment.id)}
+            startInterview={() =>
+              props.startInterview(appointment.user_id, props)
+            }
+          />
+        ))
+      ) : (
+        <EmptyAppointment />
+      )}
     </StyledContainer>
   );
 };
@@ -56,11 +53,13 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
-  getAppointment,
-  cancelAppointment,
-  startInterview,
-})(UserDashboard);
+export default UserDashboard;
+
+// export default connect(mapStateToProps, {
+//   getAppointment,
+//   cancelAppointment,
+//   startInterview,
+// })(UserDashboard);
 
 const StyledContainer = styled.div`
   width: 100%;
