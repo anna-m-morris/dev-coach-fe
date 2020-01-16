@@ -16,7 +16,7 @@ export const Logo = styled.div`
   ${mobileHidden};
 `;
 
-export const LandingContainer = styled.div`
+export const HeadingContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;

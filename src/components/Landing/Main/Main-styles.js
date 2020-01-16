@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import devices from '../../devices';
 
 export const MainContainer = styled.div`
   max-width: 100%;
@@ -40,7 +41,6 @@ export const MainContainer = styled.div`
     justify-content: center;
     background: #292d38;
     width: 100%;
-    height: 50rem;
     margin: 10rem 0;
 
     h4 {

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import devices from '../../devices';
 
 export const NavContainer = styled.nav`
   display: flex;
@@ -6,10 +7,23 @@ export const NavContainer = styled.nav`
   align-items: center;
   z-index: 11;
 
+  @media ${devices.tablet} {
+    flex-direction: column;
+  }
+
   .logo {
     display: flex;
     align-items: center;
     margin-left: 3.3rem;
+
+    @media ${devices.tablet} {
+      margin: 0;
+      padding: 1rem 0;
+
+      div {
+        display: none;
+      }
+    }
   }
 
   .logo-name {
@@ -19,7 +33,11 @@ export const NavContainer = styled.nav`
 
   .list-items-container {
     margin: 0 2.6rem;
-    width: 25%;
+    width: 30rem;
+
+    @media ${devices.tablet} {
+      width: 70%;
+    }
 
     ul {
       display: flex;
