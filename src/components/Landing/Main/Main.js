@@ -68,7 +68,7 @@ const Main = () => (
         <div className='user-story'>
           <div className='user-header'>
             <img src={personOne} alt='user' />
-            <h3>Benjamin Grabow</h3>
+            <h3>John Davidson</h3>
           </div>
           <p>
             DevCoach definitely played a role in my performance.
@@ -80,7 +80,7 @@ const Main = () => (
         <div className='user-story'>
           <div className='user-header'>
             <img src={personTwo} alt='user' />
-            <h3>Benjamin Grabow</h3>
+            <h3>Aaron Ruiz</h3>
           </div>
           <p>
             Practicing with DevCoach gave me the confidence I needed
@@ -92,13 +92,13 @@ const Main = () => (
         <div className='user-story'>
           <div className='user-header'>
             <img src={personThree} alt='user' />
-            <h3>Benjamin Grabow</h3>
+            <h3>Jessica Booth</h3>
           </div>
           <p>
             DevCoach helped me to get an amazing hands-on technical
             interview experience. After some preparation, I decided to
             test my skills in algorithms and data structures, so I
-            scheduled a couple of Pramp interviews.
+            scheduled a couple of DevCoach interviews.
           </p>
         </div>
       </div>
