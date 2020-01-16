@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   toolbar: {
-    background: '#FAFAFA',
+    background: '#FFFFFF',
     zIndex: -10,
   },
 
@@ -140,6 +140,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   container: {
+    background: '#FFFFFF',
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
     height: '100vh',
@@ -212,11 +213,6 @@ const Dashboard = props => {
             noWrap
             className={classes.title}
           ></Typography>
-          {/* <IconButton color='inherit'>
-            <Badge badgeContent={4} color='secondary'>
-              <NotificationsIcon />
-            </Badge>
-          </IconButton> */}
           <div className={classes.profileMenu}>
             <IconButton
               aria-label='account of current user'
@@ -266,7 +262,6 @@ const Dashboard = props => {
           }
           onClick={() => setOpen(!open)}
         >
-          <img alt='logo' className={classes.toolbarLogoImg}></img>
           <h1
             className={open ? classes.toolbarTitle : classes.hidden}
           >
