@@ -12,7 +12,8 @@ export const FooterContainer = styled.div`
   .footer-top {
     display: flex;
     flex-direction: column;
-    margin: 2rem 0 4rem 0;
+    margin: 2rem 1rem 4rem 1rem;
+    justify-content: center;
 
     .cta-message {
       margin-bottom: 1.6rem;
@@ -21,6 +22,8 @@ export const FooterContainer = styled.div`
         color: #efefef;
         font-size: 2rem;
         font-weight: bold;
+        text-align: center;
+        line-height: 1.4;
       }
     }
   }

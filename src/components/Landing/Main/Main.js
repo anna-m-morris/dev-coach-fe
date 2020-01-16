@@ -27,7 +27,7 @@ const Main = () => (
       <h4>How does DevCoach work?</h4>
       <div className='about-cards'>
         <div className='about-card'>
-          <div className='vector'>
+          <div className='image'>
             <img src={aboutTwo} alt='hand shake´' />
           </div>
           <div className='card-info'>
@@ -38,7 +38,7 @@ const Main = () => (
           </div>
         </div>
         <div className='about-card'>
-          <div className='vector'>
+          <div className='image'>
             <img src={aboutOne} alt='analytics´' />
           </div>
           <div className='card-info'>
@@ -47,7 +47,7 @@ const Main = () => (
           </div>
         </div>
         <div className='about-card'>
-          <div className='vector'>
+          <div className='image'>
             <img src={aboutThree} alt='analytics´' />
           </div>
           <div className='card-info'>

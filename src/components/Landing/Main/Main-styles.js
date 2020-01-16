@@ -22,6 +22,7 @@ export const MainContainer = styled.div`
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 2rem;
+    line-height: 1.2;
   }
 
   .main-about-intro {
@@ -44,7 +45,7 @@ export const MainContainer = styled.div`
     background: #292d38;
     width: 100%;
     margin: 10rem 0;
-    padding: 3rem 0;
+    padding: 3rem 1rem;
 
     h4 {
       font-size: 2rem;
@@ -70,7 +71,11 @@ export const MainContainer = styled.div`
       max-width: 25rem;
       margin-top: 3rem;
 
-      .vector {
+      @media ${devices.mobile} {
+        width: 80%;
+      }
+
+      .image {
         width: 100%;
       }
 
