@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import devices from '../devices';
 import logo from '../../img/firelogo.png';
 
 const mobileHidden = css`
@@ -16,17 +17,21 @@ export const Logo = styled.div`
   ${mobileHidden};
 `;
 
-export const HeadingContainer = styled.div`
+export const CtaContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
   top: 0;
   max-width: 100%;
   background-color: #fff;
-  height: 60rem;
+  height: 55rem;
+
+  @media ${devices.tablet} {
+    height: 45rem;
+  }
 
   .landing-image {
-    height: 55rem;
+    height: 100%;
     position: absolute;
     top: 0;
 

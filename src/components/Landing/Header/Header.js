@@ -4,7 +4,7 @@ import { HeaderContainer } from './Header-styles';
 
 const Header = () => (
   <HeaderContainer>
-    <h2>
+    <h2 className='cta-title'>
       Interviewing isn't easy. That doesn't mean it has to be
       stressful
     </h2>

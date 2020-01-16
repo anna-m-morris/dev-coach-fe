@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeadingContainer } from './Landing-styles';
+import { CtaContainer } from './Landing-styles';
 import Navigation from './Navigation/Navigation';
 import Header from './Header/Header';
 import Main from './Main/Main';
@@ -9,13 +9,13 @@ import mainImage from './img/landing-1.jpg';
 
 const Landing = () => (
   <div className='app'>
-    <HeadingContainer>
+    <CtaContainer className='cta-container'>
       <Navigation />
       <div className='landing-image'>
         <img src={mainImage} alt='main' />
         <Header />
       </div>
-    </HeadingContainer>
+    </CtaContainer>
     <Main />
     <Footer />
   </div>
