@@ -1,30 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { withFormik, Form, Field } from 'formik';
-import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import {
   FormControl,
   Select,
   InputLabel,
-  withStyles,
   makeStyles,
-  lighten,
   MenuItem,
-  Button,
-  InputBase,
   TextField,
   Box,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+
 import { StyledButton, buttonTheme, Logo } from '../Landing';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
-import {
-  GreyBackgroundContainer,
-  FormCard,
-  FormContainer,
-} from './LoginForm';
+import { GreyBackgroundContainer, FormCard } from './LoginForm';
 import { countries } from './countries';
 
 const NavLogo = styled(Logo)`
@@ -34,20 +25,7 @@ const NavLogo = styled(Logo)`
   }
 `;
 
-const StyledError = styled.p`
-  padding: 0;
-  margin: 0;
-  color: red;
-  font-size: 0.8rem;
-`;
-
-const ThisGreyBackgroundContainer = styled(GreyBackgroundContainer)`
-  /* fonts should be global
-  font-family: ABeeZee;
-   */
-`;
-
-const StudentCard = styled(FormCard)`
+export const StudentCard = styled(FormCard)`
   height: 85%;
   display: flex;
   width: 50%;
@@ -58,7 +36,7 @@ const StudentCard = styled(FormCard)`
   }
 `;
 
-const StudentFormContainer = styled.div`
+export const StudentFormContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
@@ -68,12 +46,12 @@ const StudentFormContainer = styled.div`
   margin-top: -4em;
 `;
 
-const FormButton = styled(StyledButton)`
+export const FormButton = styled(StyledButton)`
   width: 50% !important;
   margin-top: 2em;
 `;
 
-const InfoParagraph = styled.p`
+export const InfoParagraph = styled.p`
   width: 85%;
   text-align: center;
   padding-bottom: 0.8em;
@@ -108,15 +86,9 @@ const StudentForm = props => {
     github: '',
     linkedin: '',
   });
-  const handleFormChange = event =>
-    setFormValues({
-      ...formValues,
-      [event.target.name]: event.target.value,
-    });
-  const handleFormSubmit = event => console.log(formValues);
   return (
     <div>
-      <ThisGreyBackgroundContainer>
+      <GreyBackgroundContainer>
         <StudentCard>
           <Link to='/userrole'>
             <NavLogo />
@@ -135,7 +107,7 @@ const StudentForm = props => {
               justifyContent='space-evenly'
               alignItems='center'
             >
-              <FormControl className={classes.formControl}>
+              <FormControl required className={classes.formControl}>
                 <Autocomplete
                   name='location'
                   options={countries}
@@ -148,6 +120,7 @@ const StudentForm = props => {
                   }
                   renderInput={params => (
                     <TextField
+                      required
                       name='location'
                       {...params}
                       label='Select your location'
@@ -156,12 +129,10 @@ const StudentForm = props => {
                   )}
                 />
               </FormControl>
-              <FormControl className={classes.formControl}>
+              <FormControl required className={classes.formControl}>
                 <InputLabel>Experience</InputLabel>
                 <Select
                   placeholder='experience'
-                  displayEmpty
-                  className={classes.selectEmpty}
                   name='experience'
                   onChange={event =>
                     setFormValues({
@@ -192,7 +163,7 @@ const StudentForm = props => {
                   </MenuItem>
                 </Select>
               </FormControl>
-              <FormControl className={classes.formControl}>
+              <FormControl required className={classes.formControl}>
                 <InputLabel>Confidence</InputLabel>
                 <Select
                   onChange={event =>
@@ -248,13 +219,15 @@ const StudentForm = props => {
             </Box>
             <FormButton
               theme={buttonTheme}
-              onClick={() => props.chooseUserRole(props, formValues, 1)}
+              onClick={() =>
+                props.chooseUserRole(props, formValues, 1)
+              }
             >
               Submit
             </FormButton>
           </StudentFormContainer>
         </StudentCard>
-      </ThisGreyBackgroundContainer>
+      </GreyBackgroundContainer>
     </div>
   );
 };
