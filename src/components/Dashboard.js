@@ -138,9 +138,10 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
+    background: '#f9f9f9',
   },
   container: {
-    background: '#FFFFFF',
+    background: '#f9f9f9',
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
     height: '100vh',
