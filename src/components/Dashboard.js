@@ -149,11 +149,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-
   copyright: {
     textAlign: 'center',
   },
-  styledDivider: {},
   hidden: {
     visibility: 'hidden',
     opacity: 0,
@@ -190,7 +188,6 @@ const Dashboard = props => {
 
   return (
     <div className={classes.root}>
-      {/* <Settings/> */}
       <CssBaseline />
       <AppBar
         position='absolute'
