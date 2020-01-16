@@ -71,10 +71,10 @@ const Main = () => (
             <h3>Benjamin Grabow</h3>
           </div>
           <p>
-            If you want a great coach to help you, InterviewQ is your
-            best bet. My coach took me to another level in helping me
-            with the interview. I would definitely recommend to check
-            out QualityHub!
+            DevCoach definitely played a role in my performance.
+            Nothing beats mock coding interviews. I still remember my
+            first coding interview a few years back with another
+            company.
           </p>
         </div>
         <div className='user-story'>
@@ -83,10 +83,10 @@ const Main = () => (
             <h3>Benjamin Grabow</h3>
           </div>
           <p>
-            If you want a great coach to help you, InterviewQ is your
-            best bet. My coach took me to another level in helping me
-            with the interview. I would definitely recommend to check
-            out QualityHub!
+            Practicing with DevCoach gave me the confidence I needed
+            to have a fun coding interview and eventually get the
+            offers I wanted. Believe it or not, this time I wasn't
+            even nervous when the day came
           </p>
         </div>
         <div className='user-story'>
@@ -95,10 +95,10 @@ const Main = () => (
             <h3>Benjamin Grabow</h3>
           </div>
           <p>
-            If you want a great coach to help you, InterviewQ is your
-            best bet. My coach took me to another level in helping me
-            with the interview. I would definitely recommend to check
-            out QualityHub!
+            DevCoach helped me to get an amazing hands-on technical
+            interview experience. After some preparation, I decided to
+            test my skills in algorithms and data structures, so I
+            scheduled a couple of Pramp interviews.
           </p>
         </div>
       </div>
