@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Empty } from 'antd';
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import EmptyImg from '../../img/not-found.svg';
-
+import Marketplace from '../../views/Marketplace/Marketplace';
 
 const StyledContainer = styled.div`
   width: 700px;
@@ -12,7 +12,7 @@ const StyledContainer = styled.div`
   margin-left: 20%;
   background: white;
   box-shadow: 0 6px 10px rgba(50, 50, 93, 0.1);
-  padding: 30px;
+  padding: 40px;
 
   h3 {
     font-family: 'Roboto', sans-serif;
@@ -23,7 +23,7 @@ const StyledContainer = styled.div`
   .imgDiv {
     width: 50%;
     height: 50%;
-    margin-left: 35%;
+    margin-left: 25%;
     padding-top: 30px;
   }
 
@@ -37,6 +37,11 @@ const StyledContainer = styled.div`
     cursor: pointer;
     margin-left: 35%;
     margin-top: 50px;
+
+    .link {
+      text-decoration: none;
+      color: white;
+    }
   }
 
   button:hover {
@@ -52,8 +57,11 @@ const EmptyAppointment = () => {
         <Empty description={false} />
       </div>
       <button>
-        <Link to='/marketplace'>Book A Coach</Link>
+        <Link className='link' to='/marketplace'>
+          Book A Coach
+        </Link>
       </button>
+      <Route exact path='/marketplace' component={Marketplace} />
     </StyledContainer>
   );
 };

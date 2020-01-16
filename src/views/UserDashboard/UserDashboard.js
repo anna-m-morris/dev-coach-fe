@@ -12,13 +12,12 @@ import AppointmentCard from '../../components/Cards/AppointmentCard';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 
 const UserDashboard = props => {
-  // React.useEffect(() => {
-  //   setTimeout(
-  //     () => props.getAppointment(props.user.id, props.user.role_id),
-  //     1000,
-  //   );
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  React.useEffect(() => {
+    setTimeout(
+      () => props.getAppointment(props.user.id, props.user.role_id),
+      1000,
+    );
+  }, []);
 
   return (
     <StyledContainer>
@@ -53,13 +52,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default UserDashboard;
-
-// export default connect(mapStateToProps, {
-//   getAppointment,
-//   cancelAppointment,
-//   startInterview,
-// })(UserDashboard);
+export default connect(mapStateToProps, {
+  getAppointment,
+  cancelAppointment,
+  startInterview,
+})(UserDashboard);
 
 const StyledContainer = styled.div`
   width: 100%;

@@ -18,28 +18,6 @@ const DashboardNav = () => {
 
   return (
     <NavContainer>
-      <nav className='leftNav'>
-        <div>
-          <form>
-            {/* <TextField
-            id='outlined-primary'
-            label='search by coach name'
-            variant='outlined'
-            color='primary'
-            prefix={
-              <SearchIcon
-                type='search'
-                style={{
-                  color: 'rgba(0,0,0,.25)',
-                  marginLeft: '3em',
-                }}
-              />
-            }
-          /> */}
-          </form>
-        </div>
-      </nav>
-
       <nav className='rightNav'>
         <div className='profileMenu'>
           <p>Benjamin</p>
