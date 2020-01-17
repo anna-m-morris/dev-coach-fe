@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Avatar from '@material-ui/core/Avatar';
 import devices from '../devices';
 import FeedbackModal from '../Modals/FeedbackModal';
 
@@ -46,11 +47,10 @@ const CardContainer = styled.div`
       flex-direction: column-reverse;
       justify-content: center;
       align-items: center;
-      margin-bottom: 0;
     }
 
     .feedback-text-container {
-      align-items: flex-start;
+      margin: 0.2rem 0 0 0.3rem;
 
       @media ${devices.tablet} {
         margin: 0;
@@ -58,7 +58,7 @@ const CardContainer = styled.div`
       }
 
       .feedback-text {
-        margin: 0.6rem 0;
+        margin: 0;
       }
     }
   }
@@ -90,6 +90,7 @@ const FeedbackCard = ({
   coachFirstName,
   coachLastName,
   topic,
+  avatarUrl,
 }) => {
   return (
     <CardContainer>
@@ -104,6 +105,10 @@ const FeedbackCard = ({
             coachFirstName={coachFirstName}
             coachLastName={coachLastName}
             feedback={feedback}
+            topic={topic}
+            rating={rating}
+            date={date}
+            avatarUrl={avatarUrl}
           />
         </div>
       </div>
