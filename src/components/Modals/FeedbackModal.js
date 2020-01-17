@@ -52,10 +52,17 @@ const FeedbackModal = props => {
         footer={null}
       >
         <div className='modal-feedback-container'>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '1.5rem',
+              justifyContent: 'space-around',
+            }}
+          >
             <p
               style={{
-                width: '75%',
+                // width: '75%',
                 fontWeight: 'bold',
                 fontSize: '1.3rem',
               }}
@@ -72,10 +79,7 @@ const FeedbackModal = props => {
           </div>
           <Divider />
           <div className='feedback-container'>
-            <p
-              style={{ margin: '0 .3rem' }}
-              className='feedback-text'
-            >
+            <p style={{ margin: '1rem 0' }} className='feedback-text'>
               {feedback}
             </p>
             <Rating rating={rating.props.rating} />
