@@ -126,7 +126,7 @@ const UserDashboard = props => {
   };
   return (
     <StyledContainer>
-      {appointments ? (
+      {appointments && appointments.length ? (
         <div className='appointments'>
           {appointments.slice(minValue, maxValue).map(appointment => (
             <AppointmentCard
