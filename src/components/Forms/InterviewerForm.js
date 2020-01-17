@@ -26,7 +26,6 @@ import {
 const CoachCard = styled(StudentCard)`
   width: 50%;
   height: 35em;
-  font-family: ABeeZee;
   h1 {
     font-size: 24px;
   }
@@ -175,7 +174,7 @@ const CoachForm = props => {
                   onChange={event =>
                     setFormValues({
                       ...formValues,
-                      skills: event.target.value,
+                      description: event.target.value,
                     })
                   }
                 ></TextField>
