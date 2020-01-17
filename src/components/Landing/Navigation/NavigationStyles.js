@@ -29,6 +29,10 @@ export const NavContainer = styled.nav`
   .logo-name {
     color: #408f53;
     font-size: 2rem;
+
+    @media ${devices.tablet} {
+      margin: 0;
+    }
   }
 
   .list-items-container {
@@ -39,11 +43,13 @@ export const NavContainer = styled.nav`
       width: 20rem;
     }
 
-    ul {
+    .list-items {
       display: flex;
       justify-content: space-around;
+      list-style: none;
+      padding: 0;
 
-      li a {
+      .list-item a {
         text-decoration: none;
         color: white;
         transition: ease-in 0.1s;

@@ -97,8 +97,8 @@ const Main = () => (
           <p>
             DevCoach helped me to get an amazing hands-on technical
             interview experience. After some preparation, I decided to
-            test my skills in algorithms and data structures, so I
-            scheduled a couple of DevCoach interviews.
+            test my skills in algorithms, so I scheduled a couple of
+            DevCoach interviews.
           </p>
         </div>
       </div>

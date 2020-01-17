@@ -60,7 +60,7 @@ function App() {
   }
   return (
     <Switch>
-      <Route exact path='/' component={LandingTwo} />
+      <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
       <Route path='/register' component={SignUpForm} />
       <Route path='/faq' component={LandingFaq} />

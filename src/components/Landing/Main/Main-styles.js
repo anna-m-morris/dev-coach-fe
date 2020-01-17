@@ -12,7 +12,7 @@ export const MainContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    /* width: 100%; */
     padding: 0 2rem;
     text-align: center;
   }
@@ -43,7 +43,7 @@ export const MainContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     background: #292d38;
-    width: 100%;
+    /* width: 100%; */
     margin: 10rem 0;
     padding: 3rem 1rem;
 
@@ -51,6 +51,7 @@ export const MainContainer = styled.div`
       font-size: 2rem;
       text-align: center;
       color: #efefef;
+      margin: 0;
     }
 
     .about-cards {
@@ -90,12 +91,12 @@ export const MainContainer = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         height: 100%;
       }
 
       h6 {
-        margin-bottom: 1.6rem;
+        margin: 0;
         font-weight: bold;
         font-size: 1.6rem;
       }
@@ -105,6 +106,7 @@ export const MainContainer = styled.div`
         padding: 0 2.2rem;
         text-align: center;
         color: #545454;
+        margin: 0;
         line-height: 1.3;
       }
     }
@@ -186,6 +188,7 @@ export const MainContainer = styled.div`
         font-weight: bold;
         font-size: 1.4rem;
         color: #141414;
+        margin: 0;
       }
     }
   }
