@@ -17,10 +17,7 @@ const StyledContainer = styled.div`
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
-  /* display: grid; */
-  /* grid-gap: 2em; */
   justify-content: space-between;
-  /* grid-template-columns: repeat(3, 1fr); */
   padding-top: 65px;
 
   .appointments {
