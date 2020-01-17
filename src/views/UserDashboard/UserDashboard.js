@@ -86,6 +86,7 @@ const Dom = {
   appointment_topic: 'ReactJS',
   description:
     "Let's meet at this time for your first front-end interview",
+  experience_level: 3,
 };
 
 const UserDashboard = props => {
