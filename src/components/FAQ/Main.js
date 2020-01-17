@@ -101,8 +101,7 @@ export const invertTheme = {
 
 const MainContainer = styled.div`
   background: #f6f9fc;
-  height: 150vh;
-  max-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -235,7 +234,7 @@ const Icons = styled.div`
 const MainFaq = () => {
   return (
     <MainContainer>
-      <NavbarContainer>
+{/*       <NavbarContainer>
         <LogoTitleContainer>
           <NavLink to='/'>
             <Logo />
@@ -260,7 +259,7 @@ const MainFaq = () => {
             <a href='/login'>Login</a>
           </NavbarLink>
         </LinksContainer>
-      </NavbarContainer>
+      </NavbarContainer> */}
       <h2>FAQs</h2>
       <CategoryContainer>
         <NavLink
@@ -294,7 +293,7 @@ const MainFaq = () => {
       <Route exact path='/faq/profile' component={Profile} />
       <Route exact path='/faq/payment' component={Payment} />
 
-      <FooterConatiner>
+{/*       <FooterConatiner>
         <FooterTopSection>
           <LogoTitleContainerFooter>
             <LogoFooter />
@@ -346,7 +345,7 @@ const MainFaq = () => {
           hello@dev-coach.com - copyright © Devcoach 2019. All rights
           reserved.
         </p>
-      </FooterConatiner>
+      </FooterConatiner> */}
     </MainContainer>
   );
 };
