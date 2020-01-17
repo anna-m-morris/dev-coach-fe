@@ -91,7 +91,7 @@ const UserDashboard = props => {
 
   return (
     <StyledContainer>
-      {appointments ? (
+      {appointments && appointments.length ? (
         appointments.map(appointment => (
           <AppointmentCard
             key={uuid()}
