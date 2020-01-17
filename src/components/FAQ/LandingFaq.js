@@ -7,6 +7,8 @@ import PaymentIcon from '@material-ui/icons/Payment';
 import General from './GeneralFaq';
 import Profile from './ProfileFaq';
 import Payment from './PaymentFaq';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 // Main content
 
@@ -64,43 +66,47 @@ const iconStyles = {
   color: '#4fad65',
 };
 
-const MainFaq = () => {
+const LandingFaq = () => {
   return (
-    <MainContainer>
-      <h2>FAQs</h2>
-      <CategoryContainer>
-        <NavLink
-          className='styledBox'
-          activeClassName='activeClassNav'
-          to='/faq/general'
-        >
-          <h3>General</h3>
-          <SearchIcon style={iconStyles} />
-        </NavLink>
+    <div>
+      <Navbar />
+      <MainContainer>
+        <h2>FAQs</h2>
+        <CategoryContainer>
+          <NavLink
+            className='styledBox'
+            activeClassName='activeClassNav'
+            to='/faq/general'
+          >
+            <h3>General</h3>
+            <SearchIcon style={iconStyles} />
+          </NavLink>
 
-        <NavLink
-          className='styledBox'
-          activeClassName='activeClassNav'
-          to='/faq/profile'
-        >
-          <h3>Profile</h3>
-          <PersonIcon style={iconStyles} />
-        </NavLink>
-        <NavLink
-          className='styledBox'
-          activeClassName='activeClassNav'
-          to='/faq/payment'
-        >
-          <h3>Payment</h3>
-          <PaymentIcon style={iconStyles} />
-        </NavLink>
-      </CategoryContainer>
+          <NavLink
+            className='styledBox'
+            activeClassName='activeClassNav'
+            to='/faq/profile'
+          >
+            <h3>Profile</h3>
+            <PersonIcon style={iconStyles} />
+          </NavLink>
+          <NavLink
+            className='styledBox'
+            activeClassName='activeClassNav'
+            to='/faq/payment'
+          >
+            <h3>Payment</h3>
+            <PaymentIcon style={iconStyles} />
+          </NavLink>
+        </CategoryContainer>
 
-      <Route exact path='/faq/general' component={General} />
-      <Route exact path='/faq/profile' component={Profile} />
-      <Route exact path='/faq/payment' component={Payment} />
-    </MainContainer>
+        <Route exact path='/faq/general' component={General} />
+        <Route exact path='/faq/profile' component={Profile} />
+        <Route exact path='/faq/payment' component={Payment} />
+      </MainContainer>
+      <Footer />
+    </div>
   );
 };
 
-export default MainFaq;
+export default LandingFaq;
