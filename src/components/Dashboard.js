@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   toolbar: {
-    background: '#FFFFFF',
+    background: '#FAFAFA',
     zIndex: -10,
   },
 
