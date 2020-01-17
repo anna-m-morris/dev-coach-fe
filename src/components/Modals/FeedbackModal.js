@@ -60,7 +60,10 @@ const FeedbackModal = props => {
             <Rating rating={rating.props.rating} />
           </div>
           <Divider />
-          <div className='feedback-container'>
+          <div
+            className='feedback-container'
+            style={{ margin: '1.2rem 0' }}
+          >
             <p style={{ fontSize: '1.1rem' }}>Feedback</p>
             <p className='feedback-text'>{feedback}</p>
           </div>
