@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Avatar from '@material-ui/core/Avatar';
 import devices from '../devices';
 import FeedbackModal from '../Modals/FeedbackModal';
 

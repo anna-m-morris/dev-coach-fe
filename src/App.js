@@ -8,7 +8,6 @@ import Dashboard from './components/Dashboard';
 import UserDashboard from './views/UserDashboard/UserDashboard';
 import Marketplace from './views/Marketplace/Marketplace';
 import Landing from './components/Landing';
-import LandingTwo from './components/Landing/Landing-2';
 import InterviewerForm from './components/Forms/InterviewerForm';
 import StudentForm from './components/Forms/StudentForm';
 import UserTypePage from './components/UserType/UserTypePage';
@@ -17,7 +16,6 @@ import LandingFaq from './components/FAQ/LandingFaq';
 import Booking from './components/Booking/Booking';
 import Feedback from './views/Feedback/Feedback';
 import VideoChat from './components/VideoChat';
-import GiveFeedback from './views/Feedback/GiveFeedback';
 import Settings from './views/Settings/Settings';
 
 const globalTheme = createMuiTheme({

@@ -1,11 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import logo from '../../img/firelogo.png';
 
 // styled-components
-
 const mobileHidden = css`
   @media only screen and (max-width: 600px) {
     display: none;
