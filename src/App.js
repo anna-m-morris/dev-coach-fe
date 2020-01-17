@@ -12,6 +12,7 @@ import InterviewerForm from './components/Forms/InterviewerForm';
 import StudentForm from './components/Forms/StudentForm';
 import UserTypePage from './components/UserType/UserTypePage';
 import MainFaq from './components/FAQ/Main';
+import LandingFaq from './components/FAQ/LandingFaq';
 import Booking from './components/Booking/Booking';
 import Feedback from './views/Feedback/Feedback';
 import VideoChat from './components/VideoChat';
@@ -62,6 +63,7 @@ function App() {
       <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
       <Route path='/register' component={SignUpForm} />
+      <Route path='/faq' component={LandingFaq} />
       <Redirect to='/' />
     </Switch>
   );
