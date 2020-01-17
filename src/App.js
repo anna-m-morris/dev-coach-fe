@@ -34,6 +34,7 @@ function App() {
       <Route path={'/interview'} component={VideoChat} />
       <Route path={'/givefeedback'} component={GiveFeedback} />
       <Route path={'/Settings'} component={Settings} />
+      <Route path={'/FAQ'} component={MainFaq} />
       <Redirect to='/dashboard' />
     </Switch>
   );
