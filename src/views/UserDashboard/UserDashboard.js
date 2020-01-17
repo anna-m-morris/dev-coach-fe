@@ -9,6 +9,7 @@ import {
 import { startInterview } from '../../state/actions/interviewActions';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
+import NewAppointmentCard from '../../components/Cards/newAppointmentCard';
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -77,6 +78,16 @@ const StyledContainer = styled.div`
   }
 `;
 
+const Dom = {
+  first_name: 'Dom',
+  last_name: 'Eccleston',
+  location: 'Sheffield',
+  appointment_datetime: 'Wed Mar 25 2015 01:00:00 GMT',
+  appointment_topic: 'ReactJS',
+  description:
+    "Let's meet at this time for your first front-end interview",
+};
+
 const UserDashboard = props => {
   const {
     appointments,
@@ -91,7 +102,16 @@ const UserDashboard = props => {
 
   return (
     <StyledContainer>
-      {appointments ? (
+      <NewAppointmentCard coach={Dom} />
+      <AppointmentCard
+        first_name={Dom.first_name}
+        last_name={Dom.last_name}
+        avatar_url={Dom.avatar_url}
+        appointment_datetime={Dom.appointment_datetime}
+        appointment_topic={Dom.appointment_topic}
+        description={Dom.description}
+      />
+      {/*       {appointments ? (
         appointments.map(appointment => (
           <AppointmentCard
             key={uuid()}
@@ -110,7 +130,7 @@ const UserDashboard = props => {
         ))
       ) : (
         <EmptyAppointment />
-      )}
+      )} */}
     </StyledContainer>
   );
 };

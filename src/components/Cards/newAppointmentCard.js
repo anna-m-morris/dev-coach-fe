@@ -2,6 +2,8 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Icon from '@material-ui/core/Icon';
 import { Link } from 'react-router-dom';
 import CoachModal from '../Modals/CoachModal';
 import Rating from '../DataVisualization/Rating';
@@ -12,7 +14,9 @@ const StyledCoachCard = styled.div`
   justify-content: space-around;
   width: 17rem;
   height: 24rem;
-  padding: 2.4rem;
+  padding: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   border-radius: 0.8rem;
   margin: 0.5rem;
   color: #595959;
@@ -22,8 +26,9 @@ const StyledCoachCard = styled.div`
   box-shadow: 0 6px 10px #d3d3d3;
 
   h3 {
-    font-weight: 400;
-    font-size: 1rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.96rem;
     color: #3c4043;
   }
 
@@ -42,8 +47,8 @@ const StyledCoachCard = styled.div`
       justify-content: center;
       align-items: center;
       .picture {
-        width: 5rem;
-        height: 5rem;
+        width: 5.5rem;
+        height: 5.5rem;
       }
     }
   }
@@ -62,7 +67,7 @@ const StyledCoachCard = styled.div`
   .footer {
     display: flex;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: space-around;
 
     a {
       text-decoration: none;
@@ -74,7 +79,7 @@ const StyledCoachCard = styled.div`
   }
 `;
 
-export const CoachCard = props => {
+export const NewAppointmentCard = props => {
   const { coach, saveCoach, getFeedback, feedback } = props;
 
   return (
@@ -82,7 +87,6 @@ export const CoachCard = props => {
       <div className='header'>
         <div className='header-text'>
           <h3>{`${coach.first_name} ${coach.last_name}`}</h3>
-          <p>${coach.hourly_rate} per hour</p>
         </div>
         <div className='header-photo'>
           <Avatar
@@ -113,23 +117,23 @@ export const CoachCard = props => {
           coach.description.slice(0, 50)}...`}</p>{' '}
       </div>
 
-      <div className='reviews'>
-        <Rating rating={coach.rating} size='small' />
-        <CoachModal
-          coach={coach}
-          getFeedback={getFeedback}
-          feedback={feedback}
-        />
-      </div>
-
       <div className='footer'>
+        <Button
+          className='cancel-button'
+          variant='contained'
+          color='secondary'
+          startIcon={<DeleteIcon />}
+        >
+          Cancel
+        </Button>
         <Link to='/appointment' onClick={() => saveCoach(coach)}>
           <Button
             className='button'
             variant='contained'
             color='primary'
+            endIcon={<Icon>send</Icon>}
           >
-            Request
+            Message
           </Button>
         </Link>
       </div>
@@ -137,4 +141,4 @@ export const CoachCard = props => {
   );
 };
 
-export default CoachCard;
+export default NewAppointmentCard;
