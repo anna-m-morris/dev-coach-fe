@@ -8,8 +8,12 @@ import { Link } from 'react-router-dom';
 import CodeIcon from '@material-ui/icons/Code';
 import TodayIcon from '@material-ui/icons/Today';
 import ScheduleIcon from '@material-ui/icons/Schedule';
-import CoachModal from '../Modals/CoachModal';
-import Rating from '../DataVisualization/Rating';
+import Slide from '@material-ui/core/Slide';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Dom from '../../img/dom.jpeg';
 
 const StyledCoachCard = styled.div`
@@ -75,7 +79,6 @@ const StyledCoachCard = styled.div`
   }
 
   .description {
-    /* todo adjust margin */
     margin-bottom: 0.6em;
   }
 
@@ -117,66 +120,109 @@ const mapExperience = experience => {
 };
 
 export const NewAppointmentCard = props => {
-  const { coach, saveCoach, getFeedback, feedback } = props;
+  const { coach, saveCoach } = props;
+
+  const [openCancelModal, setOpenCancelModal] = React.useState(false);
+
+  const Transition = React.forwardRef(function Transition(
+    props,
+    ref,
+  ) {
+    return <Slide direction='up' ref={ref} {...props} />;
+  });
+
+  const handleCancelModalOpen = () => {
+    setOpenCancelModal(true);
+  };
+
+  const handleCancelModalClose = () => {
+    setOpenCancelModal(false);
+  };
 
   const time = coach.appointment_datetime.slice(0, 15);
   const date = coach.appointment_datetime.slice(16, 28);
 
   return (
-    <StyledCoachCard>
-      <div className='header'>
-        <div className='header-text'>
-          <h3>{`${coach.first_name} ${coach.last_name}`}</h3>
-          <h4>{mapExperience(coach.experience_level)}</h4>
+    <>
+      <StyledCoachCard>
+        <div className='header'>
+          <div className='header-text'>
+            <h3>{`${coach.first_name} ${coach.last_name}`}</h3>
+            <h4>{mapExperience(coach.experience_level)}</h4>
+          </div>
+          <div className='header-photo'>
+            <Avatar className='picture' alt='Coach' src={Dom} />
+          </div>
         </div>
-        <div className='header-photo'>
-          <Avatar className='picture' alt='Coach' src={Dom} />
-        </div>
-      </div>
 
-      <div className='bullet-points'>
-        <div className='bullet'>
-          <CodeIcon className='icon' />
-          {coach.appointment_topic}
+        <div className='bullet-points'>
+          <div className='bullet'>
+            <CodeIcon className='icon' />
+            {coach.appointment_topic}
+          </div>
+          <div className='bullet'>
+            <TodayIcon className='icon' />
+            {date}
+          </div>
+          <div className='bullet'>
+            <ScheduleIcon className='icon' />
+            {time}
+          </div>
         </div>
-        <div className='bullet'>
-          <TodayIcon className='icon' />
-          {date}
-        </div>
-        <div className='bullet'>
-          <ScheduleIcon className='icon' />
-          {time}
-        </div>
-      </div>
 
-      <div className='description'>
-        <p>{`${coach.description &&
-          coach.description.slice(0, 80)}...`}</p>{' '}
-      </div>
+        <div className='description'>
+          <p>{`${coach.description &&
+            coach.description.slice(0, 80)}...`}</p>{' '}
+        </div>
 
-      <div className='footer'>
-        <Button
-          size='small'
-          className='cancel-button'
-          variant='contained'
-          color='secondary'
-          startIcon={<DeleteIcon />}
-        >
-          Cancel
-        </Button>
-        <Link to='/appointment' onClick={() => saveCoach(coach)}>
+        <div className='footer'>
           <Button
+            onClick={handleCancelModalOpen}
             size='small'
-            className='button'
+            className='cancel-button'
             variant='contained'
-            color='primary'
-            endIcon={<Icon>send</Icon>}
+            color='secondary'
+            startIcon={<DeleteIcon />}
           >
-            Message
+            Cancel
           </Button>
-        </Link>
-      </div>
-    </StyledCoachCard>
+          <Link to='/appointment' onClick={() => saveCoach(coach)}>
+            <Button
+              size='small'
+              className='button'
+              variant='contained'
+              color='primary'
+              endIcon={<Icon>send</Icon>}
+            >
+              Message
+            </Button>
+          </Link>
+        </div>
+      </StyledCoachCard>
+      <Dialog
+        open={openCancelModal}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleCancelModalClose}
+        aria-labelledby='alert-dialog-slide-title'
+        aria-describedby='alert-dialog-slide-description'
+      >
+        <DialogTitle id='alert-dialog-slide-title'> </DialogTitle>
+        <DialogContent>
+          <DialogContentText id='alert-dialog-slide-description'>
+            Are you sure you want to cancel your appointment ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCancelModalClose} color='primary'>
+            No
+          </Button>
+          <Button onClick={props.cancel} color='primary'>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 };
 

@@ -107,7 +107,6 @@ const useStyles = makeStyles(theme => ({
     color: '#4fad65',
   },
   drawer: {
-    // todo
   },
   link: {
     textDecoration: 'none',

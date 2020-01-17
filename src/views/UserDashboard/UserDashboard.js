@@ -6,8 +6,6 @@ import {
   getAppointment,
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
-import { startInterview } from '../../state/actions/interviewActions';
-import AppointmentCard from '../../components/Cards/AppointmentCard';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 import NewAppointmentCard from '../../components/Cards/newAppointmentCard';
 
@@ -78,24 +76,12 @@ const StyledContainer = styled.div`
   }
 `;
 
-const Dom = {
-  first_name: 'Dom',
-  last_name: 'Eccleston',
-  location: 'Sheffield',
-  appointment_datetime: 'Wed Mar 25 2015 01:00:00 GMT',
-  appointment_topic: 'ReactJS',
-  description:
-    "Let's meet at this time for your first front-end interview",
-  experience_level: 1,
-};
-
 const UserDashboard = props => {
   const {
     appointments,
     getAppointment,
     user,
     cancelAppointment,
-    startInterview,
   } = props;
   React.useEffect(() => {
     setTimeout(() => getAppointment(user.id, user.role_id), 1000);
@@ -103,35 +89,17 @@ const UserDashboard = props => {
 
   return (
     <StyledContainer>
-      <NewAppointmentCard coach={Dom} />
-      <AppointmentCard
-        first_name={Dom.first_name}
-        last_name={Dom.last_name}
-        avatar_url={Dom.avatar_url}
-        appointment_datetime={Dom.appointment_datetime}
-        appointment_topic={Dom.appointment_topic}
-        description={Dom.description}
-      />
-      {/*       {appointments ? (
+      {appointments ? (
         appointments.map(appointment => (
-          <AppointmentCard
-            key={uuid()}
-            first_name={appointment.first_name}
-            last_name={appointment.last_name}
-            avatar_url={appointment.avatar_url}
-            appointment_datetime={appointment.appointment_datetime}
-            appointment_topic={appointment.appointment_topic}
-            description={appointment.description}
-            canceled={appointment.canceled}
+          <NewAppointmentCard
+            coach={appointment}
             cancel={() => cancelAppointment(appointment.id)}
-            startInterview={() =>
-              startInterview(appointment.user_id, props)
-            }
+            key={uuid()}
           />
         ))
       ) : (
         <EmptyAppointment />
-      )} */}
+      )}
     </StyledContainer>
   );
 };
@@ -146,5 +114,4 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   getAppointment,
   cancelAppointment,
-  startInterview,
 })(UserDashboard);

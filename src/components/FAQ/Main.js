@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Route } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import SearchIcon from '@material-ui/icons/Search';
 import PersonIcon from '@material-ui/icons/Person';
 import PaymentIcon from '@material-ui/icons/Payment';
@@ -40,7 +40,6 @@ const CategoryContainer = styled.div`
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    /* box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15); */
     box-shadow: 0 6px 10px rgba(50, 50, 93, 0.1);
 
     h3 {

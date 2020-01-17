@@ -16,7 +16,6 @@ import LandingFaq from './components/FAQ/LandingFaq';
 import Booking from './components/Booking/Booking';
 import Feedback from './views/Feedback/Feedback';
 import VideoChat from './components/VideoChat';
-import GiveFeedback from './views/Feedback/GiveFeedback';
 import Settings from './views/Settings/Settings';
 
 const globalTheme = createMuiTheme({
