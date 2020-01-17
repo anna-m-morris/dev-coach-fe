@@ -11,11 +11,6 @@ const ModalContainer = styled.div`
     color: #4fad65;
     font-size: 0.8rem;
     cursor: pointer;
-    width: 50%;
-
-    @media ${devices.tablet} {
-      width: 100%;
-    }
   }
 `;
 
