@@ -76,14 +76,14 @@ export function ProfileSettings(props) {
       showErrorMessage,
       showSuccessMessage,
     );
-/*     setTimeout(() => {
+    /*     setTimeout(() => {
       props.history.push('/dashboard');
     }, 2500); */
   };
 
   const handleCancel = e => {
     e.preventDefault();
-/*     props.history.push('/dashboard'); */
+    /*     props.history.push('/dashboard'); */
   };
 
   return (

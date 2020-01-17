@@ -33,7 +33,6 @@ function App() {
       <Route path={'/appointment'} component={Booking} />
       <Route path={'/feedback'} component={Feedback} />
       <Route path={'/interview'} component={VideoChat} />
-      <Route path={'/givefeedback'} component={GiveFeedback} />
       <Route path={'/Settings'} component={Settings} />
       <Route path={'/FAQ'} component={MainFaq} />
       <Redirect to='/dashboard' />

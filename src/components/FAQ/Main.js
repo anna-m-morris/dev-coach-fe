@@ -64,8 +64,6 @@ const iconStyles = {
   color: '#4fad65',
 };
 
-
-
 const MainFaq = () => {
   return (
     <MainContainer>
