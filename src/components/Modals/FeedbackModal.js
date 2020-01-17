@@ -21,6 +21,7 @@ const ModalContainer = styled.div`
 
 const FeedbackModal = props => {
   const {
+    date,
     coachFirstName,
     coachLastName,
     feedback,
@@ -62,27 +63,41 @@ const FeedbackModal = props => {
           >
             <p
               style={{
-                // width: '75%',
                 fontWeight: 'bold',
-                fontSize: '1.3rem',
+                fontSize: '1.1rem',
               }}
             >{`${coachFirstName} ${coachLastName}`}</p>
             <Avatar
               style={{
-                width: '5rem',
-                height: '5rem',
+                width: '4rem',
+                height: '4rem',
                 borderRadius: '50%',
               }}
               alt='Coach'
               src={avatarUrl}
             />
           </div>
-          <Divider />
+
           <div className='feedback-container'>
-            <p style={{ margin: '1rem 0' }} className='feedback-text'>
+            <p
+              style={{ margin: '1.5rem 0', textAlign: 'center' }}
+              className='feedback-text'
+            >
               {feedback}
             </p>
+          </div>
+          <Divider />
+          <div
+            className='rating'
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              margin: '1rem 0 0 0',
+            }}
+          >
             <Rating rating={rating.props.rating} />
+            <p style={{ margin: 0, color: '#a8a8a8' }}>{date}</p>
           </div>
         </div>
       </Modal>
