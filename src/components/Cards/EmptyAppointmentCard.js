@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Empty } from 'antd';
-import { Link, Route } from 'react-router-dom';
-import Marketplace from '../../views/Marketplace/Marketplace';
+import { Link } from 'react-router-dom';
 
 const StyledContainer = styled.div`
   width: 700px;
@@ -73,7 +72,6 @@ const EmptyAppointment = () => {
       <Link className='link' to='/marketplace'>
         <button>Book A Coach</button>
       </Link>
-      <Route exact path='/marketplace' component={Marketplace} />
     </StyledContainer>
   );
 };
