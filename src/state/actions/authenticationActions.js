@@ -78,7 +78,9 @@ export const chooseUserRole = (props, values, role) => dispatch => {
             localStorage.removeItem('id');
             window.location.reload();
           })
-          .catch(err => {});
+          .catch(err => {
+            console.log(err);
+          });
       } else {
         axiosWithAuth()
           .post(`${url}profile/coaches`, {
@@ -98,7 +100,14 @@ export const chooseUserRole = (props, values, role) => dispatch => {
             localStorage.removeItem('id');
             window.location.reload();
           })
-          .catch(coachErr => {});
+          .catch(coachErr => {
+            console.log(coachErr);
+            console.log({
+              experience_level: values.experience,
+              skill_level: values.skills,
+              user_id: id,
+            });
+          });
       }
     })
     .catch(err =>
