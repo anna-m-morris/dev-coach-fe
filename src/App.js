@@ -18,6 +18,7 @@ import Feedback from './views/Feedback/Feedback';
 import VideoChat from './components/VideoChat';
 import Settings from './views/Settings/Settings';
 import GiveFeedback from './views/Feedback/GiveFeedback';
+import LandingTwo from './components/Landing/Landing-2';
 
 const globalTheme = createMuiTheme({
   typography: {
@@ -60,7 +61,7 @@ function App() {
   }
   return (
     <Switch>
-      <Route exact path='/' component={Landing} />
+      <Route exact path='/' component={LandingTwo} />
       <Route path='/login/' component={LoginForm} />
       <Route path='/register' component={SignUpForm} />
       <Route path='/faq' component={LandingFaq} />
