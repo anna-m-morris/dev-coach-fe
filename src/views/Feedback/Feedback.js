@@ -5,6 +5,7 @@ import uuid from 'uuid';
 import { getFeedback } from '../../state/actions/feedbackActions';
 import FeedbackRating from '../../components/DataVisualization/Rating';
 import FeedbackCard from '../../components/Cards/FeedbackCard';
+import EmptyFeedback from '../../components/Cards/EmptyFeedbackCard';
 
 const StyledFeedback = styled.div`
   width: 100%;
@@ -21,7 +22,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
 
   return (
     <StyledFeedback className='feedback-card-container'>
-      {feedback &&
+      {feedback && feedback.length ? (
         feedback.map(feedback => (
           <FeedbackCard
             key={uuid()}
@@ -33,7 +34,10 @@ const Feedback = ({ user, getFeedback, feedback }) => {
             coachLastName={feedback.last_name}
             avatarUrl={feedback.avatar_url}
           />
-        ))}
+        ))
+      ) : (
+        <EmptyFeedback />
+      )}
     </StyledFeedback>
   );
 };
