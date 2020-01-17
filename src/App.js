@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard';
 import UserDashboard from './views/UserDashboard/UserDashboard';
 import Marketplace from './views/Marketplace/Marketplace';
 import Landing from './components/Landing';
+import LandingTwo from './components/Landing/Landing-2';
 import InterviewerForm from './components/Forms/InterviewerForm';
 import StudentForm from './components/Forms/StudentForm';
 import UserTypePage from './components/UserType/UserTypePage';
@@ -58,7 +59,7 @@ function App() {
   }
   return (
     <Switch>
-      <Route exact path='/' component={Landing} />
+      <Route exact path='/' component={LandingTwo} />
       <Route path='/login/' component={LoginForm} />
       <Route path='/register' component={SignUpForm} />
       <Route path='/faq' component={MainFaq} />
