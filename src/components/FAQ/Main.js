@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Route } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import SearchIcon from '@material-ui/icons/Search';
 import PersonIcon from '@material-ui/icons/Person';
 import PaymentIcon from '@material-ui/icons/Payment';
@@ -9,7 +9,6 @@ import Profile from './ProfileFaq';
 import Payment from './PaymentFaq';
 
 // Main content
-
 const MainContainer = styled.div`
   background: #f6f9fc;
   width: 100%;
@@ -40,11 +39,18 @@ const CategoryContainer = styled.div`
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    /* box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15); */
-    box-shadow: 0 6px 10px rgba(50, 50, 93, 0.1);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+
+    .link-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
     h3 {
-      text-align: center;
       color: grey;
     }
   }
@@ -74,8 +80,10 @@ const MainFaq = () => {
           activeClassName='activeClassNav'
           to='/faq/general'
         >
-          <h3>General</h3>
-          <SearchIcon style={iconStyles} />
+          <div className='link-content'>
+            <h3>General</h3>
+            <SearchIcon style={iconStyles} />
+          </div>
         </NavLink>
 
         <NavLink
@@ -83,16 +91,20 @@ const MainFaq = () => {
           activeClassName='activeClassNav'
           to='/faq/profile'
         >
-          <h3>Profile</h3>
-          <PersonIcon style={iconStyles} />
+          <div className='link-content'>
+            <h3>Profile</h3>
+            <PersonIcon style={iconStyles} />
+          </div>
         </NavLink>
         <NavLink
           className='styledBox'
           activeClassName='activeClassNav'
           to='/faq/payment'
         >
-          <h3>Payment</h3>
-          <PaymentIcon style={iconStyles} />
+          <div className='link-content'>
+            <h3>Payment</h3>
+            <PaymentIcon style={iconStyles} />
+          </div>
         </NavLink>
       </CategoryContainer>
 

@@ -12,6 +12,7 @@ const StyledFeedback = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 1rem;
 `;
 
 const Feedback = ({ user, getFeedback, feedback }) => {
@@ -31,6 +32,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
             date={feedback.appointment_datetime.slice(0, 15)}
             coachFirstName={feedback.first_name}
             coachLastName={feedback.last_name}
+            avatarUrl={feedback.avatar_url}
           />
         ))
       ) : (

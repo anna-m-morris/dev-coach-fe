@@ -16,8 +16,8 @@ import LandingFaq from './components/FAQ/LandingFaq';
 import Booking from './components/Booking/Booking';
 import Feedback from './views/Feedback/Feedback';
 import VideoChat from './components/VideoChat';
-import GiveFeedback from './views/Feedback/GiveFeedback';
 import Settings from './views/Settings/Settings';
+import GiveFeedback from './views/Feedback/GiveFeedback';
 
 const globalTheme = createMuiTheme({
   typography: {
@@ -32,6 +32,7 @@ function App() {
       <Route path={'/marketplace'} component={Marketplace} />
       <Route path={'/appointment'} component={Booking} />
       <Route path={'/feedback'} component={Feedback} />
+      <Route path={'/givefeedback'} component={GiveFeedback} />
       <Route path={'/interview'} component={VideoChat} />
       <Route path={'/Settings'} component={Settings} />
       <Route path={'/FAQ'} component={MainFaq} />
