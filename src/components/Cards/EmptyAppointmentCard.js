@@ -50,7 +50,7 @@ const StyledContainer = styled.div`
 const EmptyAppointment = () => {
   return (
     <StyledContainer>
-      <h3>You Have No Appoinment</h3>
+      <h3>You have no upcoming appointments.</h3>
       <div className='imgDiv'>
         <Empty description={false} />
       </div>

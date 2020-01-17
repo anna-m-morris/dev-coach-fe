@@ -76,7 +76,7 @@ const StyledCoachCard = styled.div`
 
   .description {
     /* todo adjust margin */
-    margin-bottom: 0.8em;
+    margin-bottom: 0.6em;
   }
 
   .reviews {
