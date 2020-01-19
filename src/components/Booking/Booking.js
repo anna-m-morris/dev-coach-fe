@@ -106,6 +106,10 @@ const Booking = props => {
               );
             }}
             catchError={err => showErrorMessage()}
+            options={{
+              clientId:
+                'ARVkifyBTBn77NG4ftQSS7eFFxTjcG0ghgVPQCZGyUQufKrNBaTOXSWEKpvDPa3XQi96rSIKEHioCFdP',
+            }}
           />
         </div>
       ) : null}
