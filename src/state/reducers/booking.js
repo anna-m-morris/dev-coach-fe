@@ -6,6 +6,7 @@ const initialState = {
   select: {},
   error: '',
   isLoading: false,
+  paypalIsOn: false,
 };
 
 function bookingReducer(state = initialState, action) {
@@ -23,6 +24,12 @@ function bookingReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
+      };
+
+    case types.PAYPAL_PAYMENT_START:
+      return {
+        ...state,
+        paypalIsOn: true,
       };
 
     case types.SAVE_DATE:

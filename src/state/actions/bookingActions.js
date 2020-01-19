@@ -3,6 +3,7 @@ import axiosWithAuth from '../../utils/axiosWithAuth';
 export const STRIPE_PAYMENT_START = 'STRIPE_PAYMENT_START';
 export const STRIPE_PAYMENT_ERROR = 'STRIPE_PAYMENT_ERROR';
 export const STRIPE_PAYMENT_SUCCESSFUL = 'STRIPE_PAYMENT_SUCCESSFUL';
+export const PAYPAL_PAYMENT_START = 'PAYPAL_PAYMENT_START';
 export const PAYPAL_PAYMENT_ERROR = 'PAYPAL_PAYMENT_ERROR';
 export const PAYPAL_PAYMENT_SUCCESSFUL = 'PAYPAL_PAYMENT_SUCCESSFUL';
 export const SAVE_DATE = 'SAVE_DATE';
@@ -68,6 +69,7 @@ export const handlePaypalPayment = (
   length_id,
   props,
 ) => async dispatch => {
+  dispatch({ type: STRIPE_PAYMENT_START });
   window.paypal
     .Buttons({
       createOrder: (data, actions) => {
