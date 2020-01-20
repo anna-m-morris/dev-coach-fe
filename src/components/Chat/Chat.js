@@ -3,16 +3,12 @@ import UsernameForm from './UsernameForm';
 import ChatScreen from './ChatScreen';
 
 class Chat extends Component {
-  constructor() {
-    super();
-    this.state = {
-      currentUsername: '',
-      currentScreen: 'WhatIsYourUsernameScreen',
-    };
-    this.onUsernameSubmitted = this.onUsernameSubmitted.bind(this);
-  }
+  state = {
+    currentUsername: '',
+    currentScreen: 'WhatIsYourUsernameScreen',
+  };
 
-  onUsernameSubmitted(username) {
+  onUsernameSubmitted = username => {
     fetch('http://localhost:5000/chat', {
       method: 'POST',
       headers: {
@@ -28,7 +24,7 @@ class Chat extends Component {
         });
       })
       .catch(error => console.error('error', error));
-  }
+  };
 
   render() {
     if (this.state.currentScreen === 'WhatIsYourUsernameScreen') {
