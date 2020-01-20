@@ -7,8 +7,6 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import { PayPalButton } from 'react-paypal-button-v2';
-import StripeCheckout from 'react-stripe-checkout';
 import {
   showErrorMessage,
   showSuccessMessage,
@@ -19,7 +17,9 @@ import {
   saveDate,
   bookAppointment,
 } from '../../state/actions/bookingActions';
+
 import Notification from '../Notifications/Notification';
+import Payment from './Payment';
 
 import Select from '../Inputs/SelectInfo';
 import DatePicker from './DatePicker';
@@ -54,22 +54,8 @@ function getStepContent(stepIndex) {
   }
 }
 
-const AppointmentStepper = props => {
-  const {
-    date,
-    coach,
-    closeMessage,
-    success,
-    error,
-    showErrorMessage,
-    showSuccessMessage,
-    handleStripePayment,
-    saveDate,
-    select,
-    bookAppointment,
-    user,
-  } = props;
-  console.log(props);
+const BookingStepper = props => {
+  const { date, saveDate } = props;
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -88,7 +74,7 @@ const AppointmentStepper = props => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className='stepper-container'>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map(label => (
           <Step key={label}>
@@ -99,7 +85,7 @@ const AppointmentStepper = props => {
 
       <div>
         {activeStep === 0 ? (
-          <div>
+          <div className='length-topic'>
             <Select />
           </div>
         ) : activeStep === 1 ? (
@@ -108,57 +94,7 @@ const AppointmentStepper = props => {
           </div>
         ) : (
           <div>
-            <StripeCheckout
-              stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // this key is only for testing we
-              // will add later our real key to the env file
-              token={token =>
-                handleStripePayment(
-                  token,
-                  `${coach.first_name} ${coach.last_name}`,
-                  coach.hourly_rate,
-                  showSuccessMessage,
-                  showErrorMessage,
-                  bookAppointment,
-                  coach,
-                  user,
-                  date,
-                  select.topic_id,
-                  select.length_id,
-                  props,
-                )
-              }
-              amount={
-                select.length_id === 2
-                  ? coach.hourly_rate * 100
-                  : coach.hourly_rate * 100 * 0.5
-              }
-              name={'name'}
-              billingAddress
-              shippingAddress
-            />
-            <PayPalButton
-              amount={
-                select.length_id === 2
-                  ? coach.hourly_rate
-                  : coach.hourly_rate * 0.5
-              }
-              onSuccess={(details, data) => {
-                showSuccessMessage();
-                bookAppointment(
-                  coach,
-                  user,
-                  date,
-                  select.topic_id,
-                  select.length_id,
-                  props,
-                );
-              }}
-              catchError={err => showErrorMessage()}
-              options={{
-                clientId:
-                  'ARVkifyBTBn77NG4ftQSS7eFFxTjcG0ghgVPQCZGyUQufKrNBaTOXSWEKpvDPa3XQi96rSIKEHioCFdP',
-              }}
-            />
+            <Payment />
           </div>
         )}
       </div>
@@ -217,4 +153,4 @@ export default connect(mapStateToProps, {
   closeMessage,
   saveDate,
   bookAppointment,
-})(AppointmentStepper);
+})(BookingStepper);

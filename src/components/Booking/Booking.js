@@ -138,13 +138,18 @@
 // })(Booking);
 
 import React from 'react';
-import Stepper from './Stepper';
+import styled from 'styled-components';
+import BookingStepper from './BookingStepper';
+
+const StyledBooking = styled.div`
+  width: 100%;
+`;
 
 const Booking = ({ history }) => {
   return (
-    <div>
-      <Stepper history={history} />
-    </div>
+    <StyledBooking className='booking-container'>
+      <BookingStepper history={history} />
+    </StyledBooking>
   );
 };
 
