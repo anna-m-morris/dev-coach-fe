@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
+import { PayPalButton } from 'react-paypal-button-v2';
 import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -9,7 +10,6 @@ import {
 } from '../../state/actions/notificationActions';
 import {
   handleStripePayment,
-  handlePaypalPayment,
   saveDate,
   bookAppointment,
 } from '../../state/actions/bookingActions';
@@ -35,42 +35,12 @@ const Booking = props => {
     showErrorMessage,
     showSuccessMessage,
     handleStripePayment,
-    handlePaypalPayment,
     saveDate,
     select,
     bookAppointment,
     user,
   } = props;
 
-  const paypalRef = useRef();
-
-  useEffect(() => {
-    handlePaypalPayment(
-      `${coach.first_name} ${coach.last_name}`,
-      coach.hourly_rate,
-      paypalRef,
-      showSuccessMessage,
-      showErrorMessage,
-      bookAppointment,
-      coach,
-      user,
-      date,
-      select.topic_id,
-      select.length_id,
-      props,
-    );
-  }, [
-    bookAppointment,
-    coach,
-    date,
-    handlePaypalPayment,
-    props,
-    select.length_id,
-    select.topic_id,
-    showErrorMessage,
-    showSuccessMessage,
-    user,
-  ]);
   return (
     <StyledBooking>
       <Notification
@@ -109,14 +79,38 @@ const Booking = props => {
                 props,
               )
             }
-            amount={coach.hourly_rate * 100}
+            amount={
+              select.length_id === 2
+                ? coach.hourly_rate * 100
+                : coach.hourly_rate * 100 * 0.5
+            }
             name={'name'}
             billingAddress
             shippingAddress
           />
-          <div>
-            <div ref={paypalRef} />
-          </div>
+          <PayPalButton
+            amount={
+              select.length_id === 2
+                ? coach.hourly_rate
+                : coach.hourly_rate * 0.5
+            }
+            onSuccess={(details, data) => {
+              showSuccessMessage();
+              bookAppointment(
+                coach,
+                user,
+                date,
+                select.topic_id,
+                select.length_id,
+                props,
+              );
+            }}
+            catchError={err => showErrorMessage()}
+            options={{
+              clientId:
+                'ARVkifyBTBn77NG4ftQSS7eFFxTjcG0ghgVPQCZGyUQufKrNBaTOXSWEKpvDPa3XQi96rSIKEHioCFdP',
+            }}
+          />
         </div>
       ) : null}
     </StyledBooking>
@@ -139,7 +133,6 @@ export default connect(mapStateToProps, {
   showErrorMessage,
   showSuccessMessage,
   closeMessage,
-  handlePaypalPayment,
   saveDate,
   bookAppointment,
 })(Booking);

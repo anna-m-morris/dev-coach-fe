@@ -84,14 +84,6 @@ export const ListComponent = () => {
             <ListItemText primary='Your Feedback' />
           </CustomListItem>
         </Link>
-        <Link to='/givefeedback' className={classes.listItem}>
-          <CustomListItem button>
-            <ListItemIcon>
-              <LayersIcon />
-            </ListItemIcon>
-            <ListItemText primary='Give Feedback' />
-          </CustomListItem>
-        </Link>
         <Link to='/FAQ' className={classes.listItem}>
           <CustomListItem button>
             <ListItemIcon>
