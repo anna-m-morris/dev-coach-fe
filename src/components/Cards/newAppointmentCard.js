@@ -89,6 +89,7 @@ const StyledCoachCard = styled.div`
   }
 
   .footer {
+    margin-top: 0.5em;
     display: flex;
     width: 100%;
     justify-content: space-between;

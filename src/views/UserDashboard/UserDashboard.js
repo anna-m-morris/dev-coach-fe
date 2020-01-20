@@ -129,21 +129,19 @@ const UserDashboard = props => {
     <StyledContainer>
       {appointments && appointments.length ? (
         <div className='appointments'>
+          {appointments.slice(minValue, maxValue).map(appointment => (
+            <NewAppointmentCard
+              appointment={appointment}
+              cancel={() => cancelAppointment(appointment.id)}
+              startInterview={() =>
+                startInterview(appointment.user_id, props)
+              }
+              saveIdRole={() =>
+                saveIdRole(appointment.role_id, appointment.id)
+              }
+            />
+          ))}
           <div className='pagination'>
-            {appointments
-              .slice(minValue, maxValue)
-              .map(appointment => (
-                <NewAppointmentCard
-                  appointment={appointment}
-                  cancel={() => cancelAppointment(appointment.id)}
-                  startInterview={() =>
-                    startInterview(appointment.user_id, props)
-                  }
-                  saveIdRole={() =>
-                    saveIdRole(appointment.role_id, appointment.id)
-                  }
-                />
-              ))}
             <Pagination
               defaultCurrent={1}
               defaultPageSize={6}
