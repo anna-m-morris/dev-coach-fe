@@ -85,7 +85,6 @@ class ChatScreen extends Component {
           <section className='chat-list-container'>
             <MessageList
               messages={this.state.messages}
-              // style={styles.chatList}
             />
             <SendMessageForm onSubmit={this.sendMessage} />
           </section>
