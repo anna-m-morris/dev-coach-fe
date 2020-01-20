@@ -18,6 +18,7 @@ import Feedback from './views/Feedback/Feedback';
 import VideoChat from './components/VideoChat';
 import Settings from './views/Settings/Settings';
 import GiveFeedback from './views/Feedback/GiveFeedback';
+import LandingTwo from './components/Landing/Landing-2';
 
 const globalTheme = createMuiTheme({
   typography: {
