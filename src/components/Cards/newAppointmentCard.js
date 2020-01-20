@@ -15,6 +15,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dom from '../../img/dom.jpeg';
+import empty from '../../img/empty.svg';
 
 const StyledCoachCard = styled.div`
   display: flex;
@@ -120,7 +121,7 @@ const mapExperience = experience => {
 };
 
 export const NewAppointmentCard = props => {
-  const { coach, saveCoach } = props;
+  const { appointment, saveIdRole } = props;
 
   const [openCancelModal, setOpenCancelModal] = React.useState(false);
 
@@ -139,26 +140,30 @@ export const NewAppointmentCard = props => {
     setOpenCancelModal(false);
   };
 
-  const time = coach.appointment_datetime.slice(0, 15);
-  const date = coach.appointment_datetime.slice(16, 28);
+  const time = appointment.appointment_datetime.slice(0, 15);
+  const date = appointment.appointment_datetime.slice(16, 28);
 
   return (
     <>
       <StyledCoachCard>
         <div className='header'>
           <div className='header-text'>
-            <h3>{`${coach.first_name} ${coach.last_name}`}</h3>
-            <h4>{mapExperience(coach.experience_level)}</h4>
+            <h3>{`${appointment.first_name} ${appointment.last_name}`}</h3>
+            <h4>{mapExperience(appointment.experience_level)}</h4>
           </div>
           <div className='header-photo'>
-            <Avatar className='picture' alt='Coach' src={Dom} />
+            <Avatar
+              className='picture'
+              alt='appointment'
+              src={empty}
+            />
           </div>
         </div>
 
         <div className='bullet-points'>
           <div className='bullet'>
             <CodeIcon className='icon' />
-            {coach.appointment_topic}
+            {appointment.appointment_topic}
           </div>
           <div className='bullet'>
             <TodayIcon className='icon' />
@@ -171,8 +176,8 @@ export const NewAppointmentCard = props => {
         </div>
 
         <div className='description'>
-          <p>{`${coach.description &&
-            coach.description.slice(0, 80)}...`}</p>{' '}
+          <p>{`${appointment.description &&
+            appointment.description.slice(0, 80)}...`}</p>{' '}
         </div>
 
         <div className='footer'>
@@ -186,7 +191,7 @@ export const NewAppointmentCard = props => {
           >
             Cancel
           </Button>
-          <Link to='/appointment' onClick={() => saveCoach(coach)}>
+          <Link to='/givefeedback' onClick={() => saveIdRole()}>
             <Button
               size='small'
               className='button'
@@ -194,7 +199,7 @@ export const NewAppointmentCard = props => {
               color='primary'
               endIcon={<Icon>send</Icon>}
             >
-              Message
+              Interview
             </Button>
           </Link>
         </div>

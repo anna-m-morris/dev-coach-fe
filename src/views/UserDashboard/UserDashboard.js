@@ -130,9 +130,15 @@ const UserDashboard = props => {
       {appointments ? (
         appointments.map(appointment => (
           <NewAppointmentCard
-            coach={appointment}
+            appointment={appointment}
             cancel={() => cancelAppointment(appointment.id)}
             key={uuid()}
+            startInterview={() =>
+              startInterview(appointment.user_id, props)
+            }
+            saveIdRole={() =>
+              saveIdRole(appointment.role_id, appointment.id)
+            }
           />
         ))
       ) : (
