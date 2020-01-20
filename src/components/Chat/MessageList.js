@@ -1,44 +1,45 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
+const StyledMessageList = styled.div`
+  overflow-y: scroll;
+  flex: 1;
+
+  .ul {
+    list-style: none;
+  }
+
+  .li {
+    margin-top: 13;
+    margin-bottom: 13;
+  }
+
+  .send-username {
+    font-weight: bold;
+  }
+
+  .message {
+    font-weight: bold;
+  }
+`;
 
 class MessagesList extends Component {
   render() {
-    const styles = {
-      container: {
-        overflowY: 'scroll',
-        flex: 1,
-      },
-      ul: {
-        listStyle: 'none',
-      },
-      li: {
-        marginTop: 13,
-        marginBottom: 13,
-      },
-      senderUsername: {
-        fontWeight: 'bold',
-      },
-      message: { fontSize: 15 },
-    };
     return (
-      <div
-        style={{
-          ...this.props.style,
-          ...styles.container,
-        }}
-      >
-        <ul style={styles.ul}>
+      <StyledMessageList>
+        <ul className='ul'>
           {this.props.messages.map((message, index) => (
-            <li key={index} style={styles.li}>
+            <li key={index} className='li'>
               <div>
-                <span style={styles.senderUsername}>
+                <span className='send-username'>
                   {message.senderId}
                 </span>{' '}
               </div>
-              <p style={styles.message}>{message.text}</p>
+              <p className='message'>{message.text}</p>
             </li>
           ))}
         </ul>
-      </div>
+      </StyledMessageList>
     );
   }
 }
