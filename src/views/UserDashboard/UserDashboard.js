@@ -24,11 +24,12 @@ const StyledContainer = styled.div`
   .appointments {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
   }
 
   .pagination {
+    padding: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
