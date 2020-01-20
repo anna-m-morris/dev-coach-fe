@@ -1,8 +1,5 @@
-export const VIDEO_START = 'VIDEO_START';
-export const VIDEO_ERROR = 'VIDEO_ERROR';
-export const VIDEO_SUCCESSFUL = 'VIDEO_SUCCESSFUL';
+export const SAVE_FOR_CHAT = 'SAVE_FOR_CHAT';
 
-export const startInterview = (peerId, props) => {
-  props.history.push('/interview');
-  return { type: VIDEO_SUCCESSFUL, payload: peerId };
+export const saveForChat = email => {
+  return { type: SAVE_FOR_CHAT, payload: email };
 };
