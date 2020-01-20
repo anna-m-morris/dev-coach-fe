@@ -17,16 +17,13 @@ const General = props => {
   const {
     text1,
     text2,
-    text3,
     image1,
     image2,
     image3,
     showText1,
     showText2,
-    showText3,
     showImage1,
     showImage2,
-    showImage3,
   } = props;
 
   const getImage1 = () => (image1 ? 'plusIcon' : 'minusIcon');
