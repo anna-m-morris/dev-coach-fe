@@ -17,9 +17,8 @@ function appointmentsReducer(state = initialState, action) {
     case types.APPOINTMENTS_SUCCESSFUL:
       const filterFutureAppointments = action.payload.filter(
         appointment => {
-          return (
-            new Date(appointment.appointment_datetime) >= new Date()
-          );
+          return appointment;
+          // new Date(appointment.appointment_datetime) >= new Date()
         },
       );
       return {

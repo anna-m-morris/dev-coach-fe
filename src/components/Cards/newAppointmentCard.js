@@ -7,6 +7,7 @@ import Icon from '@material-ui/core/Icon';
 import { Link } from 'react-router-dom';
 import CodeIcon from '@material-ui/icons/Code';
 import TodayIcon from '@material-ui/icons/Today';
+import TimelapseIcon from '@material-ui/icons/Timelapse';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import Slide from '@material-ui/core/Slide';
 import Dialog from '@material-ui/core/Dialog';
@@ -15,7 +16,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dom from '../../img/dom.jpeg';
-import empty from '../../img/empty.svg';
 
 const StyledCoachCard = styled.div`
   display: flex;
@@ -155,7 +155,7 @@ export const NewAppointmentCard = props => {
             <Avatar
               className='picture'
               alt='appointment'
-              src={empty}
+              src={appointment.avatar_url || null}
             />
           </div>
         </div>
@@ -173,11 +173,18 @@ export const NewAppointmentCard = props => {
             <ScheduleIcon className='icon' />
             {time}
           </div>
+          <div className='bullet'>
+            <TimelapseIcon className='icon' />
+            {appointment.appointment_length}
+          </div>
         </div>
 
         <div className='description'>
-          <p>{`${appointment.description &&
-            appointment.description.slice(0, 80)}...`}</p>{' '}
+          {appointment.description ? (
+            <p>{appointment.description.slice(0, 80)}</p>
+          ) : (
+            ''
+          )}
         </div>
 
         <div className='footer'>
@@ -191,13 +198,14 @@ export const NewAppointmentCard = props => {
           >
             Cancel
           </Button>
-          <Link to='/givefeedback' onClick={() => saveIdRole()}>
+          <Link to='/givefeedback'>
             <Button
               size='small'
               className='button'
               variant='contained'
               color='primary'
               endIcon={<Icon>send</Icon>}
+              onClick={() => saveIdRole()}
             >
               Interview
             </Button>
