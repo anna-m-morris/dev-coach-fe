@@ -15,6 +15,7 @@ import { getFeedback } from '../../state/actions/feedbackActions';
 import SelectPrice from '../../components/Inputs/SelectPrice';
 import SelectExperience from '../../components/Inputs/SelectExperience';
 import SearchForKeyword from '../../components/Inputs/SearchForKeyword';
+import LoaderSpinner from '../../components/Loading/LoaderSpiner';
 
 const StyledMarketplace = styled.div`
   display: flex;
@@ -91,7 +92,7 @@ const Marketplace = ({
         <SelectExperience searchForExperience={searchForExperience} />
       </div>
       <div className='coaches'>
-        {coaches &&
+        {coaches && coaches ? (
           coaches
             .slice(minValue, maxValue)
             .map(coach => (
@@ -102,7 +103,10 @@ const Marketplace = ({
                 getFeedback={getFeedback}
                 feedback={feedback}
               />
-            ))}
+            ))
+        ) : (
+          <LoaderSpinner />
+        )}
       </div>
       <div className='pagination'>
         <Pagination

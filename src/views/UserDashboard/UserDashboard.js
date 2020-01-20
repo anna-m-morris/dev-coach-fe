@@ -12,6 +12,8 @@ import { saveIdRole } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
+// import LoaderSpinner from '../../components/Loading/LoaderSpiner';
+import Loader from 'react-loader-spinner';
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -97,6 +99,9 @@ const StyledContainer = styled.div`
     }
   }
 `;
+const LoaderStyled = styled.div`
+  margin: 0 auto;
+`;
 
 const UserDashboard = props => {
   const {
@@ -125,41 +130,58 @@ const UserDashboard = props => {
     }
   };
   return (
-    <StyledContainer>
-      {appointments && appointments.length ? (
-        <div className='appointments'>
-          {appointments.slice(minValue, maxValue).map(appointment => (
-            <AppointmentCard
-              key={uuid()}
-              first_name={appointment.first_name}
-              last_name={appointment.last_name}
-              avatar_url={appointment.avatar_url}
-              appointment_datetime={appointment.appointment_datetime}
-              appointment_topic={appointment.appointment_topic}
-              description={appointment.description}
-              canceled={appointment.canceled}
-              cancel={() => cancelAppointment(appointment.id)}
-              startInterview={() =>
-                startInterview(appointment.user_id, props)
-              }
-              saveIdRole={() =>
-                saveIdRole(appointment.role_id, appointment.id)
-              }
-            />
-          ))}
-          <div className='pagination'>
-            <Pagination
-              defaultCurrent={1}
-              defaultPageSize={6}
-              onChange={handlePagination}
-              total={appointments.length}
-            />
-          </div>
-        </div>
+    <div>
+      {appointments && appointments ? (
+        <StyledContainer>
+          {appointments && appointments.length ? (
+            <div className='appointments'>
+              {appointments
+                .slice(minValue, maxValue)
+                .map(appointment => (
+                  <AppointmentCard
+                    key={uuid()}
+                    first_name={appointment.first_name}
+                    last_name={appointment.last_name}
+                    avatar_url={appointment.avatar_url}
+                    appointment_datetime={
+                      appointment.appointment_datetime
+                    }
+                    appointment_topic={appointment.appointment_topic}
+                    description={appointment.description}
+                    canceled={appointment.canceled}
+                    cancel={() => cancelAppointment(appointment.id)}
+                    startInterview={() =>
+                      startInterview(appointment.user_id, props)
+                    }
+                    saveIdRole={() =>
+                      saveIdRole(appointment.role_id, appointment.id)
+                    }
+                  />
+                ))}
+              <div className='pagination'>
+                <Pagination
+                  defaultCurrent={1}
+                  defaultPageSize={6}
+                  onChange={handlePagination}
+                  total={appointments.length}
+                />
+              </div>
+            </div>
+          ) : (
+            <EmptyAppointment />
+          )}
+        </StyledContainer>
       ) : (
-        <EmptyAppointment />
+        <LoaderStyled>
+          <Loader
+            type='ThreeDots'
+            color='#2BAD60'
+            height='100'
+            width='100'
+          />
+        </LoaderStyled>
       )}
-    </StyledContainer>
+    </div>
   );
 };
 
