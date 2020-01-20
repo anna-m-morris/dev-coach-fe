@@ -106,8 +106,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     color: '#4fad65',
   },
-  drawer: {
-  },
+  drawer: {},
   link: {
     textDecoration: 'none',
     color: 'rgba(0, 0, 0, 0.87)',
@@ -283,7 +282,17 @@ const Dashboard = props => {
           }
         </div>
         <Divider className={classes.styledDivider} />
-        <ListComponent className={classes.listStyles}></ListComponent>
+        {props.userReducer.user.role_id === 1 ? (
+          <ListComponent
+            role='student'
+            className={classes.listStyles}
+          ></ListComponent>
+        ) : (
+          <ListComponent
+            role='coach'
+            className={classes.listStyles}
+          ></ListComponent>
+        )}
         <Divider className={classes.hidden} />
       </Drawer>
       <main className={classes.content}>

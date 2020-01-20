@@ -26,7 +26,7 @@ const globalTheme = createMuiTheme({
   },
 });
 
-function App() {
+function App(props) {
   const routes = (
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
@@ -72,6 +72,7 @@ function App() {
 
 const mapStateToProps = state => {
   return {
+    user: state.userReducer,
     isLoggedIn: state.userReducer.isLoggedIn,
     userHasChosenRole: state.userReducer.userHasChosenRole,
   };
