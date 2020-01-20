@@ -132,6 +132,7 @@ const UserDashboard = props => {
         <div className='appointments'>
           {appointments.slice(minValue, maxValue).map(appointment => (
             <NewAppointmentCard
+              key={appointment.id}
               appointment={appointment}
               cancel={() => cancelAppointment(appointment.id)}
               startInterview={() =>

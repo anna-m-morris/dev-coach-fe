@@ -138,12 +138,9 @@
 // })(Booking);
 
 import React from 'react';
-import styled from 'styled-components';
+import { connect } from 'react-redux';
 import BookingStepper from './BookingStepper';
-
-const StyledBooking = styled.div`
-  width: 100%;
-`;
+import StyledBooking from './BookingStyles';
 
 const Booking = ({ history }) => {
   return (
@@ -153,4 +150,4 @@ const Booking = ({ history }) => {
   );
 };
 
-export default Booking;
+export default connect(state => state)(Booking);

@@ -6,6 +6,8 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { PayPalButton } from 'react-paypal-button-v2';
+import StripeCheckout from 'react-stripe-checkout';
 
 import {
   showErrorMessage,
@@ -19,7 +21,6 @@ import {
 } from '../../state/actions/bookingActions';
 
 import Notification from '../Notifications/Notification';
-import Payment from './Payment';
 
 import Select from '../Inputs/SelectInfo';
 import DatePicker from './DatePicker';
@@ -44,7 +45,7 @@ function getSteps() {
 function getStepContent(stepIndex) {
   switch (stepIndex) {
     case 0:
-      return 'Select Topic...';
+      return 'Please select a topic and interview duration';
     case 1:
       return 'Select Time and Date';
     case 2:
@@ -55,7 +56,20 @@ function getStepContent(stepIndex) {
 }
 
 const BookingStepper = props => {
-  const { date, saveDate } = props;
+  const {
+    date,
+    coach,
+    closeMessage,
+    success,
+    error,
+    showErrorMessage,
+    showSuccessMessage,
+    handleStripePayment,
+    saveDate,
+    select,
+    bookAppointment,
+    user,
+  } = props;
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -74,7 +88,7 @@ const BookingStepper = props => {
   };
 
   return (
-    <div className='stepper-container'>
+    <>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map(label => (
           <Step key={label}>
@@ -82,56 +96,118 @@ const BookingStepper = props => {
           </Step>
         ))}
       </Stepper>
+      <Notification
+        onClose={closeMessage}
+        variant='success'
+        message='Your payment was successful!'
+        open={success}
+      />
+      <Notification
+        onClose={closeMessage}
+        variant='error'
+        message={`Your payment wasn't successful!`}
+        open={error}
+      />
 
-      <div>
+      <div className='instruction'>
+        <Typography className={classes.instructions}>
+          {getStepContent(activeStep)}
+        </Typography>
+      </div>
+
+      <div className='steps-container'>
         {activeStep === 0 ? (
-          <div className='length-topic'>
-            <Select />
-          </div>
+          <Select />
         ) : activeStep === 1 ? (
-          <div>
-            <DatePicker date={date} saveDate={saveDate} />
-          </div>
+          <DatePicker date={date} saveDate={saveDate} />
         ) : (
           <div>
-            <Payment />
+            {Object.keys(select).length > 1 &&
+            date.slice(16, 24) !== '00:00:00' ? (
+              <div>
+                <StripeCheckout
+                  stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // this key is only for testing we
+                  // will add later our real key to the env file
+                  token={token =>
+                    handleStripePayment(
+                      token,
+                      `${coach.first_name} ${coach.last_name}`,
+                      coach.hourly_rate,
+                      showSuccessMessage,
+                      showErrorMessage,
+                      bookAppointment,
+                      coach,
+                      user,
+                      date,
+                      select.topic_id,
+                      select.length_id,
+                      props,
+                    )
+                  }
+                  amount={
+                    select.length_id === 2
+                      ? coach.hourly_rate * 100
+                      : coach.hourly_rate * 100 * 0.5
+                  }
+                  name={'name'}
+                  billingAddress
+                  shippingAddress
+                />
+                <PayPalButton
+                  amount={
+                    select.length_id === 2
+                      ? coach.hourly_rate
+                      : coach.hourly_rate * 0.5
+                  }
+                  onSuccess={(details, data) => {
+                    showSuccessMessage();
+                    bookAppointment(
+                      coach,
+                      user,
+                      date,
+                      select.topic_id,
+                      select.length_id,
+                      props,
+                    );
+                  }}
+                  catchError={err => showErrorMessage()}
+                  options={{
+                    clientId:
+                      'ARVkifyBTBn77NG4ftQSS7eFFxTjcG0ghgVPQCZGyUQufKrNBaTOXSWEKpvDPa3XQi96rSIKEHioCFdP',
+                  }}
+                />
+              </div>
+            ) : null}
           </div>
         )}
       </div>
 
-      <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed
-            </Typography>
-            <Button onClick={handleReset}>Reset</Button>
-          </div>
-        ) : (
-          <div>
-            <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
-            <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.backButton}
-              >
-                Back
-              </Button>
-              <Button
-                variant='contained'
-                color='primary'
-                onClick={handleNext}
-              >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
+      {activeStep === steps.length ? (
+        <div>
+          <Typography className={classes.instructions}>
+            All steps completed
+          </Typography>
+          <Button onClick={handleReset}>Reset</Button>
+        </div>
+      ) : (
+        <div className='buttons-container'>
+          <Button
+            disabled={activeStep === 0}
+            onClick={handleBack}
+            className={classes.backButton}
+          >
+            Back
+          </Button>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={handleNext}
+          >
+            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+          </Button>
+        </div>
+      )}
+    </>
   );
 };
 
