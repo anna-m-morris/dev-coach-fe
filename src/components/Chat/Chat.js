@@ -13,7 +13,7 @@ class Chat extends Component {
   }
 
   onUsernameSubmitted(username) {
-    fetch('http://localhost:3000/chat', {
+    fetch('http://localhost:5000/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,6 +21,7 @@ class Chat extends Component {
       body: JSON.stringify({ username }),
     })
       .then(response => {
+        console.log(response, username);
         this.setState({
           currentUsername: username,
           currentScreen: 'ChatScreen',
