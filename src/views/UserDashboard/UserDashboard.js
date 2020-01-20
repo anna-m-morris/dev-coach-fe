@@ -24,7 +24,7 @@ const StyledContainer = styled.div`
   .appointments {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
   }
 
