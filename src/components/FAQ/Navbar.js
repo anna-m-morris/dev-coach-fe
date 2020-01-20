@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import logo from '../../img/firelogo.png';
 
+// styled-components
 const mobileHidden = css`
   @media only screen and (max-width: 600px) {
     display: none;

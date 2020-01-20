@@ -4,19 +4,22 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    width: '100%',
+
     '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: 200,
+      width: 600,
+      background: 'white',
     },
   },
 }));
 
-export default function MultilineTextFields() {
+export default function MultilineTextFields(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState('Controlled');
+  const [value, setValue] = React.useState('');
 
   const handleChange = event => {
     setValue(event.target.value);
+    props.saveFeedback(event.target.value);
   };
 
   return (
@@ -26,7 +29,7 @@ export default function MultilineTextFields() {
           value={value}
           onChange={handleChange}
           id='outlined-multiline-static'
-          label='Review'
+          label='Enter Your Review'
           multiline
           rows='10'
           variant='outlined'
