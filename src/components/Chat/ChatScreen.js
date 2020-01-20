@@ -3,6 +3,7 @@ import Chatkit from '@pusher/chatkit-client';
 import MessageList from './MessageList';
 import SendMessageForm from './SendMessage';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 const StyledChatScreen = styled.div`
   height: 100vh;
@@ -58,7 +59,7 @@ class ChatScreen extends Component {
       .then(currentUser => {
         this.setState({ currentUser });
         return currentUser.subscribeToRoom({
-          roomId: '3211c38b-1300-438c-a72e-a705961e8f95',
+          roomId: this.props.roomId,
           messageLimit: 100,
           hooks: {
             onMessage: message => {
@@ -83,9 +84,7 @@ class ChatScreen extends Component {
             <h2>Who's online PLACEHOLDER</h2>
           </aside>
           <section className='chat-list-container'>
-            <MessageList
-              messages={this.state.messages}
-            />
+            <MessageList messages={this.state.messages} />
             <SendMessageForm onSubmit={this.sendMessage} />
           </section>
         </div>
@@ -94,4 +93,10 @@ class ChatScreen extends Component {
   }
 }
 
-export default ChatScreen;
+const mapStateToProps = state => {
+  return {
+    roomId: state.chatReducer.roomId,
+  };
+};
+
+export default connect(mapStateToProps)(ChatScreen);
