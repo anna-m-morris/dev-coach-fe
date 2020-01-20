@@ -12,6 +12,7 @@ import { saveIdRole } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
+import NewAppointmentCard from '../../components/Cards/newAppointmentCard';
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -28,6 +29,7 @@ const StyledContainer = styled.div`
   }
 
   .pagination {
+    padding: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,15 +131,8 @@ const UserDashboard = props => {
       {appointments && appointments.length ? (
         <div className='appointments'>
           {appointments.slice(minValue, maxValue).map(appointment => (
-            <AppointmentCard
-              key={uuid()}
-              first_name={appointment.first_name}
-              last_name={appointment.last_name}
-              avatar_url={appointment.avatar_url}
-              appointment_datetime={appointment.appointment_datetime}
-              appointment_topic={appointment.appointment_topic}
-              description={appointment.description}
-              canceled={appointment.canceled}
+            <NewAppointmentCard
+              appointment={appointment}
               cancel={() => cancelAppointment(appointment.id)}
               startInterview={() =>
                 startInterview(appointment.user_id, props)
