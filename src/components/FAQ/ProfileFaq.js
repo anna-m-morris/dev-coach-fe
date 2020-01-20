@@ -20,7 +20,6 @@ const Profile = props => {
     text2,
     image1,
     image2,
-    image3,
     showText1,
     showText2,
     showImage1,
@@ -45,9 +44,14 @@ const Profile = props => {
           </AskedQuestionDiv>
           {text1 && (
             <AnsweredQuestionDiv>
-              <div>
-                <img src={settings} alt='settings description' />
-              </div>
+              <li>Click in the right top corner on the user icon</li>
+              <li>Choose Settings</li>
+              <li>Update your profile</li>
+              <img
+                className='settings'
+                src={settings}
+                alt='settings description'
+              />
             </AnsweredQuestionDiv>
           )}
 
@@ -60,7 +64,13 @@ const Profile = props => {
             <p>Is it compulsory to have a picture?</p>
             {<img src={icons[getImage2()]} alt='icon' />}
           </AskedQuestionDiv>
-          {text2 && <AnsweredQuestionDiv></AnsweredQuestionDiv>}
+          {text2 && (
+            <AnsweredQuestionDiv>
+              It is not required to upload a picture. We definitely
+              recommend it for coaches, to get more attention on the
+              marketplace.
+            </AnsweredQuestionDiv>
+          )}
         </FAQContainer>
       </BodyDiv>
     </div>

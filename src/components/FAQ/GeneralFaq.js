@@ -19,7 +19,6 @@ const General = props => {
     text2,
     image1,
     image2,
-    image3,
     showText1,
     showText2,
     showImage1,
@@ -28,7 +27,6 @@ const General = props => {
 
   const getImage1 = () => (image1 ? 'plusIcon' : 'minusIcon');
   const getImage2 = () => (image2 ? 'plusIcon' : 'minusIcon');
-  const getImage3 = () => (image3 ? 'plusIcon' : 'minusIcon');
 
   return (
     <div>

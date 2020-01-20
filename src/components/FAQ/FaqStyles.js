@@ -48,4 +48,9 @@ export const AnsweredQuestionDiv = styled.div`
   font-size: 16px;
   width: 45em;
   margin-bottom: 20px;
+
+  .settings {
+    width: 100%;
+    height: 20rem;
+  }
 `;
