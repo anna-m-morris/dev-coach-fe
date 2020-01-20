@@ -38,12 +38,12 @@ const Payment = props => {
               showImage1(display);
             }}
           >
-            <p>How does our payment system works?</p>
+            <p>How does our payment system work?</p>
             {<img src={icons[getImage1()]} alt='icon' />}
           </AskedQuestionDiv>
           {text1 && (
             <AnsweredQuestionDiv>
-              <li>Devcoach will take care about the payments</li>
+              <li>Devcoach will take care of the payments</li>
               <li>
                 Students must pay upfront when scheduling an
                 appointment
@@ -56,12 +56,12 @@ const Payment = props => {
                 Coaches only get paid if the interview happenend
               </li>
               <li>
-                If an appointment doesn't happened, the student will
-                get the money from DevCoach back
+                If an appointment doesn't happen, the student will get
+                the money from DevCoach back
               </li>
               <li>
-                Booth, the coach and the student are required to prove
-                that the interview happened
+                Both the coach and student are required to prove that
+                the interview happened
               </li>
             </AnsweredQuestionDiv>
           )}
@@ -77,7 +77,7 @@ const Payment = props => {
           </AskedQuestionDiv>
           {text2 && (
             <AnsweredQuestionDiv>
-              Currently we are providing:
+              Currently we provide:
               <li>Stripe</li>
               <li>Paypal</li>
             </AnsweredQuestionDiv>

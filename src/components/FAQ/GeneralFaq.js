@@ -59,7 +59,7 @@ const General = props => {
           </AskedQuestionDiv>
           {text2 && (
             <AnsweredQuestionDiv>
-              <li>Choose a Quality you want to improve</li>
+              <li>Choose a quality you want to improve</li>
               <li>Connect with real professionals</li>
               <li>Iterate on your skills</li>
               <li>Become career ready</li>
