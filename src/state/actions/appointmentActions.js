@@ -33,7 +33,6 @@ export const cancelAppointment = appointment_id => dispatch => {
   axiosWithAuth()
     .put(`${url}appointment/${appointment_id}`)
     .then(res => {
-      console.log(res.data.appointment);
       dispatch({
         type: CANCEL_APPOINTMENT_SUCCESSFUL,
         payload: res.data.appointment,
