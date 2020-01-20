@@ -127,7 +127,37 @@ const UserDashboard = props => {
   };
   return (
     <StyledContainer>
-      {appointments ? (
+      {appointments && appointments.length ? (
+        <div className='appointments'>
+          <div className='pagination'>
+            {appointments
+              .slice(minValue, maxValue)
+              .map(appointment => (
+                <NewAppointmentCard
+                  appointment={appointment}
+                  cancel={() => cancelAppointment(appointment.id)}
+                  startInterview={() =>
+                    startInterview(appointment.user_id, props)
+                  }
+                  saveIdRole={() =>
+                    saveIdRole(appointment.role_id, appointment.id)
+                  }
+                />
+              ))}
+            <Pagination
+              defaultCurrent={1}
+              defaultPageSize={6}
+              onChange={handlePagination}
+              total={appointments.length}
+            />
+          </div>
+        </div>
+      ) : (
+        <EmptyAppointment />
+      )}
+    </StyledContainer>
+    /*     <StyledContainer>
+      {appointments && appointments ? (
         appointments.map(appointment => (
           <NewAppointmentCard
             appointment={appointment}
@@ -144,7 +174,7 @@ const UserDashboard = props => {
       ) : (
         <EmptyAppointment />
       )}
-    </StyledContainer>
+    </StyledContainer> */
   );
 };
 
