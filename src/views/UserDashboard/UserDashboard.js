@@ -155,25 +155,6 @@ const UserDashboard = props => {
         <EmptyAppointment />
       )}
     </StyledContainer>
-    /*     <StyledContainer>
-      {appointments && appointments ? (
-        appointments.map(appointment => (
-          <NewAppointmentCard
-            appointment={appointment}
-            cancel={() => cancelAppointment(appointment.id)}
-            key={uuid()}
-            startInterview={() =>
-              startInterview(appointment.user_id, props)
-            }
-            saveIdRole={() =>
-              saveIdRole(appointment.role_id, appointment.id)
-            }
-          />
-        ))
-      ) : (
-        <EmptyAppointment />
-      )}
-    </StyledContainer> */
   );
 };
 
