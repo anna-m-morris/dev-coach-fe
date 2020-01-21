@@ -44,7 +44,6 @@ const useStyles = makeStyles(theme => ({
   },
   toolbar: {
     background: '#FAFAFA',
-    zIndex: -10,
   },
 
   toolbarIcon: {

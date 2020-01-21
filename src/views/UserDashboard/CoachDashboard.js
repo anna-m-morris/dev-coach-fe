@@ -13,7 +13,7 @@ import { startInterview } from '../../state/actions/interviewActions';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 import NewAppointmentCard from '../../components/Cards/newAppointmentCard';
-import StudentChart from '../../components/DataVisualization/StudentChart'
+import StudentChart from '../../components/DataVisualization/StudentChart';
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -22,7 +22,8 @@ const StyledContainer = styled.div`
   justify-content: space-between;
 
   .top-data-card {
-    height: 20em;
+    margin-top: 1.4em;
+    height: 8em;
     width: 100%;
     background: #fff;
     border-radius: 5px;
@@ -144,23 +145,33 @@ const UserDashboard = props => {
       setMaxValue(value * 6);
     }
   };
+  const avgRating = props.feedback.reduce((a, c) => ({
+    rating: a.rating + c.rating,
+  }));
+
+  const calculateFormattedMean = arr => {
+    const sum = arr.reduce((a, c) => ({
+      rating: a.rating + c.rating,
+    }));
+    return (sum.rating / arr.length).toString().slice(0, 4);
+  };
+
   return (
     <StyledContainer>
       <>
         <div className='top-data-card'>
-{/*           <div className='top-data-section'>
+          <div className='top-data-section'>
             <h3>Average rating:</h3>
-            <h3>3.33</h3>
+            <h3>{calculateFormattedMean(props.feedback)}</h3>
           </div>
           <div className='top-data-section'>
             <h3>Number of interviews given:</h3>
-            <h3>4</h3>
+            <h3>{props.feedback.length}</h3>
           </div>
           <div className='top-data-section'>
             <h3>Upcoming interviews:</h3>
-            <h3>3</h3>
-          </div> */}
-          <StudentChart />
+            <h3>{props.appointments.length}</h3>
+          </div>
         </div>
         {appointments && appointments.length ? (
           <div className='appointments'>
