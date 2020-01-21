@@ -99,7 +99,10 @@ class ChatScreen extends React.Component {
             />
           </aside>
           <section className='chat-list-container'>
-            <MessageList messages={this.state.messages} />
+            <MessageList
+              messages={this.state.messages}
+              joinChat={this.startChat}
+            />
             <SendMessageForm onSubmit={this.sendMessage} />
           </section>
         </div>
