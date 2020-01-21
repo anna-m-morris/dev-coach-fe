@@ -19,9 +19,11 @@ export const saveRoomId = roomId => {
   return { type: SAVE_ROOM_ID, payload: roomId };
 };
 
+const url = process.env.REACT_APP_BASE_URL;
+
 export const getRooms = email => dispatch => {
   axiosWithAuth()
-    .post(`http://localhost:5000/chat/user_room`, {
+    .post(`${url}chat/user_room`, {
       userId: email,
     })
     .then(res => {
@@ -46,7 +48,7 @@ export const startChatFromScratch = (
   props,
 ) => dispatch => {
   axiosWithAuth()
-    .post('http://localhost:5000/chat/room_id', {
+    .post(`${url}chat/room_id`, {
       roomId: id,
     })
     .then(() => {
@@ -58,17 +60,17 @@ export const startChatFromScratch = (
     })
     .catch(() => {
       axiosWithAuth()
-        .post('http://localhost:5000/chat', {
+        .post(`${url}chat`, {
           username: user.email,
         })
         .then(() => {
           axiosWithAuth()
-            .post('http://localhost:5000/chat', {
+            .post(`${url}chat`, {
               username: peer.email,
             })
             .then(() => {
               axiosWithAuth()
-                .post('http://localhost:5000/chat/room', {
+                .post(`${url}chat/room`, {
                   creatorId: user.email,
                   name: id,
                   userIds: [user.email, peer.email],
