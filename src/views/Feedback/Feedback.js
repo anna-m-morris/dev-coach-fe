@@ -53,18 +53,20 @@ const Feedback = ({ user, getFeedback, feedback }) => {
   return (
     <StyledFeedback className='feedback-card-container'>
       {feedback && feedback.length ? (
-        feedback.map(feedback => (
-          <FeedbackCard
-            key={uuid()}
-            rating={<FeedbackRating rating={feedback.rating} />}
-            feedback={feedback.feedback}
-            topic={feedback.appointment_topic}
-            date={feedback.appointment_datetime.slice(0, 15)}
-            coachFirstName={feedback.first_name}
-            coachLastName={feedback.last_name}
-            avatarUrl={feedback.avatar_url}
-          />
-        ))
+        feedback
+          .slice(minValue, maxValue)
+          .map(feedback => (
+            <FeedbackCard
+              key={uuid()}
+              rating={<FeedbackRating rating={feedback.rating} />}
+              feedback={feedback.feedback}
+              topic={feedback.appointment_topic}
+              date={feedback.appointment_datetime.slice(0, 15)}
+              coachFirstName={feedback.first_name}
+              coachLastName={feedback.last_name}
+              avatarUrl={feedback.avatar_url}
+            />
+          ))
       ) : (
         <EmptyFeedback />
       )}
