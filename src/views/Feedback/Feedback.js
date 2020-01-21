@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import uuid from 'uuid';
 import Pagination from 'antd/lib/pagination';
+import Loader from 'react-loader-spinner';
 
 import { getFeedback } from '../../state/actions/feedbackActions';
 import FeedbackRating from '../../components/DataVisualization/Rating';
@@ -30,6 +31,9 @@ const StyledFeedback = styled.div`
       color: #4fad65;
     }
   }
+  .loaderStyled {
+    margin-top: 20vh;
+  }
 `;
 
 const Feedback = ({ user, getFeedback, feedback }) => {
@@ -51,24 +55,37 @@ const Feedback = ({ user, getFeedback, feedback }) => {
   };
 
   return (
-    <StyledFeedback className='feedback-card-container'>
-      {feedback && feedback.length ? (
-        feedback
-          .slice(minValue, maxValue)
-          .map(feedback => (
-            <FeedbackCard
-              key={uuid()}
-              rating={<FeedbackRating rating={feedback.rating} />}
-              feedback={feedback.feedback}
-              topic={feedback.appointment_topic}
-              date={feedback.appointment_datetime.slice(0, 15)}
-              coachFirstName={feedback.first_name}
-              coachLastName={feedback.last_name}
-              avatarUrl={feedback.avatar_url}
-            />
-          ))
+    <StyledFeedback>
+      {feedback && feedback ? (
+        <StyledFeedback className='feedback-card-container'>
+          {feedback && feedback.length ? (
+            feedback
+              .slice(minValue, maxValue)
+              .map(feedback => (
+                <FeedbackCard
+                  key={uuid()}
+                  rating={<FeedbackRating rating={feedback.rating} />}
+                  feedback={feedback.feedback}
+                  topic={feedback.appointment_topic}
+                  date={feedback.appointment_datetime.slice(0, 15)}
+                  coachFirstName={feedback.first_name}
+                  coachLastName={feedback.last_name}
+                  avatarUrl={feedback.avatar_url}
+                />
+              ))
+          ) : (
+            <EmptyFeedback />
+          )}
+        </StyledFeedback>
       ) : (
-        <EmptyFeedback />
+        <div className='loaderStyled'>
+          <Loader
+            type='TailSpin'
+            color='#2BAD60'
+            height={80}
+            width={80}
+          />
+        </div>
       )}
       <div className='pagination'>
         <Pagination
