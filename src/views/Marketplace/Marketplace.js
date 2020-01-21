@@ -53,6 +53,11 @@ const StyledMarketplace = styled.div`
       color: #4fad65;
     }
   }
+  .loaderStyled {
+    margin-top: 200px;
+    margin-left: 35rem;
+    margin-bottom: 200px;
+  }
 `;
 
 const Marketplace = ({
@@ -82,12 +87,6 @@ const Marketplace = ({
     }
   };
 
-  const LoaderStyled = styled.div`
-    margin-top: 200px;
-    margin-left: 35rem;
-    margin-bottom: 200px;
-  `;
-
   return (
     <StyledMarketplace>
       <div className='top'>
@@ -111,14 +110,14 @@ const Marketplace = ({
               />
             ))
         ) : (
-          <LoaderStyled>
+          <div className='loaderStyled'>
             <Loader
               type='TailSpin'
               color='#2BAD60'
               height='80'
               width='80'
             />
-          </LoaderStyled>
+          </div>
         )}
       </div>
       <div className='pagination'>

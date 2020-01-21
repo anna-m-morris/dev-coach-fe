@@ -100,10 +100,10 @@ const StyledContainer = styled.div`
       margin-bottom: 0;
     }
   }
-`;
-const LoaderStyled = styled.div`
-  margin-left: 35rem;
-  margin-top: 30vh;
+  .loaderStyled {
+    margin-left: 30rem;
+    margin-top: 20vh;
+  }
 `;
 
 const UserDashboard = props => {
@@ -133,7 +133,7 @@ const UserDashboard = props => {
     }
   };
   return (
-    <div>
+    <StyledContainer>
       {appointments && appointments ? (
         <StyledContainer>
           {appointments && appointments.length ? (
@@ -175,16 +175,16 @@ const UserDashboard = props => {
           )}
         </StyledContainer>
       ) : (
-        <LoaderStyled>
+        <div className='loaderStyled'>
           <Loader
             type='TailSpin'
             color='#2BAD60'
             height='80'
             width='80'
           />
-        </LoaderStyled>
+        </div>
       )}
-    </div>
+    </StyledContainer>
   );
 };
 

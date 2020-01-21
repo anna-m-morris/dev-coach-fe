@@ -14,11 +14,10 @@ const StyledFeedback = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 1rem;
-`;
 
-const LoaderStyled = styled.div`
-  margin-left: 35rem;
-  margin-top: 30vh;
+  .loaderStyled {
+    margin-top: 20vh;
+  }
 `;
 
 const Feedback = ({ user, getFeedback, feedback }) => {
@@ -27,7 +26,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
   }, [getFeedback, user]);
 
   return (
-    <div>
+    <StyledFeedback>
       {feedback && feedback ? (
         <StyledFeedback className='feedback-card-container'>
           {feedback && feedback.length ? (
@@ -48,16 +47,16 @@ const Feedback = ({ user, getFeedback, feedback }) => {
           )}
         </StyledFeedback>
       ) : (
-        <LoaderStyled>
+        <div className='loaderStyled'>
           <Loader
             type='TailSpin'
             color='#2BAD60'
             height='80'
             width='80'
           />
-        </LoaderStyled>
+        </div>
       )}
-    </div>
+    </StyledFeedback>
   );
 };
 
