@@ -1,13 +1,21 @@
 import axiosWithAuth from '../../utils/axiosWithAuth';
+import { saveRating } from './feedbackActions';
 
 export const GET_ROOMS_START = 'GET_ROOMS_START';
 export const GET_ROOMS_ERROR = 'GET_ROOMS_ERROR';
 export const GET_ROOMS_SUCCESSFUL = 'GET_ROOMS_SUCCESSFUL';
+export const START_CHAT_FROM_SCRATCH_START =
+  'START_CHAT_FROM_SCRATCH_START';
+export const START_CHAT_FROM_SCRATCH_ERROR =
+  'START_CHAT_FROM_SCRATCH_ERROR';
+export const START_CHAT_FROM_SCRATCH_SUCCESSFUL =
+  'START_CHAT_FROM_SCRATCH_SUCCESSFUL';
 export const START_CHAT_START = 'START_CHAT_START';
 export const START_CHAT_ERROR = 'START_CHAT_ERROR';
 export const START_CHAT_SUCCESSFUL = 'START_CHAT_SUCCESSFUL';
 export const SAVE_FOR_CHAT = 'SAVE_FOR_CHAT';
 export const SAVE_ROOM_ID = 'SAVE_ROOM_ID';
+export const SAVE_MESSAGE = 'SAVE_MESSAGE';
 
 export const saveForChat = peer => {
   debugger;
@@ -36,7 +44,7 @@ export const getRooms = email => dispatch => {
     });
 };
 
-export const startChat = (
+export const startChatFromScratch = (
   id,
   user,
   peer,
@@ -50,7 +58,7 @@ export const startChat = (
     .then(() => {
       saveRoomId(id);
       dispatch({
-        type: START_CHAT_SUCCESSFUL,
+        type: START_CHAT_FROM_SCRATCH_SUCCESSFUL,
       });
       props.history.push('/chat');
     })
@@ -79,11 +87,16 @@ export const startChat = (
                 .then(() => {
                   saveRoomId(id);
                   dispatch({
-                    type: START_CHAT_SUCCESSFUL,
+                    type: START_CHAT_FROM_SCRATCH_SUCCESSFUL,
                   });
                   props.history.push('/chat');
                 });
             });
         });
     });
+};
+
+export const saveMessage = message => {
+  debugger
+  return { type: SAVE_MESSAGE, payload: message };
 };

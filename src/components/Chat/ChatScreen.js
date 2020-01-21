@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import Chatkit from '@pusher/chatkit-client';
-import MessageList from './MessageList';
-import SendMessageForm from './SendMessage';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import MessageList from './MessageList';
+import SendMessageForm from './SendMessage';
 import ChatList from './ChatList';
+import {
+  getRooms,
+  saveMessage,
+} from '../../state/actions/chatActions';
 
 const StyledChatScreen = styled.div`
   height: 100vh;
@@ -32,26 +36,23 @@ const StyledChatScreen = styled.div`
     flex-direction: column;
   }
 `;
-
-class ChatScreen extends Component {
+class ChatScreen extends React.Component {
   state = {
     currentUser: {},
     currentRoom: {},
     messages: [],
   };
 
-  sendMessage = text => {
-    this.state.currentUser.sendMessage({
-      text,
-      roomId: this.state.currentRoom.id,
-    });
-    console.log(this.state.currentUser)
+  componentDidMount = () => {
+    this.props.getRooms(this.props.user.email);
+
+    if (this.props.roomId) this.startChat(this.props.roomId);
   };
 
-  componentDidMount = () => {
+  startChat = roomId => {
     const chatManager = new Chatkit.ChatManager({
       instanceLocator: 'v1:us1:02d03086-c977-4990-bbb8-d915c9090f74',
-      userId: this.props.currentUsername,
+      userId: this.props.user.email,
       tokenProvider: new Chatkit.TokenProvider({
         url: 'http://localhost:5000/chat/auth',
       }),
@@ -60,9 +61,10 @@ class ChatScreen extends Component {
     chatManager
       .connect()
       .then(currentUser => {
+        debugger;
         this.setState({ currentUser });
         return currentUser.subscribeToRoom({
-          roomId: this.props.roomId,
+          roomId,
           messageLimit: 100,
           hooks: {
             onMessage: message => {
@@ -79,13 +81,22 @@ class ChatScreen extends Component {
       .catch(error => console.error('error', error));
   };
 
+  sendMessage = text => {
+    this.state.currentUser.sendMessage({
+      text,
+      roomId: this.state.currentRoom.id,
+    });
+  };
   render() {
     return (
       <StyledChatScreen>
         <div className='chat-container'>
           <aside className='whos-online-list-container'>
             <h2>Your Chats</h2>
-            <ChatList/>
+            <ChatList
+              rooms={this.props.rooms}
+              user={this.props.user}
+            />
           </aside>
           <section className='chat-list-container'>
             <MessageList messages={this.state.messages} />
@@ -100,8 +111,12 @@ class ChatScreen extends Component {
 const mapStateToProps = state => {
   return {
     roomId: state.chatReducer.roomId,
-    currentUsername: state.userReducer.user.email,
+    messages: state.chatReducer.messages,
+    rooms: state.chatReducer.rooms,
+    user: state.userReducer.user,
   };
 };
 
-export default connect(mapStateToProps)(ChatScreen);
+export default connect(mapStateToProps, { getRooms, saveMessage })(
+  ChatScreen,
+);

@@ -4,6 +4,7 @@ const initialState = {
   peer: null,
   roomId: null,
   rooms: null,
+  messages: [],
 };
 
 function chatReducer(state = initialState, action) {
@@ -26,9 +27,15 @@ function chatReducer(state = initialState, action) {
         rooms: action.payload,
       };
 
-    case types.START_CHAT_SUCCESSFUL:
+    case types.START_CHAT_FROM_SCRATCH_SUCCESSFUL:
       return {
         ...state,
+      };
+
+    case types.SAVE_MESSAGE:
+      return {
+        ...state,
+        messages: [...state.messages, action.payload],
       };
 
     default:

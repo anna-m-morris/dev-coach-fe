@@ -28,16 +28,17 @@ class MessagesList extends Component {
     return (
       <StyledMessageList>
         <ul className='ul'>
-          {this.props.messages.map((message, index) => (
-            <li key={index} className='li'>
-              <div>
-                <span className='send-username'>
-                  {message.senderId}
-                </span>{' '}
-              </div>
-              <p className='message'>{message.text}</p>
-            </li>
-          ))}
+          {this.props.messages &&
+            this.props.messages.map((message, index) => (
+              <li key={index} className='li'>
+                <div>
+                  <span className='send-username'>
+                    {message.senderId}
+                  </span>{' '}
+                </div>
+                <p className='message'>{message.text}</p>
+              </li>
+            ))}
         </ul>
       </StyledMessageList>
     );
