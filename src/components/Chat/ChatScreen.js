@@ -8,9 +8,10 @@ import UserList from './UserList';
 import { getRooms } from '../../state/actions/chatActions';
 
 const StyledChatScreen = styled.div`
-  height: 100vh;
+  height: 85vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   .chat-container {
     display: flex;
@@ -21,13 +22,11 @@ const StyledChatScreen = styled.div`
   .whos-online-list-container {
     width: 300px;
     flex: none;
-    padding: 20;
     background-color: #2c303b;
     color: white;
   }
 
   .chat-list-container {
-    padding: 20;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -67,6 +66,7 @@ class ChatScreen extends React.Component {
           messageLimit: 100,
           hooks: {
             onMessage: message => {
+              debugger;
               this.setState({
                 messages: [...this.state.messages, message],
               });
