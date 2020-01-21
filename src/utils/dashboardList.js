@@ -91,7 +91,7 @@ export const ListComponent = () => {
             <ListItemText primary='FAQ' />
           </CustomListItem>
         </Link>
-        <Link to='/chats' className={classes.listItem}>
+        <Link to='/start_chat' className={classes.listItem}>
           <CustomListItem button>
             <ListItemIcon>
               <LiveHelpIcon />

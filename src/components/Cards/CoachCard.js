@@ -130,7 +130,7 @@ export const CoachCard = props => {
       </div>
 
       <div className='footer'>
-        <Link to='/chat' onClick={saveForChat}>
+        <Link to='/start_chat' onClick={saveForChat}>
           <Button
             className='button'
             variant='contained'

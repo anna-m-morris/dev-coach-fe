@@ -45,6 +45,7 @@ class ChatScreen extends Component {
       text,
       roomId: this.state.currentRoom.id,
     });
+    console.log(this.state.currentUser)
   };
 
   componentDidMount = () => {
@@ -99,6 +100,7 @@ class ChatScreen extends Component {
 const mapStateToProps = state => {
   return {
     roomId: state.chatReducer.roomId,
+    currentUsername: state.userReducer.user.email,
   };
 };
 

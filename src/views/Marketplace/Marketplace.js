@@ -105,7 +105,7 @@ const Marketplace = ({
             <CoachCard
               key={coach.first_name}
               coach={coach}
-              saveCoach={saveCoach}
+              saveCoach={() => saveCoach(coach)}
               getFeedback={getFeedback}
               feedback={feedback}
               saveForChat={() =>

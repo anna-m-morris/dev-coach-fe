@@ -4,7 +4,6 @@ const initialState = {
   peer: null,
   roomId: null,
   rooms: null,
-  chatScreen: false,
 };
 
 function chatReducer(state = initialState, action) {
@@ -30,7 +29,6 @@ function chatReducer(state = initialState, action) {
     case types.START_CHAT_SUCCESSFUL:
       return {
         ...state,
-        chatScreen: true,
       };
 
     default:

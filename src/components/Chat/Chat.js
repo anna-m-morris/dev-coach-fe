@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import UsernameForm from './UsernameForm';
-import ChatScreen from './ChatScreen';
+import Loader from 'react-loader-spinner';
 import {
   saveRoomId,
   startChat,
 } from '../../state/actions/chatActions';
 
 const ChatLoader = props => {
-  const { user, peer, saveRoomId, startChat, chatScreen } = props;
+  const { user, peer, saveRoomId, startChat } = props;
 
   useEffect(() => {
     const id =
@@ -16,19 +15,24 @@ const ChatLoader = props => {
         ? `${user.email} ${peer.email}`
         : `${peer.email} ${user.email}`;
 
-    startChat(id, user, peer, saveRoomId);
+    startChat(id, user, peer, saveRoomId, props);
   }, []);
 
-  if (chatScreen) {
-    return <ChatScreen currentUsername={user.email} />;
-  }
-  return <UsernameForm onSubmit={null} />;
+  return (
+    <div className='loaderStyled'>
+      <Loader
+        type='TailSpin'
+        color='#2BAD60'
+        height={80}
+        width={80}
+      />
+    </div>
+  );
 };
 
 const mapStateToProps = state => {
   return {
     peer: state.chatReducer.peer,
-    chatScreen: state.chatReducer.chatScreen,
     user: state.userReducer.user,
   };
 };

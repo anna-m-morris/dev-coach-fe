@@ -36,91 +36,54 @@ export const getRooms = email => dispatch => {
     });
 };
 
-export const startChat = (id, user, peer, saveRoomId) => dispatch => {
+export const startChat = (
+  id,
+  user,
+  peer,
+  saveRoomId,
+  props,
+) => dispatch => {
   axiosWithAuth()
-    .post('http://localhost:5000/chat', {
-      username: user.email,
+    .post('http://localhost:5000/chat/room_id', {
+      roomId: id,
     })
-    .then(response => {
+    .then(() => {
+      saveRoomId(id);
+      dispatch({
+        type: START_CHAT_SUCCESSFUL,
+      });
+      props.history.push('/chat');
+    })
+    .catch(() => {
       axiosWithAuth()
         .post('http://localhost:5000/chat', {
-          username: peer.email,
+          username: user.email,
         })
-        .then(response => {
+        .then(() => {
           axiosWithAuth()
-            .post('http://localhost:5000/chat/user_room', {
-              userId: user.email,
+            .post('http://localhost:5000/chat', {
+              username: peer.email,
             })
-            .then(res => {
-              debugger;
-              console.log(res);
-              if (res.data.rooms.length) {
-                res.data.rooms.map(room => {
-                  if (room.id === id) {
-                    debugger;
-                    console.log(room);
-                    saveRoomId(id);
-                    dispatch({
-                      type: START_CHAT_SUCCESSFUL,
-                      payload: true,
-                    });
-                  } else {
-                    axiosWithAuth()
-                      .post('http://localhost:5000/chat/room', {
-                        creatorId: user.email,
-                        name: id,
-                        userIds: [user.email, peer.email],
-                        id,
-                        customData: {
-                          role_id_one: `${user.first_name} ${user.first_name}`,
-                          role_id_two: peer.name,
-                        },
-                      })
-                      .then(response => {
-                        debugger;
-                        console.log(response);
-                        const FirstElse = 'firstPost';
-                        dispatch({
-                          type: START_CHAT_SUCCESSFUL,
-                          payload: true,
-                        });
-                      })
-                      .catch(err => {
-                        debugger;
-                        console.log(err);
-                      });
-                  }
-                });
-              } else {
-                axiosWithAuth()
-                  .post('http://localhost:5000/chat/room', {
-                    creatorId: user.email,
-                    name: id,
-                    userIds: [user.email, peer.email],
-                    id,
-                    customData: {
-                      role_id_one: `${user.first_name} ${user.last_name}`,
-                      role_id_two: peer.name,
-                    },
-                  })
-                  .then(response => {
-                    debugger;
-                    console.log(response);
-                    const secondElse = 'secondPost';
-                    saveRoomId(id);
-                    dispatch({
-                      type: START_CHAT_SUCCESSFUL,
-                      payload: true,
-                    });
-                  })
-                  .catch(err => {
-                    debugger;
-                    console.log(err);
+            .then(() => {
+              axiosWithAuth()
+                .post('http://localhost:5000/chat/room', {
+                  creatorId: user.email,
+                  name: id,
+                  userIds: [user.email, peer.email],
+                  id,
+                  customData: {
+                    role_id_one: `${user.first_name} ${user.first_name}`,
+                    role_id_two: peer.name,
+                  },
+                })
+                .then(() => {
+                  saveRoomId(id);
+                  dispatch({
+                    type: START_CHAT_SUCCESSFUL,
                   });
-              }
+                  props.history.push('/chat');
+                });
             });
-        })
-        .catch(error => console.log('error', error));
-    })
-    .catch(error => console.error('error', error));
+        });
+    });
 };
