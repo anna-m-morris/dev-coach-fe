@@ -18,7 +18,6 @@ const StyledContainer = styled.div`
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
-  flex-direction: column;
   justify-content: space-between;
 
   .top-data-card {
@@ -34,15 +33,6 @@ const StyledContainer = styled.div`
     text-align: center;
     margin-bottom: 2em;
     color: #4a4a4a;
-  }
-
-  .top-data-category {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 1.2em;
   }
 
   .appointments {
@@ -150,23 +140,9 @@ const UserDashboard = props => {
       setMaxValue(value * 6);
     }
   };
-
-  const ratings = props.feedback.map(el => el.rating);
-  console.log(Math.round(ratings.reduce((a, c) => a + c) / 3));
   return (
     <StyledContainer>
       <>
-        <div className='top-data-card'>
-          <div className='top-data-category'>
-            <p>Average rating:</p>
-          </div>
-          <div className='top-data-category'>
-            <p>Interviews completed:</p>
-          </div>
-          <div className='top-data-category'>
-            <p>Upcoming interviews:</p>
-          </div>
-        </div>
         {appointments && appointments.length ? (
           <div className='appointments'>
             {appointments
