@@ -1,7 +1,7 @@
 import * as types from '../actions/chatActions';
 
 const initialState = {
-  email: null,
+  peer: null,
   roomId: null,
   rooms: null,
 };
@@ -11,7 +11,7 @@ function chatReducer(state = initialState, action) {
     case types.SAVE_FOR_CHAT:
       return {
         ...state,
-        email: action.payload,
+        peer: action.payload,
       };
 
     case types.SAVE_ROOM_ID:

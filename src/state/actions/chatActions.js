@@ -4,9 +4,9 @@ export const GET_ROOMS_SUCCESSFUL = 'GET_ROOMS_SUCCESSFUL';
 export const SAVE_FOR_CHAT = 'SAVE_FOR_CHAT';
 export const SAVE_ROOM_ID = 'SAVE_ROOM_ID';
 
-export const saveForChat = email => {
+export const saveForChat = peer => {
   debugger;
-  return { type: SAVE_FOR_CHAT, payload: email };
+  return { type: SAVE_FOR_CHAT, payload: peer };
 };
 
 export const saveRoomId = roomId => {

@@ -7,7 +7,7 @@ import {
 import { Link } from 'react-router-dom';
 import uuid from 'uuid';
 
-class Chats extends React.Component {
+class ChatList extends React.Component {
   componentDidMount = () => {
     this.props.getRooms(this.props.user.email);
   };
@@ -22,14 +22,20 @@ class Chats extends React.Component {
                 onClick={() =>
                   this.props.saveForChat(
                     this.props.user.role_id === 2
-                      ? room.member_user_ids[0]
-                      : room.member_user_ids[1],
+                      ? {
+                          email: room.member_user_ids[0],
+                          name: room.custom_data.role_id_one,
+                        }
+                      : {
+                          email: room.member_user_ids[1],
+                          name: room.custom_data.role_id_two,
+                        },
                   )
                 }
               >
                 {this.props.user.role_id === 2
-                  ? room.member_user_ids[0]
-                  : room.member_user_ids[1]}
+                  ? room.custom_data.role_id_one
+                  : room.custom_data.role_id_two}
               </p>
             </Link>
           ))}
@@ -46,5 +52,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, { getRooms, saveForChat })(
-  Chats,
+  ChatList,
 );

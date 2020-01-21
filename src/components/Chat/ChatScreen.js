@@ -4,6 +4,7 @@ import MessageList from './MessageList';
 import SendMessageForm from './SendMessage';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import ChatList from './ChatList';
 
 const StyledChatScreen = styled.div`
   height: 100vh;
@@ -82,7 +83,8 @@ class ChatScreen extends Component {
       <StyledChatScreen>
         <div className='chat-container'>
           <aside className='whos-online-list-container'>
-            <h2>Who's online PLACEHOLDER</h2>
+            <h2>Your Chats</h2>
+            <ChatList/>
           </aside>
           <section className='chat-list-container'>
             <MessageList messages={this.state.messages} />

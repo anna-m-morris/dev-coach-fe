@@ -94,18 +94,21 @@ const Marketplace = ({
       </div>
       <div className='coaches'>
         {coaches &&
-          coaches
-            .slice(minValue, maxValue)
-            .map(coach => (
-              <CoachCard
-                key={coach.first_name}
-                coach={coach}
-                saveCoach={() => saveCoach(coach)}
-                getFeedback={getFeedback}
-                feedback={feedback}
-                saveForChat={() => saveForChat(coach.email)}
-              />
-            ))}
+          coaches.slice(minValue, maxValue).map(coach => (
+            <CoachCard
+              key={coach.first_name}
+              coach={coach}
+              saveCoach={() => saveCoach(coach)}
+              getFeedback={getFeedback}
+              feedback={feedback}
+              saveForChat={() =>
+                saveForChat({
+                  email: coach.email,
+                  name: `${coach.first_name} ${coach.last_name}`,
+                })
+              }
+            />
+          ))}
       </div>
       <div className='pagination'>
         <Pagination

@@ -19,7 +19,7 @@ import VideoChat from './components/Video/VideoChat';
 import Chat from './components/Chat/Chat';
 import Settings from './views/Settings/Settings';
 import GiveFeedback from './views/Feedback/GiveFeedback';
-import Chats from './components/Chat/Chats';
+import ChatList from './components/Chat/ChatList';
 
 const globalTheme = createMuiTheme({
   typography: {
@@ -39,7 +39,7 @@ function App() {
       <Route path={'/Settings'} component={Settings} />
       <Route path={'/FAQ'} component={MainFaq} />
       <Route path={'/chat'} component={Chat} />
-      <Route path={'/chats'} component={Chats} />
+      <Route path={'/chats'} component={ChatList} />
       <Redirect to='/dashboard' />
     </Switch>
   );
