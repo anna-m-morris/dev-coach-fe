@@ -15,9 +15,22 @@ class Chats extends React.Component {
     return (
       <div>
         {this.props.rooms &&
+          this.props.user &&
           this.props.rooms.map(room => (
             <Link key={uuid()} to='/chat'>
-              <p onClick={() => this.props.saveForChat(room.member_user_ids[0])}>{room.member_user_ids[0]}</p>
+              <p
+                onClick={() =>
+                  this.props.saveForChat(
+                    this.props.user.role_id === 2
+                      ? room.member_user_ids[0]
+                      : room.member_user_ids[1],
+                  )
+                }
+              >
+                {this.props.user.role_id === 2
+                  ? room.member_user_ids[0]
+                  : room.member_user_ids[1]}
+              </p>
             </Link>
           ))}
       </div>
