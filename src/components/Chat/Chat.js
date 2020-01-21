@@ -16,7 +16,7 @@ const ChatLoader = props => {
         : `${peer.email} ${user.email}`;
 
     startChatFromScratch(id, user, peer, saveRoomId, props);
-  }, []);
+  }, [peer, props, saveRoomId, startChatFromScratch, user]);
 
   return (
     <div className='loaderStyled'>

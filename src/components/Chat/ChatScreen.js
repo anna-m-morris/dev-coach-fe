@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Chatkit from '@pusher/chatkit-client';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -48,7 +48,7 @@ class ChatScreen extends React.Component {
 
   startChat = roomId => {
     this.setState({ messages: [] });
-    
+
     const chatManager = new Chatkit.ChatManager({
       instanceLocator: 'v1:us1:02d03086-c977-4990-bbb8-d915c9090f74',
       userId: this.props.user.email,
