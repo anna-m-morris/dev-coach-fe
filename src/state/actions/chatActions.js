@@ -1,6 +1,5 @@
 import axiosWithAuth from '../../utils/axiosWithAuth';
 
-export const GET_ROOMS_START = 'GET_ROOMS_START';
 export const GET_ROOMS_ERROR = 'GET_ROOMS_ERROR';
 export const GET_ROOMS_SUCCESSFUL = 'GET_ROOMS_SUCCESSFUL';
 export const START_CHAT_FROM_SCRATCH_START =
@@ -9,19 +8,14 @@ export const START_CHAT_FROM_SCRATCH_ERROR =
   'START_CHAT_FROM_SCRATCH_ERROR';
 export const START_CHAT_FROM_SCRATCH_SUCCESSFUL =
   'START_CHAT_FROM_SCRATCH_SUCCESSFUL';
-export const START_CHAT_START = 'START_CHAT_START';
-export const START_CHAT_ERROR = 'START_CHAT_ERROR';
-export const START_CHAT_SUCCESSFUL = 'START_CHAT_SUCCESSFUL';
 export const SAVE_FOR_CHAT = 'SAVE_FOR_CHAT';
 export const SAVE_ROOM_ID = 'SAVE_ROOM_ID';
 
 export const saveForChat = peer => {
-  debugger;
   return { type: SAVE_FOR_CHAT, payload: peer };
 };
 
 export const saveRoomId = roomId => {
-  debugger;
   return { type: SAVE_ROOM_ID, payload: roomId };
 };
 
@@ -31,14 +25,16 @@ export const getRooms = email => dispatch => {
       userId: email,
     })
     .then(res => {
-      debugger;
       dispatch({
         type: GET_ROOMS_SUCCESSFUL,
         payload: res.data.rooms,
       });
     })
     .catch(err => {
-      debugger;
+      dispatch({
+        type: GET_ROOMS_ERROR,
+        payload: err,
+      });
     });
 };
 

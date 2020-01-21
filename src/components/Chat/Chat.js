@@ -1,10 +1,17 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 import {
   saveRoomId,
   startChatFromScratch,
 } from '../../state/actions/chatActions';
+
+const StyledChatLoader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const ChatLoader = props => {
   const { user, peer, saveRoomId, startChatFromScratch } = props;
@@ -19,14 +26,14 @@ const ChatLoader = props => {
   }, [peer, props, saveRoomId, startChatFromScratch, user]);
 
   return (
-    <div className='loaderStyled'>
+    <StyledChatLoader>
       <Loader
         type='TailSpin'
         color='#2BAD60'
         height={80}
         width={80}
       />
-    </div>
+    </StyledChatLoader>
   );
 };
 
