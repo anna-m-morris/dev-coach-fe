@@ -13,6 +13,7 @@ import { startInterview } from '../../state/actions/interviewActions';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 import NewAppointmentCard from '../../components/Cards/newAppointmentCard';
+import StudentChart from '../../components/DataVisualization/StudentChart'
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -21,7 +22,7 @@ const StyledContainer = styled.div`
   justify-content: space-between;
 
   .top-data-card {
-    height: 8em;
+    height: 20em;
     width: 100%;
     background: #fff;
     border-radius: 5px;
@@ -33,6 +34,9 @@ const StyledContainer = styled.div`
     text-align: center;
     margin-bottom: 2em;
     color: #4a4a4a;
+
+    .top-data-section {
+    }
   }
 
   .appointments {
@@ -143,6 +147,21 @@ const UserDashboard = props => {
   return (
     <StyledContainer>
       <>
+        <div className='top-data-card'>
+{/*           <div className='top-data-section'>
+            <h3>Average rating:</h3>
+            <h3>3.33</h3>
+          </div>
+          <div className='top-data-section'>
+            <h3>Number of interviews given:</h3>
+            <h3>4</h3>
+          </div>
+          <div className='top-data-section'>
+            <h3>Upcoming interviews:</h3>
+            <h3>3</h3>
+          </div> */}
+          <StudentChart />
+        </div>
         {appointments && appointments.length ? (
           <div className='appointments'>
             {appointments
