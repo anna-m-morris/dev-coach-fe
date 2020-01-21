@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import UsernameForm from './UsernameForm';
 import ChatScreen from './ChatScreen';
-import { saveRoomId } from '../../state/actions/chatActions';
+import {
+  saveRoomId,
+  startChat,
+} from '../../state/actions/chatActions';
 
 const ChatLoader = props => {
+  const { user, peer, saveRoomId, startChat } = props;
+
   const [currentUsername, setCurrentUsername] = useState('');
   const [currentScreen, setCurrentScreen] = useState(
     'WhatIsYourUsernameScreen',
@@ -13,16 +17,15 @@ const ChatLoader = props => {
 
   useEffect(() => {
     const id =
-      props.user.role_id === 1
-        ? `${props.user.email} ${props.peer.email}`
-        : `${props.peer.email} ${props.user.email}`;
+      user.role_id === 1
+        ? `${user.email} ${peer.email}`
+        : `${peer.email} ${user.email}`;
 
-    startChat(id, user, peer);
-    
+    startChat(id, user, peer, saveRoomId);
   }, []);
 
   if (currentScreen === 'ChatScreen') {
-    return <ChatScreen currentUsername={currentUsername} />;
+    return <ChatScreen currentUsername={user.email} />;
   }
   return <UsernameForm onSubmit={null} />;
 };
@@ -34,7 +37,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { saveRoomId })(ChatLoader);
+export default connect(mapStateToProps, { saveRoomId, startChat })(
+  ChatLoader,
+);
 
 // refactor to sfc component => handle all
 // api requests with redux
