@@ -56,7 +56,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
 
   return (
     <StyledFeedback>
-      {feedback && feedback ? (
+      {feedback ? (
         <StyledFeedback className='feedback-card-container'>
           {feedback && feedback.length ? (
             feedback

@@ -134,7 +134,7 @@ const UserDashboard = props => {
   };
   return (
     <StyledContainer>
-      {appointments && appointments ? (
+      {appointments ? (
         <StyledContainer>
           {appointments && appointments.length ? (
             <div className='appointments'>

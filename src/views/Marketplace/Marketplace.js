@@ -98,7 +98,7 @@ const Marketplace = ({
         <SelectExperience searchForExperience={searchForExperience} />
       </div>
       <div className='coaches'>
-        {coaches && coaches ? (
+        {coaches ? (
           coaches
             .slice(minValue, maxValue)
             .map(coach => (

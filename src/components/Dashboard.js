@@ -106,8 +106,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     color: '#4fad65',
   },
-  drawer: {
-  },
+  drawer: {},
   link: {
     textDecoration: 'none',
     color: 'rgba(0, 0, 0, 0.87)',
