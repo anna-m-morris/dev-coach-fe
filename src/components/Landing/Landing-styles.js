@@ -66,6 +66,7 @@ export const StyledButton = styled.button`
   font-family: Ubuntu;
   font-size: 1.2rem;
   transition: ease-out 0.2s;
+  display: flex;
 
   :hover {
     cursor: pointer;
