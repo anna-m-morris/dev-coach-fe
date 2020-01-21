@@ -1,5 +1,4 @@
 import axiosWithAuth from '../../utils/axiosWithAuth';
-import { saveRating } from './feedbackActions';
 
 export const GET_ROOMS_START = 'GET_ROOMS_START';
 export const GET_ROOMS_ERROR = 'GET_ROOMS_ERROR';

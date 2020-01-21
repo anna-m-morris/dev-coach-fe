@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledSendMessage = styled.div`
@@ -20,41 +20,37 @@ const StyledSendMessage = styled.div`
   }
 `;
 
-class SendMessageForm extends Component {
-  state = {
-    text: '',
-  };
+const SendMessageForm = props => {
+  const { onSubmit, onChange } = props;
+  const [text, setText] = useState('');
 
-  onSubmit = e => {
+  const onSubmission = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.text);
-    this.setState({ text: '' });
+    onSubmit(text);
+    setText('');
   };
 
-  onChange = e => {
-    this.setState({ text: e.target.value });
-    if (this.props.onChange) {
-      this.props.onChange();
+  const onChangeHandle = e => {
+    setText(e.target.value);
+    if (onChange) {
+      onChange();
     }
   };
-
-  render() {
-    return (
-      <StyledSendMessage>
-        <div>
-          <form onSubmit={this.onSubmit} className='form'>
-            <input
-              type='text'
-              placeholder='Type a message here then hit ENTER'
-              onChange={this.onChange}
-              value={this.state.text}
-              className='input'
-            />
-          </form>
-        </div>
-      </StyledSendMessage>
-    );
-  }
-}
+  return (
+    <StyledSendMessage>
+      <div>
+        <form onSubmit={onSubmission} className='form'>
+          <input
+            type='text'
+            placeholder='Type a message here then hit ENTER'
+            onChange={onChangeHandle}
+            value={text}
+            className='input'
+          />
+        </form>
+      </div>
+    </StyledSendMessage>
+  );
+};
 
 export default SendMessageForm;
