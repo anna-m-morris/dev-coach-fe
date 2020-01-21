@@ -24,6 +24,7 @@ const StyledMarketplace = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding-top: 1rem;
 
     .keyword {
       margin-top: 1rem;
