@@ -76,7 +76,7 @@ const StyledCoachCard = styled.div`
   }
 `;
 
-const CoachCard = props => {
+export const CoachCard = props => {
   const {
     coach,
     saveCoach,
