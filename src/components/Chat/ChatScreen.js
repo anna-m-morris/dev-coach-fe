@@ -13,6 +13,7 @@ const StyledChatScreen = styled.div`
   .chat-container {
     display: flex;
     flex: 1;
+    width: 100%;
   }
 
   .whos-online-list-container {
@@ -25,7 +26,7 @@ const StyledChatScreen = styled.div`
 
   .chat-list-container {
     padding: 20;
-    width: 85%;
+    width: 100%;
     display: flex;
     flex-direction: column;
   }

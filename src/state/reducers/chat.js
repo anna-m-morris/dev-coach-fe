@@ -3,6 +3,7 @@ import * as types from '../actions/chatActions';
 const initialState = {
   email: null,
   roomId: null,
+  rooms: null,
 };
 
 function chatReducer(state = initialState, action) {
@@ -17,6 +18,12 @@ function chatReducer(state = initialState, action) {
       return {
         ...state,
         roomId: action.payload,
+      };
+
+    case types.GET_ROOMS_SUCCESSFUL:
+      return {
+        ...state,
+        rooms: action.payload,
       };
 
     default:
