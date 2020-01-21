@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import uuid from 'uuid';
 import styled from 'styled-components';
+import uuid from 'uuid';
 import Pagination from 'antd/lib/pagination';
 import 'antd/lib/pagination/style/index.css';
 import Loader from 'react-loader-spinner';
+
 import {
   getAppointment,
   cancelAppointment,
@@ -12,7 +13,6 @@ import {
 import { saveIdRole } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
 
-import AppointmentCard from '../../components/Cards/AppointmentCard';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 import NewAppointmentCard from '../../components/Cards/newAppointmentCard';
 
@@ -134,24 +134,16 @@ const UserDashboard = props => {
   };
   return (
     <StyledContainer>
-      {appointments && appointments ? (
+      {appointments ? (
         <StyledContainer>
           {appointments && appointments.length ? (
             <div className='appointments'>
               {appointments
                 .slice(minValue, maxValue)
                 .map(appointment => (
-                  <AppointmentCard
+                  <NewAppointmentCard
                     key={uuid()}
-                    first_name={appointment.first_name}
-                    last_name={appointment.last_name}
-                    avatar_url={appointment.avatar_url}
-                    appointment_datetime={
-                      appointment.appointment_datetime
-                    }
-                    appointment_topic={appointment.appointment_topic}
-                    description={appointment.description}
-                    canceled={appointment.canceled}
+                    appointment={appointment}
                     cancel={() => cancelAppointment(appointment.id)}
                     startInterview={() =>
                       startInterview(appointment.user_id, props)
@@ -179,8 +171,8 @@ const UserDashboard = props => {
           <Loader
             type='TailSpin'
             color='#2BAD60'
-            height='80'
-            width='80'
+            height={80}
+            width={80}
           />
         </div>
       )}
