@@ -14,6 +14,7 @@ import { startInterview } from '../../state/actions/interviewActions';
 
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
+import NewAppointmentCard from '../../components/Cards/newAppointmentCard';
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -30,6 +31,7 @@ const StyledContainer = styled.div`
   }
 
   .pagination {
+    padding: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
