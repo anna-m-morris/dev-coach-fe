@@ -54,14 +54,13 @@ class ChatScreen extends React.Component {
       instanceLocator: 'v1:us1:02d03086-c977-4990-bbb8-d915c9090f74',
       userId: this.props.user.email,
       tokenProvider: new Chatkit.TokenProvider({
-        url: 'http://localhost:5000/chat/auth',
+        url: `${process.env.REACT_APP_BASE_URL}chat/auth`,
       }),
     });
 
     chatManager
       .connect()
       .then(currentUser => {
-        debugger;
         this.setState({ currentUser });
         return currentUser.subscribeToRoom({
           roomId,
