@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import Loader from 'react-loader-spinner';
 
 import { StyledButton, buttonTheme, Logo } from '../Landing';
 
@@ -189,20 +188,9 @@ const LoginForm = ({
                   type='submit'
                   disabled={isSubmitting}
                 >
-                  {userReducer.isLoading && (
-                    <i
-                      className='fa fa-refresh fa-spin'
-                      style={{ marginRight: '5px' }}
-                    />
-                  )}
                   Sign in to your account
                 </StyledButton>
               </div>
-              {/*             {props.userReducer.isLoading ? (
-              <h3>Loading</h3>
-            ) : (
-              <h3>Couldn't fetch</h3>
-            )} */}
             </Form>
           </FormContainer>
         </FormCard>

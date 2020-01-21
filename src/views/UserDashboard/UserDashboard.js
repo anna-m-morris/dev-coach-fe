@@ -4,16 +4,16 @@ import uuid from 'uuid';
 import styled from 'styled-components';
 import Pagination from 'antd/lib/pagination';
 import 'antd/lib/pagination/style/index.css';
+import Loader from 'react-loader-spinner';
 import {
   getAppointment,
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
 import { saveIdRole } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
+
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
-// import LoaderSpinner from '../../components/Loading/LoaderSpiner';
-import Loader from 'react-loader-spinner';
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -100,7 +100,8 @@ const StyledContainer = styled.div`
   }
 `;
 const LoaderStyled = styled.div`
-  margin: 0 auto;
+  margin-left: 35rem;
+  margin-top: 30vh;
 `;
 
 const UserDashboard = props => {
@@ -174,10 +175,10 @@ const UserDashboard = props => {
       ) : (
         <LoaderStyled>
           <Loader
-            type='ThreeDots'
+            type='TailSpin'
             color='#2BAD60'
-            height='100'
-            width='100'
+            height='80'
+            width='80'
           />
         </LoaderStyled>
       )}

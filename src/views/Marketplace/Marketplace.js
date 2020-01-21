@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Pagination from 'antd/lib/pagination';
 import 'antd/lib/pagination/style/index.css';
+import Loader from 'react-loader-spinner';
 import CoachCard from '../../components/Cards/CoachCard';
 import {
   getCoaches,
@@ -15,7 +16,6 @@ import { getFeedback } from '../../state/actions/feedbackActions';
 import SelectPrice from '../../components/Inputs/SelectPrice';
 import SelectExperience from '../../components/Inputs/SelectExperience';
 import SearchForKeyword from '../../components/Inputs/SearchForKeyword';
-import LoaderSpinner from '../../components/Loading/LoaderSpiner';
 
 const StyledMarketplace = styled.div`
   display: flex;
@@ -82,6 +82,12 @@ const Marketplace = ({
     }
   };
 
+  const LoaderStyled = styled.div`
+    margin-top: 200px;
+    margin-left: 35rem;
+    margin-bottom: 200px;
+  `;
+
   return (
     <StyledMarketplace>
       <div className='top'>
@@ -105,7 +111,14 @@ const Marketplace = ({
               />
             ))
         ) : (
-          <LoaderSpinner />
+          <LoaderStyled>
+            <Loader
+              type='TailSpin'
+              color='#2BAD60'
+              height='80'
+              width='80'
+            />
+          </LoaderStyled>
         )}
       </div>
       <div className='pagination'>
