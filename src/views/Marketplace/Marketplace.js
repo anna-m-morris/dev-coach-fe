@@ -25,6 +25,7 @@ const StyledMarketplace = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding-top: 1rem;
 
     .keyword {
       margin-top: 1rem;
@@ -97,7 +98,7 @@ const Marketplace = ({
         <SelectExperience searchForExperience={searchForExperience} />
       </div>
       <div className='coaches'>
-        {coaches && coaches ? (
+        {coaches ? (
           coaches
             .slice(minValue, maxValue)
             .map(coach => (
@@ -114,8 +115,8 @@ const Marketplace = ({
             <Loader
               type='TailSpin'
               color='#2BAD60'
-              height='80'
-              width='80'
+              height={80}
+              width={80}
             />
           </div>
         )}
