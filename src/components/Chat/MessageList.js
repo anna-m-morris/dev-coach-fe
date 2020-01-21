@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledMessageList = styled.div`
@@ -23,26 +23,24 @@ const StyledMessageList = styled.div`
   }
 `;
 
-class MessagesList extends Component {
-  render() {
-    return (
-      <StyledMessageList>
-        <ul className='ul'>
-          {this.props.messages &&
-            this.props.messages.map((message, index) => (
-              <li key={index} className='li'>
-                <div>
-                  <span className='send-username'>
-                    {message.senderId}
-                  </span>{' '}
-                </div>
-                <p className='message'>{message.text}</p>
-              </li>
-            ))}
-        </ul>
-      </StyledMessageList>
-    );
-  }
-}
+const MessageList = props => {
+  return (
+    <StyledMessageList>
+      <ul className='ul'>
+        {props.messages &&
+          props.messages.map((message, index) => (
+            <li key={index} className='li'>
+              <div>
+                <span className='send-username'>
+                  {message.senderId}
+                </span>{' '}
+              </div>
+              <p className='message'>{message.text}</p>
+            </li>
+          ))}
+      </ul>
+    </StyledMessageList>
+  );
+};
 
-export default MessagesList;
+export default MessageList;
