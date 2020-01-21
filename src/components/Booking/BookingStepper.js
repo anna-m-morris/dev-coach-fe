@@ -32,9 +32,10 @@ const useStyles = makeStyles(theme => ({
   backButton: {
     marginRight: theme.spacing(1),
   },
-  instructions: {
+  instruction: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
+    fontWeight: 'bold',
   },
 }));
 
@@ -47,11 +48,11 @@ function getStepContent(stepIndex) {
     case 0:
       return 'Please select a topic and interview duration';
     case 1:
-      return 'Select Time and Date';
+      return 'Please select a time and date';
     case 2:
-      return 'Select  Payment';
+      return 'Please select payment method';
     default:
-      return 'Unknown stepIndex';
+      return 'All Steps completed';
   }
 }
 
@@ -91,7 +92,7 @@ const BookingStepper = props => {
     <>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map(label => (
-          <Step key={label}>
+          <Step className='' key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
         ))}
@@ -109,8 +110,8 @@ const BookingStepper = props => {
         open={error}
       />
 
-      <div className='instruction'>
-        <Typography className={classes.instructions}>
+      <div className='instructions'>
+        <Typography className={classes.instruction}>
           {getStepContent(activeStep)}
         </Typography>
       </div>
@@ -121,11 +122,12 @@ const BookingStepper = props => {
         ) : activeStep === 1 ? (
           <DatePicker date={date} saveDate={saveDate} />
         ) : (
-          <div>
+          <div className='payment-container'>
             {Object.keys(select).length > 1 &&
             date.slice(16, 24) !== '00:00:00' ? (
-              <div>
+              <div className='payment-buttons-container'>
                 <StripeCheckout
+                  className='stripe-checkout'
                   stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // this key is only for testing we
                   // will add later our real key to the env file
                   token={token =>
