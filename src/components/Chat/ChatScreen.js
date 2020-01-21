@@ -4,11 +4,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import MessageList from './MessageList';
 import SendMessageForm from './SendMessage';
-import ChatList from './ChatList';
-import {
-  getRooms,
-  saveMessage,
-} from '../../state/actions/chatActions';
+import UserList from './UserList';
+import { getRooms } from '../../state/actions/chatActions';
 
 const StyledChatScreen = styled.div`
   height: 100vh;
@@ -50,6 +47,8 @@ class ChatScreen extends React.Component {
   };
 
   startChat = roomId => {
+    this.setState({ messages: [] });
+    
     const chatManager = new Chatkit.ChatManager({
       instanceLocator: 'v1:us1:02d03086-c977-4990-bbb8-d915c9090f74',
       userId: this.props.user.email,
@@ -93,16 +92,14 @@ class ChatScreen extends React.Component {
         <div className='chat-container'>
           <aside className='whos-online-list-container'>
             <h2>Your Chats</h2>
-            <ChatList
+            <UserList
               rooms={this.props.rooms}
               user={this.props.user}
+              startChat={this.startChat}
             />
           </aside>
           <section className='chat-list-container'>
-            <MessageList
-              messages={this.state.messages}
-              joinChat={this.startChat}
-            />
+            <MessageList messages={this.state.messages} />
             <SendMessageForm onSubmit={this.sendMessage} />
           </section>
         </div>
@@ -120,6 +117,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getRooms, saveMessage })(
-  ChatScreen,
-);
+export default connect(mapStateToProps, { getRooms })(ChatScreen);

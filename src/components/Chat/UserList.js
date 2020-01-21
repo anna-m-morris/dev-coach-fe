@@ -1,7 +1,7 @@
 import React from 'react';
 import uuid from 'uuid';
 
-const ChatList = props => {
+const UserList = props => {
   const { user, rooms, startChat } = props;
 
   return (
@@ -18,4 +18,4 @@ const ChatList = props => {
   );
 };
 
-export default ChatList;
+export default UserList;

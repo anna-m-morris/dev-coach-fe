@@ -15,7 +15,6 @@ export const START_CHAT_ERROR = 'START_CHAT_ERROR';
 export const START_CHAT_SUCCESSFUL = 'START_CHAT_SUCCESSFUL';
 export const SAVE_FOR_CHAT = 'SAVE_FOR_CHAT';
 export const SAVE_ROOM_ID = 'SAVE_ROOM_ID';
-export const SAVE_MESSAGE = 'SAVE_MESSAGE';
 
 export const saveForChat = peer => {
   debugger;
@@ -94,9 +93,4 @@ export const startChatFromScratch = (
             });
         });
     });
-};
-
-export const saveMessage = message => {
-  debugger
-  return { type: SAVE_MESSAGE, payload: message };
 };
