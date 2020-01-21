@@ -38,6 +38,7 @@ class ChatScreen extends React.Component {
     currentUser: {},
     currentRoom: {},
     messages: [],
+    error: null,
   };
 
   componentDidMount = () => {
@@ -77,7 +78,7 @@ class ChatScreen extends React.Component {
       .then(currentRoom => {
         this.setState({ currentRoom });
       })
-      .catch(error => console.error('error', error));
+      .catch(error => this.setState({ error }));
   };
 
   sendMessage = text => {
