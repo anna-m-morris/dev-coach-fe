@@ -18,8 +18,32 @@ const StyledContainer = styled.div`
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
+  flex-direction: column;
   justify-content: space-between;
-  padding-top: 65px;
+
+  .top-data-card {
+    height: 8em;
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    padding: 1em;
+    box-shadow: 0px 0px 4px rgba(82, 68, 110, 0.3);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 2em;
+    color: #4a4a4a;
+  }
+
+  .top-data-category {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.2em;
+  }
 
   .appointments {
     display: flex;
@@ -126,34 +150,52 @@ const UserDashboard = props => {
       setMaxValue(value * 6);
     }
   };
+
+  const ratings = props.feedback.map(el => el.rating);
+  console.log(Math.round(ratings.reduce((a, c) => a + c) / 3));
   return (
     <StyledContainer>
-      {appointments && appointments.length ? (
-        <div className='appointments'>
-          {appointments.slice(minValue, maxValue).map(appointment => (
-            <NewAppointmentCard
-              appointment={appointment}
-              cancel={() => cancelAppointment(appointment.id)}
-              startInterview={() =>
-                startInterview(appointment.user_id, props)
-              }
-              saveIdRole={() =>
-                saveIdRole(appointment.role_id, appointment.id)
-              }
-            />
-          ))}
-          <div className='pagination'>
-            <Pagination
-              defaultCurrent={1}
-              defaultPageSize={6}
-              onChange={handlePagination}
-              total={appointments.length}
-            />
+      <>
+        <div className='top-data-card'>
+          <div className='top-data-category'>
+            <p>Average rating:</p>
+          </div>
+          <div className='top-data-category'>
+            <p>Interviews completed:</p>
+          </div>
+          <div className='top-data-category'>
+            <p>Upcoming interviews:</p>
           </div>
         </div>
-      ) : (
-        <EmptyAppointment />
-      )}
+        {appointments && appointments.length ? (
+          <div className='appointments'>
+            {appointments
+              .slice(minValue, maxValue)
+              .map(appointment => (
+                <NewAppointmentCard
+                  appointment={appointment}
+                  cancel={() => cancelAppointment(appointment.id)}
+                  startInterview={() =>
+                    startInterview(appointment.user_id, props)
+                  }
+                  saveIdRole={() =>
+                    saveIdRole(appointment.role_id, appointment.id)
+                  }
+                />
+              ))}
+            <div className='pagination'>
+              <Pagination
+                defaultCurrent={1}
+                defaultPageSize={6}
+                onChange={handlePagination}
+                total={appointments.length}
+              />
+            </div>
+          </div>
+        ) : (
+          <EmptyAppointment />
+        )}
+      </>
     </StyledContainer>
   );
 };
@@ -162,6 +204,7 @@ const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
     appointments: state.appointmentsReducer.appointments,
+    feedback: state.feedbackReducer.feedback,
   };
 };
 
