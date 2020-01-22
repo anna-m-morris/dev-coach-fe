@@ -78,7 +78,6 @@ class ChatScreen extends React.Component {
                   user.name,
                 ],
               });
-              console.log('yessss');
             },
             onUserStoppedTyping: user => {
               this.setState({
