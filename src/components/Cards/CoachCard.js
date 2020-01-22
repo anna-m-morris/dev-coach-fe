@@ -64,13 +64,15 @@ const StyledCoachCard = styled.div`
   .footer {
     display: flex;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: space-around;
 
     a {
       text-decoration: none;
+      width: 35%;
     }
 
     .button {
+      width: 100%;
       background-color: #4fad65;
     }
   }
