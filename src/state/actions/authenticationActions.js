@@ -4,6 +4,11 @@ import * as types from './actionTypes';
 
 const url = process.env.REACT_APP_BASE_URL;
 
+export const saveRoleId = (handleNext, role) => dispatch => {
+  dispatch({ type: types.SET_ROLE_ID, payload: role });
+  handleNext();
+};
+
 export const login = (props, values) => dispatch => {
   dispatch({ type: types.LOGIN_START });
   axios
@@ -15,8 +20,7 @@ export const login = (props, values) => dispatch => {
         message: res.data.message,
       });
       localStorage.setItem('token', res.data.token);
-      props.handleNext();
-      // window.location.reload();
+      window.location.reload();
     })
     .catch(err => {
       dispatch({
@@ -41,7 +45,6 @@ export const register = (props, values) => dispatch => {
       localStorage.setItem('tempuser', res.data.token);
       localStorage.setItem('id', res.data.user.id);
       props.handleNext();
-      // window.location.reload();
     })
     .catch(err => {
       dispatch({
@@ -51,35 +54,17 @@ export const register = (props, values) => dispatch => {
     });
 };
 
-export const saveRoleId = (handleNext, role) => dispatch => {
-  dispatch({ type: types.USER_ROLE_CHOSEN, payload: role });
-  handleNext();
-};
-
-export const saveCoach = coach => dispatch => {
-  debugger;
-  dispatch({ type: types.SET_COACH, payload: coach });
-  axiosWithAuth()
-    .post(`${url}profile/coaches`, {
-      experience_level: coach.experience,
-      confidence_level: coach.confidence,
-      location: coach.userLocation,
-    })
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
-};
-
-export const chooseUserRole = (props, values, role) => dispatch => {
+export const chooseUserRole = (props, values) => dispatch => {
   const token = localStorage.getItem('tempuser');
   const id = localStorage.getItem('id');
   axiosWithAuth()
     .put(`${url}user/${id}`, {
-      role_id: role,
       location: values.userLocation,
+      role_id: props.userReducer.user.role_id,
     })
     .then(res => {
-      dispatch({ type: types.USER_ROLE_CHOSEN, role });
-      if (role === 1) {
+      dispatch({ type: types.USER_ROLE_CHOSEN });
+      if (props.userReducer.user.role_id === 1) {
         axiosWithAuth()
           .post(`${url}profile/students`, {
             experience_level: values.experience,
@@ -96,8 +81,7 @@ export const chooseUserRole = (props, values, role) => dispatch => {
             localStorage.setItem('token', token);
             localStorage.removeItem('tempuser');
             localStorage.removeItem('id');
-            // window.location.reload();
-            props.handleNext();
+            window.location.reload();
           })
           .catch(err => {});
       } else {
@@ -117,8 +101,7 @@ export const chooseUserRole = (props, values, role) => dispatch => {
             localStorage.setItem('token', token);
             localStorage.removeItem('tempuser');
             localStorage.removeItem('id');
-            // window.location.reload();
-            props.handleNext();
+            window.location.reload();
           })
           .catch(coachErr => {});
       }
@@ -130,6 +113,6 @@ export const chooseUserRole = (props, values, role) => dispatch => {
 
 export const logout = props => {
   localStorage.clear();
-  // window.location.reload();
+  window.location.reload();
   return { type: types.LOGOUT };
 };

@@ -13,10 +13,7 @@ import {
 } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab/';
 import { countries } from '../Forms/countries';
-import {
-  chooseUserRole,
-  saveCoach,
-} from '../../state/actions/authenticationActions';
+import { chooseUserRole } from '../../state/actions/authenticationActions';
 import { buttonTheme, Logo } from '../Landing';
 import {
   StudentCard,
@@ -178,7 +175,7 @@ const CoachForm = props => {
           </FormControl>
           <FormButton
             theme={buttonTheme}
-            onClick={() => props.saveCoach(formValues)}
+            onClick={() => props.chooseUserRole(props, formValues)}
           >
             Submit
           </FormButton>
@@ -187,6 +184,4 @@ const CoachForm = props => {
     </CoachCard>
   );
 };
-export default connect(state => state, { chooseUserRole, saveCoach })(
-  CoachForm,
-);
+export default connect(state => state, { chooseUserRole })(CoachForm);

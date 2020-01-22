@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { saveRoleId } from '../../state/actions/authenticationActions';
 import { StyledButton, buttonTheme } from '../Landing';
+import { saveRoleId } from '../../state/actions/authenticationActions';
 
 const StyledUserType = styled.div`
   align-items: center;
@@ -78,7 +78,7 @@ const UserTypePage = ({ saveRoleId, handleNext }) => {
           <div className='user-decision'>
             <StyledButton
               theme={buttonTheme}
-              onClick={() => saveRoleId(handleNext, 1)}
+              onClick={() => saveRoleId(handleNext, 2)}
             >
               Join As Coach
             </StyledButton>
@@ -104,7 +104,7 @@ const UserTypePage = ({ saveRoleId, handleNext }) => {
           <div className='user-decision'>
             <StyledButton
               theme={buttonTheme}
-              onClick={() => saveRoleId(handleNext, 2)}
+              onClick={() => saveRoleId(handleNext, 1)}
             >
               Join As Student
             </StyledButton>

@@ -39,6 +39,8 @@ function getSteps() {
 }
 
 const SignupStepper = props => {
+  console.log(props);
+
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -72,10 +74,10 @@ const SignupStepper = props => {
       {activeStep === 0 && <SignUp handleNext={handleNext} />}
       {activeStep === 1 && <UserType handleNext={handleNext} />}
       {activeStep === 2 && props.userReducer.user.role_id === 1 && (
-        <CoachForm />
+        <StudentForm />
       )}
       {activeStep === 2 && props.userReducer.user.role_id === 2 && (
-        <StudentForm />
+        <CoachForm />
       )}
 
       {activeStep === steps.length ? (
