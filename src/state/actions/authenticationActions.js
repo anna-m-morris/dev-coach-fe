@@ -15,7 +15,8 @@ export const login = (props, values) => dispatch => {
         message: res.data.message,
       });
       localStorage.setItem('token', res.data.token);
-      window.location.reload();
+      props.handleNext();
+      // window.location.reload();
     })
     .catch(err => {
       dispatch({
@@ -39,7 +40,8 @@ export const register = (props, values) => dispatch => {
       });
       localStorage.setItem('tempuser', res.data.token);
       localStorage.setItem('id', res.data.user.id);
-      window.location.reload();
+      props.handleNext();
+      // window.location.reload();
     })
     .catch(err => {
       dispatch({
@@ -47,6 +49,24 @@ export const register = (props, values) => dispatch => {
         payload: err.response.data.message,
       });
     });
+};
+
+export const saveRoleId = (handleNext, role) => dispatch => {
+  dispatch({ type: types.USER_ROLE_CHOSEN, payload: role });
+  handleNext();
+};
+
+export const saveCoach = coach => dispatch => {
+  debugger;
+  dispatch({ type: types.SET_COACH, payload: coach });
+  axiosWithAuth()
+    .post(`${url}profile/coaches`, {
+      experience_level: coach.experience,
+      confidence_level: coach.confidence,
+      location: coach.userLocation,
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
 };
 
 export const chooseUserRole = (props, values, role) => dispatch => {
@@ -76,7 +96,8 @@ export const chooseUserRole = (props, values, role) => dispatch => {
             localStorage.setItem('token', token);
             localStorage.removeItem('tempuser');
             localStorage.removeItem('id');
-            window.location.reload();
+            // window.location.reload();
+            props.handleNext();
           })
           .catch(err => {});
       } else {
@@ -96,7 +117,8 @@ export const chooseUserRole = (props, values, role) => dispatch => {
             localStorage.setItem('token', token);
             localStorage.removeItem('tempuser');
             localStorage.removeItem('id');
-            window.location.reload();
+            // window.location.reload();
+            props.handleNext();
           })
           .catch(coachErr => {});
       }
@@ -108,6 +130,6 @@ export const chooseUserRole = (props, values, role) => dispatch => {
 
 export const logout = props => {
   localStorage.clear();
-  window.location.reload();
+  // window.location.reload();
   return { type: types.LOGOUT };
 };

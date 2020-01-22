@@ -19,6 +19,9 @@ import VideoChat from './components/Video/VideoChat';
 import Settings from './views/Settings/Settings';
 import GiveFeedback from './views/Feedback/GiveFeedback';
 
+// delete
+import SignUp from './components/Onboarding/SignupStepper';
+
 const globalTheme = createMuiTheme({
   typography: {
     fontFamily: ['Ubuntu', 'Abeezee'].join(','),
@@ -47,22 +50,22 @@ function App() {
       </ThemeProvider>
     );
   }
-  if (localStorage.getItem('tempuser')) {
-    return (
-      <Switch>
-        <Route exact path='/' component={Landing} />
-        <Route path='/userrole' component={UserTypePage} />
-        <Route path='/interviewer' component={InterviewerForm} />
-        <Route path='/student' component={StudentForm} />
-        <Redirect to='/userrole' />
-      </Switch>
-    );
-  }
+  // if (localStorage.getItem('tempuser')) {
+  //   return (
+  //     <Switch>
+  //       <Route exact path='/' component={Landing} />
+  //       <Route path='/userrole' component={UserTypePage} />
+  //       <Route path='/interviewer' component={InterviewerForm} />
+  //       <Route path='/student' component={StudentForm} />
+  //       <Redirect to='/userrole' />
+  //     </Switch>
+  //   );
+  // }
   return (
     <Switch>
       <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
-      <Route path='/register' component={SignUpForm} />
+      <Route path='/register' component={SignUp} />
       <Route path='/faq' component={LandingFaq} />
       <Redirect to='/' />
     </Switch>

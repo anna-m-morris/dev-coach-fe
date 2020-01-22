@@ -53,7 +53,7 @@ function userReducer(state = initialState, action) {
         userHasChosenRole: true,
         user: {
           ...state.user,
-          role_id: action.role,
+          role_id: action.payload,
         },
       };
     case types.USER_ROLE_ERROR:
@@ -61,12 +61,21 @@ function userReducer(state = initialState, action) {
         ...state,
         userRoleError: action.error,
       };
-    case types.SET_COACH_ID:
+    // case types.SET_COACH_ID:
+    //   return {
+    //     ...state,
+    //     user: {
+    //       ...state.user,
+    //       coach_id: action.id,
+    //     },
+    //   };
+    case types.SET_COACH:
+      debugger;
       return {
         ...state,
         user: {
           ...state.user,
-          coach_id: action.id,
+          coach_id: state.user.role,
         },
       };
     case types.SET_STUDENT_ID:
