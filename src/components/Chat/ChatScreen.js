@@ -6,7 +6,7 @@ import MessageList from './MessageList';
 import SendMessageForm from './SendMessage';
 import UserList from './UserList';
 import { getRooms } from '../../state/actions/chatActions';
-
+import TypingIndicator from './TypingIndicator';
 const StyledChatScreen = styled.div`
   height: 85vh;
   display: flex;
@@ -38,6 +38,7 @@ class ChatScreen extends React.Component {
     currentRoom: {},
     messages: [],
     error: null,
+    usersWhoAreTyping: [],
   };
 
   componentDidMount = () => {
@@ -70,6 +71,22 @@ class ChatScreen extends React.Component {
                 messages: [...this.state.messages, message],
               });
             },
+            onUserStartedTyping: user => {
+              this.setState({
+                usersWhoAreTyping: [
+                  ...this.state.usersWhoAreTyping,
+                  user.name,
+                ],
+              });
+              console.log('yessss');
+            },
+            onUserStoppedTyping: user => {
+              this.setState({
+                usersWhoAreTyping: this.state.usersWhoAreTyping.filter(
+                  username => username !== user.name,
+                ),
+              });
+            },
           },
         });
       })
@@ -87,11 +104,10 @@ class ChatScreen extends React.Component {
   };
 
   sendTypingEvent = () => {
-    this.state.currentUser.isTyping({
-      roomId: this.state.currentRoom.id,
-    })
-    .catch(error => console.log(error));
-  }
+    this.state.currentUser
+      .isTypingIn({ roomId: this.state.currentRoom.id })
+      .catch(error => this.setState({ error }));
+  };
 
   render() {
     return (
@@ -107,6 +123,9 @@ class ChatScreen extends React.Component {
           </aside>
           <section className='chat-list-container'>
             <MessageList messages={this.state.messages} />
+            <TypingIndicator
+              usersWhoAreTyping={this.state.usersWhoAreTyping}
+            />
             <SendMessageForm
               onSubmit={this.sendMessage}
               onChange={this.sendTypingEvent}
