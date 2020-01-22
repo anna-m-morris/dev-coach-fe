@@ -85,6 +85,14 @@ class ChatScreen extends React.Component {
       roomId: this.state.currentRoom.id,
     });
   };
+
+  sendTypingEvent = () => {
+    this.state.currentUser.isTyping({
+      roomId: this.state.currentRoom.id,
+    })
+    .catch(error => console.log(error));
+  }
+
   render() {
     return (
       <StyledChatScreen>
@@ -99,7 +107,10 @@ class ChatScreen extends React.Component {
           </aside>
           <section className='chat-list-container'>
             <MessageList messages={this.state.messages} />
-            <SendMessageForm onSubmit={this.sendMessage} />
+            <SendMessageForm
+              onSubmit={this.sendMessage}
+              onChange={this.sendTypingEvent}
+            />
           </section>
         </div>
       </StyledChatScreen>
