@@ -7,7 +7,7 @@ import SignUpForm from './components/Forms/SignUpForm';
 import Dashboard from './components/Dashboard';
 import UserDashboard from './views/UserDashboard/UserDashboard';
 import Marketplace from './views/Marketplace/Marketplace';
-import Landing from './components/Landing';
+import Landing from './components/Landing/Landing-2';
 import InterviewerForm from './components/Forms/InterviewerForm';
 import StudentForm from './components/Forms/StudentForm';
 import UserTypePage from './components/UserType/UserTypePage';
