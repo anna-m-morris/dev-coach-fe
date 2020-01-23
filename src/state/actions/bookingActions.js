@@ -26,6 +26,7 @@ export const handleStripePayment = (
   topic_id,
   length_id,
   props,
+  closeMessage,
 ) => async dispatch => {
   dispatch({ type: STRIPE_PAYMENT_START });
 
@@ -44,7 +45,15 @@ export const handleStripePayment = (
   const { status } = response.data;
   if (status === 'success') {
     success();
-    bookAppointment(coach, user, date, topic_id, length_id, props);
+    bookAppointment(
+      coach,
+      user,
+      date,
+      topic_id,
+      length_id,
+      props,
+      closeMessage,
+    );
     dispatch({ type: STRIPE_PAYMENT_SUCCESSFUL });
   } else {
     error();
@@ -71,6 +80,7 @@ export const bookAppointment = (
   topic_id,
   length_id,
   props,
+  closeMessage,
 ) => dispatch => {
   dispatch({ type: BOOK_APPOINTMENT_START });
   const appointment = {
@@ -84,7 +94,10 @@ export const bookAppointment = (
   axiosWithAuth()
     .post(`${url}appointment`, appointment)
     .then(res => {
-      setTimeout(() => props.history.push('/dashboard'), 2000);
+      setTimeout(() => {
+        props.history.push('/dashboard');
+        closeMessage();
+      }, 2000);
 
       const coach_email = {
         email: coach.email,

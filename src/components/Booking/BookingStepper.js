@@ -144,6 +144,7 @@ const BookingStepper = props => {
                       select.topic_id,
                       select.length_id,
                       props,
+                      closeMessage,
                     )
                   }
                   amount={
@@ -170,6 +171,7 @@ const BookingStepper = props => {
                       select.topic_id,
                       select.length_id,
                       props,
+                      closeMessage,
                     );
                   }}
                   catchError={err => showErrorMessage()}
