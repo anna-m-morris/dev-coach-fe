@@ -7,10 +7,14 @@ const StyledContainer = styled.div`
   width: 700px;
   height: 100%;
   max-width: 100%;
-  margin-left: 20%;
+  margin-left: 15%;
   background: white;
   box-shadow: 0 6px 10px rgba(50, 50, 93, 0.1);
   padding: 40px;
+
+  .margin {
+    margin-left: 15%;
+  }
 
   @media only screen and (max-width: 600px) {
     width: 10rem;

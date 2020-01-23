@@ -112,12 +112,13 @@ const StudentForm = props => {
                   name='location'
                   options={countries}
                   getOptionLabel={option => option.name}
-                  onChange={event =>
+                  onChange={event => {
+                    console.log(formValues.userLocation);
                     setFormValues({
                       ...formValues,
                       userLocation: event.target.innerText,
-                    })
-                  }
+                    });
+                  }}
                   renderInput={params => (
                     <TextField
                       required
