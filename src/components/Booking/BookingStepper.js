@@ -178,7 +178,7 @@ const BookingStepper = props => {
                       props,
                       closeMessage,
                     );
-                    // showSuccessMessage();
+                    showSuccessMessage();
                   }}
                   catchError={err => showErrorMessage()}
                   options={{
