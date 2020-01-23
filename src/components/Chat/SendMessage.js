@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SendIcon from '@material-ui/icons/Send';
-import Button from '@material-ui/core/Button';
 
 const StyledSendMessage = styled.div`
   display: flex;
@@ -9,7 +8,6 @@ const StyledSendMessage = styled.div`
     padding: 15px;
     border: 1px solid #ced4da;
     border-radius: 15px;
-    /* border-bottom: 1px #4c758f solid; */
     margin-left: 20px;
     margin-right: 2rem;
     width: 100%;

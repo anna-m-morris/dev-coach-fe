@@ -4,7 +4,6 @@ import * as types from './actionTypes';
 const url = process.env.REACT_APP_BASE_URL;
 
 export const updateUserInfo = (
-  userId,
   userInfo,
   showError,
   showSuccess,
@@ -13,7 +12,6 @@ export const updateUserInfo = (
   axios
     .put(`${url}user/settings`, userInfo)
     .then(res => {
-      debugger
       showSuccess();
       dispatch({
         type: types.USER_INFO_UPDATE_SUCCESSFUL,
