@@ -169,7 +169,6 @@ const BookingStepper = props => {
                       : coach.hourly_rate * 0.5
                   }
                   onSuccess={(details, data) => {
-                    showSuccessMessage();
                     bookAppointment(
                       coach,
                       user,
@@ -179,6 +178,7 @@ const BookingStepper = props => {
                       props,
                       closeMessage,
                     );
+                    // showSuccessMessage();
                   }}
                   catchError={err => showErrorMessage()}
                   options={{

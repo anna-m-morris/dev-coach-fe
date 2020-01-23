@@ -245,7 +245,9 @@ const Dashboard = props => {
               <Link className={classes.link} to='/settings'>
                 <MenuItem>Settings</MenuItem>
               </Link>
-              <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              <MenuItem onClick={() => handleLogout(props)}>
+                Logout
+              </MenuItem>
             </Menu>
           </div>
         </Toolbar>

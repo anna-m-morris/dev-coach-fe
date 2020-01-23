@@ -111,8 +111,8 @@ export const chooseUserRole = (props, values) => dispatch => {
     );
 };
 
-export const logout = props => {
-  localStorage.clear();
-  window.location.reload();
+export const logout = async props => {
+  await localStorage.clear();
+  props.history.push('/');
   return { type: types.LOGOUT };
 };
