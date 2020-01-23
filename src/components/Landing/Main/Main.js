@@ -1,9 +1,9 @@
 import React from 'react';
 import { MainContainer } from './Main-styles';
 
-import aboutOne from './img/how-it-works-1.jpg';
-import aboutTwo from './img/how-it-works-2.jpg';
-import aboutThree from './img/how-it-works-3.jpg';
+import aboutOne from './img/how-1.jpg';
+import aboutTwo from './img/how-2.jpg';
+import aboutThree from './img/how-3.jpg';
 import personOne from './img/person-1.jpg';
 import personTwo from './img/person-2.jpg';
 import personThree from './img/person-3.jpg';
