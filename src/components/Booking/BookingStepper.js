@@ -128,8 +128,7 @@ const BookingStepper = props => {
               <div className='payment-buttons-container'>
                 <StripeCheckout
                   className='stripe-checkout'
-                  stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // this key is only for testing we
-                  // will add later our real key to the env file
+                  stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // development token
                   token={token =>
                     handleStripePayment(
                       token,
