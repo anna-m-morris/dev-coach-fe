@@ -68,6 +68,7 @@ class ChatScreen extends React.Component {
         url: `${process.env.REACT_APP_BASE_URL}chat/auth`,
       }),
     });
+
     chatManager
       .connect()
       .then(currentUser => {
@@ -131,7 +132,10 @@ class ChatScreen extends React.Component {
             />
           </aside>
           <section className='chat-list-container'>
-            <MessageList messages={this.state.messages} />
+            <MessageList
+              messages={this.state.messages}
+              userId={this.props.user.email}
+            />
             <TypingIndicator
               usersWhoAreTyping={this.state.usersWhoAreTyping}
             />
