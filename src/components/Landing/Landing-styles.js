@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import devices from '../devices';
+import devices from '../../utils/devices';
 import logo from '../../img/firelogo.png';
 
 const mobileHidden = css`

@@ -12,7 +12,7 @@ import {
   Box,
 } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab/';
-import { countries } from '../Forms/countries';
+import { countries } from '../../utils/countries';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
 import { buttonTheme, Logo } from '../Landing/Landing-styles';
 import { FormButton, InfoParagraph } from './StudentForm';
