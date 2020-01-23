@@ -4,13 +4,26 @@ import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import styled from 'styled-components';
 
 import SignUp from './SignUpForm';
 import UserType from './UserType';
 import CoachForm from './CoachForm';
 import StudentForm from './StudentForm';
+
+const SignupStepperContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background: #f2f2f2;
+  max-width: 100%;
+
+  .MuiStepIcon-root.MuiStepIcon-active,
+  .MuiStepIcon-root.MuiStepIcon-completed {
+    color: #4fad65;
+  }
+`;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,7 +72,7 @@ const SignupStepper = props => {
   };
 
   return (
-    <div className={classes.root}>
+    <SignupStepperContainer className={classes.root}>
       <Stepper
         className={classes.stepper}
         activeStep={activeStep}
@@ -79,7 +92,7 @@ const SignupStepper = props => {
       {activeStep === 2 && props.userReducer.user.role_id === 2 && (
         <CoachForm />
       )}
-    </div>
+    </SignupStepperContainer>
   );
 };
 
