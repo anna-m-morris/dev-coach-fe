@@ -31,6 +31,31 @@ const StyledSettings = styled.div`
   align-items: center;
   background-color: #ffff;
 
+  .paper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-container {
+    border-radius: 120px;
+    width: 120px;
+    height: 120px;
+    opacity: 0.7;
+    z-index: 2;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+  }
+
+  .form {
+    width: 100%;
+    margin-top: 5px;
+  }
+
   .button {
     display: flex;
     justify-content: space-between;
@@ -51,44 +76,7 @@ const StyledSettings = styled.div`
   }
 `;
 
-const ImageDiv = styled.div`
-  border-radius: 120px;
-  width: 120px;
-  height: 120px;
-  opacity: 0.7;
-  z-index: 2;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-`;
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    marginTop: '40px',
-    padding: '50px',
-    paddingTop: '0px',
-    backgroundColor: '#81827c',
-    borderRadius: '50%',
-  },
-  form: {
-    width: '100%',
-    marginTop: '5px',
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
 function Settings(props) {
-  const classes = useStyles();
   const {
     user,
     updateUserInfo,
@@ -191,8 +179,8 @@ function Settings(props) {
     <StyledSettings>
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
-        <div className={classes.paper}>
-          <ImageDiv>
+        <div className='paper'>
+          <div className='image-container'>
             <Upload
               name='avatar'
               listType='picture-card'
@@ -224,11 +212,11 @@ function Settings(props) {
                 />
               )}
             </Upload>
-          </ImageDiv>
+          </div>
           <Typography component='h1' variant='h5'>
             Personal Information
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className='form' noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
