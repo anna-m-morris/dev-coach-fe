@@ -70,7 +70,7 @@ const SendMessageForm = ({ onSubmit, onChange, currentRoom }) => {
           />
         </form>
       </div>
-      <button>
+      <button onClick={onSubmission}>
         <SendIcon style={iconStyles} />
       </button>
     </StyledSendMessage>
