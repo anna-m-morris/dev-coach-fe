@@ -178,7 +178,7 @@ function Settings(props) {
     e.preventDefault();
     updateUserInfo(
       user.id,
-      userInfo,
+      { ...userInfo, oldEmail: user.email },
       showErrorMessage,
       showSuccessMessage,
     );
