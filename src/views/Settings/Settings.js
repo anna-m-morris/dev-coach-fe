@@ -178,6 +178,7 @@ function Settings(props) {
       { ...userInfo, oldEmail: user.email },
       showErrorMessage,
       showSuccessMessage,
+      closeMessage,
     );
   };
 
