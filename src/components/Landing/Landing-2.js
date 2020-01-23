@@ -5,7 +5,7 @@ import Header from './Header/Header';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
 
-import mainImage from './img/landing-1.jpg';
+import mainImage from './img/landing-comp.jpg';
 
 const Landing = () => (
   <div className='app'>
