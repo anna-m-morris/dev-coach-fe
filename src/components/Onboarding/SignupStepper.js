@@ -79,38 +79,6 @@ const SignupStepper = props => {
       {activeStep === 2 && props.userReducer.user.role_id === 2 && (
         <CoachForm />
       )}
-
-      {activeStep === steps.length ? (
-        <div>
-          <Typography className={classes.instructions}>
-            All steps completed
-          </Typography>
-          <Button onClick={handleReset}>Reset</Button>
-        </div>
-      ) : (
-        <div>
-          <Button
-            disabled={activeStep === 0}
-            onClick={handleBack}
-            className={classes.backButton}
-          >
-            Back
-          </Button>
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={handleNext}
-            className={classes.nextButton}
-            disabled={
-              (activeStep === 1 &&
-                props.userReducer.user.role_id === null) ||
-              props.userReducer.user === null
-            }
-          >
-            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-          </Button>
-        </div>
-      )}
     </div>
   );
 };
