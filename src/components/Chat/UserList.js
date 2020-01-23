@@ -4,13 +4,14 @@ import styled from 'styled-components';
 
 const UserListStyle = styled.div`
   border-top: 1px solid #ced4da;
-  padding: 1.4rem;
+  padding: 1rem;
   border-bottom: none;
+  cursor: pointer;
 
   &:hover {
     background: #4fad65;
     color: white;
-    padding: 1.4rem;
+    padding: 1rem;
     border-radius: 5px;
   }
 `;

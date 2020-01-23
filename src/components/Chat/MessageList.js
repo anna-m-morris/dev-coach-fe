@@ -2,24 +2,30 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledMessageList = styled.div`
-  overflow-y: scroll;
   flex: 1;
+  max-height: 100vh;
 
   .ul {
     list-style: none;
-  }
 
-  .li {
-    margin-top: 13;
-    margin-bottom: 13;
-  }
+    .li {
+      margin-top: 2rem;
+      background: white;
+      width: 30%;
+      color: black;
+      box-shadow: 0 6px 8px #d3d3d3;
+      border-radius: 10px;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.3rem;
+      margin-left: 67%;
 
-  .send-username {
-    font-weight: bold;
-  }
-
-  .message {
-    font-weight: bold;
+      .body {
+        border-bottom: 1px solid #ced4da;
+        padding-bottom: 0.4rem;
+      }
+    }
   }
 `;
 
@@ -30,7 +36,7 @@ const MessageList = props => {
         {props.messages &&
           props.messages.map((message, index) => (
             <li key={index} className='li'>
-              <div>
+              <div className='body'>
                 <span className='send-username'>
                   {message.senderId}
                 </span>{' '}

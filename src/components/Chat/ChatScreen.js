@@ -20,6 +20,7 @@ const StyledChatScreen = styled.div`
     display: flex;
     flex: 1;
     width: 100%;
+    justify-content: flex-end;
   }
 
   .whos-online-list-container {
@@ -49,6 +50,7 @@ const StyledChatScreen = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    height: 85vh;
   }
 `;
 class ChatScreen extends React.Component {
