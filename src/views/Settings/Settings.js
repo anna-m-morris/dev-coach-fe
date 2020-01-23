@@ -239,7 +239,7 @@ function Settings(props) {
                   fullWidth
                   id='first_name'
                   label={userInfo.first_name}
-                  value={userInfo.first_name}
+                  placeholder={userInfo.first_name}
                   onChange={handleChange}
                   autoFocus
                 />
@@ -250,10 +250,10 @@ function Settings(props) {
                   required
                   fullWidth
                   id='lastName'
+                  placeholder={userInfo.last_name}
                   label={userInfo.last_name}
                   name='last_name'
                   autoComplete='lname'
-                  value={userInfo.last_name}
                   onChange={handleChange}
                 />
               </Grid>
@@ -266,7 +266,7 @@ function Settings(props) {
                   label={userInfo.email}
                   name='email'
                   autoComplete='email'
-                  value={userInfo.email}
+                  placeholder={userInfo.email}
                   onChange={handleChange}
                 />
               </Grid>

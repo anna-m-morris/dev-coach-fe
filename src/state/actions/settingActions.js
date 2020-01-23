@@ -13,6 +13,7 @@ export const updateUserInfo = (
   axios
     .put(`${url}user/settings`, userInfo)
     .then(res => {
+      debugger;
       showSuccess();
       setTimeout(() => closeMessage(), 5000);
       dispatch({

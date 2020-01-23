@@ -90,7 +90,7 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         userUpdated: true,
-        user: { ...state.user.id, copyPayload },
+        user: { id: state.user.id, ...copyPayload },
       };
     case types.USER_INFO_UPDATE_FAILED:
       return {
