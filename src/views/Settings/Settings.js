@@ -215,7 +215,7 @@ function Settings(props) {
                   style={{
                     width: '100%',
                     borderRadius: '50%',
-                    marginTop: '31px',
+                    marginTop: '33px',
                   }}
                 />
               ) : (
@@ -224,7 +224,7 @@ function Settings(props) {
                   style={{
                     width: '100%',
                     borderRadius: '50%',
-                    marginTop: '31px',
+                    marginTop: '33px',
                   }}
                 />
               )}
