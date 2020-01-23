@@ -83,10 +83,14 @@ function userReducer(state = initialState, action) {
         isLoading: true,
       };
     case types.USER_INFO_UPDATE_SUCCESSFUL:
+      const copyPayload = { ...action.payload };
+      delete copyPayload.id;
+      delete copyPayload.password;
+
       return {
         ...state,
         userUpdated: true,
-        user: action.payload,
+        user: { ...state.user.id, copyPayload },
       };
     case types.USER_INFO_UPDATE_FAILED:
       return {
