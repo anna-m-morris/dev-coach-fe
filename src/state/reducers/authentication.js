@@ -86,7 +86,6 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         userUpdated: true,
-        user: action.payload,
       };
     case types.USER_INFO_UPDATE_FAILED:
       return {
