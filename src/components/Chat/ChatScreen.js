@@ -68,6 +68,7 @@ class ChatScreen extends React.Component {
         url: `${process.env.REACT_APP_BASE_URL}chat/auth`,
       }),
     });
+
     chatManager
       .connect()
       .then(currentUser => {
@@ -77,7 +78,6 @@ class ChatScreen extends React.Component {
           messageLimit: 100,
           hooks: {
             onMessage: message => {
-              debugger;
               this.setState({
                 messages: [...this.state.messages, message],
               });
