@@ -38,7 +38,7 @@ const StyledSettings = styled.div`
 
   .image-container {
     border-radius: 120px;
-    width: 120px;
+    width: 50%;
     height: 120px;
     opacity: 0.7;
     z-index: 2;
@@ -48,6 +48,14 @@ const StyledSettings = styled.div`
     align-items: center;
     -webkit-box-pack: center;
     justify-content: center;
+    /* padding: 1rem; */
+    img {
+      width: 100%;
+      height: 8rem;
+      margin: 0;
+      border-radius: 50%;
+      cursor: pointer;
+    }
   }
 
   .form {
@@ -190,25 +198,9 @@ function Settings(props) {
               onChange={handlePictureChange}
             >
               {userInfo.avatar_url ? (
-                <img
-                  src={userInfo.avatar_url}
-                  alt='avatar'
-                  style={{
-                    width: '100%',
-                    borderRadius: '50%',
-                    marginTop: '33px',
-                  }}
-                />
+                <img src={userInfo.avatar_url} alt='avatar' />
               ) : (
-                <img
-                  src={placeholder}
-                  alt='placeholder'
-                  style={{
-                    width: '100%',
-                    borderRadius: '50%',
-                    marginTop: '33px',
-                  }}
-                />
+                <img src={placeholder} alt='placeholder' />
               )}
             </Upload>
           </div>
