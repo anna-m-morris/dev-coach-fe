@@ -179,7 +179,7 @@ function Settings(props) {
 
     updateUserInfo(
       user.id,
-      userInfo,
+      { ...userInfo, oldEmail: user.email },
       showErrorMessage,
       showSuccessMessage,
     );
