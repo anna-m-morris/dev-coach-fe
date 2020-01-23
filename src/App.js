@@ -31,7 +31,7 @@ function App(props) {
   const routes = (
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
-      {props.role_id === 1 ? (
+      {props.user && props.user.role_id === 1 ? (
         <Route path={'/marketplace'} component={Marketplace} />
       ) : null}
       <Route path={'/appointment'} component={Booking} />
@@ -40,7 +40,7 @@ function App(props) {
       <Route path={'/interview'} component={VideoChat} />
       <Route path={'/Settings'} component={Settings} />
       <Route path={'/FAQ'} component={MainFaq} />
-      {props.role_id === 1 ? (
+      {props.user && props.user.role_id === 1 ? (
         <Route path={'/start_chat'} component={StartChat} />
       ) : null}
       <Route path={'/chat'} component={Chat} />
@@ -79,7 +79,7 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    role_id: state.userReducer.user.role_id,
+    user: state.userReducer.user,
   };
 };
 
