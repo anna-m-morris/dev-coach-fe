@@ -32,6 +32,13 @@ const useStyles = makeStyles(theme => ({
   backButton: {
     marginRight: theme.spacing(1),
   },
+  nextButton: {
+    background: '#4fad65',
+
+    '&:hover': {
+      background: '#4fad65',
+    },
+  },
   instruction: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
@@ -92,7 +99,7 @@ const BookingStepper = props => {
     <>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map(label => (
-          <Step className='' key={label}>
+          <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
         ))}
@@ -201,6 +208,7 @@ const BookingStepper = props => {
             Back
           </Button>
           <Button
+            className={classes.nextButton}
             variant='contained'
             color='primary'
             onClick={handleNext}

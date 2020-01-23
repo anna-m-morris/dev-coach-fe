@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import styled from 'styled-components';
+import { Input } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import placeholder from '../../img/avatar_placeholder.PNG';
 import { Upload, Icon, message } from 'antd';
+import placeholder from '../../img/avatar_placeholder.PNG';
 
-import axios from 'axios';
 import {
   showErrorMessage,
   showSuccessMessage,
@@ -18,7 +19,6 @@ import {
 } from '../../state/actions/notificationActions';
 import Notification from '../../components/Notifications/Notification';
 import { updateUserInfo } from '../../state/actions/settingActions';
-import { Input } from '@material-ui/core';
 
 const StyledSettings = styled.div`
   width: 100%;
@@ -148,7 +148,7 @@ function Settings(props) {
       getBase64(info.file.originFileObj, avatar_url =>
         setUserInfo({
           ...userInfo,
-          avatar_url: avatar_url,
+          avatar_url,
         }),
       );
     }

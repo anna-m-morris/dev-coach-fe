@@ -17,6 +17,14 @@ function userReducer(state = initialState, action) {
   switch (action.type) {
     default:
       return state;
+    case types.SET_ROLE_ID:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          role_id: action.payload,
+        },
+      };
     case types.LOGIN_START:
       return {
         ...state,
@@ -53,7 +61,7 @@ function userReducer(state = initialState, action) {
         userHasChosenRole: true,
         user: {
           ...state.user,
-          role_id: action.role,
+          role_id: state.user.role_id,
         },
       };
     case types.USER_ROLE_ERROR:
