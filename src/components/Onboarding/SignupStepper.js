@@ -102,8 +102,9 @@ const SignupStepper = props => {
             onClick={handleNext}
             className={classes.nextButton}
             disabled={
-              activeStep === 1 &&
-              props.userReducer.user.role_id === null
+              (activeStep === 1 &&
+                props.userReducer.user.role_id === null) ||
+              props.userReducer.user === null
             }
           >
             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
