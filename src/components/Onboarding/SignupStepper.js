@@ -12,21 +12,24 @@ import UserType from './UserType';
 import CoachForm from './CoachForm';
 import StudentForm from './StudentForm';
 
-// import { saveDetails } from '../../state/actions/authenticationActions';
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     height: '100vh',
-    paddingTop: '4rem',
+    background: '#f2f2f2',
+    maxWidth: '100%',
   },
   stepper: {
-    width: '50rem',
+    width: '100%',
+    padding: '2rem 0 2rem 0',
   },
   backButton: {
     marginRight: theme.spacing(1),
+  },
+  nextButton: {
+    background: '#408f53',
   },
   instructions: {
     marginTop: theme.spacing(1),
@@ -39,8 +42,6 @@ function getSteps() {
 }
 
 const SignupStepper = props => {
-  console.log(props);
-
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -70,7 +71,6 @@ const SignupStepper = props => {
           </Step>
         ))}
       </Stepper>
-
       {activeStep === 0 && <SignUp handleNext={handleNext} />}
       {activeStep === 1 && <UserType handleNext={handleNext} />}
       {activeStep === 2 && props.userReducer.user.role_id === 1 && (
@@ -100,6 +100,7 @@ const SignupStepper = props => {
             variant='contained'
             color='primary'
             onClick={handleNext}
+            className={classes.nextButton}
           >
             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
           </Button>

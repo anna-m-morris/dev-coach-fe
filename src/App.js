@@ -3,14 +3,10 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { connect } from 'react-redux';
 import LoginForm from './components/Forms/LoginForm';
-import SignUpForm from './components/Forms/SignUpForm';
 import Dashboard from './components/Dashboard';
 import UserDashboard from './views/UserDashboard/UserDashboard';
 import Marketplace from './views/Marketplace/Marketplace';
 import Landing from './components/Landing';
-import InterviewerForm from './components/Forms/InterviewerForm';
-import StudentForm from './components/Forms/StudentForm';
-import UserTypePage from './components/UserType/UserTypePage';
 import MainFaq from './components/FAQ/Main';
 import LandingFaq from './components/FAQ/LandingFaq';
 import Booking from './components/Booking/Booking';
@@ -20,8 +16,6 @@ import Chat from './components/Chat/ChatScreen';
 import StartChat from './components/Chat/Chat';
 import Settings from './views/Settings/Settings';
 import GiveFeedback from './views/Feedback/GiveFeedback';
-
-// delete
 import SignUp from './components/Onboarding/SignupStepper';
 
 const globalTheme = createMuiTheme({
@@ -54,17 +48,7 @@ function App() {
       </ThemeProvider>
     );
   }
-  // if (localStorage.getItem('tempuser')) {
-  //   return (
-  //     <Switch>
-  //       <Route exact path='/' component={Landing} />
-  //       <Route path='/userrole' component={UserTypePage} />
-  //       <Route path='/interviewer' component={InterviewerForm} />
-  //       <Route path='/student' component={StudentForm} />
-  //       <Redirect to='/userrole' />
-  //     </Switch>
-  //   );
-  // }
+
   return (
     <Switch>
       <Route exact path='/' component={Landing} />

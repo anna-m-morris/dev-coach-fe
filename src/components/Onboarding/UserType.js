@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { StyledButton, buttonTheme } from '../Landing';
@@ -47,10 +46,12 @@ const StyledUserType = styled.div`
         list-style: none;
         padding: 1rem 0;
         text-align: center;
+        color: #808080;
       }
     }
     h3 {
       font-size: 1.4rem;
+      color: #141414;
     }
   }
 `;
@@ -64,14 +65,14 @@ const UserTypePage = ({ saveRoleId, handleNext }) => {
             <h3>As A Coach</h3>
             <ul>
               <li>
-                Set your own <strong>income</strong>
+                Set your own <b>income</b>
               </li>
               <li>
-                <strong>Coach</strong> beginner developers through the
-                technical interview
+                <b>Coach</b> beginner developers through the technical
+                interview
               </li>
               <li>
-                Help <strong>grow</strong> this community
+                Help <b>grow</b> this community
               </li>
             </ul>
           </div>
@@ -89,15 +90,13 @@ const UserTypePage = ({ saveRoleId, handleNext }) => {
             <h3>As A Student</h3>
             <ul>
               <li>
-                <strong>Master</strong> the technical interview
+                <b>Master</b> the technical interview
               </li>
               <li>
-                Feel <strong>confident</strong> in the online
-                interview setting
+                Feel <b>confident</b> in the online interview setting
               </li>
               <li>
-                Land your <strong>dream</strong> job and get dat
-                moneyyssss
+                Land your <b>dream</b> job and get dat moneyyssss
               </li>
             </ul>
           </div>
