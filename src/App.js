@@ -27,18 +27,22 @@ const globalTheme = createMuiTheme({
   },
 });
 
-function App() {
+function App(props) {
   const routes = (
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
-      <Route path={'/marketplace'} component={Marketplace} />
+      {props.role_id === 1 ? (
+        <Route path={'/marketplace'} component={Marketplace} />
+      ) : null}
       <Route path={'/appointment'} component={Booking} />
       <Route path={'/feedback'} component={Feedback} />
       <Route path={'/givefeedback'} component={GiveFeedback} />
       <Route path={'/interview'} component={VideoChat} />
       <Route path={'/Settings'} component={Settings} />
       <Route path={'/FAQ'} component={MainFaq} />
-      <Route path={'/start_chat'} component={StartChat} />
+      {props.role_id === 1 ? (
+        <Route path={'/start_chat'} component={StartChat} />
+      ) : null}
       <Route path={'/chat'} component={Chat} />
       <Redirect to='/dashboard' />
     </Switch>
@@ -75,8 +79,7 @@ function App() {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.userReducer.isLoggedIn,
-    userHasChosenRole: state.userReducer.userHasChosenRole,
+    role_id: state.userReducer.user.role_id,
   };
 };
 
