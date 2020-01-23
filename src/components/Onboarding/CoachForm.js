@@ -14,8 +14,8 @@ import {
 import { Autocomplete } from '@material-ui/lab/';
 import { countries } from '../Forms/countries';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
-import { buttonTheme, Logo } from '../Landing';
-import { FormButton, InfoParagraph } from '../Forms/StudentForm';
+import { buttonTheme, Logo } from '../Landing/Landing-styles';
+import { FormButton, InfoParagraph } from './StudentForm';
 
 const CoachCardContainer = styled.div`
   max-width: 100%;
