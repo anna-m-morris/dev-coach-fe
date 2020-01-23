@@ -6,7 +6,7 @@ import MessageList from './MessageList';
 import SendMessageForm from './SendMessage';
 import UserList from './UserList';
 import { getRooms } from '../../state/actions/chatActions';
-
+import TypingIndicator from './TypingIndicator';
 const StyledChatScreen = styled.div`
   border-top: 1px solid #ced4da;
   height: 85vh;
@@ -57,6 +57,7 @@ class ChatScreen extends React.Component {
     currentRoom: {},
     messages: [],
     error: null,
+    usersWhoAreTyping: [],
   };
 
   componentDidMount = () => {
@@ -89,6 +90,21 @@ class ChatScreen extends React.Component {
                 messages: [...this.state.messages, message],
               });
             },
+            onUserStartedTyping: user => {
+              this.setState({
+                usersWhoAreTyping: [
+                  ...this.state.usersWhoAreTyping,
+                  user.name,
+                ],
+              });
+            },
+            onUserStoppedTyping: user => {
+              this.setState({
+                usersWhoAreTyping: this.state.usersWhoAreTyping.filter(
+                  username => username !== user.name,
+                ),
+              });
+            },
           },
         });
       })
@@ -104,6 +120,13 @@ class ChatScreen extends React.Component {
       roomId: this.state.currentRoom.id,
     });
   };
+
+  sendTypingEvent = () => {
+    this.state.currentUser
+      .isTypingIn({ roomId: this.state.currentRoom.id })
+      .catch(error => this.setState({ error }));
+  };
+
   render() {
     return (
       <StyledChatScreen>
@@ -119,7 +142,13 @@ class ChatScreen extends React.Component {
           </aside>
           <section className='chat-list-container'>
             <MessageList messages={this.state.messages} />
-            <SendMessageForm onSubmit={this.sendMessage} />
+            <TypingIndicator
+              usersWhoAreTyping={this.state.usersWhoAreTyping}
+            />
+            <SendMessageForm
+              onSubmit={this.sendMessage}
+              onChange={this.sendTypingEvent}
+            />
           </section>
         </div>
       </StyledChatScreen>
