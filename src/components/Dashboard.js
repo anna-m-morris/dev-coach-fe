@@ -18,7 +18,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { ListComponent } from '../utils/dashboardList';
 import logo from '../img/firelogo.png';
 import { logout } from '../state/actions/authenticationActions';
@@ -171,7 +171,7 @@ const Dashboard = props => {
 
   const handleLogout = () => {
     setAnchorEl(null);
-    props.logout();
+    props.logout(props);
   };
 
   const handleMenu = event => {
@@ -245,9 +245,7 @@ const Dashboard = props => {
               <Link className={classes.link} to='/settings'>
                 <MenuItem>Settings</MenuItem>
               </Link>
-              <MenuItem onClick={() => handleLogout(props)}>
-                Logout
-              </MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </div>
         </Toolbar>
@@ -309,6 +307,6 @@ const Dashboard = props => {
   );
 };
 
-export default connect(state => state.userReducer, { logout })(
-  Dashboard,
+export default withRouter(
+  connect(state => state.userReducer, { logout })(Dashboard),
 );
