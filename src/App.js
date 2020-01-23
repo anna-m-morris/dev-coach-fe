@@ -6,7 +6,7 @@ import LoginForm from './components/Forms/LoginForm';
 import Dashboard from './components/Dashboard';
 import UserDashboard from './views/UserDashboard/UserDashboard';
 import Marketplace from './views/Marketplace/Marketplace';
-import Landing from './components/Landing';
+import Landing from './components/Landing/Landing-2';
 import MainFaq from './components/FAQ/Main';
 import LandingFaq from './components/FAQ/LandingFaq';
 import Booking from './components/Booking/Booking';
@@ -24,18 +24,22 @@ const globalTheme = createMuiTheme({
   },
 });
 
-function App() {
+function App(props) {
   const routes = (
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
-      <Route path={'/marketplace'} component={Marketplace} />
+      {props.user && props.user.role_id === 1 ? (
+        <Route path={'/marketplace'} component={Marketplace} />
+      ) : null}
       <Route path={'/appointment'} component={Booking} />
       <Route path={'/feedback'} component={Feedback} />
       <Route path={'/givefeedback'} component={GiveFeedback} />
       <Route path={'/interview'} component={VideoChat} />
       <Route path={'/Settings'} component={Settings} />
       <Route path={'/FAQ'} component={MainFaq} />
-      <Route path={'/start_chat'} component={StartChat} />
+      {props.user && props.user.role_id === 1 ? (
+        <Route path={'/start_chat'} component={StartChat} />
+      ) : null}
       <Route path={'/chat'} component={Chat} />
       <Redirect to='/dashboard' />
     </Switch>
@@ -62,8 +66,7 @@ function App() {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.userReducer.isLoggedIn,
-    userHasChosenRole: state.userReducer.userHasChosenRole,
+    user: state.userReducer.user,
   };
 };
 
