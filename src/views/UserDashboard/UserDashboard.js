@@ -150,7 +150,7 @@ const UserDashboard = props => {
         <div className='top-data-section'>
           <h3>Average rating:</h3>
           <h3>
-            {props.feedback.length
+            {props.feedback && props.feedback.length
               ? `${calculateFormattedMean(props.feedback)}`
               : 'N/A'}
           </h3>
