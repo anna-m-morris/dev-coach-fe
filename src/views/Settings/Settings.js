@@ -148,7 +148,7 @@ function Settings(props) {
       getBase64(info.file.originFileObj, avatar_url =>
         setUserInfo({
           ...userInfo,
-          avatar_url: avatar_url,
+          avatar_url,
         }),
       );
     }
@@ -178,7 +178,7 @@ function Settings(props) {
     e.preventDefault();
     updateUserInfo(
       user.id,
-      userInfo,
+      { ...userInfo, oldEmail: user.email },
       showErrorMessage,
       showSuccessMessage,
     );
