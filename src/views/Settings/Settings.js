@@ -176,6 +176,7 @@ function Settings(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
+
     updateUserInfo(
       user.id,
       userInfo,
