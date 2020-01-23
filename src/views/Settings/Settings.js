@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import styled from 'styled-components';
+import { Input } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { Upload, Icon, message } from 'antd';
 import Container from '@material-ui/core/Container';
-import woman from '../../img/woman.jpg';
+import placeholder from '../../img/avatar_placeholder.PNG';
+
 import {
   showErrorMessage,
   showSuccessMessage,
@@ -47,6 +51,20 @@ const StyledSettings = styled.div`
       cursor: pointer;
     }
   }
+`;
+
+const ImageDiv = styled.div`
+  border-radius: 120px;
+  width: 120px;
+  height: 120px;
+  opacity: 0.7;
+  z-index: 2;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
 `;
 
 const useStyles = makeStyles(theme => ({
@@ -89,9 +107,64 @@ function Settings(props) {
     email: user && user.email,
     password: '',
     confirm_password: '',
+    avatar_url: user && user.avatar_url,
   };
 
   const [userInfo, setUserInfo] = useState(initialUserInfo);
+
+  const handleUpload = ({ file, onSuccess }) => {
+    const image = new FormData();
+    image.append('upload_preset', 'embouib2');
+    image.append('file', file);
+    const config = {
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
+    };
+    axios
+      .post(
+        'https://api.cloudinary.com/v1_1/ojokure/image/upload',
+        image,
+        config,
+      )
+      .then(res => {
+        const secureUrl = res.data.secure_url;
+        setUserInfo({
+          ...userInfo,
+          avatar_url: secureUrl,
+        });
+      });
+  };
+
+  function getBase64(img, callback) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.readAsDataURL(img);
+  }
+
+  const handlePictureChange = info => {
+    if (info.file.status === 'uploading') {
+      return;
+    }
+    if (info.file.status === 'done') {
+      getBase64(info.file.originFileObj, avatar_url =>
+        setUserInfo({
+          ...userInfo,
+          avatar_url,
+        }),
+      );
+    }
+  };
+  function beforeUpload(file) {
+    const isJpgOrPng =
+      file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!');
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      message.error('Image must smaller than 2MB!');
+    }
+    return isJpgOrPng && isLt2M;
+  }
 
   const handleChange = e => {
     const { value, name } = e.target;
@@ -121,16 +194,38 @@ function Settings(props) {
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <div className={classes.paper}>
-          <img
-            src={!userInfo ? woman : userInfo.avatar_url}
-            style={{
-              paddingTop: '20px',
-              width: '40%',
-              borderRadius: '50%',
-            }}
-            alt='user'
-          />
-
+          <ImageDiv>
+            <Upload
+              name='avatar'
+              listType='picture-card'
+              className='avatar-uploader'
+              showUploadList={false}
+              customRequest={handleUpload}
+              beforeUpload={beforeUpload}
+              onChange={handlePictureChange}
+            >
+              {userInfo.avatar_url ? (
+                <img
+                  src={userInfo.avatar_url}
+                  alt='avatar'
+                  style={{
+                    width: '100%',
+                    borderRadius: '50%',
+                    marginTop: '33px',
+                  }}
+                />
+              ) : (
+                <img
+                  src={placeholder}
+                  style={{
+                    width: '100%',
+                    borderRadius: '50%',
+                    marginTop: '33px',
+                  }}
+                />
+              )}
+            </Upload>
+          </ImageDiv>
           <Typography component='h1' variant='h5'>
             Personal Information
           </Typography>
