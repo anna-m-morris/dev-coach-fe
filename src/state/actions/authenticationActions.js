@@ -9,7 +9,6 @@ export const login = (props, values) => dispatch => {
   axios
     .post(`${url}user/login`, values)
     .then(res => {
-      console.log(res);
       dispatch({
         type: types.LOGIN_SUCCESSFUL,
         payload: res.data.user,
