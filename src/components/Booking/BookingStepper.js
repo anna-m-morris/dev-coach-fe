@@ -94,7 +94,7 @@ const BookingStepper = props => {
           </div>
         ) : (
           <div>
-            <Payment />
+            <Payment handleStripePayment />
           </div>
         )}
       </div>

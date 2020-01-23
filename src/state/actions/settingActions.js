@@ -28,3 +28,34 @@ export const updateUserInfo = (
       });
     });
 };
+
+// export const handleUpload = e => {
+//   const fileList = e.target.files;
+//   console.log('1', fileList);
+//   const img = new FormData();
+//   console.log('2', img);
+
+//   img.append('upload_preset', 'embouib2');
+//   img.append('file', fileList[0]);
+//   console.log('3', img);
+
+//   const config = {
+//     headers: {
+//       'X-Requested-With': 'XMLHttpRequest',
+//     },
+//   };
+//   axios
+//     .post(
+//       'https://api.cloudinary.com/v1_1/ojokure/image/upload',
+//       img,
+//       config,
+//     )
+//     .then(res => {
+//       setUserInfo({ ...userInfo, avatar_url: res.data.secure_url });
+//       console.log('5', res.data.secure_url);
+//       console.log('7', userInfo);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// };
