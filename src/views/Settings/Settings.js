@@ -111,7 +111,6 @@ function Settings(props) {
   };
 
   const [userInfo, setUserInfo] = useState(initialUserInfo);
-  const [imageUrl, setImageUrl] = useState('');
 
   const handleUpload = ({ file, onSuccess }) => {
     const image = new FormData();
@@ -132,9 +131,6 @@ function Settings(props) {
           ...userInfo,
           avatar_url: secureUrl,
         });
-      })
-      .catch(err => {
-        console.log(err);
       });
   };
 
