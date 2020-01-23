@@ -49,8 +49,8 @@ const StyledChatScreen = styled.div`
 `;
 class ChatScreen extends React.Component {
   state = {
-    currentUser: {},
-    currentRoom: {},
+    currentUser: null,
+    currentRoom: null,
     messages: [],
     error: null,
     usersWhoAreTyping: [],
@@ -142,6 +142,7 @@ class ChatScreen extends React.Component {
             <SendMessageForm
               onSubmit={this.sendMessage}
               onChange={this.sendTypingEvent}
+              currentRoom={this.state.currentRoom}
             />
           </section>
         </div>

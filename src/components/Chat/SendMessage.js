@@ -40,19 +40,20 @@ const iconStyles = {
   color: 'white',
 };
 
-const SendMessageForm = props => {
-  const { onSubmit, onChange } = props;
+const SendMessageForm = ({ onSubmit, onChange, currentRoom }) => {
   const [text, setText] = useState('');
 
   const onSubmission = e => {
     e.preventDefault();
-    onSubmit(text);
+
+    if (currentRoom) onSubmit(text);
+
     setText('');
   };
 
   const onChangeHandle = e => {
     setText(e.target.value);
-    if (onChange) {
+    if (onChange && currentRoom) {
       onChange();
     }
   };
