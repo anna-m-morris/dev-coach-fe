@@ -111,29 +111,26 @@ function Settings(props) {
   };
 
   const [userInfo, setUserInfo] = useState(initialUserInfo);
+  const [imageUrl, setImageUrl] = useState('');
 
-  const handleUpload = e => {
-    const fileList = e.target.files;
-    const img = new FormData();
-
-    img.append('upload_preset', 'embouib2');
-    img.append('file', fileList[0]);
-
+  const handleUpload = ({ file, onSuccess }) => {
+    const image = new FormData();
+    image.append('upload_preset', 'embouib2');
+    image.append('file', file);
     const config = {
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-      },
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
     };
     axios
       .post(
         'https://api.cloudinary.com/v1_1/ojokure/image/upload',
-        img,
+        image,
         config,
       )
       .then(res => {
+        const secureUrl = res.data.secure_url;
         setUserInfo({
           ...userInfo,
-          avatar_url: res.data.secure_url,
+          avatar_url: secureUrl,
         });
       })
       .catch(err => {
@@ -141,6 +138,25 @@ function Settings(props) {
       });
   };
 
+  function getBase64(img, callback) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.readAsDataURL(img);
+  }
+
+  const handlePictureChange = info => {
+    if (info.file.status === 'uploading') {
+      return;
+    }
+    if (info.file.status === 'done') {
+      getBase64(info.file.originFileObj, avatar_url =>
+        setUserInfo({
+          ...userInfo,
+          avatar_url: avatar_url,
+        }),
+      );
+    }
+  };
   function beforeUpload(file) {
     const isJpgOrPng =
       file.type === 'image/jpeg' || file.type === 'image/png';
@@ -188,9 +204,9 @@ function Settings(props) {
               listType='picture-card'
               className='avatar-uploader'
               showUploadList={false}
-              customRequest
+              customRequest={handleUpload}
               beforeUpload={beforeUpload}
-              onChange={handleUpload}
+              onChange={handlePictureChange}
             >
               {userInfo.avatar_url ? (
                 <img
