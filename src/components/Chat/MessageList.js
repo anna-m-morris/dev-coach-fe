@@ -9,9 +9,12 @@ const StyledMessageList = styled.div`
     list-style: none;
   }
 
-  .li {
-    margin-top: 13;
-    margin-bottom: 13;
+  .my-message {
+    color: blue;
+  }
+
+  .peer-message {
+    color: red;
   }
 
   .send-username {
@@ -23,13 +26,20 @@ const StyledMessageList = styled.div`
   }
 `;
 
-const MessageList = props => {
+const MessageList = ({ messages, userId }) => {
   return (
     <StyledMessageList>
       <ul className='ul'>
-        {props.messages &&
-          props.messages.map((message, index) => (
-            <li key={index} className='li'>
+        {messages &&
+          messages.map((message, index) => (
+            <li
+              key={index}
+              className={
+                message.senderId === userId
+                  ? 'my-message'
+                  : 'peer-message'
+              }
+            >
               <div>
                 <span className='send-username'>
                   {message.senderId}

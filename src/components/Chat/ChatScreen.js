@@ -28,21 +28,20 @@ const StyledChatScreen = styled.div`
     border: 1px solid #ced4da;
     width: 30%;
     flex: none;
-    color: 	#2F4F4F;
+    color: #2f4f4f;
     border-radius: 5px;
     text-align: center;
     font-family: 'Ubuntu, sans-serif';
 
     h5 {
-    padding-left: 1rem;  
-    padding-right: 1rem;
-    font-size: 1.15rem;  
+      padding-left: 1rem;
+      padding-right: 1rem;
+      font-size: 1.15rem;
     }
 
     .smallerP {
       font-size: 1.1rem;
     }
-
   }
 
   .chat-list-container {
@@ -86,6 +85,7 @@ class ChatScreen extends React.Component {
           messageLimit: 100,
           hooks: {
             onMessage: message => {
+              debugger;
               this.setState({
                 messages: [...this.state.messages, message],
               });
@@ -133,7 +133,9 @@ class ChatScreen extends React.Component {
         <div className='chat-container'>
           <aside className='whos-online-list-container'>
             <h5>Your Chats</h5>
-            <h5 className='smallerP'>Select a conversation to send a message</h5>
+            <h5 className='smallerP'>
+              Select a conversation to send a message
+            </h5>
             <UserList
               rooms={this.props.rooms}
               user={this.props.user}
@@ -141,7 +143,10 @@ class ChatScreen extends React.Component {
             />
           </aside>
           <section className='chat-list-container'>
-            <MessageList messages={this.state.messages} />
+            <MessageList
+              messages={this.state.messages}
+              userId={this.props.user.email}
+            />
             <TypingIndicator
               usersWhoAreTyping={this.state.usersWhoAreTyping}
             />
