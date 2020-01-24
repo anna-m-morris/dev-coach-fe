@@ -21,7 +21,7 @@ export default styled.div`
     padding: 1.6rem 2rem;
     background: white;
     border-radius: 6px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
     width: 22rem;
   }
 
@@ -39,6 +39,12 @@ export default styled.div`
     .avatar-uploader {
       border-radius: 50%;
       cursor: pointer;
+      transition: ease-out 0.3s;
+
+      &:hover {
+        transition: ease-in 0.3s;
+        filter: brightness(60%);
+      }
     }
 
     .picture {
