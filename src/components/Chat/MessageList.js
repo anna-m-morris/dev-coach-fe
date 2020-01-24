@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const StyledMessageList = styled.div`
   overflow-y: scroll;
-  flex: 1;
   height: 80vh;
 
   .ul {

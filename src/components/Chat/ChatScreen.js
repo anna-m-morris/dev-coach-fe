@@ -7,6 +7,7 @@ import SendMessageForm from './SendMessage';
 import UserList from './UserList';
 import { getRooms } from '../../state/actions/chatActions';
 import TypingIndicator from './TypingIndicator';
+
 const StyledChatScreen = styled.div`
   border-top: 1px solid #ced4da;
   height: 85vh;
@@ -47,10 +48,11 @@ const StyledChatScreen = styled.div`
     flex-direction: column;
   }
 `;
+
 class ChatScreen extends React.Component {
   state = {
-    currentUser: {},
-    currentRoom: {},
+    currentUser: null,
+    currentRoom: null,
     messages: [],
     error: null,
     usersWhoAreTyping: [],
@@ -142,6 +144,7 @@ class ChatScreen extends React.Component {
             <SendMessageForm
               onSubmit={this.sendMessage}
               onChange={this.sendTypingEvent}
+              currentRoom={this.state.currentRoom}
             />
           </section>
         </div>
@@ -149,6 +152,7 @@ class ChatScreen extends React.Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     roomId: state.chatReducer.roomId,
@@ -157,4 +161,5 @@ const mapStateToProps = state => {
     user: state.userReducer.user,
   };
 };
+
 export default connect(mapStateToProps, { getRooms })(ChatScreen);
