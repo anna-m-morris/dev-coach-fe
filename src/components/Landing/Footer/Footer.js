@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { StyledButton, buttonTheme } from '../Landing-styles';
 import { FooterContainer } from './Footer-styles';
 
@@ -15,9 +16,9 @@ const Footer = () => (
         <h2>What are you waiting for?</h2>
       </div>
       <div className='cta-button'>
-        <a href='/register'>
+        <Link to='/register'>
           <StyledButton theme={buttonTheme}>Join Now</StyledButton>
-        </a>
+        </Link>
       </div>
     </div>
     <div className='footer-bottom'>
