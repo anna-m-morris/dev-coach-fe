@@ -37,7 +37,6 @@ export const FormButton = styled(StyledButton)`
 export const InfoParagraph = styled.p`
   width: 85%;
   text-align: center;
-  padding-bottom: 0.8em;
 `;
 
 const StudentCardContainer = styled.div`
