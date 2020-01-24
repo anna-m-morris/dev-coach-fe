@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import MessageList from './MessageList';
 import SendMessageForm from './SendMessage';
 import UserList from './UserList';
-import { getRooms } from '../../state/actions/chatActions';
+import { getRooms, saveCurrentUser } from '../../state/actions/chatActions';
 import TypingIndicator from './TypingIndicator';
 
 const StyledChatScreen = styled.div`
@@ -74,14 +74,22 @@ class ChatScreen extends React.Component {
     chatManager
       .connect()
       .then(currentUser => {
+        debugger;
         this.setState({ currentUser });
+        this.props.saveCurrentUser(currentUser);
         return currentUser.subscribeToRoom({
           roomId,
           messageLimit: 100,
           hooks: {
             onMessage: message => {
               this.setState({
-                messages: [...this.state.messages, message],
+                messages: [
+                  ...this.state.messages,
+                  message ===
+                  this.state.messages[this.state.messages.length]
+                    ? null
+                    : message,
+                ],
               });
             },
             onUserStartedTyping: user => {
@@ -103,11 +111,13 @@ class ChatScreen extends React.Component {
         });
       })
       .then(currentRoom => {
+        debugger;
         this.setState({ currentRoom });
       })
       .catch(error => this.setState({ error }));
   };
   sendMessage = text => {
+    debugger;
     this.state.currentUser.sendMessage({
       text,
       roomId: this.state.currentRoom.id,
@@ -162,4 +172,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getRooms })(ChatScreen);
+export default connect(mapStateToProps, { getRooms, saveCurrentUser })(ChatScreen);
