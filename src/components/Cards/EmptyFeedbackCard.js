@@ -65,7 +65,7 @@ const StyledContainer = styled.div`
 const EmptyFeedback = () => {
   return (
     <StyledContainer>
-      <h3>You Do Not Have Any Feedback</h3>
+      <h3>You don't have any feedback.</h3>
       <div className='imgDiv'>
         <Empty description={false} />
       </div>

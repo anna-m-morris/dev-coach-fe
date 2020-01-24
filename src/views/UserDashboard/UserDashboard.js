@@ -12,32 +12,26 @@ import {
 } from '../../state/actions/appointmentActions';
 import { saveIdRole } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
-
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 import NewAppointmentCard from '../../components/Cards/newAppointmentCard';
 
-const StyledContainer = styled.div`
+const DashboardContainer = styled.div`
   width: 100%;
   height: 100%;
-  max-width: 1024px;
-  margin: 1rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 
   .appointment-title {
-    margin-top: 3rem;
     color: #595959;
     font-size: 1.8rem;
     font-weight: 400;
   }
-
   .top-data-card {
-    margin-top: -3em;
     padding: 1rem;
     height: 8em;
-    width: 100%;
+    width: 80%;
     background: #fff;
     border-radius: 5px;
     box-shadow: 0px 0px 4px rgba(82, 68, 110, 0.3);
@@ -45,17 +39,23 @@ const StyledContainer = styled.div`
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    margin-bottom: -2em;
+    margin-bottom: 2em;
     color: #4a4a4a;
-    .top-data-section {
-    }
   }
+
+  .appointment-cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .appointments {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
+    margin-top: 2em;
   }
   .pagination {
     padding: 2em;
@@ -156,7 +156,8 @@ const UserDashboard = props => {
     return (sum.rating / arr.length).toString().slice(0, 4);
   };
   return (
-    <StyledContainer className='appointments-container'>
+    <DashboardContainer>
+      <h2 className='appointment-title'>Scheduled Interviews</h2>
       <div className='top-data-card'>
         <div className='top-data-section'>
           <h3>Average rating:</h3>
@@ -177,9 +178,8 @@ const UserDashboard = props => {
           </h3>
         </div>
       </div>
-      <h2 className='appointment-title'>Scheduled Interviews</h2>
       {appointments ? (
-        <StyledContainer>
+        <div className='appointment-cards-container'>
           {appointments && appointments.length ? (
             <div className='appointments'>
               {appointments
@@ -209,7 +209,7 @@ const UserDashboard = props => {
           ) : (
             <EmptyAppointment />
           )}
-        </StyledContainer>
+        </div>
       ) : (
         <div className='loaderStyled'>
           <Loader
@@ -220,7 +220,7 @@ const UserDashboard = props => {
           />
         </div>
       )}
-    </StyledContainer>
+    </DashboardContainer>
   );
 };
 
