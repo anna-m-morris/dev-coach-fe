@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import styled from 'styled-components';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 import { Upload, message } from 'antd';
-import placeholder from '../../img/avatar_placeholder.PNG';
+
 import {
   showErrorMessage,
   showSuccessMessage,
@@ -19,38 +18,49 @@ import { updateUserInfo } from '../../state/actions/settingActions';
 
 const StyledSettings = styled.div`
   width: 100%;
-  height: 80vh;
   display: flex;
-  padding: 50px;
-  padding-top: 0px;
-  margin: 0 auto;
-  font-family: ABeeZee;
-  border: 1px solid #dbe2e8;
-  align-content: center;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background-color: #ffff;
+
+  h1 {
+    margin-bottom: 2rem;
+  }
 
   .paper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 1.6rem;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .image-container {
-    border-radius: 120px;
-    width: 50%;
-    height: 120px;
+    width: 5rem;
+    height: 5rem;
     opacity: 0.7;
-    z-index: 2;
     display: -webkit-box;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
     justify-content: center;
-    /* padding: 1rem; */
+    margin-bottom: 1rem;
+
+    .avatar-uploader {
+      border-radius: 50%;
+    }
+
+    .picture {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+    }
+
     img {
-      width: 100%;
+      padding: 0.5rem;
       height: 8rem;
       margin: 0;
       border-radius: 50%;
@@ -59,7 +69,7 @@ const StyledSettings = styled.div`
   }
 
   .form {
-    width: 100%;
+    width: 22rem;
     margin-top: 5px;
   }
 
@@ -68,17 +78,23 @@ const StyledSettings = styled.div`
     justify-content: space-between;
     button {
       width: 48%;
-      background-color: #1976d2;
       background-color: #4fad65;
       padding: 18px;
-      font-family: ABeeZee, Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1rem;
       border-radius: 4px;
       border: none;
       margin-top: 17px;
       color: #ffff;
       font-weight: 500;
-      text-transform: uppercase;
       cursor: pointer;
+      transition: ease-out 0.2s;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        transition: ease-in 0.2s;
+        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+        opacity: 0.9;
+      }
     }
   }
 `;
@@ -183,106 +199,108 @@ function Settings(props) {
   };
 
   return (
-    <StyledSettings>
-      <Container component='main' maxWidth='xs'>
-        <CssBaseline />
-        <div className='paper'>
-          <div className='image-container'>
-            <Upload
-              name='avatar'
-              listType='picture-card'
-              className='avatar-uploader'
-              showUploadList={false}
-              customRequest={handleUpload}
-              beforeUpload={beforeUpload}
-              onChange={handlePictureChange}
-            >
-              {userInfo.avatar_url ? (
-                <img src={userInfo.avatar_url} alt='avatar' />
-              ) : (
-                <img src={placeholder} alt='placeholder' />
-              )}
-            </Upload>
-          </div>
-          <Typography component='h1' variant='h5'>
-            Personal Information
-          </Typography>
-          <form className='form' noValidate>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete='fname'
-                  name='first_name'
-                  variant='outlined'
-                  required
-                  fullWidth
-                  id='first_name'
-                  label={userInfo.first_name}
-                  placeholder={userInfo.first_name}
-                  onChange={handleChange}
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant='outlined'
-                  required
-                  fullWidth
-                  id='lastName'
-                  placeholder={userInfo.last_name}
-                  label={userInfo.last_name}
-                  name='last_name'
-                  autoComplete='lname'
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant='outlined'
-                  required
-                  fullWidth
-                  id='email'
-                  label={userInfo.email}
-                  name='email'
-                  autoComplete='email'
-                  placeholder={userInfo.email}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant='outlined'
-                  required
-                  fullWidth
-                  name='password'
-                  label='new password'
-                  type='password'
-                  id='password'
-                  value={userInfo.password}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant='outlined'
-                  required
-                  fullWidth
-                  name='confirm_password'
-                  label='confirm new password'
-                  type='password'
-                  id='confirm_password'
-                  value={userInfo.confirm_password}
-                  onChange={handleChange}
-                />
-              </Grid>
-            </Grid>
-            <div className='button'>
-              <button onClick={handleCancel}>cancel</button>
-              <button onClick={handleSubmit}>save changes</button>
-            </div>
-          </form>
+    <StyledSettings className='setting-container'>
+      <Typography component='h1' variant='h5'>
+        Personal Information
+      </Typography>
+      <div className='paper'>
+        <div className='image-container'>
+          <Upload
+            name='avatar'
+            listType='picture-card'
+            className='avatar-uploader'
+            showUploadList={false}
+            customRequest={handleUpload}
+            beforeUpload={beforeUpload}
+            onChange={handlePictureChange}
+          >
+            {userInfo.avatar_url ? (
+              <img src={userInfo.avatar_url} alt='avatar' />
+            ) : (
+              <Avatar
+                className='picture'
+                alt='Coach'
+                src={userInfo.avatar_url}
+              />
+            )}
+          </Upload>
         </div>
-      </Container>
+
+        <form className='form' noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete='fname'
+                name='first_name'
+                variant='outlined'
+                required
+                fullWidth
+                id='first_name'
+                label={userInfo.first_name}
+                placeholder={userInfo.first_name}
+                onChange={handleChange}
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant='outlined'
+                required
+                fullWidth
+                id='lastName'
+                placeholder={userInfo.last_name}
+                label={userInfo.last_name}
+                name='last_name'
+                autoComplete='lname'
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant='outlined'
+                required
+                fullWidth
+                id='email'
+                label={userInfo.email}
+                name='email'
+                autoComplete='email'
+                placeholder={userInfo.email}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant='outlined'
+                required
+                fullWidth
+                name='password'
+                label='new password'
+                type='password'
+                id='password'
+                value={userInfo.password}
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant='outlined'
+                required
+                fullWidth
+                name='confirm_password'
+                label='confirm new password'
+                type='password'
+                id='confirm_password'
+                value={userInfo.confirm_password}
+                onChange={handleChange}
+              />
+            </Grid>
+          </Grid>
+          <div className='button'>
+            <button onClick={handleCancel}>Cancel</button>
+            <button onClick={handleSubmit}>Save Changes</button>
+          </div>
+        </form>
+      </div>
       <Notification
         onClose={closeMessage}
         variant='success'
