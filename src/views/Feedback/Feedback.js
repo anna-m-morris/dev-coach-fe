@@ -29,6 +29,7 @@ const StyledFeedback = styled.div`
     align-items: center;
     width: 100%;
     padding: 2rem;
+    margin-top: 3em;
   }
 
   .ant-pagination-item-active {
