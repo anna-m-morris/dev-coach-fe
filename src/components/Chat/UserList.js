@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const UserListStyle = styled.div`
   .bg {
-    /* background: black; */
     border-top: 1px solid #ced4da;
     padding: 1rem;
     border-bottom: none;
@@ -36,13 +35,6 @@ const UserListStyle = styled.div`
 
 const UserList = props => {
   const { user, rooms, startChat } = props;
-
-  // const [bgColor, setBgColor] = useState('');
-
-  // const changeColor = () => {
-  //   setBgColor('black');
-  // };
-  // const getColor = () => (bgColor ? 'bg' : 'bgClicked');
 
   return (
     <>

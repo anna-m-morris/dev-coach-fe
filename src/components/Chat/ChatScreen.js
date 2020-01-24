@@ -21,11 +21,11 @@ const StyledChatScreen = styled.div`
     flex: 1;
     width: 100%;
     justify-content: flex-end;
+    margin-bottom: 10px;
   }
   .whos-online-list-container {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border: 1px solid #ced4da;
+    border-left: 1px solid #ced4da;
+    border-right: 1px solid #ced4da;
     width: 30%;
     flex: none;
     color: #2f4f4f;
@@ -33,7 +33,7 @@ const StyledChatScreen = styled.div`
     text-align: center;
     font-family: 'Ubuntu, sans-serif';
 
-    h5 {
+    h5, p {
       padding-left: 1rem;
       padding-right: 1rem;
       font-size: 1.15rem;
@@ -126,10 +126,10 @@ class ChatScreen extends React.Component {
       <StyledChatScreen>
         <div className='chat-container'>
           <aside className='whos-online-list-container'>
-            <h5>Your Chats</h5>
-            <h5 className='smallerP'>
+            <h5>Chats</h5>
+            <p className='smallerP'>
               Select a conversation to send a message
-            </h5>
+            </p>
             <UserList
               rooms={this.props.rooms}
               user={this.props.user}
