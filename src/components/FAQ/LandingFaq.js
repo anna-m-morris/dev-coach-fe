@@ -20,7 +20,6 @@ const MainContainer = styled.div`
   align-items: center;
 
   h2 {
-    margin-top: 50px;
     font-family: 'Ubuntu', sans-serif;
     color: #4fad65;
     font-size: 40px;
