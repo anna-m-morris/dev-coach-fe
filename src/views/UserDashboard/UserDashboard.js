@@ -12,29 +12,23 @@ import {
 } from '../../state/actions/appointmentActions';
 import { saveIdRole } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
-
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 import NewAppointmentCard from '../../components/Cards/newAppointmentCard';
 
-const StyledContainer = styled.div`
+const DashboardContainer = styled.div`
   width: 100%;
   height: 100%;
-  max-width: 1024px;
-  /* margin: 1rem auto; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 
   .appointment-title {
-    margin-top: 3rem;
     color: #595959;
     font-size: 1.8rem;
     font-weight: 400;
   }
-
   .top-data-card {
-    height: 9rem;
     width: 100%;
     background: #fff;
     border-radius: 5px;
@@ -43,7 +37,7 @@ const StyledContainer = styled.div`
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    margin-bottom: -2em;
+    margin-bottom: 2em;
     color: #4a4a4a;
     font-size: 1rem;
 
@@ -56,11 +50,6 @@ const StyledContainer = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      /* padding: 3rem; */
-      h3 {
-        margin: 0;
-        /* padding: 1rem; */
-      }
 
       .data {
         color: #4fad65;
@@ -70,12 +59,20 @@ const StyledContainer = styled.div`
       }
     }
   }
+
+  .appointment-cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .appointments {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
+    margin-top: 2em;
   }
   .pagination {
     padding: 2em;
@@ -176,32 +173,32 @@ const UserDashboard = props => {
     return (sum.rating / arr.length).toString().slice(0, 4);
   };
   return (
-    <StyledContainer className='appointments-container'>
+    <DashboardContainer>
+      <h2 className='appointment-title'>Scheduled Interviews</h2>
       <div className='top-data-card'>
         <div className='top-data-section'>
           <p className='data'>
             {props.feedback && props.feedback.length
               ? `${calculateFormattedMean(props.feedback)}`
-              : 'N/A'}
+              : 0}
           </p>
           <p>Average rating</p>
         </div>
         <div className='top-data-section'>
           <p className='data'>
-            {props.feedback ? props.feedback.length : 'N/A'}
+            {props.feedback ? props.feedback.length : 0}
           </p>
           <p>Interviews completed</p>
         </div>
         <div className='top-data-section'>
           <p className='data'>
-            {props.appointments ? props.appointments.length : 'N/A'}
+            {props.appointments ? props.appointments.length : 0}
           </p>
           <p>Upcoming interviews</p>
         </div>
       </div>
-      <h2 className='appointment-title'>Scheduled Interviews</h2>
       {appointments ? (
-        <StyledContainer>
+        <div className='appointment-cards-container'>
           {appointments && appointments.length ? (
             <div className='appointments'>
               {appointments
@@ -231,7 +228,7 @@ const UserDashboard = props => {
           ) : (
             <EmptyAppointment role_id={user.role_id} />
           )}
-        </StyledContainer>
+        </div>
       ) : (
         <div className='loaderStyled'>
           <Loader
@@ -242,7 +239,7 @@ const UserDashboard = props => {
           />
         </div>
       )}
-    </StyledContainer>
+    </DashboardContainer>
   );
 };
 

@@ -13,7 +13,7 @@ const StyledChatScreen = styled.div`
   height: 85vh;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 1rem auto;
   justify-content: center;
   width: 100%;
   .chat-container {
