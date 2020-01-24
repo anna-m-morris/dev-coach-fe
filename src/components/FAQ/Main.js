@@ -10,7 +10,6 @@ import Payment from './PaymentFaq';
 
 // Main content
 const MainContainer = styled.div`
-  background: #f6f9fc;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -34,12 +33,18 @@ const CategoryContainer = styled.div`
     height: 150px;
     margin: 3em;
     border-width: 10px;
-    border: 2px solid grey;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+    background: white;
+    transition: ease-out 0.1s;
+
+    &:hover {
+      box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.15);
+      transition: ease-in 0.1s;
+    }
 
     .link-content {
       width: 100%;
@@ -57,7 +62,13 @@ const CategoryContainer = styled.div`
 
   .activeClassNav {
     background: #1e3f1f;
-    border: 2px solid white;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transition: ease-out 0.1s;
+
+    &:hover {
+      box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+      transition: ease-in 0.1s;
+    }
 
     h3 {
       color: white;
@@ -73,7 +84,7 @@ const iconStyles = {
 const MainFaq = () => {
   return (
     <MainContainer>
-      <h2>FAQs</h2>
+      <h2>FAQ</h2>
       <CategoryContainer>
         <NavLink
           className='styledBox'

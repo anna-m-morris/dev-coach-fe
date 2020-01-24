@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import styled from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Upload, message } from 'antd';
 import placeholder from '../../img/avatar_placeholder.PNG';
-import { Upload, Icon, message } from 'antd';
-
-import axios from 'axios';
 import {
   showErrorMessage,
   showSuccessMessage,
@@ -18,7 +16,6 @@ import {
 } from '../../state/actions/notificationActions';
 import Notification from '../../components/Notifications/Notification';
 import { updateUserInfo } from '../../state/actions/settingActions';
-import { Input } from '@material-ui/core';
 
 const StyledSettings = styled.div`
   width: 100%;
@@ -32,6 +29,39 @@ const StyledSettings = styled.div`
   align-content: center;
   align-items: center;
   background-color: #ffff;
+
+  .paper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-container {
+    border-radius: 120px;
+    width: 50%;
+    height: 120px;
+    opacity: 0.7;
+    z-index: 2;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    /* padding: 1rem; */
+    img {
+      width: 100%;
+      height: 8rem;
+      margin: 0;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+
+  .form {
+    width: 100%;
+    margin-top: 5px;
+  }
 
   .button {
     display: flex;
@@ -53,44 +83,7 @@ const StyledSettings = styled.div`
   }
 `;
 
-const ImageDiv = styled.div`
-  border-radius: 120px;
-  width: 120px;
-  height: 120px;
-  opacity: 0.7;
-  z-index: 2;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-`;
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    marginTop: '40px',
-    padding: '50px',
-    paddingTop: '0px',
-    backgroundColor: '#81827c',
-    borderRadius: '50%',
-  },
-  form: {
-    width: '100%',
-    marginTop: '5px',
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
 function Settings(props) {
-  const classes = useStyles();
   const {
     user,
     updateUserInfo,
@@ -148,7 +141,7 @@ function Settings(props) {
       getBase64(info.file.originFileObj, avatar_url =>
         setUserInfo({
           ...userInfo,
-          avatar_url: avatar_url,
+          avatar_url,
         }),
       );
     }
@@ -177,10 +170,10 @@ function Settings(props) {
   const handleSubmit = e => {
     e.preventDefault();
     updateUserInfo(
-      user.id,
-      userInfo,
+      { ...userInfo, oldEmail: user.email },
       showErrorMessage,
       showSuccessMessage,
+      closeMessage,
     );
   };
 
@@ -193,8 +186,8 @@ function Settings(props) {
     <StyledSettings>
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
-        <div className={classes.paper}>
-          <ImageDiv>
+        <div className='paper'>
+          <div className='image-container'>
             <Upload
               name='avatar'
               listType='picture-card'
@@ -205,31 +198,16 @@ function Settings(props) {
               onChange={handlePictureChange}
             >
               {userInfo.avatar_url ? (
-                <img
-                  src={userInfo.avatar_url}
-                  alt='avatar'
-                  style={{
-                    width: '100%',
-                    borderRadius: '50%',
-                    marginTop: '33px',
-                  }}
-                />
+                <img src={userInfo.avatar_url} alt='avatar' />
               ) : (
-                <img
-                  src={placeholder}
-                  style={{
-                    width: '100%',
-                    borderRadius: '50%',
-                    marginTop: '33px',
-                  }}
-                />
+                <img src={placeholder} alt='placeholder' />
               )}
             </Upload>
-          </ImageDiv>
+          </div>
           <Typography component='h1' variant='h5'>
             Personal Information
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className='form' noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -240,7 +218,7 @@ function Settings(props) {
                   fullWidth
                   id='first_name'
                   label={userInfo.first_name}
-                  value={userInfo.first_name}
+                  placeholder={userInfo.first_name}
                   onChange={handleChange}
                   autoFocus
                 />
@@ -251,10 +229,10 @@ function Settings(props) {
                   required
                   fullWidth
                   id='lastName'
+                  placeholder={userInfo.last_name}
                   label={userInfo.last_name}
                   name='last_name'
                   autoComplete='lname'
-                  value={userInfo.last_name}
                   onChange={handleChange}
                 />
               </Grid>
@@ -267,7 +245,7 @@ function Settings(props) {
                   label={userInfo.email}
                   name='email'
                   autoComplete='email'
-                  value={userInfo.email}
+                  placeholder={userInfo.email}
                   onChange={handleChange}
                 />
               </Grid>
