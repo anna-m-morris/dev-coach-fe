@@ -12,10 +12,10 @@ import {
   Box,
 } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab/';
-import { countries } from '../Forms/countries';
+import { countries } from '../../utils/countries';
+import { buttonTheme, Logo } from '../Landing/Landing-styles';
+import { FormButton, InfoParagraph } from './StudentForm';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
-import { buttonTheme, Logo } from '../Landing';
-import { FormButton, InfoParagraph } from '../Forms/StudentForm';
 
 const CoachCardContainer = styled.div`
   max-width: 100%;

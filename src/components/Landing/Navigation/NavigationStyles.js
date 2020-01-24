@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import devices from '../../devices';
+import devices from '../../../utils/devices';
 
 export const NavContainer = styled.nav`
   display: flex;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import devices from '../../devices';
+import devices from '../../../utils/devices';
 
 export const HeaderContainer = styled.div`
   position: absolute;

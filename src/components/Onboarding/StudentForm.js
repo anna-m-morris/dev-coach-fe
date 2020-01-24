@@ -13,9 +13,13 @@ import {
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
-import { StyledButton, buttonTheme, Logo } from '../Landing';
+import {
+  StyledButton,
+  buttonTheme,
+  Logo,
+} from '../Landing/Landing-styles';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
-import { countries } from '../Forms/countries';
+import { countries } from '../../utils/countries';
 
 const NavLogo = styled(Logo)`
   a {

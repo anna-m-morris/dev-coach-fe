@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { StyledButton, buttonTheme } from '../Landing';
+import { StyledButton, buttonTheme } from '../Landing/Landing-styles';
 import { saveRoleId } from '../../state/actions/authenticationActions';
 
 const StyledUserType = styled.div`

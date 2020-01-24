@@ -5,8 +5,12 @@ import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
-import { StyledButton, buttonTheme, Logo } from '../Landing';
-import { FormCard, FormContainer } from '../Forms/LoginForm';
+import {
+  StyledButton,
+  buttonTheme,
+  Logo,
+} from '../Landing/Landing-styles';
+import { FormCard, FormContainer } from './LoginForm';
 
 import { register } from '../../state/actions/authenticationActions';
 

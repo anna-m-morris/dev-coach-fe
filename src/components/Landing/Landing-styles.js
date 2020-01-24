@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import devices from '../devices';
+import devices from '../../utils/devices';
 import logo from '../../img/firelogo.png';
 
 const mobileHidden = css`
@@ -65,7 +65,7 @@ export const StyledButton = styled.button`
   padding: 1em 2em;
   border: none;
   font-family: Ubuntu;
-  font-size: 1.2rem;
+  font-size: 1rem;
   transition: ease-out 0.2s;
 
   :hover {

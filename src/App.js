@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { connect } from 'react-redux';
-import LoginForm from './components/Forms/LoginForm';
+import LoginForm from './components/Onboarding/LoginForm';
 import Dashboard from './components/Dashboard';
 import UserDashboard from './views/UserDashboard/UserDashboard';
 import Marketplace from './views/Marketplace/Marketplace';
