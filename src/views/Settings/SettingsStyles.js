@@ -36,7 +36,6 @@ export default styled.div`
     .avatar-uploader {
       border-radius: 50%;
       cursor: pointer;
-      outline: none;
     }
 
     .picture {

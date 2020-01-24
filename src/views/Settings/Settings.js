@@ -152,7 +152,6 @@ function Settings(props) {
                 autoComplete='fname'
                 name='first_name'
                 variant='outlined'
-                required
                 fullWidth
                 id='first_name'
                 label={userInfo.first_name}
@@ -165,7 +164,6 @@ function Settings(props) {
               <TextField
                 size='small'
                 variant='outlined'
-                required
                 fullWidth
                 id='lastName'
                 placeholder={userInfo.last_name}
@@ -179,7 +177,6 @@ function Settings(props) {
               <TextField
                 size='small'
                 variant='outlined'
-                required
                 fullWidth
                 id='email'
                 label={userInfo.email}
@@ -193,7 +190,6 @@ function Settings(props) {
               <TextField
                 size='small'
                 variant='outlined'
-                required
                 fullWidth
                 name='password'
                 label='New Password'
@@ -207,7 +203,6 @@ function Settings(props) {
               <TextField
                 size='small'
                 variant='outlined'
-                required
                 fullWidth
                 name='confirm_password'
                 label='Confirm New Password'
