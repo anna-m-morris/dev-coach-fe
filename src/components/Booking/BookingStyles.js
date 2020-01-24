@@ -8,6 +8,11 @@ const StyledBooking = styled.div`
   justify-content: center;
   background: #fff;
 
+  .MuiStepIcon-root.MuiStepIcon-active,
+  .MuiStepIcon-root.MuiStepIcon-completed {
+    color: #4fad65;
+  }
+
   .instructions {
     text-align: center;
     margin-top: 1rem;
