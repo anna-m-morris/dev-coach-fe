@@ -19,15 +19,22 @@ import NewAppointmentCard from '../../components/Cards/newAppointmentCard';
 const StyledContainer = styled.div`
   width: 100%;
   max-width: 1024px;
-  margin: 0 auto;
-  /* justify-content: space-between; */
-  padding-top: 2rem;
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .appointment-title {
+    margin: 0;
+    color: #595959;
+  }
 
   .appointments {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    width: 100%;
   }
 
   .pagination {
@@ -134,6 +141,9 @@ const UserDashboard = props => {
   };
   return (
     <StyledContainer>
+      <h2 className='appointment-title'>
+        Here are your upcoming appointments
+      </h2>
       {appointments ? (
         <StyledContainer>
           {appointments && appointments.length ? (

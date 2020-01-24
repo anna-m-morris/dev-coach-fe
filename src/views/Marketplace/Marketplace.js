@@ -47,6 +47,7 @@ const StyledMarketplace = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding: 2em;
 
     .ant-pagination-item-active {
       border-color: #4fad65;

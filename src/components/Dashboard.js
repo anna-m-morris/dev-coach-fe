@@ -146,18 +146,16 @@ const useStyles = makeStyles(theme => ({
   container: {
     background: '#f9f9f9',
     paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
     height: '100vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  gridContainer: {
-    height: '100%',
-  },
   copyright: {
     textAlign: 'center',
+    margin: '0 0 1rem 0',
+    padding: '0',
   },
   hidden: {
     visibility: 'hidden',
