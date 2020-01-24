@@ -20,8 +20,8 @@ const StyledContainer = styled.div`
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
-  justify-content: space-between;
-  padding-top: 65px;
+  /* justify-content: space-between; */
+  padding-top: 2rem;
 
   .appointments {
     display: flex;

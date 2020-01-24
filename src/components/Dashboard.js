@@ -153,6 +153,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  gridContainer: {
+    height: '100%',
+  },
   copyright: {
     textAlign: 'center',
   },
