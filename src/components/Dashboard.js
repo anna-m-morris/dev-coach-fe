@@ -93,8 +93,11 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   profileMenu: {
+    position: 'absolute',
+    top: 20,
+    right: 40,
     color: 'grey',
-    transform: 'scale(1.25)',
+    transform: 'scale(1.5)',
   },
   menuButton: {
     marginRight: 36,
@@ -154,7 +157,7 @@ const useStyles = makeStyles(theme => ({
   },
   copyright: {
     textAlign: 'center',
-    margin: '1.5rem 0 1rem 0',
+    margin: '0 0 1rem 0',
     padding: '0',
   },
   hidden: {
@@ -190,67 +193,45 @@ const Dashboard = props => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position='absolute'
         className={clsx(classes.appBar, open && classes.appBarShift)}
-      >
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge='start'
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden,
-            )}
-          >
-            <MenuIcon className={classes.menuIcon} />
-          </IconButton>
-          <Typography
-            component='h1'
-            variant='h6'
-            color='inherit'
-            noWrap
-            className={classes.title}
-          ></Typography>
-          <div className={classes.profileMenu}>
-            <IconButton
-              aria-label='account of current user'
-              aria-controls='menu-appbar'
-              aria-haspopup='true'
-              onClick={handleMenu}
-              color='inherit'
-            >
-              <AccountCircle />
-            </IconButton>
-            <Menu
-              id='menu-appbar'
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={openMenu}
-              onClose={handleClose}
-            >
-              <Link className={classes.link} to='/settings'>
-                <MenuItem>Settings</MenuItem>
-              </Link>
-              <MenuItem onClick={handleLogout}>Logout</MenuItem>
-            </Menu>
-          </div>
-        </Toolbar>
-      </AppBar>
+      ></AppBar>
+      <div className={classes.profileMenu}>
+        <IconButton
+          className={classes.iconButton}
+          aria-label='account of current user'
+          aria-controls='menu-appbar'
+          aria-haspopup='true'
+          onClick={handleMenu}
+          color='inherit'
+        >
+          <AccountCircle />
+        </IconButton>
+        <Menu
+          id='menu-appbar'
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={openMenu}
+          onClose={handleClose}
+        >
+          <Link className={classes.link} to='/settings'>
+            <MenuItem>Settings</MenuItem>
+          </Link>
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        </Menu>
+      </div>
       <Drawer
         variant='permanent'
         classes={{

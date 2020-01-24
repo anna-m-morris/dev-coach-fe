@@ -33,7 +33,7 @@ const DashboardContainer = styled.div`
   .top-data-card {
     padding: 1rem;
     height: 8em;
-    width: 90%;
+    width: 80%;
     background: #fff;
     border-radius: 5px;
     box-shadow: 0px 0px 4px rgba(82, 68, 110, 0.3);
