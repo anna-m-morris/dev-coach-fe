@@ -144,11 +144,8 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
-    background: '#f9f9f9',
   },
   container: {
-    background: '#f9f9f9',
-    paddingTop: theme.spacing(4),
     height: '100vh',
     display: 'flex',
     flexDirection: 'column',
