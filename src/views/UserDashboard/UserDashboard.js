@@ -207,7 +207,7 @@ const UserDashboard = props => {
               </div>
             </div>
           ) : (
-            <EmptyAppointment />
+            <EmptyAppointment role_id={user.role_id} />
           )}
         </StyledContainer>
       ) : (
