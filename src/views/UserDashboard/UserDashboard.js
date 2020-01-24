@@ -24,12 +24,10 @@ const DashboardContainer = styled.div`
   justify-content: space-between;
 
   .appointment-title {
-    margin-top: 0.5em;
     color: #595959;
     font-size: 1.8rem;
     font-weight: 400;
   }
-
   .top-data-card {
     padding: 1rem;
     height: 8em;
