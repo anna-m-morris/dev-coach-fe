@@ -118,9 +118,7 @@ function Settings(props) {
 
   return (
     <StyledSettings className='setting-container'>
-      <Typography component='h1' variant='h5'>
-        Personal Information
-      </Typography>
+      <h3 className='settings-title'>Personal Information</h3>
       <div className='paper'>
         <div className='image-container'>
           <Upload

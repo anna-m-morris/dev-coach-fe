@@ -7,24 +7,27 @@ export default styled.div`
   flex-direction: column;
   align-items: center;
 
-  h1 {
+  .settings-title {
     margin-bottom: 2rem;
+    color: #595959;
+    font-size: 1.8rem;
+    font-weight: 500;
   }
 
   .paper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.6rem;
+    padding: 1.6rem 2rem;
     background: white;
     border-radius: 6px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 22rem;
   }
 
   .image-container {
     width: 5rem;
     height: 5rem;
-    opacity: 0.7;
     display: -webkit-box;
     display: flex;
     -webkit-box-align: center;
@@ -53,7 +56,7 @@ export default styled.div`
   }
 
   .form {
-    width: 22rem;
+    width: 100%;
     margin-top: 5px;
   }
 

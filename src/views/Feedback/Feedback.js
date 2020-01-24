@@ -20,6 +20,8 @@ const StyledFeedback = styled.div`
   .feedback-title {
     margin: 0;
     color: #595959;
+    font-size: 1.8rem;
+    font-weight: 400;
   }
 
   .pagination {
