@@ -31,9 +31,8 @@ const CategoryContainer = styled.div`
   margin-bottom: 20px;
 
   .styledBox {
-    width: 12em;
     border-radius: 10px;
-    height: 150px;
+    padding: 3em 5em;
     margin: 3em;
     border-width: 10px;
     display: flex;
