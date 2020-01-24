@@ -53,7 +53,7 @@ const StyledCoachCard = styled.div`
   h3 {
     text-align: center;
     font-weight: bold;
-    font-size: 0.96rem;
+    font-size: 1rem;
     color: #3c4043;
     margin: 0;
   }
