@@ -62,9 +62,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
 
   return (
     <StyledFeedback>
-      <h2 className='feedback-title'>
-        Here you can view your feedback from completed interviews
-      </h2>
+      <h2 className='feedback-title'>Interview Feedback</h2>
       {feedback ? (
         <StyledFeedback className='feedback-card-container'>
           {feedback && feedback.length ? (

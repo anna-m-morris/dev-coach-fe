@@ -27,6 +27,7 @@ const StyledContainer = styled.div`
   .appointment-title {
     margin: 0;
     color: #595959;
+    font-size: 2rem;
   }
 
   .appointments {
@@ -141,9 +142,7 @@ const UserDashboard = props => {
   };
   return (
     <StyledContainer>
-      <h2 className='appointment-title'>
-        Here are your upcoming appointments
-      </h2>
+      <h2 className='appointment-title'>Scheduled Interviews</h2>
       {appointments ? (
         <StyledContainer>
           {appointments && appointments.length ? (
