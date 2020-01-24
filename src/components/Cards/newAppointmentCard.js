@@ -65,6 +65,7 @@ const StyledCoachCard = styled.div`
   }
 
   .bullet-points {
+    margin: 1rem 0;
   }
 
   .bullet {
