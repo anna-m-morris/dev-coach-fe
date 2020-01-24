@@ -21,6 +21,7 @@ import SearchForKeyword from '../../components/Inputs/SearchForKeyword';
 const StyledMarketplace = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   .top {
     display: flex;
@@ -91,7 +92,7 @@ const Marketplace = ({
   };
 
   return (
-    <StyledMarketplace>
+    <StyledMarketplace className='marketplace-container'>
       <div className='top'>
         <SelectPrice searchForPrice={searchForPrice} />
         <SearchForKeyword

@@ -32,6 +32,13 @@ const useStyles = makeStyles(theme => ({
   backButton: {
     marginRight: theme.spacing(1),
   },
+  nextButton: {
+    background: '#4fad65',
+
+    '&:hover': {
+      background: '#4fad65',
+    },
+  },
   instruction: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
@@ -92,7 +99,7 @@ const BookingStepper = props => {
     <>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map(label => (
-          <Step className='' key={label}>
+          <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
         ))}
@@ -128,8 +135,7 @@ const BookingStepper = props => {
               <div className='payment-buttons-container'>
                 <StripeCheckout
                   className='stripe-checkout'
-                  stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // this key is only for testing we
-                  // will add later our real key to the env file
+                  stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // development token
                   token={token =>
                     handleStripePayment(
                       token,
@@ -144,6 +150,7 @@ const BookingStepper = props => {
                       select.topic_id,
                       select.length_id,
                       props,
+                      closeMessage,
                     )
                   }
                   amount={
@@ -162,7 +169,6 @@ const BookingStepper = props => {
                       : coach.hourly_rate * 0.5
                   }
                   onSuccess={(details, data) => {
-                    showSuccessMessage();
                     bookAppointment(
                       coach,
                       user,
@@ -170,7 +176,9 @@ const BookingStepper = props => {
                       select.topic_id,
                       select.length_id,
                       props,
+                      closeMessage,
                     );
+                    showSuccessMessage();
                   }}
                   catchError={err => showErrorMessage()}
                   options={{
@@ -201,6 +209,7 @@ const BookingStepper = props => {
             Back
           </Button>
           <Button
+            className={classes.nextButton}
             variant='contained'
             color='primary'
             onClick={handleNext}
