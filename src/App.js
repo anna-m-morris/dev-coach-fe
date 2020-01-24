@@ -58,7 +58,7 @@ function App(props) {
       <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
       <Route path='/register' component={SignUp} />
-      <Route path='/faq' component={MainFaq} />
+      <Route path='/faq' component={LandingFaq} />
       <Redirect to='/' />
     </Switch>
   );
