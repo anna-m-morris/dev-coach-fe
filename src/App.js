@@ -61,8 +61,6 @@ function App(props) {
       <Route path='/login/' component={LoginForm} />
       <Route path='/register' component={SignUp} />
       <Route path='/faq' component={LandingFaq} />
-      <Route path='/student' component={StudentForm} />
-      <Route path='/coach' component={CoachForm} />
       <Redirect to='/' />
     </Switch>
   );
