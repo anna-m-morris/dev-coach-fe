@@ -35,6 +35,10 @@ const StyledCoachCard = styled.div`
     max-height: 5.5rem;
     .header-text {
       width: 100%;
+
+      h3 {
+        font-weight: bold;
+      }
     }
 
     .header-photo {
