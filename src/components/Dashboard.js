@@ -154,7 +154,7 @@ const useStyles = makeStyles(theme => ({
   },
   copyright: {
     textAlign: 'center',
-    margin: '0 0 1rem 0',
+    margin: '1.5rem 0 1rem 0',
     padding: '0',
   },
   hidden: {
