@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const StyledMessageList = styled.div`
   flex: 1;
   max-height: 100vh;
+  overflow: auto;
 
   .ul {
     list-style: none;

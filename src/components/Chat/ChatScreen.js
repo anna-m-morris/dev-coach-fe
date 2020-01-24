@@ -30,7 +30,7 @@ const StyledChatScreen = styled.div`
     width: 30%;
     flex: none;
     color: 	#2F4F4F;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
     font-family: 'Ubuntu, sans-serif';
 
@@ -51,6 +51,7 @@ const StyledChatScreen = styled.div`
     display: flex;
     flex-direction: column;
     height: 85vh;
+    box-sizing: border-box;
   }
 `;
 class ChatScreen extends React.Component {
