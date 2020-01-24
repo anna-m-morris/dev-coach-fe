@@ -36,6 +36,10 @@ export default styled.div`
     justify-content: center;
     margin-bottom: 1rem;
 
+    span {
+      outline: none;
+    }
+
     .avatar-uploader {
       border-radius: 50%;
       cursor: pointer;
@@ -44,6 +48,9 @@ export default styled.div`
       &:hover {
         transition: ease-in 0.3s;
         filter: brightness(60%);
+      }
+      &:active {
+        outline: none;
       }
     }
 
