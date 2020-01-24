@@ -28,11 +28,15 @@ export const getAppointment = (
     });
 };
 
-export const cancelAppointment = appointment_id => dispatch => {
+export const cancelAppointment = (
+  appointment_id,
+  canceled,
+) => dispatch => {
   dispatch({ type: APPOINTMENTS_START });
   axiosWithAuth()
     .put(`${url}appointment/${appointment_id}`)
     .then(res => {
+      console.log(res);
       dispatch({
         type: CANCEL_APPOINTMENT_SUCCESSFUL,
         payload: res.data.appointment,

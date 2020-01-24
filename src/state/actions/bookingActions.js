@@ -10,6 +10,10 @@ export const BOOK_APPOINTMENT_START = 'BOOK_APPOINTMENT_START';
 export const BOOK_APPOINTMENT_ERROR = 'BOOK_APPOINTMENT_ERROR';
 export const BOOK_APPOINTMENT_SUCCESSFUL =
   'BOOK_APPOINTMENT_SUCCESSFUL';
+export const CANCEL_APPOINTMENT_START = 'CANCEL_APPOINTMENT_START';
+export const CANCEL_APPOINTMENT_SUCCESSFUL =
+  'CANCEL_APPOINTMENT_SUCCESSFUL';
+export const CANCEL_APPOINTMENT_ERROR = 'CANCEL_APPOINTMENT_ERROR';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -141,5 +145,71 @@ export const bookAppointment = (
     })
     .catch(err => {
       dispatch({ type: BOOK_APPOINTMENT_ERROR, payload: err });
+    });
+};
+
+export const handleCancelAppointment = (
+  coach,
+  student,
+  appointment_datetime,
+  topic_id,
+  length_id,
+  props,
+  closeMessage,
+) => dispatch => {
+  dispatch({ type: CANCEL_APPOINTMENT_START });
+  const appointment = {
+    coach_id: coach.id,
+    student_id: student.id,
+    topic_id,
+    length_id,
+    appointment_datetime,
+  };
+
+  axiosWithAuth()
+    .put(`${url}appointment/id`, appointment)
+    .then(res => {
+      const coach_email = {
+        email: coach.email,
+        text: `Hello ${coach.first_name} ${coach.last_name},
+        Please note that the appointment for the date: ${appointment_datetime} 
+        with ${student.first_name} ${student.last_name} has been cancelled by the student .
+        We will get back to you shortly with the new date and time `,
+        subject: 'Quality Hub appointment',
+      };
+
+      return axiosWithAuth()
+        .post(`${url}appointment/email`, coach_email)
+        .then(res => {
+          const student_email = {
+            email: student.email,
+            text: `Hello ${student.first_name} ${student.last_name},
+            You have cancelled your appointment on date: ${appointment_datetime} with
+            ${coach.first_name} ${coach.last_name}`,
+
+            subject: 'Quality Hub appointment',
+          };
+
+          return axiosWithAuth()
+            .post(`${url}appointment/email`, student_email)
+            .then(res => {
+              dispatch({
+                type: CANCEL_APPOINTMENT_SUCCESSFUL,
+                payload: res.data.appointments,
+              });
+            })
+            .catch(err => {
+              dispatch({
+                type: CANCEL_APPOINTMENT_ERROR,
+                payload: err,
+              });
+            });
+        })
+        .catch(err => {
+          dispatch({ type: CANCEL_APPOINTMENT_ERROR, payload: err });
+        });
+    })
+    .catch(err => {
+      dispatch({ type: CANCEL_APPOINTMENT_ERROR, payload: err });
     });
 };

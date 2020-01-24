@@ -14,6 +14,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import handleCancelAppointment from '../../state/actions/bookingActions';
 
 const StyledCoachCard = styled.div`
   display: flex;
@@ -133,7 +134,6 @@ export const NewAppointmentCard = props => {
 
   const time = appointment.appointment_datetime.slice(0, 15);
   const date = appointment.appointment_datetime.slice(16, 28);
-
   return (
     <>
       <StyledCoachCard>
@@ -178,30 +178,41 @@ export const NewAppointmentCard = props => {
           )}
         </div>
 
-        <div className='footer'>
+        {!appointment.canceled ? (
+          <div className='footer'>
+            <Button
+              onClick={handleClickOpen}
+              size='small'
+              className='cancel-button'
+              variant='contained'
+              color='secondary'
+              startIcon={<DeleteIcon />}
+            >
+              Cancel
+            </Button>
+            <Link to='/givefeedback'>
+              <Button
+                size='small'
+                className='button'
+                variant='contained'
+                color='primary'
+                endIcon={<Icon>send</Icon>}
+                onClick={() => saveIdRole()}
+              >
+                Interview
+              </Button>
+            </Link>
+          </div>
+        ) : (
           <Button
-            onClick={handleClickOpen}
-            size='small'
+            size='big'
             className='cancel-button'
             variant='contained'
             color='secondary'
-            startIcon={<DeleteIcon />}
           >
-            Cancel
+            Cancelled
           </Button>
-          <Link to='/givefeedback'>
-            <Button
-              size='small'
-              className='button'
-              variant='contained'
-              color='primary'
-              endIcon={<Icon>send</Icon>}
-              onClick={() => saveIdRole()}
-            >
-              Interview
-            </Button>
-          </Link>
-        </div>
+        )}
       </StyledCoachCard>
       <Dialog
         open={open}
