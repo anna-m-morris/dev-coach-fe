@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import devices from '../devices';
+import devices from '../../utils/devices';
 import FeedbackModal from '../Modals/FeedbackModal';
 
 const CardContainer = styled.div`

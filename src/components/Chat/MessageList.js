@@ -6,8 +6,22 @@ const StyledMessageList = styled.div`
   max-height: 100vh;
   overflow: auto;
 
-  .ul {
+  /* .ul {
     list-style: none;
+    overflow-y: scroll;
+    height: 80vh; */
+
+    .ul {
+      list-style: none;
+    }
+
+    .my-message {
+      color: blue;
+    }
+
+    .peer-message {
+      color: red;
+    }
 
     .li {
       margin-top: 2rem;
@@ -30,14 +44,21 @@ const StyledMessageList = styled.div`
   }
 `;
 
-const MessageList = props => {
+const MessageList = ({ messages, userId }) => {
   return (
     <StyledMessageList>
       <ul className='ul'>
-        {props.messages &&
-          props.messages.map((message, index) => (
-            <li key={index} className='li'>
-              <div className='body'>
+        {messages &&
+          messages.map((message, index) => (
+            <li
+              key={index}
+              className={
+                message.senderId === userId
+                  ? 'my-message'
+                  : 'peer-message'
+              }
+            >
+              <div>
                 <span className='send-username'>
                   {message.senderId}
                 </span>{' '}

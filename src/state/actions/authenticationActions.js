@@ -4,6 +4,11 @@ import * as types from './actionTypes';
 
 const url = process.env.REACT_APP_BASE_URL;
 
+export const saveRoleId = (handleNext, role) => dispatch => {
+  dispatch({ type: types.SET_ROLE_ID, payload: role });
+  handleNext();
+};
+
 export const login = (props, values) => dispatch => {
   dispatch({ type: types.LOGIN_START });
   axios
@@ -39,7 +44,7 @@ export const register = (props, values) => dispatch => {
       });
       localStorage.setItem('tempuser', res.data.token);
       localStorage.setItem('id', res.data.user.id);
-      window.location.reload();
+      props.handleNext();
     })
     .catch(err => {
       dispatch({
@@ -49,17 +54,17 @@ export const register = (props, values) => dispatch => {
     });
 };
 
-export const chooseUserRole = (props, values, role) => dispatch => {
+export const chooseUserRole = (props, values) => dispatch => {
   const token = localStorage.getItem('tempuser');
   const id = localStorage.getItem('id');
   axiosWithAuth()
     .put(`${url}user/${id}`, {
-      role_id: role,
       location: values.userLocation,
+      role_id: props.userReducer.user.role_id,
     })
     .then(res => {
-      dispatch({ type: types.USER_ROLE_CHOSEN, role });
-      if (role === 1) {
+      dispatch({ type: types.USER_ROLE_CHOSEN });
+      if (props.userReducer.user.role_id === 1) {
         axiosWithAuth()
           .post(`${url}profile/students`, {
             experience_level: values.experience,
@@ -108,6 +113,6 @@ export const chooseUserRole = (props, values, role) => dispatch => {
 
 export const logout = props => {
   localStorage.clear();
-  window.location.reload();
+  props.history.push('/');
   return { type: types.LOGOUT };
 };

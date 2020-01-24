@@ -22,6 +22,7 @@ const StyledContainer = styled.div`
     font-family: 'Roboto', sans-serif;
     text-align: center;
     color: gray;
+    font-size: 1.2rem;
   }
 
   .imgDiv {
@@ -45,6 +46,15 @@ const StyledContainer = styled.div`
     cursor: pointer;
     margin-left: 35%;
     margin-top: 50px;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 4px #d1d1d1;
+    transition: ease-out 0.2s;
+
+    &:hover {
+      box-shadow: 0 6px 10px #d1d1d1;
+      background: #1e3f1f;
+      transition: ease-in 0.2s;
+    }
 
     @media only screen and (max-width: 600px) {
       margin-left: 0%;
@@ -55,10 +65,6 @@ const StyledContainer = styled.div`
       text-decoration: none;
       color: white;
     }
-  }
-
-  button:hover {
-    background: #1e3f1f;
   }
 `;
 

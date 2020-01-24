@@ -18,7 +18,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { ListComponent } from '../utils/dashboardList';
 import logo from '../img/firelogo.png';
 import { logout } from '../state/actions/authenticationActions';
@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   toolbar: {
-    background: '#FAFAFA',
+    background: '#f9f9f9',
     zIndex: -10,
   },
 
@@ -171,7 +171,7 @@ const Dashboard = props => {
 
   const handleLogout = () => {
     setAnchorEl(null);
-    props.logout();
+    props.logout(props);
   };
 
   const handleMenu = event => {
@@ -282,7 +282,10 @@ const Dashboard = props => {
           }
         </div>
         <Divider className={classes.styledDivider} />
-        <ListComponent className={classes.listStyles}></ListComponent>
+        <ListComponent
+          role_id={props.user.role_id}
+          className={classes.listStyles}
+        />
         <Divider className={classes.hidden} />
       </Drawer>
       <main className={classes.content}>
@@ -304,4 +307,6 @@ const Dashboard = props => {
   );
 };
 
-export default connect(state => state, { logout })(Dashboard);
+export default withRouter(
+  connect(state => state.userReducer, { logout })(Dashboard),
+);

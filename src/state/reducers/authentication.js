@@ -17,6 +17,14 @@ function userReducer(state = initialState, action) {
   switch (action.type) {
     default:
       return state;
+    case types.SET_ROLE_ID:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          role_id: action.payload,
+        },
+      };
     case types.LOGIN_START:
       return {
         ...state,
@@ -53,7 +61,7 @@ function userReducer(state = initialState, action) {
         userHasChosenRole: true,
         user: {
           ...state.user,
-          role_id: action.role,
+          role_id: state.user.role_id,
         },
       };
     case types.USER_ROLE_ERROR:
@@ -66,7 +74,7 @@ function userReducer(state = initialState, action) {
         ...state,
         user: {
           ...state.user,
-          coach_id: action.id,
+          id: action.id,
         },
       };
     case types.SET_STUDENT_ID:
@@ -74,7 +82,7 @@ function userReducer(state = initialState, action) {
         ...state,
         user: {
           ...state.user,
-          student_id: action.id,
+          id: action.id,
         },
       };
     case types.USER_INFO_UPDATE:
@@ -83,10 +91,14 @@ function userReducer(state = initialState, action) {
         isLoading: true,
       };
     case types.USER_INFO_UPDATE_SUCCESSFUL:
+      const copyPayload = { ...action.payload };
+      delete copyPayload.id;
+      delete copyPayload.password;
+
       return {
         ...state,
         userUpdated: true,
-        user: action.payload,
+        user: { id: state.user.id, ...copyPayload },
       };
     case types.USER_INFO_UPDATE_FAILED:
       return {
