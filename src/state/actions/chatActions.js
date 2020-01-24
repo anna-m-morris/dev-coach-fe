@@ -10,16 +10,11 @@ export const START_CHAT_FROM_SCRATCH_SUCCESSFUL =
   'START_CHAT_FROM_SCRATCH_SUCCESSFUL';
 export const SAVE_FOR_CHAT = 'SAVE_FOR_CHAT';
 export const SAVE_ROOM_ID = 'SAVE_ROOM_ID';
-export const SAVE_CURRENT_USER = 'SAVE_CURRENT_USER';
 
 const url = process.env.REACT_APP_BASE_URL;
 
 export const saveForChat = peer => {
   return { type: SAVE_FOR_CHAT, payload: peer };
-};
-
-export const saveRoomId = roomId => {
-  return { type: SAVE_ROOM_ID, payload: roomId };
 };
 
 export const saveRoomId = roomId => {

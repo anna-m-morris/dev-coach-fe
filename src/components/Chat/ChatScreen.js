@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import MessageList from './MessageList';
 import SendMessageForm from './SendMessage';
 import UserList from './UserList';
-import { getRooms, saveCurrentUser } from '../../state/actions/chatActions';
+import { getRooms } from '../../state/actions/chatActions';
 import TypingIndicator from './TypingIndicator';
 
 const StyledChatScreen = styled.div`
@@ -62,6 +62,10 @@ class ChatScreen extends React.Component {
     if (this.props.roomId) this.startChat(this.props.roomId);
   };
   startChat = roomId => {
+    if (this.state.currentUser) {
+      this.state.currentUser.roomSubscriptions[this.state.currentRoom.id].cancel();
+    }
+
     this.setState({ messages: [] });
     const chatManager = new Chatkit.ChatManager({
       instanceLocator: 'v1:us1:02d03086-c977-4990-bbb8-d915c9090f74',
@@ -74,22 +78,14 @@ class ChatScreen extends React.Component {
     chatManager
       .connect()
       .then(currentUser => {
-        debugger;
         this.setState({ currentUser });
-        this.props.saveCurrentUser(currentUser);
         return currentUser.subscribeToRoom({
           roomId,
           messageLimit: 100,
           hooks: {
             onMessage: message => {
               this.setState({
-                messages: [
-                  ...this.state.messages,
-                  message ===
-                  this.state.messages[this.state.messages.length]
-                    ? null
-                    : message,
-                ],
+                messages: [...this.state.messages, message],
               });
             },
             onUserStartedTyping: user => {
@@ -111,13 +107,11 @@ class ChatScreen extends React.Component {
         });
       })
       .then(currentRoom => {
-        debugger;
         this.setState({ currentRoom });
       })
       .catch(error => this.setState({ error }));
   };
   sendMessage = text => {
-    debugger;
     this.state.currentUser.sendMessage({
       text,
       roomId: this.state.currentRoom.id,
@@ -172,4 +166,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getRooms, saveCurrentUser })(ChatScreen);
+export default connect(mapStateToProps, { getRooms })(ChatScreen);
