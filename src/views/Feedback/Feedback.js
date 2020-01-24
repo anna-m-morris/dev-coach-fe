@@ -15,18 +15,29 @@ const StyledFeedback = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 1rem;
+
+  .feedback-title {
+    margin: 0;
+    color: #595959;
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
+
   .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    .ant-pagination-item-active {
-      border-color: #4fad65;
-    }
-    .ant-pagination-item-active a {
-      color: #4fad65;
-    }
+    padding: 2rem;
   }
+
+  .ant-pagination-item-active {
+    border-color: #4fad65;
+  }
+  .ant-pagination-item-active a {
+    color: #4fad65;
+  }
+
   .loaderStyled {
     margin-top: 20vh;
   }
@@ -52,6 +63,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
 
   return (
     <StyledFeedback>
+      <h2 className='feedback-title'>Interview Feedback</h2>
       {feedback ? (
         <>
           <StyledFeedback className='feedback-card-container'>

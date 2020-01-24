@@ -32,8 +32,13 @@ const StyledCoachCard = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    max-height: 5.5rem;
     .header-text {
       width: 100%;
+
+      h3 {
+        font-weight: bold;
+      }
     }
 
     .header-photo {
@@ -56,24 +61,33 @@ const StyledCoachCard = styled.div`
 
   .reviews {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     margin: 1rem 0;
+
+    p {
+      margin-left: 0.7rem;
+    }
   }
 
   .footer {
     display: flex;
     width: 100%;
-    justify-content: space-around;
+    justify-content: space-between;
 
     a {
       text-decoration: none;
-      width: 35%;
+      width: 47%;
     }
 
     .button {
       width: 100%;
       background-color: #4fad65;
+      font-weight: bold;
+
+      &:hover {
+        background: #1e3f1f;
+      }
     }
   }
 `;
@@ -147,7 +161,7 @@ export const CoachCard = props => {
             variant='contained'
             color='primary'
           >
-            Request
+            Book
           </Button>
         </Link>
       </div>

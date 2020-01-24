@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { StyledButton, buttonTheme } from '../Landing-styles';
 import { FooterContainer } from './Footer-styles';
 
-import github from '../../../img/github-1.png';
-import facebook from '../../../img/facebook.png';
-import linkdin from '../../../img/linkedin.png';
-import twitter from '../../../img/twitter-1.png';
-import instagram from '../../../img/instagram-logo-1.png';
+import github from '../img/github-1.png';
+import facebook from '../img/facebook.png';
+import linkdin from '../img/linkedin.png';
+import twitter from '../img/twitter-1.png';
+import instagram from '../img/instagram-logo-1.png';
 
 const Footer = () => (
   <FooterContainer className='footer-container'>
@@ -15,9 +16,9 @@ const Footer = () => (
         <h2>What are you waiting for?</h2>
       </div>
       <div className='cta-button'>
-        <a href='/register'>
+        <Link to='/register'>
           <StyledButton theme={buttonTheme}>Join Now</StyledButton>
-        </a>
+        </Link>
       </div>
     </div>
     <div className='footer-bottom'>

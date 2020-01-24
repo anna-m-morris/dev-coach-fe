@@ -1,26 +1,29 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Logo } from '../Landing-styles';
 import { NavContainer } from './NavigationStyles';
 
 const Navigation = () => (
   <NavContainer className='navigation'>
     <div className='logo'>
-      <Logo />
+      <Link to='/'>
+        <Logo />
+      </Link>
       <p className='logo-name'>DevCoach</p>
     </div>
     <div className='list-items-container'>
       <ul className='list-items'>
         <li className='list-item'>
-          <a href='/faq/general'>FAQ</a>
+          <Link to='/faq/general'>FAQ</Link>
         </li>
         <li className='list-item'>
-          <a href='/about'>About</a>
+          <Link to='/about'>About</Link>
         </li>
         <li className='list-item'>
-          <a href='/login'>Login</a>
+          <Link to='/login'>Login</Link>
         </li>
         <li className='list-item'>
-          <a href='/register'>Signup</a>
+          <Link to='/register'>Signup</Link>
         </li>
       </ul>
     </div>
