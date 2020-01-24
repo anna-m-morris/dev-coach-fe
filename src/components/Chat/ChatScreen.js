@@ -61,6 +61,7 @@ class ChatScreen extends React.Component {
     this.props.getRooms(this.props.user.email);
     if (this.props.roomId) this.startChat(this.props.roomId);
   };
+
   startChat = roomId => {
     if (this.state.currentUser) {
       this.state.currentUser.roomSubscriptions[this.state.currentRoom.id].cancel();
