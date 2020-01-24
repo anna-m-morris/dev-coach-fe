@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const BodyDiv = styled.div`
-  background: #f6f9fc;
   height: 60vh;
   max-width: 100%;
   display: flex;
@@ -12,7 +11,6 @@ export const BodyDiv = styled.div`
 export const FAQContainer = styled.div`
   margin: 0 auto;
   max-width: 100%;
-  background-color: #f6f9fc;
 `;
 
 export const AskedQuestionDiv = styled.div`
@@ -25,10 +23,11 @@ export const AskedQuestionDiv = styled.div`
   background-color: #fff;
   padding: 5px 10px;
   font-size: 24px;
-  box-shadow: 0 6px 10px rgba(50, 50, 93, 0.1);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
   transition: box-shadow 0.2s;
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   p {
     font-size: 19px;
