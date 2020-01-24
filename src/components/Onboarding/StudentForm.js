@@ -267,7 +267,13 @@ const StudentForm = props => {
               className='submit-button'
               theme={buttonTheme}
               onClick={() =>
-                props.chooseUserRole(props, formValues, 1)
+                props.chooseUserRole(props, {
+                  userLocation: formValues.userLocation,
+                  experience: formValues.experience.value,
+                  confidence: formValues.confidence.value,
+                  github: formValues.github,
+                  linkedin: formValues.linkedin,
+                })
               }
             >
               Submit
