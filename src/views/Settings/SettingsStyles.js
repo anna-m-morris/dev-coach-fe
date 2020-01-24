@@ -79,7 +79,7 @@ export default styled.div`
     button {
       width: 48%;
       background-color: #4fad65;
-      padding: 0.5rem;
+      padding: 0.6rem;
       font-size: 1rem;
       border-radius: 4px;
       border: none;
