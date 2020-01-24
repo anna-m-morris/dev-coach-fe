@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import uuid from 'uuid';
 import styled from 'styled-components';
 import {
   FormControl,
@@ -46,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   },
   textField: {
     width: 600,
-    marginTop: '0.6em',
+    marginTop: '1em',
     marginBottom: '0.3em',
   },
   box: {
@@ -57,7 +58,6 @@ const useStyles = makeStyles(theme => ({
   },
   description: {
     width: 600,
-    paddingTop: '1em',
     paddingBottom: '2em',
   },
 }));
@@ -65,8 +65,59 @@ const CoachForm = props => {
   const classes = useStyles();
   const [formValues, setFormValues] = useState({
     userLocation: '',
-    experience: '',
-    skills: '',
+    experience: {
+      value: '',
+      options: [
+        {
+          level: 0,
+          text: 'None',
+        },
+        {
+          level: 1,
+          text: "I've worked for 1 - 2 years as a junior developer",
+        },
+        {
+          level: 2,
+          text: "I've worked for 2+ years as a mid-level developer",
+        },
+        {
+          level: 3,
+          text:
+            "I've worked for 4+ years and am a senior level developer",
+        },
+        {
+          level: 4,
+          text:
+            "I've worked for 8+ years and have held senior positions as a tech lead or engineering manager",
+        },
+        {
+          level: 5,
+          text:
+            "I've worked as a developer for over 10 years including at a highly senior level",
+        },
+      ],
+    },
+    skills: {
+      value: '',
+      options: [
+        {
+          level: 1,
+          text: "I'm a junior developer",
+        },
+        {
+          level: 2,
+          text: "I'm a mid-level developer",
+        },
+        {
+          level: 3,
+          text: "I'm a senior developer",
+        },
+        {
+          level: 4,
+          text: "I'm a tech lead or experienced senior developer",
+        },
+      ],
+    },
     description: '',
     github: '',
     linkedin: '',
@@ -116,57 +167,45 @@ const CoachForm = props => {
               <Select
                 placeholder='experience'
                 name='experience'
+                value={formValues.experience.value}
                 onChange={event =>
                   setFormValues({
                     ...formValues,
-                    experience: event.target.value,
+                    experience: {
+                      ...formValues.experience,
+                      value: event.target.value,
+                    },
                   })
                 }
               >
-                <MenuItem value={1}>
-                  I've worked for 1 - 2 years as a junior developer
-                </MenuItem>
-                <MenuItem value={2}>
-                  I've worked for 2+ years as a mid-level developer
-                </MenuItem>
-                <MenuItem value={3}>
-                  I've worked for 4+ years and am a senior level
-                  developer
-                </MenuItem>
-                <MenuItem value={4}>
-                  I've worked for 8+ years and have held senior
-                  positions as a tech lead or engineering manager
-                </MenuItem>
-                <MenuItem value={5}>
-                  I've worked as a developer for over 10 years,
-                  including at a highly senior level
-                </MenuItem>
+                {formValues.experience.options.map(el => (
+                  <MenuItem value={el.level} key={uuid()}>
+                    {el.text}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
             <FormControl required className={classes.formControl}>
               <InputLabel>Skill level</InputLabel>
               <Select
+                placeholder='Skill level'
+                name='skills'
+                value={formValues.skills.value}
                 onChange={event =>
                   setFormValues({
                     ...formValues,
-                    skills: event.target.value,
+                    skills: {
+                      ...formValues.skills,
+                      value: event.target.value,
+                    },
                   })
                 }
               >
-                <MenuItem value={1}>I'm a skilled developer</MenuItem>
-                <MenuItem value={2}>
-                  I'm a highly skilled developer
-                </MenuItem>
-                <MenuItem value={3}>
-                  I'm an extremely skilled developer
-                </MenuItem>
-                <MenuItem value={4}>
-                  I'm actually Dan Abramov
-                </MenuItem>
-                <MenuItem value={5}>
-                  I solve leetcode hards in my head while I'm waiting
-                  for the bus
-                </MenuItem>
+                {formValues.skills.options.map(el => (
+                  <MenuItem key={uuid()} value={el.level}>
+                    {el.text}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
             <FormControl className={classes.description}>
@@ -174,6 +213,7 @@ const CoachForm = props => {
                 fullWidth
                 multiline
                 label='Description'
+                value={formValues.description}
                 onChange={event =>
                   setFormValues({
                     ...formValues,
@@ -181,11 +221,46 @@ const CoachForm = props => {
                   })
                 }
               ></TextField>
+              <FormControl>
+                <TextField
+                  value={formValues.github}
+                  onChange={event =>
+                    setFormValues({
+                      ...formValues,
+                      github: event.target.value,
+                    })
+                  }
+                  placeholder='Link to your GitHub profile (optional)'
+                  className={classes.textField}
+                />
+              </FormControl>
+              <FormControl>
+                <TextField
+                  value={formValues.linkedin}
+                  onChange={event =>
+                    setFormValues({
+                      ...formValues,
+                      linkedin: event.target.value,
+                    })
+                  }
+                  placeholder='Link to your LinkedIn profile (optional)'
+                  className={classes.textField}
+                />
+              </FormControl>
             </FormControl>
             <FormButton
               className='submit-button'
               theme={buttonTheme}
-              onClick={() => props.chooseUserRole(props, formValues)}
+              onClick={() =>
+                props.chooseUserRole(props, {
+                  userLocation: formValues.userLocation,
+                  experience: formValues.experience.value,
+                  skills: formValues.skills.value,
+                  description: formValues.description,
+                  github: formValues.github,
+                  linkedin: formValues.linkedin,
+                })
+              }
             >
               Submit
             </FormButton>
