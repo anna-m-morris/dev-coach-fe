@@ -20,7 +20,7 @@ const StyledContainer = styled.div`
   width: 100%;
   height: 100%;
   max-width: 1024px;
-  margin: 1rem auto;
+  /* margin: 1rem auto; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,9 +34,7 @@ const StyledContainer = styled.div`
   }
 
   .top-data-card {
-    margin-top: -3em;
-    padding: 1rem;
-    height: 8em;
+    height: 9rem;
     width: 100%;
     background: #fff;
     border-radius: 5px;
@@ -47,7 +45,29 @@ const StyledContainer = styled.div`
     text-align: center;
     margin-bottom: -2em;
     color: #4a4a4a;
+    font-size: 1rem;
+
     .top-data-section {
+      text-align: center;
+      outline: 1px solid rgb(234, 234, 234);
+      width: 100%;
+      height: 7em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* padding: 3rem; */
+      h3 {
+        margin: 0;
+        /* padding: 1rem; */
+      }
+
+      .data {
+        color: #4fad65;
+        font-size: 1.4rem;
+        font-weight: bolder;
+        margin: 0.1rem;
+      }
     }
   }
   .appointments {
@@ -159,22 +179,24 @@ const UserDashboard = props => {
     <StyledContainer className='appointments-container'>
       <div className='top-data-card'>
         <div className='top-data-section'>
-          <h3>Average rating:</h3>
-          <h3>
+          <p className='data'>
             {props.feedback && props.feedback.length
               ? `${calculateFormattedMean(props.feedback)}`
               : 'N/A'}
-          </h3>
+          </p>
+          <p>Average rating</p>
         </div>
         <div className='top-data-section'>
-          <h3>Number of interviews completed:</h3>
-          <h3>{props.feedback ? props.feedback.length : 'N/A'}</h3>
+          <p className='data'>
+            {props.feedback ? props.feedback.length : 'N/A'}
+          </p>
+          <p>Interviews completed</p>
         </div>
         <div className='top-data-section'>
-          <h3>Upcoming interviews:</h3>
-          <h3>
+          <p className='data'>
             {props.appointments ? props.appointments.length : 'N/A'}
-          </h3>
+          </p>
+          <p>Upcoming interviews</p>
         </div>
       </div>
       <h2 className='appointment-title'>Scheduled Interviews</h2>
