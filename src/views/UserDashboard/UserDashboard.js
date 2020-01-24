@@ -23,52 +23,61 @@ const StyledContainer = styled.div`
   justify-content: space-between;
   padding-top: 65px;
 
+  .top-data-card {
+    margin-top: -3em;
+    height: 8em;
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    padding: 1em;
+    box-shadow: 0px 0px 4px rgba(82, 68, 110, 0.3);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin-bottom: -2em;
+    color: #4a4a4a;
+    .top-data-section {
+    }
+  }
   .appointments {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
   }
-
   .pagination {
     padding: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-
     .ant-pagination-item-active {
       border-color: #4fad65;
     }
-
     .ant-pagination-item-active a {
       color: #4fad65;
     }
   }
-
   @media (max-width: 768px) {
     max-width: 650px;
     grid-template-columns: repeat(2, 1fr);
   }
-
   @media (max-width: 500px) {
     max-width: 350px;
     grid-template-columns: 1fr;
   }
-
   & > div.appointment-card {
     background: #fff;
     border-radius: 5px;
     padding: 1rem;
     box-shadow: 0px 0px 4px rgba(82, 68, 110, 0.3);
   }
-
   .card-thumbnail {
     height: 80px;
     width: 80px;
     border-radius: 5px;
     position: relative;
-
     img {
       position: absolute;
       height: 100%;
@@ -76,30 +85,26 @@ const StyledContainer = styled.div`
       object-fit: cover;
     }
   }
-
   .card-description {
     margin: 1.5rem 0 0;
     color: #000;
-
     h2,
     h3 {
       font-weight: bold;
     }
-
     h2 {
       font-size: 1.5rem;
       text-transform: uppercase;
     }
-
     h3 {
       font-size: 1.4rem;
     }
-
     p {
       font-weight: 600;
       margin-bottom: 0;
     }
   }
+
   .loaderStyled {
     margin-left: 30rem;
     margin-top: 20vh;
@@ -132,8 +137,35 @@ const UserDashboard = props => {
       setMaxValue(value * 6);
     }
   };
+
+  const calculateFormattedMean = arr => {
+    const sum = arr.reduce((a, c) => ({
+      rating: a.rating + c.rating,
+    }));
+    return (sum.rating / arr.length).toString().slice(0, 4);
+  };
   return (
     <StyledContainer>
+      <div className='top-data-card'>
+        <div className='top-data-section'>
+          <h3>Average rating:</h3>
+          <h3>
+            {props.feedback && props.feedback.length
+              ? `${calculateFormattedMean(props.feedback)}`
+              : 'N/A'}
+          </h3>
+        </div>
+        <div className='top-data-section'>
+          <h3>Number of interviews completed:</h3>
+          <h3>{props.feedback ? props.feedback.length : 'N/A'}</h3>
+        </div>
+        <div className='top-data-section'>
+          <h3>Upcoming interviews:</h3>
+          <h3>
+            {props.appointments ? props.appointments.length : 'N/A'}
+          </h3>
+        </div>
+      </div>
       {appointments ? (
         <StyledContainer>
           {appointments && appointments.length ? (
@@ -184,6 +216,7 @@ const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
     appointments: state.appointmentsReducer.appointments,
+    feedback: state.feedbackReducer.feedback,
   };
 };
 

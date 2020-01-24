@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import uuid from 'uuid';
 import Pagination from 'antd/lib/pagination';
 import Loader from 'react-loader-spinner';
-
 import { getFeedback } from '../../state/actions/feedbackActions';
 import FeedbackRating from '../../components/DataVisualization/Rating';
 import FeedbackCard from '../../components/Cards/FeedbackCard';
@@ -16,17 +15,14 @@ const StyledFeedback = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 1rem;
-
   .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-
     .ant-pagination-item-active {
       border-color: #4fad65;
     }
-
     .ant-pagination-item-active a {
       color: #4fad65;
     }
@@ -57,26 +53,30 @@ const Feedback = ({ user, getFeedback, feedback }) => {
   return (
     <StyledFeedback>
       {feedback ? (
-        <StyledFeedback className='feedback-card-container'>
-          {feedback && feedback.length ? (
-            feedback
-              .slice(minValue, maxValue)
-              .map(feedback => (
-                <FeedbackCard
-                  key={uuid()}
-                  rating={<FeedbackRating rating={feedback.rating} />}
-                  feedback={feedback.feedback}
-                  topic={feedback.appointment_topic}
-                  date={feedback.appointment_datetime.slice(0, 15)}
-                  coachFirstName={feedback.first_name}
-                  coachLastName={feedback.last_name}
-                  avatarUrl={feedback.avatar_url}
-                />
-              ))
-          ) : (
-            <EmptyFeedback />
-          )}
-        </StyledFeedback>
+        <>
+          <StyledFeedback className='feedback-card-container'>
+            {feedback && feedback.length ? (
+              feedback
+                .slice(minValue, maxValue)
+                .map(feedback => (
+                  <FeedbackCard
+                    key={uuid()}
+                    rating={
+                      <FeedbackRating rating={feedback.rating} />
+                    }
+                    feedback={feedback.feedback}
+                    topic={feedback.appointment_topic}
+                    date={feedback.appointment_datetime.slice(0, 15)}
+                    coachFirstName={feedback.first_name}
+                    coachLastName={feedback.last_name}
+                    avatarUrl={feedback.avatar_url}
+                  />
+                ))
+            ) : (
+              <EmptyFeedback />
+            )}
+          </StyledFeedback>
+        </>
       ) : (
         <div className='loaderStyled'>
           <Loader
