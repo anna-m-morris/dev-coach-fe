@@ -7,20 +7,31 @@ import PaymentIcon from '@material-ui/icons/Payment';
 import General from './GeneralFaq';
 import Profile from './ProfileFaq';
 import Payment from './PaymentFaq';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import Navigation from '../Landing/Navigation/Navigation';
 
 // Main content
-
 const MainContainer = styled.div`
-  background: #f6f9fc;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  .navigation {
+    width: 100%;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+
+    .list-items .list-item a {
+      color: #494949;
+
+      &:hover {
+        opacity: none;
+      }
+    }
+  }
+
   h2 {
-    margin-top: 50px;
+    margin: 0;
     font-family: 'Ubuntu', sans-serif;
     color: #4fad65;
     font-size: 40px;
@@ -37,22 +48,42 @@ const CategoryContainer = styled.div`
     height: 150px;
     margin: 3em;
     border-width: 10px;
-    border: 2px solid grey;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-decoration: none;
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+    background: white;
+    transition: ease-out 0.1s;
+
+    &:hover {
+      box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.15);
+      transition: ease-in 0.1s;
+    }
+
+    .link-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
     h3 {
-      text-align: center;
       color: grey;
     }
   }
 
   .activeClassNav {
     background: #1e3f1f;
-    border: 2px solid white;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transition: ease-out 0.1s;
+
+    &:hover {
+      box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+      transition: ease-in 0.1s;
+    }
 
     h3 {
       color: white;
@@ -65,47 +96,50 @@ const iconStyles = {
   color: '#4fad65',
 };
 
-const LandingFaq = () => {
+const MainFaq = () => {
   return (
-    <div>
-      <Navbar />
-      <MainContainer>
-        <h2>FAQs</h2>
-        <CategoryContainer>
-          <NavLink
-            className='styledBox'
-            activeClassName='activeClassNav'
-            to='/faq/general'
-          >
+    <MainContainer>
+      <Navigation class='navigation' />
+      <h2>FAQ</h2>
+      <CategoryContainer>
+        <NavLink
+          className='styledBox'
+          activeClassName='activeClassNav'
+          to='/faq/general'
+        >
+          <div className='link-content'>
             <h3>General</h3>
             <SearchIcon style={iconStyles} />
-          </NavLink>
+          </div>
+        </NavLink>
 
-          <NavLink
-            className='styledBox'
-            activeClassName='activeClassNav'
-            to='/faq/profile'
-          >
+        <NavLink
+          className='styledBox'
+          activeClassName='activeClassNav'
+          to='/faq/profile'
+        >
+          <div className='link-content'>
             <h3>Profile</h3>
             <PersonIcon style={iconStyles} />
-          </NavLink>
-          <NavLink
-            className='styledBox'
-            activeClassName='activeClassNav'
-            to='/faq/payment'
-          >
+          </div>
+        </NavLink>
+        <NavLink
+          className='styledBox'
+          activeClassName='activeClassNav'
+          to='/faq/payment'
+        >
+          <div className='link-content'>
             <h3>Payment</h3>
             <PaymentIcon style={iconStyles} />
-          </NavLink>
-        </CategoryContainer>
+          </div>
+        </NavLink>
+      </CategoryContainer>
 
-        <Route exact path='/faq/general' component={General} />
-        <Route exact path='/faq/profile' component={Profile} />
-        <Route exact path='/faq/payment' component={Payment} />
-      </MainContainer>
-      <Footer />
-    </div>
+      <Route exact path='/faq/general' component={General} />
+      <Route exact path='/faq/profile' component={Profile} />
+      <Route exact path='/faq/payment' component={Payment} />
+    </MainContainer>
   );
 };
 
-export default LandingFaq;
+export default MainFaq;
