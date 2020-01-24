@@ -251,7 +251,16 @@ const CoachForm = props => {
             <FormButton
               className='submit-button'
               theme={buttonTheme}
-              onClick={() => props.chooseUserRole(props, formValues)}
+              onClick={() =>
+                props.chooseUserRole(props, {
+                  userLocation: formValues.userLocation,
+                  experience: formValues.experience.value,
+                  skills: formValues.skills.value,
+                  description: formValues.description,
+                  github: formValues.github,
+                  linkedin: formValues.linkedin,
+                })
+              }
             >
               Submit
             </FormButton>
