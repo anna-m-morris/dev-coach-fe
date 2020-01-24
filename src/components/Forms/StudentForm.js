@@ -113,7 +113,6 @@ const StudentForm = props => {
                   options={countries}
                   getOptionLabel={option => option.name}
                   onChange={event => {
-                    console.log(formValues.userLocation);
                     setFormValues({
                       ...formValues,
                       userLocation: event.target.innerText,
