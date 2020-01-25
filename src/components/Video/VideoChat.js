@@ -89,8 +89,8 @@ class VideoChat extends Component {
 
     const chatName =
       this.props.user.role_id === 1
-        ? `${this.props.user.email} ${this.props.peerId}`
-        : `${this.props.peerId} ${this.props.user.email}`;
+        ? `${this.props.user.email}-${this.props.peerId}`
+        : `${this.props.peerId}-${this.props.user.email}`;
 
     this.channel = this.pusher.subscribe(`private-${chatName}`);
     this.channel.bind('pusher:subscription_error', status => {
