@@ -114,7 +114,6 @@ class VideoChat extends Component {
   };
 
   startPeer = (userId, initiator = true) => {
-    debugger;
     const peer = new Peer({
       initiator,
       stream: this.state.user.stream,
@@ -152,7 +151,6 @@ class VideoChat extends Component {
   };
 
   callTo = userId => {
-    debugger;
     this.peers[userId] = this.startPeer(userId);
   };
 
