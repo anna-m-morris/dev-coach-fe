@@ -1,4 +1,3 @@
-// src/screens/Login.js
 import React, { Component } from "react";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
@@ -11,7 +10,7 @@ const channel_name = uniquename();
 
 const PUSHER_APP_KEY = process.env.REACT_APP_PUSHER_APP_KEY;
 const PUSHER_APP_CLUSTER = process.env.REACT_APP_PUSHER_APP_CLUSTER;
-const BASE_URL = "YOUR NGROK HTTPS URL"; // replace this later
+const BASE_URL = "Heroku"; // replace this later
 
 class LoginScreen extends Component {
 
