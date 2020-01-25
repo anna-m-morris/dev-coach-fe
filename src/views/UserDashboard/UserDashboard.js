@@ -209,7 +209,7 @@ const UserDashboard = props => {
                     appointment={appointment}
                     cancel={() => cancelAppointment(appointment.id)}
                     startInterview={() =>
-                      startInterview(appointment.user_id, props)
+                      startInterview(appointment.email, props)
                     }
                     saveIdRole={() =>
                       saveIdRole(appointment.role_id, appointment.id)

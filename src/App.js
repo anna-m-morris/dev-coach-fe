@@ -34,7 +34,7 @@ function App(props) {
       <Route path={'/appointment'} component={Booking} />
       <Route path={'/feedback'} component={Feedback} />
       <Route path={'/givefeedback'} component={GiveFeedback} />
-      <Route path={'/interview'} component={VideoChat} />
+      <Route path={'/video'} component={VideoChat} />
       <Route path={'/Settings'} component={Settings} />
       <Route path={'/FAQ'} component={MainFaq} />
       {props.user && props.user.role_id === 1 ? (

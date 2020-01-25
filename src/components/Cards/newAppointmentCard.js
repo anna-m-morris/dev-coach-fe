@@ -190,18 +190,19 @@ export const NewAppointmentCard = props => {
           >
             Cancel
           </Button>
-          <Link to='/givefeedback'>
+          {/* <Link to='/givefeedback'> */}
             <Button
               size='small'
               className='button'
               variant='contained'
               color='primary'
               endIcon={<Icon>send</Icon>}
-              onClick={() => saveIdRole()}
+              // onClick={() => saveIdRole()}
+            onClick={props.startInterview}
             >
               Interview
             </Button>
-          </Link>
+          {/* </Link> */}
         </div>
       </StyledCoachCard>
       <Dialog
