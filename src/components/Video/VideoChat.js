@@ -35,8 +35,6 @@ const StyledVideoChat = styled.div`
   }
 `;
 
-const APP_KEY = '9ebd578e6fc08eeb098e';
-
 class VideoChat extends Component {
   constructor() {
     super();
@@ -55,7 +53,7 @@ class VideoChat extends Component {
   componentWillMount = () => {
     this.setState({
       user: {
-        id: this.props.user.user_id,
+        id: this.props.user.email,
         name: this.props.user.email,
       },
     });
@@ -82,20 +80,22 @@ class VideoChat extends Component {
   };
 
   setupPusher = () => {
-    // `${process.env.REACT_APP_BASE_URL}video`
     Pusher.logToConsole = true;
-    this.pusher = new Pusher(APP_KEY, {
-      authEndpoint: `http://localhost:5000/video`,
-      cluster: 'eu',
-      auth: {
-        params: this.state.user.id,
-        headers: {
-          authorization: localStorage.getItem('token'),
-        },
-      },
+    this.pusher = new Pusher(process.env.PUSHER_KEY, {
+      authEndpoint: `${process.env.REACT_APP_BASE_URL}video/auth`,
+      cluster: process.env.PUSHER_CLUSTER,
+      encrypted: true,
     });
 
-    this.channel = this.pusher.subscribe(`presence-video-channel`);
+    const chatName =
+      this.props.user.role_id === 1
+        ? `${this.props.user.email} ${this.props.peerId}`
+        : `${this.props.peerId} ${this.props.user.email}`;
+
+    this.channel = this.pusher.subscribe(`private-${chatName}`);
+    this.channel.bind('pusher:subscription_error', status => {
+      console.log('error subscribing to channel: ', status);
+    });
 
     this.channel.bind(
       `client-signal-${this.state.user.id}`,
@@ -114,6 +114,7 @@ class VideoChat extends Component {
   };
 
   startPeer = (userId, initiator = true) => {
+    debugger;
     const peer = new Peer({
       initiator,
       stream: this.state.user.stream,
@@ -151,6 +152,7 @@ class VideoChat extends Component {
   };
 
   callTo = userId => {
+    debugger;
     this.peers[userId] = this.startPeer(userId);
   };
 

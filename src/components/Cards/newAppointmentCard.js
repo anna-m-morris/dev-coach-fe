@@ -203,6 +203,16 @@ export const NewAppointmentCard = props => {
             </Button>
           </Link>
         </div>
+        <Button
+          size='small'
+          className='button'
+          variant='contained'
+          color='primary'
+          endIcon={<Icon>send</Icon>}
+          onClick={props.startInterview}
+        >
+          Interview
+        </Button>
       </StyledCoachCard>
       <Dialog
         open={open}

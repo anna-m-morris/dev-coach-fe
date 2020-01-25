@@ -12,31 +12,23 @@ import {
 } from '../../state/actions/appointmentActions';
 import { saveIdRole } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
-
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 import NewAppointmentCard from '../../components/Cards/newAppointmentCard';
 
-const StyledContainer = styled.div`
+const DashboardContainer = styled.div`
   width: 100%;
   height: 100%;
-  max-width: 1024px;
-  margin: 1rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 
   .appointment-title {
-    margin-top: 3rem;
     color: #595959;
     font-size: 1.8rem;
     font-weight: 400;
   }
-
   .top-data-card {
-    margin-top: -3em;
-    padding: 1rem;
-    height: 8em;
     width: 100%;
     background: #fff;
     border-radius: 5px;
@@ -45,17 +37,42 @@ const StyledContainer = styled.div`
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    margin-bottom: -2em;
+    margin-top: 1em;
     color: #4a4a4a;
+    font-size: 1rem;
+
     .top-data-section {
+      text-align: center;
+      outline: 1px solid rgb(234, 234, 234);
+      width: 100%;
+      height: 7em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .data {
+        color: #4fad65;
+        font-size: 1.4rem;
+        font-weight: bolder;
+        margin: 0.1rem;
+      }
     }
   }
+
+  .appointment-cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .appointments {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
+    margin-top: 2em;
   }
   .pagination {
     padding: 2em;
@@ -156,30 +173,32 @@ const UserDashboard = props => {
     return (sum.rating / arr.length).toString().slice(0, 4);
   };
   return (
-    <StyledContainer className='appointments-container'>
+    <DashboardContainer>
       <div className='top-data-card'>
         <div className='top-data-section'>
-          <h3>Average rating:</h3>
-          <h3>
+          <p className='data'>
             {props.feedback && props.feedback.length
               ? `${calculateFormattedMean(props.feedback)}`
-              : 'N/A'}
-          </h3>
+              : 0}
+          </p>
+          <p>Average rating</p>
         </div>
         <div className='top-data-section'>
-          <h3>Number of interviews completed:</h3>
-          <h3>{props.feedback ? props.feedback.length : 'N/A'}</h3>
+          <p className='data'>
+            {props.feedback ? props.feedback.length : 0}
+          </p>
+          <p>Interviews completed</p>
         </div>
         <div className='top-data-section'>
-          <h3>Upcoming interviews:</h3>
-          <h3>
-            {props.appointments ? props.appointments.length : 'N/A'}
-          </h3>
+          <p className='data'>
+            {props.appointments ? props.appointments.length : 0}
+          </p>
+          <p>Upcoming interviews</p>
         </div>
       </div>
       <h2 className='appointment-title'>Scheduled Interviews</h2>
       {appointments ? (
-        <StyledContainer>
+        <div className='appointment-cards-container'>
           {appointments && appointments.length ? (
             <div className='appointments'>
               {appointments
@@ -190,7 +209,7 @@ const UserDashboard = props => {
                     appointment={appointment}
                     cancel={() => cancelAppointment(appointment.id)}
                     startInterview={() =>
-                      startInterview(appointment.user_id, props)
+                      startInterview(appointment.email, props)
                     }
                     saveIdRole={() =>
                       saveIdRole(appointment.role_id, appointment.id)
@@ -207,9 +226,9 @@ const UserDashboard = props => {
               </div>
             </div>
           ) : (
-            <EmptyAppointment />
+            <EmptyAppointment role_id={user.role_id} />
           )}
-        </StyledContainer>
+        </div>
       ) : (
         <div className='loaderStyled'>
           <Loader
@@ -220,7 +239,7 @@ const UserDashboard = props => {
           />
         </div>
       )}
-    </StyledContainer>
+    </DashboardContainer>
   );
 };
 
