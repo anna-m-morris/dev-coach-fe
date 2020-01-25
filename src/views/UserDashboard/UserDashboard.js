@@ -37,7 +37,7 @@ const DashboardContainer = styled.div`
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    margin-bottom: 2em;
+    margin-top: 1em;
     color: #4a4a4a;
     font-size: 1rem;
 
@@ -174,7 +174,6 @@ const UserDashboard = props => {
   };
   return (
     <DashboardContainer>
-      <h2 className='appointment-title'>Scheduled Interviews</h2>
       <div className='top-data-card'>
         <div className='top-data-section'>
           <p className='data'>
@@ -197,6 +196,7 @@ const UserDashboard = props => {
           <p>Upcoming interviews</p>
         </div>
       </div>
+      <h2 className='appointment-title'>Scheduled Interviews</h2>
       {appointments ? (
         <div className='appointment-cards-container'>
           {appointments && appointments.length ? (
