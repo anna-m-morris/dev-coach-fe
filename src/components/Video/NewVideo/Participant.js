@@ -22,13 +22,9 @@ const Participant = ({ participant }) => {
 
     const trackUnsubscribed = track => {
       if (track.kind === 'video') {
-        setVideoTracks(videoTracks =>
-          videoTracks.filter(v => v !== track),
-        );
+        setVideoTracks(videoTracks => videoTracks.filter(v => v !== track));
       } else {
-        setAudioTracks(audioTracks =>
-          audioTracks.filter(a => a !== track),
-        );
+        setAudioTracks(audioTracks => audioTracks.filter(a => a !== track));
       }
     };
 
@@ -63,7 +59,7 @@ const Participant = ({ participant }) => {
   }, [audioTracks]);
 
   return (
-    <div className='participant'>
+    <div className="participant">
       <h3>{participant.identity}</h3>
       <video ref={videoRef} autoPlay={true} />
       <audio ref={audioRef} autoPlay={true} muted={true} />
