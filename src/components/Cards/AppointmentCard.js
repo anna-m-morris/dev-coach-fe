@@ -120,7 +120,7 @@ const mapExperience = experience => {
   }
 };
 
-export const NewAppointmentCard = props => {
+export const AppointmentCard = props => {
   const { appointment, saveIdRole } = props;
   const [open, setOpen] = React.useState(false);
 
@@ -239,4 +239,4 @@ export const NewAppointmentCard = props => {
   );
 };
 
-export default NewAppointmentCard;
+export default AppointmentCard;
