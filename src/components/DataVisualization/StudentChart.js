@@ -45,9 +45,9 @@ const StudentChart = ({ feedback }) => {
         />
         <CartesianGrid stroke='ccc' />
         <XAxis tickFormatter={formatXAxis} dataKey='time'></XAxis>
-        <YAxis>
+        <YAxis domain={[0, 5]} ticks={[0, 1, 2, 3, 4, 5]}>
           {<Label value='Rating' position='insideLeft' offset={-6} />}
-        </YAxis>
+        </YAxis >
         <Tooltip content={<CustomTooltip />} />
       </LineChart>
     </ResponsiveContainer>
