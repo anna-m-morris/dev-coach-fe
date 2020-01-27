@@ -49,12 +49,18 @@ const StyledFeedback = styled.div`
     width: 100%;
     padding: 1em;
   }
+
+  .feedback-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const ChartCardContainer = styled(CardContainer)`
   height: 25rem;
-  max-width: 70em;
-  padding: 1em;
+  max-width: 60em;
+  padding: 3em 2em 2em 0.8em;
 `;
 
 const Feedback = ({ user, getFeedback, feedback }) => {
