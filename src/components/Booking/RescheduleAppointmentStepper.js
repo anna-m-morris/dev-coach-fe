@@ -6,16 +6,12 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { PayPalButton } from 'react-paypal-button-v2';
-import StripeCheckout from 'react-stripe-checkout';
-
 import {
   showErrorMessage,
   showSuccessMessage,
   closeMessage,
 } from '../../state/actions/notificationActions';
 import {
-  handleStripePayment,
   saveDate,
   bookAppointment,
 } from '../../state/actions/bookingActions';
@@ -94,6 +90,11 @@ const RescheduleAppointmentStepper = props => {
 
   return (
     <>
+      <h3>
+        Kindly reschedule the cancelled appointment as bookings are
+        non-refundable
+      </h3>
+
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map(label => (
           <Step key={label}>
@@ -104,13 +105,13 @@ const RescheduleAppointmentStepper = props => {
       <Notification
         onClose={closeMessage}
         variant='success'
-        message='Your payment was successful!'
+        message='You have successfully rescheduled!'
         open={success}
       />
       <Notification
         onClose={closeMessage}
         variant='error'
-        message={`Your payment wasn't successful!`}
+        message={`Reschedule wasn't successful!`}
         open={error}
       />
 
@@ -128,63 +129,7 @@ const RescheduleAppointmentStepper = props => {
         ) : (
           <div className='payment-container'>
             {Object.keys(select).length > 1 &&
-            date.slice(16, 24) !== '00:00:00' ? (
-              <div className='payment-buttons-container'>
-                <StripeCheckout
-                  className='stripe-checkout'
-                  stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // development token
-                  token={token =>
-                    handleStripePayment(
-                      token,
-                      `${coach.first_name} ${coach.last_name}`,
-                      coach.hourly_rate,
-                      showSuccessMessage,
-                      showErrorMessage,
-                      bookAppointment,
-                      coach,
-                      user,
-                      date,
-                      select.topic_id,
-                      select.length_id,
-                      props,
-                      closeMessage,
-                    )
-                  }
-                  amount={
-                    select.length_id === 2
-                      ? coach.hourly_rate * 100
-                      : coach.hourly_rate * 100 * 0.5
-                  }
-                  name={'name'}
-                  billingAddress
-                  shippingAddress
-                />
-                <PayPalButton
-                  amount={
-                    select.length_id === 2
-                      ? coach.hourly_rate
-                      : coach.hourly_rate * 0.5
-                  }
-                  onSuccess={(details, data) => {
-                    bookAppointment(
-                      coach,
-                      user,
-                      date,
-                      select.topic_id,
-                      select.length_id,
-                      props,
-                      closeMessage,
-                    );
-                    showSuccessMessage();
-                  }}
-                  catchError={err => showErrorMessage()}
-                  options={{
-                    clientId:
-                      'ARVkifyBTBn77NG4ftQSS7eFFxTjcG0ghgVPQCZGyUQufKrNBaTOXSWEKpvDPa3XQi96rSIKEHioCFdP',
-                  }}
-                />
-              </div>
-            ) : null}
+              date.slice(16, 24) !== '00:00:00'}
           </div>
         )}
       </div>

@@ -3,6 +3,7 @@ import axiosWithAuth from '../../utils/axiosWithAuth';
 export const APPOINTMENTS_START = 'APPOINTMENTS_START';
 export const APPOINTMENTS_ERROR = 'APPOINTMENTS_ERROR';
 export const APPOINTMENTS_SUCCESSFUL = 'APPOINTMENTS_SUCCESSFUL';
+export const CANCEL_APPOINTMENTS_START = 'CANCEL_APPOINTMENTS_START';
 export const CANCEL_APPOINTMENT_SUCCESSFUL =
   'CANCEL_APPOINTMENT_SUCCESSFUL';
 
@@ -30,13 +31,13 @@ export const getAppointment = (
 
 export const cancelAppointment = (
   appointment_id,
-  canceled,
+  history,
 ) => dispatch => {
-  dispatch({ type: APPOINTMENTS_START });
+  dispatch({ type: CANCEL_APPOINTMENTS_START });
   axiosWithAuth()
     .put(`${url}appointment/${appointment_id}`)
     .then(res => {
-      console.log(res);
+      history.push('/reschedule');
       dispatch({
         type: CANCEL_APPOINTMENT_SUCCESSFUL,
         payload: res.data.appointment,

@@ -114,6 +114,7 @@ const StyledContainer = styled.div`
 
 const UserDashboard = props => {
   const {
+    history,
     appointments,
     getAppointment,
     user,
@@ -177,7 +178,9 @@ const UserDashboard = props => {
                   <NewAppointmentCard
                     key={uuid()}
                     appointment={appointment}
-                    cancel={() => cancelAppointment(appointment.id)}
+                    cancelAppointment={() =>
+                      cancelAppointment(appointment.id, history)
+                    }
                     startInterview={() =>
                       startInterview(appointment.user_id, props)
                     }

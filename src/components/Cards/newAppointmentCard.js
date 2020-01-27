@@ -14,7 +14,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import handleCancelAppointment from '../../state/actions/bookingActions';
 
 const StyledCoachCard = styled.div`
   display: flex;
@@ -205,10 +204,12 @@ export const NewAppointmentCard = props => {
           </div>
         ) : (
           <Button
+            onClick={handleClickOpen}
             size='big'
             className='cancel-button'
             variant='contained'
             color='secondary'
+            startIcon={<DeleteIcon />}
           >
             Cancelled
           </Button>
@@ -230,7 +231,11 @@ export const NewAppointmentCard = props => {
           <Button onClick={handleClose} color='primary'>
             No
           </Button>
-          <Button onClick={props.cancel} color='primary' autoFocus>
+          <Button
+            onClick={props.cancelAppointment}
+            color='primary'
+            autoFocus
+          >
             Yes
           </Button>
         </DialogActions>
