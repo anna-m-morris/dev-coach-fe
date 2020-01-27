@@ -87,13 +87,14 @@ const useStyles = makeStyles(theme => ({
 
 const StudentForm = props => {
   const classes = useStyles();
-  const [hasError, setError] = useState(false);
   const [formValues, setFormValues] = useState({
     userLocation: {
       value: '',
+      hasError: false,
     },
     experience: {
       value: '',
+      hasError: false,
       options: [
         {
           level: 1,
@@ -123,6 +124,7 @@ const StudentForm = props => {
       ],
     },
     confidence: {
+      hasError: false,
       value: '',
       options: [
         {
@@ -150,9 +152,11 @@ const StudentForm = props => {
       ],
     },
     github: {
+      hasError: false,
       value: '',
     },
     linkedin: {
+      hasError: false,
       value: '',
     }
   });
@@ -177,7 +181,7 @@ const StudentForm = props => {
             justifyContent='space-evenly'
             alignItems='center'
           >
-            <FormControl error={hasError} required className={classes.formControl}>
+            <FormControl error={formValues.userLocation.hasError} required className={classes.formControl}>
               <Autocomplete
                 name='location'
                 options={countries}
@@ -201,9 +205,9 @@ const StudentForm = props => {
                   />
                 )}
               />
-              {hasError && <FormHelperText>This is required!</FormHelperText>}
+              {formValues.userLocation.hasError && <FormHelperText>This is required!</FormHelperText>}
             </FormControl>
-            <FormControl error={hasError} required className={classes.formControl}>
+            <FormControl error={formValues.experience.hasError} required className={classes.formControl}>
               <InputLabel>Experience</InputLabel>
               <Select
                 placeholder='experience'
@@ -225,9 +229,9 @@ const StudentForm = props => {
                   </MenuItem>
                 ))}
               </Select>
-              {hasError && <FormHelperText>This is required!</FormHelperText>}
+              {formValues.experience.hasError && <FormHelperText>This is required!</FormHelperText>}
             </FormControl>
-            <FormControl error={hasError} required className={classes.formControl}>
+            <FormControl error={formValues.confidence.hasError} required className={classes.formControl}>
               <InputLabel>Confidence</InputLabel>
               <Select
                 value={formValues.confidence.value}
@@ -247,10 +251,11 @@ const StudentForm = props => {
                   </MenuItem>
                 ))}
               </Select>
-              {hasError && <FormHelperText>This is required!</FormHelperText>}
+              {formValues.confidence.hasError && <FormHelperText>This is required!</FormHelperText>}
             </FormControl>
-            <FormControl error={hasError}>
+            <FormControl required error={formValues.github.hasError}>
               <TextField
+                value={formValues.github.value}
                 onChange={event =>
                   setFormValues({
                     ...formValues,
@@ -263,10 +268,11 @@ const StudentForm = props => {
                 placeholder='Link to your GitHub profile (optional)'
                 className={classes.textField}
               />
-              {hasError && <FormHelperText>This is required!</FormHelperText>}
+              {formValues.github.hasError && <FormHelperText>This is required!</FormHelperText>}
             </FormControl>
-            <FormControl error={hasError}>
+            <FormControl required error={formValues.linkedin.hasError}>
               <TextField
+                value={formValues.linkedin.value}
                 onChange={event =>
                   setFormValues({
                     ...formValues,
@@ -279,16 +285,21 @@ const StudentForm = props => {
                 placeholder='Link to your LinkedIn profile (optional)'
                 className={classes.textField}
               />
-              {hasError && <FormHelperText>This is required!</FormHelperText>}
+              {formValues.linkedin.hasError && <FormHelperText>This is required!</FormHelperText>}
             </FormControl>
             <FormButton
               className='submit-button'
               theme={buttonTheme}
-              onClick={() => {
-                setError(false)
-                if (Object.keys(formValues).map(el => formValues[el].value).some(el => Boolean(el) === false)) {
-                  setError(true);
-                } else {
+              onClick={(event) => {
+                setFormValues(
+                  Object.fromEntries(Object.entries(formValues).map(([ key, val ]) => {
+                    if (!val["value"]) {
+                      return [ key, { ...val, hasError: true }];
+                    }  
+                    return [key, val];
+                  })
+                  ))
+                if (Object.keys(formValues).map(el => formValues[el].hasError).every(el => el === true)) {
                   props.chooseUserRole(props, {
                     userLocation: formValues.userLocation.value,
                     experience: formValues.experience.value,
@@ -297,8 +308,7 @@ const StudentForm = props => {
                     linkedin: formValues.linkedin.value,
                   })
                 }
-              }
-              }
+              }}
             >
               Submit
             </FormButton>
