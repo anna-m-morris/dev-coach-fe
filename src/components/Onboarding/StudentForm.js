@@ -298,19 +298,17 @@ const StudentForm = props => {
               theme={buttonTheme}
               onClick={() => {
                 setError(false)
-                if (Object.keys(formValues).map(el => formValues[el].value).some(el => Boolean(el) == false)) {
+                if (Object.keys(formValues).map(el => formValues[el].value).some(el => Boolean(el) === false)) {
                   setError(true);
+                } else {
+                  props.chooseUserRole(props, {
+                    userLocation: formValues.userLocation.value,
+                    experience: formValues.experience.value,
+                    confidence: formValues.confidence.value,
+                    github: formValues.github.value,
+                    linkedin: formValues.linkedin.value,
+                  })
                 }
-                // if (Object.keys(formValues).map(el => formValues[el].value).every(el => Boolean(el) == true)) {
-
-                // }
-                // props.chooseUserRole(props, {
-                //   userLocation: formValues.userLocation,
-                //   experience: formValues.experience.value,
-                //   confidence: formValues.confidence.value,
-                //   github: formValues.github,
-                //   linkedin: formValues.linkedin,
-                // })
               }
               }
             >
