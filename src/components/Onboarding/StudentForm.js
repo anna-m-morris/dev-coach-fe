@@ -91,10 +91,8 @@ const StudentForm = props => {
   const [formValues, setFormValues] = useState({
     userLocation: {
       value: '',
-      hasError: false,
     },
     experience: {
-      hasError: false,
       value: '',
       options: [
         {
@@ -126,7 +124,6 @@ const StudentForm = props => {
     },
     confidence: {
       value: '',
-      hasError: false,
       options: [
         {
           level: 1,
@@ -153,18 +150,11 @@ const StudentForm = props => {
       ],
     },
     github: {
-      hasError: false,
       value: '',
     },
     linkedin: {
-      hasError: false,
       value: '',
     }
-  });
-
-  const [selectState, setSelectState] = useState({
-    selected: null,
-    hasError: false,
   });
 
   return (
@@ -192,7 +182,6 @@ const StudentForm = props => {
                 name='location'
                 options={countries}
                 getOptionLabel={option => option.name}
-                value={formValues.location}
                 onChange={event =>
                   setFormValues({
                     ...formValues,
@@ -209,7 +198,6 @@ const StudentForm = props => {
                     {...params}
                     label='Select your location'
                     fullWidth
-                    onChange={event => console.log(event)}
                   />
                 )}
               />
