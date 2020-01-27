@@ -161,7 +161,27 @@ const StudentForm = props => {
     }
   });
 
-  const handleSubmit = (event) => {console.log(event)}
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setFormValues(
+      Object.fromEntries(Object.entries(formValues).map(([ key, val ]) => {
+        if (!val["value"]) {
+          return [ key, { ...val, hasError: true }];
+        }  
+        return [key, val];
+      })
+      ))
+    console.log(Object.keys(formValues).map(el => formValues[el].hasError))
+    if (Object.keys(formValues).map(el => formValues[el].hasError).some(el => el === false)) {
+      props.chooseUserRole(props, {
+        userLocation: formValues.userLocation.value,
+        experience: formValues.experience.value,
+        confidence: formValues.confidence.value,
+        github: formValues.github.value,
+        linkedin: formValues.linkedin.value,
+      })
+    }
+  }
 
   return (
     <StudentCardContainer className='student-card-container'>
@@ -294,25 +314,24 @@ const StudentForm = props => {
             <FormButton
               className='submit-button'
               theme={buttonTheme}
-              onClick
-              //   setFormValues(
-              //     Object.fromEntries(Object.entries(formValues).map(([ key, val ]) => {
-              //       if (!val["value"]) {
-              //         return [ key, { ...val, hasError: true }];
-              //       }  
-              //       return [key, val];
-              //     })
-              //     ))
-              //   console.log(Object.keys(formValues).map(el => formValues[el].hasError))
-              //   if (Object.keys(formValues).map(el => formValues[el].hasError).some(el => el === false)) {
-              //     props.chooseUserRole(props, {
-              //       userLocation: formValues.userLocation.value,
-              //       experience: formValues.experience.value,
-              //       confidence: formValues.confidence.value,
-              //       github: formValues.github.value,
-              //       linkedin: formValues.linkedin.value,
-              //     })
-              //   }
+                // setFormValues(
+                //   Object.fromEntries(Object.entries(formValues).map(([ key, val ]) => {
+                //     if (!val["value"]) {
+                //       return [ key, { ...val, hasError: true }];
+                //     }  
+                //     return [key, val];
+                //   })
+                //   ))
+                // console.log(Object.keys(formValues).map(el => formValues[el].hasError))
+                // if (Object.keys(formValues).map(el => formValues[el].hasError).some(el => el === false)) {
+                //   props.chooseUserRole(props, {
+                //     userLocation: formValues.userLocation.value,
+                //     experience: formValues.experience.value,
+                //     confidence: formValues.confidence.value,
+                //     github: formValues.github.value,
+                //     linkedin: formValues.linkedin.value,
+                //   })
+                // }
               // }}
             >
               Submit
