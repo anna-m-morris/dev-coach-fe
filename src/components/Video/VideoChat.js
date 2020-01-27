@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import axios from 'axios';
 import Lobby from './Lobby';
 import Room from './Room';
 import './video.css';
@@ -19,19 +20,12 @@ const VideoChat = () => {
   const handleSubmit = useCallback(
     async event => {
       event.preventDefault();
-      const data = await fetch(
-        `https://dev-coach-staging.herokuapp.com/video/token`,
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            identity: username,
-            room: roomName,
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      ).then(res => res.json());
+      const data = await axios
+        .post(`${process.env.REACT_APP_BASE_UR}video/token`, {
+          identity: username,
+          room: roomName,
+        })
+        .then(res => res.json());
       setToken(data.token);
     },
     [roomName, username],
