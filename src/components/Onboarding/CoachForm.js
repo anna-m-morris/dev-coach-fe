@@ -64,13 +64,14 @@ const useStyles = makeStyles(theme => ({
 }));
 const CoachForm = props => {
   const classes = useStyles();
-  const [hasError, setError] = useState(false);
   const [formValues, setFormValues] = useState({
     userLocation: {
       value: '',
+      hasError: false,
     },
     experience: {
       value: '',
+      hasError: false,
       options: [
         {
           level: 1,
@@ -103,6 +104,7 @@ const CoachForm = props => {
     },
     skills: {
       value: '',
+      hasError: false,
       options: [
         {
           level: 1,
@@ -124,12 +126,15 @@ const CoachForm = props => {
     },
     description: {
       value: '',
+      hasError: false,
     },
     github: {
       value: '',
+      hasError: false,
     },
     linkedin: {
       value: '',
+      hasError: false,
     }
   });
   return (
@@ -150,12 +155,11 @@ const CoachForm = props => {
             justifyContent='space-evenly'
             alignItems='center'
           >
-            <FormControl error={hasError} required className={classes.formControl}>
+            <FormControl error={formValues.userLocation.hasError} required className={classes.formControl}>
               <Autocomplete
                 name='location'
                 options={countries}
                 getOptionLabel={option => option.name}
-                value={formValues.userLocation.value}
                 onChange={event =>
                   setFormValues({
                     ...formValues,
@@ -175,9 +179,13 @@ const CoachForm = props => {
                   />
                 )}
               />
-              {hasError && <FormHelperText>This is required!</FormHelperText>}
+              {formValues.userLocation.hasError && <FormHelperText>This is required!</FormHelperText>}
             </FormControl>
-            <FormControl error={hasError} required className={classes.formControl}>
+            <FormControl
+              error={formValues.experience.hasError}
+              required
+              className={classes.formControl}
+            >
               <InputLabel>Experience</InputLabel>
               <Select
                 placeholder='experience'
@@ -199,10 +207,15 @@ const CoachForm = props => {
                   </MenuItem>
                 ))}
               </Select>
-              
-              {hasError && <FormHelperText>This is required!</FormHelperText>}
+              {formValues.experience.hasError && (
+                <FormHelperText>This is required!</FormHelperText>
+              )}
             </FormControl>
-            <FormControl error={hasError} required className={classes.formControl}>
+            <FormControl
+              error={formValues.skills.hasError}
+              required
+              className={classes.formControl}
+            >
               <InputLabel>Skill level</InputLabel>
               <Select
                 placeholder='Skill level'
@@ -224,9 +237,14 @@ const CoachForm = props => {
                   </MenuItem>
                 ))}
               </Select>
-              {hasError && <FormHelperText>This is required!</FormHelperText>}
+              {formValues.skills.hasError && (
+                <FormHelperText>This is required!</FormHelperText>
+              )}
             </FormControl>
-            <FormControl error={hasError} className={classes.description}>
+            <FormControl
+              error={formValues.description.hasError}
+              className={classes.description}
+            >
               <TextField
                 fullWidth
                 multiline
@@ -238,55 +256,66 @@ const CoachForm = props => {
                     description: {
                       ...formValues.description,
                       value: event.target.value,
-                    }
+                    },
                   })
                 }
               ></TextField>
-              {hasError && <FormHelperText>This is required!</FormHelperText>}
-              </FormControl>
-              <FormControl error={hasError}>
-                <TextField
-                  value={formValues.github.value}
-                  onChange={event =>
-                    setFormValues({
-                      ...formValues,
-                      github: {
-                        ...formValues.github,
-                        value: event.target.value
-                      }
-                    })
-                  }
-                  placeholder='Link to your GitHub profile (optional)'
-                  className={classes.textField}
-                />
-                {hasError && <FormHelperText>This is required!</FormHelperText>}
-              </FormControl>
-              <FormControl error={hasError}>
-                <TextField
-                  value={formValues.linkedin.value}
-                  onChange={event =>
-                    setFormValues({
-                      ...formValues,
-                      linkedin: {
-                        ...formValues.linkedin,
-                        value: event.target.value,
-                      }
-                    })
-                  }
-                  placeholder='Link to your LinkedIn profile (optional)'
-                  className={classes.textField}
-                />
-                {hasError && <FormHelperText>This is required!</FormHelperText>}
-              </FormControl>
+              {formValues.description.hasError && (
+                <FormHelperText>This is required!</FormHelperText>
+              )}
+            </FormControl>
+            <FormControl error={formValues.github.hasError}>
+              <TextField
+                value={formValues.github.value}
+                onChange={event =>
+                  setFormValues({
+                    ...formValues,
+                    github: {
+                      ...formValues.github,
+                      value: event.target.value,
+                    },
+                  })
+                }
+                placeholder='Link to your GitHub profile (optional)'
+                className={classes.textField}
+              />
+              {formValues.github.hasError && (
+                <FormHelperText>This is required!</FormHelperText>
+              )}
+            </FormControl>
+            <FormControl error={formValues.linkedin.hasError}>
+              <TextField
+                value={formValues.linkedin.value}
+                onChange={event =>
+                  setFormValues({
+                    ...formValues,
+                    linkedin: {
+                      ...formValues.linkedin,
+                      value: event.target.value,
+                    },
+                  })
+                }
+                placeholder='Link to your LinkedIn profile (optional)'
+                className={classes.textField}
+              />
+              {formValues.linkedin.hasError && (
+                <FormHelperText>This is required!</FormHelperText>
+              )}
+            </FormControl>
             <FormButton
               className='submit-button'
               theme={buttonTheme}
               onClick={() => {
-                console.log(formValues)
-                setError(false)
-                if (Object.keys(formValues).map(el => formValues[el].value).some(el => Boolean(el) === false)) {
-                  setError(true);
-                } else {
+                setFormValues(
+                  Object.fromEntries(Object.entries(formValues).map(([ key, val ]) => {
+                    if (!val["value"]) {
+                      return [ key, { ...val, hasError: true }];
+                    }  
+                    return [key, val];
+                  })
+                  ))
+                  console.log(Object.keys(formValues).map(el => formValues[el].hasError))
+                if (Object.keys(formValues).map(el => formValues[el].hasError).some(el => el === false)) {
                   props.chooseUserRole(props, {
                     userLocation: formValues.userLocation.value,
                     experience: formValues.experience.value,
@@ -296,8 +325,7 @@ const CoachForm = props => {
                     linkedin: formValues.linkedin.value,
                   })
                 }
-              }
-            }
+              }}
             >
               Submit
             </FormButton>

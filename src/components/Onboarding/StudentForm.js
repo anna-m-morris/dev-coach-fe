@@ -161,6 +161,8 @@ const StudentForm = props => {
     }
   });
 
+  const handleSubmit = (event) => {console.log(event)}
+
   return (
     <StudentCardContainer className='student-card-container'>
       <div className='student-card'>
@@ -181,6 +183,8 @@ const StudentForm = props => {
             justifyContent='space-evenly'
             alignItems='center'
           >
+            <form 
+              onSubmit={handleSubmit}>
             <FormControl error={formValues.userLocation.hasError} required className={classes.formControl}>
               <Autocomplete
                 name='location'
@@ -290,29 +294,30 @@ const StudentForm = props => {
             <FormButton
               className='submit-button'
               theme={buttonTheme}
-              onClick={() => {
-                console.log(formValues)
-                setFormValues(
-                  Object.fromEntries(Object.entries(formValues).map(([ key, val ]) => {
-                    if (!val["value"]) {
-                      return [ key, { ...val, hasError: true }];
-                    }  
-                    return [key, val];
-                  })
-                  ))
-                if (Object.keys(formValues).map(el => formValues[el].hasError).every(el => el === false)) {
-                  props.chooseUserRole(props, {
-                    userLocation: formValues.userLocation.value,
-                    experience: formValues.experience.value,
-                    confidence: formValues.confidence.value,
-                    github: formValues.github.value,
-                    linkedin: formValues.linkedin.value,
-                  })
-                }
-              }}
+              onClick
+              //   setFormValues(
+              //     Object.fromEntries(Object.entries(formValues).map(([ key, val ]) => {
+              //       if (!val["value"]) {
+              //         return [ key, { ...val, hasError: true }];
+              //       }  
+              //       return [key, val];
+              //     })
+              //     ))
+              //   console.log(Object.keys(formValues).map(el => formValues[el].hasError))
+              //   if (Object.keys(formValues).map(el => formValues[el].hasError).some(el => el === false)) {
+              //     props.chooseUserRole(props, {
+              //       userLocation: formValues.userLocation.value,
+              //       experience: formValues.experience.value,
+              //       confidence: formValues.confidence.value,
+              //       github: formValues.github.value,
+              //       linkedin: formValues.linkedin.value,
+              //     })
+              //   }
+              // }}
             >
               Submit
             </FormButton>
+            </form>
           </Box>
         </div>
       </div>
