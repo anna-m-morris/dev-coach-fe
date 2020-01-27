@@ -203,7 +203,7 @@ export const AppointmentCard = props => {
             </Button>
           </Link>
         </div>
-        {/* <Button
+        <Button
           size='small'
           className='button'
           variant='contained'
@@ -212,7 +212,7 @@ export const AppointmentCard = props => {
           onClick={props.startInterview}
         >
           Interview
-        </Button> */}
+        </Button>
       </StyledCoachCard>
       <Dialog
         open={open}
