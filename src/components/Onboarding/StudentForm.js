@@ -86,6 +86,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const StudentForm = props => {
+
   const classes = useStyles();
   const [formValues, setFormValues] = useState({
     userLocation: {
@@ -103,7 +104,7 @@ const StudentForm = props => {
         {
           level: 2,
           text: "I've taken some online courses",
-        },
+        },  
         {
           level: 3,
           text:
@@ -161,17 +162,7 @@ const StudentForm = props => {
     }
   });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setFormValues(
-      Object.fromEntries(Object.entries(formValues).map(([ key, val ]) => {
-        if (!val["value"]) {
-          return [ key, { ...val, hasError: true }];
-        }  
-        return [key, val];
-      })
-      ))
-    console.log(Object.keys(formValues).map(el => formValues[el].hasError))
+  const submitDetails = formValues => {
     if (Object.keys(formValues).map(el => formValues[el].hasError).some(el => el === false)) {
       props.chooseUserRole(props, {
         userLocation: formValues.userLocation.value,
@@ -181,6 +172,27 @@ const StudentForm = props => {
         linkedin: formValues.linkedin.value,
       })
     }
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setFormValues(
+      Object.fromEntries(Object.entries(formValues).map(([ key, val ]) => { 
+        if (!val["value"]) {
+          return [ key, { ...val, hasError: true }];
+        }  
+        return [key, { ...val, hasError: false }];
+      })
+       ))
+    // if (Object.keys(formValues).map(el => formValues[el].hasError).some(el => el === false)) {
+    //   props.chooseUserRole(props, {
+    //     userLocation: formValues.userLocation.value,
+    //     experience: formValues.experience.value,
+    //     confidence: formValues.confidence.value,
+    //     github: formValues.github.value,
+    //     linkedin: formValues.linkedin.value,
+    //   })
+    // }
   }
 
   return (

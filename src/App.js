@@ -19,6 +19,7 @@ import GiveFeedback from './views/Feedback/GiveFeedback';
 import SignUp from './components/Onboarding/SignupStepper';
 import StudentForm from './components/Onboarding/StudentForm';
 import CoachForm from './components/Onboarding/CoachForm';
+import StudentForm2 from './components/Onboarding/StudentForm2';
 
 const globalTheme = createMuiTheme({
   typography: {
@@ -63,6 +64,7 @@ function App(props) {
       <Route path='/faq' component={LandingFaq} />
       <Route path='/coach' component={CoachForm} />
       <Route path='/student' component={StudentForm} />
+      <Route path='/student2' component={StudentForm2} />
       <Redirect to='/' />
     </Switch>
   );
