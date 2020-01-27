@@ -18,16 +18,19 @@ const VideoChat = () => {
   const handleSubmit = useCallback(
     async event => {
       event.preventDefault();
-      const data = await fetch('/video/token', {
-        method: 'POST',
-        body: JSON.stringify({
-          identity: username,
-          room: roomName,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
+      const data = await fetch(
+        `${process.env.REACT_APP_BASE_URL}video/token`,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            identity: username,
+            room: roomName,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
         },
-      }).then(res => res.json());
+      ).then(res => res.json());
       setToken(data.token);
     },
     [roomName, username],
