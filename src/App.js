@@ -11,7 +11,7 @@ import MainFaq from './components/FAQ/Main';
 import LandingFaq from './components/FAQ/LandingFaq';
 import Booking from './components/Booking/Booking';
 import Feedback from './views/Feedback/Feedback';
-import VideoChat from './components/Video/NewVideo/MainContainer';
+import VideoChat from './components/Video/VideoChat';
 import Chat from './components/Chat/ChatScreen';
 import StartChat from './components/Chat/Chat';
 import Settings from './views/Settings/Settings';

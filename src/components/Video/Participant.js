@@ -50,7 +50,7 @@ const Participant = ({ participant }) => {
         videoTrack.detach();
       };
     }
-    return null;
+    return undefined;
   }, [videoTracks]);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const Participant = ({ participant }) => {
         audioTrack.detach();
       };
     }
-    return null;
+    return undefined;
   }, [audioTracks]);
 
   return (
