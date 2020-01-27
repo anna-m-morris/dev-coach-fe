@@ -34,9 +34,8 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "sillyname": "^0.1.0",
     "styled-components": "^4.4.1",
-    "twilio-video": "^2.0.1",
+    "twilio-video": "^1.19.2",
     "uuid": "^3.3.3",
     "yup": "^0.27.0"
   },

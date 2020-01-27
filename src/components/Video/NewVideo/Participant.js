@@ -7,7 +7,7 @@ const Participant = ({ participant }) => {
   const videoRef = useRef();
   const audioRef = useRef();
 
-  useEffect(() => {
+  useEffect(() =>{ 
     console.log(participant);
     setVideoTracks(Array.from(participant.videoTracks.values()));
     setAudioTracks(Array.from(participant.audioTracks.values()));
@@ -39,23 +39,23 @@ const Participant = ({ participant }) => {
   }, [participant]);
 
   useEffect(() => {
-    const videoTrack = videoTracks[0];
-    if (videoTrack) {
-      videoTrack.attach(videoRef.current);
-      return () => {
-        videoTrack.detach();
-      };
-    }
+      const videoTrack = videoTracks[0];
+      if (videoTrack) {
+        videoTrack.attach(videoRef.current);
+        return () => {
+          videoTrack.detach();
+        };
+      }
   }, [videoTracks]);
 
   useEffect(() => {
-    const audioTrack = audioTracks[0];
-    if (audioTrack) {
-      audioTrack.attach(audioRef.current);
-      return () => {
-        audioTrack.detach();
-      };
-    }
+      const audioTrack = audioTracks[0];
+      if (audioTrack) {
+        audioTrack.attach(audioRef.current);
+        return () => {
+          audioTrack.detach();
+        };
+      }
   }, [audioTracks]);
 
   return (

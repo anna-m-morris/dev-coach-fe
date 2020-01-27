@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import Lobby from './Lobby';
 import Room from './Room';
-import './video.css';
 
 const VideoChat = () => {
   const [username, setUsername] = useState('');
@@ -19,7 +18,7 @@ const VideoChat = () => {
   const handleSubmit = useCallback(
     async event => {
       event.preventDefault();
-      const data = await fetch(`${process.env.REACT_APP_BASE_URL}video/token`, {
+      const data = await fetch(`https://dev-coach-staging.herokuapp.com/video/token`, {
         method: 'POST',
         body: JSON.stringify({
           identity: username,
