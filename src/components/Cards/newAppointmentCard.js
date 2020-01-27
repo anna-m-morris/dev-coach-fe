@@ -14,6 +14,19 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { connect } from 'react-redux';
+import {
+  showErrorMessage,
+  showSuccessMessage,
+  closeMessage,
+} from '../../state/actions/notificationActions';
+import {
+  saveDate,
+  bookAppointment,
+  saveRescheduledCoach,
+} from '../../state/actions/bookingActions';
+
+import { cancelAppointment } from '../../state/actions/appointmentActions';
 
 const StyledCoachCard = styled.div`
   display: flex;
@@ -120,9 +133,8 @@ const mapExperience = experience => {
 };
 
 export const NewAppointmentCard = props => {
-  const { appointment, saveIdRole } = props;
+  const { appointment, saveIdRole, coach, history } = props;
   const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -186,6 +198,8 @@ export const NewAppointmentCard = props => {
               variant='contained'
               color='secondary'
               startIcon={<DeleteIcon />}
+              coach={coach}
+              saveRescheduledCoach={() => saveRescheduledCoach(coach)}
             >
               Cancel
             </Button>
@@ -231,10 +245,11 @@ export const NewAppointmentCard = props => {
           <Button onClick={handleClose} color='primary'>
             No
           </Button>
+
           <Button
-            onClick={props.cancelAppointment}
             color='primary'
             autoFocus
+            onClick={props.cancelAppointment}
           >
             Yes
           </Button>
@@ -244,4 +259,22 @@ export const NewAppointmentCard = props => {
   );
 };
 
-export default NewAppointmentCard;
+const mapStateToProps = state => {
+  return {
+    coach: state.bookingReducer.coach,
+    select: state.bookingReducer.select,
+    date: state.bookingReducer.date,
+    success: state.notificationsReducer.success,
+    error: state.notificationsReducer.error,
+    user: state.userReducer.user,
+  };
+};
+
+export default connect(mapStateToProps, {
+  showErrorMessage,
+  showSuccessMessage,
+  closeMessage,
+  saveDate,
+  saveRescheduledCoach,
+  bookAppointment,
+})(NewAppointmentCard);

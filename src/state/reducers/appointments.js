@@ -4,6 +4,7 @@ const initialState = {
   appointments: null,
   error: '',
   isLoading: false,
+  rescheduler: '',
 };
 
 function appointmentsReducer(state = initialState, action) {
@@ -41,6 +42,7 @@ function appointmentsReducer(state = initialState, action) {
           }
           return appointment;
         }),
+        rescheduler: action.rescheduler,
       };
 
     default:

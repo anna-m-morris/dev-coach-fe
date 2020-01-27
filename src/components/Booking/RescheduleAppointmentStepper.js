@@ -13,7 +13,7 @@ import {
 } from '../../state/actions/notificationActions';
 import {
   saveDate,
-  bookAppointment,
+  rescheduleAppointment,
 } from '../../state/actions/bookingActions';
 
 import Notification from '../Notifications/Notification';
@@ -53,14 +53,14 @@ function getStepContent(stepIndex) {
     case 1:
       return 'Please select a time and date';
     default:
-      return 'All Steps completed';
+      return "you're all caught up";
   }
 }
 
 const RescheduleAppointmentStepper = props => {
   const {
     date,
-    coach,
+    rescheduler,
     closeMessage,
     success,
     error,
@@ -68,9 +68,10 @@ const RescheduleAppointmentStepper = props => {
     showSuccessMessage,
     saveDate,
     select,
-    bookAppointment,
+    rescheduleAppointment,
     user,
   } = props;
+  console.log(rescheduler);
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -91,7 +92,7 @@ const RescheduleAppointmentStepper = props => {
   return (
     <>
       <h3>
-        Kindly reschedule the cancelled appointment as bookings are
+        Kindly reschedule cancelled appointment as bookings are
         non-refundable
       </h3>
 
@@ -136,10 +137,7 @@ const RescheduleAppointmentStepper = props => {
 
       {activeStep === steps.length ? (
         <div>
-          <Typography className={classes.instructions}>
-            All steps completed
-          </Typography>
-          <Button onClick={handleReset}>Reset</Button>
+          <Typography className={classes.instructions}></Typography>
         </div>
       ) : (
         <div className='buttons-container'>
@@ -160,13 +158,28 @@ const RescheduleAppointmentStepper = props => {
           </Button>
         </div>
       )}
+      <Button
+        onClick={() =>
+          rescheduleAppointment(
+            rescheduler,
+            user,
+            date,
+            select.topic_id,
+            select.length_id,
+            props,
+            closeMessage,
+          )
+        }
+      >
+        res
+      </Button>
     </>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    coach: state.bookingReducer.coach,
+    rescheduler: state.appointmentsReducer.rescheduler,
     select: state.bookingReducer.select,
     date: state.bookingReducer.date,
     success: state.notificationsReducer.success,
@@ -180,5 +193,5 @@ export default connect(mapStateToProps, {
   showSuccessMessage,
   closeMessage,
   saveDate,
-  bookAppointment,
+  rescheduleAppointment,
 })(RescheduleAppointmentStepper);

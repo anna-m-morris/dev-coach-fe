@@ -10,6 +10,7 @@ import {
   getAppointment,
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
+import { saveRescheduledCoach } from '../../state/actions/bookingActions';
 
 import { saveIdRole } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
@@ -114,6 +115,7 @@ const StyledContainer = styled.div`
 
 const UserDashboard = props => {
   const {
+    coach,
     history,
     appointments,
     getAppointment,
@@ -178,9 +180,14 @@ const UserDashboard = props => {
                   <NewAppointmentCard
                     key={uuid()}
                     appointment={appointment}
-                    cancelAppointment={() =>
-                      cancelAppointment(appointment.id, history)
-                    }
+                    cancelAppointment={() => {
+                      cancelAppointment(appointment.id, history, {
+                        id: appointment.id,
+                        first_name: appointment.first_name,
+                        last_name: appointment.last_name,
+                        email: appointment.email,
+                      });
+                    }}
                     startInterview={() =>
                       startInterview(appointment.user_id, props)
                     }
@@ -218,6 +225,7 @@ const UserDashboard = props => {
 
 const mapStateToProps = state => {
   return {
+    coach: state.bookingReducer.coach,
     user: state.userReducer.user,
     appointments: state.appointmentsReducer.appointments,
     feedback: state.feedbackReducer.feedback,
@@ -229,4 +237,5 @@ export default connect(mapStateToProps, {
   cancelAppointment,
   startInterview,
   saveIdRole,
+  saveRescheduledCoach,
 })(UserDashboard);
