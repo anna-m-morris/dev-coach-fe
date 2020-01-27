@@ -11,6 +11,7 @@ import {
   MenuItem,
   TextField,
   Box,
+  FormHelperText,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -69,6 +70,7 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     width: 600,
+    height: 50,
   },
   textField: {
     width: 600,
@@ -85,30 +87,35 @@ const useStyles = makeStyles(theme => ({
 
 const StudentForm = props => {
   const classes = useStyles();
+  const [hasError, setError] = useState(false);
   const [formValues, setFormValues] = useState({
-    userLocation: '',
+    userLocation: {
+      value: '',
+      hasError: false,
+    },
     experience: {
+      hasError: false,
       value: '',
       options: [
         {
-          level: 0,
+          level: 1,
           text: 'None',
         },
         {
-          level: 1,
+          level: 2,
           text: "I've taken some online courses",
         },
         {
-          level: 2,
+          level: 3,
           text:
             "I've finished a few online courses and built some personal projects",
         },
         {
-          level: 3,
+          level: 4,
           text: "I've completed a coding bootcamp or similar program",
         },
         {
-          level: 4,
+          level: 5,
           text: "I've completed a CS degree",
         },
         {
@@ -119,9 +126,10 @@ const StudentForm = props => {
     },
     confidence: {
       value: '',
+      hasError: false,
       options: [
         {
-          level: 0,
+          level: 1,
           text: 'None',
         },
         {
@@ -135,21 +143,28 @@ const StudentForm = props => {
             "I'm not as confident at interviewing as I'd like to be",
         },
         {
-          level: 3,
+          level: 4,
           text: "I'm not confident, but not unconfident either",
         },
         {
-          level: 4,
-          text: "I'm pretty confident in my interview ability",
-        },
-        {
           level: 5,
-          text: "I'm completely confident at interviewing",
+          text: "I'm confident in my interview ability",
         },
       ],
     },
-    github: '',
-    linkedin: '',
+    github: {
+      hasError: false,
+      value: '',
+    },
+    linkedin: {
+      hasError: false,
+      value: '',
+    }
+  });
+
+  const [selectState, setSelectState] = useState({
+    selected: null,
+    hasError: false,
   });
 
   return (
@@ -172,7 +187,7 @@ const StudentForm = props => {
             justifyContent='space-evenly'
             alignItems='center'
           >
-            <FormControl required className={classes.formControl}>
+            <FormControl error={hasError} required className={classes.formControl}>
               <Autocomplete
                 name='location'
                 options={countries}
@@ -181,7 +196,10 @@ const StudentForm = props => {
                 onChange={event =>
                   setFormValues({
                     ...formValues,
-                    userLocation: event.target.innerText,
+                    userLocation: {
+                      ...formValues.userLocation,
+                      value: event.target.innerText,
+                    }
                   })
                 }
                 renderInput={params => (
@@ -191,17 +209,19 @@ const StudentForm = props => {
                     {...params}
                     label='Select your location'
                     fullWidth
+                    onChange={event => console.log(event)}
                   />
                 )}
               />
+              {hasError && <FormHelperText>This is required!</FormHelperText>}
             </FormControl>
-            <FormControl required className={classes.formControl}>
+            <FormControl error={hasError} required className={classes.formControl}>
               <InputLabel>Experience</InputLabel>
               <Select
                 placeholder='experience'
                 name='experience'
                 value={formValues.experience.value}
-                onChange={event =>
+                onChange={event => 
                   setFormValues({
                     ...formValues,
                     experience: {
@@ -217,8 +237,9 @@ const StudentForm = props => {
                   </MenuItem>
                 ))}
               </Select>
+              {hasError && <FormHelperText>This is required!</FormHelperText>}
             </FormControl>
-            <FormControl required className={classes.formControl}>
+            <FormControl error={hasError} required className={classes.formControl}>
               <InputLabel>Confidence</InputLabel>
               <Select
                 value={formValues.confidence.value}
@@ -238,42 +259,59 @@ const StudentForm = props => {
                   </MenuItem>
                 ))}
               </Select>
+              {hasError && <FormHelperText>This is required!</FormHelperText>}
             </FormControl>
-            <FormControl>
+            <FormControl error={hasError}>
               <TextField
                 onChange={event =>
                   setFormValues({
                     ...formValues,
-                    github: event.target.value,
+                    github: {
+                      ...formValues.github,
+                      value: event.target.value,
+                    }
                   })
                 }
                 placeholder='Link to your GitHub profile (optional)'
                 className={classes.textField}
               />
+              {hasError && <FormHelperText>This is required!</FormHelperText>}
             </FormControl>
-            <FormControl>
+            <FormControl error={hasError}>
               <TextField
                 onChange={event =>
                   setFormValues({
                     ...formValues,
-                    linkedin: event.target.value,
+                    linkedin: {
+                      ...formValues.linkedin,
+                      value: event.target.value
+                    }
                   })
                 }
                 placeholder='Link to your LinkedIn profile (optional)'
                 className={classes.textField}
               />
+              {hasError && <FormHelperText>This is required!</FormHelperText>}
             </FormControl>
             <FormButton
               className='submit-button'
               theme={buttonTheme}
-              onClick={() =>
-                props.chooseUserRole(props, {
-                  userLocation: formValues.userLocation,
-                  experience: formValues.experience.value,
-                  confidence: formValues.confidence.value,
-                  github: formValues.github,
-                  linkedin: formValues.linkedin,
-                })
+              onClick={() => {
+                setError(false)
+                if (Object.keys(formValues).map(el => formValues[el].value).some(el => Boolean(el) == false)) {
+                  setError(true);
+                }
+                // if (Object.keys(formValues).map(el => formValues[el].value).every(el => Boolean(el) == true)) {
+
+                // }
+                // props.chooseUserRole(props, {
+                //   userLocation: formValues.userLocation,
+                //   experience: formValues.experience.value,
+                //   confidence: formValues.confidence.value,
+                //   github: formValues.github,
+                //   linkedin: formValues.linkedin,
+                // })
+              }
               }
             >
               Submit
