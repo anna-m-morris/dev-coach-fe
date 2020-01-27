@@ -12,14 +12,6 @@ const UserListStyle = styled.div`
     cursor: pointer;
   }
 
-  .text {
-    width: 70%;
-    height: 70%;
-    margin-top: -20px;
-    text-align: center;
-    margin-left: 3rem;
-  }
-
   .bgClicked {
     background: #4fad65;
     border-top: 1px solid #ced4da;
