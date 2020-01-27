@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import uuid from 'uuid';
 import Pagination from 'antd/lib/pagination';
 import Loader from 'react-loader-spinner';
-
 import { getFeedback } from '../../state/actions/feedbackActions';
 import FeedbackRating from '../../components/DataVisualization/Rating';
-import FeedbackCard from '../../components/Cards/FeedbackCard';
+import FeedbackCard, { CardContainer } from '../../components/Cards/FeedbackCard';
 import EmptyFeedback from '../../components/Cards/EmptyFeedbackCard';
+import StudentChart from '../../components/DataVisualization/StudentChart';
 
 const StyledFeedback = styled.div`
   width: 100%;
@@ -17,23 +17,50 @@ const StyledFeedback = styled.div`
   justify-content: center;
   margin-top: 1rem;
 
+  .feedback-title {
+    margin: 0;
+    color: #595959;
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
+
   .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-
-    .ant-pagination-item-active {
-      border-color: #4fad65;
-    }
-
-    .ant-pagination-item-active a {
-      color: #4fad65;
-    }
+    padding: 2rem;
+    margin-top: 3em;
   }
+
+  .ant-pagination-item-active {
+    border-color: #4fad65;
+  }
+  .ant-pagination-item-active a {
+    color: #4fad65;
+  }
+
   .loaderStyled {
     margin-top: 20vh;
   }
+
+  .chart-container {
+    height: 30em;
+    width: 100%;
+    padding: 1em;
+  }
+
+  .feedback-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const ChartCardContainer = styled(CardContainer)`
+  height: 25rem;
+  max-width: 60em;
+  padding: 3em 2em 2em 0.8em;
 `;
 
 const Feedback = ({ user, getFeedback, feedback }) => {
@@ -56,27 +83,35 @@ const Feedback = ({ user, getFeedback, feedback }) => {
 
   return (
     <StyledFeedback>
+      <h2 className='feedback-title'>Interview Feedback</h2>
       {feedback ? (
-        <StyledFeedback className='feedback-card-container'>
-          {feedback && feedback.length ? (
-            feedback
-              .slice(minValue, maxValue)
-              .map(feedback => (
-                <FeedbackCard
-                  key={uuid()}
-                  rating={<FeedbackRating rating={feedback.rating} />}
-                  feedback={feedback.feedback}
-                  topic={feedback.appointment_topic}
-                  date={feedback.appointment_datetime.slice(0, 15)}
-                  coachFirstName={feedback.first_name}
-                  coachLastName={feedback.last_name}
-                  avatarUrl={feedback.avatar_url}
-                />
-              ))
-          ) : (
-            <EmptyFeedback />
-          )}
-        </StyledFeedback>
+        <div className='feedback-content'>
+          <ChartCardContainer> 
+            <StudentChart />
+          </ChartCardContainer>
+          <StyledFeedback className='feedback-card-container'>
+            {feedback && feedback.length ? (
+              feedback
+                .slice(minValue, maxValue)
+                .map(feedback => (
+                  <FeedbackCard
+                    key={uuid()}
+                    rating={
+                      <FeedbackRating rating={feedback.rating} />
+                    }
+                    feedback={feedback.feedback}
+                    topic={feedback.appointment_topic}
+                    date={feedback.appointment_datetime.slice(0, 15)}
+                    coachFirstName={feedback.first_name}
+                    coachLastName={feedback.last_name}
+                    avatarUrl={feedback.avatar_url}
+                  />
+                ))
+            ) : (
+              <EmptyFeedback />
+            )}
+          </StyledFeedback>
+        </div>
       ) : (
         <div className='loaderStyled'>
           <Loader

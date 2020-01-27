@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { StyledButton, buttonTheme } from '../Landing-styles';
 import { HeaderContainer } from './Header-styles';
 
@@ -9,9 +10,9 @@ const Header = () => (
       stressful
     </h2>
     <div className='cta-button'>
-      <a href='/register'>
+      <Link to='/register'>
         <StyledButton theme={buttonTheme}>SIGN UP</StyledButton>
-      </a>
+      </Link>
     </div>
   </HeaderContainer>
 );

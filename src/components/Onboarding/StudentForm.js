@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import uuid from 'uuid';
 import {
   FormControl,
   Select,
@@ -36,7 +37,6 @@ export const FormButton = styled(StyledButton)`
 export const InfoParagraph = styled.p`
   width: 85%;
   text-align: center;
-  padding-bottom: 0.8em;
 `;
 
 const StudentCardContainer = styled.div`
@@ -72,7 +72,7 @@ const useStyles = makeStyles(theme => ({
   },
   textField: {
     width: 600,
-    marginTop: '0.6em',
+    marginTop: '0.8em',
     marginBottom: '0.3em',
   },
   box: {
@@ -87,11 +87,71 @@ const StudentForm = props => {
   const classes = useStyles();
   const [formValues, setFormValues] = useState({
     userLocation: '',
-    experience: '',
-    confidence: '',
+    experience: {
+      value: '',
+      options: [
+        {
+          level: 0,
+          text: 'None',
+        },
+        {
+          level: 1,
+          text: "I've taken some online courses",
+        },
+        {
+          level: 2,
+          text:
+            "I've finished a few online courses and built some personal projects",
+        },
+        {
+          level: 3,
+          text: "I've completed a coding bootcamp or similar program",
+        },
+        {
+          level: 4,
+          text: "I've completed a CS degree",
+        },
+        {
+          level: 5,
+          text: "I'm a professional software developer",
+        },
+      ],
+    },
+    confidence: {
+      value: '',
+      options: [
+        {
+          level: 0,
+          text: 'None',
+        },
+        {
+          level: 2,
+          text:
+            "I'm not very confident in my ability to interview successfully",
+        },
+        {
+          level: 3,
+          text:
+            "I'm not as confident at interviewing as I'd like to be",
+        },
+        {
+          level: 3,
+          text: "I'm not confident, but not unconfident either",
+        },
+        {
+          level: 4,
+          text: "I'm pretty confident in my interview ability",
+        },
+        {
+          level: 5,
+          text: "I'm completely confident at interviewing",
+        },
+      ],
+    },
     github: '',
     linkedin: '',
   });
+
   return (
     <StudentCardContainer className='student-card-container'>
       <div className='student-card'>
@@ -117,6 +177,7 @@ const StudentForm = props => {
                 name='location'
                 options={countries}
                 getOptionLabel={option => option.name}
+                value={formValues.location}
                 onChange={event =>
                   setFormValues({
                     ...formValues,
@@ -139,61 +200,43 @@ const StudentForm = props => {
               <Select
                 placeholder='experience'
                 name='experience'
+                value={formValues.experience.value}
                 onChange={event =>
                   setFormValues({
                     ...formValues,
-                    experience: event.target.value,
+                    experience: {
+                      ...formValues.experience,
+                      value: event.target.value,
+                    },
                   })
                 }
               >
-                <MenuItem value=''>
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={1}>
-                  I've taken some online courses
-                </MenuItem>
-                <MenuItem value={2}>
-                  I've completed a number of tutorials and built some
-                  personal projects
-                </MenuItem>
-                <MenuItem value={3}>
-                  I've completed a coding bootcamp or similar program
-                </MenuItem>
-                <MenuItem value={4}>
-                  I've completed a CS undergraduate degree
-                </MenuItem>
-                <MenuItem value={5}>
-                  I'm a professional software developer
-                </MenuItem>
+                {formValues.experience.options.map(el => (
+                  <MenuItem value={el.level} key={uuid()}>
+                    {el.text}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
             <FormControl required className={classes.formControl}>
               <InputLabel>Confidence</InputLabel>
               <Select
+                value={formValues.confidence.value}
                 onChange={event =>
                   setFormValues({
                     ...formValues,
-                    confidence: event.target.value,
+                    confidence: {
+                      ...formValues.confidence,
+                      value: event.target.value,
+                    },
                   })
                 }
               >
-                <MenuItem value={1}>
-                  I'm not very confident in my ability to interview
-                  successfully
-                </MenuItem>
-                <MenuItem value={2}>
-                  I'm not as confident at interviewing as I'd like to
-                  be
-                </MenuItem>
-                <MenuItem value={3}>
-                  I'm not confident, but not unconfident either
-                </MenuItem>
-                <MenuItem value={4}>
-                  I'm pretty confident in my interview ability
-                </MenuItem>
-                <MenuItem value={5}>
-                  I'm completely confident at interviewing
-                </MenuItem>
+                {formValues.confidence.options.map(el => (
+                  <MenuItem value={el.level} key={uuid()}>
+                    {el.text}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
             <FormControl>
@@ -224,7 +267,13 @@ const StudentForm = props => {
               className='submit-button'
               theme={buttonTheme}
               onClick={() =>
-                props.chooseUserRole(props, formValues, 1)
+                props.chooseUserRole(props, {
+                  userLocation: formValues.userLocation,
+                  experience: formValues.experience.value,
+                  confidence: formValues.confidence.value,
+                  github: formValues.github,
+                  linkedin: formValues.linkedin,
+                })
               }
             >
               Submit

@@ -5,14 +5,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import MatLink from '@material-ui/core/Link';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -93,8 +91,11 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   profileMenu: {
+    position: 'absolute',
+    top: 20,
+    right: 40,
     color: 'grey',
-    transform: 'scale(1.25)',
+    transform: 'scale(1.5)',
   },
   menuButton: {
     marginRight: 36,
@@ -141,12 +142,8 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
-    background: '#f9f9f9',
   },
   container: {
-    background: '#f9f9f9',
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
     height: '100vh',
     display: 'flex',
     flexDirection: 'column',
@@ -155,6 +152,8 @@ const useStyles = makeStyles(theme => ({
   },
   copyright: {
     textAlign: 'center',
+    margin: '2rem 0 1rem 0',
+    padding: '0',
   },
   hidden: {
     visibility: 'hidden',
@@ -182,74 +181,48 @@ const Dashboard = props => {
     setAnchorEl(null);
   };
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position='absolute'
         className={clsx(classes.appBar, open && classes.appBarShift)}
-      >
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge='start'
-            color='inherit'
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden,
-            )}
-          >
-            <MenuIcon className={classes.menuIcon} />
-          </IconButton>
-          <Typography
-            component='h1'
-            variant='h6'
-            color='inherit'
-            noWrap
-            className={classes.title}
-          ></Typography>
-          <div className={classes.profileMenu}>
-            <IconButton
-              aria-label='account of current user'
-              aria-controls='menu-appbar'
-              aria-haspopup='true'
-              onClick={handleMenu}
-              color='inherit'
-            >
-              <AccountCircle />
-            </IconButton>
-            <Menu
-              id='menu-appbar'
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={openMenu}
-              onClose={handleClose}
-            >
-              <Link className={classes.link} to='/settings'>
-                <MenuItem>Settings</MenuItem>
-              </Link>
-              <MenuItem onClick={handleLogout}>Logout</MenuItem>
-            </Menu>
-          </div>
-        </Toolbar>
-      </AppBar>
+      ></AppBar>
+      <div className={classes.profileMenu}>
+        <IconButton
+          className={classes.iconButton}
+          aria-label='account of current user'
+          aria-controls='menu-appbar'
+          aria-haspopup='true'
+          onClick={handleMenu}
+          color='inherit'
+        >
+          <AccountCircle />
+        </IconButton>
+        <Menu
+          id='menu-appbar'
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+          open={openMenu}
+          onClose={handleClose}
+        >
+          <Link className={classes.link} to='/settings'>
+            <MenuItem>Settings</MenuItem>
+          </Link>
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        </Menu>
+      </div>
       <Drawer
         variant='permanent'
         classes={{
