@@ -290,7 +290,8 @@ const StudentForm = props => {
             <FormButton
               className='submit-button'
               theme={buttonTheme}
-              onClick={(event) => {
+              onClick={() => {
+                console.log(formValues)
                 setFormValues(
                   Object.fromEntries(Object.entries(formValues).map(([ key, val ]) => {
                     if (!val["value"]) {
@@ -299,7 +300,7 @@ const StudentForm = props => {
                     return [key, val];
                   })
                   ))
-                if (Object.keys(formValues).map(el => formValues[el].hasError).every(el => el === true)) {
+                if (Object.keys(formValues).map(el => formValues[el].hasError).every(el => el === false)) {
                   props.chooseUserRole(props, {
                     userLocation: formValues.userLocation.value,
                     experience: formValues.experience.value,
