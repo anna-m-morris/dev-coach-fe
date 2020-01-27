@@ -20,13 +20,12 @@ const VideoChat = () => {
   const handleSubmit = useCallback(
     async event => {
       event.preventDefault();
-      const data = await axios
-        .post(`${process.env.REACT_APP_BASE_UR}video/token`, {
+      await axios
+        .post(`${process.env.REACT_APP_BASE_URL}video/token`, {
           identity: username,
           room: roomName,
         })
-        .then(res => res.json());
-      setToken(data.token);
+        .then(res => setToken(res.data.token));
     },
     [roomName, username],
   );

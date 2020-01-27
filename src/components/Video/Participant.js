@@ -8,7 +8,6 @@ const Participant = ({ participant }) => {
   const audioRef = useRef();
 
   useEffect(() => {
-    console.log(participant);
     setVideoTracks(Array.from(participant.videoTracks.values()));
     setAudioTracks(Array.from(participant.audioTracks.values()));
 
