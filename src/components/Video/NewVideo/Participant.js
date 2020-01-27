@@ -7,7 +7,7 @@ const Participant = ({ participant }) => {
   const videoRef = useRef();
   const audioRef = useRef();
 
-  useEffect(() =>{ 
+  useEffect(() => {
     console.log(participant);
     setVideoTracks(Array.from(participant.videoTracks.values()));
     setAudioTracks(Array.from(participant.audioTracks.values()));
@@ -22,9 +22,13 @@ const Participant = ({ participant }) => {
 
     const trackUnsubscribed = track => {
       if (track.kind === 'video') {
-        setVideoTracks(videoTracks => videoTracks.filter(v => v !== track));
+        setVideoTracks(videoTracks =>
+          videoTracks.filter(v => v !== track),
+        );
       } else {
-        setAudioTracks(audioTracks => audioTracks.filter(a => a !== track));
+        setAudioTracks(audioTracks =>
+          audioTracks.filter(a => a !== track),
+        );
       }
     };
 
@@ -39,27 +43,29 @@ const Participant = ({ participant }) => {
   }, [participant]);
 
   useEffect(() => {
-      const videoTrack = videoTracks[0];
-      if (videoTrack) {
-        videoTrack.attach(videoRef.current);
-        return () => {
-          videoTrack.detach();
-        };
-      }
+    const videoTrack = videoTracks[0];
+    if (videoTrack) {
+      videoTrack.attach(videoRef.current);
+      return () => {
+        videoTrack.detach();
+      };
+    }
+    return null;
   }, [videoTracks]);
 
   useEffect(() => {
-      const audioTrack = audioTracks[0];
-      if (audioTrack) {
-        audioTrack.attach(audioRef.current);
-        return () => {
-          audioTrack.detach();
-        };
-      }
+    const audioTrack = audioTracks[0];
+    if (audioTrack) {
+      audioTrack.attach(audioRef.current);
+      return () => {
+        audioTrack.detach();
+      };
+    }
+    return null;
   }, [audioTracks]);
 
   return (
-    <div className="participant">
+    <div className='participant'>
       <h3>{participant.identity}</h3>
       <video ref={videoRef} autoPlay={true} />
       <audio ref={audioRef} autoPlay={true} muted={true} />

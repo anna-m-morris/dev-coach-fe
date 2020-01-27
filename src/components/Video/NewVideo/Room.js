@@ -8,17 +8,20 @@ const Room = ({ roomName, token, handleLogout }) => {
 
   useEffect(() => {
     const participantConnected = participant => {
-      setParticipants(prevParticipants => [...prevParticipants, participant]);
+      setParticipants(prevParticipants => [
+        ...prevParticipants,
+        participant,
+      ]);
     };
 
     const participantDisconnected = participant => {
       setParticipants(prevParticipants =>
-        prevParticipants.filter(p => p !== participant)
+        prevParticipants.filter(p => p !== participant),
       );
     };
 
     Video.connect(token, {
-      name: roomName
+      name: roomName,
     }).then(room => {
       setRoom(room);
       room.on('participantConnected', participantConnected);
@@ -28,12 +31,14 @@ const Room = ({ roomName, token, handleLogout }) => {
 
     return () => {
       setRoom(currentRoom => {
-        if (currentRoom && currentRoom.localParticipant.state === 'connected') {
+        if (
+          currentRoom &&
+          currentRoom.localParticipant.state === 'connected'
+        ) {
           currentRoom.disconnect();
           return null;
-        } else {
-          return currentRoom;
         }
+        return currentRoom;
       });
     };
   }, [roomName, token]);
@@ -43,10 +48,10 @@ const Room = ({ roomName, token, handleLogout }) => {
   ));
 
   return (
-    <div className="room">
+    <div className='room'>
       <h2>Room: {roomName}</h2>
       <button onClick={handleLogout}>Log out</button>
-      <div className="local-participant">
+      <div className='local-participant'>
         {room ? (
           <Participant
             key={room.localParticipant.sid}
@@ -57,7 +62,7 @@ const Room = ({ roomName, token, handleLogout }) => {
         )}
       </div>
       <h3>Remote Participants</h3>
-      <div className="remote-participants">{remoteParticipants}</div>
+      <div className='remote-participants'>{remoteParticipants}</div>
     </div>
   );
 };
