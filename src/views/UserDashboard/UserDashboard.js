@@ -13,7 +13,7 @@ import {
 import { saveIdRole } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
-import NewAppointmentCard from '../../components/Cards/newAppointmentCard';
+import AppointmentCard from '../../components/Cards/AppointmentCard';
 
 const DashboardContainer = styled.div`
   width: 100%;
@@ -204,7 +204,7 @@ const UserDashboard = props => {
               {appointments
                 .slice(minValue, maxValue)
                 .map(appointment => (
-                  <NewAppointmentCard
+                  <AppointmentCard
                     key={uuid()}
                     appointment={appointment}
                     cancel={() => cancelAppointment(appointment.id)}

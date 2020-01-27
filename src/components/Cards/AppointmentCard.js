@@ -120,7 +120,7 @@ const mapExperience = experience => {
   }
 };
 
-export const NewAppointmentCard = props => {
+export const AppointmentCard = props => {
   const { appointment, saveIdRole } = props;
   const [open, setOpen] = React.useState(false);
 
@@ -203,7 +203,7 @@ export const NewAppointmentCard = props => {
             </Button>
           </Link>
         </div>
-        <Button
+        {/* <Button
           size='small'
           className='button'
           variant='contained'
@@ -212,7 +212,7 @@ export const NewAppointmentCard = props => {
           onClick={props.startInterview}
         >
           Interview
-        </Button>
+        </Button> */}
       </StyledCoachCard>
       <Dialog
         open={open}
@@ -239,4 +239,4 @@ export const NewAppointmentCard = props => {
   );
 };
 
-export default NewAppointmentCard;
+export default AppointmentCard;

@@ -18,6 +18,7 @@ export const getAppointment = (
       params: { role: role_id },
     })
     .then(res => {
+      debugger
       dispatch({
         type: APPOINTMENTS_SUCCESSFUL,
         payload: res.data.appointments,
