@@ -6,8 +6,9 @@ import Pagination from 'antd/lib/pagination';
 import Loader from 'react-loader-spinner';
 import { getFeedback } from '../../state/actions/feedbackActions';
 import FeedbackRating from '../../components/DataVisualization/Rating';
-import FeedbackCard from '../../components/Cards/FeedbackCard';
+import FeedbackCard, { CardContainer } from '../../components/Cards/FeedbackCard';
 import EmptyFeedback from '../../components/Cards/EmptyFeedbackCard';
+import StudentChart from '../../components/DataVisualization/StudentChart';
 
 const StyledFeedback = styled.div`
   width: 100%;
@@ -42,6 +43,18 @@ const StyledFeedback = styled.div`
   .loaderStyled {
     margin-top: 20vh;
   }
+
+  .chart-container {
+    height: 30em;
+    width: 100%;
+    padding: 1em;
+  }
+`;
+
+const ChartCardContainer = styled(CardContainer)`
+  height: 25rem;
+  max-width: 70em;
+  padding: 1em;
 `;
 
 const Feedback = ({ user, getFeedback, feedback }) => {
@@ -66,7 +79,10 @@ const Feedback = ({ user, getFeedback, feedback }) => {
     <StyledFeedback>
       <h2 className='feedback-title'>Interview Feedback</h2>
       {feedback ? (
-        <>
+        <div className='feedback-content'>
+          <ChartCardContainer> 
+            <StudentChart />
+          </ChartCardContainer>
           <StyledFeedback className='feedback-card-container'>
             {feedback && feedback.length ? (
               feedback
@@ -89,7 +105,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
               <EmptyFeedback />
             )}
           </StyledFeedback>
-        </>
+        </div>
       ) : (
         <div className='loaderStyled'>
           <Loader
