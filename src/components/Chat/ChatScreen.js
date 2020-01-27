@@ -13,7 +13,7 @@ const StyledChatScreen = styled.div`
   height: 85vh;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 1rem auto;
   justify-content: center;
   width: 100%;
   .chat-container {
@@ -61,7 +61,12 @@ class ChatScreen extends React.Component {
     this.props.getRooms(this.props.user.email);
     if (this.props.roomId) this.startChat(this.props.roomId);
   };
+
   startChat = roomId => {
+    if (this.state.currentUser) {
+      this.state.currentUser.roomSubscriptions[this.state.currentRoom.id].cancel();
+    }
+
     this.setState({ messages: [] });
     const chatManager = new Chatkit.ChatManager({
       instanceLocator: 'v1:us1:02d03086-c977-4990-bbb8-d915c9090f74',
