@@ -10,13 +10,16 @@ import Payment from './PaymentFaq';
 
 // Main content
 const MainContainer = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding-top: 5em;
+  margin: 0 auto;
 
   h2 {
-    margin-top: 50px;
+    margin: 0;
     font-family: 'Ubuntu', sans-serif;
     color: #4fad65;
     font-size: 40px;
@@ -28,9 +31,8 @@ const CategoryContainer = styled.div`
   margin-bottom: 20px;
 
   .styledBox {
-    width: 12em;
     border-radius: 10px;
-    height: 150px;
+    padding: 3em 5em;
     margin: 3em;
     border-width: 10px;
     display: flex;

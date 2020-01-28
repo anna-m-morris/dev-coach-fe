@@ -7,7 +7,6 @@ const StyledContainer = styled.div`
   width: 700px;
   height: 100%;
   max-width: 100%;
-  margin-left: 20%;
   background: white;
   box-shadow: 0 6px 10px rgba(50, 50, 93, 0.1);
   padding: 40px;
@@ -68,7 +67,7 @@ const StyledContainer = styled.div`
   }
 `;
 
-const EmptyAppointment = () => {
+const EmptyAppointment = ({ role_id }) => {
   return (
     <StyledContainer>
       <h3>You have no upcoming appointments.</h3>
@@ -76,7 +75,7 @@ const EmptyAppointment = () => {
         <Empty description={false} />
       </div>
       <Link className='link' to='/marketplace'>
-        <button>Book A Coach</button>
+        {role_id === 1 && <button>Book A Coach</button>}
       </Link>
     </StyledContainer>
   );
