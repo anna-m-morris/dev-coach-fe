@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { Formik } from 'formik';
+import { Formik, Field, useField, FieldArray } from 'formik';
+import * as yup from 'yup'
 import uuid from 'uuid';
 import {
   FormControl,
@@ -86,8 +87,29 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const validationSchema = yup.object().shape({
+  userLocation: yup.string().required('Please enter location'),
+  description: yup.string().required('Please enter description'),
+  github: yup.string().required('Please enter github'),
+  linkedin: yup.string().required('Please enter linkdein')
+});
+
 const StudentForm = props => {
   const classes = useStyles();
+
+  const MyTextField = ({ placeholder, ...props }) => {
+    const [field, meta] = useField(props);
+    const errorText = meta.error && meta.touched ? meta.error : '';
+    return (
+      <TextField
+        className={classes.textField}
+        placeholder={placeholder}
+        {...field}
+        helperText={errorText}
+        error={!!errorText}
+      />
+    );
+  };
 
   return (
     <StudentCardContainer className='student-card-container'>
@@ -110,26 +132,165 @@ const StudentForm = props => {
             alignItems='center'
           >
             <Formik
-            initialValues={{
-              experience: ['one', 'two', 'three']
-            }}
+              initialValues={{
+                location: '',
+                github: '',
+                linkedin: '',
+                confidence: {
+                  hasError: false,
+                  value: '',
+                  options: [
+                    {
+                      level: 1,
+                      text: 'None',
+                    },
+                    {
+                      level: 2,
+                      text:
+                        "I'm not very confident in my ability to interview successfully",
+                    },
+                    {
+                      level: 3,
+                      text:
+                        "I'm not as confident at interviewing as I'd like to be",
+                    },
+                    {
+                      level: 4,
+                      text:
+                        "I'm not confident, but not unconfident either",
+                    },
+                    {
+                      level: 5,
+                      text: "I'm confident in my interview ability",
+                    },
+                  ],
+                },
+                experience: {
+                  value: '',
+                  options: [
+                    {
+                      level: 1,
+                      text: 'None',
+                    },
+                    {
+                      level: 2,
+                      text: "I've taken some online courses",
+                    },
+                    {
+                      level: 3,
+                      text:
+                        "I've finished a few online courses and built some personal projects",
+                    },
+                    {
+                      level: 4,
+                      text:
+                        "I've completed a coding bootcamp or similar program",
+                    },
+                    {
+                      level: 5,
+                      text: "I've completed a CS degree",
+                    },
+                    {
+                      level: 5,
+                      text: "I'm a professional software developer",
+                    },
+                  ],
+                },
+              }}
+              onSubmit={(values, actions) => {
+                setTimeout(() => {
+                  alert(JSON.stringify(values, null, 2));
+                  actions.setSubmitting(false);
+                }, 1000);
+              }}
             >
-              {props => (
-                <form onSubmit={props.handleSubmit}>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel>Experience</InputLabel>
-                    <Select
-                    placeholder='experience'
-                    name='experience'
-                    onChange={props.handleChange}
-                    >
-                      {props.values.experience.map(el => (
-                        <MenuItem value={el}>
-                          {el}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
+              {({
+                initialValues,
+                values,
+                errors,
+                handleChange,
+                handleSubmit,
+                isSubmitting,
+                touched,
+              }) => (
+                <form onSubmit={handleSubmit}>
+                  <FieldArray name='experience'>
+                    {arrayHelpers => (
+                      <div>
+                        <InputLabel>Experience</InputLabel>
+                        <Field
+                          name='experience'
+                          type='select'
+                          as={Select}
+                          className={classes.textField}
+                        >
+                          {initialValues.experience.options.map(
+                            option => (
+                              <MenuItem
+                                value={option.level}
+                                key={uuid()}
+                              >
+                                {option.text}
+                              </MenuItem>
+                            ),
+                          )}
+                        </Field>
+                      </div>
+                    )}
+                  </FieldArray>
+                  <FieldArray name='experience'>
+                    {arrayHelpers => (
+                      <div>
+                        <InputLabel>Confidence</InputLabel>
+                        <Field
+                          name='confidence'
+                          type='select'
+                          as={Select}
+                          className={classes.textField}
+                        >
+                          {initialValues.confidence.options.map(
+                            option => (
+                              <MenuItem
+                                value={option.level}
+                                key={uuid()}
+                              >
+                                {option.text}
+                              </MenuItem>
+                            ),
+                          )}
+                        </Field>
+                      </div>
+                    )}
+                  </FieldArray>
+                  <MyTextField
+                    placeholder='Location'
+                    name='userLocation'
+                  />
+                  <div>
+                    <MyTextField
+                      placeholder='Description'
+                      name='description'
+                    />
+                  </div>
+                  <div>
+                    <MyTextField placeholder='GitHub' name='github' />
+                  </div>
+                  <div>
+                    <MyTextField
+                      placeholder='Linkedin'
+                      name='linkedin'
+                    />
+                  </div>
+                  {errors.name && (
+                    <FormHelperText>This is required!</FormHelperText>
+                  )}
+                  <FormButton
+                    className='submit-button'
+                    disabled={isSubmitting}
+                  >
+                    Submit
+                  </FormButton>
+                  <pre>{JSON.stringify(values, null, 2)}</pre>
                 </form>
               )}
             </Formik>
