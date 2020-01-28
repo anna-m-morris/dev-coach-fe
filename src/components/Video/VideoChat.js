@@ -99,7 +99,6 @@ const StyledVideoChat = styled.div`
     border-radius: 6px;
   } */
 
-  const StyledVideoChat = styled.div`
   width: 500px;
   height: 380px;
   margin: 0px auto;
@@ -125,7 +124,6 @@ const StyledVideoChat = styled.div`
     height: 100%;
     z-index: 1;
   }
-`;
 `;
 
 const VideoChat = ({ user, peerId }) => {

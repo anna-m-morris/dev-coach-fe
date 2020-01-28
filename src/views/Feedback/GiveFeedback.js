@@ -8,6 +8,11 @@ import {
   saveRating,
   saveFeedback,
 } from '../../state/actions/feedbackActions';
+import {
+  showInfoMessage,
+  closeMessage,
+} from '../../state/actions/notificationActions';
+import Notification from '../../components/Notifications/Notification';
 import GiveRating from '../../components/DataVisualization/GiveRating';
 import FeedbackInput from '../../components/Inputs/FeedbackInput';
 
@@ -46,17 +51,28 @@ function GiveFeedback(props) {
     saveFeedback,
     saveRating,
     giveFeedback,
+    info,
+    closeMessage,
+    showInfoMessage,
   } = props;
 
   return (
     <StyledGiveFeedback className='give-feedback-container'>
+      <Notification
+        onClose={closeMessage}
+        variant='warning'
+        message='Please fill out your review.'
+        open={info}
+      />
       <h1>Add Your Review</h1>
       <FeedbackInput saveFeedback={saveFeedback} />
       <div className='rating-button-container'>
         <GiveRating saveRating={saveRating} />
         <Button
           onClick={() =>
-            giveFeedback({ ...idRole, rating, feedback }, props)
+            feedback
+              ? giveFeedback({ ...idRole, rating, feedback }, props)
+              : showInfoMessage()
           }
           className='button'
           variant='contained'
@@ -76,6 +92,7 @@ const mapStateToProps = state => {
     rating: state.feedbackReducer.rating,
     idRole: state.feedbackReducer.idRole,
     user: state.userReducer.user,
+    info: state.notificationsReducer.info,
   };
 };
 
@@ -84,5 +101,7 @@ export default withRouter(
     giveFeedback,
     saveRating,
     saveFeedback,
+    showInfoMessage,
+    closeMessage,
   })(GiveFeedback),
 );
