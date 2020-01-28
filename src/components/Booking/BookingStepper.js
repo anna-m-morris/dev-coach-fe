@@ -216,7 +216,9 @@ const BookingStepper = props => {
               variant='contained'
               color='primary'
               onClick={
-                activeStep === 0 && Object.keys(select).length === 2
+                (activeStep === 0 &&
+                  Object.keys(select).length === 2) ||
+                (activeStep === 1 && date)
                   ? handleNext
                   : null
               }
