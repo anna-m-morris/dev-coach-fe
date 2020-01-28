@@ -152,29 +152,27 @@ const RescheduleAppointmentStepper = props => {
             className={classes.nextButton}
             variant='contained'
             color='primary'
-            onClick={handleNext}
+            onClick={() =>
+              activeStep === steps.length - 1
+                ? rescheduleAppointment(
+                    rescheduler,
+                    user,
+                    date,
+                    select.topic_id,
+                    select.length_id,
+                    props,
+                    showSuccessMessage,
+                    showErrorMessage,
+                    closeMessage,
+                  )
+                : handleNext()
+            }
           >
             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
           </Button>
         </div>
       )}
-      <Button
-        onClick={() =>
-          rescheduleAppointment(
-            rescheduler,
-            user,
-            date,
-            select.topic_id,
-            select.length_id,
-            props,
-            showSuccessMessage,
-            showErrorMessage,
-            closeMessage,
-          )
-        }
-      >
-        res
-      </Button>
+
       <Notification
         onClose={closeMessage}
         variant='success'
