@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { Formik } from 'formik';
 import uuid from 'uuid';
 import {
   FormControl,
@@ -108,9 +109,30 @@ const StudentForm = props => {
             justifyContent='space-evenly'
             alignItems='center'
           >
-            <form>
-             
-            </form>
+            <Formik
+            initialValues={{
+              experience: ['one', 'two', 'three']
+            }}
+            >
+              {props => (
+                <form onSubmit={props.handleSubmit}>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel>Experience</InputLabel>
+                    <Select
+                    placeholder='experience'
+                    name='experience'
+                    onChange={props.handleChange}
+                    >
+                      {props.values.experience.map(el => (
+                        <MenuItem value={el}>
+                          {el}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </form>
+              )}
+            </Formik>
           </Box>
         </div>
       </div>
