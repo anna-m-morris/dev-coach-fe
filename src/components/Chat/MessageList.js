@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 const StyledMessageList = styled.div`
@@ -49,6 +49,14 @@ const StyledMessageList = styled.div`
 `;
 
 const MessageList = ({ messages, userId }) => {
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView();
+  };
+
+  useEffect(scrollToBottom, [messages]);
+
   return (
     <StyledMessageList>
       <ul className='ul'>
@@ -71,6 +79,7 @@ const MessageList = ({ messages, userId }) => {
             </li>
           ))}
       </ul>
+      <div ref={messagesEndRef}></div>
     </StyledMessageList>
   );
 };
