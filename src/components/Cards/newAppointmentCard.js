@@ -134,7 +134,7 @@ const mapExperience = experience => {
 };
 
 export const NewAppointmentCard = props => {
-  const { appointment, saveIdRole, coach, history } = props;
+  const { appointment, saveIdRole, coach } = props;
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
