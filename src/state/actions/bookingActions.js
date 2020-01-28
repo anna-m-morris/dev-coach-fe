@@ -176,10 +176,10 @@ export const rescheduleAppointment = (
     .post(`${url}appointment`, appointment)
     .then(res => {
       showSuccess();
+      setTimeout(() => closeMessage(), 2500);
       setTimeout(() => {
         props.history.push('/dashboard');
-        closeMessage();
-      }, 2500);
+      }, 3000);
 
       const coach_email = {
         email: coach.email,

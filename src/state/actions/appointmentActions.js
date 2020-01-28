@@ -39,7 +39,6 @@ export const cancelAppointment = (
   axiosWithAuth()
     .put(`${url}appointment/${appointment_id}`)
     .then(res => {
-      console.log(res);
       history.push('/reschedule');
       dispatch({
         type: CANCEL_APPOINTMENT_SUCCESSFUL,

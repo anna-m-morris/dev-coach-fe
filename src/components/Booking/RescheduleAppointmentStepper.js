@@ -71,7 +71,6 @@ const RescheduleAppointmentStepper = props => {
     rescheduleAppointment,
     user,
   } = props;
-  console.log(rescheduler);
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -83,10 +82,6 @@ const RescheduleAppointmentStepper = props => {
 
   const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
   };
 
   return (
@@ -172,20 +167,6 @@ const RescheduleAppointmentStepper = props => {
           </Button>
         </div>
       )}
-
-      <Notification
-        onClose={closeMessage}
-        variant='success'
-        message='rescheduled successfully'
-        open={success}
-      />
-
-      <Notification
-        onClose={closeMessage}
-        variant='error'
-        message='rescheduling failed'
-        open={error}
-      />
     </>
   );
 };
