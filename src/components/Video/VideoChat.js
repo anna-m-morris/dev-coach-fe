@@ -1,8 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import Lobby from './Lobby';
+import { connect } from 'react-redux';
 import Room from './Room';
+import GiveFeedback from '../../views/Feedback/GiveFeedback';
 
 const StyledVideoChat = styled.div`
   main {
@@ -99,35 +100,31 @@ const StyledVideoChat = styled.div`
   }
 `;
 
-const VideoChat = () => {
-  const [username, setUsername] = useState('');
+const VideoChat = ({ user, peerId }) => {
+  // const [username, setUsername] = useState('');
   const [roomName, setRoomName] = useState('');
   const [token, setToken] = useState(null);
 
-  const handleUsernameChange = useCallback(event => {
-    setUsername(event.target.value);
-  }, []);
+  useEffect(() => {
+    setRoomName(
+      user.role_id === 1
+        ? `${user.email}-${peerId}`
+        : `${peerId}-${user.email}`,
+    );
 
-  const handleRoomNameChange = useCallback(event => {
-    setRoomName(event.target.value);
-  }, []);
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}video/token`, {
+        identity: user.email,
+        room: roomName,
+      })
+      .then(res => {
+        setToken(res.data.token);
+      });
+  }, [user, peerId]);
 
-  const handleSubmit = useCallback(
-    async event => {
-      event.preventDefault();
-      await axios
-        .post(`${process.env.REACT_APP_BASE_URL}video/token`, {
-          identity: username,
-          room: roomName,
-        })
-        .then(res => setToken(res.data.token));
-    },
-    [roomName, username],
-  );
-
-  const handleLogout = useCallback(event => {
+  const handleLogout = () => {
     setToken(null);
-  }, []);
+  };
 
   let render;
   if (token) {
@@ -141,19 +138,16 @@ const VideoChat = () => {
       </StyledVideoChat>
     );
   } else {
-    render = (
-      <StyledVideoChat>
-        <Lobby
-          username={username}
-          roomName={roomName}
-          handleUsernameChange={handleUsernameChange}
-          handleRoomNameChange={handleRoomNameChange}
-          handleSubmit={handleSubmit}
-        />
-      </StyledVideoChat>
-    );
+    render = <GiveFeedback />;
   }
   return render;
 };
 
-export default VideoChat;
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user,
+    peerId: state.interviewReducer.peerId,
+  };
+};
+
+export default connect(mapStateToProps)(VideoChat);
