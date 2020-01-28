@@ -119,7 +119,7 @@ const VideoChat = ({ user, peerId }) => {
       .then(res => {
         setToken(res.data.token);
       });
-  }, [user, peerId]);
+  }, [user, peerId, roomName]);
 
   const handleLogout = () => {
     setToken(null);
