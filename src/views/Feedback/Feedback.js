@@ -6,7 +6,9 @@ import Pagination from 'antd/lib/pagination';
 import Loader from 'react-loader-spinner';
 import { getFeedback } from '../../state/actions/feedbackActions';
 import FeedbackRating from '../../components/DataVisualization/Rating';
-import FeedbackCard, { CardContainer } from '../../components/Cards/FeedbackCard';
+import FeedbackCard, {
+  CardContainer,
+} from '../../components/Cards/FeedbackCard';
 import EmptyFeedback from '../../components/Cards/EmptyFeedbackCard';
 import StudentChart from '../../components/DataVisualization/StudentChart';
 
@@ -86,7 +88,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
       <h2 className='feedback-title'>Interview Feedback</h2>
       {feedback ? (
         <div className='feedback-content'>
-          <ChartCardContainer> 
+          <ChartCardContainer>
             <StudentChart />
           </ChartCardContainer>
           <StyledFeedback className='feedback-card-container'>

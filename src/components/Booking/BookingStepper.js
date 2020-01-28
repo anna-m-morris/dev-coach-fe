@@ -84,7 +84,9 @@ const BookingStepper = props => {
   const steps = getSteps();
 
   const handleNext = () => {
+    const y = activeStep;
     setActiveStep(prevActiveStep => prevActiveStep + 1);
+    debugger;
   };
 
   const handleBack = () => {
@@ -208,14 +210,20 @@ const BookingStepper = props => {
           >
             Back
           </Button>
-          <Button
-            className={classes.nextButton}
-            variant='contained'
-            color='primary'
-            onClick={handleNext}
-          >
-            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-          </Button>
+          {activeStep === steps.length - 1 ? null : (
+            <Button
+              className={classes.nextButton}
+              variant='contained'
+              color='primary'
+              onClick={
+                activeStep === 0 && Object.keys(select).length === 2
+                  ? handleNext
+                  : null
+              }
+            >
+              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+            </Button>
+          )}
         </div>
       )}
     </>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   giveFeedback,
@@ -72,8 +73,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
-  giveFeedback,
-  saveRating,
-  saveFeedback,
-})(GiveFeedback);
+export default withRouter(
+  connect(mapStateToProps, {
+    giveFeedback,
+    saveRating,
+    saveFeedback,
+  })(GiveFeedback),
+);
