@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 const Participant = ({ participant }) => {
   const [videoTracks, setVideoTracks] = useState([]);
   const [audioTracks, setAudioTracks] = useState([]);
+  const [audio, setAudio] = useState(false);
 
   const videoRef = useRef();
   const audioRef = useRef();
@@ -63,11 +64,22 @@ const Participant = ({ participant }) => {
     return undefined;
   }, [audioTracks]);
 
+  const audioChanger = () => {
+    setAudio(!audio);
+  };
+
   return (
     <div className='participant'>
       <h3>{participant.identity}</h3>
       <video ref={videoRef} autoPlay={true} />
-      <audio ref={audioRef} autoPlay={true} muted={true} />
+      <audio ref={audioRef} autoPlay={true} muted={audio} />
+      <button onClick={audioChanger}>
+        {audio ? (
+          <i className='fas fa-microphone-alt' />
+        ) : (
+          <i className='fas fa-microphone-alt-slash' />
+        )}
+      </button>
     </div>
   );
 };

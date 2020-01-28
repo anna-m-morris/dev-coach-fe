@@ -101,7 +101,6 @@ const StyledVideoChat = styled.div`
 `;
 
 const VideoChat = ({ user, peerId }) => {
-  // const [username, setUsername] = useState('');
   const [roomName, setRoomName] = useState('');
   const [token, setToken] = useState(null);
 
