@@ -86,7 +86,6 @@ const BookingStepper = props => {
   const handleNext = () => {
     const y = activeStep;
     setActiveStep(prevActiveStep => prevActiveStep + 1);
-    debugger;
   };
 
   const handleBack = () => {
