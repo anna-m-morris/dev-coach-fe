@@ -70,11 +70,12 @@ const StudentCardContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 50rem;
     background: #fff;
     box-shadow: 0 6px 8px #d3d3d3;
     padding: 1rem;
-    border-radius: 6px;
+    border-radius: 6px; 
 
     h1 {
       margin: 0;
@@ -103,6 +104,10 @@ const useStyles = makeStyles(theme => ({
     '& > *': {
       marginTop: '0.3em',
       marginBottom: '0.3em',
+      display:'flex',
+      flexDirection:'column',
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
     },
   },
 }));
@@ -147,30 +152,19 @@ const StudentForm = props => {
         <div>
           <Box
             className={classes.box}
-            display='flex'
-            flexDirection='column'
-            justifyContent='space-evenly'
-            alignItems='center'
           >
             <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(formValues, { setSubmitting, resetForm }) => {
           setSubmitting(true);
-          props.chooseUserRole(props, {
-            userLocation: formValues.userLocation,
-            experience: formValues.experience,
-            confidence: formValues.confidence,
-            github: formValues.github,
-            linkedin: formValues.linkedin,
-          })
-          console.log(formValues);
+          props.chooseUserRole(props, formValues)
           setSubmitting(false);
           resetForm();
         }}
       >
         {({ values, isSubmitting, errors }) => (
-          <Form>
+          <Form className={classes.box}>
             <div>
             <MyTextField placeholder='Location' name='userLocation' />
             </div>
