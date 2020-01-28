@@ -4,6 +4,7 @@ const initialState = {
   appointments: null,
   error: '',
   isLoading: false,
+  rescheduler: '',
 };
 
 function appointmentsReducer(state = initialState, action) {
@@ -41,6 +42,11 @@ function appointmentsReducer(state = initialState, action) {
           }
           return appointment;
         }),
+        rescheduler: {
+          ...action.rescheduler,
+          coach_id: action.payload.coach_id,
+          student_id: action.payload.student_id,
+        },
       };
 
     default:
