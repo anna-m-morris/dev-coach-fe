@@ -12,6 +12,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import {
   showErrorMessage,
   showSuccessMessage,
+  showInfoMessage,
   closeMessage,
 } from '../../state/actions/notificationActions';
 import {
@@ -70,8 +71,10 @@ const BookingStepper = props => {
     closeMessage,
     success,
     error,
+    info,
     showErrorMessage,
     showSuccessMessage,
+    showInfoMessage,
     handleStripePayment,
     saveDate,
     select,
@@ -84,7 +87,6 @@ const BookingStepper = props => {
   const steps = getSteps();
 
   const handleNext = () => {
-    const y = activeStep;
     setActiveStep(prevActiveStep => prevActiveStep + 1);
   };
 
@@ -117,7 +119,12 @@ const BookingStepper = props => {
         message={`Your payment wasn't successful!`}
         open={error}
       />
-
+      <Notification
+        onClose={closeMessage}
+        variant='warning'
+        message='Please select your options.'
+        open={info}
+      />
       <div className='instructions'>
         <Typography className={classes.instruction}>
           {getStepContent(activeStep)}
@@ -214,12 +221,12 @@ const BookingStepper = props => {
               className={classes.nextButton}
               variant='contained'
               color='primary'
-              onClick={
+              onClick={() =>
                 (activeStep === 0 &&
                   Object.keys(select).length === 2) ||
                 (activeStep === 1 && date)
-                  ? handleNext
-                  : null
+                  ? handleNext()
+                  : showInfoMessage()
               }
             >
               {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
@@ -238,6 +245,7 @@ const mapStateToProps = state => {
     date: state.bookingReducer.date,
     success: state.notificationsReducer.success,
     error: state.notificationsReducer.error,
+    info: state.notificationsReducer.info,
     user: state.userReducer.user,
   };
 };
@@ -246,6 +254,7 @@ export default connect(mapStateToProps, {
   handleStripePayment,
   showErrorMessage,
   showSuccessMessage,
+  showInfoMessage,
   closeMessage,
   saveDate,
   bookAppointment,
