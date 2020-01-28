@@ -19,7 +19,8 @@ function appointmentsReducer(state = initialState, action) {
       const filterFutureAppointments = action.payload.filter(
         appointment => {
           return (
-            new Date(appointment.appointment_datetime) >= new Date()
+            new Date(appointment.appointment_datetime) >=
+              new Date() && !appointment.canceled
           );
         },
       );
@@ -36,12 +37,14 @@ function appointmentsReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        appointments: state.appointments.map(appointment => {
-          if (appointment.id === action.payload.id) {
-            appointment.canceled = action.payload;
-          }
-          return appointment;
-        }),
+        appointments: state.appointments
+          .map(appointment => {
+            if (appointment.id === action.payload.id) {
+              appointment.canceled = action.payload;
+            }
+            return appointment;
+          })
+          .filter(appointment => !appointment.canceled),
         rescheduler: {
           ...action.rescheduler,
           coach_id: action.payload.coach_id,

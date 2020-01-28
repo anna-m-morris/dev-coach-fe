@@ -5,13 +5,11 @@ import uuid from 'uuid';
 import Pagination from 'antd/lib/pagination';
 import 'antd/lib/pagination/style/index.css';
 import Loader from 'react-loader-spinner';
-
 import {
   getAppointment,
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
 import { saveRescheduledCoach } from '../../state/actions/bookingActions';
-
 import { saveIdRole } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
@@ -219,12 +217,10 @@ const UserDashboard = props => {
                         email: appointment.email,
                       });
                     }}
-                    startInterview={() =>
-                      startInterview(appointment.email, props)
-                    }
-                    saveIdRole={() =>
-                      saveIdRole(appointment.role_id, appointment.id)
-                    }
+                    startInterview={() => {
+                      startInterview(appointment.email, props);
+                      saveIdRole(appointment.role_id, appointment.id);
+                    }}
                   />
                 ))}
               <div className='pagination'>
