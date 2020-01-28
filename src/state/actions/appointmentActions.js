@@ -43,7 +43,7 @@ export const cancelAppointment = (
       history.push('/reschedule');
       dispatch({
         type: CANCEL_APPOINTMENT_SUCCESSFUL,
-        payload: res.data,
+        payload: res.data.appointment,
         rescheduler: rescheduler,
       });
     })

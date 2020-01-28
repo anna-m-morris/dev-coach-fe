@@ -5,6 +5,7 @@ const initialState = {
   date: null,
   select: {},
   error: '',
+  success: '',
   isLoading: false,
   rescheduled_coach: '',
 };

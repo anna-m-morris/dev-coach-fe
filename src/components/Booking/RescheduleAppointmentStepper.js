@@ -167,12 +167,27 @@ const RescheduleAppointmentStepper = props => {
             select.topic_id,
             select.length_id,
             props,
+            showSuccessMessage,
+            showErrorMessage,
             closeMessage,
           )
         }
       >
         res
       </Button>
+      <Notification
+        onClose={closeMessage}
+        variant='success'
+        message='rescheduled successfully'
+        open={success}
+      />
+
+      <Notification
+        onClose={closeMessage}
+        variant='error'
+        message='rescheduling failed'
+        open={error}
+      />
     </>
   );
 };

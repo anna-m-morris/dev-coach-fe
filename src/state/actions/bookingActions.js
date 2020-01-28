@@ -100,11 +100,9 @@ export const bookAppointment = (
     length_id,
     appointment_datetime,
   };
-
   axiosWithAuth()
     .post(`${url}appointment`, appointment)
     .then(res => {
-      console.log(res);
       setTimeout(() => {
         props.history.push('/dashboard');
         closeMessage();
@@ -162,20 +160,22 @@ export const rescheduleAppointment = (
   topic_id,
   length_id,
   props,
+  showSuccess,
+  showError,
   closeMessage,
 ) => dispatch => {
   dispatch({ type: RESCHEDULE_APPOINTMENT_START });
   const appointment = {
-    coach_id: coach.id,
+    coach_id: coach.coach_id,
     student_id: student.id,
     topic_id,
     length_id,
     appointment_datetime,
   };
-
   axiosWithAuth()
     .post(`${url}appointment`, appointment)
     .then(res => {
+      showSuccess();
       setTimeout(() => {
         props.history.push('/dashboard');
         closeMessage();
@@ -223,6 +223,8 @@ export const rescheduleAppointment = (
         });
     })
     .catch(err => {
+      showError();
+      setTimeout(() => closeMessage(), 5000);
       dispatch({ type: RESCHEDULE_APPOINTMENT_ERROR, payload: err });
     });
 };

@@ -42,7 +42,11 @@ function appointmentsReducer(state = initialState, action) {
           }
           return appointment;
         }),
-        rescheduler: action.rescheduler,
+        rescheduler: {
+          ...action.rescheduler,
+          coach_id: action.payload.coach_id,
+          student_id: action.payload.student_id,
+        },
       };
 
     default:
