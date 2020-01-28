@@ -14,9 +14,9 @@ import {
   FormHelperText,
 } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab/';
-import { countries } from '../../utils/countries';
 import { buttonTheme, Logo } from '../Landing/Landing-styles';
 import { FormButton, InfoParagraph } from './StudentForm';
+import { countries } from '../../utils/countries';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
 
 const CoachCardContainer = styled.div`

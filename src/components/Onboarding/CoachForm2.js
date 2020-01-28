@@ -7,7 +7,6 @@ import {
   useField,
   FieldArray
 } from 'formik';
-import styled from 'styled-components';
 import {
   TextField,
   Button,
@@ -21,12 +20,7 @@ import {
 import * as yup from 'yup';
 import uuid from 'uuid';
 import { countries } from '../../utils//countries';
-import initialValues from './StudentFormState';
-import {
-    StyledButton,
-    buttonTheme,
-    Logo,
-  } from '../Landing/Landing-styles';
+import initialValues from './coachFormState';
 const MySelect = (props) => {
   const [field, meta] = useField(props);
   const errorText = meta.error && meta.touched ? meta.error : '';
@@ -49,51 +43,10 @@ const MyTextField = ({ placeholder, ...props }) => {
 const validationSchema = yup.object().shape({
   userLocation: yup.string().required('Please enter location'),
   experience: yup.number().required('please provide experience'),
+  description: yup.string().required('Please enter description'),
   github: yup.string().required('Please enter Github'),
   linkedin: yup.string().required('Please enter LinkedIn')
 });
-
-
-const NavLogo = styled(Logo)`
-  a {
-    width: 1.5rem;
-    height: 1rem;
-  }
-`;
-
-export const FormButton = styled(StyledButton)`
-  width: 50% !important;
-  margin-top: 2em;
-`;
-
-export const InfoParagraph = styled.p`
-  width: 85%;
-  text-align: center;
-`;
-
-const StudentCardContainer = styled.div`
-  max-width: 100%;
-  margin: 2rem 0;
-
-  .student-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50rem;
-    background: #fff;
-    box-shadow: 0 6px 8px #d3d3d3;
-    padding: 1rem;
-    border-radius: 6px;
-
-    h1 {
-      margin: 0;
-    }
-
-    .submit-button {
-      margin: 1.5rem 0 1rem 0;
-    }
-  }
-`;
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -116,7 +69,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const StudentForm = (props) => {
+const App = (props) => {
   const classes = useStyles();
   return (
     <div>
@@ -165,15 +118,15 @@ const StudentForm = (props) => {
                 </FormControl>
               </div>
               <div>
-              <FormControl className={classes.formControl} error={!!errors.confidence && errors.touched}>
-                <InputLabel>Confidence</InputLabel>
+              <FormControl className={classes.formControl} error={!!errors.skills && errors.touched}>
+                <InputLabel>Skills</InputLabel>
                 <Field
                   name='skills'
                   type='select'
-                  value={values.confidence || ''}
+                  value={values.skills || ''}
                   as={Select}
                 >
-                  {initialValues.confidence.options.map((option) => (
+                  {initialValues.skills.options.map((option) => (
                     <MenuItem value={option.level} key={uuid()}>
                       {option.text}
                     </MenuItem>
@@ -191,4 +144,4 @@ const StudentForm = (props) => {
     </div>
   );
 };
-export default StudentForm;
+export default App;

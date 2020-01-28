@@ -1,11 +1,6 @@
-const studentFormState = {
-    userLocation: {
-      value: '',
-      hasError: false,
-    },
+const StudentFormState = {
+    userLocation: '',
     experience: {
-      value: '',
-      hasError: false,
       options: [
         {
           level: 1,
@@ -35,8 +30,6 @@ const studentFormState = {
       ],
     },
     confidence: {
-      hasError: false,
-      value: '',
       options: [
         {
           level: 1,
@@ -62,14 +55,8 @@ const studentFormState = {
         },
       ],
     },
-    github: {
-      hasError: false,
-      value: '',
-    },
-    linkedin: {
-      hasError: false,
-      value: '',
-    }
-  };
+    github: '',
+    linkedin: '',
+  }
 
-export default studentFormState;
+export default StudentFormState;

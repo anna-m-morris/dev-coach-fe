@@ -4,6 +4,15 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 import {
+  Formik,
+  withFormik,
+  Form,
+  Field,
+  useField,
+  FieldArray
+} from 'formik';
+import * as yup from 'yup';
+import {
   FormControl,
   Select,
   InputLabel,
@@ -13,6 +22,7 @@ import {
   Box,
   FormHelperText,
 } from '@material-ui/core';
+import initialValues from './StudentFormState';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import {
@@ -22,6 +32,15 @@ import {
 } from '../Landing/Landing-styles';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
 import { countries } from '../../utils/countries';
+
+
+const validationSchema = yup.object().shape({
+  userLocation: yup.string().required('Please enter location'),
+  experience: yup.number().required('please provide experience'),
+  github: yup.string().required('Please enter Github'),
+  linkedin: yup.string().required('Please enter LinkedIn')
+});
+
 
 const NavLogo = styled(Logo)`
   a {
@@ -43,6 +62,9 @@ export const InfoParagraph = styled.p`
 const StudentCardContainer = styled.div`
   max-width: 100%;
   margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .student-card {
     display: flex;
@@ -86,114 +108,29 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const StudentForm = props => {
-
   const classes = useStyles();
-  const [formValues, setFormValues] = useState({
-    userLocation: {
-      value: '',
-      hasError: false,
-    },
-    experience: {
-      value: '',
-      hasError: false,
-      options: [
-        {
-          level: 1,
-          text: 'None',
-        },
-        {
-          level: 2,
-          text: "I've taken some online courses",
-        },  
-        {
-          level: 3,
-          text:
-            "I've finished a few online courses and built some personal projects",
-        },
-        {
-          level: 4,
-          text: "I've completed a coding bootcamp or similar program",
-        },
-        {
-          level: 5,
-          text: "I've completed a CS degree",
-        },
-        {
-          level: 5,
-          text: "I'm a professional software developer",
-        },
-      ],
-    },
-    confidence: {
-      hasError: false,
-      value: '',
-      options: [
-        {
-          level: 1,
-          text: 'None',
-        },
-        {
-          level: 2,
-          text:
-            "I'm not very confident in my ability to interview successfully",
-        },
-        {
-          level: 3,
-          text:
-            "I'm not as confident at interviewing as I'd like to be",
-        },
-        {
-          level: 4,
-          text: "I'm not confident, but not unconfident either",
-        },
-        {
-          level: 5,
-          text: "I'm confident in my interview ability",
-        },
-      ],
-    },
-    github: {
-      hasError: false,
-      value: '',
-    },
-    linkedin: {
-      hasError: false,
-      value: '',
-    }
-  });
+  const MySelect = (props) => {
+    const [field, meta] = useField(props);
+    const errorText = meta.error && meta.touched ? meta.error : '';
+    return (
+      <Select {...field} helperText={errorText} error={!!errorText} />
+    );
+  };
 
-  const submitDetails = formValues => {
-    if (Object.keys(formValues).map(el => formValues[el].hasError).some(el => el === false)) {
-      props.chooseUserRole(props, {
-        userLocation: formValues.userLocation.value,
-        experience: formValues.experience.value,
-        confidence: formValues.confidence.value,
-        github: formValues.github.value,
-        linkedin: formValues.linkedin.value,
-      })
-    }
-  }
+  const MyTextField = ({ placeholder, ...props }) => {
+    const [field, meta] = useField(props);
+    const errorText = meta.error && meta.touched ? meta.error : '';
+    return (
+      <TextField
+        placeholder={placeholder}
+        {...field}
+        helperText={errorText}
+        error={!!errorText}
+        className={classes.textField}
+      />
+    );
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setFormValues(
-      Object.fromEntries(Object.entries(formValues).map(([ key, val ]) => { 
-        if (!val["value"]) {
-          return [ key, { ...val, hasError: true }];
-        }  
-        return [key, { ...val, hasError: false }];
-      })
-       ))
-    // if (Object.keys(formValues).map(el => formValues[el].hasError).some(el => el === false)) {
-    //   props.chooseUserRole(props, {
-    //     userLocation: formValues.userLocation.value,
-    //     experience: formValues.experience.value,
-    //     confidence: formValues.confidence.value,
-    //     github: formValues.github.value,
-    //     linkedin: formValues.linkedin.value,
-    //   })
-    // }
-  }
 
   return (
     <StudentCardContainer className='student-card-container'>
@@ -215,140 +152,76 @@ const StudentForm = props => {
             justifyContent='space-evenly'
             alignItems='center'
           >
-            <form 
-              onSubmit={handleSubmit}>
-            <FormControl error={formValues.userLocation.hasError} required className={classes.formControl}>
-              <Autocomplete
-                name='location'
-                options={countries}
-                getOptionLabel={option => option.name}
-                onChange={event =>
-                  setFormValues({
-                    ...formValues,
-                    userLocation: {
-                      ...formValues.userLocation,
-                      value: event.target.innerText,
-                    }
-                  })
-                }
-                renderInput={params => (
-                  <TextField
-                    required
-                    name='location'
-                    {...params}
-                    label='Select your location'
-                    fullWidth
-                  />
-                )}
-              />
-              {formValues.userLocation.hasError && <FormHelperText>This is required!</FormHelperText>}
-            </FormControl>
-            <FormControl error={formValues.experience.hasError} required className={classes.formControl}>
-              <InputLabel>Experience</InputLabel>
-              <Select
-                placeholder='experience'
-                name='experience'
-                value={formValues.experience.value}
-                onChange={event => 
-                  setFormValues({
-                    ...formValues,
-                    experience: {
-                      ...formValues.experience,
-                      value: event.target.value,
-                    },
-                  })
-                }
-              >
-                {formValues.experience.options.map(el => (
-                  <MenuItem value={el.level} key={uuid()}>
-                    {el.text}
-                  </MenuItem>
-                ))}
-              </Select>
-              {formValues.experience.hasError && <FormHelperText>This is required!</FormHelperText>}
-            </FormControl>
-            <FormControl error={formValues.confidence.hasError} required className={classes.formControl}>
-              <InputLabel>Confidence</InputLabel>
-              <Select
-                value={formValues.confidence.value}
-                onChange={event =>
-                  setFormValues({
-                    ...formValues,
-                    confidence: {
-                      ...formValues.confidence,
-                      value: event.target.value,
-                    },
-                  })
-                }
-              >
-                {formValues.confidence.options.map(el => (
-                  <MenuItem value={el.level} key={uuid()}>
-                    {el.text}
-                  </MenuItem>
-                ))}
-              </Select>
-              {formValues.confidence.hasError && <FormHelperText>This is required!</FormHelperText>}
-            </FormControl>
-            <FormControl required error={formValues.github.hasError}>
-              <TextField
-                value={formValues.github.value}
-                onChange={event =>
-                  setFormValues({
-                    ...formValues,
-                    github: {
-                      ...formValues.github,
-                      value: event.target.value,
-                    }
-                  })
-                }
-                placeholder='Link to your GitHub profile (optional)'
-                className={classes.textField}
-              />
-              {formValues.github.hasError && <FormHelperText>This is required!</FormHelperText>}
-            </FormControl>
-            <FormControl required error={formValues.linkedin.hasError}>
-              <TextField
-                value={formValues.linkedin.value}
-                onChange={event =>
-                  setFormValues({
-                    ...formValues,
-                    linkedin: {
-                      ...formValues.linkedin,
-                      value: event.target.value
-                    }
-                  })
-                }
-                placeholder='Link to your LinkedIn profile (optional)'
-                className={classes.textField}
-              />
-              {formValues.linkedin.hasError && <FormHelperText>This is required!</FormHelperText>}
-            </FormControl>
-            <FormButton
-              className='submit-button'
-              theme={buttonTheme}
-                // setFormValues(
-                //   Object.fromEntries(Object.entries(formValues).map(([ key, val ]) => {
-                //     if (!val["value"]) {
-                //       return [ key, { ...val, hasError: true }];
-                //     }  
-                //     return [key, val];
-                //   })
-                //   ))
-                // console.log(Object.keys(formValues).map(el => formValues[el].hasError))
-                // if (Object.keys(formValues).map(el => formValues[el].hasError).some(el => el === false)) {
-                //   props.chooseUserRole(props, {
-                //     userLocation: formValues.userLocation.value,
-                //     experience: formValues.experience.value,
-                //     confidence: formValues.confidence.value,
-                //     github: formValues.github.value,
-                //     linkedin: formValues.linkedin.value,
-                //   })
-                // }
-              // }}
-            >
-              Submit
-            </FormButton>
-            </form>
+            <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={(formValues, { setSubmitting, resetForm }) => {
+          setSubmitting(true);
+          props.chooseUserRole(props, {
+            userLocation: formValues.userLocation,
+            experience: formValues.experience,
+            confidence: formValues.confidence,
+            github: formValues.github,
+            linkedin: formValues.linkedin,
+          })
+          console.log(formValues);
+          setSubmitting(false);
+          resetForm();
+        }}
+      >
+        {({ values, isSubmitting, errors }) => (
+          <Form>
+            <div>
+            <MyTextField placeholder='Location' name='userLocation' />
+            </div>
+            <div>
+              <MyTextField placeholder='GitHub' name='github' />
+            </div>
+            <div>
+              <MyTextField placeholder='Linkedin' name='linkedin' />
+            </div>
+            <div>
+              <div>
+              <FormControl className={classes.formControl} error={!!errors.experience && errors.touched}>
+                <InputLabel>Experience</InputLabel>
+                <Field
+                  name='experience'
+                  type='select' 
+                  value={values.experience|| ''}
+                  as={Select}
+                >
+                  {initialValues.experience.options.map((option) => (
+                    <MenuItem value={option.level} key={uuid()}>
+                      {option.text}
+                    </MenuItem>
+                  ))}
+                </Field>  
+                </FormControl>
+              </div>
+              <div>
+              <FormControl className={classes.formControl} error={!!errors.confidence}>
+                <InputLabel>Confidence</InputLabel>
+                <Field
+                  name='confidence'
+                  type='select'
+                  value={values.confidence || ''}
+                  as={Select}
+                >
+                  {initialValues.confidence.options.map((option) => (
+                    <MenuItem value={option.level} key={uuid()}>
+                      {option.text}
+                    </MenuItem>
+                  ))}
+                </Field>
+                </FormControl>
+              </div>
+              <FormButton className='submit-button' theme={buttonTheme} disabled={isSubmitting} type='submit'>
+                Submit
+              </FormButton>
+            </div>
+          </Form>
+        )}
+      </Formik>
           </Box>
         </div>
       </div>
