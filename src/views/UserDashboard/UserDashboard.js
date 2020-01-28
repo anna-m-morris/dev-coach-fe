@@ -141,7 +141,6 @@ const DashboardContainer = styled.div`
 
 const UserDashboard = props => {
   const {
-    coach,
     history,
     appointments,
     getAppointment,
