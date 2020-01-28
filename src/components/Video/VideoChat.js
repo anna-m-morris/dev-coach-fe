@@ -6,7 +6,7 @@ import Room from './Room';
 import GiveFeedback from '../../views/Feedback/GiveFeedback';
 
 const StyledVideoChat = styled.div`
-  main {
+  /* main {
     background: #ffffff;
     flex-grow: 1;
   }
@@ -97,7 +97,35 @@ const StyledVideoChat = styled.div`
     display: block;
     margin: 0 auto;
     border-radius: 6px;
+  } */
+
+  const StyledVideoChat = styled.div`
+  width: 500px;
+  height: 380px;
+  margin: 0px auto;
+  border: 2px solid #645cff;
+  position: relative;
+  box-shadow: 1px 1px 11px #9e9e9e;
+  .my-video {
+    width: 130px;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    border: 6px solid #2196f3;
+    border-radius: 6px;
+    z-index: 2;
   }
+  .user-video {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+`;
 `;
 
 const VideoChat = ({ user, peerId }) => {

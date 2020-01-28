@@ -39,8 +39,14 @@ const StyledGiveFeedback = styled.div`
 `;
 
 function GiveFeedback(props) {
-  const { feedback, rating, idRole } = props;
-  const { saveFeedback, saveRating, giveFeedback } = props;
+  const {
+    feedback,
+    rating,
+    idRole,
+    saveFeedback,
+    saveRating,
+    giveFeedback,
+  } = props;
 
   return (
     <StyledGiveFeedback className='give-feedback-container'>
