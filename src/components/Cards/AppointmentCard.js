@@ -14,6 +14,19 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { connect } from 'react-redux';
+import {
+  showErrorMessage,
+  showSuccessMessage,
+  closeMessage,
+} from '../../state/actions/notificationActions';
+import {
+  saveDate,
+  bookAppointment,
+  saveRescheduledCoach,
+} from '../../state/actions/bookingActions';
+
+import { cancelAppointment } from '../../state/actions/appointmentActions';
 
 const StyledCoachCard = styled.div`
   display: flex;
@@ -121,9 +134,8 @@ const mapExperience = experience => {
 };
 
 export const AppointmentCard = props => {
-  const { appointment, saveIdRole } = props;
+  const { appointment, startInterview, coach } = props;
   const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -134,7 +146,6 @@ export const AppointmentCard = props => {
 
   const time = appointment.appointment_datetime.slice(0, 15);
   const date = appointment.appointment_datetime.slice(16, 28);
-
   return (
     <>
       <StyledCoachCard>
@@ -179,40 +190,43 @@ export const AppointmentCard = props => {
           )}
         </div>
 
-        <div className='footer'>
-          <Button
-            onClick={handleClickOpen}
-            size='small'
-            className='cancel-button'
-            variant='contained'
-            color='secondary'
-            startIcon={<DeleteIcon />}
-          >
-            Cancel
-          </Button>
-          <Link to='/givefeedback'>
+        {!appointment.canceled ? (
+          <div className='footer'>
+            <Button
+              onClick={handleClickOpen}
+              size='small'
+              className='cancel-button'
+              variant='contained'
+              color='secondary'
+              startIcon={<DeleteIcon />}
+              coach={coach}
+              saveRescheduledCoach={() => saveRescheduledCoach(coach)}
+            >
+              Cancel
+            </Button>
             <Button
               size='small'
               className='button'
               variant='contained'
               color='primary'
               endIcon={<Icon>send</Icon>}
-              onClick={() => saveIdRole()}
+              onClick={startInterview}
             >
               Interview
             </Button>
-          </Link>
-        </div>
-        <Button
-          size='small'
-          className='button'
-          variant='contained'
-          color='primary'
-          endIcon={<Icon>send</Icon>}
-          onClick={props.startInterview}
-        >
-          Interview
-        </Button>
+          </div>
+        ) : (
+          <Button
+            onClick={handleClickOpen}
+            size='big'
+            className='cancel-button'
+            variant='contained'
+            color='secondary'
+            startIcon={<DeleteIcon />}
+          >
+            Cancelled
+          </Button>
+        )}
       </StyledCoachCard>
       <Dialog
         open={open}
@@ -230,7 +244,12 @@ export const AppointmentCard = props => {
           <Button onClick={handleClose} color='primary'>
             No
           </Button>
-          <Button onClick={props.cancel} color='primary' autoFocus>
+
+          <Button
+            color='primary'
+            autoFocus
+            onClick={props.cancelAppointment}
+          >
             Yes
           </Button>
         </DialogActions>
@@ -239,4 +258,22 @@ export const AppointmentCard = props => {
   );
 };
 
-export default AppointmentCard;
+const mapStateToProps = state => {
+  return {
+    coach: state.bookingReducer.coach,
+    select: state.bookingReducer.select,
+    date: state.bookingReducer.date,
+    success: state.notificationsReducer.success,
+    error: state.notificationsReducer.error,
+    user: state.userReducer.user,
+  };
+};
+
+export default connect(mapStateToProps, {
+  showErrorMessage,
+  showSuccessMessage,
+  closeMessage,
+  saveDate,
+  saveRescheduledCoach,
+  bookAppointment,
+})(AppointmentCard);
