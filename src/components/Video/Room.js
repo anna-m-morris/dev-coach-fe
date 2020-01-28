@@ -5,6 +5,7 @@ import Participant from './Participant';
 const Room = ({ roomName, token, handleLogout }) => {
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
+  const [audio, setAudio] = useState(false);
 
   useEffect(() => {
     const participantConnected = participant => {
@@ -43,6 +44,10 @@ const Room = ({ roomName, token, handleLogout }) => {
     };
   }, [roomName, token]);
 
+  const audioChanger = () => {
+    setAudio(!audio);
+  };
+
   const remoteParticipants = participants.map(participant => (
     <Participant key={participant.sid} participant={participant} />
   ));
@@ -51,11 +56,19 @@ const Room = ({ roomName, token, handleLogout }) => {
     <div className='room'>
       <h2>Room: {roomName}</h2>
       <button onClick={handleLogout}>Log out</button>
+      <button onClick={audioChanger}>
+        {audio ? (
+          <i className='fas fa-microphone-alt' />
+        ) : (
+          <i className='fas fa-microphone-alt-slash' />
+        )}
+      </button>
       <div className='local-participant'>
         {room ? (
           <Participant
             key={room.localParticipant.sid}
             participant={room.localParticipant}
+            audio={audio}
           />
         ) : (
           ''
