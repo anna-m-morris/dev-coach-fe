@@ -10,12 +10,12 @@ import { getRooms } from '../../state/actions/chatActions';
 import TypingIndicator from './TypingIndicator';
 
 const StyledChatScreen = styled.div`
-  margin: 1rem 0;
   height: 100%;
   width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
+  padding-top: 2rem;
 
   .whos-online-list-container {
     border: 1px solid #ced4da;
