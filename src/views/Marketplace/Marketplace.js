@@ -113,6 +113,7 @@ const Marketplace = ({
                 saveForChat({
                   email: coach.email,
                   name: `${coach.first_name} ${coach.last_name}`,
+                  avatar_url: coach.avatar_url,
                 })
               }
             />

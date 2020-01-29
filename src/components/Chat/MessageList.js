@@ -49,7 +49,7 @@ const StyledMessageList = styled.div`
   }
 `;
 
-const MessageList = ({ messages, userId }) => {
+const MessageList = ({ messages, userId, currentRoom }) => {
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -57,7 +57,6 @@ const MessageList = ({ messages, userId }) => {
   };
 
   useEffect(scrollToBottom, [messages]);
-
   return (
     <StyledMessageList>
       <ul className='ul'>

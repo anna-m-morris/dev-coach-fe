@@ -47,6 +47,7 @@ export const startChatFromScratch = (
   saveRoomId,
   props,
 ) => dispatch => {
+  debugger;
   axiosWithAuth()
     .post(`${url}chat/room_id`, {
       roomId: id,
@@ -77,7 +78,9 @@ export const startChatFromScratch = (
                   id,
                   customData: {
                     role_id_one: `${user.first_name} ${user.first_name}`,
+                    role_id_one_url: user.avatar_url,
                     role_id_two: peer.name,
+                    role_id_two_url: peer.avatar_url,
                   },
                 })
                 .then(() => {

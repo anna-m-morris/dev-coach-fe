@@ -88,6 +88,7 @@ class ChatScreen extends React.Component {
           messageLimit: 100,
           hooks: {
             onMessage: message => {
+              debugger
               this.setState({
                 messages: [...this.state.messages, message],
               });
@@ -145,6 +146,7 @@ class ChatScreen extends React.Component {
             <MessageList
               messages={this.state.messages}
               userId={this.props.user.email}
+              currentRoom={this.state.currentRoom}
             />
             <TypingIndicator
               usersWhoAreTyping={this.state.usersWhoAreTyping}

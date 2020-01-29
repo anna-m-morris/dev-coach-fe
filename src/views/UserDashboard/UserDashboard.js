@@ -9,9 +9,11 @@ import {
   getAppointment,
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
-import { getFeedback } from '../../state/actions/feedbackActions';
 import { saveRescheduledCoach } from '../../state/actions/bookingActions';
-import { saveIdRole } from '../../state/actions/feedbackActions';
+import {
+  saveIdRole,
+  getFeedback,
+} from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
