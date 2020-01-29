@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RescheduleAppointmentStepper from './RescheduleAppointmentStepper';
-import StyledBooking from './BookingStyles';
+import StyledBooking from '../Booking/BookingStyles';
 
 const Reschedule = ({ history }) => {
   return (

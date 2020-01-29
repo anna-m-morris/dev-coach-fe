@@ -19,7 +19,7 @@ import {
 import Notification from '../Notifications/Notification';
 
 import Select from '../Inputs/SelectInfo';
-import DatePicker from './DatePicker';
+import DatePicker from '../Booking/DatePicker';
 
 const useStyles = makeStyles(theme => ({
   root: {
