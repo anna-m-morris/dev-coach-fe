@@ -106,6 +106,17 @@ const StyledCoachCard = styled.div`
 
     .cancel-button {
     }
+
+    @media ${devices.mobile} {
+      flex-direction: column;
+      justify-content: center;
+
+      .button {
+        width: 100%;
+        margin-top: 5px;
+        text-align: center;
+      }
+    }
   }
 `;
 
