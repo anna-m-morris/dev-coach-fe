@@ -10,9 +10,114 @@ import {
   buttonTheme,
   Logo,
 } from '../Landing/Landing-styles';
+import {
+  showErrorMessage,
+  showSuccessMessage,
+  closeMessage,
+} from '../../state/actions/notificationActions';
 
-import { login } from '../../state/actions/authenticationActions';
+import Notification from '../Notifications/Notification';
+import { sendResetPasswordEmail } from '../../state/actions/authenticationActions';
+
 import pattern from '../../img/pattern.jpg';
+
+const ResetPasswordForm = ({
+  userReducer,
+  sendResetPasswordEmail,
+  success,
+  error,
+  showErrorMessage,
+  showSuccessMessage,
+  closeMessage,
+  errors,
+  touched,
+  isSubmitting,
+}) => {
+  return (
+    <div>
+      <GreyBackgroundContainer>
+        <Notification
+          onClose={closeMessage}
+          variant='success'
+          message='password reset email sent'
+          open={success}
+        />
+        <Notification
+          onClose={closeMessage}
+          variant='error'
+          message={`kindly double-check your email`}
+          open={error}
+        />
+        <FormCard>
+          <Link to='/'>
+            <Logo />
+          </Link>
+          <h3>Enter your email to reset your password</h3>
+          <FormContainer>
+            <Form>
+              <div>
+                <Field
+                  type='email'
+                  name='email'
+                  placeholder='enter your email address'
+                />
+                {errors.email && touched.email && (
+                  <StyledError>{errors.email}</StyledError>
+                )}
+
+                <StyledResetButton
+                  theme={
+                    userReducer.isLoading
+                      ? loadingButtonTheme
+                      : buttonTheme
+                  }
+                  type='submit'
+                  disabled={isSubmitting}
+                >
+                  Reset Password -->
+                </StyledResetButton>
+              </div>
+            </Form>
+          </FormContainer>
+        </FormCard>
+      </GreyBackgroundContainer>
+    </div>
+  );
+};
+
+const FormikResetPasswordForm = withFormik({
+  mapPropsToValues({ email }) {
+    return {
+      email: email || '',
+    };
+  },
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+      .email('Please enter a valid email')
+      .required('Please enter an email address'),
+  }),
+  handleSubmit(values, { props, resetForm, setSubmitting }) {
+    resetForm();
+    setSubmitting(false);
+
+    sendResetPasswordEmail(props, values);
+  },
+})(ResetPasswordForm);
+
+const mapStateToProps = state => {
+  return {
+    success: state.notificationsReducer.success,
+    error: state.notificationsReducer.error,
+    user: state.userReducer.user,
+    userReducer: state.userReducer,
+  };
+};
+
+export default connect(mapStateToProps, {
+  showErrorMessage,
+  showSuccessMessage,
+  closeMessage,
+})(FormikResetPasswordForm);
 
 export const StyledResetButton = styled(StyledButton)`
   margin-top: 20px;
@@ -102,70 +207,3 @@ const loadingButtonTheme = {
   text: '#292d38',
   background: 'lightgray',
 };
-
-const ForgotPasswordForm = ({
-  userReducer,
-  errors,
-  touched,
-  isSubmitting,
-}) => {
-  return (
-    <div>
-      <GreyBackgroundContainer>
-        <FormCard>
-          <Link to='/'>
-            <Logo />
-          </Link>
-          <h3>Enter your email to reset your password</h3>
-          <FormContainer>
-            <Form>
-              <div>
-                <Field
-                  type='email'
-                  name='email'
-                  placeholder='Email'
-                />
-                {errors.email && touched.email && (
-                  <StyledError>{errors.email}</StyledError>
-                )}
-
-                <StyledResetButton
-                  theme={
-                    userReducer.isLoading
-                      ? loadingButtonTheme
-                      : buttonTheme
-                  }
-                  type='submit'
-                  disabled={isSubmitting}
-                >
-                  Reset Password -->
-                </StyledResetButton>
-              </div>
-            </Form>
-          </FormContainer>
-        </FormCard>
-      </GreyBackgroundContainer>
-    </div>
-  );
-};
-
-const ResetPasswordForm = withFormik({
-  mapPropsToValues({ email }) {
-    return {
-      email: email || '',
-    };
-  },
-  validationSchema: Yup.object().shape({
-    email: Yup.string()
-      .email('Please enter a valid email')
-      .required('Please enter an email address'),
-  }),
-  handleSubmit(values, { props, resetForm, setSubmitting }) {
-    resetForm();
-    setSubmitting(false);
-
-    props.login(props, values);
-  },
-})(ForgotPasswordForm);
-
-export default connect(state => state, { login })(ResetPasswordForm);

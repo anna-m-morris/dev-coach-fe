@@ -11,6 +11,7 @@ const initialState = {
   userRoleError: '',
   userUpdated: false,
   userUpdateError: '',
+  resetPasswordEmail: '',
 };
 
 function userReducer(state = initialState, action) {

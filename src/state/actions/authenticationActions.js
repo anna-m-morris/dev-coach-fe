@@ -1,8 +1,41 @@
 import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import * as types from './actionTypes';
+import { showErrorMessage } from './notificationActions';
 
 const url = process.env.REACT_APP_BASE_URL;
+
+export const sendResetPasswordEmail = (
+  email,
+  showSuccess,
+  showError,
+  closeMessage,
+) => dispatch => {
+  axios
+    .post('http://localhost:5000/resetPassword', email)
+    .then(res => {
+      if (res.data.message === "can't find email") {
+        showError();
+        setTimeout(() => closeMessage(), 5000);
+        dispatch({
+          type: types.SEND_RESET_PASSWORD_EMAIL_WRONG_EMAIL,
+          payload: res.data,
+          message: res.data.message,
+        });
+      } else if (res.data.message === 'reset password email sent') {
+        showSuccess();
+        setTimeout(() => closeMessage(), 3000);
+        dispatch({
+          type: types.SEND_RESET_PASSWORD_EMAIL_SUCCESSFUL,
+          payload: res.data,
+          message: res.data.message,
+        });
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
 
 export const saveRoleId = (handleNext, role) => dispatch => {
   dispatch({ type: types.SET_ROLE_ID, payload: role });
