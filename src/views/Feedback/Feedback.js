@@ -44,6 +44,7 @@ const StyledFeedback = styled.div`
 
   .loaderStyled {
     margin-top: 20vh;
+    margin-left: -17rem;
   }
 
   .chart-container {

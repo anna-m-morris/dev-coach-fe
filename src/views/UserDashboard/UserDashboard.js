@@ -136,7 +136,6 @@ const DashboardContainer = styled.div`
   }
 
   .loaderStyled {
-    margin-left: 30rem;
     margin-top: 20vh;
   }
 `;
