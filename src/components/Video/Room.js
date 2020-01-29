@@ -75,7 +75,11 @@ const Room = ({ roomName, token, handleLogout }) => {
           variant='contained'
           color='primary'
         >
-          Audio
+          {audio ? (
+            <i className='fas fa-volume-up' />
+          ) : (
+            <i className='fas fa-volume-mute' />
+          )}
         </Button>
       </div>
       {room ? (

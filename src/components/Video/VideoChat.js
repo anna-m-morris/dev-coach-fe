@@ -6,20 +6,36 @@ import Lobby from './Lobby';
 import Room from './Room';
 
 const StyledVideoChat = styled.div`
-.button {
-      width: 100%;
-      background-color: #4fad65;
-      font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 88vh;
 
-      &:hover {
-        background: #1e3f1f;
-      }
+  .button {
+    width: 100%;
+    background-color: #4fad65;
+    font-weight: bold;
+
+    &:hover {
+      background: #1e3f1f;
+    }
+  }
+
+  .settings {
+    display: flex;
+    justify-content: space-around;
+
+    button {
+      width: 25%;
+    }
+  }
 
   .videos {
     width: 500px;
     height: 380px;
     margin: 0px auto;
-    border: 4px solid #4FAD65;
+    border: 4px solid #4fad65;
     position: relative;
     box-shadow: 1px 1px 11px #9e9e9e;
     border-radius: 6px;
@@ -29,7 +45,7 @@ const StyledVideoChat = styled.div`
       position: absolute;
       right: 10px;
       bottom: 10px;
-      border: 4px solid #4FAD65;
+      border: 4px solid #4fad65;
       border-radius: 6px;
       z-index: 2;
     }
