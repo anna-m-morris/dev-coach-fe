@@ -130,7 +130,7 @@ class ChatScreen extends React.Component {
       .catch(error => this.setState({ error }));
   };
 
-  componentWillUpdate = () => {
+  UNSAFE_componentWillUpdate = () => {
     if (this.state.currentUser) {
       this.state.currentUser.roomSubscriptions[
         this.state.currentRoom.id
