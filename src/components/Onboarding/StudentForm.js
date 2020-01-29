@@ -148,7 +148,6 @@ const StudentForm = props => {
               ) => {
                 setSubmitting(true);
                 props.chooseUserRole(props, formValues);
-                console.log(formValues);
                 setSubmitting(false);
                 resetForm();
               }}
