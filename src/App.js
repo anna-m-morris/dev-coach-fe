@@ -62,7 +62,7 @@ function App(props) {
     <Switch>
       <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
-      <Route path='/accountRecovery' component={ResetPasswordForm} />
+      <Route path='/resetPassword' component={ResetPasswordForm} />
       <Route path='/register' component={SignUp} />
       <Route path='/faq' component={LandingFaq} />
       <Redirect to='/' />

@@ -39,13 +39,13 @@ const ResetPasswordForm = ({
         <Notification
           onClose={closeMessage}
           variant='success'
-          message='password reset email sent'
+          message='password reset email sent successfully'
           open={success}
         />
         <Notification
           onClose={closeMessage}
           variant='error'
-          message={`kindly double-check your email`}
+          message='That email address is not recognized. Please try again'
           open={error}
         />
         <FormCard>
@@ -100,7 +100,13 @@ const FormikResetPasswordForm = withFormik({
     resetForm();
     setSubmitting(false);
 
-    sendResetPasswordEmail(props, values);
+    sendResetPasswordEmail(
+      props,
+      values,
+      showSuccessMessage,
+      showErrorMessage,
+      closeMessage,
+    );
   },
 })(ResetPasswordForm);
 
@@ -117,6 +123,7 @@ export default connect(mapStateToProps, {
   showErrorMessage,
   showSuccessMessage,
   closeMessage,
+  sendResetPasswordEmail,
 })(FormikResetPasswordForm);
 
 export const StyledResetButton = styled(StyledButton)`

@@ -6,23 +6,30 @@ import { showErrorMessage } from './notificationActions';
 const url = process.env.REACT_APP_BASE_URL;
 
 export const sendResetPasswordEmail = (
-  email,
+  props,
+  values,
   showSuccess,
   showError,
   closeMessage,
 ) => dispatch => {
   axios
-    .post('http://localhost:5000/resetPassword', email)
+    .post('http://localhost:5000/resetPassword', values)
     .then(res => {
-      if (res.data.message === "can't find email") {
-        showError();
+      console.log(values);
+      if (
+        res.data.message ===
+        'that email address is not recognized. Please try again'
+      ) {
+        showError(res.data.message);
         setTimeout(() => closeMessage(), 5000);
         dispatch({
           type: types.SEND_RESET_PASSWORD_EMAIL_WRONG_EMAIL,
           payload: res.data,
           message: res.data.message,
         });
-      } else if (res.data.message === 'reset password email sent') {
+      } else if (
+        res.data.message === 'reset password email sent successfully'
+      ) {
         showSuccess();
         setTimeout(() => closeMessage(), 3000);
         dispatch({
@@ -33,7 +40,12 @@ export const sendResetPasswordEmail = (
       }
     })
     .catch(error => {
-      console.log(error);
+      showError();
+      setTimeout(() => closeMessage(), 5000);
+      dispatch({
+        type: types.SEND_RESET_PASSWORD_EMAIL_FAILED,
+        payload: error.data,
+      });
     });
 };
 
