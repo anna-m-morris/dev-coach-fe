@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { connect } from 'react-redux';
 import LoginForm from './components/Onboarding/LoginForm';
+import ResetPasswordForm from './components/Onboarding/ResetPasswordForm';
 import Dashboard from './components/Dashboard';
 import UserDashboard from './views/UserDashboard/UserDashboard';
 import Marketplace from './views/Marketplace/Marketplace';
@@ -61,6 +62,7 @@ function App(props) {
     <Switch>
       <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
+      <Route path='/accountRecovery' component={ResetPasswordForm} />
       <Route path='/register' component={SignUp} />
       <Route path='/faq' component={LandingFaq} />
       <Redirect to='/' />
