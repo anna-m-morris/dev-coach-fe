@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import SignUp from './SignUpForm';
 import UserType from './UserType';
-import CoachForm from './CoachForm';
+import CoachFormTest from './CoachFormTest';
 import StudentForm from './StudentForm';
 
 const SignupStepperContainer = styled.div`
@@ -82,7 +82,7 @@ const SignupStepper = props => {
         <StudentForm />
       )}
       {activeStep === 2 && props.userReducer.user.role_id === 2 && (
-        <CoachForm />
+        <CoachFormTest />
       )}
     </SignupStepperContainer>
   );
