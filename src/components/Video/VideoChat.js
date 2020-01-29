@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
+import Lobby from './Lobby';
 import Room from './Room';
-import GiveFeedback from '../../views/Feedback/GiveFeedback';
 
 const StyledVideoChat = styled.div`
-  /* main {
+  main {
     background: #ffffff;
     flex-grow: 1;
   }
-
   form {
     max-width: 300px;
     margin: 0 auto;
   }
-
   h2 {
     font-weight: 300;
     margin-bottom: 1em;
     text-align: center;
   }
-
   form > div {
     width: 100%;
     margin-bottom: 1em;
@@ -38,7 +34,6 @@ const StyledVideoChat = styled.div`
     border-radius: 6px;
     border: 1px solid #333e5a;
   }
-
   button {
     background: #333e5a;
     color: #fff;
@@ -50,7 +45,6 @@ const StyledVideoChat = styled.div`
   button:hover {
     filter: brightness(150%);
   }
-
   .room {
     position: relative;
   }
@@ -64,7 +58,6 @@ const StyledVideoChat = styled.div`
     font-weight: 300;
     margin-bottom: 1em;
   }
-
   .local-participant {
     text-align: center;
     margin-bottom: 2em;
@@ -90,66 +83,44 @@ const StyledVideoChat = styled.div`
     padding-bottom: 0.5em;
     color: #fff;
   }
-
   video {
     width: 100%;
     max-width: 600px;
     display: block;
     margin: 0 auto;
     border-radius: 6px;
-  } */
-
-  width: 500px;
-  height: 380px;
-  margin: 0px auto;
-  border: 2px solid #645cff;
-  position: relative;
-  box-shadow: 1px 1px 11px #9e9e9e;
-  .my-video {
-    width: 130px;
-    position: absolute;
-    left: 10px;
-    bottom: 10px;
-    border: 6px solid #2196f3;
-    border-radius: 6px;
-    z-index: 2;
-  }
-  .user-video {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
   }
 `;
 
-const VideoChat = ({ user, peerId }) => {
+const VideoChat = () => {
+  const [username, setUsername] = useState('');
   const [roomName, setRoomName] = useState('');
   const [token, setToken] = useState(null);
 
-  useEffect(() => {
-    setRoomName(
-      user.role_id === 1
-        ? `${user.email}-${peerId}`
-        : `${peerId}-${user.email}`,
-    );
+  const handleUsernameChange = useCallback(event => {
+    setUsername(event.target.value);
+  }, []);
 
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}video/token`, {
-        identity: user.email,
-        room: roomName,
-      })
-      .then(res => {
-        setToken(res.data.token);
-      });
-  }, [user, peerId, roomName]);
+  const handleRoomNameChange = useCallback(event => {
+    setRoomName(event.target.value);
+  }, []);
 
-  const handleLogout = () => {
+  const handleSubmit = useCallback(
+    async event => {
+      event.preventDefault();
+      await axios
+        .post(`${process.env.REACT_APP_BASE_URL}video/token`, {
+          identity: username,
+          room: roomName,
+        })
+        .then(res => setToken(res.data.token));
+    },
+    [roomName, username],
+  );
+
+  const handleLogout = useCallback(event => {
     setToken(null);
-  };
+  }, []);
 
   let render;
   if (token) {
@@ -163,16 +134,28 @@ const VideoChat = ({ user, peerId }) => {
       </StyledVideoChat>
     );
   } else {
-    render = <GiveFeedback />;
+    render = (
+      <StyledVideoChat>
+        <Lobby
+          username={username}
+          roomName={roomName}
+          handleUsernameChange={handleUsernameChange}
+          handleRoomNameChange={handleRoomNameChange}
+          handleSubmit={handleSubmit}
+        />
+      </StyledVideoChat>
+    );
   }
   return render;
 };
 
-const mapStateToProps = state => {
-  return {
-    user: state.userReducer.user,
-    peerId: state.interviewReducer.peerId,
-  };
-};
+export default VideoChat;
 
-export default connect(mapStateToProps)(VideoChat);
+// const mapStateToProps = state => {
+//   return {
+//     user: state.userReducer.user,
+//     peerId: state.interviewReducer.peerId,
+//   };
+// };
+
+// export default connect(mapStateToProps)(VideoChat);

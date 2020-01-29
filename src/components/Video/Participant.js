@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Participant = ({ participant, audio }) => {
+const Participant = ({ participant }) => {
   const [videoTracks, setVideoTracks] = useState([]);
   const [audioTracks, setAudioTracks] = useState([]);
 
@@ -67,7 +67,7 @@ const Participant = ({ participant, audio }) => {
     <div className='participant'>
       <h3>{participant.identity}</h3>
       <video ref={videoRef} autoPlay={true} />
-      <audio ref={audioRef} autoPlay={true} muted={audio} />
+      <audio ref={audioRef} autoPlay={true} />
     </div>
   );
 };
