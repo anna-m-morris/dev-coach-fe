@@ -88,7 +88,6 @@ class ChatScreen extends React.Component {
           messageLimit: 100,
           hooks: {
             onMessage: message => {
-              debugger
               this.setState({
                 messages: [...this.state.messages, message],
               });

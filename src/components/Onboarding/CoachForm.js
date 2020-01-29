@@ -121,7 +121,6 @@ const CoachForm = props => {
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(false);
                 props.chooseUserRole(props, values);
-                console.log(values);
                 setSubmitting(false);
                 resetForm();
               }}
