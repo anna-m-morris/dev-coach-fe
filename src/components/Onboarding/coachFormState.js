@@ -1,9 +1,5 @@
 const coachFormState = {
-  userLocation: '',
-  experience: {
-    value: '',
-    hasError: false,
-    options: [
+  experience:   [
       {
         level: 1,
         text: 'None',
@@ -32,11 +28,7 @@ const coachFormState = {
           "I've worked as a developer for over 10 years including at a highly senior level",
       },
     ],
-  },
-  skills: {
-    value: '',
-    hasError: false,
-    options: [
+  skills:  [
       {
         level: 1,
         text: "I'm a junior developer",
@@ -53,11 +45,7 @@ const coachFormState = {
         level: 4,
         text: "I'm a tech lead or experienced senior developer",
       },
-    ],
-  },
-  description: '',
-  github: '',
-  linkedin: '',
-}
+  ],
+  }
 
 export default coachFormState;

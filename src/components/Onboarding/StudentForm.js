@@ -9,7 +9,7 @@ import {
   Form,
   Field,
   useField,
-  FieldArray
+  FieldArray,
 } from 'formik';
 import * as yup from 'yup';
 import {
@@ -22,7 +22,7 @@ import {
   Box,
   FormHelperText,
 } from '@material-ui/core';
-import initialValues from './StudentFormState';
+import formOptions from './studentFormState';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import {
@@ -33,14 +33,12 @@ import {
 import { chooseUserRole } from '../../state/actions/authenticationActions';
 import { countries } from '../../utils/countries';
 
-
 const validationSchema = yup.object().shape({
   userLocation: yup.string().required('Please enter location'),
-  experience: yup.number().required('please provide experience'),
+  experience: yup.number().required('Please provide experience'),
   github: yup.string().required('Please enter Github'),
   linkedin: yup.string().required('Please enter LinkedIn')
 });
-
 
 const NavLogo = styled(Logo)`
   a {
@@ -75,7 +73,7 @@ const StudentCardContainer = styled.div`
     background: #fff;
     box-shadow: 0 6px 8px #d3d3d3;
     padding: 1rem;
-    border-radius: 6px; 
+    border-radius: 6px;
 
     h1 {
       margin: 0;
@@ -104,8 +102,8 @@ const useStyles = makeStyles(theme => ({
     '& > *': {
       marginTop: '0.3em',
       marginBottom: '0.3em',
-      display:'flex',
-      flexDirection:'column',
+      display: 'flex',
+      flexDirection: 'column',
       justifyContent: 'space-evenly',
       alignItems: 'center',
     },
@@ -114,13 +112,14 @@ const useStyles = makeStyles(theme => ({
 
 const StudentForm = props => {
   const classes = useStyles();
-  const MySelect = (props) => {
-    const [field, meta] = useField(props);
-    const errorText = meta.error && meta.touched ? meta.error : '';
-    return (
-      <Select {...field} helperText={errorText} error={!!errorText} />
-    );
-  };
+
+  const initialValues = {
+    userLocation: '',
+    experience: '',
+    confidence: '',
+    linkedin: '',
+    github: '',
+  }
 
   const MyTextField = ({ placeholder, ...props }) => {
     const [field, meta] = useField(props);
@@ -136,7 +135,6 @@ const StudentForm = props => {
     );
   };
 
-
   return (
     <StudentCardContainer className='student-card-container'>
       <div className='student-card'>
@@ -150,72 +148,102 @@ const StudentForm = props => {
           sure you end up matched with the coach you need.
         </InfoParagraph>
         <div>
-          <Box
-            className={classes.box}
-          >
+          <Box className={classes.box}>
             <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(formValues, { setSubmitting, resetForm }) => {
-          setSubmitting(true);
-          props.chooseUserRole(props, formValues)
-          setSubmitting(false);
-          resetForm();
-        }}
-      >
-        {({ values, isSubmitting, errors }) => (
-          <Form className={classes.box}>
-            <div>
-            <MyTextField placeholder='Location' name='userLocation' />
-            </div>
-            <div>
-              <MyTextField placeholder='GitHub' name='github' />
-            </div>
-            <div>
-              <MyTextField placeholder='Linkedin' name='linkedin' />
-            </div>
-            <div>
-              <div>
-              <FormControl className={classes.formControl} error={!!errors.experience && errors.touched}>
-                <InputLabel>Experience</InputLabel>
-                <Field
-                  name='experience'
-                  type='select' 
-                  value={values.experience|| ''}
-                  as={Select}
-                >
-                  {initialValues.experience.options.map((option) => (
-                    <MenuItem value={option.level} key={uuid()}>
-                      {option.text}
-                    </MenuItem>
-                  ))}
-                </Field>  
-                </FormControl>
-              </div>
-              <div>
-              <FormControl className={classes.formControl} error={!!errors.confidence}>
-                <InputLabel>Confidence</InputLabel>
-                <Field
-                  name='confidence'
-                  type='select'
-                  value={values.confidence || ''}
-                  as={Select}
-                >
-                  {initialValues.confidence.options.map((option) => (
-                    <MenuItem value={option.level} key={uuid()}>
-                      {option.text}
-                    </MenuItem>
-                  ))}
-                </Field>
-                </FormControl>
-              </div>
-              <FormButton className='submit-button' theme={buttonTheme} disabled={isSubmitting} type='submit'>
-                Submit
-              </FormButton>
-            </div>
-          </Form>
-        )}
-      </Formik>
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={(
+                formValues,
+                { setSubmitting, resetForm },
+              ) => {
+                setSubmitting(true);
+                // props.chooseUserRole(props, formValues);
+                console.log(formValues)
+                setSubmitting(false);
+                resetForm();
+              }}
+            >
+              {({ values, isSubmitting, errors }) => (
+                <Form className={classes.box}>
+                  <div>
+                    <div>
+                      <FormControl
+                        className={classes.formControl}
+                        error={!!errors.experience}
+                      >
+                        <InputLabel>Experience</InputLabel>
+                        <Field
+                          name='experience'
+                          type='select'
+                          placeholder='experience'
+                          value={values.experience}
+                          as={Select}
+                        >
+                          {formOptions.experience.map(option => (
+                            <MenuItem
+                              value={option.level}
+                              key={uuid()}
+                            >
+                              {option.text}
+                            </MenuItem>
+                          ))}
+                        </Field>
+                      </FormControl>
+                    </div>
+                    <div>
+                      <FormControl
+                        className={classes.formControl}
+                        error={!!errors.confidence}
+                      >
+                        <InputLabel>Confidence</InputLabel>
+                        <Field
+                          name='confidence'
+                          type='select'
+                          placeholder='confidence'
+                          value={values.confidence}
+                          as={Select}
+                        >
+                          {formOptions.confidence.map(option => (
+                            <MenuItem
+                              value={option.level}
+                              key={uuid()}
+                            >
+                              {option.text}
+                            </MenuItem>
+                          ))}
+                        </Field>
+                      </FormControl>
+                    </div>
+                    <div>
+                      <MyTextField
+                        placeholder='Location'
+                        name='userLocation'
+                      />
+                    </div>
+                    <div>
+                      <MyTextField
+                        placeholder='GitHub'
+                        name='github'
+                      />
+                    </div>
+                    <div>
+                      <MyTextField
+                        placeholder='Linkedin'
+                        name='linkedin'
+                      />
+                    </div>
+                    <FormButton
+                      className='submit-button'
+                      theme={buttonTheme}
+                      disabled={isSubmitting}
+                      type='submit'
+                    >
+                      Submit
+                    </FormButton>
+                  </div>
+                 </Form>
+              )}
+            </Formik>
           </Box>
         </div>
       </div>

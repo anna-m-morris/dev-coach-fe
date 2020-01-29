@@ -1,7 +1,5 @@
 const StudentFormState = {
-    userLocation: '',
-    experience: {
-      options: [
+    experience: [
         {
           level: 1,
           text: 'None',
@@ -9,7 +7,7 @@ const StudentFormState = {
         {
           level: 2,
           text: "I've taken some online courses",
-        },  
+        },
         {
           level: 3,
           text:
@@ -28,9 +26,7 @@ const StudentFormState = {
           text: "I'm a professional software developer",
         },
       ],
-    },
-    confidence: {
-      options: [
+      confidence: [
         {
           level: 1,
           text: 'None',
@@ -42,8 +38,7 @@ const StudentFormState = {
         },
         {
           level: 3,
-          text:
-            "I'm not as confident at interviewing as I'd like to be",
+          text: "I'm not as confident at interviewing as I'd like to be",
         },
         {
           level: 4,
@@ -54,9 +49,8 @@ const StudentFormState = {
           text: "I'm confident in my interview ability",
         },
       ],
-    },
-    github: '',
-    linkedin: '',
   }
+
+
 
 export default StudentFormState;
