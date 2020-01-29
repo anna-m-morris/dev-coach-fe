@@ -6,17 +6,14 @@ import Lobby from './Lobby';
 import Room from './Room';
 
 const StyledVideoChat = styled.div`
-  button {
-    background: #333e5a;
-    color: #fff;
-    font-size: 16px;
-    padding: 0.4em;
-    border-radius: 6px;
-    border: 1px solid transparent;
-  }
-  button:hover {
-    filter: brightness(150%);
-  }
+.button {
+      width: 100%;
+      background-color: #4fad65;
+      font-weight: bold;
+
+      &:hover {
+        background: #1e3f1f;
+      }
 
   .videos {
     width: 500px;

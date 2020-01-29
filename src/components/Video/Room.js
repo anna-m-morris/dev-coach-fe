@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Button from '@material-ui/core/Button';
 import Video from 'twilio-video';
 import Participant from './Participant';
 
@@ -60,8 +61,22 @@ const Room = ({ roomName, token, handleLogout }) => {
   return (
     <div className='room'>
       <div className='settings'>
-        <button onClick={handleLogout}>Log out</button>
-        <button onClick={handleAudio}>audio</button>
+        <Button
+          className='button'
+          variant='contained'
+          color='primary'
+          onClick={handleLogout}
+        >
+          End Session
+        </Button>
+        <Button
+          onClick={handleAudio}
+          className='button'
+          variant='contained'
+          color='primary'
+        >
+          Audio
+        </Button>
       </div>
       {room ? (
         <div className='videos'>
