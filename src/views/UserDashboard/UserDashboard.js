@@ -161,7 +161,7 @@ const UserDashboard = props => {
       getAppointment(user.id, user.role_id);
       getFeedback(user.id, user.role_id);
     }, 1000);
-  }, [getAppointment, user.id, user.role_id]);
+  }, [getAppointment, getFeedback, user.id, user.role_id]);
 
   const handlePagination = value => {
     if (value <= 1) {
