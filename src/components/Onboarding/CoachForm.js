@@ -18,7 +18,7 @@ import {
 import { buttonTheme, Logo } from '../Landing/Landing-styles';
 import { FormButton, InfoParagraph } from './StudentForm';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
-import options from './CoachFormState';
+import options from './coachFormState';
 
 const CoachCardContainer = styled.div`
   max-width: 100%;

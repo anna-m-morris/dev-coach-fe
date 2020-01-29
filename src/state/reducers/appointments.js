@@ -16,7 +16,7 @@ function appointmentsReducer(state = initialState, action) {
       };
 
     case types.APPOINTMENTS_SUCCESSFUL:
-      const filterFutureAppointments = action.payload.filter(
+      const filterFutureAndUncanceledAppointments = action.payload.filter(
         appointment => {
           return (
             new Date(appointment.appointment_datetime) >=
@@ -24,10 +24,11 @@ function appointmentsReducer(state = initialState, action) {
           );
         },
       );
+
       return {
         ...state,
         isLoading: false,
-        appointments: filterFutureAppointments,
+        appointments: filterFutureAndUncanceledAppointments,
       };
 
     case types.APPOINTMENTS_ERROR:
