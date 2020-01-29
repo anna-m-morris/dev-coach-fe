@@ -3,19 +3,13 @@ import styled from 'styled-components';
 import SendIcon from '@material-ui/icons/Send';
 
 const StyledSendMessage = styled.div`
-  display: flex;
-  margin-top: 20px;
-  .formDiv {
-    padding: 15px;
-    border: 1px solid #ced4da;
-    border-radius: 15px;
-    margin-left: 20px;
-    margin-right: 2rem;
-    width: 100%;
-  }
+  border-top: 1px solid #e0e0e0;
 
   .form {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
   }
 
   .input {
@@ -24,16 +18,23 @@ const StyledSendMessage = styled.div`
     outline: none;
     border: none;
     flex: 1;
-    font-size: 16;
+    font-size: 1rem;
   }
 
   button {
     background: #4fad65;
     border: none;
-    width: 5rem;
+    width: 4rem;
     height: 100%;
-    margin-right: 3rem;
     border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: ease-out 0.1s;
+
+    &:hover {
+      background: #1e3f1f;
+      transition: ease-in 0.1s;
+    }
   }
 `;
 
@@ -59,21 +60,19 @@ const SendMessageForm = ({ onSubmit, onChange, currentRoom }) => {
     }
   };
   return (
-    <StyledSendMessage>
-      <div className='formDiv'>
-        <form onSubmit={onSubmission} className='form'>
-          <input
-            type='text'
-            placeholder='Type a message here then hit ENTER'
-            onChange={onChangeHandle}
-            value={text}
-            className='input'
-          />
-        </form>
-      </div>
-      <button onClick={onSubmission}>
-        <SendIcon style={iconStyles} />
-      </button>
+    <StyledSendMessage className='formDiv'>
+      <form onSubmit={onSubmission} className='form'>
+        <input
+          type='text'
+          placeholder='Type your message...'
+          onChange={onChangeHandle}
+          value={text}
+          className='input'
+        />
+        <button onClick={onSubmission}>
+          <SendIcon style={iconStyles} />
+        </button>
+      </form>
     </StyledSendMessage>
   );
 };

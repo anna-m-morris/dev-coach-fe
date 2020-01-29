@@ -1,6 +1,7 @@
 import React from 'react';
 import Chatkit from '@pusher/chatkit-client';
 import styled from 'styled-components';
+import { Avatar } from '@material-ui/core';
 import { connect } from 'react-redux';
 import MessageList from './MessageList';
 import SendMessageForm from './SendMessage';
@@ -9,31 +10,23 @@ import { getRooms } from '../../state/actions/chatActions';
 import TypingIndicator from './TypingIndicator';
 
 const StyledChatScreen = styled.div`
-  border-top: 1px solid #ced4da;
-  height: 85vh;
-  display: flex;
-  flex-direction: column;
-  margin: 1rem auto;
-  justify-content: center;
+  margin: 1rem 0;
+  height: 100%;
   width: 100%;
-  .chat-container {
-    display: flex;
-    flex: 1;
-    width: 100%;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-  }
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+
   .whos-online-list-container {
-    border-left: 1px solid #ced4da;
-    border-right: 1px solid #ced4da;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
     width: 30%;
     flex: none;
     color: #2f4f4f;
     border-radius: 5px;
     text-align: center;
-    font-family: 'Ubuntu, sans-serif';
 
-    h5, p {
+    p {
       padding-left: 1rem;
       padding-right: 1rem;
       font-size: 1.15rem;
@@ -44,11 +37,13 @@ const StyledChatScreen = styled.div`
     }
   }
   .chat-list-container {
-    width: 100%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     height: 85vh;
     box-sizing: border-box;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
   }
 `;
 
@@ -67,7 +62,9 @@ class ChatScreen extends React.Component {
 
   startChat = roomId => {
     if (this.state.currentUser) {
-      this.state.currentUser.roomSubscriptions[this.state.currentRoom.id].cancel();
+      this.state.currentUser.roomSubscriptions[
+        this.state.currentRoom.id
+      ].cancel();
     }
 
     this.setState({ messages: [] });
@@ -128,34 +125,31 @@ class ChatScreen extends React.Component {
   };
   render() {
     return (
-      <StyledChatScreen>
-        <div className='chat-container'>
-          <aside className='whos-online-list-container'>
-            <h5>Chats</h5>
-            <p className='smallerP'>
-              Select a conversation to send a message
-            </p>
-            <UserList
-              rooms={this.props.rooms}
-              user={this.props.user}
-              startChat={this.startChat}
-            />
-          </aside>
-          <section className='chat-list-container'>
-            <MessageList
-              messages={this.state.messages}
-              userId={this.props.user.email}
-            />
-            <TypingIndicator
-              usersWhoAreTyping={this.state.usersWhoAreTyping}
-            />
-            <SendMessageForm
-              onSubmit={this.sendMessage}
-              onChange={this.sendTypingEvent}
-              currentRoom={this.state.currentRoom}
-            />
-          </section>
-        </div>
+      <StyledChatScreen className='chat-container'>
+        <aside className='whos-online-list-container'>
+          <p className='smallerP'>
+            Select a conversation to send a message
+          </p>
+          <UserList
+            rooms={this.props.rooms}
+            user={this.props.user}
+            startChat={this.startChat}
+          />
+        </aside>
+        <section className='chat-list-container'>
+          <MessageList
+            messages={this.state.messages}
+            userId={this.props.user.email}
+          />
+          <TypingIndicator
+            usersWhoAreTyping={this.state.usersWhoAreTyping}
+          />
+          <SendMessageForm
+            onSubmit={this.sendMessage}
+            onChange={this.sendTypingEvent}
+            currentRoom={this.state.currentRoom}
+          />
+        </section>
       </StyledChatScreen>
     );
   }
