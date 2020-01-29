@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 const StyledMessageList = styled.div`
   flex: 1;
@@ -60,7 +61,8 @@ const MessageList = ({ messages, userId }) => {
   return (
     <StyledMessageList>
       <ul className='ul'>
-        {messages &&
+        {messages ? (
+          messages &&
           messages.map((message, index) => (
             <li
               key={index}
@@ -77,7 +79,15 @@ const MessageList = ({ messages, userId }) => {
               </div>
               <p className='message'>{message.text}</p>
             </li>
-          ))}
+          ))
+        ) : (
+          <Loader
+            type='TailSpin'
+            color='#2BAD60'
+            height={50}
+            width={50}
+          />
+        )}
       </ul>
       <div ref={messagesEndRef}></div>
     </StyledMessageList>

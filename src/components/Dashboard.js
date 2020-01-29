@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
@@ -54,6 +55,25 @@ const useStyles = makeStyles(theme => ({
     color: '#4fad65',
     fontSize: '.8rem',
     paddingLeft: '3em',
+
+    [theme.breakpoints.down('sm')]: {
+      backgroundImage: `url(${logo})`,
+      marginLeft: '-0.4em',
+      width: '100%',
+      transform: 'scale(0.6)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'left',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      ...theme.mixins.toolbar,
+      color: '#4fad65',
+      fontSize: '.8rem',
+      transition: '',
+      '&:hover': {
+        transform: 'scale(0.65)',
+      },
+    },
   },
   toolbarIconClosed: {
     backgroundImage: `url(${logo})`,
@@ -81,6 +101,14 @@ const useStyles = makeStyles(theme => ({
     }),
     boxShadow: 'none',
     color: 'grey',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -99,6 +127,9 @@ const useStyles = makeStyles(theme => ({
   },
   menuButton: {
     marginRight: 36,
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
   menuButtonHidden: {
     display: 'none',
@@ -120,6 +151,18 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    [theme.breakpoints.down('sm')]: {
+      zIndex: 10000,
+      overflowX: 'hidden',
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      width: theme.spacing(9),
+      [theme.breakpoints.up('sm')]: {
+        width: theme.spacing(9),
+      },
+    },
   },
   drawerPaperClose: {
     zIndex: 10000,
@@ -128,7 +171,7 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing(7),
+    width: theme.spacing(9),
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing(9),
     },
@@ -240,18 +283,22 @@ const Dashboard = props => {
           }
           onClick={() => setOpen(!open)}
         >
-          <h1
-            className={open ? classes.toolbarTitle : classes.hidden}
-          >
-            DevCoach
-          </h1>
-          {
-            <IconButton
-              className={!open ? classes.hidden : null}
-              onClick={handleDrawerClose}
+          <Hidden smDown implementation='css'>
+            <h1
+              className={open ? classes.toolbarTitle : classes.hidden}
             >
-              <ChevronLeftIcon />
-            </IconButton>
+              DevCoach
+            </h1>
+          </Hidden>
+          {
+            <Hidden smDown implementation='css'>
+              <IconButton
+                className={!open ? classes.hidden : null}
+                onClick={handleDrawerClose}
+              >
+                <ChevronLeftIcon />
+              </IconButton>
+            </Hidden>
           }
         </div>
         <Divider className={classes.styledDivider} />
