@@ -17,7 +17,6 @@ import StartChat from './components/Chat/Chat';
 import Settings from './views/Settings/Settings';
 import GiveFeedback from './views/Feedback/GiveFeedback';
 import SignUp from './components/Onboarding/SignupStepper';
-import CoachFormTest from './components/Onboarding/CoachFormTest';
 
 const globalTheme = createMuiTheme({
   typography: {
@@ -60,7 +59,6 @@ function App(props) {
       <Route path='/login/' component={LoginForm} />
       <Route path='/register' component={SignUp} />
       <Route path='/faq' component={LandingFaq} />
-      <Route path='/coach' component={CoachFormTest} />
       <Redirect to='/' />
     </Switch>
   );
