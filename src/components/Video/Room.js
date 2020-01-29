@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Video from 'twilio-video';
 import Participant from './Participant';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
 
 const Room = ({ roomName, token, handleLogout }) => {
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
   const [audio, setAudio] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     const participantConnected = participant => {
@@ -58,6 +63,14 @@ const Room = ({ roomName, token, handleLogout }) => {
     setAudio(!audio);
   };
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className='room'>
       <div className='settings'>
@@ -65,7 +78,7 @@ const Room = ({ roomName, token, handleLogout }) => {
           className='button'
           variant='contained'
           color='primary'
-          onClick={handleLogout}
+          onClick={handleClickOpen}
         >
           End Session
         </Button>
@@ -95,6 +108,28 @@ const Room = ({ roomName, token, handleLogout }) => {
       ) : (
         ''
       )}
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
+      >
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>
+            Are you sure you want to end your interview, you don't can
+            come back to your session ?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color='primary'>
+            No
+          </Button>
+
+          <Button color='primary' autoFocus onClick={handleLogout}>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
