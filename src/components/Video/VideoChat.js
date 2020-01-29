@@ -150,4 +150,11 @@ const VideoChat = () => {
 };
 
 export default VideoChat;
+// const mapStateToProps = state => {
+//   return {
+//     user: state.userReducer.user,
+//     peerId: state.interviewReducer.peerId,
+//   };
+// };
 
+// export default connect(mapStateToProps)(VideoChat);

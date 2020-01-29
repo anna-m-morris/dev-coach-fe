@@ -9,6 +9,7 @@ import {
   getAppointment,
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
+import { getFeedback } from '../../state/actions/feedbackActions';
 import { saveRescheduledCoach } from '../../state/actions/bookingActions';
 import { saveIdRole } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
@@ -147,13 +148,17 @@ const UserDashboard = props => {
     cancelAppointment,
     startInterview,
     saveIdRole,
+    getFeedback,
   } = props;
 
   const [minValue, setMinValue] = React.useState(0);
   const [maxValue, setMaxValue] = React.useState(6);
 
   React.useEffect(() => {
-    setTimeout(() => getAppointment(user.id, user.role_id), 1000);
+    setTimeout(() => {
+      getAppointment(user.id, user.role_id);
+      getFeedback(user.id, user.role_id);
+    }, 1000);
   }, [getAppointment, user.id, user.role_id]);
 
   const handlePagination = value => {
@@ -263,4 +268,5 @@ export default connect(mapStateToProps, {
   startInterview,
   saveIdRole,
   saveRescheduledCoach,
+  getFeedback,
 })(UserDashboard);
