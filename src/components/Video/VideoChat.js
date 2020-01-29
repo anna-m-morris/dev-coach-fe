@@ -63,7 +63,7 @@ const StyledVideoChat = styled.div`
   }
 `;
 
-const VideoChat = ({ user, peerId }) => {
+const VideoChat = ({ user, peerId, history }) => {
   const username = user.email;
   const roomName =
     user.role_id === 1
@@ -87,7 +87,7 @@ const VideoChat = ({ user, peerId }) => {
 
   const handleLogout = useCallback(event => {
     setToken(null);
-    
+    history.push('/givefeedback');
   }, []);
 
   let render;
