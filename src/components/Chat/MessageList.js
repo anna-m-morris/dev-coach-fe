@@ -73,7 +73,11 @@ const MessageList = ({ messages, userId, currentRoom }) => {
             >
               <div className='username-div'>
                 <span className='send-username'>
-                  {message.senderId}
+                  {currentRoom
+                    ? message.senderId === currentRoom.userIds[0]
+                      ? currentRoom.customData.role_id_one
+                      : currentRoom.customData.role_id_two
+                    : null}
                 </span>{' '}
               </div>
               <p className='message'>{message.text}</p>
