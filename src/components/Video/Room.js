@@ -44,25 +44,30 @@ const Room = ({ roomName, token, handleLogout }) => {
   }, [roomName, token]);
 
   const remoteParticipants = participants.map(participant => (
-    <Participant key={participant.sid} participant={participant} />
+    <Participant
+      className='user-video'
+      key={participant.sid}
+      participant={participant}
+    />
   ));
 
   return (
     <div className='room'>
-      <h2>Room: {roomName}</h2>
-      <button onClick={handleLogout}>Log out</button>
-      <div className='local-participant'>
-        {room ? (
+      <div className='settings'>
+        <button onClick={handleLogout}>Log out</button>
+      </div>
+      {room ? (
+        <div className='videos'>
           <Participant
+            className='my-video'
             key={room.localParticipant.sid}
             participant={room.localParticipant}
           />
-        ) : (
-          ''
-        )}
-      </div>
-      <h3>Remote Participants</h3>
-      <div className='remote-participants'>{remoteParticipants}</div>
+          {remoteParticipants}
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 };

@@ -6,90 +6,36 @@ import Lobby from './Lobby';
 import Room from './Room';
 
 const StyledVideoChat = styled.div`
-  main {
-    background: #ffffff;
-    flex-grow: 1;
-  }
-  form {
-    max-width: 300px;
-    margin: 0 auto;
-  }
-  h2 {
-    font-weight: 300;
-    margin-bottom: 1em;
-    text-align: center;
-  }
-  form > div {
-    width: 100%;
-    margin-bottom: 1em;
-  }
-  form > div > label {
-    display: block;
-    margin-bottom: 0.3em;
-  }
-  form > div > input {
-    display: block;
-    width: 100%;
-    font-size: 16px;
-    padding: 0.4em;
-    border-radius: 6px;
-    border: 1px solid #333e5a;
-  }
-  button {
-    background: #333e5a;
-    color: #fff;
-    font-size: 16px;
-    padding: 0.4em;
-    border-radius: 6px;
-    border: 1px solid transparent;
-  }
-  button:hover {
-    filter: brightness(150%);
-  }
-  .room {
+  .videos {
+    width: 500px;
+    height: 380px;
+    margin: 0px auto;
+    border: 2px solid #645cff;
     position: relative;
-  }
-  .room button {
-    position: absolute;
-    top: 0;
-    right: 20px;
-  }
-  .room > h3 {
-    text-align: center;
-    font-weight: 300;
-    margin-bottom: 1em;
-  }
-  .local-participant {
-    text-align: center;
-    margin-bottom: 2em;
-  }
-  .remote-participants {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    padding: 0 2em 2em;
-  }
-  .participant {
-    background: #333e5a;
-    padding: 10px;
-    border-radius: 6px;
-    display: inline-block;
-    margin-right: 10px;
-  }
-  .participant:last-child {
-    margin-right: 0;
-  }
-  .participant h3 {
-    text-align: center;
-    padding-bottom: 0.5em;
-    color: #fff;
-  }
-  video {
-    width: 100%;
-    max-width: 600px;
-    display: block;
-    margin: 0 auto;
-    border-radius: 6px;
+    box-shadow: 1px 1px 11px #9e9e9e;
+
+    .my-video {
+      width: 130px;
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      border: 6px solid #2196f3;
+
+      border-radius: 6px;
+      z-index: 2;
+    }
+
+    .user-video {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
   }
 `;
 
