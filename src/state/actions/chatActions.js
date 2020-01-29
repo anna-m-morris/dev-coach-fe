@@ -47,7 +47,6 @@ export const startChatFromScratch = (
   saveRoomId,
   props,
 ) => dispatch => {
-  debugger;
   axiosWithAuth()
     .post(`${url}chat/room_id`, {
       roomId: id,
