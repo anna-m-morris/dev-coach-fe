@@ -1,16 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
-import {
-  Formik,
-  withFormik,
-  Form,
-  Field,
-  useField,
-  FieldArray,
-} from 'formik';
+import { Formik, Form, Field, useField } from 'formik';
 import * as yup from 'yup';
 import {
   FormControl,
@@ -20,9 +13,7 @@ import {
   MenuItem,
   TextField,
   Box,
-  FormHelperText,
 } from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import formOptions from './studentFormState';
 
 import {
@@ -31,7 +22,6 @@ import {
   Logo,
 } from '../Landing/Landing-styles';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
-import { countries } from '../../utils/countries';
 
 const validationSchema = yup.object().shape({
   userLocation: yup.string().required('Please enter location'),
@@ -198,8 +188,6 @@ const StudentForm = props => {
                         <InputLabel>Confidence</InputLabel>
                         <Field
                           name='confidence'
-                          type='select'
-                          placeholder='confidence'
                           value={values.confidence}
                           as={Select}
                         >

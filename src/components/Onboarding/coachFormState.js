@@ -1,4 +1,4 @@
-const coachFormState = {
+const options = {
   expOptions: [
     {
       level: 1,
@@ -23,7 +23,7 @@ const coachFormState = {
         "I've worked for 8+ years and have held senior positions as a tech lead or engineering manager",
     },
     {
-      level: 5,
+      level: 6,
       text:
         "I've worked as a developer for over 10 years including at a highly senior level",
     },
@@ -48,4 +48,4 @@ const coachFormState = {
   ],
 };
 
-export default coachFormState;
+export default options;

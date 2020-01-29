@@ -15,7 +15,6 @@ import {
   Box,
 } from '@material-ui/core';
 
-import { countries } from '../../utils/countries';
 import { buttonTheme, Logo } from '../Landing/Landing-styles';
 import { FormButton, InfoParagraph } from './StudentForm';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
@@ -130,23 +129,10 @@ const CoachForm = props => {
               {({ values, isSubmitting, errors }) => (
                 <Form className={classes.box}>
                   <div>
-                    <FormControl
-                      className={classes.formControl}
-                      error={!!errors.userLocation}
-                    >
-                      <InputLabel>Location</InputLabel>
-                      <Field
-                        value={values.userLocation}
-                        name='userLocation'
-                        as={Select}
-                      >
-                        {countries.map(option => (
-                          <MenuItem value={option.name} key={uuid()}>
-                            {option.name}
-                          </MenuItem>
-                        ))}
-                      </Field>
-                    </FormControl>
+                    <MyTextField
+                      placeholder='Location'
+                      name='userLocation'
+                    />
                   </div>
 
                   <div>
@@ -154,7 +140,12 @@ const CoachForm = props => {
                       className={classes.formControl}
                       error={!!errors.experience}
                     >
-                      <InputLabel>Experience</InputLabel>
+                      <InputLabel
+                        style={{ color: '#bdbdbd' }}
+                        className='input-label'
+                      >
+                        Experience
+                      </InputLabel>
                       <Field
                         value={values.experience}
                         name='experience'
@@ -174,7 +165,12 @@ const CoachForm = props => {
                       className={classes.formControl}
                       error={!!errors.skills}
                     >
-                      <InputLabel>Skills</InputLabel>
+                      <InputLabel
+                        style={{ color: '#bdbdbd' }}
+                        className='input-label'
+                      >
+                        Skills
+                      </InputLabel>
                       <Field
                         value={values.skills}
                         name='skills'
