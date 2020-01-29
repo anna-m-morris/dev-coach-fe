@@ -59,7 +59,6 @@ const StyledMarketplace = styled.div`
   }
   .loaderStyled {
     margin-top: 200px;
-    margin-left: 35rem;
     margin-bottom: 200px;
   }
 `;
