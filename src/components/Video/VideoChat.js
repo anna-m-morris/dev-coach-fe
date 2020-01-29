@@ -87,6 +87,7 @@ const VideoChat = ({ user, peerId }) => {
 
   const handleLogout = useCallback(event => {
     setToken(null);
+    
   }, []);
 
   let render;

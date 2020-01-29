@@ -174,42 +174,28 @@ export const AppointmentCard = props => {
             ''
           )}
         </div>
-
-        {!appointment.canceled ? (
-          <div className='footer'>
-            <Button
-              onClick={handleClickOpen}
-              size='small'
-              className='cancel-button'
-              variant='contained'
-              color='secondary'
-              startIcon={<DeleteIcon />}
-            >
-              Cancel
-            </Button>
-            <Button
-              size='small'
-              className='button'
-              variant='contained'
-              color='primary'
-              endIcon={<Icon>send</Icon>}
-              onClick={startInterview}
-            >
-              Interview
-            </Button>
-          </div>
-        ) : (
+        <div className='footer'>
           <Button
             onClick={handleClickOpen}
-            size='big'
+            size='small'
             className='cancel-button'
             variant='contained'
             color='secondary'
             startIcon={<DeleteIcon />}
           >
-            Cancelled
+            Cancel
           </Button>
-        )}
+          <Button
+            size='small'
+            className='button'
+            variant='contained'
+            color='primary'
+            endIcon={<Icon>send</Icon>}
+            onClick={startInterview}
+          >
+            Interview
+          </Button>
+        </div>
       </StyledCoachCard>
       <Dialog
         open={open}
