@@ -49,7 +49,7 @@ const StyledMessageList = styled.div`
   }
 `;
 
-const MessageList = ({ messages, userId, currentRoom }) => {
+const MessageList = ({ messages, userId }) => {
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -73,11 +73,7 @@ const MessageList = ({ messages, userId, currentRoom }) => {
             >
               <div className='username-div'>
                 <span className='send-username'>
-                  {currentRoom
-                    ? message.senderId === currentRoom.userIds[0]
-                      ? currentRoom.customData.role_id_one
-                      : currentRoom.customData.role_id_two
-                    : null}
+                  {message.senderId}
                 </span>{' '}
               </div>
               <p className='message'>{message.text}</p>

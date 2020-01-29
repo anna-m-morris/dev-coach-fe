@@ -130,14 +130,6 @@ class ChatScreen extends React.Component {
       .catch(error => this.setState({ error }));
   };
 
-  UNSAFE_componentWillUpdate = () => {
-    if (this.state.currentUser) {
-      this.state.currentUser.roomSubscriptions[
-        this.state.currentRoom.id
-      ].cancel();
-    }
-  };
-
   componentWillUnmount = () => {
     if (this.state.currentUser) {
       this.state.currentUser.roomSubscriptions[
@@ -164,7 +156,6 @@ class ChatScreen extends React.Component {
             <MessageList
               messages={this.state.messages}
               userId={this.props.user.email}
-              currentRoom={this.state.currentRoom}
             />
             <TypingIndicator
               usersWhoAreTyping={this.state.usersWhoAreTyping}
