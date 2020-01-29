@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import Lobby from './Lobby';
 import Room from './Room';
 
@@ -92,18 +93,14 @@ const StyledVideoChat = styled.div`
   }
 `;
 
-const VideoChat = () => {
-  const [username, setUsername] = useState('');
-  const [roomName, setRoomName] = useState('');
+const VideoChat = ({ user, peerId }) => {
+  const username = user.email;
+  const roomName =
+    user.role_id === 1
+      ? `${user.email}-${peerId}`
+      : `${peerId}-${user.email}`;
+
   const [token, setToken] = useState(null);
-
-  const handleUsernameChange = useCallback(event => {
-    setUsername(event.target.value);
-  }, []);
-
-  const handleRoomNameChange = useCallback(event => {
-    setRoomName(event.target.value);
-  }, []);
 
   const handleSubmit = useCallback(
     async event => {
@@ -136,25 +133,18 @@ const VideoChat = () => {
   } else {
     render = (
       <StyledVideoChat>
-        <Lobby
-          username={username}
-          roomName={roomName}
-          handleUsernameChange={handleUsernameChange}
-          handleRoomNameChange={handleRoomNameChange}
-          handleSubmit={handleSubmit}
-        />
+        <Lobby handleSubmit={handleSubmit} />
       </StyledVideoChat>
     );
   }
   return render;
 };
 
-export default VideoChat;
-// const mapStateToProps = state => {
-//   return {
-//     user: state.userReducer.user,
-//     peerId: state.interviewReducer.peerId,
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user,
+    peerId: state.interviewReducer.peerId,
+  };
+};
 
-// export default connect(mapStateToProps)(VideoChat);
+export default connect(mapStateToProps)(VideoChat);
