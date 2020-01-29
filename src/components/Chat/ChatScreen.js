@@ -33,7 +33,8 @@ const StyledChatScreen = styled.div`
     text-align: center;
     font-family: 'Ubuntu, sans-serif';
 
-    h5, p {
+    h5,
+    p {
       padding-left: 1rem;
       padding-right: 1rem;
       font-size: 1.15rem;
@@ -67,7 +68,9 @@ class ChatScreen extends React.Component {
 
   startChat = roomId => {
     if (this.state.currentUser) {
-      this.state.currentUser.roomSubscriptions[this.state.currentRoom.id].cancel();
+      this.state.currentUser.roomSubscriptions[
+        this.state.currentRoom.id
+      ].cancel();
     }
 
     this.setState({ messages: [] });
@@ -126,6 +129,22 @@ class ChatScreen extends React.Component {
       .isTypingIn({ roomId: this.state.currentRoom.id })
       .catch(error => this.setState({ error }));
   };
+
+  UNSAFE_componentWillUpdate = () => {
+    if (this.state.currentUser) {
+      this.state.currentUser.roomSubscriptions[
+        this.state.currentRoom.id
+      ].cancel();
+    }
+  };
+
+  componentWillUnmount = () => {
+    if (this.state.currentUser) {
+      this.state.currentUser.roomSubscriptions[
+        this.state.currentRoom.id
+      ].cancel();
+    }
+  };
   render() {
     return (
       <StyledChatScreen>
@@ -145,6 +164,7 @@ class ChatScreen extends React.Component {
             <MessageList
               messages={this.state.messages}
               userId={this.props.user.email}
+              currentRoom={this.state.currentRoom}
             />
             <TypingIndicator
               usersWhoAreTyping={this.state.usersWhoAreTyping}

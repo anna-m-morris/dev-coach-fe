@@ -5,12 +5,15 @@ import uuid from 'uuid';
 import Pagination from 'antd/lib/pagination';
 import 'antd/lib/pagination/style/index.css';
 import Loader from 'react-loader-spinner';
-
 import {
   getAppointment,
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
-import { saveIdRole } from '../../state/actions/feedbackActions';
+import { saveRescheduledCoach } from '../../state/actions/bookingActions';
+import {
+  saveIdRole,
+  getFeedback,
+} from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
@@ -134,27 +137,31 @@ const DashboardContainer = styled.div`
   }
 
   .loaderStyled {
-    margin-left: 30rem;
     margin-top: 20vh;
   }
 `;
 
 const UserDashboard = props => {
   const {
+    history,
     appointments,
     getAppointment,
     user,
     cancelAppointment,
     startInterview,
     saveIdRole,
+    getFeedback,
   } = props;
 
   const [minValue, setMinValue] = React.useState(0);
   const [maxValue, setMaxValue] = React.useState(6);
 
   React.useEffect(() => {
-    setTimeout(() => getAppointment(user.id, user.role_id), 1000);
-  }, [getAppointment, user.id, user.role_id]);
+    setTimeout(() => {
+      getAppointment(user.id, user.role_id);
+      getFeedback(user.id, user.role_id);
+    }, 1000);
+  }, [getAppointment, getFeedback, user.id, user.role_id]);
 
   const handlePagination = value => {
     if (value <= 1) {
@@ -207,13 +214,18 @@ const UserDashboard = props => {
                   <AppointmentCard
                     key={uuid()}
                     appointment={appointment}
-                    cancel={() => cancelAppointment(appointment.id)}
-                    startInterview={() =>
-                      startInterview(appointment.email, props)
-                    }
-                    saveIdRole={() =>
-                      saveIdRole(appointment.role_id, appointment.id)
-                    }
+                    cancelAppointment={() => {
+                      cancelAppointment(appointment.id, history, {
+                        id: appointment.id,
+                        first_name: appointment.first_name,
+                        last_name: appointment.last_name,
+                        email: appointment.email,
+                      });
+                    }}
+                    startInterview={() => {
+                      startInterview(appointment.email, props);
+                      saveIdRole(appointment.role_id, appointment.id);
+                    }}
                   />
                 ))}
               <div className='pagination'>
@@ -245,6 +257,7 @@ const UserDashboard = props => {
 
 const mapStateToProps = state => {
   return {
+    coach: state.bookingReducer.coach,
     user: state.userReducer.user,
     appointments: state.appointmentsReducer.appointments,
     feedback: state.feedbackReducer.feedback,
@@ -256,4 +269,6 @@ export default connect(mapStateToProps, {
   cancelAppointment,
   startInterview,
   saveIdRole,
+  saveRescheduledCoach,
+  getFeedback,
 })(UserDashboard);

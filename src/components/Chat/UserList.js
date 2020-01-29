@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import uuid from 'uuid';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 const UserListStyle = styled.div`
   position: static;
@@ -31,7 +32,8 @@ const UserList = props => {
 
   return (
     <>
-      {rooms &&
+      {rooms ? (
+        rooms &&
         rooms.map(room => (
           <UserListStyle
             key={uuid()}
@@ -48,7 +50,15 @@ const UserList = props => {
               }
             />
           </UserListStyle>
-        ))}
+        ))
+      ) : (
+        <Loader
+          type='TailSpin'
+          color='#2BAD60'
+          height={50}
+          width={50}
+        />
+      )}
     </>
   );
 };

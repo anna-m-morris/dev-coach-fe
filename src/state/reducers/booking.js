@@ -5,7 +5,9 @@ const initialState = {
   date: null,
   select: {},
   error: '',
+  success: '',
   isLoading: false,
+  rescheduled_coach: '',
 };
 
 function bookingReducer(state = initialState, action) {
@@ -24,7 +26,6 @@ function bookingReducer(state = initialState, action) {
         ...state,
         isLoading: false,
       };
-
     case types.SAVE_DATE:
       return {
         ...state,
@@ -45,6 +46,11 @@ function bookingReducer(state = initialState, action) {
       return {
         ...state,
         coach: action.payload,
+      };
+    case types.SAVE_RESCHEDULED_COACH:
+      return {
+        ...state,
+        rescheduled_coach: action.payload,
       };
 
     default:

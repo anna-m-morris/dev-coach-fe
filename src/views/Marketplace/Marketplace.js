@@ -59,7 +59,6 @@ const StyledMarketplace = styled.div`
   }
   .loaderStyled {
     margin-top: 200px;
-    margin-left: 35rem;
     margin-bottom: 200px;
   }
 `;
@@ -114,6 +113,7 @@ const Marketplace = ({
                 saveForChat({
                   email: coach.email,
                   name: `${coach.first_name} ${coach.last_name}`,
+                  avatar_url: coach.avatar_url,
                 })
               }
             />

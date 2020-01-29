@@ -9,18 +9,15 @@ const StyledVideoChat = styled.div`
     background: #ffffff;
     flex-grow: 1;
   }
-
   form {
     max-width: 300px;
     margin: 0 auto;
   }
-
   h2 {
     font-weight: 300;
     margin-bottom: 1em;
     text-align: center;
   }
-
   form > div {
     width: 100%;
     margin-bottom: 1em;
@@ -37,7 +34,6 @@ const StyledVideoChat = styled.div`
     border-radius: 6px;
     border: 1px solid #333e5a;
   }
-
   button {
     background: #333e5a;
     color: #fff;
@@ -49,7 +45,6 @@ const StyledVideoChat = styled.div`
   button:hover {
     filter: brightness(150%);
   }
-
   .room {
     position: relative;
   }
@@ -63,7 +58,6 @@ const StyledVideoChat = styled.div`
     font-weight: 300;
     margin-bottom: 1em;
   }
-
   .local-participant {
     text-align: center;
     margin-bottom: 2em;
@@ -89,7 +83,6 @@ const StyledVideoChat = styled.div`
     padding-bottom: 0.5em;
     color: #fff;
   }
-
   video {
     width: 100%;
     max-width: 600px;
@@ -157,3 +150,11 @@ const VideoChat = () => {
 };
 
 export default VideoChat;
+// const mapStateToProps = state => {
+//   return {
+//     user: state.userReducer.user,
+//     peerId: state.interviewReducer.peerId,
+//   };
+// };
+
+// export default connect(mapStateToProps)(VideoChat);

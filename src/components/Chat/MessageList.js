@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 const StyledMessageList = styled.div`
   flex: 1;
@@ -48,11 +49,19 @@ const StyledMessageList = styled.div`
   }
 `;
 
-const MessageList = ({ messages, userId }) => {
+const MessageList = ({ messages, userId, currentRoom }) => {
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView();
+  };
+
+  useEffect(scrollToBottom, [messages]);
   return (
     <StyledMessageList>
       <ul className='ul'>
-        {messages &&
+        {messages ? (
+          messages &&
           messages.map((message, index) => (
             <li
               key={index}
@@ -64,13 +73,26 @@ const MessageList = ({ messages, userId }) => {
             >
               <div className='username-div'>
                 <span className='send-username'>
-                  {message.senderId}
+                  {currentRoom
+                    ? message.senderId === currentRoom.userIds[0]
+                      ? currentRoom.customData.role_id_one
+                      : currentRoom.customData.role_id_two
+                    : null}
                 </span>{' '}
               </div>
               <p className='message'>{message.text}</p>
             </li>
-          ))}
+          ))
+        ) : (
+          <Loader
+            type='TailSpin'
+            color='#2BAD60'
+            height={50}
+            width={50}
+          />
+        )}
       </ul>
+      <div ref={messagesEndRef}></div>
     </StyledMessageList>
   );
 };

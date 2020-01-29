@@ -4,6 +4,7 @@ const initialState = {
   appointments: null,
   error: '',
   isLoading: false,
+  rescheduler: '',
 };
 
 function appointmentsReducer(state = initialState, action) {
@@ -15,17 +16,19 @@ function appointmentsReducer(state = initialState, action) {
       };
 
     case types.APPOINTMENTS_SUCCESSFUL:
-      const filterFutureAppointments = action.payload.filter(
+      const filterFutureAndUncanceledAppointments = action.payload.filter(
         appointment => {
           return (
-            new Date(appointment.appointment_datetime) >= new Date()
+            new Date(appointment.appointment_datetime) >=
+              new Date() && !appointment.canceled
           );
         },
       );
+
       return {
         ...state,
         isLoading: false,
-        appointments: filterFutureAppointments,
+        appointments: filterFutureAndUncanceledAppointments,
       };
 
     case types.APPOINTMENTS_ERROR:
@@ -35,12 +38,19 @@ function appointmentsReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        appointments: state.appointments.map(appointment => {
-          if (appointment.id === action.payload.id) {
-            appointment.canceled = action.payload;
-          }
-          return appointment;
-        }),
+        appointments: state.appointments
+          .map(appointment => {
+            if (appointment.id === action.payload.id) {
+              appointment.canceled = action.payload;
+            }
+            return appointment;
+          })
+          .filter(appointment => !appointment.canceled),
+        rescheduler: {
+          ...action.rescheduler,
+          coach_id: action.payload.coach_id,
+          student_id: action.payload.student_id,
+        },
       };
 
     default:
