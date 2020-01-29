@@ -104,7 +104,7 @@ const Marketplace = ({
         {coaches ? (
           coaches.slice(minValue, maxValue).map(coach => (
             <CoachCard
-              key={coach.first_name}
+              key={coach.email}
               coach={coach}
               saveCoach={() => saveCoach(coach)}
               getFeedback={getFeedback}

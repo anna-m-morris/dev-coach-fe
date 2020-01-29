@@ -20,11 +20,10 @@ import AppointmentCard from '../../components/Cards/AppointmentCard';
 
 const DashboardContainer = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 
   .appointment-title {
     color: #595959;

@@ -85,10 +85,13 @@ const VideoChat = ({ user, peerId, history }) => {
     [roomName, username],
   );
 
-  const handleLogout = useCallback(event => {
-    setToken(null);
-    history.push('/givefeedback');
-  }, []);
+  const handleLogout = useCallback(
+    event => {
+      setToken(null);
+      history.push('/givefeedback');
+    },
+    [history],
+  );
 
   let render;
   if (token) {
