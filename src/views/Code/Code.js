@@ -18,7 +18,7 @@ const FlexContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-bottom: 4em;
+    padding-bottom: 2em;
   }
 
   .code-body-container {
@@ -32,14 +32,15 @@ const FlexContainer = styled.div`
 `;
 
 function Code() {
+  const [output, setOutput] = React.useState('');
   return (
     <FlexContainer>
       <div className='code-header-container'>
         <Interface />
       </div>
       <div className='code-body-container'>
-        <Editor />
-        <Terminal />
+        <Editor output={output} setOutput={setOutput} />
+        <Terminal initialText='$  ' output={output} />
       </div>
     </FlexContainer>
   );

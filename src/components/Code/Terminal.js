@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TerminalContainer = styled.div`
-  width: 45%;
+  width: 50%;
   height: 100%;
   background: #0e1628;
   * {
@@ -17,17 +17,19 @@ const TerminalText = styled.p`
   padding: 1em;
   margin-top: 0;
   font-family: 'Courier', sans-serif;
-  font-size: 0.8em;
+  font-size: 1em;
 
   :focus {
     outline: none;
   }
 `;
 
-const Terminal = () => {
+const Terminal = ({ initialText, output }) => {
   return (
     <TerminalContainer>
-      <TerminalText contentEditable='true' />
+      <TerminalText contentEditable='true'>
+        {initialText + output}
+      </TerminalText>
     </TerminalContainer>
   );
 };
