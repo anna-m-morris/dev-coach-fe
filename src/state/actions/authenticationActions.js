@@ -78,7 +78,6 @@ export const chooseUserRole = (props, values) => dispatch => {
             experience_level: values.experience,
             confidence_level: values.confidence,
             user_id: id,
-            
           })
           .then(studentRes => {
             dispatch({
@@ -101,6 +100,7 @@ export const chooseUserRole = (props, values) => dispatch => {
             skill_level: values.skills,
             user_id: id,
             description: values.description,
+            hourly_rate: values.hourly_rate,
           })
           .then(coachRes => {
             dispatch({

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 import styled from 'styled-components';
@@ -75,6 +75,7 @@ const validationSchema = yup.object().shape({
   description: yup.string().required('Please enter description'),
   github: yup.string().required('Please enter github'),
   linkedin: yup.string().required('Please enter linkdein'),
+  hourly: yup.number().required('Please enter hourly rate'),
 });
 
 const CoachForm = props => {
@@ -86,6 +87,7 @@ const CoachForm = props => {
     description: '',
     github: '',
     linkedin: '',
+    hourly_rate: '',
   };
 
   const MyTextField = ({ placeholder, ...props }) => {
@@ -225,4 +227,6 @@ const CoachForm = props => {
   );
 };
 
-export default connect(state => state, { chooseUserRole })(CoachForm);
+export default withRouter(
+  connect(state => state, { chooseUserRole })(CoachForm),
+);
