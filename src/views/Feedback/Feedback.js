@@ -11,6 +11,7 @@ import FeedbackCard, {
 } from '../../components/Cards/FeedbackCard';
 import EmptyFeedback from '../../components/Cards/EmptyFeedbackCard';
 import StudentChart from '../../components/DataVisualization/StudentChart';
+import devices from '../../utils/devices';
 
 const StyledFeedback = styled.div`
   width: 100%;
@@ -19,11 +20,28 @@ const StyledFeedback = styled.div`
   justify-content: center;
   margin-top: 1rem;
 
+  @media ${devices.tablet} {
+    flex-direction: column;
+  }
+
   .feedback-title {
     margin: 0;
     color: #595959;
     font-size: 1.8rem;
     font-weight: 400;
+
+    @media ${devices.tablet} {
+      margin-top: 2rem;
+      text-align: center;
+    }
+  }
+
+  .chart-display {
+    width: 80%;
+    margin: 0 auto;
+    @media ${devices.tablet} {
+      display: none;
+    }
   }
 
   .pagination {
@@ -89,9 +107,11 @@ const Feedback = ({ user, getFeedback, feedback }) => {
       <h2 className='feedback-title'>Interview Feedback</h2>
       {feedback ? (
         <div className='feedback-content'>
-          <ChartCardContainer>
-            <StudentChart />
-          </ChartCardContainer>
+          <div className='chart-display'>
+            <ChartCardContainer>
+              <StudentChart />
+            </ChartCardContainer>
+          </div>
           <StyledFeedback className='feedback-card-container'>
             {feedback && feedback.length ? (
               feedback

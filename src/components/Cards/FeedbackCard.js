@@ -4,7 +4,7 @@ import devices from '../../utils/devices';
 import FeedbackModal from '../Modals/FeedbackModal';
 
 export const CardContainer = styled.div`
-  max-width: 25rem;
+  max-width: 23rem;
   width: 100%;
   background: white;
   border-radius: 6px;
@@ -22,6 +22,9 @@ export const CardContainer = styled.div`
 
   @media ${devices.tablet} {
     height: inherit;
+    width: 80%;
+    max-width: 80%;
+    margin: 1rem auto;
   }
 
   &:hover {
