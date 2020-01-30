@@ -3,6 +3,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { connect } from 'react-redux';
 import LoginForm from './components/Onboarding/LoginForm';
+import ResetPasswordForm from './components/Onboarding/ResetPasswordForm';
+import AccountRecovery from './components/Onboarding/AccountRecovery';
 import Dashboard from './components/Dashboard';
 import UserDashboard from './views/UserDashboard/UserDashboard';
 import Marketplace from './views/Marketplace/Marketplace';
@@ -17,6 +19,7 @@ import Chat from './components/Chat/ChatScreen';
 import StartChat from './components/Chat/Chat';
 import Settings from './views/Settings/Settings';
 import SignUp from './components/Onboarding/SignupStepper';
+import Code from './views/Code/Code';
 import GiveFeedback from './views/Feedback/GiveFeedback';
 
 const globalTheme = createMuiTheme({
@@ -42,6 +45,7 @@ function App({ user, isLoggedIn }) {
         <Route path={'/start_chat'} component={StartChat} />
       ) : null}
       <Route path={'/chat'} component={Chat} />
+      <Route path={'/code'} component={Code} />
       <Route path={'/givefeedback'} component={GiveFeedback} />
       <Redirect to='/dashboard' />
     </Switch>
@@ -59,6 +63,11 @@ function App({ user, isLoggedIn }) {
     <Switch>
       <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
+      <Route path='/resetPassword' component={ResetPasswordForm} />
+      <Route
+        path='/accountRecovery/:token'
+        component={AccountRecovery}
+      />
       <Route path='/register' component={SignUp} />
       <Route path='/faq' component={LandingFaq} />
       <Route path={'/video'} component={VideoChat} />

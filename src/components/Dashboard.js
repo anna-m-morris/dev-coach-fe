@@ -120,7 +120,7 @@ const useStyles = makeStyles(theme => ({
   },
   profileMenu: {
     position: 'absolute',
-    top: 20,
+    top: 0,
     right: 40,
     color: 'grey',
     transform: 'scale(1.5)',
@@ -209,6 +209,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Dashboard = props => {
+  const { user } = props;
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -246,7 +247,19 @@ const Dashboard = props => {
           onClick={handleMenu}
           color='inherit'
         >
-          <AccountCircle />
+          {user.avatar_url ? (
+            <img
+              src={user.avatar_url}
+              alt='user_avatar'
+              style={{
+                width: '25px',
+                height: 'auto',
+                borderRadius: '50%',
+              }}
+            />
+          ) : (
+            <AccountCircle />
+          )}
         </IconButton>
         <Menu
           id='menu-appbar'

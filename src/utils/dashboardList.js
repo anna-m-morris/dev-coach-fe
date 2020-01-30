@@ -8,6 +8,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
+import CodeIcon from '@material-ui/icons/Code';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
@@ -99,6 +100,14 @@ export const ListComponent = props => {
               <LiveHelpIcon />
             </ListItemIcon>
             <ListItemText primary='Chats' />
+          </CustomListItem>
+        </Link>
+        <Link to='/code' className={classes.listItem}>
+          <CustomListItem button>
+            <ListItemIcon>  
+              <CodeIcon />
+            </ListItemIcon>
+            <ListItemText primary='Code' />
           </CustomListItem>
         </Link>
       </div>
