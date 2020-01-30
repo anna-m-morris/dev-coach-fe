@@ -62,9 +62,9 @@ export function logCode(code, languageId) {
     });
 }
 
-export function testCode(value, code, languageId) {
+export function testCode(value, testCase, code, languageId) {
   Axios.post('https://api.judge0.com/submissions?wait=false', {
-    source_code: `${code}`,
+    source_code: `${invokeCodeJS(code, testCase, value)}`,
     language_id: `${languageId}`,
   })
     .then(res => {
@@ -78,7 +78,7 @@ export function testCode(value, code, languageId) {
                 `Against test input of ${value}, your code evaluated to: ${res.data.stdout}`,
               );
             } else if (res.data.compile_output) {
-              return `Error: ${res.data.compile_output}`;
+              return `Error: + ${res.data.compile_output}`;
             } else {
               return 'Unable to run code';
             }

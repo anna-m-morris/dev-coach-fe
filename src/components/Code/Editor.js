@@ -12,12 +12,6 @@ import {
   testCode,
 } from '../../utils/executionHelpers';
 
-// todos
-
-const editorState = {};
-const setEditorState = () => {};
-const language = {};
-
 const EditorContainer = styled.div`
   width: 50%;
   height: 100%;
@@ -50,7 +44,7 @@ const input1 = 3;
 const input2 = 10;
 const input3 = 329425;
 
-const Editor = () => {
+const Editor = ({ output, setOutput }) => {
   const [editorState, setEditorState] = React.useState();
   const [language, setLanguage] = React.useState('javascript');
 
@@ -62,9 +56,9 @@ const Editor = () => {
   const handlePost = () => {
     const tests = [input1, input2, input3];
     if (mapLanguageToId(language) === 63) {
-      tests.forEach(el => testCode('square', el));
+      tests.forEach(el => setOutput(testCode('square', el)));
     } else {
-      logCode();
+      setOutput(logCode(editorState, mapLanguageToId(language)));
     }
   };
 
@@ -74,6 +68,9 @@ const Editor = () => {
         className='codemirror'
         value={editorState}
         options={{
+          mode: `${
+            language === "java" || language === "cpp" ? "clike" : language
+          }`,
           theme: 'material',
           lineNumbers: true,
         }}

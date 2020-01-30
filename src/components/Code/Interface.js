@@ -31,6 +31,15 @@ const InterfaceContainer = styled.div`
 
 const Interface = () => {
   const [toggled, toggle] = React.useState();
+  const handlePost = () => {
+    const tests = [input1, input2, input3];
+    if (mapLanguageToId(language) === 63) {
+      tests.forEach(el => setOutput(testCode('square', el)));
+    } else {
+      setOutput(logCode(editorState, mapLanguageToId(language)));
+    }
+  };
+
   return (
     <InterfaceContainer>
       <h1>Code Editor</h1>
