@@ -52,10 +52,14 @@ export const invokeCodeJS = (code, param, value) => {
     `;
 };
 
-export function logCode(code, languageId) {
+export function logCode(code, language, setOutput) {
+  console.log({
+    source_code: `${code}`,
+    language_id: `${mapLanguageToId(language)}`,
+  });
   Axios.post('https://api.judge0.com/submissions?wait=false', {
     source_code: `${code}`,
-    language_id: `${mapLanguageToId(languageId)}`,
+    language_id: `${mapLanguageToId(language)}`,
   })
     .then(res => {
       setTimeout(() => {
@@ -64,10 +68,10 @@ export function logCode(code, languageId) {
         )
           .then(res => {
             if (res.data.stdout) {
-              return res.data.stdout;
+              setOutput(res.data.stdout);
             }
             if (res.data.compile_output) {
-              return res.data.compile_output;
+              setOutput(res.data.compile_output);
             }
             return 'Unable to run code';
           })

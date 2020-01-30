@@ -1,4 +1,5 @@
 import React from 'react';
+import Axios from 'axios';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
@@ -12,7 +13,6 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import { ToggleButton } from '@material-ui/lab';
 import {
   testCode,
-  logCode,
   mapLanguageToId,
   mapLanguageToEditorState,
 } from '../../utils/executionHelpers';
@@ -47,7 +47,7 @@ const Interface = ({
     if (mapLanguageToId(language) === 63) {
       tests.forEach(el => setOutput(testCode('square', el)));
     } else {
-      setOutput(logCode(editorState, mapLanguageToId(language)));
+      logCode();
     }
   };
 
@@ -55,6 +55,37 @@ const Interface = ({
     setLanguage(event.target.value);
     setEditorState(mapLanguageToEditorState(event.target.value));
   };
+
+  function logCode() {
+    console.log(editorState, mapLanguageToId(language));
+    Axios.post('https://api.judge0.com/submissions?wait=false', {
+      source_code: `${editorState}`,
+      language_id: `${mapLanguageToId(language)}`,
+    })
+      .then(res => {
+        console.log(res);
+        setTimeout(() => {
+          Axios.get(
+            `https://api.judge0.com/submissions/${res.data.token}`,
+          )
+            .then(res => {
+              if (res.data.stdout) {
+                setOutput(res.data.stdout);
+              } else if (res.data.compile_output) {
+                setOutput(res.data.compile_output);
+              } else {
+                alert('Unable to run code');
+              }
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }, 1000);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
   return (
     <InterfaceContainer>
@@ -74,7 +105,7 @@ const Interface = ({
       </FormControl>
       <FormControl>
         <InputLabel>Select Coding Challenge</InputLabel>
-        <Select style={{ width: '20em' }}>
+        <Select style={{ width: '20em' }} value='square'>
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
           <MenuItem value='fizzbuzz'>Fizzbuzz</MenuItem>
