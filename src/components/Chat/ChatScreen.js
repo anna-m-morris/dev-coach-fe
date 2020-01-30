@@ -10,21 +10,24 @@ import { getRooms } from '../../state/actions/chatActions';
 import TypingIndicator from './TypingIndicator';
 
 const StyledChatScreen = styled.div`
-  height: 100%;
+  height: 45rem;
   width: 100%;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-around;
-  padding-top: 2rem;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4rem;
 
   .whos-online-list-container {
     border: 1px solid #ced4da;
-    border-radius: 6px;
-    width: 30%;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+    border-right: none;
+    width: 20rem;
     flex: none;
     color: #2f4f4f;
-    border-radius: 5px;
     text-align: center;
+    background: white;
+    height: 100%;
 
     p {
       padding-left: 1rem;
@@ -37,13 +40,15 @@ const StyledChatScreen = styled.div`
     }
   }
   .chat-list-container {
-    width: 60%;
+    background: white;
+    width: 40rem;
     display: flex;
     flex-direction: column;
-    height: 85vh;
+    height: 100%;
     box-sizing: border-box;
     border: 1px solid #ced4da;
-    border-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
   }
 `;
 

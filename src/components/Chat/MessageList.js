@@ -23,9 +23,9 @@ const StyledMessageList = styled.div`
     color: white;
 
     .message-text {
-      max-width: 70%;
+      max-width: 65%;
       padding: 0.4rem 0.8rem;
-      border-radius: 3px;
+      border-radius: 4px;
       background: #4fad65;
       margin: 0;
       margin-right: 0.4rem;
@@ -44,9 +44,9 @@ const StyledMessageList = styled.div`
     color: #666363;
 
     .message-text {
-      max-width: 70%;
+      max-width: 65%;
       padding: 0.4rem 0.8rem;
-      border-radius: 3px;
+      border-radius: 4px;
       background: #ebebeb;
       margin: 0;
       margin-left: 0.4rem;

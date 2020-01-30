@@ -121,7 +121,6 @@ const CoachForm = props => {
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 setSubmitting(false);
                 props.chooseUserRole(props, values);
-                console.log(values);
                 setSubmitting(false);
                 resetForm();
               }}
@@ -134,7 +133,6 @@ const CoachForm = props => {
                       name='userLocation'
                     />
                   </div>
-
                   <div>
                     <FormControl
                       className={classes.formControl}
@@ -159,7 +157,6 @@ const CoachForm = props => {
                       </Field>
                     </FormControl>
                   </div>
-
                   <div>
                     <FormControl
                       className={classes.formControl}
@@ -185,7 +182,6 @@ const CoachForm = props => {
                       </Field>
                     </FormControl>
                   </div>
-
                   <div>
                     <MyTextField
                       placeholder='Description'
@@ -201,7 +197,6 @@ const CoachForm = props => {
                       name='linkedin'
                     />
                   </div>
-
                   <FormButton
                     className='submit-button'
                     theme={buttonTheme}
