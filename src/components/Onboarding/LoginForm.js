@@ -138,7 +138,7 @@ const ExtraLoginDetails = () => {
       <p>Remember Me</p>
       <a href='/forgot-password'>
         <p>Forgot your password?</p>
-      </a>{' '}
+      </a>
     </StyledDetails>
   );
 };
