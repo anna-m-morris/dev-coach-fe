@@ -22,6 +22,7 @@ const StyledGiveFeedback = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 88vh;
 
   h1 {
     font-size: 1.6rem;

@@ -73,8 +73,7 @@ const validationSchema = yup.object().shape({
   experience: yup.number().required('please provide experience'),
   skills: yup.number().required('Please select a skill'),
   description: yup.string().required('Please enter description'),
-  github: yup.string().required('Please enter github'),
-  linkedin: yup.string().required('Please enter linkdein'),
+  hourly_rate: yup.number().required('Please enter hourly rate'),
 });
 
 const CoachForm = props => {
@@ -86,6 +85,7 @@ const CoachForm = props => {
     description: '',
     github: '',
     linkedin: '',
+    hourly_rate: '',
   };
 
   const MyTextField = ({ placeholder, ...props }) => {
@@ -197,6 +197,13 @@ const CoachForm = props => {
                       name='linkedin'
                     />
                   </div>
+                  <div>
+                    <MyTextField
+                      placeholder='Hourly price in $'
+                      name='hourly_rate'
+                    />
+                  </div>
+
                   <FormButton
                     className='submit-button'
                     theme={buttonTheme}

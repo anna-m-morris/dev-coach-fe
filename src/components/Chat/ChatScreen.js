@@ -125,6 +125,14 @@ class ChatScreen extends React.Component {
       .isTypingIn({ roomId: this.state.currentRoom.id })
       .catch(error => this.setState({ error }));
   };
+
+  componentWillUnmount = () => {
+    if (this.state.currentUser) {
+      this.state.currentUser.roomSubscriptions[
+        this.state.currentRoom.id
+      ].cancel();
+    }
+  };
   render() {
     return (
       <StyledChatScreen className='chat-container'>

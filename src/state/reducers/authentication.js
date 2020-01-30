@@ -48,6 +48,12 @@ function userReducer(state = initialState, action) {
         isLoading: false,
         isLoggedIn: false,
       };
+    case types.SIGN_UP_SUCCESSFUL:
+      return {
+        ...state,
+        isLoading: false,
+        user: action.payload,
+      };
     case types.SIGN_UP_ERROR:
       return {
         ...state,
@@ -76,6 +82,7 @@ function userReducer(state = initialState, action) {
           ...state.user,
           id: action.id,
         },
+        isLoggedIn: true,
       };
     case types.SET_STUDENT_ID:
       return {
@@ -84,6 +91,7 @@ function userReducer(state = initialState, action) {
           ...state.user,
           id: action.id,
         },
+        isLoggedIn: true,
       };
     case types.USER_INFO_UPDATE:
       return {

@@ -11,6 +11,7 @@ import {
   XAxis,
   ResponsiveContainer,
 } from 'recharts';
+
 const StudentChart = ({ feedback }) => {
   const feedbackData = feedback.feedback.map(el => ({
     rating: el.rating,
@@ -46,9 +47,16 @@ const StudentChart = ({ feedback }) => {
         <CartesianGrid stroke='ccc' />
         <XAxis tickFormatter={formatXAxis} dataKey='time'></XAxis>
         <YAxis domain={[0, 5]} ticks={[0, 1, 2, 3, 4, 5]}>
-          {<Label value='Rating' position='insideLeft' offset={-6} style={{ fill: 'grey' }}/>}
-        </YAxis >
-        <Tooltip content={<CustomTooltip />} />
+          {
+            <Label
+              value='Rating'
+              position='insideLeft'
+              offset={-6}
+              style={{ fill: 'grey' }}
+            />
+          }
+        </YAxis>
+        <Tooltip content={feedback.length && <CustomTooltip />} />
       </LineChart>
     </ResponsiveContainer>
   );

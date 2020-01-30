@@ -26,8 +26,6 @@ import { chooseUserRole } from '../../state/actions/authenticationActions';
 const validationSchema = yup.object().shape({
   userLocation: yup.string().required('Please enter location'),
   experience: yup.number().required('Please provide experience'),
-  github: yup.string().required('Please enter Github'),
-  linkedin: yup.string().required('Please enter LinkedIn'),
 });
 
 const NavLogo = styled(Logo)`

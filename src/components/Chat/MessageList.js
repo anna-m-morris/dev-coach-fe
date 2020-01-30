@@ -64,7 +64,6 @@ const MessageList = ({ avatar, messages, userId }) => {
   };
 
   useEffect(scrollToBottom, [messages]);
-
   return (
     <StyledMessageList className='message-list-container'>
       <div className='message-list'>

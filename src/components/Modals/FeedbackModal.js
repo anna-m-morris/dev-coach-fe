@@ -30,7 +30,6 @@ const FeedbackModal = props => {
   };
 
   const handleCancel = e => {
-    console.log(e);
     setVisible(false);
   };
 
