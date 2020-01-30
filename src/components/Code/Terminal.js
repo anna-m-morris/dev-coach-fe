@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const TerminalContainer = styled.div`
   width: 50%;
-  height: 18.75em;
+  height: 100%;
   background: black;
   display: flex;
   justify-content: flex-start * {
@@ -28,7 +28,7 @@ const TerminalText = styled.p`
 const Terminal = () => {
   return (
     <TerminalContainer>
-      <TerminalText contentEditable='true'/>
+      <TerminalText contentEditable='true' />
     </TerminalContainer>
   );
 };

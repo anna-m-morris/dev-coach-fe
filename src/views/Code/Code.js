@@ -6,17 +6,35 @@ import Terminal from '../../components/Code/Terminal';
 
 const FlexContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  width: 100%;
-  max-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
 
   .code-header-container {
-    background: green;
+    height: 10%;
+    width: 100%;
+  }
+
+  .code-body-container {
     height: 100%;
-    width: 50vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    .editor {
+      width: 50%;
+      height: 100%;
+    }
+
+    .terminal {
+      width: 50%;
+      height: 100%;
+    }
   }
 `;
 
@@ -27,8 +45,9 @@ function Code() {
         <Interface />
       </div>
       <div className='code-body-container'>
-        {/* <Editor />
-        <Terminal /> */}
+        <Editor />
+        <Terminal />
+        <div className='terminal'></div>
       </div>
     </FlexContainer>
   );

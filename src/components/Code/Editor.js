@@ -12,9 +12,8 @@ const setEditorState = () => {};
 const language = {};
 
 const EditorContainer = styled.div`
-  background: coral;
-  height: 80vh;
   width: 50%;
+  height: 100%;
 
   .codemirror {
     height: 100%;
