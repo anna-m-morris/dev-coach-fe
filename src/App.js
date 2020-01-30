@@ -25,11 +25,11 @@ const globalTheme = createMuiTheme({
   },
 });
 
-function App(props) {
+function App({ user, isLoggedIn }) {
   const routes = (
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
-      {props.user && props.user.role_id === 1 ? (
+      {user && user.role_id === 1 ? (
         <Route path={'/marketplace'} component={Marketplace} />
       ) : null}
       <Route path={'/appointment'} component={Booking} />
@@ -38,7 +38,7 @@ function App(props) {
       <Route path={'/video'} component={VideoChat} />
       <Route path={'/Settings'} component={Settings} />
       <Route path={'/FAQ'} component={MainFaq} />
-      {props.user && props.user.role_id === 1 ? (
+      {user && user.role_id === 1 ? (
         <Route path={'/start_chat'} component={StartChat} />
       ) : null}
       <Route path={'/chat'} component={Chat} />
@@ -47,7 +47,7 @@ function App(props) {
     </Switch>
   );
 
-  if (localStorage.getItem('token')) {
+  if (isLoggedIn) {
     return (
       <ThemeProvider theme={globalTheme}>
         <Dashboard routes={routes} />
@@ -70,6 +70,7 @@ function App(props) {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
+    isLoggedIn: state.userReducer.isLoggedIn,
   };
 };
 
