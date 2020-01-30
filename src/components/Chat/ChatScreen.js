@@ -32,7 +32,7 @@ const StyledChatScreen = styled.div`
 
     .chat-title {
       border-bottom: 1px solid #ced4da;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       padding: 1rem;
     }
   }
@@ -144,14 +144,14 @@ class ChatScreen extends React.Component {
             rooms={this.props.rooms}
             user={this.props.user}
             startChat={this.startChat}
-            avatar={this.props.user.avatar_url}
           />
         </aside>
         <section className='chat-list-container'>
           <MessageList
             messages={this.state.messages}
             userId={this.props.user.email}
-            avatar={this.props.user.avatar_url}
+            currentRoom={this.state.currentRoom}
+            user={this.props.user}
           />
           <TypingIndicator
             usersWhoAreTyping={this.state.usersWhoAreTyping}

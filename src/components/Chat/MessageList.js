@@ -56,7 +56,7 @@ const StyledMessageList = styled.div`
   }
 `;
 
-const MessageList = ({ avatar, messages, userId }) => {
+const MessageList = ({ messages, userId, user, currentRoom }) => {
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -67,8 +67,7 @@ const MessageList = ({ avatar, messages, userId }) => {
   return (
     <StyledMessageList className='message-list-container'>
       <div className='message-list'>
-        {messages ? (
-          messages &&
+        {messages && currentRoom ? (
           messages.map((message, index) => (
             <div
               key={index}
@@ -79,7 +78,15 @@ const MessageList = ({ avatar, messages, userId }) => {
               }
             >
               <p className='message-text'>{message.text}</p>
-              <Avatar src={avatar} className='chat-avatar' />
+              <Avatar
+                src={
+                  message.senderId === user.email &&
+                  user.role_id === 1
+                    ? currentRoom.customData.role_id_one_url
+                    : currentRoom.customData.role_id_two_url
+                }
+                className='chat-avatar'
+              />
             </div>
           ))
         ) : (

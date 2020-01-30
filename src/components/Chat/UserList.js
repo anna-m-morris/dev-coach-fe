@@ -5,12 +5,8 @@ import Loader from 'react-loader-spinner';
 import { Avatar } from '@material-ui/core';
 
 const UserListStyle = styled.div`
-  position: static;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  /* position: static; */
   border-bottom: 1px solid #ced4da;
-  padding: 1rem;
   transition: ease-out 0.1s;
   cursor: pointer;
   overflow: auto;
@@ -24,19 +20,26 @@ const UserListStyle = styled.div`
   .recent-chat-avatar {
     height: 3.5rem;
     width: 3.5rem;
+    margin-right: 0.8rem;
   }
 
   .bg {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     font-size: 1rem;
-    margin-left: 0.3rem;
+    padding: 1rem;
   }
 
   .bgClicked {
     background: #4fad65;
-    padding: 1rem;
     border-bottom: none;
-    cursor: pointer;
     color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1rem;
+    padding: 1rem;
   }
 `;
 
@@ -58,10 +61,6 @@ const UserList = props => {
             key={uuid()}
             onClick={() => startChat(room.id)}
           >
-            <Avatar
-              src={user.avatar_url}
-              className='recent-chat-avatar'
-            />
             <ChangeStyle
               clicked={room === clickedIndex}
               onClick={() => handleClick(room)}
@@ -69,6 +68,11 @@ const UserList = props => {
                 user.role_id === 2
                   ? room.custom_data.role_id_one
                   : room.custom_data.role_id_two
+              }
+              avatar={
+                user.role_id === 2
+                  ? room.custom_data.role_id_one_url
+                  : room.custom_data.role_id_two_url
               }
             />
           </UserListStyle>
@@ -91,6 +95,7 @@ const ChangeStyle = props => {
       className={props.clicked ? 'bgClicked' : 'bg'}
       onClick={props.onClick}
     >
+      <Avatar src={props.avatar} className='recent-chat-avatar' />
       {props.userRole}
     </div>
   );
