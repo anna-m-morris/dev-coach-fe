@@ -53,10 +53,6 @@ export const invokeCodeJS = (code, param, value) => {
 };
 
 export function logCode(code, language, setOutput) {
-  console.log({
-    source_code: `${code}`,
-    language_id: `${mapLanguageToId(language)}`,
-  });
   Axios.post('https://api.judge0.com/submissions?wait=false', {
     source_code: `${code}`,
     language_id: `${mapLanguageToId(language)}`,
@@ -75,14 +71,10 @@ export function logCode(code, language, setOutput) {
             }
             return 'Unable to run code';
           })
-          .catch(err => {
-            console.log(err);
-          });
+          .catch(err => {});
       }, 1000);
     })
-    .catch(err => {
-      console.log(err);
-    });
+    .catch(err => {});
 }
 
 export function testCode(value, testCase, code, languageId) {
@@ -106,12 +98,8 @@ export function testCode(value, testCase, code, languageId) {
               return 'Unable to run code';
             }
           })
-          .catch(err => {
-            console.log(err);
-          });
+          .catch(err => {});
       }, 2000);
     })
-    .catch(err => {
-      console.log(err);
-    });
+    .catch(err => {});
 }

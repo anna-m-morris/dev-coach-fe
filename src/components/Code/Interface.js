@@ -52,7 +52,6 @@ const Interface = ({
   };
 
   function logCode() {
-    console.log(editorState, mapLanguageToId(language));
     Axios.post('https://api.judge0.com/submissions?wait=false', {
       source_code: `${editorState}`,
       language_id: `${mapLanguageToId(language)}`,
@@ -63,7 +62,6 @@ const Interface = ({
             `https://api.judge0.com/submissions/${res.data.token}`,
           )
             .then(res => {
-              console.log(res);
               if (res.data.stdout) {
                 setOutput(res.data.stdout);
               } else if (res.data.compile_output) {
@@ -72,14 +70,10 @@ const Interface = ({
                 alert('Unable to run code');
               }
             })
-            .catch(err => {
-              console.log(err);
-            });
+            .catch(err => {});
         }, 1000);
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => {});
   }
 
   return (
