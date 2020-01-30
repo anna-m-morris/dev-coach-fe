@@ -16,16 +16,17 @@ const handleSelection = () => {};
 const language = {};
 
 const InterfaceContainer = styled.div`
-  background: blue;
   height: 5em;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 `;
 
 const Interface = () => {
   return (
     <InterfaceContainer>
       <h1>Code Editor</h1>
-      <Button onClick={handlePost}>Submit</Button>
       <FormControl>
         <InputLabel>Select Programming Language</InputLabel>
         <Select
@@ -39,6 +40,20 @@ const Interface = () => {
           <MenuItem value='cpp'>C++</MenuItem>
         </Select>
       </FormControl>
+      <FormControl>
+        <InputLabel>Select Coding Challenge</InputLabel>
+        <Select
+          style={{ width: '20em' }}
+          value={language}
+          onChange={handleSelection}
+        >
+          <MenuItem value='square'>Square a number</MenuItem>
+          <MenuItem value='add'>Add two numbers</MenuItem>
+          <MenuItem value='fizzbuzz'>Fizzbuzz</MenuItem>
+          <MenuItem value='reverse'>Reverse a string</MenuItem>
+        </Select>
+      </FormControl>
+      <Button onClick={handlePost}>Run Code</Button>
     </InterfaceContainer>
   );
 };
