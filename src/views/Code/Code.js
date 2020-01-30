@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Display from './components/Display';
-import Editor from './components/Editor';
+import Editor from '../../components/Code/Editor';
+import Interface from '../../components/Code/Interface';
+import Terminal from '../../components/Code/Terminal';
 
 const FlexContainer = styled.div`
   display: flex;
