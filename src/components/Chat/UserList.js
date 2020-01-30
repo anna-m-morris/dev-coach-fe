@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import uuid from 'uuid';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { Avatar } from '@material-ui/core';
 
 const UserListStyle = styled.div`
   border-bottom: 1px solid #ced4da;
@@ -16,15 +15,9 @@ const UserListStyle = styled.div`
     color: white;
   }
 
-  .recent-chat-avatar {
-    height: 3.5rem;
-    width: 3.5rem;
-    margin-right: 0.8rem;
-  }
-
   .bg {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     font-size: 1rem;
     padding: 1rem;
@@ -35,7 +28,7 @@ const UserListStyle = styled.div`
     border-bottom: none;
     color: white;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     font-size: 1rem;
     padding: 1rem;
@@ -94,7 +87,6 @@ const ChangeStyle = props => {
       className={props.clicked ? 'bgClicked' : 'bg'}
       onClick={props.onClick}
     >
-      <Avatar src={props.avatar} className='recent-chat-avatar' />
       {props.userRole}
     </div>
   );

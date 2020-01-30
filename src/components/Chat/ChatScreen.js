@@ -62,11 +62,11 @@ class ChatScreen extends React.Component {
   };
 
   startChat = roomId => {
-    // if (this.state.currentUser && this.state.currentRoom) {
-    //   this.state.currentUser.roomSubscriptions[
-    //     this.state.currentRoom.id
-    //   ].cancel();
-    // }
+    if (this.state.currentUser && this.state.currentRoom) {
+      this.state.currentUser.leaveRoom({
+        roomId: this.state.currentRoom.id,
+      });
+    }
 
     this.setState({ messages: [] });
     const chatManager = new Chatkit.ChatManager({
@@ -125,14 +125,6 @@ class ChatScreen extends React.Component {
       .catch(error => this.setState({ error }));
   };
 
-  componentWillUnmount = () => {
-    debugger;
-    if (this.state.currentUser && this.state.currentRoom) {
-      this.state.currentUser.roomSubscriptions[
-        this.state.currentRoom.id
-      ].cancel();
-    }
-  };
   render() {
     return (
       <StyledChatScreen className='chat-container'>
@@ -144,6 +136,8 @@ class ChatScreen extends React.Component {
             rooms={this.props.rooms}
             user={this.props.user}
             startChat={this.startChat}
+            currentRoom={this.state.currentRoom}
+            currentUser={this.state.currentUser}
           />
         </aside>
         <section className='chat-list-container'>
