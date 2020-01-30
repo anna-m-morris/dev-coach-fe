@@ -66,6 +66,8 @@ export const chooseUserRole = (props, values) => dispatch => {
     .put(`${url}user/${id}`, {
       location: values.userLocation,
       role_id: props.userReducer.user.role_id,
+      github: values.github,
+      linkedin: values.linkedin,
     })
     .then(res => {
       debugger;
@@ -76,6 +78,7 @@ export const chooseUserRole = (props, values) => dispatch => {
             experience_level: values.experience,
             confidence_level: values.confidence,
             user_id: id,
+            
           })
           .then(studentRes => {
             dispatch({
@@ -97,6 +100,7 @@ export const chooseUserRole = (props, values) => dispatch => {
             experience_level: values.experience,
             skill_level: values.skills,
             user_id: id,
+            description: values.description,
           })
           .then(coachRes => {
             dispatch({
