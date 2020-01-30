@@ -43,12 +43,7 @@ const Interface = ({
 }) => {
   const [toggled, toggle] = React.useState();
   const handlePost = () => {
-    const tests = [input1, input2, input3];
-    if (mapLanguageToId(language) === 63) {
-      tests.forEach(el => setOutput(testCode('square', el)));
-    } else {
-      logCode();
-    }
+    logCode();
   };
 
   const handleSelection = event => {
