@@ -74,7 +74,7 @@ const ResetPasswordForm = ({
                   type='submit'
                   disabled={isSubmitting}
                 >
-                  Reset Password -->
+                  Send email -->
                 </StyledResetButton>
               </div>
             </Form>

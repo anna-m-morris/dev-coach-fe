@@ -1,75 +1,70 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
+import { StyledButton, buttonTheme } from '../Landing/Landing-styles';
 import {
-  StyledButton,
-  buttonTheme,
-  Logo,
-} from '../Landing/Landing-styles';
+  showErrorMessage,
+  showSuccessMessage,
+  closeMessage,
+} from '../../state/actions/notificationActions';
 
-import { login } from '../../state/actions/authenticationActions';
+import Notification from '../Notifications/Notification';
 import pattern from '../../img/pattern.jpg';
+import axiosWithAuth from '../../utils/axiosWithAuth';
 
-const ExtraLoginDetails = () => {
-  return (
-    <StyledDetails>
-      <input type='checkbox' />
-      <p>Remember Me</p>
-      <Link to='/accountRecovery'>
-        <p>Forgot your password?</p>
-      </Link>
-    </StyledDetails>
-  );
-};
+const AccountRecovery = props => {
+  const {
+    userReducer,
+    success,
+    error,
+    showErrorMessage,
+    showSuccessMessage,
+    closeMessage,
+    errors,
+    touched,
+    isSubmitting,
+  } = props;
 
-const LoginForm = ({
-  userReducer,
-  errors,
-  touched,
-  isSubmitting,
-}) => {
+  useEffect(() => {
+    axios.get('http://localhost:5000/accountRecovery', {
+      params: {
+        resetPasswordToken: props.match.params.token,
+      },
+    });
+  }, []);
   return (
     <div>
       <GreyBackgroundContainer>
+        <Notification
+          onClose={closeMessage}
+          variant='success'
+          message='Your password has been updated, try logging in again '
+          open={success}
+        />
+        <Notification
+          onClose={closeMessage}
+          variant='error'
+          message='Failed !, Please send another link'
+          open={error}
+        />
         <FormCard>
-          <Link to='/'>
-            <Logo />
-          </Link>
-          <h1>Welcome Back!</h1>
+          <h3>Enter your new password</h3>
           <FormContainer>
             <Form>
               <div>
                 <Field
-                  type='email'
-                  name='email'
-                  placeholder='Email'
-                />
-                {errors.email && touched.email && (
-                  <StyledError>{errors.email}</StyledError>
-                )}
-              </div>
-              <div>
-                <Field
                   type='password'
                   name='password'
-                  placeholder='Password'
+                  placeholder='enter new password'
                 />
-                {userReducer.loginError ? (
-                  <StyledError>{userReducer.loginError}</StyledError>
-                ) : (
-                  errors.password &&
-                  touched.password && (
-                    <StyledError>{errors.password}</StyledError>
-                  )
+                {errors.password && touched.password && (
+                  <StyledError>{errors.email}</StyledError>
                 )}
-              </div>
-              <ExtraLoginDetails />
-              <div>
-                <StyledButton
+                <StyledResetButton
                   theme={
                     userReducer.isLoading
                       ? loadingButtonTheme
@@ -78,8 +73,8 @@ const LoginForm = ({
                   type='submit'
                   disabled={isSubmitting}
                 >
-                  Sign in to your account
-                </StyledButton>
+                  change my password
+                </StyledResetButton>
               </div>
             </Form>
           </FormContainer>
@@ -89,30 +84,42 @@ const LoginForm = ({
   );
 };
 
-const FormikLoginForm = withFormik({
-  mapPropsToValues({ email, password }) {
+const FormikAccountRecovery = withFormik({
+  mapPropsToValues({ password }) {
     return {
-      email: email || '',
       password: password || '',
     };
   },
   validationSchema: Yup.object().shape({
-    email: Yup.string()
-      .email('Please enter a valid email')
-      .required('Please enter an email address'),
     password: Yup.string()
-      .required('Please enter your password')
-      .min(3, 'Must be 6 characters minimun'),
+      .required('Please enter your new password')
+      .min(3, 'must be 6 characters minimum'),
   }),
   handleSubmit(values, { props, resetForm, setSubmitting }) {
     resetForm();
     setSubmitting(false);
-
-    props.login(props, values);
   },
-})(LoginForm);
+})(AccountRecovery);
 
-export default connect(state => state, { login })(FormikLoginForm);
+const mapStateToProps = state => {
+  return {
+    success: state.notificationsReducer.success,
+    error: state.notificationsReducer.error,
+    user: state.userReducer.user,
+    userReducer: state.userReducer,
+  };
+};
+
+export default connect(mapStateToProps, {
+  showErrorMessage,
+  showSuccessMessage,
+  closeMessage,
+})(FormikAccountRecovery);
+
+export const StyledResetButton = styled(StyledButton)`
+  margin-top: 12px;
+  height: 90%;
+`;
 
 export const GreyBackgroundContainer = styled.div`
   height: 100vh;
@@ -126,7 +133,7 @@ export const GreyBackgroundContainer = styled.div`
 
 export const FormCard = styled.div`
   background: white;
-  height: 30em;
+  height: 11em;
   width: 25em;
   display: flex;
   flex-direction: column;
@@ -134,14 +141,14 @@ export const FormCard = styled.div`
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
 
-  h1 {
+  h3 {
     color: #292d38;
     margin-top: 0.5rem;
   }
 `;
 
 export const FormContainer = styled.div`
-  height: 100%;
+  height: 30%;
   width: 100%;
 
   form {
@@ -184,38 +191,6 @@ export const FormContainer = styled.div`
 
   button {
     width: 98%;
-  }
-`;
-
-const StyledDetails = styled.div`
-  width: 75%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 12px;
-
-  input {
-    width: 10%;
-    height: 1em;
-    margin: 0;
-  }
-
-  p {
-    color: #292d38;
-    margin: 0;
-  }
-
-  div {
-    width: 60%;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  a {
-    text-decoration: none;
-    font-weight: bold;
-    margin-left: 2rem;
   }
 `;
 
