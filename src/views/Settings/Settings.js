@@ -102,6 +102,7 @@ function Settings(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
+
     updateUserInfo(
       { ...userInfo, oldEmail: user.email },
       showErrorMessage,

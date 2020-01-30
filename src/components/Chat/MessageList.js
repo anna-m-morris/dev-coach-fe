@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 
@@ -57,7 +57,6 @@ const MessageList = ({ messages, userId }) => {
   };
 
   useEffect(scrollToBottom, [messages]);
-
   return (
     <StyledMessageList>
       <ul className='ul'>

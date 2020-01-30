@@ -10,13 +10,14 @@ import Landing from './components/Landing/Landing-2';
 import MainFaq from './components/FAQ/Main';
 import LandingFaq from './components/FAQ/LandingFaq';
 import Booking from './components/Booking/Booking';
+import Reschedule from './components/Reschedule/Reschedule';
 import Feedback from './views/Feedback/Feedback';
 import VideoChat from './components/Video/VideoChat';
 import Chat from './components/Chat/ChatScreen';
 import StartChat from './components/Chat/Chat';
 import Settings from './views/Settings/Settings';
-import GiveFeedback from './views/Feedback/GiveFeedback';
 import SignUp from './components/Onboarding/SignupStepper';
+import GiveFeedback from './views/Feedback/GiveFeedback';
 
 const globalTheme = createMuiTheme({
   typography: {
@@ -24,28 +25,29 @@ const globalTheme = createMuiTheme({
   },
 });
 
-function App(props) {
+function App({ user, isLoggedIn }) {
   const routes = (
     <Switch>
       <Route path={'/dashboard'} component={UserDashboard} />
-      {props.user && props.user.role_id === 1 ? (
+      {user && user.role_id === 1 ? (
         <Route path={'/marketplace'} component={Marketplace} />
       ) : null}
       <Route path={'/appointment'} component={Booking} />
+      <Route path={'/reschedule'} component={Reschedule} />
       <Route path={'/feedback'} component={Feedback} />
-      <Route path={'/givefeedback'} component={GiveFeedback} />
-      <Route path={'/interview'} component={VideoChat} />
+      <Route path={'/video'} component={VideoChat} />
       <Route path={'/Settings'} component={Settings} />
       <Route path={'/FAQ'} component={MainFaq} />
-      {props.user && props.user.role_id === 1 ? (
+      {user && user.role_id === 1 ? (
         <Route path={'/start_chat'} component={StartChat} />
       ) : null}
       <Route path={'/chat'} component={Chat} />
+      <Route path={'/givefeedback'} component={GiveFeedback} />
       <Redirect to='/dashboard' />
     </Switch>
   );
 
-  if (localStorage.getItem('token')) {
+  if (isLoggedIn) {
     return (
       <ThemeProvider theme={globalTheme}>
         <Dashboard routes={routes} />
@@ -59,6 +61,7 @@ function App(props) {
       <Route path='/login/' component={LoginForm} />
       <Route path='/register' component={SignUp} />
       <Route path='/faq' component={LandingFaq} />
+      <Route path={'/video'} component={VideoChat} />
       <Redirect to='/' />
     </Switch>
   );
@@ -67,6 +70,7 @@ function App(props) {
 const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
+    isLoggedIn: state.userReducer.isLoggedIn,
   };
 };
 

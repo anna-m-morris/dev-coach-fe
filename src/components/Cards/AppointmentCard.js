@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Icon from '@material-ui/core/Icon';
-import { Link } from 'react-router-dom';
 import CodeIcon from '@material-ui/icons/Code';
 import TodayIcon from '@material-ui/icons/Today';
 import TimelapseIcon from '@material-ui/icons/Timelapse';
@@ -13,7 +12,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import devices from '../../utils/devices';
 
 const StyledCoachCard = styled.div`
@@ -135,10 +133,9 @@ const mapExperience = experience => {
   }
 };
 
-export const NewAppointmentCard = props => {
-  const { appointment, saveIdRole } = props;
+export const AppointmentCard = props => {
+  const { appointment, startInterview, cancelAppointment } = props;
   const [open, setOpen] = React.useState(false);
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -149,7 +146,6 @@ export const NewAppointmentCard = props => {
 
   const time = appointment.appointment_datetime.slice(0, 15);
   const date = appointment.appointment_datetime.slice(16, 28);
-
   return (
     <>
       <StyledCoachCard>
@@ -193,7 +189,6 @@ export const NewAppointmentCard = props => {
             ''
           )}
         </div>
-
         <div className='footer'>
           <Button
             onClick={handleClickOpen}
@@ -205,18 +200,16 @@ export const NewAppointmentCard = props => {
           >
             Cancel
           </Button>
-          <Link to='/givefeedback'>
-            <Button
-              size='small'
-              className='button'
-              variant='contained'
-              color='primary'
-              endIcon={<Icon>send</Icon>}
-              onClick={() => saveIdRole()}
-            >
-              Interview
-            </Button>
-          </Link>
+          <Button
+            size='small'
+            className='button'
+            variant='contained'
+            color='primary'
+            endIcon={<Icon>send</Icon>}
+            onClick={startInterview}
+          >
+            Interview
+          </Button>
         </div>
       </StyledCoachCard>
       <Dialog
@@ -225,7 +218,6 @@ export const NewAppointmentCard = props => {
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
       >
-        <DialogTitle id='alert-dialog-title'></DialogTitle>
         <DialogContent>
           <DialogContentText id='alert-dialog-description'>
             Are you sure you want to cancel appointment ?
@@ -235,7 +227,12 @@ export const NewAppointmentCard = props => {
           <Button onClick={handleClose} color='primary'>
             No
           </Button>
-          <Button onClick={props.cancel} color='primary' autoFocus>
+
+          <Button
+            color='primary'
+            autoFocus
+            onClick={cancelAppointment}
+          >
             Yes
           </Button>
         </DialogActions>
@@ -244,4 +241,4 @@ export const NewAppointmentCard = props => {
   );
 };
 
-export default NewAppointmentCard;
+export default AppointmentCard;

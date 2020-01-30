@@ -6,9 +6,6 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { PayPalButton } from 'react-paypal-button-v2';
-import StripeCheckout from 'react-stripe-checkout';
-
 import {
   showErrorMessage,
   showSuccessMessage,
@@ -16,15 +13,14 @@ import {
   closeMessage,
 } from '../../state/actions/notificationActions';
 import {
-  handleStripePayment,
   saveDate,
-  bookAppointment,
+  rescheduleAppointment,
 } from '../../state/actions/bookingActions';
 
 import Notification from '../Notifications/Notification';
 
 import Select from '../Inputs/SelectInfo';
-import DatePicker from './DatePicker';
+import DatePicker from '../Booking/DatePicker';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -48,7 +44,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function getSteps() {
-  return ['Select Topic', 'Select Time and Date', 'Select  Payment'];
+  return ['Select Topic', 'Select Time and Date'];
 }
 
 function getStepContent(stepIndex) {
@@ -57,29 +53,26 @@ function getStepContent(stepIndex) {
       return 'Please select a topic and interview duration';
     case 1:
       return 'Please select a time and date';
-    case 2:
-      return 'Please select payment method';
     default:
-      return 'All Steps completed';
+      return "you're all caught up";
   }
 }
 
-const BookingStepper = props => {
+const RescheduleAppointmentStepper = props => {
   const {
     date,
-    coach,
+    rescheduler,
     closeMessage,
     success,
     error,
     info,
     showErrorMessage,
     showSuccessMessage,
-    showInfoMessage,
-    handleStripePayment,
     saveDate,
     select,
-    bookAppointment,
+    rescheduleAppointment,
     user,
+    showInfoMessage,
   } = props;
 
   const classes = useStyles();
@@ -94,12 +87,13 @@ const BookingStepper = props => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   return (
     <>
+      <h3>
+        Kindly reschedule cancelled appointment as bookings are
+        non-refundable
+      </h3>
+
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map(label => (
           <Step key={label}>
@@ -110,13 +104,13 @@ const BookingStepper = props => {
       <Notification
         onClose={closeMessage}
         variant='success'
-        message='Your payment was successful!'
+        message='You have successfully rescheduled!'
         open={success}
       />
       <Notification
         onClose={closeMessage}
         variant='error'
-        message={`Your payment wasn't successful!`}
+        message={`Reschedule wasn't successful!`}
         open={error}
       />
       <Notification
@@ -125,6 +119,7 @@ const BookingStepper = props => {
         message='Please select your options.'
         open={info}
       />
+
       <div className='instructions'>
         <Typography className={classes.instruction}>
           {getStepContent(activeStep)}
@@ -139,73 +134,14 @@ const BookingStepper = props => {
         ) : (
           <div className='payment-container'>
             {Object.keys(select).length > 1 &&
-            date.slice(16, 24) !== '00:00:00' ? (
-              <div className='payment-buttons-container'>
-                <StripeCheckout
-                  className='stripe-checkout'
-                  stripeKey='pk_test_Grqfk8uqKNCJYpAQS2t89UB700wHJklrMa' // development token
-                  token={token =>
-                    handleStripePayment(
-                      token,
-                      `${coach.first_name} ${coach.last_name}`,
-                      coach.hourly_rate,
-                      showSuccessMessage,
-                      showErrorMessage,
-                      bookAppointment,
-                      coach,
-                      user,
-                      date,
-                      select.topic_id,
-                      select.length_id,
-                      props,
-                      closeMessage,
-                    )
-                  }
-                  amount={
-                    select.length_id === 2
-                      ? coach.hourly_rate * 100
-                      : coach.hourly_rate * 100 * 0.5
-                  }
-                  name={'name'}
-                  billingAddress
-                  shippingAddress
-                />
-                <PayPalButton
-                  amount={
-                    select.length_id === 2
-                      ? coach.hourly_rate
-                      : coach.hourly_rate * 0.5
-                  }
-                  onSuccess={(details, data) => {
-                    bookAppointment(
-                      coach,
-                      user,
-                      date,
-                      select.topic_id,
-                      select.length_id,
-                      props,
-                      closeMessage,
-                    );
-                    showSuccessMessage();
-                  }}
-                  catchError={err => showErrorMessage()}
-                  options={{
-                    clientId:
-                      'ARVkifyBTBn77NG4ftQSS7eFFxTjcG0ghgVPQCZGyUQufKrNBaTOXSWEKpvDPa3XQi96rSIKEHioCFdP',
-                  }}
-                />
-              </div>
-            ) : null}
+              date.slice(16, 24) !== '00:00:00'}
           </div>
         )}
       </div>
 
       {activeStep === steps.length ? (
         <div>
-          <Typography className={classes.instructions}>
-            All steps completed
-          </Typography>
-          <Button onClick={handleReset}>Reset</Button>
+          <Typography className={classes.instructions}></Typography>
         </div>
       ) : (
         <div className='buttons-container'>
@@ -216,22 +152,30 @@ const BookingStepper = props => {
           >
             Back
           </Button>
-          {activeStep === steps.length - 1 ? null : (
-            <Button
-              className={classes.nextButton}
-              variant='contained'
-              color='primary'
-              onClick={() =>
-                (activeStep === 0 &&
-                  Object.keys(select).length === 2) ||
-                (activeStep === 1 && date)
-                  ? handleNext()
-                  : showInfoMessage()
-              }
-            >
-              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-            </Button>
-          )}
+          <Button
+            className={classes.nextButton}
+            variant='contained'
+            color='primary'
+            onClick={() =>
+              activeStep === steps.length - 1 && date
+                ? rescheduleAppointment(
+                    rescheduler,
+                    user,
+                    date,
+                    select.topic_id,
+                    select.length_id,
+                    props,
+                    showSuccessMessage,
+                    showErrorMessage,
+                    closeMessage,
+                  )
+                : activeStep === 0 && Object.keys(select).length === 2
+                ? handleNext()
+                : showInfoMessage()
+            }
+          >
+            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+          </Button>
         </div>
       )}
     </>
@@ -240,7 +184,7 @@ const BookingStepper = props => {
 
 const mapStateToProps = state => {
   return {
-    coach: state.bookingReducer.coach,
+    rescheduler: state.appointmentsReducer.rescheduler,
     select: state.bookingReducer.select,
     date: state.bookingReducer.date,
     success: state.notificationsReducer.success,
@@ -251,11 +195,10 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  handleStripePayment,
   showErrorMessage,
   showSuccessMessage,
-  showInfoMessage,
   closeMessage,
   saveDate,
-  bookAppointment,
-})(BookingStepper);
+  rescheduleAppointment,
+  showInfoMessage,
+})(RescheduleAppointmentStepper);
