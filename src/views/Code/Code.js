@@ -12,14 +12,12 @@ const FlexContainer = styled.div`
 `;
 
 function Code() {
-  const [output, setOutput] = React.useState('');
-
   return (
     <div>
       <FlexContainer>
         <Interface />
-        {/* <Editor output={output} setOutput={setOutput} />
-        <Terminal initialText='$  ' output={output} /> */}
+        <Editor />
+        {/* <Terminal /> */}
       </FlexContainer>
     </div>
   );
