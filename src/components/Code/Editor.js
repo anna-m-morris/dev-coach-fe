@@ -13,11 +13,11 @@ const language = {};
 
 const EditorContainer = styled.div`
   background: coral;
-  height: 80em;
+  height: 80vh;
   width: 50%;
 
   .codemirror {
-    height: 100vh;
+    height: 100%;
   }
 `;
 

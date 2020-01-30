@@ -8,6 +8,8 @@ import {
   InputLabel,
   MenuItem,
 } from '@material-ui/core';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import { ToggleButton } from '@material-ui/lab';
 
 // todos:
 
@@ -21,9 +23,15 @@ const InterfaceContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+
+  .toggle-button {
+    height: 52px;
+    width: 52px;
+  }
 `;
 
 const Interface = () => {
+  const [toggled, toggle] = React.useState();
   return (
     <InterfaceContainer>
       <h1>Code Editor</h1>
