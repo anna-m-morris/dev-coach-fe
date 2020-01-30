@@ -120,7 +120,7 @@ const useStyles = makeStyles(theme => ({
   },
   profileMenu: {
     position: 'absolute',
-    top: 20,
+    top: 0,
     right: 40,
     color: 'grey',
     transform: 'scale(1.5)',

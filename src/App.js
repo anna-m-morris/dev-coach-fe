@@ -17,6 +17,7 @@ import Chat from './components/Chat/ChatScreen';
 import StartChat from './components/Chat/Chat';
 import Settings from './views/Settings/Settings';
 import SignUp from './components/Onboarding/SignupStepper';
+import Code from './views/Code/Code';
 import GiveFeedback from './views/Feedback/GiveFeedback';
 
 const globalTheme = createMuiTheme({
@@ -42,6 +43,7 @@ function App({ user, isLoggedIn }) {
         <Route path={'/start_chat'} component={StartChat} />
       ) : null}
       <Route path={'/chat'} component={Chat} />
+      <Route path={'/code'} component={Code} />
       <Route path={'/givefeedback'} component={GiveFeedback} />
       <Redirect to='/dashboard' />
     </Switch>
