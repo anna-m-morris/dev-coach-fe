@@ -33,18 +33,13 @@ const Editor = ({
   editorState,
   setEditorState,
 }) => {
-
   return (
     <EditorContainer>
       <CodeMirror
         className='codemirror'
         value={editorState}
         options={{
-          mode: `${
-            language === 'java' || language === 'cpp'
-              ? 'clike'
-              : language
-          }`,
+          mode: 'javascript',
           theme: 'material',
           lineNumbers: true,
         }}

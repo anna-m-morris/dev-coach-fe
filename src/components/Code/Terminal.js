@@ -27,9 +27,7 @@ const TerminalText = styled.p`
 const Terminal = ({ initialText, output }) => {
   return (
     <TerminalContainer>
-      <TerminalText contentEditable='true'>
-        {initialText + output}
-      </TerminalText>
+      <TerminalText>{initialText + output}</TerminalText>
     </TerminalContainer>
   );
 };

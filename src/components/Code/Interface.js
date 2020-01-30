@@ -74,11 +74,7 @@ const Interface = ({
       </FormControl>
       <FormControl>
         <InputLabel>Select Coding Challenge</InputLabel>
-        <Select
-          style={{ width: '20em' }}
-          value={language}
-          onChange={handleSelection}
-        >
+        <Select style={{ width: '20em' }}>
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
           <MenuItem value='fizzbuzz'>Fizzbuzz</MenuItem>
