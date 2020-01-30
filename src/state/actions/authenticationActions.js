@@ -31,21 +31,14 @@ export const login = (props, values) => dispatch => {
 };
 
 export const register = (props, values) => dispatch => {
-  debugger;
   dispatch({ type: types.SIGN_UP_START });
   axios
     .post(`${url}user/register`, values)
     .then(res => {
-      debugger;
       dispatch({
         type: types.SIGN_UP_SUCCESSFUL,
         payload: res.data.user,
       });
-      // dispatch({
-      //   type: types.LOGIN_SUCCESSFUL,
-      //   payload: res.data.user,
-      //   message: res.data.message,
-      // });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('id', res.data.user.id);
       props.handleNext();
@@ -59,8 +52,6 @@ export const register = (props, values) => dispatch => {
 };
 
 export const chooseUserRole = (props, values) => dispatch => {
-  debugger;
-  // const token = localStorage.getItem('tempuser');
   const id = localStorage.getItem('id');
   axiosWithAuth()
     .put(`${url}user/${id}`, {
@@ -70,7 +61,6 @@ export const chooseUserRole = (props, values) => dispatch => {
       linkedin: values.linkedin,
     })
     .then(res => {
-      debugger;
       dispatch({ type: types.USER_ROLE_CHOSEN });
       if (props.userReducer.user.role_id === 1) {
         axiosWithAuth()
@@ -84,13 +74,7 @@ export const chooseUserRole = (props, values) => dispatch => {
               type: types.SET_STUDENT_ID,
               id: studentRes.data.student.id,
             });
-          })
-          .then(() => {
-            // localStorage.setItem('token', token);
-            // localStorage.removeItem('tempuser');
             localStorage.removeItem('id');
-            // window.location.reload();
-            props.history.push('/dashboard');
           })
           .catch(err => {});
       } else {
@@ -107,13 +91,7 @@ export const chooseUserRole = (props, values) => dispatch => {
               type: types.SET_COACH_ID,
               id: coachRes.data.coach.id,
             });
-          })
-          .then(() => {
-            // localStorage.setItem('token', token);
-            // localStorage.removeItem('tempuser');
             localStorage.removeItem('id');
-            // window.location.reload();
-            props.history.push('/dashboard');
           })
           .catch(coachErr => {});
       }

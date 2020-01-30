@@ -82,6 +82,7 @@ function userReducer(state = initialState, action) {
           ...state.user,
           id: action.id,
         },
+        isLoggedIn: true,
       };
     case types.SET_STUDENT_ID:
       return {
@@ -90,6 +91,7 @@ function userReducer(state = initialState, action) {
           ...state.user,
           id: action.id,
         },
+        isLoggedIn: true,
       };
     case types.USER_INFO_UPDATE:
       return {
