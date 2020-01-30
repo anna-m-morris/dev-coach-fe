@@ -12,19 +12,6 @@ const FlexContainer = styled.div`
   flex-wrap: nowrap;
   width: 100%;
   height: 100%;
-  background: violet;
-
-  .interface {
-    background: blue;
-    height: 5em;
-    width: 100%;
-  }
-
-  .editor {
-    background: coral;
-    height: 40em;
-    width: 50%;
-  }
 
   .terminal {
     background: green;
@@ -35,7 +22,7 @@ function Code() {
   return (
     <FlexContainer>
       <Interface />
-      {/* <Editor /> */}
+      <Editor />
       {/* <Terminal />   */}
       {/* <div className='interface'></div> */}
       <div className='editor'></div>
