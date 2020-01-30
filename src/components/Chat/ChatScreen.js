@@ -1,16 +1,16 @@
 import React from 'react';
 import Chatkit from '@pusher/chatkit-client';
 import styled from 'styled-components';
-import { Avatar } from '@material-ui/core';
 import { connect } from 'react-redux';
 import MessageList from './MessageList';
 import SendMessageForm from './SendMessage';
 import UserList from './UserList';
 import { getRooms } from '../../state/actions/chatActions';
 import TypingIndicator from './TypingIndicator';
+import devices from '../../utils/devices';
 
 const StyledChatScreen = styled.div`
-  height: 45rem;
+  height: 40rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -22,26 +22,22 @@ const StyledChatScreen = styled.div`
     border-bottom-left-radius: 6px;
     border-top-left-radius: 6px;
     border-right: none;
-    width: 20rem;
+    width: 30%;
     flex: none;
     color: #2f4f4f;
     text-align: center;
-    background: white;
+    background: #fff;
     height: 100%;
 
-    p {
-      padding-left: 1rem;
-      padding-right: 1rem;
-      font-size: 1.15rem;
-    }
-
-    .smallerP {
+    .chat-title {
+      border-bottom: 1px solid #ced4da;
       font-size: 1.1rem;
+      padding: 1rem;
     }
   }
   .chat-list-container {
-    background: white;
-    width: 40rem;
+    background: #fafafa;
+    width: 70%;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -132,19 +128,21 @@ class ChatScreen extends React.Component {
     return (
       <StyledChatScreen className='chat-container'>
         <aside className='whos-online-list-container'>
-          <p className='smallerP'>
+          <div className='chat-title'>
             Select a conversation to send a message
-          </p>
+          </div>
           <UserList
             rooms={this.props.rooms}
             user={this.props.user}
             startChat={this.startChat}
+            avatar={this.props.user.avatar_url}
           />
         </aside>
         <section className='chat-list-container'>
           <MessageList
             messages={this.state.messages}
             userId={this.props.user.email}
+            avatar={this.props.user.avatar_url}
           />
           <TypingIndicator
             usersWhoAreTyping={this.state.usersWhoAreTyping}

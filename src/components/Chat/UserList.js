@@ -7,15 +7,20 @@ const UserListStyle = styled.div`
   position: static;
 
   .bg {
-    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
     padding: 1rem;
-    border-bottom: none;
     cursor: pointer;
+    transition: ease-out 0.1s;
+
+    &:hover {
+      transition: ease-in 0.1s;
+      background: #4fad65;
+      color: white;
+    }
   }
 
   .bgClicked {
     background: #4fad65;
-    border-top: 1px solid #ced4da;
     padding: 1rem;
     border-bottom: none;
     cursor: pointer;

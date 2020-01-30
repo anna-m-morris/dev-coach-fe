@@ -56,7 +56,7 @@ const StyledMessageList = styled.div`
   }
 `;
 
-const MessageList = ({ messages, userId }) => {
+const MessageList = ({ avatar, messages, userId }) => {
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -80,7 +80,7 @@ const MessageList = ({ messages, userId }) => {
               }
             >
               <p className='message-text'>{message.text}</p>
-              <Avatar className='avatar' />
+              <Avatar src={avatar} className='avatar' />
             </div>
           ))
         ) : (
