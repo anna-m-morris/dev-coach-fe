@@ -131,12 +131,12 @@ class ChatScreen extends React.Component {
   };
 
   componentWillUnmount = () => {
-    // debugger;
-    // if (this.state.currentUser && this.state.currentRoom) {
-    //   this.state.currentUser.roomSubscriptions[
-    //     this.state.currentRoom.id
-    //   ].cancel();
-    // }
+    debugger;
+    if (this.state.currentUser && this.state.currentRoom) {
+      this.state.currentUser.roomSubscriptions[
+        this.state.currentRoom.id
+      ].cancel();
+    }
   };
   render() {
     return (
