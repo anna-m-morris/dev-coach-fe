@@ -7,15 +7,15 @@ const url = process.env.REACT_APP_BASE_URL;
 
 export const sendResetPasswordEmail = (
   props,
-  values,
+  userInfo,
   showSuccess,
   showError,
   closeMessage,
 ) => dispatch => {
   axios
-    .post('http://localhost:5000/resetPassword', values)
+    .post('http://localhost:5000/user/resetPassword', userInfo)
     .then(res => {
-      console.log(values);
+      console.log(userInfo);
       if (
         res.data.message ===
         'that email address is not recognized. Please try again'
@@ -40,6 +40,7 @@ export const sendResetPasswordEmail = (
       }
     })
     .catch(error => {
+      debugger;
       showError();
       setTimeout(() => closeMessage(), 5000);
       dispatch({
