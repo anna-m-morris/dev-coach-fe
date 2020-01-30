@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -21,18 +21,47 @@ import { sendResetPasswordEmail } from '../../state/actions/authenticationAction
 
 import pattern from '../../img/pattern.jpg';
 
-const ResetPasswordForm = ({
-  userReducer,
-  sendResetPasswordEmail,
-  success,
-  error,
-  showErrorMessage,
-  showSuccessMessage,
-  closeMessage,
-  errors,
-  touched,
-  isSubmitting,
-}) => {
+const ResetPasswordForm = props => {
+  const {
+    userReducer,
+    sendResetPasswordEmail,
+    success,
+    error,
+    showErrorMessage,
+    showSuccessMessage,
+    closeMessage,
+    errors,
+    touched,
+    isSubmitting,
+  } = props;
+
+  const initialReset = {
+    email: '',
+  };
+
+  const [resetUser, setResetUser] = useState(initialReset);
+
+  const handleChange = e => {
+    const { value, name } = e.target;
+    setResetUser({
+      ...resetUser,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    sendResetPasswordEmail(
+      props,
+      resetUser,
+      showSuccessMessage,
+      showErrorMessage,
+      closeMessage,
+    );
+  };
+  console.log(resetUser);
+
   return (
     <div>
       <GreyBackgroundContainer>
@@ -57,6 +86,8 @@ const ResetPasswordForm = ({
             <Form>
               <div>
                 <Field
+                  onChange={handleChange}
+                  value={resetUser.email}
                   type='email'
                   name='email'
                   placeholder='enter your email address'
@@ -66,11 +97,8 @@ const ResetPasswordForm = ({
                 )}
 
                 <StyledResetButton
-                  theme={
-                    userReducer.isLoading
-                      ? loadingButtonTheme
-                      : buttonTheme
-                  }
+                  onClick={handleSubmit}
+                  theme={buttonTheme}
                   type='submit'
                   disabled={isSubmitting}
                 >
@@ -99,14 +127,6 @@ const FormikResetPasswordForm = withFormik({
   handleSubmit(values, { props, resetForm, setSubmitting }) {
     resetForm();
     setSubmitting(false);
-
-    sendResetPasswordEmail(
-      props,
-      values,
-      showSuccessMessage,
-      showErrorMessage,
-      closeMessage,
-    );
   },
 })(ResetPasswordForm);
 

@@ -10,14 +10,12 @@ const initialState = {
   userHasChosenRole: false,
   userRoleError: '',
   userUpdated: false,
+  userUpdatedViaEmail: '',
   userUpdateError: '',
-  resetPasswordEmail: '',
 };
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
-    default:
-      return state;
     case types.SET_ROLE_ID:
       return {
         ...state,
@@ -86,6 +84,21 @@ function userReducer(state = initialState, action) {
           id: action.id,
         },
       };
+    case types.UPDATE_PASSWORD_VIA_EMAIL_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case types.UPDATE_PASSWORD_VIA_EMAIL_SUCCESSFUL:
+      return {
+        ...state,
+        userUpdatedViaEmail: action.payload,
+      };
+    case types.UPDATE_PASSWORD_VIA_EMAIL_FAILED:
+      return {
+        ...state,
+        userUpdatedError: action.error,
+      };
     case types.USER_INFO_UPDATE:
       return {
         ...state,
@@ -118,6 +131,9 @@ function userReducer(state = initialState, action) {
         isLoggedIn: false,
         user: null,
       };
+
+    default:
+      return state;
   }
 }
 

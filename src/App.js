@@ -64,7 +64,10 @@ function App(props) {
       <Route exact path='/' component={Landing} />
       <Route path='/login/' component={LoginForm} />
       <Route path='/resetPassword' component={ResetPasswordForm} />
-      <Route path='/accountRecovery' component={AccountRecovery} />
+      <Route
+        path='/accountRecovery/:token'
+        component={AccountRecovery}
+      />
       <Route path='/register' component={SignUp} />
       <Route path='/faq' component={LandingFaq} />
       <Redirect to='/' />

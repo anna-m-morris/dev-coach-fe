@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
@@ -11,13 +11,17 @@ import {
   showSuccessMessage,
   closeMessage,
 } from '../../state/actions/notificationActions';
+import { updatePasswordViaEmail } from '../../state/actions/settingActions';
+import Loader from 'react-loader-spinner';
 
 import Notification from '../Notifications/Notification';
 import pattern from '../../img/pattern.jpg';
-import axiosWithAuth from '../../utils/axiosWithAuth';
+import { set } from 'date-fns';
 
 const AccountRecovery = props => {
   const {
+    user,
+    updatePasswordViaEmail,
     userReducer,
     success,
     error,
@@ -27,72 +31,159 @@ const AccountRecovery = props => {
     errors,
     touched,
     isSubmitting,
+    match,
   } = props;
 
+  const initialReset = {
+    email: '',
+    password: '',
+    confirm_password: '',
+  };
+
+  const [resetUser, setResetUser] = useState(initialReset);
+
   useEffect(() => {
-    axios.get('http://localhost:5000/accountRecovery', {
-      params: {
-        resetPasswordToken: props.match.params.token,
-      },
+    axios
+      .get('http://localhost:5000/user/accountRecovery', {
+        params: {
+          token: match.params.token,
+        },
+      })
+      .then(res => {
+        const resetEmail = res.data.user.email;
+        setResetUser({ ...resetUser, email: resetEmail });
+      })
+      .catch(error => {
+        error.message = error;
+      });
+  }, [resetUser.email]);
+
+  const handleChange = e => {
+    const { value, name } = e.target;
+    setResetUser({
+      ...resetUser,
+      [name]: value,
     });
-  }, []);
-  return (
-    <div>
-      <GreyBackgroundContainer>
-        <Notification
-          onClose={closeMessage}
-          variant='success'
-          message='Your password has been updated, try logging in again '
-          open={success}
-        />
-        <Notification
-          onClose={closeMessage}
-          variant='error'
-          message='Failed !, Please send another link'
-          open={error}
-        />
-        <FormCard>
-          <h3>Enter your new password</h3>
-          <FormContainer>
-            <Form>
-              <div>
-                <Field
-                  type='password'
-                  name='password'
-                  placeholder='enter new password'
-                />
-                {errors.password && touched.password && (
-                  <StyledError>{errors.email}</StyledError>
-                )}
-                <StyledResetButton
-                  theme={
-                    userReducer.isLoading
-                      ? loadingButtonTheme
-                      : buttonTheme
-                  }
-                  type='submit'
-                  disabled={isSubmitting}
-                >
-                  change my password
-                </StyledResetButton>
-              </div>
-            </Form>
-          </FormContainer>
-        </FormCard>
-      </GreyBackgroundContainer>
-    </div>
-  );
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    updatePasswordViaEmail(
+      props,
+      { ...resetUser, oldEmail: resetUser.email },
+      showErrorMessage,
+      showSuccessMessage,
+      closeMessage,
+    );
+  };
+  console.log(resetUser);
+
+  if (resetUser.email) {
+    return (
+      <div>
+        <GreyBackgroundContainer>
+          <Notification
+            onClose={closeMessage}
+            variant='success'
+            message='Your password has been updated, try logging in again '
+            open={success}
+          />
+          <Notification
+            onClose={closeMessage}
+            variant='error'
+            message='Failed !, Please send another link'
+            open={error}
+          />
+          <FormCard>
+            <h3>Enter your new password</h3>
+            <FormContainer>
+              <Form>
+                <div>
+                  <Field
+                    style={{ marginBottom: '5px' }}
+                    value={resetUser.password}
+                    type='password'
+                    name='password'
+                    placeholder='enter new password'
+                    onChange={handleChange}
+                  />
+                  {errors.password && touched.password && (
+                    <StyledError>{errors.email}</StyledError>
+                  )}
+
+                  <Field
+                    value={resetUser.confirm_password}
+                    type='password'
+                    name='confirm_password'
+                    placeholder='confirm new password'
+                    onChange={handleChange}
+                  />
+                  {errors.password && touched.password && (
+                    <StyledError>{errors.email}</StyledError>
+                  )}
+                  <StyledResetButton
+                    onClick={handleSubmit}
+                    theme={buttonTheme}
+                    type='submit'
+                    disabled={isSubmitting}
+                  >
+                    change my password
+                  </StyledResetButton>
+                </div>
+              </Form>
+            </FormContainer>
+          </FormCard>
+        </GreyBackgroundContainer>
+      </div>
+    );
+  } else if (!resetUser.email) {
+    return (
+      <div>
+        <GreyBackgroundContainer>
+          <Notification
+            onClose={closeMessage}
+            variant='success'
+            message='Your password has been updated, try logging in again '
+            open={success}
+          />
+          <Notification
+            onClose={closeMessage}
+            variant='error'
+            message='Failed !, Please send another link'
+            open={error}
+          />
+          <h2 style={{ color: 'red' }}>
+            Oops! password reset link is invalid or has expired !
+          </h2>
+        </GreyBackgroundContainer>
+      </div>
+    );
+  } else {
+    return (
+      <Loader
+        type='TailSpin'
+        color='#2BAD60'
+        height={80}
+        width={80}
+      />
+    );
+  }
 };
 
 const FormikAccountRecovery = withFormik({
-  mapPropsToValues({ password }) {
+  mapPropsToValues({ password, confirm_password }) {
     return {
       password: password || '',
+      confirm_password: confirm_password || '',
     };
   },
   validationSchema: Yup.object().shape({
     password: Yup.string()
       .required('Please enter your new password')
+      .min(3, 'must be 6 characters minimum'),
+    password: Yup.string()
+      .required('Please confirm new password')
       .min(3, 'must be 6 characters minimum'),
   }),
   handleSubmit(values, { props, resetForm, setSubmitting }) {
@@ -111,6 +202,7 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
+  updatePasswordViaEmail,
   showErrorMessage,
   showSuccessMessage,
   closeMessage,
@@ -133,7 +225,7 @@ export const GreyBackgroundContainer = styled.div`
 
 export const FormCard = styled.div`
   background: white;
-  height: 11em;
+  height: 15em;
   width: 25em;
   display: flex;
   flex-direction: column;
