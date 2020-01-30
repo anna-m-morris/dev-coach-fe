@@ -207,7 +207,6 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = props => {
   const { user } = props;
-  console.log(user);
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
