@@ -46,6 +46,8 @@ const Interface = ({
     logCode();
   };
 
+  console.log(editorState);
+
   const handleSelection = event => {
     setLanguage(event.target.value);
     setEditorState(mapLanguageToEditorState(event.target.value));
@@ -57,6 +59,7 @@ const Interface = ({
       language_id: `${mapLanguageToId(language)}`,
     })
       .then(res => {
+        console.log(res);
         setTimeout(() => {
           Axios.get(
             `https://api.judge0.com/submissions/${res.data.token}`,
@@ -66,12 +69,14 @@ const Interface = ({
                 setOutput(res.data.stdout);
               } else if (res.data.compile_output) {
                 setOutput(res.data.compile_output);
+              } else if (res.data.stderr) {
+                setOutput(res.data.stderr);
               } else {
                 alert('Unable to run code');
               }
             })
             .catch(err => {});
-        }, 1000);
+        }, 2000);
       })
       .catch(err => {});
   }
