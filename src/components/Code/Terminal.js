@@ -5,7 +5,6 @@ const TerminalContainer = styled.div`
   width: 50%;
   height: 18.75em;
   background: black;
-  margin-top: 8.4em;
   display: flex;
   justify-content: flex-start * {
     text-decoration: none;

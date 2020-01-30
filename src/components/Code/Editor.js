@@ -12,7 +12,8 @@ const setEditorState = () => {};
 const language = {};
 
 const EditorContainer = styled.div`
-  width: 100%;
+  width: 50%;
+  height: 100%;
 `;
 
 const Editor = () => {
