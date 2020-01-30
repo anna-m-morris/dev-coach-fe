@@ -9,24 +9,27 @@ const FlexContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   width: 100%;
-  height: 100%;
+  max-height: 100vh;
 
-  .terminal {
+  .code-header-container {
     background: green;
+    height: 100%;
+    width: 50vh;
   }
 `;
 
 function Code() {
   return (
     <FlexContainer>
-      <Interface />
-      <Editor />
-      {/* <Terminal />   */}
-      {/* <div className='interface'></div> */}
-      <div className='editor'></div>
-      <div className='terminal'></div>
+      <div className='code-header-container'>
+        <Interface />
+      </div>
+      <div className='code-body-container'>
+        {/* <Editor />
+        <Terminal /> */}
+      </div>
     </FlexContainer>
   );
 }
