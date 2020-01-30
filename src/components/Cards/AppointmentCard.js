@@ -12,6 +12,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import devices from '../../utils/devices';
 
 const StyledCoachCard = styled.div`
   display: flex;
@@ -27,6 +28,9 @@ const StyledCoachCard = styled.div`
   background: white;
   box-shadow: 0 6px 10px #d3d3d3;
 
+  @media ${devices.mobile} {
+    width: 14rem;
+  }
   .header {
     display: flex;
     justify-content: space-around;
@@ -99,6 +103,17 @@ const StyledCoachCard = styled.div`
     }
 
     .cancel-button {
+    }
+
+    @media ${devices.mobile} {
+      flex-direction: column;
+      justify-content: center;
+
+      .button {
+        width: 100%;
+        margin-top: 5px;
+        text-align: center;
+      }
     }
   }
 `;
@@ -174,42 +189,28 @@ export const AppointmentCard = props => {
             ''
           )}
         </div>
-
-        {!appointment.canceled ? (
-          <div className='footer'>
-            <Button
-              onClick={handleClickOpen}
-              size='small'
-              className='cancel-button'
-              variant='contained'
-              color='secondary'
-              startIcon={<DeleteIcon />}
-            >
-              Cancel
-            </Button>
-            <Button
-              size='small'
-              className='button'
-              variant='contained'
-              color='primary'
-              endIcon={<Icon>send</Icon>}
-              onClick={startInterview}
-            >
-              Interview
-            </Button>
-          </div>
-        ) : (
+        <div className='footer'>
           <Button
             onClick={handleClickOpen}
-            size='big'
+            size='small'
             className='cancel-button'
             variant='contained'
             color='secondary'
             startIcon={<DeleteIcon />}
           >
-            Cancelled
+            Cancel
           </Button>
-        )}
+          <Button
+            size='small'
+            className='button'
+            variant='contained'
+            color='primary'
+            endIcon={<Icon>send</Icon>}
+            onClick={startInterview}
+          >
+            Interview
+          </Button>
+        </div>
       </StyledCoachCard>
       <Dialog
         open={open}

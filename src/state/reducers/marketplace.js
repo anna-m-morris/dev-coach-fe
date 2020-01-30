@@ -53,7 +53,7 @@ function marketplaceReducer(state = initialState, action) {
 
     case types.SEARCH_EXPERIENCE:
       const filterExperience = state.copyOfCoaches.filter(
-      coach => coach.experience_level === action.payload,
+        coach => coach.experience_level === action.payload,
       );
       return {
         ...state,

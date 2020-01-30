@@ -10,23 +10,32 @@ import {
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
 import { saveRescheduledCoach } from '../../state/actions/bookingActions';
-import { saveIdRole } from '../../state/actions/feedbackActions';
+import {
+  saveIdRole,
+  getFeedback,
+} from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
+import devices from '../../utils/devices';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 
 const DashboardContainer = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 
   .appointment-title {
     color: #595959;
     font-size: 1.8rem;
     font-weight: 400;
+
+    @media ${devices.mobile} {
+      margin-top: 40px;
+      font-size: 1.6rem;
+      text-align: center;
+    }
   }
   .top-data-card {
     width: 100%;
@@ -40,6 +49,11 @@ const DashboardContainer = styled.div`
     margin-top: 1em;
     color: #4a4a4a;
     font-size: 1rem;
+
+    @media ${devices.tablet} {
+      width: 80%;
+      flex-direction: column;
+    }
 
     .top-data-section {
       text-align: center;
@@ -73,6 +87,10 @@ const DashboardContainer = styled.div`
     align-items: center;
     width: 100%;
     margin-top: 2em;
+
+    @media ${devices.mobile} {
+      width: 80%;
+    }
   }
   .pagination {
     padding: 2em;
@@ -147,14 +165,18 @@ const UserDashboard = props => {
     cancelAppointment,
     startInterview,
     saveIdRole,
+    getFeedback,
   } = props;
 
   const [minValue, setMinValue] = React.useState(0);
   const [maxValue, setMaxValue] = React.useState(6);
 
   React.useEffect(() => {
-    setTimeout(() => getAppointment(user.id, user.role_id), 1000);
-  }, [getAppointment, user.id, user.role_id]);
+    setTimeout(() => {
+      getAppointment(user.id, user.role_id);
+      getFeedback(user.id, user.role_id);
+    }, 1000);
+  }, [getAppointment, getFeedback, user.id, user.role_id]);
 
   const handlePagination = value => {
     if (value <= 1) {
@@ -263,4 +285,5 @@ export default connect(mapStateToProps, {
   startInterview,
   saveIdRole,
   saveRescheduledCoach,
+  getFeedback,
 })(UserDashboard);

@@ -1,109 +1,76 @@
 import React, { useState, useCallback } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import Lobby from './Lobby';
 import Room from './Room';
 
 const StyledVideoChat = styled.div`
-  main {
-    background: #ffffff;
-    flex-grow: 1;
-  }
-  form {
-    max-width: 300px;
-    margin: 0 auto;
-  }
-  h2 {
-    font-weight: 300;
-    margin-bottom: 1em;
-    text-align: center;
-  }
-  form > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 88vh;
+
+  .button {
     width: 100%;
-    margin-bottom: 1em;
+    background-color: #4fad65;
+    font-weight: bold;
+
+    &:hover {
+      background: #1e3f1f;
+    }
   }
-  form > div > label {
-    display: block;
-    margin-bottom: 0.3em;
-  }
-  form > div > input {
-    display: block;
-    width: 100%;
-    font-size: 16px;
-    padding: 0.4em;
-    border-radius: 6px;
-    border: 1px solid #333e5a;
-  }
-  button {
-    background: #333e5a;
-    color: #fff;
-    font-size: 16px;
-    padding: 0.4em;
-    border-radius: 6px;
-    border: 1px solid transparent;
-  }
-  button:hover {
-    filter: brightness(150%);
-  }
-  .room {
-    position: relative;
-  }
-  .room button {
-    position: absolute;
-    top: 0;
-    right: 20px;
-  }
-  .room > h3 {
-    text-align: center;
-    font-weight: 300;
-    margin-bottom: 1em;
-  }
-  .local-participant {
-    text-align: center;
-    margin-bottom: 2em;
-  }
-  .remote-participants {
+
+  .settings {
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    padding: 0 2em 2em;
+    justify-content: space-around;
+
+    button {
+      width: 25%;
+    }
   }
-  .participant {
-    background: #333e5a;
-    padding: 10px;
+
+  .videos {
+    width: 500px;
+    height: 380px;
+    margin: 0px auto;
+    border: 4px solid #4fad65;
+    position: relative;
+    box-shadow: 1px 1px 11px #9e9e9e;
     border-radius: 6px;
-    display: inline-block;
-    margin-right: 10px;
-  }
-  .participant:last-child {
-    margin-right: 0;
-  }
-  .participant h3 {
-    text-align: center;
-    padding-bottom: 0.5em;
-    color: #fff;
-  }
-  video {
-    width: 100%;
-    max-width: 600px;
-    display: block;
-    margin: 0 auto;
-    border-radius: 6px;
+
+    .my-video {
+      width: 130px;
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      border: 4px solid #4fad65;
+      border-radius: 6px;
+      z-index: 2;
+    }
+
+    .user-video {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
   }
 `;
 
-const VideoChat = () => {
-  const [username, setUsername] = useState('');
-  const [roomName, setRoomName] = useState('');
+const VideoChat = ({ user, peerId, history }) => {
+  const username = user.email;
+  const roomName =
+    user.role_id === 1
+      ? `${user.email}-${peerId}`
+      : `${peerId}-${user.email}`;
+
   const [token, setToken] = useState(null);
-
-  const handleUsernameChange = useCallback(event => {
-    setUsername(event.target.value);
-  }, []);
-
-  const handleRoomNameChange = useCallback(event => {
-    setRoomName(event.target.value);
-  }, []);
 
   const handleSubmit = useCallback(
     async event => {
@@ -118,9 +85,13 @@ const VideoChat = () => {
     [roomName, username],
   );
 
-  const handleLogout = useCallback(event => {
-    setToken(null);
-  }, []);
+  const handleLogout = useCallback(
+    event => {
+      setToken(null);
+      history.push('/givefeedback');
+    },
+    [history],
+  );
 
   let render;
   if (token) {
@@ -136,18 +107,18 @@ const VideoChat = () => {
   } else {
     render = (
       <StyledVideoChat>
-        <Lobby
-          username={username}
-          roomName={roomName}
-          handleUsernameChange={handleUsernameChange}
-          handleRoomNameChange={handleRoomNameChange}
-          handleSubmit={handleSubmit}
-        />
+        <Lobby handleSubmit={handleSubmit} />
       </StyledVideoChat>
     );
   }
   return render;
 };
 
-export default VideoChat;
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user,
+    peerId: state.interviewReducer.peerId,
+  };
+};
 
+export default connect(mapStateToProps)(VideoChat);

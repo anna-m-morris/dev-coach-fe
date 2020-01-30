@@ -20,7 +20,6 @@ export const login = (props, values) => dispatch => {
         message: res.data.message,
       });
       localStorage.setItem('token', res.data.token);
-      window.location.reload();
     })
     .catch(err => {
       dispatch({
@@ -31,18 +30,15 @@ export const login = (props, values) => dispatch => {
 };
 
 export const register = (props, values) => dispatch => {
-  dispatch({ type: types.SIGN_UP });
-  dispatch({ type: types.LOGIN_START });
+  dispatch({ type: types.SIGN_UP_START });
   axios
     .post(`${url}user/register`, values)
     .then(res => {
-      dispatch({ type: types.SIGN_UP_SUCCESSFUL });
       dispatch({
-        type: types.LOGIN_SUCCESSFUL,
+        type: types.SIGN_UP_SUCCESSFUL,
         payload: res.data.user,
-        message: res.data.message,
       });
-      localStorage.setItem('tempuser', res.data.token);
+      localStorage.setItem('token', res.data.token);
       localStorage.setItem('id', res.data.user.id);
       props.handleNext();
     })
@@ -55,12 +51,13 @@ export const register = (props, values) => dispatch => {
 };
 
 export const chooseUserRole = (props, values) => dispatch => {
-  const token = localStorage.getItem('tempuser');
   const id = localStorage.getItem('id');
   axiosWithAuth()
     .put(`${url}user/${id}`, {
       location: values.userLocation,
       role_id: props.userReducer.user.role_id,
+      github: values.github,
+      linkedin: values.linkedin,
     })
     .then(res => {
       dispatch({ type: types.USER_ROLE_CHOSEN });
@@ -76,12 +73,7 @@ export const chooseUserRole = (props, values) => dispatch => {
               type: types.SET_STUDENT_ID,
               id: studentRes.data.student.id,
             });
-          })
-          .then(() => {
-            localStorage.setItem('token', token);
-            localStorage.removeItem('tempuser');
             localStorage.removeItem('id');
-            window.location.reload();
           })
           .catch(err => {});
       } else {
@@ -90,18 +82,15 @@ export const chooseUserRole = (props, values) => dispatch => {
             experience_level: values.experience,
             skill_level: values.skills,
             user_id: id,
+            description: values.description,
+            hourly_rate: values.hourly_rate,
           })
           .then(coachRes => {
             dispatch({
               type: types.SET_COACH_ID,
               id: coachRes.data.coach.id,
             });
-          })
-          .then(() => {
-            localStorage.setItem('token', token);
-            localStorage.removeItem('tempuser');
             localStorage.removeItem('id');
-            window.location.reload();
           })
           .catch(coachErr => {});
       }

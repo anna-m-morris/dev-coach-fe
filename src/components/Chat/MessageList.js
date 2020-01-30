@@ -57,7 +57,6 @@ const MessageList = ({ messages, userId }) => {
   };
 
   useEffect(scrollToBottom, [messages]);
-
   return (
     <StyledMessageList>
       <ul className='ul'>
