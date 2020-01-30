@@ -18,7 +18,7 @@ function Code() {
     <FlexContainer>
       <Interface />
       <Editor />
-      {/* <Terminal /> */}
+      <Terminal />
     </FlexContainer>
   );
 }
