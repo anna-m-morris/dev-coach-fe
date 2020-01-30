@@ -26,6 +26,7 @@ const StyledMessageList = styled.div`
     .message {
       display: flex;
       flex-direction: row-reverse;
+      max-width: 100%;
     }
 
     .message-time {
@@ -43,7 +44,8 @@ const StyledMessageList = styled.div`
       margin: 0;
       margin-right: 0.4rem;
       font-size: 1rem;
-      word-wrap: break-word;
+      word-break: break-word;
+      width: 70%;
     }
   }
 
@@ -58,7 +60,7 @@ const StyledMessageList = styled.div`
 
     .message {
       display: flex;
-      width: 100%;
+      max-width: 100%;
     }
 
     .message-time {
@@ -74,8 +76,8 @@ const StyledMessageList = styled.div`
       margin: 0;
       margin-left: 0.4rem;
       font-size: 1rem;
-      word-wrap: break-word;
-      max-width: 65%;
+      word-break: break-word;
+      width: 70%;
     }
   }
 `;
@@ -113,7 +115,7 @@ const MessageList = ({ messages, userId, user, currentRoom }) => {
                       }
                       className='chat-avatar'
                     />
-                    <div className='message-text'>{message.text}</div>
+                    <p className='message-text'>{message.text}</p>
                   </div>
                   <div className='message-time'>
                     {message.createdAt.slice(11, 16)}
