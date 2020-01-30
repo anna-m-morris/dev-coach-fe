@@ -14,106 +14,6 @@ import {
 import { login } from '../../state/actions/authenticationActions';
 import pattern from '../../img/pattern.jpg';
 
-const ExtraLoginDetails = () => {
-  return (
-    <StyledDetails>
-      <input type='checkbox' />
-      <p>Remember Me</p>
-      <Link to='/resetPassword'>
-        <p>Forgot your password?</p>
-      </Link>
-    </StyledDetails>
-  );
-};
-
-const LoginForm = ({
-  userReducer,
-  errors,
-  touched,
-  isSubmitting,
-}) => {
-  return (
-    <div>
-      <GreyBackgroundContainer>
-        <FormCard>
-          <Link to='/'>
-            <Logo />
-          </Link>
-          <h1>Welcome Back!</h1>
-          <FormContainer>
-            <Form>
-              <div>
-                <Field
-                  type='email'
-                  name='email'
-                  placeholder='Email'
-                />
-                {errors.email && touched.email && (
-                  <StyledError>{errors.email}</StyledError>
-                )}
-              </div>
-              <div>
-                <Field
-                  type='password'
-                  name='password'
-                  placeholder='Password'
-                />
-                {userReducer.loginError ? (
-                  <StyledError>{userReducer.loginError}</StyledError>
-                ) : (
-                  errors.password &&
-                  touched.password && (
-                    <StyledError>{errors.password}</StyledError>
-                  )
-                )}
-              </div>
-              <ExtraLoginDetails />
-              <div>
-                <StyledButton
-                  theme={
-                    userReducer.isLoading
-                      ? loadingButtonTheme
-                      : buttonTheme
-                  }
-                  type='submit'
-                  disabled={isSubmitting}
-                >
-                  Sign in to your account
-                </StyledButton>
-              </div>
-            </Form>
-          </FormContainer>
-        </FormCard>
-      </GreyBackgroundContainer>
-    </div>
-  );
-};
-
-const FormikLoginForm = withFormik({
-  mapPropsToValues({ email, password }) {
-    return {
-      email: email || '',
-      password: password || '',
-    };
-  },
-  validationSchema: Yup.object().shape({
-    email: Yup.string()
-      .email('Please enter a valid email')
-      .required('Please enter an email address'),
-    password: Yup.string()
-      .required('Please enter your password')
-      .min(3, 'Must be 6 characters minimun'),
-  }),
-  handleSubmit(values, { props, resetForm, setSubmitting }) {
-    resetForm();
-    setSubmitting(false);
-
-    props.login(props, values);
-  },
-})(LoginForm);
-
-export default connect(state => state, { login })(FormikLoginForm);
-
 export const GreyBackgroundContainer = styled.div`
   height: 100vh;
   background: #f2f2f2;
@@ -230,3 +130,101 @@ const loadingButtonTheme = {
   text: '#292d38',
   background: 'lightgray',
 };
+
+const ExtraLoginDetails = () => {
+  return (
+    <StyledDetails>
+      <input type='checkbox' />
+      <p>Remember Me</p>
+      <a href='/forgot-password'>
+        <p>Forgot your password?</p>
+      </a>
+    </StyledDetails>
+  );
+};
+
+const LoginForm = ({
+  userReducer,
+  errors,
+  touched,
+  isSubmitting,
+}) => {
+  return (
+    <div>
+      <GreyBackgroundContainer>
+        <FormCard>
+          <Link to='/'>
+            <Logo />
+          </Link>
+          <h1>Welcome Back!</h1>
+          <FormContainer>
+            <Form>
+              <div>
+                <Field
+                  type='email'
+                  name='email'
+                  placeholder='Email'
+                />
+                {errors.email && touched.email && (
+                  <StyledError>{errors.email}</StyledError>
+                )}
+              </div>
+              <div>
+                <Field
+                  type='password'
+                  name='password'
+                  placeholder='Password'
+                />
+                {userReducer.loginError ? (
+                  <StyledError>{userReducer.loginError}</StyledError>
+                ) : (
+                  errors.password &&
+                  touched.password && (
+                    <StyledError>{errors.password}</StyledError>
+                  )
+                )}
+              </div>
+              <ExtraLoginDetails />
+              <div>
+                <StyledButton
+                  theme={
+                    userReducer.isLoading
+                      ? loadingButtonTheme
+                      : buttonTheme
+                  }
+                  type='submit'
+                  disabled={isSubmitting}
+                >
+                  Sign in to your account
+                </StyledButton>
+              </div>
+            </Form>
+          </FormContainer>
+        </FormCard>
+      </GreyBackgroundContainer>
+    </div>
+  );
+};
+
+const FormikLoginForm = withFormik({
+  mapPropsToValues: () => ({
+    email: '',
+    password: '',
+  }),
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+      .email('Please enter a valid email')
+      .required('Please enter an email address'),
+    password: Yup.string()
+      .required('Please enter your password')
+      .min(3, 'Must be 6 characters minimun'),
+  }),
+  handleSubmit: (values, { props, resetForm, setSubmitting }) => {
+    resetForm();
+    setSubmitting(false);
+
+    props.login(props, values);
+  },
+})(LoginForm);
+
+export default connect(state => state, { login })(FormikLoginForm);

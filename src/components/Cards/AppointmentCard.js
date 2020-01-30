@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Icon from '@material-ui/core/Icon';
-import { Link } from 'react-router-dom';
 import CodeIcon from '@material-ui/icons/Code';
 import TodayIcon from '@material-ui/icons/Today';
 import TimelapseIcon from '@material-ui/icons/Timelapse';
@@ -13,20 +12,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { connect } from 'react-redux';
-import {
-  showErrorMessage,
-  showSuccessMessage,
-  closeMessage,
-} from '../../state/actions/notificationActions';
-import {
-  saveDate,
-  bookAppointment,
-  saveRescheduledCoach,
-} from '../../state/actions/bookingActions';
-
-import { cancelAppointment } from '../../state/actions/appointmentActions';
+import devices from '../../utils/devices';
 
 const StyledCoachCard = styled.div`
   display: flex;
@@ -42,6 +28,9 @@ const StyledCoachCard = styled.div`
   background: white;
   box-shadow: 0 6px 10px #d3d3d3;
 
+  @media ${devices.mobile} {
+    width: 14rem;
+  }
   .header {
     display: flex;
     justify-content: space-around;
@@ -115,6 +104,17 @@ const StyledCoachCard = styled.div`
 
     .cancel-button {
     }
+
+    @media ${devices.mobile} {
+      flex-direction: column;
+      justify-content: center;
+
+      .button {
+        width: 100%;
+        margin-top: 5px;
+        text-align: center;
+      }
+    }
   }
 `;
 
@@ -133,8 +133,8 @@ const mapExperience = experience => {
   }
 };
 
-export const NewAppointmentCard = props => {
-  const { appointment, saveIdRole, coach } = props;
+export const AppointmentCard = props => {
+  const { appointment, startInterview, cancelAppointment } = props;
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -189,46 +189,28 @@ export const NewAppointmentCard = props => {
             ''
           )}
         </div>
-
-        {!appointment.canceled ? (
-          <div className='footer'>
-            <Button
-              onClick={handleClickOpen}
-              size='small'
-              className='cancel-button'
-              variant='contained'
-              color='secondary'
-              startIcon={<DeleteIcon />}
-              coach={coach}
-              saveRescheduledCoach={() => saveRescheduledCoach(coach)}
-            >
-              Cancel
-            </Button>
-            <Link to='/givefeedback'>
-              <Button
-                size='small'
-                className='button'
-                variant='contained'
-                color='primary'
-                endIcon={<Icon>send</Icon>}
-                onClick={() => saveIdRole()}
-              >
-                Interview
-              </Button>
-            </Link>
-          </div>
-        ) : (
+        <div className='footer'>
           <Button
             onClick={handleClickOpen}
-            size='big'
+            size='small'
             className='cancel-button'
             variant='contained'
             color='secondary'
             startIcon={<DeleteIcon />}
           >
-            Cancelled
+            Cancel
           </Button>
-        )}
+          <Button
+            size='small'
+            className='button'
+            variant='contained'
+            color='primary'
+            endIcon={<Icon>send</Icon>}
+            onClick={startInterview}
+          >
+            Interview
+          </Button>
+        </div>
       </StyledCoachCard>
       <Dialog
         open={open}
@@ -236,7 +218,6 @@ export const NewAppointmentCard = props => {
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
       >
-        <DialogTitle id='alert-dialog-title'></DialogTitle>
         <DialogContent>
           <DialogContentText id='alert-dialog-description'>
             Are you sure you want to cancel appointment ?
@@ -250,7 +231,7 @@ export const NewAppointmentCard = props => {
           <Button
             color='primary'
             autoFocus
-            onClick={props.cancelAppointment}
+            onClick={cancelAppointment}
           >
             Yes
           </Button>
@@ -260,22 +241,4 @@ export const NewAppointmentCard = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    coach: state.bookingReducer.coach,
-    select: state.bookingReducer.select,
-    date: state.bookingReducer.date,
-    success: state.notificationsReducer.success,
-    error: state.notificationsReducer.error,
-    user: state.userReducer.user,
-  };
-};
-
-export default connect(mapStateToProps, {
-  showErrorMessage,
-  showSuccessMessage,
-  closeMessage,
-  saveDate,
-  saveRescheduledCoach,
-  bookAppointment,
-})(NewAppointmentCard);
+export default AppointmentCard;

@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import {
   showErrorMessage,
   showSuccessMessage,
+  showInfoMessage,
   closeMessage,
 } from '../../state/actions/notificationActions';
 import {
@@ -19,7 +20,7 @@ import {
 import Notification from '../Notifications/Notification';
 
 import Select from '../Inputs/SelectInfo';
-import DatePicker from './DatePicker';
+import DatePicker from '../Booking/DatePicker';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -64,12 +65,14 @@ const RescheduleAppointmentStepper = props => {
     closeMessage,
     success,
     error,
+    info,
     showErrorMessage,
     showSuccessMessage,
     saveDate,
     select,
     rescheduleAppointment,
     user,
+    showInfoMessage,
   } = props;
 
   const classes = useStyles();
@@ -110,6 +113,12 @@ const RescheduleAppointmentStepper = props => {
         message={`Reschedule wasn't successful!`}
         open={error}
       />
+      <Notification
+        onClose={closeMessage}
+        variant='warning'
+        message='Please select your options.'
+        open={info}
+      />
 
       <div className='instructions'>
         <Typography className={classes.instruction}>
@@ -148,7 +157,7 @@ const RescheduleAppointmentStepper = props => {
             variant='contained'
             color='primary'
             onClick={() =>
-              activeStep === steps.length - 1
+              activeStep === steps.length - 1 && date
                 ? rescheduleAppointment(
                     rescheduler,
                     user,
@@ -160,7 +169,9 @@ const RescheduleAppointmentStepper = props => {
                     showErrorMessage,
                     closeMessage,
                   )
-                : handleNext()
+                : activeStep === 0 && Object.keys(select).length === 2
+                ? handleNext()
+                : showInfoMessage()
             }
           >
             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
@@ -178,6 +189,7 @@ const mapStateToProps = state => {
     date: state.bookingReducer.date,
     success: state.notificationsReducer.success,
     error: state.notificationsReducer.error,
+    info: state.notificationsReducer.info,
     user: state.userReducer.user,
   };
 };
@@ -188,4 +200,5 @@ export default connect(mapStateToProps, {
   closeMessage,
   saveDate,
   rescheduleAppointment,
+  showInfoMessage,
 })(RescheduleAppointmentStepper);

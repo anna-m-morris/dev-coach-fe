@@ -9,46 +9,42 @@ import { getRooms } from '../../state/actions/chatActions';
 import TypingIndicator from './TypingIndicator';
 
 const StyledChatScreen = styled.div`
-  border-top: 1px solid #ced4da;
-  height: 85vh;
-  display: flex;
-  flex-direction: column;
-  margin: 1rem auto;
-  justify-content: center;
+  height: 43.2rem;
   width: 100%;
-  .chat-container {
-    display: flex;
-    flex: 1;
-    width: 100%;
-    justify-content: flex-end;
-    margin-bottom: 10px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4rem;
+
   .whos-online-list-container {
-    border-left: 1px solid #ced4da;
-    border-right: 1px solid #ced4da;
+    border: 1px solid #ced4da;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+    border-right: none;
     width: 30%;
     flex: none;
     color: #2f4f4f;
-    border-radius: 5px;
     text-align: center;
-    font-family: 'Ubuntu, sans-serif';
+    background: #f9f9f9;
+    height: 100%;
+    overflow: auto;
 
-    h5, p {
-      padding-left: 1rem;
-      padding-right: 1rem;
-      font-size: 1.15rem;
-    }
-
-    .smallerP {
-      font-size: 1.1rem;
+    .chat-title {
+      border-bottom: 1px solid #ced4da;
+      font-size: 1.3rem;
+      padding: 1rem;
     }
   }
   .chat-list-container {
-    width: 100%;
+    background: #fcfcfc;
+    width: 70%;
     display: flex;
     flex-direction: column;
-    height: 85vh;
+    height: 100%;
     box-sizing: border-box;
+    border: 1px solid #ced4da;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
   }
 `;
 
@@ -67,7 +63,9 @@ class ChatScreen extends React.Component {
 
   startChat = roomId => {
     if (this.state.currentUser) {
-      this.state.currentUser.roomSubscriptions[this.state.currentRoom.id].cancel();
+      this.state.currentUser.roomSubscriptions[
+        this.state.currentRoom.id
+      ].cancel();
     }
 
     this.setState({ messages: [] });
@@ -126,36 +124,43 @@ class ChatScreen extends React.Component {
       .isTypingIn({ roomId: this.state.currentRoom.id })
       .catch(error => this.setState({ error }));
   };
+
+  componentWillUnmount = () => {
+    if (this.state.currentUser) {
+      this.state.currentUser.roomSubscriptions[
+        this.state.currentRoom.id
+      ].cancel();
+    }
+  };
   render() {
     return (
-      <StyledChatScreen>
-        <div className='chat-container'>
-          <aside className='whos-online-list-container'>
-            <h5>Chats</h5>
-            <p className='smallerP'>
-              Select a conversation to send a message
-            </p>
-            <UserList
-              rooms={this.props.rooms}
-              user={this.props.user}
-              startChat={this.startChat}
-            />
-          </aside>
-          <section className='chat-list-container'>
-            <MessageList
-              messages={this.state.messages}
-              userId={this.props.user.email}
-            />
-            <TypingIndicator
-              usersWhoAreTyping={this.state.usersWhoAreTyping}
-            />
-            <SendMessageForm
-              onSubmit={this.sendMessage}
-              onChange={this.sendTypingEvent}
-              currentRoom={this.state.currentRoom}
-            />
-          </section>
-        </div>
+      <StyledChatScreen className='chat-container'>
+        <aside className='whos-online-list-container'>
+          <div className='chat-title'>
+            Select a conversation to send a message
+          </div>
+          <UserList
+            rooms={this.props.rooms}
+            user={this.props.user}
+            startChat={this.startChat}
+          />
+        </aside>
+        <section className='chat-list-container'>
+          <MessageList
+            messages={this.state.messages}
+            userId={this.props.user.email}
+            currentRoom={this.state.currentRoom}
+            user={this.props.user}
+          />
+          <TypingIndicator
+            usersWhoAreTyping={this.state.usersWhoAreTyping}
+          />
+          <SendMessageForm
+            onSubmit={this.sendMessage}
+            onChange={this.sendTypingEvent}
+            currentRoom={this.state.currentRoom}
+          />
+        </section>
       </StyledChatScreen>
     );
   }

@@ -59,7 +59,6 @@ const StyledMarketplace = styled.div`
   }
   .loaderStyled {
     margin-top: 200px;
-    margin-left: 35rem;
     margin-bottom: 200px;
   }
 `;
@@ -105,7 +104,7 @@ const Marketplace = ({
         {coaches ? (
           coaches.slice(minValue, maxValue).map(coach => (
             <CoachCard
-              key={coach.first_name}
+              key={coach.email}
               coach={coach}
               saveCoach={() => saveCoach(coach)}
               getFeedback={getFeedback}
@@ -114,6 +113,7 @@ const Marketplace = ({
                 saveForChat({
                   email: coach.email,
                   name: `${coach.first_name} ${coach.last_name}`,
+                  avatar_url: coach.avatar_url,
                 })
               }
             />
