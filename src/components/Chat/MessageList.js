@@ -36,14 +36,25 @@ const StyledMessageList = styled.div`
 
   .peer-message {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: flex-end;
     margin: 0;
     margin-top: 2rem;
     color: #666363;
 
+    .message {
+      max-width: 65%;
+      display: flex;
+    }
+
+    .message-time {
+      margin: 0.2rem 0 0 2.85rem;
+    }
+
     .message-text {
+      display: flex;
+      align-self: center;
       max-width: 65%;
       padding: 0.4rem 0.8rem;
       border-radius: 4px;
@@ -79,16 +90,21 @@ const MessageList = ({ messages, userId, user, currentRoom }) => {
                       : 'peer-message'
                   }
                 >
-                  <p className='message-text'>{message.text}</p>
-                  <Avatar
-                    src={
-                      message.senderId === user.email &&
-                      user.role_id === 1
-                        ? currentRoom.customData.role_id_one_url
-                        : currentRoom.customData.role_id_two_url
-                    }
-                    className='chat-avatar'
-                  />
+                  <div className='message'>
+                    <Avatar
+                      src={
+                        message.senderId === user.email &&
+                        user.role_id === 1
+                          ? currentRoom.customData.role_id_one_url
+                          : currentRoom.customData.role_id_two_url
+                      }
+                      className='chat-avatar'
+                    />
+                    <p className='message-text'>{message.text}</p>
+                  </div>
+                  <p className='message-time'>
+                    {message.createdAt.slice(11, 16)}
+                  </p>
                 </div>
               ),
           )
