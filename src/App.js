@@ -17,7 +17,7 @@ import Chat from './components/Chat/ChatScreen';
 import StartChat from './components/Chat/Chat';
 import Settings from './views/Settings/Settings';
 import SignUp from './components/Onboarding/SignupStepper';
-import Code from './components/Code/Code';
+import Code from './views/Code/Code';
 
 const globalTheme = createMuiTheme({
   typography: {

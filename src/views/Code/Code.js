@@ -11,17 +11,18 @@ const FlexContainer = styled.div`
   height: 100%;
 `;
 
-function App() {
+function Code() {
   const [output, setOutput] = React.useState('');
 
   return (
     <div>
       <FlexContainer>
-        <Editor output={output} setOutput={setOutput} />
-        <Display initialText='$  ' output={output} />
+        <Interface />
+        {/* <Editor output={output} setOutput={setOutput} />
+        <Terminal initialText='$  ' output={output} /> */}
       </FlexContainer>
     </div>
   );
 }
 
-export default App;
+export default Code;

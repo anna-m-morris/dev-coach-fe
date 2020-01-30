@@ -7,6 +7,8 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import rootReducer from './state/reducers';
 import './index.css';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
 import App from './App';
 
 function saveToLocalStorage(state) {
