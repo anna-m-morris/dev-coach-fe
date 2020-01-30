@@ -40,8 +40,11 @@ function Code() {
       <div className='code-header-container'>
         <Interface
           editorState={editorState}
+          setEditorState={setEditorState}
           output={output}
           setOutput={setOutput}
+          language={language}
+          setLanguage={setLanguage}
         />
       </div>
       <div className='code-body-container'>

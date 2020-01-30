@@ -24,7 +24,7 @@ export const mapLanguageToEditorState = (language, editorState) => {
     default:
       return javascriptInitialEditorState;
     case 'javascript':
-      return pythonInitialEditorState;
+      return javascriptInitialEditorState;
     case 'python':
       return pythonInitialEditorState;
   }
