@@ -20,7 +20,6 @@ export const login = (props, values) => dispatch => {
         message: res.data.message,
       });
       localStorage.setItem('token', res.data.token);
-      props.history.push('dashboard');
     })
     .catch(err => {
       dispatch({
