@@ -14,7 +14,7 @@ function App() {
   const [output, setOutput] = React.useState('');
 
   return (
-    <div className='App'>
+    <div>
       <FlexContainer>
         <Editor output={output} setOutput={setOutput} />
         <Display initialText='$  ' output={output} />
