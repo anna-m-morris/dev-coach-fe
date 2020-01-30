@@ -26,7 +26,7 @@ const StyledChatScreen = styled.div`
     flex: none;
     color: #2f4f4f;
     text-align: center;
-    background: #fff;
+    background: #f9f9f9;
     height: 100%;
 
     .chat-title {
@@ -36,7 +36,7 @@ const StyledChatScreen = styled.div`
     }
   }
   .chat-list-container {
-    background: #fafafa;
+    background: #fcfcfc;
     width: 70%;
     display: flex;
     flex-direction: column;

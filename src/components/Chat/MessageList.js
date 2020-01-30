@@ -80,7 +80,7 @@ const MessageList = ({ avatar, messages, userId }) => {
               }
             >
               <p className='message-text'>{message.text}</p>
-              <Avatar src={avatar} className='avatar' />
+              <Avatar src={avatar} className='chat-avatar' />
             </div>
           ))
         ) : (

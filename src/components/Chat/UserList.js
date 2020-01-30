@@ -2,21 +2,32 @@ import React, { useState } from 'react';
 import uuid from 'uuid';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
+import { Avatar } from '@material-ui/core';
 
 const UserListStyle = styled.div`
   position: static;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid #ced4da;
+  padding: 1rem;
+  transition: ease-out 0.1s;
+  cursor: pointer;
+
+  &:hover {
+    transition: ease-in 0.1s;
+    background: #4fad65;
+    color: white;
+  }
+
+  .recent-chat-avatar {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
 
   .bg {
-    border-bottom: 1px solid #ced4da;
-    padding: 1rem;
-    cursor: pointer;
-    transition: ease-out 0.1s;
-
-    &:hover {
-      transition: ease-in 0.1s;
-      background: #4fad65;
-      color: white;
-    }
+    font-size: 1rem;
+    margin-left: 0.3rem;
   }
 
   .bgClicked {
@@ -41,10 +52,14 @@ const UserList = props => {
         rooms &&
         rooms.map(room => (
           <UserListStyle
+            className='recent-user'
             key={uuid()}
             onClick={() => startChat(room.id)}
           >
-            {' '}
+            <Avatar
+              src={user.avatar_url}
+              className='recent-chat-avatar'
+            />
             <ChangeStyle
               clicked={room === clickedIndex}
               onClick={() => handleClick(room)}
