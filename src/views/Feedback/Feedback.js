@@ -16,6 +16,7 @@ import devices from '../../utils/devices';
 const StyledFeedback = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 1rem;
@@ -29,6 +30,7 @@ const StyledFeedback = styled.div`
     color: #595959;
     font-size: 1.8rem;
     font-weight: 400;
+    text-align: center;
 
     @media ${devices.tablet} {
       margin-top: 2rem;
@@ -36,6 +38,12 @@ const StyledFeedback = styled.div`
     }
   }
 
+  .feedback-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+  }
   .chart-display {
     width: 80%;
     margin: 0 auto;
@@ -112,7 +120,8 @@ const Feedback = ({ user, getFeedback, feedback }) => {
               <StudentChart />
             </ChartCardContainer>
           </div>
-          <StyledFeedback className='feedback-card-container'>
+          {/* <StyledFeedback */}
+          <div className='feedback-card-container'>
             {feedback && feedback.length ? (
               feedback
                 .slice(minValue, maxValue)
@@ -133,7 +142,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
             ) : (
               <EmptyFeedback />
             )}
-          </StyledFeedback>
+          </div>
         </div>
       ) : (
         <div className='loaderStyled'>

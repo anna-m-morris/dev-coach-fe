@@ -4,7 +4,7 @@ import devices from '../../utils/devices';
 import FeedbackModal from '../Modals/FeedbackModal';
 
 export const CardContainer = styled.div`
-  max-width: 23rem;
+  max-width: 25rem;
   width: 100%;
   background: white;
   border-radius: 6px;
