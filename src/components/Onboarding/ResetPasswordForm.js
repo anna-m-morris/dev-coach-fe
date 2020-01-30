@@ -23,7 +23,6 @@ import pattern from '../../img/pattern.jpg';
 
 const ResetPasswordForm = props => {
   const {
-    userReducer,
     sendResetPasswordEmail,
     success,
     error,
@@ -60,8 +59,6 @@ const ResetPasswordForm = props => {
       closeMessage,
     );
   };
-  console.log(resetUser);
-
   return (
     <div>
       <GreyBackgroundContainer>

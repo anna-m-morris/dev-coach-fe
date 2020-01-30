@@ -10,8 +10,6 @@ export const updateUserInfo = (
   closeMessage,
 ) => dispatch => {
   dispatch({ type: types.USER_INFO_UPDATE });
-  debugger;
-  console.log(userInfo);
 
   axios
     .put(`${url}user/settings`, userInfo)
@@ -27,7 +25,6 @@ export const updateUserInfo = (
     .catch(err => {
       showError();
       setTimeout(() => closeMessage(), 5000);
-      debugger;
       dispatch({
         type: types.USER_INFO_UPDATE_FAILED,
         payload: err.response.message,
@@ -43,8 +40,6 @@ export const updatePasswordViaEmail = (
   closeMessage,
 ) => dispatch => {
   dispatch({ type: types.UPDATE_PASSWORD_VIA_EMAIL_START });
-  console.log(userInfo);
-
   axios
     .put(`${url}user/settings`, userInfo)
     .then(res => {
@@ -60,7 +55,6 @@ export const updatePasswordViaEmail = (
     .catch(err => {
       showError();
       setTimeout(() => closeMessage(), 5000);
-      debugger;
       dispatch({
         type: types.UPDATE_PASSWORD_VIA_EMAIL_FAILED,
         payload: err.response.message,

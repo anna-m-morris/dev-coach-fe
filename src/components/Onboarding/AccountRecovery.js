@@ -18,6 +18,8 @@ import Notification from '../Notifications/Notification';
 import pattern from '../../img/pattern.jpg';
 import { set } from 'date-fns';
 
+const url = process.env.REACT_APP_BASE_URL;
+
 const AccountRecovery = props => {
   const {
     user,
@@ -44,7 +46,7 @@ const AccountRecovery = props => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/user/accountRecovery', {
+      .get(`${url}user/accountRecovery`, {
         params: {
           token: match.params.token,
         },
@@ -77,7 +79,6 @@ const AccountRecovery = props => {
       closeMessage,
     );
   };
-  console.log(resetUser);
 
   if (resetUser.email) {
     return (

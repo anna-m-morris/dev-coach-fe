@@ -1,7 +1,6 @@
 import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import * as types from './actionTypes';
-import { showErrorMessage } from './notificationActions';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -13,9 +12,8 @@ export const sendResetPasswordEmail = (
   closeMessage,
 ) => dispatch => {
   axios
-    .post('http://localhost:5000/user/resetPassword', userInfo)
+    .post(`${url}user/resetPassword`, userInfo)
     .then(res => {
-      console.log(userInfo);
       if (
         res.data.message ===
         'that email address is not recognized. Please try again'
@@ -31,7 +29,9 @@ export const sendResetPasswordEmail = (
         res.data.message === 'reset password email sent successfully'
       ) {
         showSuccess();
+        userInfo = '';
         setTimeout(() => closeMessage(), 3000);
+        setTimeout(() => props.history.push('/'), 3500);
         dispatch({
           type: types.SEND_RESET_PASSWORD_EMAIL_SUCCESSFUL,
           payload: res.data,
@@ -40,8 +40,8 @@ export const sendResetPasswordEmail = (
       }
     })
     .catch(error => {
-      debugger;
       showError();
+      userInfo = '';
       setTimeout(() => closeMessage(), 5000);
       dispatch({
         type: types.SEND_RESET_PASSWORD_EMAIL_FAILED,
