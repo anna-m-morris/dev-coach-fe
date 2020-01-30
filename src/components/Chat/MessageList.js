@@ -16,14 +16,27 @@ const StyledMessageList = styled.div`
 
   .my-message {
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
     margin: 0;
     margin-top: 2rem;
     color: white;
 
+    .message {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    .message-time {
+      color: #666363;
+      margin: 0.2rem 2.85rem 0 0;
+    }
+
     .message-text {
-      max-width: 65%;
+      display: flex;
+      max-width: 100%;
+      align-self: center;
       padding: 0.4rem 0.8rem;
       border-radius: 4px;
       background: #05728f;
@@ -44,8 +57,8 @@ const StyledMessageList = styled.div`
     color: #666363;
 
     .message {
-      max-width: 65%;
       display: flex;
+      width: 100%;
     }
 
     .message-time {
@@ -55,7 +68,6 @@ const StyledMessageList = styled.div`
     .message-text {
       display: flex;
       align-self: center;
-      max-width: 65%;
       padding: 0.4rem 0.8rem;
       border-radius: 4px;
       background: #ebebeb;
@@ -63,6 +75,7 @@ const StyledMessageList = styled.div`
       margin-left: 0.4rem;
       font-size: 1rem;
       word-wrap: break-word;
+      max-width: 65%;
     }
   }
 `;
@@ -100,11 +113,11 @@ const MessageList = ({ messages, userId, user, currentRoom }) => {
                       }
                       className='chat-avatar'
                     />
-                    <p className='message-text'>{message.text}</p>
+                    <div className='message-text'>{message.text}</div>
                   </div>
-                  <p className='message-time'>
+                  <div className='message-time'>
                     {message.createdAt.slice(11, 16)}
-                  </p>
+                  </div>
                 </div>
               ),
           )
