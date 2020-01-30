@@ -13,22 +13,33 @@ const language = {};
 
 const EditorContainer = styled.div`
   background: coral;
-  height: 40em;
+  height: 80em;
   width: 50%;
+
+  .codemirror {
+    height: 100vh;
+  }
 `;
 
 const Editor = () => {
-  const [editorState, setEditorState] = React.useState()
+  const [editorState, setEditorState] = React.useState();
+
   return (
     <EditorContainer>
-      <CodeMirror   
+      <CodeMirror
+        className='codemirror'
         value={editorState}
         options={{
           theme: 'material',
           lineNumbers: true,
         }}
-        onBeforeChange={(editor, data, value) => setEditorState(value)}
+        onBeforeChange={(editor, data, value) =>
+          setEditorState(value)
+        }
         onChange={(editor, data, value) => {}}
+        editorDidMount={editor => {
+          editor.setSize('100%', '100%');
+        }}
       />
     </EditorContainer>
   );
