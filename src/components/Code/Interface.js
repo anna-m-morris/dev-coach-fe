@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
   Button,
@@ -14,9 +15,14 @@ const handlePost = () => {};
 const handleSelection = () => {};
 const language = {};
 
+const InterfaceContainer = styled.div`
+  width: 100%;
+
+`;
+
 const Interface = () => {
   return (
-    <div>
+    <InterfaceContainer>
       <h1>Code Editor</h1>
       <Button onClick={handlePost}>Submit</Button>
       <FormControl>
@@ -32,7 +38,7 @@ const Interface = () => {
           <MenuItem value='cpp'>C++</MenuItem>
         </Select>
       </FormControl>
-    </div>
+    </InterfaceContainer>
   );
 };
 

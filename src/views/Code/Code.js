@@ -6,20 +6,20 @@ import Terminal from '../../components/Code/Terminal';
 
 const FlexContainer = styled.div`
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  background: red;
 `;
 
 function Code() {
   return (
-    <div>
-      <FlexContainer>
-        <Interface />
-        <Editor />
-        {/* <Terminal /> */}
-      </FlexContainer>
-    </div>
+    <FlexContainer>
+      <Interface />
+      <Editor />
+      {/* <Terminal /> */}
+    </FlexContainer>
   );
 }
 
