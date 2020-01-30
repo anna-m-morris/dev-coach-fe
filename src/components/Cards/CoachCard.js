@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import CoachModal from '../Modals/CoachModal';
 import Rating from '../DataVisualization/Rating';
+import devices from '../../utils/devices';
 
 const StyledCoachCard = styled.div`
   display: flex;
@@ -21,6 +22,9 @@ const StyledCoachCard = styled.div`
   background: white;
   box-shadow: 0 6px 10px #d3d3d3;
 
+  /* @media ${devices.mobile} {
+    width: 16rem;
+  } */
   h3 {
     font-weight: 400;
     font-size: 1rem;

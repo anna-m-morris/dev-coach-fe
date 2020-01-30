@@ -17,6 +17,7 @@ import { saveForChat } from '../../state/actions/chatActions';
 import SelectPrice from '../../components/Inputs/SelectPrice';
 import SelectExperience from '../../components/Inputs/SelectExperience';
 import SearchForKeyword from '../../components/Inputs/SearchForKeyword';
+import devices from '../../utils/devices';
 
 const StyledMarketplace = styled.div`
   display: flex;
@@ -32,6 +33,11 @@ const StyledMarketplace = styled.div`
     .keyword {
       margin-top: 1rem;
     }
+
+    @media ${devices.mobile} {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   .coaches {
@@ -40,6 +46,10 @@ const StyledMarketplace = styled.div`
     width: 100%;
     justify-content: space-evenly;
     padding-top: 1rem;
+
+    /* @media ${devices.mobile} {
+      width: 80%;
+    } */
   }
 
   .pagination {
