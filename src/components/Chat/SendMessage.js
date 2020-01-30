@@ -9,7 +9,7 @@ const StyledSendMessage = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem;
+    margin: 0 1rem;
   }
 
   .input {
@@ -19,20 +19,21 @@ const StyledSendMessage = styled.div`
     border: none;
     flex: 1;
     font-size: 1rem;
+    margin: 1rem 0;
   }
 
   button {
-    background: #4fad65;
+    background: #05728f;
     border: none;
-    width: 4rem;
-    height: 100%;
-    border-radius: 5px;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
     outline: none;
     cursor: pointer;
     transition: ease-out 0.1s;
 
     &:hover {
-      background: #1e3f1f;
+      background: #078baf;
       transition: ease-in 0.1s;
     }
   }

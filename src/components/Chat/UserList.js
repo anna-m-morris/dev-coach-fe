@@ -13,7 +13,7 @@ const UserListStyle = styled.div`
 
   &:hover {
     transition: ease-in 0.1s;
-    background: #4fad65;
+    background: #05728f;
     color: white;
   }
 
@@ -32,7 +32,7 @@ const UserListStyle = styled.div`
   }
 
   .bgClicked {
-    background: #4fad65;
+    background: #05728f;
     border-bottom: none;
     color: white;
     display: flex;

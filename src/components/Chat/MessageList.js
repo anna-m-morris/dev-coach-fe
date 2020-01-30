@@ -26,7 +26,7 @@ const StyledMessageList = styled.div`
       max-width: 65%;
       padding: 0.4rem 0.8rem;
       border-radius: 4px;
-      background: #4fad65;
+      background: #05728f;
       margin: 0;
       margin-right: 0.4rem;
       font-size: 1rem;
@@ -67,28 +67,31 @@ const MessageList = ({ messages, userId, user, currentRoom }) => {
   return (
     <StyledMessageList className='message-list-container'>
       <div className='message-list'>
-        {messages && currentRoom ? (
-          messages.map((message, index) => (
-            <div
-              key={index}
-              className={
-                message.senderId === userId
-                  ? 'my-message'
-                  : 'peer-message'
-              }
-            >
-              <p className='message-text'>{message.text}</p>
-              <Avatar
-                src={
-                  message.senderId === user.email &&
-                  user.role_id === 1
-                    ? currentRoom.customData.role_id_one_url
-                    : currentRoom.customData.role_id_two_url
-                }
-                className='chat-avatar'
-              />
-            </div>
-          ))
+        {messages ? (
+          messages.map(
+            (message, index) =>
+              currentRoom && (
+                <div
+                  key={index}
+                  className={
+                    message.senderId === userId
+                      ? 'my-message'
+                      : 'peer-message'
+                  }
+                >
+                  <p className='message-text'>{message.text}</p>
+                  <Avatar
+                    src={
+                      message.senderId === user.email &&
+                      user.role_id === 1
+                        ? currentRoom.customData.role_id_one_url
+                        : currentRoom.customData.role_id_two_url
+                    }
+                    className='chat-avatar'
+                  />
+                </div>
+              ),
+          )
         ) : (
           <Loader
             type='TailSpin'
