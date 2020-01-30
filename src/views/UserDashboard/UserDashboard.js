@@ -5,16 +5,16 @@ import uuid from 'uuid';
 import Pagination from 'antd/lib/pagination';
 import 'antd/lib/pagination/style/index.css';
 import Loader from 'react-loader-spinner';
-
 import {
   getAppointment,
   cancelAppointment,
 } from '../../state/actions/appointmentActions';
+import { saveRescheduledCoach } from '../../state/actions/bookingActions';
 import { saveIdRole } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
-import NewAppointmentCard from '../../components/Cards/newAppointmentCard';
 import devices from '../../utils/devices';
+import AppointmentCard from '../../components/Cards/AppointmentCard';
 
 const DashboardContainer = styled.div`
   width: 100%;
@@ -44,7 +44,7 @@ const DashboardContainer = styled.div`
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    margin-bottom: 2em;
+    margin-top: 1em;
     color: #4a4a4a;
     font-size: 1rem;
 
@@ -156,6 +156,7 @@ const DashboardContainer = styled.div`
 
 const UserDashboard = props => {
   const {
+    history,
     appointments,
     getAppointment,
     user,
@@ -189,7 +190,6 @@ const UserDashboard = props => {
   };
   return (
     <DashboardContainer>
-      <h2 className='appointment-title'>Scheduled Interviews</h2>
       <div className='top-data-card'>
         <div className='top-data-section'>
           <p className='data'>
@@ -212,6 +212,7 @@ const UserDashboard = props => {
           <p>Upcoming interviews</p>
         </div>
       </div>
+      <h2 className='appointment-title'>Scheduled Interviews</h2>
       {appointments ? (
         <div className='appointment-cards-container'>
           {appointments && appointments.length ? (
@@ -219,16 +220,21 @@ const UserDashboard = props => {
               {appointments
                 .slice(minValue, maxValue)
                 .map(appointment => (
-                  <NewAppointmentCard
+                  <AppointmentCard
                     key={uuid()}
                     appointment={appointment}
-                    cancel={() => cancelAppointment(appointment.id)}
-                    startInterview={() =>
-                      startInterview(appointment.user_id, props)
-                    }
-                    saveIdRole={() =>
-                      saveIdRole(appointment.role_id, appointment.id)
-                    }
+                    cancelAppointment={() => {
+                      cancelAppointment(appointment.id, history, {
+                        id: appointment.id,
+                        first_name: appointment.first_name,
+                        last_name: appointment.last_name,
+                        email: appointment.email,
+                      });
+                    }}
+                    startInterview={() => {
+                      startInterview(appointment.email, props);
+                      saveIdRole(appointment.role_id, appointment.id);
+                    }}
                   />
                 ))}
               <div className='pagination'>
@@ -260,6 +266,7 @@ const UserDashboard = props => {
 
 const mapStateToProps = state => {
   return {
+    coach: state.bookingReducer.coach,
     user: state.userReducer.user,
     appointments: state.appointmentsReducer.appointments,
     feedback: state.feedbackReducer.feedback,
@@ -271,4 +278,5 @@ export default connect(mapStateToProps, {
   cancelAppointment,
   startInterview,
   saveIdRole,
+  saveRescheduledCoach,
 })(UserDashboard);

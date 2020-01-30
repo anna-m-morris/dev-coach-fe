@@ -207,12 +207,10 @@ const LoginForm = ({
 };
 
 const FormikLoginForm = withFormik({
-  mapPropsToValues({ email, password }) {
-    return {
-      email: email || '',
-      password: password || '',
-    };
-  },
+  mapPropsToValues: () => ({
+    email: '',
+    password: '',
+  }),
   validationSchema: Yup.object().shape({
     email: Yup.string()
       .email('Please enter a valid email')
@@ -221,7 +219,7 @@ const FormikLoginForm = withFormik({
       .required('Please enter your password')
       .min(3, 'Must be 6 characters minimun'),
   }),
-  handleSubmit(values, { props, resetForm, setSubmitting }) {
+  handleSubmit: (values, { props, resetForm, setSubmitting }) => {
     resetForm();
     setSubmitting(false);
 

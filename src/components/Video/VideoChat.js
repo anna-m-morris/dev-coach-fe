@@ -1,198 +1,153 @@
-import React, { Component } from 'react';
-import Pusher from 'pusher-js';
-import Peer from 'simple-peer';
+import React, { useState, useCallback } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-import MediaHandler from '../../utils/MediaHandler';
+import Lobby from './Lobby';
+import Room from './Room';
 
 const StyledVideoChat = styled.div`
-  width: 500px;
-  height: 380px;
-  margin: 0px auto;
-  border: 2px solid #645cff;
-  position: relative;
-  box-shadow: 1px 1px 11px #9e9e9e;
-
-  .my-video {
-    width: 130px;
-    position: absolute;
-    left: 10px;
-    bottom: 10px;
-    border: 6px solid #2196f3;
-    border-radius: 6px;
-    z-index: 2;
+  main {
+    background: #ffffff;
+    flex-grow: 1;
   }
-
-  .user-video {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
+  form {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  h2 {
+    font-weight: 300;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+  form > div {
     width: 100%;
-    height: 100%;
-    z-index: 1;
+    margin-bottom: 1em;
+  }
+  form > div > label {
+    display: block;
+    margin-bottom: 0.3em;
+  }
+  form > div > input {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    padding: 0.4em;
+    border-radius: 6px;
+    border: 1px solid #333e5a;
+  }
+  button {
+    background: #333e5a;
+    color: #fff;
+    font-size: 16px;
+    padding: 0.4em;
+    border-radius: 6px;
+    border: 1px solid transparent;
+  }
+  button:hover {
+    filter: brightness(150%);
+  }
+  .room {
+    position: relative;
+  }
+  .room button {
+    position: absolute;
+    top: 0;
+    right: 20px;
+  }
+  .room > h3 {
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 1em;
+  }
+  .local-participant {
+    text-align: center;
+    margin-bottom: 2em;
+  }
+  .remote-participants {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 0 2em 2em;
+  }
+  .participant {
+    background: #333e5a;
+    padding: 10px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .participant:last-child {
+    margin-right: 0;
+  }
+  .participant h3 {
+    text-align: center;
+    padding-bottom: 0.5em;
+    color: #fff;
+  }
+  video {
+    width: 100%;
+    max-width: 600px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 6px;
   }
 `;
 
-const APP_KEY = '9ebd578e6fc08eeb098e';
+const VideoChat = () => {
+  const [username, setUsername] = useState('');
+  const [roomName, setRoomName] = useState('');
+  const [token, setToken] = useState(null);
 
-class VideoChat extends Component {
-  constructor() {
-    super();
+  const handleUsernameChange = useCallback(event => {
+    setUsername(event.target.value);
+  }, []);
 
-    this.state = {
-      hasMedia: false,
-      otherUserId: null,
-      user: null,
-    };
+  const handleRoomNameChange = useCallback(event => {
+    setRoomName(event.target.value);
+  }, []);
 
-    this.peers = {};
+  const handleSubmit = useCallback(
+    async event => {
+      event.preventDefault();
+      await axios
+        .post(`${process.env.REACT_APP_BASE_URL}video/token`, {
+          identity: username,
+          room: roomName,
+        })
+        .then(res => setToken(res.data.token));
+    },
+    [roomName, username],
+  );
 
-    this.mediaHandler = new MediaHandler();
-  }
+  const handleLogout = useCallback(event => {
+    setToken(null);
+  }, []);
 
-  componentWillMount = () => {
-    this.setState({
-      user: {
-        id: this.props.user.user_id,
-        name: this.props.user.email,
-      },
-    });
-
-    setTimeout(
-      () =>
-        this.mediaHandler.getPermissions().then(stream => {
-          this.setState({
-            hasMedia: true,
-            user: { ...this.state.user, stream: stream },
-          });
-
-          try {
-            this.myVideo.srcObject = stream;
-          } catch (e) {
-            this.myVideo.src = URL.createObjectURL(stream);
-          }
-
-          this.myVideo.play();
-        }),
-      1000,
+  let render;
+  if (token) {
+    render = (
+      <StyledVideoChat>
+        <Room
+          roomName={roomName}
+          token={token}
+          handleLogout={handleLogout}
+        />
+      </StyledVideoChat>
     );
-    setTimeout(() => this.setupPusher(), 2000);
-  };
-
-  setupPusher = () => {
-    // `${process.env.REACT_APP_BASE_URL}video`
-    Pusher.logToConsole = true;
-    this.pusher = new Pusher(APP_KEY, {
-      authEndpoint: `http://localhost:5000/video`,
-      cluster: 'eu',
-      auth: {
-        params: this.state.user.id,
-        headers: {
-          authorization: localStorage.getItem('token'),
-        },
-      },
-    });
-
-    this.channel = this.pusher.subscribe(`presence-video-channel`);
-
-    this.channel.bind(
-      `client-signal-${this.state.user.id}`,
-      signal => {
-        let peer = this.peers[signal.userId];
-
-        // if peer is not already exists, we got an incoming call
-        if (peer === undefined) {
-          this.setState({ otherUserId: signal.userId });
-          peer = this.startPeer(signal.userId, false);
-        }
-
-        peer.signal(signal.data);
-      },
-    );
-  };
-
-  startPeer = (userId, initiator = true) => {
-    const peer = new Peer({
-      initiator,
-      stream: this.state.user.stream,
-      trickle: false,
-    });
-
-    peer.on('signal', data => {
-      this.channel.trigger(`client-signal-${userId}`, {
-        type: 'signal',
-        userId: this.state.user.id,
-        data: data,
-      });
-    });
-
-    peer.on('stream', stream => {
-      try {
-        this.userVideo.srcObject = stream;
-      } catch (e) {
-        this.userVideo.src = URL.createObjectURL(stream);
-      }
-
-      this.userVideo.play();
-    });
-
-    peer.on('close', () => {
-      let peer = this.peers[userId];
-      if (peer !== undefined) {
-        peer.destroy();
-      }
-
-      this.peers[userId] = undefined;
-    });
-
-    return peer;
-  };
-
-  callTo = userId => {
-    this.peers[userId] = this.startPeer(userId);
-  };
-
-  render() {
-    return (
-      <div>
-        {this.props.peerId
-          ? [this.props.peerId].map(userId => (
-              <button
-                key={userId}
-                onClick={() => this.callTo(userId)}
-              >
-                Call to Person
-              </button>
-            ))
-          : null}
-        <StyledVideoChat>
-          <div className='video-container'>
-            <video
-              className='my-video'
-              ref={ref => {
-                this.myVideo = ref;
-              }}
-            />
-            <video
-              className='user-video'
-              ref={ref => {
-                this.userVideo = ref;
-              }}
-            />
-          </div>
-        </StyledVideoChat>
-      </div>
+  } else {
+    render = (
+      <StyledVideoChat>
+        <Lobby
+          username={username}
+          roomName={roomName}
+          handleUsernameChange={handleUsernameChange}
+          handleRoomNameChange={handleRoomNameChange}
+          handleSubmit={handleSubmit}
+        />
+      </StyledVideoChat>
     );
   }
-}
-
-const mapStateToProps = state => {
-  return {
-    user: state.userReducer.user,
-    peerId: state.interviewReducer.peerId,
-  };
+  return render;
 };
 
-export default connect(mapStateToProps)(VideoChat);
+export default VideoChat;
+

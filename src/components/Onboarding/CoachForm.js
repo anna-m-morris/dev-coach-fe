@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
 import styled from 'styled-components';
+import { useField, Form, Field, Formik } from 'formik';
+import * as yup from 'yup';
 import {
   FormControl,
   Select,
@@ -12,11 +14,11 @@ import {
   TextField,
   Box,
 } from '@material-ui/core';
-import { Autocomplete } from '@material-ui/lab/';
-import { countries } from '../../utils/countries';
+
 import { buttonTheme, Logo } from '../Landing/Landing-styles';
 import { FormButton, InfoParagraph } from './StudentForm';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
+import options from './coachFormState';
 
 const CoachCardContainer = styled.div`
   max-width: 100%;
@@ -54,6 +56,10 @@ const useStyles = makeStyles(theme => ({
     '& > *': {
       marginTop: '0.3em',
       marginBottom: '0.3em',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
     },
   },
   description: {
@@ -61,67 +67,42 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: '2em',
   },
 }));
+
+const validationSchema = yup.object().shape({
+  userLocation: yup.string().required('Please enter location'),
+  experience: yup.number().required('please provide experience'),
+  skills: yup.number().required('Please select a skill'),
+  description: yup.string().required('Please enter description'),
+  github: yup.string().required('Please enter github'),
+  linkedin: yup.string().required('Please enter linkdein'),
+});
+
 const CoachForm = props => {
   const classes = useStyles();
-  const [formValues, setFormValues] = useState({
+  const initialValues = {
     userLocation: '',
-    experience: {
-      value: '',
-      options: [
-        {
-          level: 0,
-          text: 'None',
-        },
-        {
-          level: 1,
-          text: "I've worked for 1 - 2 years as a junior developer",
-        },
-        {
-          level: 2,
-          text: "I've worked for 2+ years as a mid-level developer",
-        },
-        {
-          level: 3,
-          text:
-            "I've worked for 4+ years and am a senior level developer",
-        },
-        {
-          level: 4,
-          text:
-            "I've worked for 8+ years and have held senior positions as a tech lead or engineering manager",
-        },
-        {
-          level: 5,
-          text:
-            "I've worked as a developer for over 10 years including at a highly senior level",
-        },
-      ],
-    },
-    skills: {
-      value: '',
-      options: [
-        {
-          level: 1,
-          text: "I'm a junior developer",
-        },
-        {
-          level: 2,
-          text: "I'm a mid-level developer",
-        },
-        {
-          level: 3,
-          text: "I'm a senior developer",
-        },
-        {
-          level: 4,
-          text: "I'm a tech lead or experienced senior developer",
-        },
-      ],
-    },
+    experience: '',
+    skills: '',
     description: '',
     github: '',
     linkedin: '',
-  });
+  };
+
+  const MyTextField = ({ placeholder, ...props }) => {
+    const [field, meta] = useField(props);
+    const errorText = meta.error && meta.touched ? meta.error : '';
+
+    return (
+      <TextField
+        placeholder={placeholder}
+        {...field}
+        helperText={errorText}
+        error={!!errorText}
+        className={classes.textField}
+      />
+    );
+  };
+
   return (
     <CoachCardContainer className='coach-card-container'>
       <div className='coach-card'>
@@ -133,141 +114,110 @@ const CoachForm = props => {
           Tell us about yourself. What can you offer as a coach?
         </InfoParagraph>
         <div>
-          <Box
-            className={classes.box}
-            display='flex'
-            flexDirection='column'
-            justifyContent='space-evenly'
-            alignItems='center'
-          >
-            <FormControl required className={classes.formControl}>
-              <Autocomplete
-                name='location'
-                options={countries}
-                getOptionLabel={option => option.name}
-                onChange={event =>
-                  setFormValues({
-                    ...formValues,
-                    userLocation: event.target.innerText,
-                  })
-                }
-                renderInput={params => (
-                  <TextField
-                    required
-                    name='location'
-                    {...params}
-                    label='Select your location'
-                    fullWidth
-                  />
-                )}
-              />
-            </FormControl>
-            <FormControl required className={classes.formControl}>
-              <InputLabel>Experience</InputLabel>
-              <Select
-                placeholder='experience'
-                name='experience'
-                value={formValues.experience.value}
-                onChange={event =>
-                  setFormValues({
-                    ...formValues,
-                    experience: {
-                      ...formValues.experience,
-                      value: event.target.value,
-                    },
-                  })
-                }
-              >
-                {formValues.experience.options.map(el => (
-                  <MenuItem value={el.level} key={uuid()}>
-                    {el.text}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl required className={classes.formControl}>
-              <InputLabel>Skill level</InputLabel>
-              <Select
-                placeholder='Skill level'
-                name='skills'
-                value={formValues.skills.value}
-                onChange={event =>
-                  setFormValues({
-                    ...formValues,
-                    skills: {
-                      ...formValues.skills,
-                      value: event.target.value,
-                    },
-                  })
-                }
-              >
-                {formValues.skills.options.map(el => (
-                  <MenuItem key={uuid()} value={el.level}>
-                    {el.text}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl className={classes.description}>
-              <TextField
-                fullWidth
-                multiline
-                label='Description'
-                value={formValues.description}
-                onChange={event =>
-                  setFormValues({
-                    ...formValues,
-                    description: event.target.value,
-                  })
-                }
-              ></TextField>
-              <FormControl>
-                <TextField
-                  value={formValues.github}
-                  onChange={event =>
-                    setFormValues({
-                      ...formValues,
-                      github: event.target.value,
-                    })
-                  }
-                  placeholder='Link to your GitHub profile (optional)'
-                  className={classes.textField}
-                />
-              </FormControl>
-              <FormControl>
-                <TextField
-                  value={formValues.linkedin}
-                  onChange={event =>
-                    setFormValues({
-                      ...formValues,
-                      linkedin: event.target.value,
-                    })
-                  }
-                  placeholder='Link to your LinkedIn profile (optional)'
-                  className={classes.textField}
-                />
-              </FormControl>
-            </FormControl>
-            <FormButton
-              className='submit-button'
-              theme={buttonTheme}
-              onClick={() =>
-                props.chooseUserRole(props, {
-                  userLocation: formValues.userLocation,
-                  experience: formValues.experience.value,
-                  skills: formValues.skills.value,
-                  description: formValues.description,
-                  github: formValues.github,
-                  linkedin: formValues.linkedin,
-                })
-              }
+          <Box className={classes.box}>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={(values, { setSubmitting, resetForm }) => {
+                setSubmitting(false);
+                props.chooseUserRole(props, values);
+                console.log(values);
+                setSubmitting(false);
+                resetForm();
+              }}
             >
-              Submit
-            </FormButton>
+              {({ values, isSubmitting, errors }) => (
+                <Form className={classes.box}>
+                  <div>
+                    <MyTextField
+                      placeholder='Location'
+                      name='userLocation'
+                    />
+                  </div>
+
+                  <div>
+                    <FormControl
+                      className={classes.formControl}
+                      error={!!errors.experience}
+                    >
+                      <InputLabel
+                        style={{ color: '#bdbdbd' }}
+                        className='input-label'
+                      >
+                        Experience
+                      </InputLabel>
+                      <Field
+                        value={values.experience}
+                        name='experience'
+                        as={Select}
+                      >
+                        {options.expOptions.map(option => (
+                          <MenuItem value={option.level} key={uuid()}>
+                            {option.text}
+                          </MenuItem>
+                        ))}
+                      </Field>
+                    </FormControl>
+                  </div>
+
+                  <div>
+                    <FormControl
+                      className={classes.formControl}
+                      error={!!errors.skills}
+                    >
+                      <InputLabel
+                        style={{ color: '#bdbdbd' }}
+                        className='input-label'
+                      >
+                        Skills
+                      </InputLabel>
+                      <Field
+                        value={values.skills}
+                        name='skills'
+                        type='select'
+                        as={Select}
+                      >
+                        {options.skillOptions.map(option => (
+                          <MenuItem value={option.level} key={uuid()}>
+                            {option.text}
+                          </MenuItem>
+                        ))}
+                      </Field>
+                    </FormControl>
+                  </div>
+
+                  <div>
+                    <MyTextField
+                      placeholder='Description'
+                      name='description'
+                    />
+                  </div>
+                  <div>
+                    <MyTextField placeholder='GitHub' name='github' />
+                  </div>
+                  <div>
+                    <MyTextField
+                      placeholder='Linkedin'
+                      name='linkedin'
+                    />
+                  </div>
+
+                  <FormButton
+                    className='submit-button'
+                    theme={buttonTheme}
+                    disabled={isSubmitting}
+                    type='submit'
+                  >
+                    Submit
+                  </FormButton>
+                </Form>
+              )}
+            </Formik>
           </Box>
         </div>
       </div>
     </CoachCardContainer>
   );
 };
+
 export default connect(state => state, { chooseUserRole })(CoachForm);
