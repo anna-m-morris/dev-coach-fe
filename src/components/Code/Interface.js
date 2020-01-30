@@ -16,8 +16,9 @@ const handleSelection = () => {};
 const language = {};
 
 const InterfaceContainer = styled.div`
+  background: blue;
+  height: 5em;
   width: 100%;
-
 `;
 
 const Interface = () => {

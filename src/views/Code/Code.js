@@ -7,21 +7,23 @@ import Terminal from '../../components/Code/Terminal';
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   width: 100%;
   height: 100%;
   background: violet;
 
   .interface {
-    background: palegoldenrod;
+    background: blue;
     height: 5em;
     width: 100%;
-    margin-top: 2em;
   }
 
   .editor {
     background: coral;
+    height: 40em;
+    width: 50%;
   }
 
   .terminal {
@@ -32,10 +34,10 @@ const FlexContainer = styled.div`
 function Code() {
   return (
     <FlexContainer>
-      {/* <Interface /> */}
+      <Interface />
       {/* <Editor /> */}
       {/* <Terminal />   */}
-      <div className='interface'></div>
+      {/* <div className='interface'></div> */}
       <div className='editor'></div>
       <div className='terminal'></div>
     </FlexContainer>
