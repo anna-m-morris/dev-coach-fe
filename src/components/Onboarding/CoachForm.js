@@ -200,6 +200,12 @@ const CoachForm = props => {
                       name='linkedin'
                     />
                   </div>
+                  <div>
+                    <MyTextField
+                      placeholder='Hourly price'
+                      name='hourly_rate'
+                    />
+                  </div>
 
                   <FormButton
                     className='submit-button'
