@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import uuid from 'uuid';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 import { Avatar } from '@material-ui/core';
 
 const UserListStyle = styled.div`
-  /* position: static; */
   border-bottom: 1px solid #ced4da;
   transition: ease-out 0.1s;
   cursor: pointer;

@@ -7,7 +7,6 @@ import SendMessageForm from './SendMessage';
 import UserList from './UserList';
 import { getRooms } from '../../state/actions/chatActions';
 import TypingIndicator from './TypingIndicator';
-import devices from '../../utils/devices';
 
 const StyledChatScreen = styled.div`
   height: 43.2rem;
