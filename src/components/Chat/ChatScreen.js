@@ -28,6 +28,7 @@ const StyledChatScreen = styled.div`
     text-align: center;
     background: #f9f9f9;
     height: 100%;
+    overflow: auto;
 
     .chat-title {
       border-bottom: 1px solid #ced4da;

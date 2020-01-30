@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import uuid from 'uuid';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
@@ -13,6 +13,7 @@ const UserListStyle = styled.div`
   padding: 1rem;
   transition: ease-out 0.1s;
   cursor: pointer;
+  overflow: auto;
 
   &:hover {
     transition: ease-in 0.1s;
@@ -42,6 +43,7 @@ const UserListStyle = styled.div`
 const UserList = props => {
   const { user, rooms, startChat } = props;
   const [clickedIndex, setClickedindex] = useState(0);
+
   const handleClick = index => {
     setClickedindex(index);
   };
