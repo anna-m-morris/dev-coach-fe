@@ -12,6 +12,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
+import devices from '../../utils/devices';
 
 const StyledCoachCard = styled.div`
   display: flex;
@@ -27,6 +28,9 @@ const StyledCoachCard = styled.div`
   background: white;
   box-shadow: 0 6px 10px #d3d3d3;
 
+  @media ${devices.mobile} {
+    width: 14rem;
+  }
   .header {
     display: flex;
     justify-content: space-around;
@@ -99,6 +103,17 @@ const StyledCoachCard = styled.div`
     }
 
     .cancel-button {
+    }
+
+    @media ${devices.mobile} {
+      flex-direction: column;
+      justify-content: center;
+
+      .button {
+        width: 100%;
+        margin-top: 5px;
+        text-align: center;
+      }
     }
   }
 `;

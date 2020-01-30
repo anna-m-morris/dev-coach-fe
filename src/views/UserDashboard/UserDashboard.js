@@ -16,6 +16,7 @@ import {
 } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
+import devices from '../../utils/devices';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
 
 const DashboardContainer = styled.div`
@@ -29,6 +30,12 @@ const DashboardContainer = styled.div`
     color: #595959;
     font-size: 1.8rem;
     font-weight: 400;
+
+    @media ${devices.mobile} {
+      margin-top: 40px;
+      font-size: 1.6rem;
+      text-align: center;
+    }
   }
   .top-data-card {
     width: 100%;
@@ -42,6 +49,11 @@ const DashboardContainer = styled.div`
     margin-top: 1em;
     color: #4a4a4a;
     font-size: 1rem;
+
+    @media ${devices.tablet} {
+      width: 80%;
+      flex-direction: column;
+    }
 
     .top-data-section {
       text-align: center;
@@ -75,6 +87,10 @@ const DashboardContainer = styled.div`
     align-items: center;
     width: 100%;
     margin-top: 2em;
+
+    @media ${devices.mobile} {
+      width: 80%;
+    }
   }
   .pagination {
     padding: 2em;

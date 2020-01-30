@@ -2,19 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { Empty } from 'antd';
 import { Link } from 'react-router-dom';
+import devices from '../../utils/devices';
 
 const StyledContainer = styled.div`
-  width: 700px;
+  width: 48rem;
   height: 100%;
   max-width: 100%;
   background: white;
   box-shadow: 0 6px 10px rgba(50, 50, 93, 0.1);
   padding: 40px;
 
-  @media only screen and (max-width: 600px) {
-    width: 10rem;
+  @media ${devices.tablet} {
+    width: 80%;
     height: 100%;
-    max-width: 80%;
   }
 
   h3 {
@@ -30,7 +30,11 @@ const StyledContainer = styled.div`
     margin-left: 35%;
     padding-top: 30px;
 
-    @media only screen and (max-width: 600px) {
+    @media ${devices.tablet} {
+      margin-left: 9%;
+    }
+
+    @media ${devices.mobile} {
       display: none;
     }
   }
@@ -55,14 +59,15 @@ const StyledContainer = styled.div`
       transition: ease-in 0.2s;
     }
 
-    @media only screen and (max-width: 600px) {
-      margin-left: 0%;
-      width: 100%;
-    }
-
     .link {
       text-decoration: none;
       color: white;
+    }
+
+    @media ${devices.tablet} {
+      width: 80%;
+      font-size: 0.6rem;
+      margin-left: 9%;
     }
   }
 `;
