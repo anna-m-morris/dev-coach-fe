@@ -32,14 +32,25 @@ const FlexContainer = styled.div`
 `;
 
 function Code() {
+  const [editorState, setEditorState] = React.useState();
   const [output, setOutput] = React.useState('');
+  const [language, setLanguage] = React.useState('javascript');
   return (
     <FlexContainer>
       <div className='code-header-container'>
-        <Interface />
+        <Interface
+          editorState={editorState}
+          output={output}
+          setOutput={setOutput}
+        />
       </div>
       <div className='code-body-container'>
-        <Editor output={output} setOutput={setOutput} />
+        <Editor
+          output={output}
+          setOutput={setOutput}
+          editorState={editorState}
+          setEditorState={setEditorState}
+        />
         <Terminal initialText='$  ' output={output} />
       </div>
     </FlexContainer>

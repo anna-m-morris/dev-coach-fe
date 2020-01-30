@@ -10,12 +10,12 @@ import {
 } from '@material-ui/core';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import { ToggleButton } from '@material-ui/lab';
-
-// todos:
-
-const handlePost = () => {};
-const handleSelection = () => {};
-const language = {};
+import {
+  testCode,
+  logCode,
+  mapLanguageToId,
+  mapLanguageToEditorState,
+} from '../../utils/executionHelpers';
 
 const InterfaceContainer = styled.div`
   width: 90%;
@@ -29,7 +29,18 @@ const InterfaceContainer = styled.div`
   }
 `;
 
-const Interface = () => {
+const input1 = 3;
+const input2 = 10;
+const input3 = 329425;
+
+const Interface = ({
+  output,
+  setOutput,
+  language,
+  setLanguage,
+  editorState,
+  setEditorState,
+}) => {
   const [toggled, toggle] = React.useState();
   const handlePost = () => {
     const tests = [input1, input2, input3];
@@ -38,6 +49,11 @@ const Interface = () => {
     } else {
       setOutput(logCode(editorState, mapLanguageToId(language)));
     }
+  };
+
+  const handleSelection = event => {
+    setLanguage(event.target.value);
+    setEditorState(mapLanguageToEditorState(event.target.value));
   };
 
   return (

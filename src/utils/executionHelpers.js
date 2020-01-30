@@ -1,13 +1,32 @@
 import Axios from 'axios';
 
+const javascriptInitialEditorState = `function square(x) {
+    // challenge #1: write a function that takes a number and returns its square
+  
+  };
+  `;
+
+const pythonInitialEditorState = `# example code: print n fibonacci numbers
+  
+  a = 10
+  
+  def fib(n):
+      a, b = 0, 1
+      for _ in range(n):
+          yield a
+          a, b = b, a + b
+  
+  print(list(fib(a)))
+  `;
+
 export const mapLanguageToEditorState = (language, editorState) => {
   switch (language) {
     default:
-      return editorState.javascript;
+      return javascriptInitialEditorState;
     case 'javascript':
-      return editorState.javascript;
+      return pythonInitialEditorState;
     case 'python':
-      return editorState.python;
+      return pythonInitialEditorState;
   }
 };
 
