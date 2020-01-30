@@ -48,6 +48,12 @@ function userReducer(state = initialState, action) {
         isLoading: false,
         isLoggedIn: false,
       };
+    case types.SIGN_UP_SUCCESSFUL:
+      return {
+        ...state,
+        isLoading: false,
+        user: action.payload,
+      };
     case types.SIGN_UP_ERROR:
       return {
         ...state,

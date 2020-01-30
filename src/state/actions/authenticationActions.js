@@ -20,7 +20,7 @@ export const login = (props, values) => dispatch => {
         message: res.data.message,
       });
       localStorage.setItem('token', res.data.token);
-      window.location.reload();
+      props.history.push('dashboard');
     })
     .catch(err => {
       dispatch({
@@ -31,18 +31,22 @@ export const login = (props, values) => dispatch => {
 };
 
 export const register = (props, values) => dispatch => {
-  dispatch({ type: types.SIGN_UP });
-  dispatch({ type: types.LOGIN_START });
+  debugger;
+  dispatch({ type: types.SIGN_UP_START });
   axios
     .post(`${url}user/register`, values)
     .then(res => {
-      dispatch({ type: types.SIGN_UP_SUCCESSFUL });
+      debugger;
       dispatch({
-        type: types.LOGIN_SUCCESSFUL,
+        type: types.SIGN_UP_SUCCESSFUL,
         payload: res.data.user,
-        message: res.data.message,
       });
-      localStorage.setItem('tempuser', res.data.token);
+      // dispatch({
+      //   type: types.LOGIN_SUCCESSFUL,
+      //   payload: res.data.user,
+      //   message: res.data.message,
+      // });
+      localStorage.setItem('token', res.data.token);
       localStorage.setItem('id', res.data.user.id);
       props.handleNext();
     })
@@ -55,7 +59,8 @@ export const register = (props, values) => dispatch => {
 };
 
 export const chooseUserRole = (props, values) => dispatch => {
-  const token = localStorage.getItem('tempuser');
+  debugger;
+  // const token = localStorage.getItem('tempuser');
   const id = localStorage.getItem('id');
   axiosWithAuth()
     .put(`${url}user/${id}`, {
@@ -63,6 +68,7 @@ export const chooseUserRole = (props, values) => dispatch => {
       role_id: props.userReducer.user.role_id,
     })
     .then(res => {
+      debugger;
       dispatch({ type: types.USER_ROLE_CHOSEN });
       if (props.userReducer.user.role_id === 1) {
         axiosWithAuth()
@@ -78,10 +84,11 @@ export const chooseUserRole = (props, values) => dispatch => {
             });
           })
           .then(() => {
-            localStorage.setItem('token', token);
-            localStorage.removeItem('tempuser');
+            // localStorage.setItem('token', token);
+            // localStorage.removeItem('tempuser');
             localStorage.removeItem('id');
-            window.location.reload();
+            // window.location.reload();
+            props.history.push('/dashboard');
           })
           .catch(err => {});
       } else {
@@ -98,10 +105,11 @@ export const chooseUserRole = (props, values) => dispatch => {
             });
           })
           .then(() => {
-            localStorage.setItem('token', token);
-            localStorage.removeItem('tempuser');
+            // localStorage.setItem('token', token);
+            // localStorage.removeItem('tempuser');
             localStorage.removeItem('id');
-            window.location.reload();
+            // window.location.reload();
+            props.history.push('/dashboard');
           })
           .catch(coachErr => {});
       }

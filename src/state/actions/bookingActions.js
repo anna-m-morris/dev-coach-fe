@@ -35,6 +35,7 @@ export const handleStripePayment = (
   props,
   closeMessage,
 ) => async dispatch => {
+  debugger
   dispatch({ type: STRIPE_PAYMENT_START });
 
   const product = {
@@ -116,6 +117,7 @@ export const bookAppointment = (
         make it at the date. The email adress from your coach is: ${student.email}`,
         subject: 'Quality Hub appointment',
       };
+      debugger;
 
       return axiosWithAuth()
         .post(`${url}appointment/email`, coach_email)
@@ -128,6 +130,7 @@ export const bookAppointment = (
             make it at the date. The email adress from your coach is: ${coach.email}`,
             subject: 'Quality Hub appointment',
           };
+          debugger;
 
           return axiosWithAuth()
             .post(`${url}appointment/email`, student_email)
@@ -138,6 +141,7 @@ export const bookAppointment = (
               });
             })
             .catch(err => {
+              debugger
               dispatch({
                 type: BOOK_APPOINTMENT_ERROR,
                 payload: err,
@@ -145,6 +149,7 @@ export const bookAppointment = (
             });
         })
         .catch(err => {
+          debugger
           dispatch({ type: BOOK_APPOINTMENT_ERROR, payload: err });
         });
     })
