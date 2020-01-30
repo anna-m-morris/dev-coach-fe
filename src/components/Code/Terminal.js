@@ -2,11 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TerminalContainer = styled.div`
-  width: 50%;
+  width: 45%;
   height: 100%;
-  background: black;
-  display: flex;
-  justify-content: flex-start * {
+  background: #0e1628;
+  * {
     text-decoration: none;
   }
 `;

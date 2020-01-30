@@ -10,13 +10,15 @@ const FlexContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  height: 100vh;
+  height: 75vh;
   width: 100vw;
-  box-sizing: border-box;
 
   .code-header-container {
     height: 10%;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 4em;
   }
 
   .code-body-container {
@@ -24,17 +26,8 @@ const FlexContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     flex-wrap: wrap;
-
-    .editor {
-      width: 50%;
-      height: 100%;
-    }
-
-    .terminal {
-      width: 50%;
-      height: 100%;
-    }
   }
 `;
 
@@ -47,7 +40,6 @@ function Code() {
       <div className='code-body-container'>
         <Editor />
         <Terminal />
-        <div className='terminal'></div>
       </div>
     </FlexContainer>
   );

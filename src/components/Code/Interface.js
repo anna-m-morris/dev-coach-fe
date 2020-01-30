@@ -18,8 +18,7 @@ const handleSelection = () => {};
 const language = {};
 
 const InterfaceContainer = styled.div`
-  height: 5em;
-  width: 100%;
+  width: 90%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
