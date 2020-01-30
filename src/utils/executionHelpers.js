@@ -1,3 +1,5 @@
+import Axios from 'axios';
+
 export const mapLanguageToEditorState = (language, editorState) => {
   switch (language) {
     default:
@@ -31,3 +33,62 @@ export const invokeCodeJS = (code, param, value) => {
     `;
 };
 
+export function logCode(code, languageId) {
+  Axios.post('https://api.judge0.com/submissions?wait=false', {
+    source_code: `${code}`,
+    language_id: `${mapLanguageToId(languageId)}`,
+  })
+    .then(res => {
+      setTimeout(() => {
+        Axios.get(
+          `https://api.judge0.com/submissions/${res.data.token}`,
+        )
+          .then(res => {
+            if (res.data.stdout) {
+              return res.data.stdout;
+            }
+            if (res.data.compile_output) {
+              return res.data.compile_output;
+            }
+            return 'Unable to run code';
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }, 1000);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+export function testCode(value, code, languageId) {
+  Axios.post('https://api.judge0.com/submissions?wait=false', {
+    source_code: `${code}`,
+    language_id: `${languageId}`,
+  })
+    .then(res => {
+      setTimeout(() => {
+        Axios.get(
+          `https://api.judge0.com/submissions/${res.data.token}`,
+        )
+          .then(res => {
+            if (res.data.stdout) {
+              console.log(
+                `Against test input of ${value}, your code evaluated to: ${res.data.stdout}`,
+              );
+            } else if (res.data.compile_output) {
+              return `Error: ${res.data.compile_output}`;
+            } else {
+              return 'Unable to run code';
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }, 2000);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
