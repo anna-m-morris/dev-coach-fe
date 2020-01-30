@@ -33,12 +33,14 @@ export const getFeedback = (coach_student_id, role) => dispatch => {
     });
 };
 
-export const giveFeedback = (feedback, props) => dispatch => {
+export const giveFeedback = (feedback, user, props) => dispatch => {
+  debugger;
   dispatch({ type: GIVE_FEEDBACK_START });
 
   axiosWithAuth()
     .post(`${url}feedback`, feedback)
     .then(res => {
+      debugger;
       props.history.push('dashboard');
       dispatch({
         type: GIVE_FEEDBACK_SUCCESSFUL,

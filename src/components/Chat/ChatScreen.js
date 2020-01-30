@@ -67,11 +67,11 @@ class ChatScreen extends React.Component {
   };
 
   startChat = roomId => {
-    if (this.state.currentUser) {
-      this.state.currentUser.roomSubscriptions[
-        this.state.currentRoom.id
-      ].cancel();
-    }
+    // if (this.state.currentUser && this.state.currentRoom) {
+    //   this.state.currentUser.roomSubscriptions[
+    //     this.state.currentRoom.id
+    //   ].cancel();
+    // }
 
     this.setState({ messages: [] });
     const chatManager = new Chatkit.ChatManager({
@@ -131,11 +131,12 @@ class ChatScreen extends React.Component {
   };
 
   componentWillUnmount = () => {
-    if (this.state.currentUser) {
-      this.state.currentUser.roomSubscriptions[
-        this.state.currentRoom.id
-      ].cancel();
-    }
+    // debugger;
+    // if (this.state.currentUser && this.state.currentRoom) {
+    //   this.state.currentUser.roomSubscriptions[
+    //     this.state.currentRoom.id
+    //   ].cancel();
+    // }
   };
   render() {
     return (
