@@ -9,10 +9,9 @@ import {
   StyledButton,
   buttonTheme,
   Logo,
-} from '../Landing/Landing-styles';
+} from '../../Landing/Landing-styles';
 
-import { login } from '../../state/actions/authenticationActions';
-import pattern from '../../img/pattern.jpg';
+import { login } from '../../../state/actions/authenticationActions';
 
 // export const GreyBackgroundContainer = styled.div`
 //   height: 100vh;
@@ -165,8 +164,7 @@ const LoginContainer = styled.div`
 
       &:hover {
         transition: ease-in 0.1s;
-        opacity: 0.9;
-        box-shadow: 0 3px 7px #ededed;
+        box-shadow: 0 3px 7px #ccc;
       }
     }
 
@@ -243,7 +241,7 @@ const LoginForm = ({
     <LoginContainer className='Login-container'>
       <div className='form-card-container'>
         <div className='message-container'>
-          <h1 className='login-title'>Sign In</h1>
+          <h1 className='login-title'>Welcome back</h1>
         </div>
         <div className='form-container'>
           <Form className='form'>
