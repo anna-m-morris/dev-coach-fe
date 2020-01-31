@@ -83,6 +83,7 @@ const Interface = ({
           <MenuItem value='javascript'>Javascript</MenuItem>
           <MenuItem value='python'>Python</MenuItem>
           <MenuItem value='java'>Java</MenuItem>
+          <MenuItem value='c'>C</MenuItem>
           <MenuItem value='cpp'>C++</MenuItem>
         </Select>
       </FormControl>

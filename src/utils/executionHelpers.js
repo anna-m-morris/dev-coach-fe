@@ -50,6 +50,12 @@ export const mapLanguageToEditorState = (language, editorState) => {
       return javascriptInitialEditorState;
     case 'python':
       return pythonInitialEditorState;
+    case 'c':
+      return cInitialState;
+    case 'cpp':
+      return cppInitialState;
+    case 'java':
+      return javaInitialState;
   }
 };
 

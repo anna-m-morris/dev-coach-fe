@@ -10,10 +10,12 @@ const TerminalContainer = styled.div`
   }
 `;
 
-const TerminalText = styled.p`
+const TerminalText = styled.textarea`
   color: white;
+  background: #0e1628;
+  border: none;
   width: 100%;
-  height: 1.5em;
+  height: 10em;
   padding: 1em;
   margin-top: 0;
   font-family: 'Courier', sans-serif;
@@ -22,12 +24,19 @@ const TerminalText = styled.p`
   :focus {
     outline: none;
   }
+
+  :hover {
+    cursor: default   ;
+  }
 `;
 
 const Terminal = ({ initialText, output }) => {
   return (
     <TerminalContainer>
-      <TerminalText>{initialText + output}</TerminalText>
+      <TerminalText
+        value={output}
+        contentEditable='false'
+      ></TerminalText>
     </TerminalContainer>
   );
 };

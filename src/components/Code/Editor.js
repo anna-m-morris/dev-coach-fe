@@ -23,7 +23,9 @@ const Editor = ({ editorState, setEditorState, language }) => {
         value={editorState}
         options={{
           mode: `${
-            language === 'java' || language === 'cpp'
+            language === 'java' ||
+            language === 'c' ||
+            language === 'cpp'
               ? 'clike'
               : language
           }`,
