@@ -120,21 +120,9 @@ const Interface = ({
   const handlePost = () => {
     setOutput([]);
     if (mapLanguageToId(language) === 63) {
+      setOutput(`Running tests...\n`);
       testCasesSquare.forEach(el => testCode('square', el));
-      if (
-        checkTests(
-          testCasesSquare,
-          testResultsSquare,
-          squareSolution,
-        ) === true
-      ) {
-        setOutput(
-          `${output}\nAll tests passed! Fetching results...\n`,
-        );
-      } else {
-        setOutput(`${output}\nTests failed, please check your code`);
-      }
-    } else {
+    } else {                                                                                                      
       logCode();
     }
   };
