@@ -40,8 +40,8 @@ const Payment = props => {
   const getImage1 = () => (image1 ? 'plusIcon' : 'minusIcon');
   const getImage2 = () => (image2 ? 'plusIcon' : 'minusIcon');
   const getImage3 = () => (image3 ? 'plusIcon' : 'minusIcon');
-  const getImage4 = () => (image4 ? 'minusIcon' : 'plusIcon');
-  const getImage5 = () => (image5 ? 'minusIcon' : 'plusIcon');
+  const getImage4 = () => (image4 ? 'plusIcon' : 'minusIcon');
+  const getImage5 = () => (image5 ? 'plusIcon' : 'minusIcon');
 
   return (
     <div>
