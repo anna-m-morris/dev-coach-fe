@@ -27,7 +27,7 @@ function chatReducer(state = initialState, action) {
         rooms: action.payload,
       };
 
-    case types.START_CHAT_FROM_SCRATCH_SUCCESSFUL:
+    case types.START_CHAT_SUCCESSFUL:
       return {
         ...state,
       };

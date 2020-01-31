@@ -4,8 +4,6 @@ import {
   TokenProvider,
 } from '@pusher/chatkit-client-react';
 
-import Chatkit from '@pusher/chatkit-client';
-
 import { connect } from 'react-redux';
 
 import { getRooms } from '../../state/actions/chatActions';
