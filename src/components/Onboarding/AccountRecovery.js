@@ -16,15 +16,12 @@ import Loader from 'react-loader-spinner';
 
 import Notification from '../Notifications/Notification';
 import pattern from '../../img/pattern.jpg';
-import { set } from 'date-fns';
 
 const url = process.env.REACT_APP_BASE_URL;
 
 const AccountRecovery = props => {
   const {
-    user,
     updatePasswordViaEmail,
-    userReducer,
     success,
     error,
     showErrorMessage,
@@ -58,7 +55,7 @@ const AccountRecovery = props => {
       .catch(error => {
         error.message = error;
       });
-  }, [resetUser.email]);
+  }, [match.params.token, resetUser]);
 
   const handleChange = e => {
     const { value, name } = e.target;
@@ -183,7 +180,7 @@ const FormikAccountRecovery = withFormik({
     password: Yup.string()
       .required('Please enter your new password')
       .min(3, 'must be 6 characters minimum'),
-    password: Yup.string()
+    confirm_password: Yup.string()
       .required('Please confirm new password')
       .min(3, 'must be 6 characters minimum'),
   }),
@@ -293,8 +290,3 @@ const StyledError = styled.p`
   color: red;
   font-size: 0.8rem;
 `;
-
-const loadingButtonTheme = {
-  text: '#292d38',
-  background: 'lightgray',
-};
