@@ -2,6 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { isEqual } from 'lodash';
 import {
   Button,
   FormControl,
@@ -52,13 +53,14 @@ const Interface = ({
           )
             .then(res => {
               if (res.data.stdout) {
-                console.log(
-                  `Against test input of ${value}, your code evaluated to: ${res.data.stdout}`,
+                setOutput(
+                  prevArr =>
+                    `${prevArr}Against test input of ${value}, your code returned: ${res.data.stdout}`,
                 );
               } else if (res.data.compile_output) {
-                alert('Error: ' + res.data.compile_output);
+                setOutput(`Error:  + ${res.data.compile_output}`);
               } else {
-                alert('Unable to run code');
+                setOutput('Unable to run code');
               }
             })
             .catch(err => {
@@ -94,13 +96,47 @@ const Interface = ({
               }
             })
             .catch(err => {});
-        }, 1500);
+        }, 2000);
       })
       .catch(err => {});
   }
 
+  const testCasesSquare = [5, 10, 2348];
+  const testResultsSquare = [25, 100, 5513104];
+  const squareSolution = el => el * el;
+
+  const checkTests = (testCases, expectedValues, solution) => {
+    if (
+      isEqual(
+        testCases.map(el => solution(el)),
+        expectedValues,
+      )
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   const handlePost = () => {
-    mapLanguageToId(language) === 63 ? testCode() : logCode();
+    setOutput([]);
+    if (mapLanguageToId(language) === 63) {
+      testCasesSquare.forEach(el => testCode('square', el));
+      if (
+        checkTests(
+          testCasesSquare,
+          testResultsSquare,
+          squareSolution,
+        ) === true
+      ) {
+        setOutput(
+          `${output}\nAll tests passed! Fetching results...\n`,
+        );
+      } else {
+        setOutput(`${output}\nTests failed, please check your code`);
+      }
+    } else {
+      logCode();
+    }
   };
 
   const handleSelection = event => {

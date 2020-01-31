@@ -18,6 +18,7 @@ const TerminalText = styled.textarea`
   width: 100%;
   height: 20em;
   padding: 1em;
+  padding-top: 0.5em;
   margin-top: 0;
   font-family: 'Courier', sans-serif;
   font-size: 1em;
@@ -27,7 +28,7 @@ const TerminalText = styled.textarea`
   }
 
   :hover {
-    cursor: default   ;
+    cursor: default;
   }
 `;
 

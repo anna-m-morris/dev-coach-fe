@@ -15,7 +15,6 @@ const EditorContainer = styled.div`
 `;
 
 const Editor = ({ editorState, setEditorState, language }) => {
-  console.log(editorState);
   return (
     <EditorContainer>
       <CodeMirror
