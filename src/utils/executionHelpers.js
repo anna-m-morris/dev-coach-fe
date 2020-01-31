@@ -19,6 +19,29 @@ def fib(n):
 print(list(fib(a)))
 `;
 
+const cppInitialState = `#include <iostream>
+
+int main() {
+    std::cout << "hello, c++!" << std::endl;
+    return 0;
+}
+`;
+
+const javaInitialState = `public class Main {
+  public static void main(String[] args) {
+      System.out.println("hello, java!");
+  }
+}
+`;
+
+const cInitialState = `#include <stdio.h>
+
+int main(void) {
+    printf("hello, world\n");
+    return 0;
+}
+`;
+
 export const mapLanguageToEditorState = (language, editorState) => {
   switch (language) {
     default:
