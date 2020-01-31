@@ -29,7 +29,6 @@ export const sendResetPasswordEmail = (
         res.data.message === 'reset password email sent successfully'
       ) {
         showSuccess();
-        userInfo = '';
         setTimeout(() => closeMessage(), 3000);
         setTimeout(() => props.history.push('/'), 3500);
         dispatch({
@@ -41,7 +40,6 @@ export const sendResetPasswordEmail = (
     })
     .catch(error => {
       showError();
-      userInfo = '';
       setTimeout(() => closeMessage(), 5000);
       dispatch({
         type: types.SEND_RESET_PASSWORD_EMAIL_FAILED,

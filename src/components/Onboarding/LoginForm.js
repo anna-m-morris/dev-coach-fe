@@ -136,9 +136,9 @@ const ExtraLoginDetails = () => {
     <StyledDetails>
       <input type='checkbox' />
       <p>Remember Me</p>
-      <a href='/forgot-password'>
+      <Link to='/resetPassword'>
         <p>Forgot your password?</p>
-      </a>
+      </Link>
     </StyledDetails>
   );
 };
