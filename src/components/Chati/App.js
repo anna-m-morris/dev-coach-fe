@@ -6,11 +6,11 @@ import {
 
 import { connect } from 'react-redux';
 
-import { getRooms } from '../../state/actions/chatActions';
+// import { getRooms } from '../../state/actions/chatActions';
 
 import './App.css';
 import Chat from './Chat';
-import UserList from './UserList';
+// import UserList from './UserList';
 import chatkitLogo from './chatkit-logo.svg';
 
 const instanceLocator = 'v1:us1:02d03086-c977-4990-bbb8-d915c9090f74';
@@ -21,25 +21,17 @@ const tokenProvider = new TokenProvider({
 
 function App(props) {
   const userId = props.user.email;
-  const [otherUserId, setOtherUserId] = useState(
-    props.peer
-      ? props.peer.email
-      : props.rooms && props.rooms.length
-      ? props.rooms[0].member_user_ids.filter(
-          id => id !== props.user.email,
-        )[0]
-      : null,
-  );
+  const otherUserId = props.peerId;
 
-  useEffect(() => {
-    props.getRooms(props.user.email);
-  }, [props.user]);
+  // useEffect(() => {
+  //   props.getRooms(props.user.email);
+  // }, [props.user]);
 
-  const startChat = otherUser => {
-    const y = otherUserId;
-    debugger;
-    setOtherUserId(otherUser);
-  };
+  // const startChat = otherUser => {
+  //   const y = otherUserId;
+  //   debugger;
+  //   setOtherUserId(otherUser);
+  // };
 
   return (
     <div className='App'>
@@ -51,11 +43,11 @@ function App(props) {
               tokenProvider={tokenProvider}
               userId={userId}
             >
-              <UserList
+              {/* <UserList
                 userId={userId}
                 startChat={startChat}
                 rooms={props.rooms}
-              />
+              /> */}
               <Chat otherUserId={otherUserId} />
             </ChatkitProvider>
           </div>
@@ -76,10 +68,10 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    peer: state.chatReducer.peer,
-    rooms: state.chatReducer.rooms,
+    peerId: state.interviewReducer.peerId,
+    // rooms: state.chatReducer.rooms,
     user: state.userReducer.user,
   };
 };
 
-export default connect(mapStateToProps, { getRooms })(App);
+export default connect(mapStateToProps)(App);

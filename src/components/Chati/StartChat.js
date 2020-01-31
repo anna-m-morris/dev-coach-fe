@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { startInterviewChat } from '../../state/actions/InterviewActions';
+import { startInterviewChat } from '../../state/actions/interviewActions';
+import Chat from './App';
 
 const StyledChatLoader = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ const StyledChatLoader = styled.div`
 `;
 
 const ChatLoader = props => {
-  const { user, peer, startInterviewChat } = props;
+  const { user, peer, startInterviewChat, interviewStarted } = props;
 
   useEffect(() => {
     startInterviewChat(user, peer, props);
@@ -21,12 +22,16 @@ const ChatLoader = props => {
 
   return (
     <StyledChatLoader>
-      <Loader
-        type='TailSpin'
-        color='#2BAD60'
-        height={80}
-        width={80}
-      />
+      {interviewStarted ? (
+        <Chat />
+      ) : (
+        <Loader
+          type='TailSpin'
+          color='#2BAD60'
+          height={80}
+          width={80}
+        />
+      )}
     </StyledChatLoader>
   );
 };

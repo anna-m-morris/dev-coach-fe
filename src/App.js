@@ -19,7 +19,7 @@ import Chat from './components/Chat/ChatScreen';
 // import Chati from './components/Chati/App';
 
 import StartChat from './components/Chat/Chat';
-// import StartChat from './components/Chati/StartChat';
+import Chati from './components/Chati/StartChat';
 
 import Settings from './views/Settings/Settings';
 import SignUp from './components/Onboarding/SignupStepper';
@@ -49,6 +49,7 @@ function App({ user, isLoggedIn }) {
         <Route path={'/start_chat'} component={StartChat} />
       ) : null}
       <Route path={'/chat'} component={Chat} />
+      <Route path={'/chat'} component={Chati} />
       <Route path={'/code'} component={Code} />
       <Route path={'/givefeedback'} component={GiveFeedback} />
       <Redirect to='/dashboard' />

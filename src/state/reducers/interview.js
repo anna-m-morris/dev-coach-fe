@@ -2,6 +2,7 @@ import * as types from '../actions/interviewActions';
 
 const initialState = {
   peerId: null,
+  interviewStarted: false,
 };
 
 function interviewReducer(state = initialState, action) {
@@ -18,6 +19,7 @@ function interviewReducer(state = initialState, action) {
         ...state,
         isLoading: false,
         peerId: action.payload,
+        interviewStarted: true,
       };
 
     default:
