@@ -13,6 +13,13 @@ function interviewReducer(state = initialState, action) {
         peerId: action.payload,
       };
 
+    case types.CHAT_SUCCESSFUL:
+      return {
+        ...state,
+        isLoading: false,
+        peerId: action.payload,
+      };
+
     default:
       return state;
   }

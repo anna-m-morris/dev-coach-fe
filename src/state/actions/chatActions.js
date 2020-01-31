@@ -14,7 +14,6 @@ export const SAVE_PEER = 'SAVE_PEER';
 const url = process.env.REACT_APP_BASE_URL;
 
 export const savePeer = (peer, props) => {
-  debugger;
   props.history.push('/start_chat');
   return { type: SAVE_PEER, payload: peer };
 };
@@ -29,7 +28,6 @@ export const getRooms = email => dispatch => {
       userId: email,
     })
     .then(res => {
-      debugger;
       dispatch({
         type: GET_ROOMS_SUCCESSFUL,
         payload: res.data.rooms,
@@ -50,7 +48,6 @@ export const startChatFromScratch = (
   saveRoomId,
   props,
 ) => dispatch => {
-  debugger
   axiosWithAuth()
     .post(`${url}chat/room_id`, {
       roomId: id,
@@ -99,7 +96,6 @@ export const startChatFromScratch = (
                     },
                   })
                   .then(() => {
-                    debugger;
                     saveRoomId(id);
                     dispatch({
                       type: START_CHAT_FROM_SCRATCH_SUCCESSFUL,
