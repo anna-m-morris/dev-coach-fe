@@ -4,6 +4,52 @@ import * as types from './actionTypes';
 
 const url = process.env.REACT_APP_BASE_URL;
 
+export const sendResetPasswordEmail = (
+  props,
+  userInfo,
+  showSuccess,
+  showError,
+  closeMessage,
+) => dispatch => {
+  axios
+    .post(`${url}user/resetPassword`, userInfo)
+    .then(res => {
+      if (
+        res.data.message ===
+        'that email address is not recognized. Please try again'
+      ) {
+        showError(res.data.message);
+        setTimeout(() => closeMessage(), 5000);
+        dispatch({
+          type: types.SEND_RESET_PASSWORD_EMAIL_WRONG_EMAIL,
+          payload: res.data,
+          message: res.data.message,
+        });
+      } else if (
+        res.data.message === 'reset password email sent successfully'
+      ) {
+        showSuccess();
+        userInfo = '';
+        setTimeout(() => closeMessage(), 3000);
+        setTimeout(() => props.history.push('/'), 3500);
+        dispatch({
+          type: types.SEND_RESET_PASSWORD_EMAIL_SUCCESSFUL,
+          payload: res.data,
+          message: res.data.message,
+        });
+      }
+    })
+    .catch(error => {
+      showError();
+      userInfo = '';
+      setTimeout(() => closeMessage(), 5000);
+      dispatch({
+        type: types.SEND_RESET_PASSWORD_EMAIL_FAILED,
+        payload: error.data,
+      });
+    });
+};
+
 export const saveRoleId = (handleNext, role) => dispatch => {
   dispatch({ type: types.SET_ROLE_ID, payload: role });
   handleNext();

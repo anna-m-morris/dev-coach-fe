@@ -133,7 +133,6 @@ const CoachForm = props => {
                       name='userLocation'
                     />
                   </div>
-
                   <div>
                     <FormControl
                       className={classes.formControl}
@@ -158,7 +157,6 @@ const CoachForm = props => {
                       </Field>
                     </FormControl>
                   </div>
-
                   <div>
                     <FormControl
                       className={classes.formControl}
@@ -184,7 +182,6 @@ const CoachForm = props => {
                       </Field>
                     </FormControl>
                   </div>
-
                   <div>
                     <MyTextField
                       placeholder='Description'

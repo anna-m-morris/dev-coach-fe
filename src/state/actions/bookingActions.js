@@ -112,7 +112,7 @@ export const bookAppointment = (
         email: coach.email,
         text: `Hello ${coach.first_name} ${coach.last_name},
         you have a new appointment for the date: ${appointment_datetime},
-        please get in touch with ${student.first_name} ${student.last_name} if you don't can 
+        please get in touch with ${student.first_name} ${student.last_name} if you can't 
         make it at the date. The email adress from your coach is: ${student.email}`,
         subject: 'Quality Hub appointment',
       };
@@ -124,7 +124,7 @@ export const bookAppointment = (
             email: student.email,
             text: `Hello ${student.first_name} ${student.last_name},
             you have a new appointment for the date: ${appointment_datetime},
-            please get in touch with ${coach.first_name} ${coach.last_name} if you don't can 
+            please get in touch with ${coach.first_name} ${coach.last_name} if you can't 
             make it at the date. The email adress from your coach is: ${coach.email}`,
             subject: 'Quality Hub appointment',
           };
