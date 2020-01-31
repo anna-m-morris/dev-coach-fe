@@ -40,8 +40,8 @@ const General = props => {
   const getImage1 = () => (image1 ? 'plusIcon' : 'minusIcon');
   const getImage2 = () => (image2 ? 'plusIcon' : 'minusIcon');
   const getImage3 = () => (image3 ? 'plusIcon' : 'minusIcon');
-  const getImage4 = () => (image4 ? 'plusIcon' : 'minusIcon');
-
+  const getImage4 = () => (image4 ? 'minusIcon' : 'plusIcon');
+  const getImage5 = () => (image5 ? 'minusIcon' : 'plusIcon');
   return (
     <div>
       <BodyDiv>
@@ -116,6 +116,25 @@ const General = props => {
               You can click on 'cancel' on your scheduled appointments
               in your dashboard, which will direct you to booking
               another appointment at any time more convenient for you.
+            </AnsweredQuestionDiv>
+          )}
+
+          <AskedQuestionDiv
+            onClick={display => {
+              showText5(display);
+              showImage5(display);
+            }}
+          >
+            <p>
+              What is the duration of an appointment with a coach?
+            </p>
+            {<img src={icons[getImage5()]} alt='icon' />}
+          </AskedQuestionDiv>
+          {text5 && (
+            <AnsweredQuestionDiv>
+              You can choose 30 minutes or 1 hour, and will have to
+              book again if you want to still interact more with that
+              particular coach.
             </AnsweredQuestionDiv>
           )}
         </FAQContainer>

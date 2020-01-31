@@ -46,10 +46,6 @@ const StyledMarketplace = styled.div`
     width: 100%;
     justify-content: space-evenly;
     padding-top: 1rem;
-
-    /* @media ${devices.mobile} {
-      width: 80%;
-    } */
   }
 
   .pagination {
