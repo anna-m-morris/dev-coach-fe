@@ -134,7 +134,7 @@ const mapExperience = experience => {
 };
 
 export const AppointmentCard = props => {
-  const { appointment, startInterview, cancelAppointment } = props;
+  const { appointment, startInterview, cancelAppointment, saveId } = props;
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -209,6 +209,16 @@ export const AppointmentCard = props => {
             onClick={startInterview}
           >
             Interview
+          </Button>
+          <Button
+            size='small'
+            className='button'
+            variant='contained'
+            color='primary'
+            endIcon={<Icon>send</Icon>}
+            onClick={saveId}
+          >
+            Chat
           </Button>
         </div>
       </StyledCoachCard>

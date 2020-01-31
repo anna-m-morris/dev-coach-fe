@@ -15,6 +15,7 @@ import {
   getFeedback,
 } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
+import { saveId } from '../../state/actions/chatActions';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 import devices from '../../utils/devices';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
@@ -166,6 +167,7 @@ const UserDashboard = props => {
     startInterview,
     saveIdRole,
     getFeedback,
+    saveId,
   } = props;
 
   const [minValue, setMinValue] = React.useState(0);
@@ -241,6 +243,9 @@ const UserDashboard = props => {
                       startInterview(appointment.email, props);
                       saveIdRole(appointment.role_id, appointment.id);
                     }}
+                    saveId={() => {
+                      saveId(appointment.email, props);
+                    }}
                   />
                 ))}
               <div className='pagination'>
@@ -286,4 +291,5 @@ export default connect(mapStateToProps, {
   saveIdRole,
   saveRescheduledCoach,
   getFeedback,
+  saveId,
 })(UserDashboard);

@@ -10,6 +10,7 @@ export const START_CHAT_FROM_SCRATCH_SUCCESSFUL =
   'START_CHAT_FROM_SCRATCH_SUCCESSFUL';
 export const SAVE_FOR_CHAT = 'SAVE_FOR_CHAT';
 export const SAVE_ROOM_ID = 'SAVE_ROOM_ID';
+export const SAVE_ID = 'SAVE_ID';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -21,12 +22,18 @@ export const saveRoomId = roomId => {
   return { type: SAVE_ROOM_ID, payload: roomId };
 };
 
+export const saveId = (id, props) => {
+  props.history.push('/chat');
+  return { type: SAVE_ID, payload: id };
+};
+
 export const getRooms = email => dispatch => {
   axiosWithAuth()
     .post(`${url}chat/user_room`, {
       userId: email,
     })
     .then(res => {
+      debugger;
       dispatch({
         type: GET_ROOMS_SUCCESSFUL,
         payload: res.data.rooms,

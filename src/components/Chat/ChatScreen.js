@@ -76,6 +76,7 @@ class ChatScreen extends React.Component {
         url: `${process.env.REACT_APP_BASE_URL}chat/auth`,
       }),
     });
+    debugger;
 
     chatManager
       .connect()
@@ -171,3 +172,4 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, { getRooms })(ChatScreen);
+
