@@ -9,10 +9,7 @@ import {
   InputLabel,
   MenuItem,
 } from '@material-ui/core';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
-import { ToggleButton } from '@material-ui/lab';
 import {
-  testCode,
   mapLanguageToId,
   mapLanguageToEditorState,
 } from '../../utils/executionHelpers';
@@ -29,10 +26,6 @@ const InterfaceContainer = styled.div`
   }
 `;
 
-const input1 = 3;
-const input2 = 10;
-const input3 = 329425;
-
 const Interface = ({
   output,
   setOutput,
@@ -41,18 +34,6 @@ const Interface = ({
   editorState,
   setEditorState,
 }) => {
-  const [toggled, toggle] = React.useState();
-  const handlePost = () => {
-    logCode();
-  };
-
-  console.log(editorState);
-
-  const handleSelection = event => {
-    setLanguage(event.target.value);
-    setEditorState(mapLanguageToEditorState(event.target.value));
-  };
-
   function logCode() {
     Axios.post('https://api.judge0.com/submissions?wait=false', {
       source_code: `${editorState}`,
@@ -80,6 +61,17 @@ const Interface = ({
       })
       .catch(err => {});
   }
+
+  const handlePost = () => {
+    logCode();
+  };
+
+  console.log(editorState);
+
+  const handleSelection = event => {
+    setLanguage(event.target.value);
+    setEditorState(mapLanguageToEditorState(event.target.value));
+  };
 
   return (
     <InterfaceContainer>
