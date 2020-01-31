@@ -2,6 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { isEqual } from 'lodash';
 import {
   Button,
   FormControl,
@@ -9,10 +10,7 @@ import {
   InputLabel,
   MenuItem,
 } from '@material-ui/core';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
-import { ToggleButton } from '@material-ui/lab';
 import {
-  testCode,
   mapLanguageToId,
   mapLanguageToEditorState,
 } from '../../utils/executionHelpers';
@@ -29,10 +27,6 @@ const InterfaceContainer = styled.div`
   }
 `;
 
-const input1 = 3;
-const input2 = 10;
-const input3 = 329425;
-
 const Interface = ({
   output,
   setOutput,
@@ -41,19 +35,15 @@ const Interface = ({
   editorState,
   setEditorState,
 }) => {
-  const [toggled, toggle] = React.useState();
-  const handlePost = () => {
-    logCode();
+  const invokeCode = (code, param, value) => {
+    return `
+    ${code}
+    console.log(${param}(${value}));
+    `;
   };
-
-  const handleSelection = event => {
-    setLanguage(event.target.value);
-    setEditorState(mapLanguageToEditorState(event.target.value));
-  };
-
-  function logCode() {
+  function testCode(testCase, value) {
     Axios.post('https://api.judge0.com/submissions?wait=false', {
-      source_code: `${editorState}`,
+      source_code: `${invokeCode(editorState, testCase, value)}`,
       language_id: `${mapLanguageToId(language)}`,
     })
       .then(res => {
@@ -63,18 +53,83 @@ const Interface = ({
           )
             .then(res => {
               if (res.data.stdout) {
+                setOutput(
+                  prevArr =>
+                    `${prevArr}Against test input of ${value}, your code returned: ${res.data.stdout}`,
+                );
+              } else if (res.data.compile_output) {
+                setOutput(`Error:  + ${res.data.compile_output}`);
+              } else {
+                setOutput('Unable to run code');
+              }
+            })
+            .catch(err => {
+            });
+        }, 2000);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  function logCode() {
+    Axios.post('https://api.judge0.com/submissions?wait=false', {
+      source_code: `${editorState}`,
+      language_id: `${mapLanguageToId(language)}`,
+    })
+      .then(res => {
+        console.log(res);
+        setTimeout(() => {
+          Axios.get(
+            `https://api.judge0.com/submissions/${res.data.token}`,
+          )
+            .then(res => {
+              console.log(res);
+              if (res.data.stdout) {
                 setOutput(res.data.stdout);
               } else if (res.data.compile_output) {
                 setOutput(res.data.compile_output);
+              } else if (res.data.stderr) {
+                setOutput(res.data.stderr);
               } else {
                 alert('Unable to run code');
               }
             })
             .catch(err => {});
-        }, 1000);
+        }, 2000);
       })
       .catch(err => {});
   }
+
+  const testCasesSquare = [5, 10, 2348];
+  const testResultsSquare = [25, 100, 5513104];
+  const squareSolution = el => el * el;
+
+  const checkTests = (testCases, expectedValues, solution) => {
+    if (
+      isEqual(
+        testCases.map(el => solution(el)),
+        expectedValues,
+      )
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const handlePost = () => {
+    setOutput([]);
+    if (mapLanguageToId(language) === 63) {
+      setOutput(`Running tests...\n`);
+      testCasesSquare.forEach(el => testCode('square', el));
+    } else {                                                                                                      
+      logCode();
+    }
+  };
+
+  const handleSelection = event => {
+    setLanguage(event.target.value);
+    setEditorState(mapLanguageToEditorState(event.target.value));
+  };
 
   return (
     <InterfaceContainer>
@@ -89,12 +144,13 @@ const Interface = ({
           <MenuItem value='javascript'>Javascript</MenuItem>
           <MenuItem value='python'>Python</MenuItem>
           <MenuItem value='java'>Java</MenuItem>
+          <MenuItem value='c'>C</MenuItem>
           <MenuItem value='cpp'>C++</MenuItem>
         </Select>
       </FormControl>
       <FormControl>
         <InputLabel>Select Coding Challenge</InputLabel>
-        <Select style={{ width: '20em' }} value='square'>
+        <Select readOnly style={{ width: '20em' }} value=''>
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
           <MenuItem value='fizzbuzz'>Fizzbuzz</MenuItem>

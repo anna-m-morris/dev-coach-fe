@@ -18,16 +18,21 @@ const Profile = props => {
   const {
     text1,
     text2,
+    text3,
     image1,
     image2,
+    image3,
     showText1,
     showText2,
+    showText3,
     showImage1,
     showImage2,
+    showImage3,
   } = props;
 
   const getImage1 = () => (image1 ? 'plusIcon' : 'minusIcon');
   const getImage2 = () => (image2 ? 'plusIcon' : 'minusIcon');
+  const getImage3 = () => (image3 ? 'plusIcon' : 'minusIcon');
 
   return (
     <div>
@@ -69,6 +74,24 @@ const Profile = props => {
               It is not required to upload a picture. We definitely
               recommend it for coaches, to get more attention on the
               marketplace.
+            </AnsweredQuestionDiv>
+          )}
+          <AskedQuestionDiv
+            onClick={display => {
+              showText3(display);
+              showImage3(display);
+            }}
+          >
+            <p>
+              If I registered as a student before, can I register as a
+              coach?
+            </p>
+            {<img src={icons[getImage3()]} alt='icon' />}
+          </AskedQuestionDiv>
+          {text3 && (
+            <AnsweredQuestionDiv>
+              Yes, you can sign up as a coach, but you would have to
+              use another email for the registration
             </AnsweredQuestionDiv>
           )}
         </FAQContainer>

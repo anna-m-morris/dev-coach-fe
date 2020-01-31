@@ -17,6 +17,7 @@ import { savePeer } from '../../state/actions/chatActions';
 import SelectPrice from '../../components/Inputs/SelectPrice';
 import SelectExperience from '../../components/Inputs/SelectExperience';
 import SearchForKeyword from '../../components/Inputs/SearchForKeyword';
+import devices from '../../utils/devices';
 
 const StyledMarketplace = styled.div`
   display: flex;
@@ -31,6 +32,11 @@ const StyledMarketplace = styled.div`
 
     .keyword {
       margin-top: 1rem;
+    }
+
+    @media ${devices.mobile} {
+      flex-direction: column;
+      align-items: center;
     }
   }
 

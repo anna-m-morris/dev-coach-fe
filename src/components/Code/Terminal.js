@@ -4,17 +4,21 @@ import styled from 'styled-components';
 const TerminalContainer = styled.div`
   width: 50%;
   height: 100%;
+  padding-left: 0.5em;
   background: #0e1628;
   * {
     text-decoration: none;
   }
 `;
 
-const TerminalText = styled.p`
+const TerminalText = styled.textarea`
   color: white;
+  background: #0e1628;
+  border: none;
   width: 100%;
-  height: 1.5em;
+  height: 20em;
   padding: 1em;
+  padding-top: 0.5em;
   margin-top: 0;
   font-family: 'Courier', sans-serif;
   font-size: 1em;
@@ -22,12 +26,19 @@ const TerminalText = styled.p`
   :focus {
     outline: none;
   }
+
+  :hover {
+    cursor: default;
+  }
 `;
 
 const Terminal = ({ initialText, output }) => {
   return (
     <TerminalContainer>
-      <TerminalText>{initialText + output}</TerminalText>
+      <TerminalText
+        value={output}
+        contentEditable='false'
+      ></TerminalText>
     </TerminalContainer>
   );
 };
