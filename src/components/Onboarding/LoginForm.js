@@ -50,21 +50,67 @@ import pattern from '../../img/pattern.jpg';
 //   }
 // `;
 
+// export const FormContainer = styled.div`
+//   height: 100%;
+//   width: 100%;
+
+//   form {
+//     width: 100%;
+//     height: 95%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-evenly;
+//     align-items: center;
+
+//     div {
+//       width: 70%;
+//       height: 60px;
+//       align-self: center;
+//     }
+//   }
+
+//   input {
+//     align-self: center;
+//     background: #f7f7f7;
+//     height: 2em;
+//     width: 92%;
+//     font-family: Ubuntu, sans-serif;
+//     border-radius: 4px;
+//     border: 1px solid #c8c8c8;
+//     padding: 0.5em;
+//     font-size: 16px;
+//     color: #808080;
+//     transition: ease-out 0.1s;
+
+//     :hover {
+//       background: #ffffff;
+//       transition: ease-in 0.1s;
+//     }
+
+//     :focus {
+//       outline: none;
+//     }
+//   }
+
+//   button {
+//     width: 98%;
+//   }
+// `;
+
 const LoginContainer = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: #f7f7f7;
 
-  .form-container {
+  .form-card-container {
     background: white;
-    height: 30em;
+    margin-top: 8rem;
+    height: 35em;
     width: 25em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
     border-radius: 1rem;
 
     .message-container {
@@ -77,91 +123,101 @@ const LoginContainer = styled.div`
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
       padding: 2rem 0;
+      margin-bottom: 2rem;
     }
 
-    h1 {
+    .login-title {
       color: white;
       margin: 0;
     }
   }
-`;
 
-export const FormContainer = styled.div`
-  height: 100%;
-  width: 100%;
-
-  form {
+  .form-container {
+    height: 100%;
     width: 100%;
-    height: 95%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
 
     div {
-      width: 70%;
-      height: 60px;
-      align-self: center;
-    }
-  }
-
-  input {
-    align-self: center;
-    background: #f7f7f7;
-    height: 2em;
-    width: 92%;
-    font-family: Ubuntu, sans-serif;
-    border-radius: 4px;
-    border: 1px solid #c8c8c8;
-    padding: 0.5em;
-    font-size: 16px;
-    color: #808080;
-    transition: ease-out 0.1s;
-
-    :hover {
-      background: #ffffff;
-      transition: ease-in 0.1s;
+      margin: 0.5rem 0;
     }
 
-    :focus {
+    .input-container {
+      width: 100%;
+      height: 4rem;
+    }
+
+    .login-input {
+      border: none;
+      background: #f4f4f4;
+      border-radius: 2rem;
+      width: 92%;
+      padding: 1rem 1rem;
+      font-size: 1rem;
       outline: none;
+      transition: ease-out 0.1s;
+
+      &:hover {
+        transition: ease-in 0.1s;
+        opacity: 0.9;
+        box-shadow: 0 3px 7px #ededed;
+      }
+    }
+
+    .options-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      margin: 0;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+
+      p {
+        margin-left: 0.3rem;
+        color: #6d6d6d;
+      }
+    }
+
+    .forgot-password {
+      text-decoration: none;
+      color: #408f53;
+    }
+
+    .login-button-container {
+      width: 100%;
+      .login-button {
+        width: 100%;
+        border-radius: 2rem;
+      }
     }
   }
 
-  button {
-    width: 98%;
-  }
-`;
-
-const StyledDetails = styled.div`
-  width: 75%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 12px;
-
-  input {
-    width: 10%;
-    height: 1em;
-    margin: 0;
-  }
-
-  p {
-    color: #292d38;
-    margin: 0;
-  }
-
-  div {
-    width: 60%;
+  .signup-container {
     display: flex;
-    justify-content: flex-end;
-  }
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  a {
-    text-decoration: none;
-    font-weight: bold;
-    margin-left: 2rem;
+    p {
+      font-size: 0.8rem;
+      color: #6d6d6d;
+    }
+
+    a {
+      text-decoration: none;
+      color: #408f53;
+    }
   }
 `;
 
@@ -177,18 +233,6 @@ const loadingButtonTheme = {
   background: 'lightgray',
 };
 
-const ExtraLoginDetails = () => {
-  return (
-    <StyledDetails>
-      <input type='checkbox' />
-      <p>Remember Me</p>
-      <Link to='/resetPassword'>
-        <p>Forgot your password?</p>
-      </Link>
-    </StyledDetails>
-  );
-};
-
 const LoginForm = ({
   userReducer,
   errors,
@@ -197,20 +241,26 @@ const LoginForm = ({
 }) => {
   return (
     <LoginContainer className='Login-container'>
-      <div className='form-container'>
+      <div className='form-card-container'>
         <div className='message-container'>
-          <h1 className='login-title'>Welcome Back!</h1>
+          <h1 className='login-title'>Sign In</h1>
         </div>
-        <FormContainer>
-          <Form>
-            <div>
-              <Field type='email' name='email' placeholder='Email' />
+        <div className='form-container'>
+          <Form className='form'>
+            <div className='input-container'>
+              <Field
+                className='login-input'
+                type='email'
+                name='email'
+                placeholder='Email'
+              />
               {errors.email && touched.email && (
                 <StyledError>{errors.email}</StyledError>
               )}
             </div>
-            <div>
+            <div className='input-container'>
               <Field
+                className='login-input'
                 type='password'
                 name='password'
                 placeholder='Password'
@@ -224,9 +274,18 @@ const LoginForm = ({
                 )
               )}
             </div>
-            <ExtraLoginDetails />
-            <div>
+            <div className='options-container'>
+              <div className='remember-me'>
+                <input type='checkbox' />
+                <p>Remember Me</p>
+              </div>
+              <Link className='forgot-password' to='/resetPassword'>
+                <p>Forgot your password?</p>
+              </Link>
+            </div>
+            <div className='login-button-container'>
               <StyledButton
+                className='login-button'
                 theme={
                   userReducer.isLoading
                     ? loadingButtonTheme
@@ -235,11 +294,15 @@ const LoginForm = ({
                 type='submit'
                 disabled={isSubmitting}
               >
-                Sign in to your account
+                Sign in
               </StyledButton>
             </div>
           </Form>
-        </FormContainer>
+          <div className='signup-container'>
+            <p>Dont't have an account?</p>
+            <Link to='/register'>Sign up</Link>
+          </div>
+        </div>
       </div>
     </LoginContainer>
   );
