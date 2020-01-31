@@ -29,6 +29,12 @@ const StyledFeedback = styled.div`
     width: 100%;
   }
 
+  .feedback-card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
   .feedback-title {
     margin: 0;
     color: #595959;
