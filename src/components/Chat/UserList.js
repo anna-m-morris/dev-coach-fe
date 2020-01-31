@@ -45,7 +45,7 @@ const UserList = props => {
 
   return (
     <>
-      {rooms ? (
+      {rooms && rooms.length ? (
         rooms &&
         rooms.map(room => (
           <UserListStyle

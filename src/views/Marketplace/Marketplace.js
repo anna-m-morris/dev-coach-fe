@@ -63,17 +63,19 @@ const StyledMarketplace = styled.div`
   }
 `;
 
-const Marketplace = ({
-  searchForKeyword,
-  getCoaches,
-  coaches,
-  searchForPrice,
-  searchForExperience,
-  saveCoach,
-  getFeedback,
-  feedback,
-  savePeer,
-}) => {
+const Marketplace = props => {
+  const {
+    searchForKeyword,
+    getCoaches,
+    coaches,
+    searchForPrice,
+    searchForExperience,
+    saveCoach,
+    getFeedback,
+    feedback,
+    savePeer,
+  } = props;
+
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(6);
 
@@ -110,11 +112,14 @@ const Marketplace = ({
               getFeedback={getFeedback}
               feedback={feedback}
               savePeer={() =>
-                savePeer({
-                  email: coach.email,
-                  name: `${coach.first_name} ${coach.last_name}`,
-                  avatar_url: coach.avatar_url,
-                })
+                savePeer(
+                  {
+                    email: coach.email,
+                    name: `${coach.first_name} ${coach.last_name}`,
+                    avatar_url: coach.avatar_url,
+                  },
+                  props,
+                )
               }
             />
           ))

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { startChat } from '../../state/actions/chatActions';
+import { startChatFromScratch } from '../../state/actions/chatActions';
 
 const StyledChatLoader = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const StyledChatLoader = styled.div`
 `;
 
 const ChatLoader = props => {
-  const { user, peer, startChat } = props;
+  const { user, peer, startChatFromScratch } = props;
 
   useEffect(() => {
     const id =
@@ -21,8 +21,8 @@ const ChatLoader = props => {
         ? `${peer.email} & ${user.email}`
         : `${user.email} & ${peer.email}`;
 
-    startChat(id, user, peer, props);
-  }, [peer, props, startChat, user]);
+    startChatFromScratch(id, user, peer, props);
+  }, [peer, props, startChatFromScratch, user]);
 
   return (
     <StyledChatLoader>
@@ -44,5 +44,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  startChat,
+  startChatFromScratch,
 })(ChatLoader);

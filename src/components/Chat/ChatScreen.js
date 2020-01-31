@@ -63,9 +63,9 @@ class ChatScreen extends React.Component {
 
   startChat = roomId => {
     if (this.state.currentUser && this.state.currentRoom) {
-      this.state.currentUser.leaveRoom({
-        roomId: this.state.currentRoom.id,
-      });
+      this.state.currentUser.roomSubscriptions[
+        this.state.currentRoom.id
+      ].cancel();
     }
 
     this.setState({ messages: [] });
@@ -76,11 +76,11 @@ class ChatScreen extends React.Component {
         url: `${process.env.REACT_APP_BASE_URL}chat/auth`,
       }),
     });
-    debugger;
 
     chatManager
       .connect()
       .then(currentUser => {
+        debugger;
         this.setState({ currentUser });
         return currentUser.subscribeToRoom({
           roomId,
@@ -114,12 +114,14 @@ class ChatScreen extends React.Component {
       })
       .catch(error => this.setState({ error }));
   };
+
   sendMessage = text => {
     this.state.currentUser.sendMessage({
       text,
       roomId: this.state.currentRoom.id,
     });
   };
+
   sendTypingEvent = () => {
     this.state.currentUser
       .isTypingIn({ roomId: this.state.currentRoom.id })
@@ -172,4 +174,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, { getRooms })(ChatScreen);
-
