@@ -55,7 +55,7 @@ const AccountRecovery = props => {
       .catch(error => {
         error.message = error;
       });
-  }, [match.params.token, resetUser]);
+  }, [match.params.token, resetUser.email]);
 
   const handleChange = e => {
     const { value, name } = e.target;
