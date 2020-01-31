@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 import {
   saveRoomId,
-  startChat,
+  startChatFromScratch,
 } from '../../state/actions/chatActions';
 
 const StyledChatLoader = styled.div`
@@ -16,7 +16,7 @@ const StyledChatLoader = styled.div`
 `;
 
 const ChatLoader = props => {
-  const { user, peer, saveRoomId, startChat } = props;
+  const { user, peer, saveRoomId, startChatFromScratch } = props;
 
   useEffect(() => {
     const id =
@@ -24,8 +24,8 @@ const ChatLoader = props => {
         ? `${user.email} ${peer.email}`
         : `${peer.email} ${user.email}`;
 
-    startChat(id, user, peer, saveRoomId, props);
-  }, [peer, props, saveRoomId, startChat, user]);
+    startChatFromScratch(id, user, peer, saveRoomId, props);
+  }, [peer, props, saveRoomId, startChatFromScratch, user]);
 
   return (
     <StyledChatLoader>
@@ -48,5 +48,5 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   saveRoomId,
-  startChat,
+  startChatFromScratch,
 })(ChatLoader);
