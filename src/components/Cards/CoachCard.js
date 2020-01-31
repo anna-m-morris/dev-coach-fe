@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import CoachModal from '../Modals/CoachModal';
 import Rating from '../DataVisualization/Rating';
-import devices from '../../utils/devices';
 
 const StyledCoachCard = styled.div`
   display: flex;
