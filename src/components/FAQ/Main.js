@@ -54,10 +54,16 @@ const CategoryContainer = styled.div`
     background: white;
     transition: ease-out 0.1s;
 
+    @media only screen and (max-width: 1200px) {
+      border-radius: 0.5rem;
+      padding: 2rem 4rem;
+      margin: 2rem;
+      border-width: 0.5rem;
+    }
     @media ${devices.tablet} {
       border-radius: 0.5rem;
-      padding: 1.5rem 2.5rem;
-      margin: 1rem;
+      padding: 1.25rem 2.25rem;
+      margin: 0.5rem;
       border-width: 0.5rem;
       display: flex;
       flex-direction: column;

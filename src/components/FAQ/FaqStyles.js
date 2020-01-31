@@ -30,17 +30,26 @@ export const AskedQuestionDiv = styled.div`
   align-items: center;
   cursor: pointer;
 
+  @media only screen and (max-width: 1200px) {
+    width: 40rem;
+  }
+
   @media ${devices.tablet} {
     width: 25rem;
   }
 
   @media ${devices.mobile} {
     width: 17rem;
+    padding: 5px 10px;
   }
   p {
-    font-size: 19px;
+    font-size: 1.19rem;
     font-weight: 600;
     width: 38em;
+
+    @media ${devices.mobile} {
+      font-size: 1rem;
+    }
   }
 
   img {
@@ -53,11 +62,26 @@ export const AnsweredQuestionDiv = styled.div`
   margin-top: 20px;
   font-style: italic;
   font-size: 16px;
-  width: 45em;
+  width: 45rem;
   margin-bottom: 20px;
 
+  @media only screen and (max-width: 1200px) {
+    width: 38rem;
+  }
+
+  @media ${devices.tablet} {
+    width: 23rem;
+  }
+
+  @media ${devices.mobile} {
+    width: 15rem;
+  }
   .settings {
     width: 100%;
     height: 20rem;
+
+    @media ${devices.mobile} {
+      display: none;
+    }
   }
 `;
