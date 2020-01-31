@@ -7,17 +7,17 @@ const javascriptInitialEditorState = `function square(x) {
   `;
 
 const pythonInitialEditorState = `# example code: print n fibonacci numbers
+
+a = 10
   
-  a = 10
-  
-  def fib(n):
-      a, b = 0, 1
-      for _ in range(n):
-          yield a
-          a, b = b, a + b
-  
-  print(list(fib(a)))
-  `;
+def fib(n):
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
+
+print(list(fib(a)))
+`;
 
 export const mapLanguageToEditorState = (language, editorState) => {
   switch (language) {

@@ -14,14 +14,19 @@ const EditorContainer = styled.div`
   }
 `;
 
-const Editor = ({ editorState, setEditorState }) => {
+const Editor = ({ editorState, setEditorState, language }) => {
+  console.log(language);
   return (
     <EditorContainer>
       <CodeMirror
         className='codemirror'
         value={editorState}
         options={{
-          mode: 'javascript',
+          mode: `${
+            language === 'java' || language === 'cpp'
+              ? 'clike'
+              : language
+          }`,
           theme: 'material',
           lineNumbers: true,
         }}

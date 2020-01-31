@@ -40,7 +40,6 @@ const Interface = ({
       language_id: `${mapLanguageToId(language)}`,
     })
       .then(res => {
-        console.log(res);
         setTimeout(() => {
           Axios.get(
             `https://api.judge0.com/submissions/${res.data.token}`,
@@ -65,8 +64,6 @@ const Interface = ({
   const handlePost = () => {
     logCode();
   };
-
-  console.log(editorState);
 
   const handleSelection = event => {
     setLanguage(event.target.value);

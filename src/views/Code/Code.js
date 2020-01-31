@@ -53,6 +53,8 @@ function Code() {
           setOutput={setOutput}
           editorState={editorState}
           setEditorState={setEditorState}
+          language={language}
+          setLanguage={setLanguage}
         />
         <Terminal initialText='$  ' output={output} />
       </div>
