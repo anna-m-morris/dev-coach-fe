@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import uuid from 'uuid';
 import Pagination from 'antd/lib/pagination';
@@ -291,12 +292,14 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
-  getAppointment,
-  cancelAppointment,
-  startInterview,
-  saveIdRole,
-  saveRescheduledCoach,
-  getFeedback,
-  savePeer,
-})(UserDashboard);
+export default withRouter(
+  connect(mapStateToProps, {
+    getAppointment,
+    cancelAppointment,
+    startInterview,
+    saveIdRole,
+    saveRescheduledCoach,
+    getFeedback,
+    savePeer,
+  })(UserDashboard),
+);

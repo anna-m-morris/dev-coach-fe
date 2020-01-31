@@ -134,7 +134,12 @@ const mapExperience = experience => {
 };
 
 export const AppointmentCard = props => {
-  const { appointment, startInterview, cancelAppointment, saveId } = props;
+  const {
+    appointment,
+    startInterview,
+    cancelAppointment,
+    savePeer,
+  } = props;
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -216,7 +221,7 @@ export const AppointmentCard = props => {
             variant='contained'
             color='primary'
             endIcon={<Icon>send</Icon>}
-            onClick={saveId}
+            onClick={savePeer}
           >
             Chat
           </Button>

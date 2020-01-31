@@ -24,7 +24,7 @@ function App(props) {
   const [otherUserId, setOtherUserId] = useState(
     props.peer
       ? props.peer.email
-      : props.rooms
+      : props.rooms && props.rooms.length
       ? props.rooms[0].member_user_ids.filter(
           id => id !== props.user.email,
         )[0]
@@ -36,6 +36,8 @@ function App(props) {
   }, [props.user]);
 
   const startChat = otherUser => {
+    const y = otherUserId;
+    debugger;
     setOtherUserId(otherUser);
   };
 
@@ -74,11 +76,9 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    roomId: state.chatReducer.roomId,
-    messages: state.chatReducer.messages,
+    peer: state.chatReducer.peer,
     rooms: state.chatReducer.rooms,
     user: state.userReducer.user,
-    id: state.chatReducer.id,
   };
 };
 
