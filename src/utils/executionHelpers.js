@@ -7,17 +7,40 @@ const javascriptInitialEditorState = `function square(x) {
   `;
 
 const pythonInitialEditorState = `# example code: print n fibonacci numbers
+
+a = 10
   
-  a = 10
-  
-  def fib(n):
-      a, b = 0, 1
-      for _ in range(n):
-          yield a
-          a, b = b, a + b
-  
-  print(list(fib(a)))
-  `;
+def fib(n):
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
+
+print(list(fib(a)))
+`;
+
+const cppInitialState = `#include <iostream>
+
+int main() {
+    std::cout << "hello, c++!" << std::endl;
+    return 0;
+}
+`;
+
+const javaInitialState = `public class Main {
+  public static void main(String[] args) {
+      System.out.println("hello, java!");
+  }
+}
+`;
+
+const cInitialState = `#include <stdio.h>
+
+int main(void) {
+    printf("hello, c! \\n");
+    return 0;
+}
+`;
 
 export const mapLanguageToEditorState = (language, editorState) => {
   switch (language) {
@@ -27,6 +50,12 @@ export const mapLanguageToEditorState = (language, editorState) => {
       return javascriptInitialEditorState;
     case 'python':
       return pythonInitialEditorState;
+    case 'c':
+      return cInitialState;
+    case 'cpp':
+      return cppInitialState;
+    case 'java':
+      return javaInitialState;
   }
 };
 
@@ -40,6 +69,8 @@ export const mapLanguageToId = language => {
       return 71;
     case 'java':
       return 62;
+    case 'c':
+      return 50;
     case 'cpp':
       return 54;
   }
