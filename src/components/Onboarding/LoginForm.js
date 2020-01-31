@@ -14,29 +14,75 @@ import {
 import { login } from '../../state/actions/authenticationActions';
 import pattern from '../../img/pattern.jpg';
 
-export const GreyBackgroundContainer = styled.div`
+// export const GreyBackgroundContainer = styled.div`
+//   height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background-color: #f7f7f7;
+// `;
+
+// export const FormCard = styled.div`
+//   background: white;
+//   height: 30em;
+//   width: 25em;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+//   border-radius: 1rem;
+
+//   .message-container {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     background: #408f53;
+//     border-top-left-radius: 1rem;
+//     border-top-right-radius: 1rem;
+//     padding: 2rem 0;
+//   }
+
+//   h1 {
+//     color: white;
+//     margin: 0;
+//   }
+// `;
+
+const LoginContainer = styled.div`
   height: 100vh;
-  background: #f2f2f2;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #11aa44;
-  background-image: url(${pattern});
-`;
+  background-color: #f7f7f7;
 
-export const FormCard = styled.div`
-  background: white;
-  height: 30em;
-  width: 25em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
+  .form-container {
+    background: white;
+    height: 30em;
+    width: 25em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
 
-  h1 {
-    color: #292d38;
-    margin-top: 0.5rem;
+    .message-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #408f53;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+      padding: 2rem 0;
+    }
+
+    h1 {
+      color: white;
+      margin: 0;
+    }
   }
 `;
 
@@ -150,59 +196,52 @@ const LoginForm = ({
   isSubmitting,
 }) => {
   return (
-    <div>
-      <GreyBackgroundContainer>
-        <FormCard>
-          <Link to='/'>
-            <Logo />
-          </Link>
-          <h1>Welcome Back!</h1>
-          <FormContainer>
-            <Form>
-              <div>
-                <Field
-                  type='email'
-                  name='email'
-                  placeholder='Email'
-                />
-                {errors.email && touched.email && (
-                  <StyledError>{errors.email}</StyledError>
-                )}
-              </div>
-              <div>
-                <Field
-                  type='password'
-                  name='password'
-                  placeholder='Password'
-                />
-                {userReducer.loginError ? (
-                  <StyledError>{userReducer.loginError}</StyledError>
-                ) : (
-                  errors.password &&
-                  touched.password && (
-                    <StyledError>{errors.password}</StyledError>
-                  )
-                )}
-              </div>
-              <ExtraLoginDetails />
-              <div>
-                <StyledButton
-                  theme={
-                    userReducer.isLoading
-                      ? loadingButtonTheme
-                      : buttonTheme
-                  }
-                  type='submit'
-                  disabled={isSubmitting}
-                >
-                  Sign in to your account
-                </StyledButton>
-              </div>
-            </Form>
-          </FormContainer>
-        </FormCard>
-      </GreyBackgroundContainer>
-    </div>
+    <LoginContainer className='Login-container'>
+      <div className='form-container'>
+        <div className='message-container'>
+          <h1 className='login-title'>Welcome Back!</h1>
+        </div>
+        <FormContainer>
+          <Form>
+            <div>
+              <Field type='email' name='email' placeholder='Email' />
+              {errors.email && touched.email && (
+                <StyledError>{errors.email}</StyledError>
+              )}
+            </div>
+            <div>
+              <Field
+                type='password'
+                name='password'
+                placeholder='Password'
+              />
+              {userReducer.loginError ? (
+                <StyledError>{userReducer.loginError}</StyledError>
+              ) : (
+                errors.password &&
+                touched.password && (
+                  <StyledError>{errors.password}</StyledError>
+                )
+              )}
+            </div>
+            <ExtraLoginDetails />
+            <div>
+              <StyledButton
+                theme={
+                  userReducer.isLoading
+                    ? loadingButtonTheme
+                    : buttonTheme
+                }
+                type='submit'
+                disabled={isSubmitting}
+              >
+                Sign in to your account
+              </StyledButton>
+            </div>
+          </Form>
+        </FormContainer>
+      </div>
+    </LoginContainer>
   );
 };
 
