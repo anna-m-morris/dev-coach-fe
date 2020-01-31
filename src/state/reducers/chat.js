@@ -4,12 +4,11 @@ const initialState = {
   peer: null,
   roomId: null,
   rooms: null,
-  id: null,
 };
 
 function chatReducer(state = initialState, action) {
   switch (action.type) {
-    case types.SAVE_FOR_CHAT:
+    case types.SAVE_PEER:
       return {
         ...state,
         peer: action.payload,
@@ -30,12 +29,6 @@ function chatReducer(state = initialState, action) {
     case types.START_CHAT_SUCCESSFUL:
       return {
         ...state,
-      };
-
-    case types.SAVE_ID:
-      return {
-        ...state,
-        id: action.payload,
       };
 
     default:

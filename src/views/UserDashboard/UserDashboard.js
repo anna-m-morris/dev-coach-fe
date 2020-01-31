@@ -15,7 +15,7 @@ import {
   getFeedback,
 } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
-import { saveId } from '../../state/actions/chatActions';
+import { savePeer } from '../../state/actions/chatActions';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 import devices from '../../utils/devices';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
@@ -167,7 +167,7 @@ const UserDashboard = props => {
     startInterview,
     saveIdRole,
     getFeedback,
-    saveId,
+    savePeer,
   } = props;
 
   const [minValue, setMinValue] = React.useState(0);
@@ -243,8 +243,15 @@ const UserDashboard = props => {
                       startInterview(appointment.email, props);
                       saveIdRole(appointment.role_id, appointment.id);
                     }}
-                    saveId={() => {
-                      saveId(appointment.email, props);
+                    savePeer={() => {
+                      savePeer(
+                        {
+                          email: appointment.email,
+                          name: `${appointment.first_name} ${appointment.last_name}`,
+                          avatar_url: appointment.avatar_url,
+                        },
+                        props,
+                      );
                     }}
                   />
                 ))}
@@ -291,5 +298,5 @@ export default connect(mapStateToProps, {
   saveIdRole,
   saveRescheduledCoach,
   getFeedback,
-  saveId,
+  savePeer,
 })(UserDashboard);

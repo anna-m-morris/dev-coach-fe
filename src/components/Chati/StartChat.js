@@ -18,8 +18,8 @@ const ChatLoader = props => {
   useEffect(() => {
     const id =
       user.role_id === 1
-        ? `${user.email} ${peer.email}`
-        : `${peer.email} ${user.email}`;
+        ? `${user.email} & ${peer.email}`
+        : `${peer.email} & ${user.email}`;
 
     startChat(id, user, peer, props);
   }, [peer, props, startChat, user]);

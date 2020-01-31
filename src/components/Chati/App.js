@@ -22,8 +22,8 @@ const tokenProvider = new TokenProvider({
 function App(props) {
   const userId = props.user.email;
   const [otherUserId, setOtherUserId] = useState(
-    props.id
-      ? props.id
+    props.peer
+      ? props.peer
       : props.rooms
       ? props.rooms[0].member_user_ids.filter(
           id => id !== props.user.email,
@@ -36,7 +36,6 @@ function App(props) {
   }, [props.user]);
 
   const startChat = otherUser => {
-    debugger;
     setOtherUserId(otherUser);
   };
 

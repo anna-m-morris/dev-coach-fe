@@ -3,23 +3,18 @@ import axiosWithAuth from '../../utils/axiosWithAuth';
 export const GET_ROOMS_ERROR = 'GET_ROOMS_ERROR';
 export const GET_ROOMS_SUCCESSFUL = 'GET_ROOMS_SUCCESSFUL';
 export const START_CHAT_SUCCESSFUL = 'START_CHAT_SUCCESSFUL';
-export const SAVE_FOR_CHAT = 'SAVE_FOR_CHAT';
+export const SAVE_PEER = 'SAVE_PEER';
 export const SAVE_ROOM_ID = 'SAVE_ROOM_ID';
-export const SAVE_ID = 'SAVE_ID';
 
 const url = process.env.REACT_APP_BASE_URL;
 
-export const saveForChat = peer => {
-  return { type: SAVE_FOR_CHAT, payload: peer };
+export const savePeer = (peer, props) => {
+  props.history.push('/chat');
+  return { type: SAVE_PEER, payload: peer };
 };
 
 export const saveRoomId = roomId => {
   return { type: SAVE_ROOM_ID, payload: roomId };
-};
-
-export const saveId = (id, props) => {
-  props.history.push('/chat');
-  return { type: SAVE_ID, payload: id };
 };
 
 export const getRooms = email => dispatch => {
@@ -42,19 +37,14 @@ export const getRooms = email => dispatch => {
     });
 };
 
-export const startChatFromScratch = (
-  id,
-  user,
-  peer,
-  props,
-) => dispatch => {
+export const startChat = (id, user, peer, props) => dispatch => {
   axiosWithAuth()
     .post(`${url}chat/room_id`, {
       roomId: id,
     })
     .then(res => {
       if (res.data.message === 'successful') {
-        // chat can start
+        props.history.push('/chat');
         dispatch({ type: START_CHAT_SUCCESSFUL });
       } else {
         axiosWithAuth()

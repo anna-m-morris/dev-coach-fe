@@ -13,7 +13,7 @@ import {
 } from '../../state/actions/marketplaceActions';
 import { saveCoach } from '../../state/actions/bookingActions';
 import { getFeedback } from '../../state/actions/feedbackActions';
-import { saveForChat } from '../../state/actions/chatActions';
+import { savePeer } from '../../state/actions/chatActions';
 import SelectPrice from '../../components/Inputs/SelectPrice';
 import SelectExperience from '../../components/Inputs/SelectExperience';
 import SearchForKeyword from '../../components/Inputs/SearchForKeyword';
@@ -72,7 +72,7 @@ const Marketplace = ({
   saveCoach,
   getFeedback,
   feedback,
-  saveForChat,
+  savePeer,
 }) => {
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(6);
@@ -109,8 +109,8 @@ const Marketplace = ({
               saveCoach={() => saveCoach(coach)}
               getFeedback={getFeedback}
               feedback={feedback}
-              saveForChat={() =>
-                saveForChat({
+              savePeer={() =>
+                savePeer({
                   email: coach.email,
                   name: `${coach.first_name} ${coach.last_name}`,
                   avatar_url: coach.avatar_url,
@@ -154,5 +154,5 @@ export default connect(mapStateToProps, {
   searchForExperience,
   saveCoach,
   getFeedback,
-  saveForChat,
+  savePeer,
 })(Marketplace);

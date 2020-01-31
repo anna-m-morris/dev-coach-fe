@@ -93,13 +93,7 @@ const StyledCoachCard = styled.div`
 `;
 
 export const CoachCard = props => {
-  const {
-    coach,
-    saveCoach,
-    getFeedback,
-    feedback,
-    saveForChat,
-  } = props;
+  const { coach, saveCoach, getFeedback, feedback, savePeer } = props;
 
   return (
     <StyledCoachCard>
@@ -146,7 +140,7 @@ export const CoachCard = props => {
       </div>
 
       <div className='footer'>
-        <Link to='/start_chat' onClick={saveForChat}>
+        <Link to='/start_chat' onClick={savePeer}>
           <Button
             className='button'
             variant='contained'
