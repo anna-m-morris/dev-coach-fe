@@ -16,8 +16,18 @@ const StyledFeedback = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 1rem;
+
+  .feedback-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 
   .feedback-title {
     margin: 0;
@@ -52,12 +62,6 @@ const StyledFeedback = styled.div`
     width: 100%;
     padding: 1em;
   }
-
-  .feedback-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 `;
 
 const ChartCardContainer = styled(CardContainer)`
@@ -85,13 +89,14 @@ const Feedback = ({ user, getFeedback, feedback }) => {
   };
 
   return (
-    <StyledFeedback>
-      <h2 className='feedback-title'>Interview Feedback</h2>
+    <StyledFeedback className='feedback-container'>
       {feedback ? (
         <div className='feedback-content'>
           <ChartCardContainer>
             <StudentChart />
           </ChartCardContainer>
+          <h2 className='feedback-title'>Interview Feedback</h2>
+
           <StyledFeedback className='feedback-card-container'>
             {feedback && feedback.length ? (
               feedback
