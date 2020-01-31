@@ -120,7 +120,6 @@ const Feedback = ({ user, getFeedback, feedback }) => {
               <StudentChart />
             </ChartCardContainer>
           </div>
-          {/* <StyledFeedback */}
           <div className='feedback-card-container'>
             {feedback && feedback.length ? (
               feedback
