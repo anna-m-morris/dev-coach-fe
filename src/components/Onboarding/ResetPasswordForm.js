@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -226,8 +226,3 @@ const StyledError = styled.p`
   color: red;
   font-size: 0.8rem;
 `;
-
-const loadingButtonTheme = {
-  text: '#292d38',
-  background: 'lightgray',
-};
