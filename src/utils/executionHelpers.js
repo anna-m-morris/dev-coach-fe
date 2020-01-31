@@ -37,7 +37,7 @@ const javaInitialState = `public class Main {
 const cInitialState = `#include <stdio.h>
 
 int main(void) {
-    printf("hello, world\n");
+    printf("hello, c! \\n");
     return 0;
 }
 `;
@@ -69,6 +69,8 @@ export const mapLanguageToId = language => {
       return 71;
     case 'java':
       return 62;
+    case 'c':
+      return 50;
     case 'cpp':
       return 54;
   }

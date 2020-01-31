@@ -40,11 +40,13 @@ const Interface = ({
       language_id: `${mapLanguageToId(language)}`,
     })
       .then(res => {
+        console.log(res);
         setTimeout(() => {
           Axios.get(
             `https://api.judge0.com/submissions/${res.data.token}`,
           )
             .then(res => {
+              console.log(res);
               if (res.data.stdout) {
                 setOutput(res.data.stdout);
               } else if (res.data.compile_output) {
@@ -56,7 +58,7 @@ const Interface = ({
               }
             })
             .catch(err => {});
-        }, 2000);
+        }, 1500);
       })
       .catch(err => {});
   }
@@ -89,7 +91,7 @@ const Interface = ({
       </FormControl>
       <FormControl>
         <InputLabel>Select Coding Challenge</InputLabel>
-        <Select style={{ width: '20em' }} value='square'>
+        <Select readOnly style={{ width: '20em' }} value=''>
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
           <MenuItem value='fizzbuzz'>Fizzbuzz</MenuItem>
