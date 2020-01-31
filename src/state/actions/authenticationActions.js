@@ -2,8 +2,7 @@ import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import * as types from './actionTypes';
 
-// const url = process.env.REACT_APP_BASE_URL;
-const url = 'http://localhost:5000/';
+const url = process.env.REACT_APP_BASE_URL;
 
 export const sendResetPasswordEmail = (
   props,
