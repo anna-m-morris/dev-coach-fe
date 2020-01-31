@@ -37,6 +37,8 @@ function Settings(props) {
   };
 
   const [userInfo, setUserInfo] = useState(initialUserInfo);
+  console.log(user);
+  console.log('2', userInfo);
 
   const handleUpload = ({ file, onSuccess }) => {
     const image = new FormData();
