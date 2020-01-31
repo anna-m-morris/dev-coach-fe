@@ -34,6 +34,42 @@ const Interface = ({
   editorState,
   setEditorState,
 }) => {
+  const invokeCode = (code, param, value) => {
+    return `
+    ${code}
+    console.log(${param}(${value}));
+    `;
+  };
+  function testCode(testCase, value) {
+    Axios.post('https://api.judge0.com/submissions?wait=false', {
+      source_code: `${invokeCode(editorState, testCase, value)}`,
+      language_id: `${mapLanguageToId(language)}`,
+    })
+      .then(res => {
+        setTimeout(() => {
+          Axios.get(
+            `https://api.judge0.com/submissions/${res.data.token}`,
+          )
+            .then(res => {
+              if (res.data.stdout) {
+                console.log(
+                  `Against test input of ${value}, your code evaluated to: ${res.data.stdout}`,
+                );
+              } else if (res.data.compile_output) {
+                alert('Error: ' + res.data.compile_output);
+              } else {
+                alert('Unable to run code');
+              }
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }, 2000);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
   function logCode() {
     Axios.post('https://api.judge0.com/submissions?wait=false', {
       source_code: `${editorState}`,
@@ -64,7 +100,7 @@ const Interface = ({
   }
 
   const handlePost = () => {
-    logCode();
+    mapLanguageToId(language) === 63 ? testCode() : logCode();
   };
 
   const handleSelection = event => {

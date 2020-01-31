@@ -14,10 +14,11 @@ const FlexContainer = styled.div`
   width: 100vw;
 
   .code-header-container {
-    height: 10%;
+    height: 12%;
     width: 100%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
     padding-bottom: 2em;
   }
 
