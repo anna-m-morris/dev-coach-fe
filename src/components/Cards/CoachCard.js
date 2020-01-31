@@ -22,9 +22,6 @@ const StyledCoachCard = styled.div`
   background: white;
   box-shadow: 0 6px 10px #d3d3d3;
 
-  /* @media ${devices.mobile} {
-    width: 16rem;
-  } */
   h3 {
     font-weight: 400;
     font-size: 1rem;
