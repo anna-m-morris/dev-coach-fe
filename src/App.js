@@ -49,7 +49,7 @@ function App({ user, isLoggedIn }) {
         <Route path={'/start_chat'} component={StartChat} />
       ) : null}
       <Route path={'/chat'} component={Chat} />
-      <Route path={'/chat'} component={Chati} />
+      <Route path={'/chati'} component={Chati} />
       <Route path={'/code'} component={Code} />
       <Route path={'/givefeedback'} component={GiveFeedback} />
       <Redirect to='/dashboard' />

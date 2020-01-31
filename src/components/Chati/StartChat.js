@@ -14,31 +14,35 @@ const StyledChatLoader = styled.div`
 `;
 
 const ChatLoader = props => {
-  const { user, peer, startInterviewChat, interviewStarted } = props;
+  const {
+    user,
+    peerId,
+    startInterviewChat,
+    interviewStarted,
+  } = props;
 
   useEffect(() => {
-    startInterviewChat(user, peer, props);
-  }, [peer, props, startInterviewChat, user]);
+    startInterviewChat(user, peerId, props);
+  }, []);
 
-  return (
+  return interviewStarted ? (
+    <Chat />
+  ) : (
     <StyledChatLoader>
-      {interviewStarted ? (
-        <Chat />
-      ) : (
-        <Loader
-          type='TailSpin'
-          color='#2BAD60'
-          height={80}
-          width={80}
-        />
-      )}
+      <Loader
+        type='TailSpin'
+        color='#2BAD60'
+        height={80}
+        width={80}
+      />
     </StyledChatLoader>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    peer: state.interviewReducer.peer,
+    peerId: state.interviewReducer.peerId,
+    interviewStarted: state.interviewReducer.interviewStarted,
     user: state.userReducer.user,
   };
 };
@@ -46,3 +50,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   startInterviewChat,
 })(ChatLoader);
+
+// WE NEED TO CREATE NEW CHAT ON PUSHER
+// NEW BACKEND AUTH AS WELL

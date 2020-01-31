@@ -18,7 +18,6 @@ function interviewReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        peerId: action.payload,
         interviewStarted: true,
       };
 

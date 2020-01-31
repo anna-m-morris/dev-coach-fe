@@ -3,38 +3,16 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  width: 100%;
 }
 
-.Chat__titlebar {
-  display: flex;
-  align-items: center;
-  background: #ededed;
-  padding: 0rem 0.5rem;
-  height: 4rem;
-}
-
-.Chat__titlebar__avatar {
-  width: 3rem;
-  border-radius: 1.5rem;
-  margin-right: 1rem;
-}
-
-.Chat__titlebar__details {
-  display: flex;
-  flex-direction: column;
-}
-
-.Chat__titlebar__details__presence {
-  font-size: 0.8em;
-  opacity: 0.5;
-  margin-top: 0.2rem;
-}
 
 .Chat__messages {
   background-image: linear-gradient(#d3d3d3, #d0d0d0);
   flex: 1;
   padding: 2rem 4rem;
   overflow-y: scroll;
+  width: 100%;
 }
 
 .Chat__messages__message__wrapper {

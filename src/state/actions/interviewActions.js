@@ -6,6 +6,7 @@ export const CHAT_SUCCESSFUL = 'CHAT_SUCCESSFUL';
 const url = process.env.REACT_APP_BASE_URL;
 
 export const startInterview = (peerId, props) => {
+  debugger
   // props.history.push('/video');
   props.history.push('/chati');
 
@@ -13,6 +14,7 @@ export const startInterview = (peerId, props) => {
 };
 
 export const startInterviewChat = (user, peer) => dispatch => {
+  debugger
   axiosWithAuth()
     .post(`${url}chat`, {
       username: user.email,
@@ -20,7 +22,7 @@ export const startInterviewChat = (user, peer) => dispatch => {
     .then(() => {
       axiosWithAuth()
         .post(`${url}chat`, {
-          username: peer.email,
+          username: peer,
         })
         .then(() => {
           dispatch({

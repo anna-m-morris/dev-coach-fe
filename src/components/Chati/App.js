@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 // import { getRooms } from '../../state/actions/chatActions';
 
-import './App.css';
+// import './App.css';
 import Chat from './Chat';
 // import UserList from './UserList';
 import chatkitLogo from './chatkit-logo.svg';
@@ -32,7 +32,7 @@ function App(props) {
   //   debugger;
   //   setOtherUserId(otherUser);
   // };
-
+console.log(userId, otherUserId)
   return (
     <div className='App'>
       {userId && otherUserId ? (

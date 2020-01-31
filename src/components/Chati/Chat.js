@@ -1,22 +1,16 @@
-import Moment from 'react-moment';
+// import Moment from 'react-moment';
 import React, { useState, useEffect } from 'react';
 import { withChatkitOneToOne } from '@pusher/chatkit-client-react';
 
 import './Chat.css';
-import defaultAvatar from './default-avatar.png';
+// import defaultAvatar from './default-avatar.png';
 
 function Chat(props) {
   const [pendingMessage, setPendingMessage] = useState('');
-  const messageList = React.createRef();
-
-  const handleMessageKeyDown = event => {
-    if (event.key === 'Enter') {
-      handleSendMessage();
-    }
-  };
 
   const handleMessageChange = event => {
     setPendingMessage(event.target.value);
+    handleSendMessage();
   };
 
   const handleSendMessage = () => {
@@ -25,44 +19,23 @@ function Chat(props) {
     }
 
     props.chatkit.sendSimpleMessage({ text: pendingMessage });
-    setPendingMessage('');
   };
 
-  useEffect(() => {
-    messageList.current.scrollTop = messageList.current.scrollHeight;
-  });
-
-  // TODO: Show messages from Chatkit
   const messages = props.chatkit.messages.map(m => ({
     id: m.id,
-    isOwnMessage: m.sender.id === props.chatkit.currentUser.id,
-    createdAt: m.createdAt,
     // This will only work with simple messages.
     // To learn more about displaying multi-part messages see
     // https://pusher.com/docs/chatkit/reference/javascript#messages
     textContent: m.parts[0].payload.content,
   }));
-
   return (
     <div className='Chat'>
-      <div className='Chat__titlebar'>
-        <img
-          src={defaultAvatar}
-          className='Chat__titlebar__avatar'
-          alt='avatar'
-        />
-        <div className='Chat__titlebar__details'>
-          <span>
-            {props.chatkit.isLoading
-              ? 'Loading...'
-              : props.chatkit.otherUser.name}
-          </span>
-        </div>
-      </div>
-      <div className='Chat__messages' ref={messageList}>
-        {messages.map(m => (
-          <Message key={m.id} {...m} />
-        ))}
+      <div className='Chat__messages'>
+        {messages && messages.length ? (
+          <Message
+            textContent={messages[messages.length - 1].textContent}
+          />
+        ) : null}
       </div>
       <div className='Chat__compose'>
         <input
@@ -71,7 +44,6 @@ function Chat(props) {
           placeholder='Type a message...'
           value={pendingMessage}
           onChange={handleMessageChange}
-          onKeyDown={handleMessageKeyDown}
         />
         <button
           className='Chat__compose__button'
@@ -84,50 +56,11 @@ function Chat(props) {
   );
 }
 
-function Message({
-  isOwnMessage,
-  isLatestMessage,
-  createdAt,
-  textContent,
-}) {
+function Message({ textContent }) {
   return (
-    <div
-      className={
-        isOwnMessage
-          ? 'Chat__messages__message__wrapper Chat__messages__message__wrapper--self'
-          : 'Chat__messages__message__wrapper Chat__messages__message__wrapper--other'
-      }
-    >
-      <div className='Chat__messages__message__wrapper__inner'>
-        <div
-          className={
-            isOwnMessage
-              ? 'Chat__messages__message Chat__messages__message--self'
-              : 'Chat__messages__message Chat__messages__message--other'
-          }
-        >
-          <div className='Chat__messages__message__content'>
-            {textContent}
-          </div>
-          <div className='Chat__messages__message__time'>
-            <Moment
-              calendar={{
-                sameDay: 'LT',
-                lastDay: '[Yesterday at] LT',
-                lastWeek: '[last] dddd [at] LT',
-              }}
-            >
-              {createdAt}
-            </Moment>
-          </div>
-          <div
-            className={
-              isOwnMessage
-                ? 'Chat__messages__message__arrow alt'
-                : 'Chat__messages__message__arrow'
-            }
-          />
-        </div>
+    <div>
+      <div className='Chat__messages__message__content'>
+        {textContent}
       </div>
     </div>
   );
