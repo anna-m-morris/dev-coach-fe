@@ -23,7 +23,7 @@ function App(props) {
   const userId = props.user.email;
   const [otherUserId, setOtherUserId] = useState(
     props.peer
-      ? props.peer
+      ? props.peer.email
       : props.rooms
       ? props.rooms[0].member_user_ids.filter(
           id => id !== props.user.email,

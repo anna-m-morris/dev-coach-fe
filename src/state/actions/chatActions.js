@@ -9,6 +9,7 @@ export const SAVE_ROOM_ID = 'SAVE_ROOM_ID';
 const url = process.env.REACT_APP_BASE_URL;
 
 export const savePeer = (peer, props) => {
+  debugger
   props.history.push('/chat');
   return { type: SAVE_PEER, payload: peer };
 };
@@ -43,6 +44,7 @@ export const startChat = (id, user, peer, props) => dispatch => {
       roomId: id,
     })
     .then(res => {
+      debugger
       if (res.data.message === 'successful') {
         props.history.push('/chat');
         dispatch({ type: START_CHAT_SUCCESSFUL });
