@@ -34,6 +34,8 @@ const Interface = ({
   setLanguage,
   editorState,
   setEditorState,
+  testCase,
+  setTestCase,
 }) => {
   const invokeCode = (code, param, value) => {
     return `
@@ -63,8 +65,7 @@ const Interface = ({
                 setOutput('Unable to run code');
               }
             })
-            .catch(err => {
-            });
+            .catch(err => {});
         }, 2000);
       })
       .catch(err => {
@@ -118,10 +119,10 @@ const Interface = ({
 
   const handlePost = () => {
     setOutput([]);
-    if (mapLanguageToId(language) === 63) {
+    if (testCase) {
       setOutput(`Running tests...\n`);
       testCasesSquare.forEach(el => testCode('square', el));
-    } else {                                                                                                      
+    } else {
       logCode();
     }
   };
@@ -129,6 +130,10 @@ const Interface = ({
   const handleSelection = event => {
     setLanguage(event.target.value);
     setEditorState(mapLanguageToEditorState(event.target.value));
+  };
+
+  const handleTestSelection = event => {
+    setTestCase(event.target.value);
   };
 
   return (
@@ -150,7 +155,12 @@ const Interface = ({
       </FormControl>
       <FormControl>
         <InputLabel>Select Coding Challenge</InputLabel>
-        <Select readOnly style={{ width: '20em' }} value=''>
+        <Select
+          style={{ width: '20em' }}
+          value={testCase}
+          onChange={handleTestSelection}
+        >
+          <MenuItem value=''>None</MenuItem>
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
           <MenuItem value='fizzbuzz'>Fizzbuzz</MenuItem>

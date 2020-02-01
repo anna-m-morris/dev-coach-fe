@@ -1,10 +1,6 @@
 import Axios from 'axios';
 
-const javascriptInitialEditorState = `function square(x) {
-    // challenge #1: write a function that takes a number and returns its square
-  
-  };
-  `;
+const javascriptInitialEditorState = `console.log('hello JS!');`;
 
 const pythonInitialEditorState = `# example code: print n fibonacci numbers
 
