@@ -3,8 +3,6 @@ import Pusher from 'pusher-js';
 import pushid from 'pushid';
 import axios from 'axios';
 import { connect } from 'react-redux';
-
-import './App.css';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/python/python';
@@ -78,9 +76,6 @@ class App extends Component {
     super(props);
     this.state = {
       id: '',
-      // html: '',
-      // css: '',
-      // js: '',
       output: '',
       editorState: '',
       language: 'javascript',
@@ -97,10 +92,6 @@ class App extends Component {
 
     this.channel = this.pusher.subscribe(this.state.channelName);
   }
-
-  // componentDidUpdate() {
-  //   this.runCode();
-  // }
 
   componentDidMount() {
     this.setState({
@@ -247,101 +238,15 @@ class App extends Component {
 
   handleSelection = event => {
     // setLanguage(event.target.value);
-    this.setState({ language: event.target.value });
-    // setEditorState(mapLanguageToEditorState(event.target.value));
     this.setState({
+      language: event.target.value,
       editorState: mapLanguageToEditorState(event.target.value),
     });
+    // setEditorState(mapLanguageToEditorState(event.target.value));
   };
 
-  // runCode = () => {
-  //   const { html, css, js } = this.state;
-
-  //   const iframe = this.refs.iframe;
-  //   const document = iframe.contentDocument;
-  //   const documentContents = `
-  //     <!DOCTYPE html>
-  //     <html lang="en">
-  //     <head>
-  //       <meta charset="UTF-8">
-  //       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  //       <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  //       <title>Document</title>
-  //       <style>
-  //         ${css}
-  //       </style>
-  //     </head>
-  //     <body>
-  //       ${html}
-
-  //       <script type="text/javascript">
-  //         ${js}
-  //       </script>
-  //     </body>
-  //     </html>
-  //   `;
-
-  //   document.open();
-  //   document.write(documentContents);
-  //   document.close();
-  // };
-
   render() {
-    // const { html, js, css } = this.state;
-    // const codeMirrorOptions = {
-    //   theme: 'material',
-    //   lineNumbers: true,
-    //   scrollbarStyle: null,
-    //   lineWrapping: true,
-    // };
-
     return (
-      // <div className='App'>
-      //   <section className='playground'>
-      //     <div className='code-editor html-code'>
-      //       <div className='editor-header'>HTML</div>
-      //       <CodeMirror
-      //         value={html}
-      //         options={{
-      //           mode: 'htmlmixed',
-      //           ...codeMirrorOptions,
-      //         }}
-      //         onBeforeChange={(editor, data, html) => {
-      //           this.setState({ html }, () => this.syncUpdates());
-      //         }}
-      //       />
-      //     </div>
-      //     <div className='code-editor css-code'>
-      //       <div className='editor-header'>CSS</div>
-      //       <CodeMirror
-      //         value={css}
-      //         options={{
-      //           mode: 'css',
-      //           ...codeMirrorOptions,
-      //         }}
-      //         onBeforeChange={(editor, data, css) => {
-      //           this.setState({ css }, () => this.syncUpdates());
-      //         }}
-      //       />
-      //     </div>
-      //     <div className='code-editor js-code'>
-      //       <div className='editor-header'>JavaScript</div>
-      //       <CodeMirror
-      //         value={js}
-      //         options={{
-      //           mode: 'javascript',
-      //           ...codeMirrorOptions,
-      //         }}
-      //         onBeforeChange={(editor, data, js) => {
-      //           this.setState({ js }, () => this.syncUpdates());
-      //         }}
-      //       />
-      //     </div>
-      //   </section>
-      //   <section className='result'>
-      //     <iframe title='result' className='iframe' ref='iframe' />
-      //   </section>
-      // </div>
       <FlexContainer>
         <div className='code-header-container'>
           <InterfaceContainer>
