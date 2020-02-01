@@ -39,10 +39,16 @@ const Interface = ({
   setCurrentTest,
 }) => {
   const invokeCode = (code, testCase, value) => {
+    if (value) {
+      return `
+      ${code}
+      console.log(${testCase}(${value}));
+      `;
+    }
     return `
-    ${code}
-    console.log(${testCase}(${value}));
-    `;
+      ${code}
+      console.log(${testCase}());
+      `;
   };
   function testCode(testCase, value) {
     if (typeof value === 'string') {
@@ -179,7 +185,7 @@ const Interface = ({
           <MenuItem value=''>None</MenuItem>
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
-          <MenuItem value='fizzbuzz'>Fizzbuzz</MenuItem>
+          <MenuItem value='fizzBuzz'>Fizzbuzz</MenuItem>
           <MenuItem value='reverseAString'>Reverse a string</MenuItem>
         </Select>
       </FormControl>
