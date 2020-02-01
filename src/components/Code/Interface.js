@@ -13,6 +13,7 @@ import {
 import {
   mapLanguageToId,
   mapLanguageToEditorState,
+  mapTestToEditorState,
 } from '../../utils/executionHelpers';
 
 const InterfaceContainer = styled.div`
@@ -127,13 +128,26 @@ const Interface = ({
     }
   };
 
+  const tests = {
+    square: {
+      state: `function square(x) {
+        // enter code below to square a number
+      }
+      `,
+    },
+  };
+
   const handleSelection = event => {
     setLanguage(event.target.value);
     setEditorState(mapLanguageToEditorState(event.target.value));
   };
 
   const handleTestSelection = event => {
-    setTestCase(event.target.value);
+    const selectedTest = event.target.value;
+    setTestCase(selectedTest);
+    if (tests[selectedTest]) {
+      setEditorState(tests[selectedTest].state);
+    }
   };
 
   return (

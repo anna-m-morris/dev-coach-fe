@@ -37,6 +37,7 @@ function Code() {
   const [output, setOutput] = React.useState('');
   const [language, setLanguage] = React.useState('javascript');
   const [testCase, setTestCase] = React.useState('');
+  console.log(testCase)
   return (
     <FlexContainer>
       <div className='code-header-container'>
