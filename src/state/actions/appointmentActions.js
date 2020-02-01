@@ -43,7 +43,7 @@ export const cancelAppointment = (
       dispatch({
         type: CANCEL_APPOINTMENT_SUCCESSFUL,
         payload: res.data.appointment,
-        rescheduler: rescheduler,
+        rescheduler,
       });
     })
     .catch(err => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import uuid from 'uuid';
 import Pagination from 'antd/lib/pagination';
@@ -15,6 +16,7 @@ import {
   getFeedback,
 } from '../../state/actions/feedbackActions';
 import { startInterview } from '../../state/actions/interviewActions';
+import { savePeer } from '../../state/actions/chatActions';
 import EmptyAppointment from '../../components/Cards/EmptyAppointmentCard';
 import devices from '../../utils/devices';
 import AppointmentCard from '../../components/Cards/AppointmentCard';
@@ -166,6 +168,7 @@ const UserDashboard = props => {
     startInterview,
     saveIdRole,
     getFeedback,
+    savePeer,
   } = props;
 
   const [minValue, setMinValue] = React.useState(0);
@@ -241,6 +244,16 @@ const UserDashboard = props => {
                       startInterview(appointment.email, props);
                       saveIdRole(appointment.role_id, appointment.id);
                     }}
+                    savePeer={() => {
+                      savePeer(
+                        {
+                          email: appointment.email,
+                          name: `${appointment.first_name} ${appointment.last_name}`,
+                          avatar_url: appointment.avatar_url,
+                        },
+                        props,
+                      );
+                    }}
                   />
                 ))}
               <div className='pagination'>
@@ -279,11 +292,14 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
-  getAppointment,
-  cancelAppointment,
-  startInterview,
-  saveIdRole,
-  saveRescheduledCoach,
-  getFeedback,
-})(UserDashboard);
+export default withRouter(
+  connect(mapStateToProps, {
+    getAppointment,
+    cancelAppointment,
+    startInterview,
+    saveIdRole,
+    saveRescheduledCoach,
+    getFeedback,
+    savePeer,
+  })(UserDashboard),
+);
