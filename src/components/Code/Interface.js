@@ -13,7 +13,7 @@ import {
 import {
   mapLanguageToId,
   mapLanguageToEditorState,
-  tests,
+  testDataObj,
 } from '../../utils/executionHelpers';
 
 const InterfaceContainer = styled.div`
@@ -35,13 +35,13 @@ const Interface = ({
   setLanguage,
   editorState,
   setEditorState,
-  testCase,
-  setTestCase,
+  currentTest,
+  setCurrentTest,
 }) => {
-  const invokeCode = (code, param, value) => {
+  const invokeCode = (code, testCase, value) => {
     return `
     ${code}
-    console.log(${param}(${value}));
+    console.log(${testCase}(${value}));
     `;
   };
   function testCode(testCase, value) {
@@ -50,6 +50,7 @@ const Interface = ({
       language_id: `${mapLanguageToId(language)}`,
     })
       .then(res => {
+        console.log(res.data.config)
         setTimeout(() => {
           Axios.get(
             `https://api.judge0.com/submissions/${res.data.token}`,
@@ -57,8 +58,8 @@ const Interface = ({
             .then(res => {
               if (res.data.stdout) {
                 setOutput(
-                  prevArr =>
-                    `${prevArr}Against test input of ${value}, your code returned: ${res.data.stdout}`,
+                  prevOutput =>
+                    `${prevOutput}Against test input of ${value}, your code returned: ${res.data.stdout}`,
                 );
               } else if (res.data.compile_output) {
                 setOutput(`Error:  + ${res.data.compile_output}`);
@@ -79,13 +80,11 @@ const Interface = ({
       language_id: `${mapLanguageToId(language)}`,
     })
       .then(res => {
-        console.log(res);
         setTimeout(() => {
           Axios.get(
             `https://api.judge0.com/submissions/${res.data.token}`,
           )
             .then(res => {
-              console.log(res);
               if (res.data.stdout) {
                 setOutput(res.data.stdout);
               } else if (res.data.compile_output) {
@@ -102,7 +101,6 @@ const Interface = ({
       .catch(err => {});
   }
 
-  const testCasesSquare = [5, 10, 2348];
   // const testResultsSquare = [25, 100, 5513104];
   // const squareSolution = el => el * el;
 
@@ -119,38 +117,30 @@ const Interface = ({
   // };
 
   const handlePost = () => {
-    setOutput([]);
-    if (testCase) {
+    setOutput('');
+    if (currentTest) {
       setOutput(`Running tests...\n`);
-      testCasesSquare.forEach(el => testCode('square', el));
+      const { testCases } = testDataObj[currentTest];
+      testCases.forEach(el => testCode(currentTest, el));
     } else {
       logCode();
     }
   };
 
-  const tests = {
-    square: {
-      state: `function square(x) {
-        // enter code below to square a number
-      }
-      `,
-      testCases: [5, 10, 2348],
-      testResults: [25, 100, 5513104],
-      solution: el => el * el,
-    },
-  };
-
-  const handleSelection = event => {
+  const handleLanguageSelection = event => {
     setLanguage(event.target.value);
     setEditorState(mapLanguageToEditorState(event.target.value));
   };
 
   const handleTestSelection = event => {
     const selectedTest = event.target.value;
-    setTestCase(selectedTest);
-    if (tests[selectedTest]) {
-      setEditorState(tests[selectedTest].state);
+    setCurrentTest(selectedTest);
+    if (testDataObj[selectedTest]) {
+      setEditorState(testDataObj[selectedTest].state);
     }
+    // if (testDataObj[selectedTest]) {
+    //   setEditorState(currentTest[selectedTest].state);
+    // }
   };
 
   return (
@@ -161,7 +151,7 @@ const Interface = ({
         <Select
           style={{ width: '20em' }}
           value={language}
-          onChange={handleSelection}
+          onChange={handleLanguageSelection}
         >
           <MenuItem value='javascript'>Javascript</MenuItem>
           <MenuItem value='python'>Python</MenuItem>
@@ -174,7 +164,7 @@ const Interface = ({
         <InputLabel>Select Coding Challenge</InputLabel>
         <Select
           style={{ width: '20em' }}
-          value={testCase}
+          value={currentTest}
           onChange={handleTestSelection}
         >
           <MenuItem value=''>None</MenuItem>

@@ -1,14 +1,25 @@
 import Axios from 'axios';
 
-export const tests = {
+export const testDataObj = {
   square: {
     state: `function square(x) {
-      // enter code below to square a number
+      // enter code below to return the square of a number
     }
     `,
     testCases: [5, 10, 2348],
     testResults: [25, 100, 5513104],
-    solution: el => el * el,
+  },
+  add: {
+    state: `function add (x, y) {
+      // enter code below to add two numbers and return the sum
+    }
+    `,
+    testCases: [
+      [1, 2],
+      [345, 829],
+      [384724323, 23948293819],
+    ],
+    testResults: [3, 1174, 24333018142]
   },
 };
 
