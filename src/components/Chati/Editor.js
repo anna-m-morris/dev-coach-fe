@@ -146,23 +146,26 @@ class App extends Component {
             )
             .then(res => {
               if (res.data.stdout) {
-                this.setState({
-                  output: `${this.state.output}Against test input of ${value}, your code returned: ${res.data.stdout}`,
-                });
                 // setOutput(
                 //   prevArr =>
                 //     `${prevArr}Against test input of ${value}, your code returned: ${res.data.stdout}`,
                 // );
+                this.setState({
+                  output: `${this.state.output}Against test input of ${value}, your code returned: ${res.data.stdout}`,
+                });
+                this.syncUpdates()
               } else if (res.data.compile_output) {
                 // setOutput(`Error:  + ${res.data.compile_output}`);
                 this.setState({
                   output: `Error:  + ${res.data.compile_output}`,
                 });
+                this.syncUpdates()
               } else {
                 // setOutput('Unable to run code');
                 this.setState({
                   output: `Error:  + ${res.data.compile_output}`,
                 });
+                this.syncUpdates()
               }
             })
             .catch(err => {});
@@ -191,12 +194,14 @@ class App extends Component {
               if (res.data.stdout) {
                 this.setState({ output: res.data.stdout });
                 // setOutput(res.data.stdout);
+                this.syncUpdates()
               } else if (res.data.compile_output) {
                 this.setState({ output: res.data.compile_output });
-
                 // setOutput(res.data.compile_output);
+                this.syncUpdates()
               } else if (res.data.stderr) {
                 this.setState({ output: res.data.stderr });
+                this.syncUpdates()
                 // setOutput(res.data.stderr);
               } else {
                 alert('Unable to run code');
@@ -227,9 +232,11 @@ class App extends Component {
     // setOutput([]);
     const testCasesSquare = [5, 10, 2348];
     this.setState({ output: [] });
+    this.syncUpdates()
     if (mapLanguageToId(this.state.language) === 63) {
       // setOutput(`Running tests...\n`);
       this.setState({ output: `Running tests...\n` });
+      this.syncUpdates();
       testCasesSquare.forEach(el => this.testCode('square', el));
     } else {
       this.logCode();
@@ -238,11 +245,13 @@ class App extends Component {
 
   handleSelection = event => {
     // setLanguage(event.target.value);
+    // setEditorState(mapLanguageToEditorState(event.target.value));
     this.setState({
       language: event.target.value,
       editorState: mapLanguageToEditorState(event.target.value),
     });
-    // setEditorState(mapLanguageToEditorState(event.target.value));
+
+    this.syncUpdates()
   };
 
   render() {
