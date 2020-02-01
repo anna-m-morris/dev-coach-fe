@@ -71,7 +71,7 @@ const InterfaceContainer = styled.div`
   }
 `;
 
-class App extends Component {
+class interview extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -114,7 +114,7 @@ class App extends Component {
     const data = { ...this.state };
 
     axios
-      .post(`${process.env.REACT_APP_BASE_URL}editor/update`, {
+      .post(`${process.env.REACT_interview_BASE_URL}editor/update`, {
         update: data,
         channelName: this.state.channelName,
       })
@@ -153,19 +153,19 @@ class App extends Component {
                 this.setState({
                   output: `${this.state.output}Against test input of ${value}, your code returned: ${res.data.stdout}`,
                 });
-                this.syncUpdates()
+                this.syncUpdates();
               } else if (res.data.compile_output) {
                 // setOutput(`Error:  + ${res.data.compile_output}`);
                 this.setState({
                   output: `Error:  + ${res.data.compile_output}`,
                 });
-                this.syncUpdates()
+                this.syncUpdates();
               } else {
                 // setOutput('Unable to run code');
                 this.setState({
                   output: `Error:  + ${res.data.compile_output}`,
                 });
-                this.syncUpdates()
+                this.syncUpdates();
               }
             })
             .catch(err => {});
@@ -194,14 +194,14 @@ class App extends Component {
               if (res.data.stdout) {
                 this.setState({ output: res.data.stdout });
                 // setOutput(res.data.stdout);
-                this.syncUpdates()
+                this.syncUpdates();
               } else if (res.data.compile_output) {
                 this.setState({ output: res.data.compile_output });
                 // setOutput(res.data.compile_output);
-                this.syncUpdates()
+                this.syncUpdates();
               } else if (res.data.stderr) {
                 this.setState({ output: res.data.stderr });
-                this.syncUpdates()
+                this.syncUpdates();
                 // setOutput(res.data.stderr);
               } else {
                 alert('Unable to run code');
@@ -232,7 +232,7 @@ class App extends Component {
     // setOutput([]);
     const testCasesSquare = [5, 10, 2348];
     this.setState({ output: [] });
-    this.syncUpdates()
+    this.syncUpdates();
     if (mapLanguageToId(this.state.language) === 63) {
       // setOutput(`Running tests...\n`);
       this.setState({ output: `Running tests...\n` });
@@ -251,7 +251,7 @@ class App extends Component {
       editorState: mapLanguageToEditorState(event.target.value),
     });
 
-    this.syncUpdates()
+    this.syncUpdates();
   };
 
   render() {
@@ -328,4 +328,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(interview);
