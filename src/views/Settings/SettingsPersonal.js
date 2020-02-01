@@ -16,7 +16,7 @@ import { updateUserInfo } from '../../state/actions/settingActions';
 
 import StyledSettings from './SettingsStyles';
 
-function Settings(props) {
+export function SettingsPersonal(props) {
   const {
     user,
     updateUserInfo,
@@ -120,7 +120,6 @@ function Settings(props) {
 
   return (
     <StyledSettings className='setting-container'>
-      <h3 className='settings-title'>Personal Information</h3>
       <div className='paper'>
         <div className='image-container'>
           <Upload
@@ -247,4 +246,4 @@ export default connect(mapStateToProps, {
   showErrorMessage,
   showSuccessMessage,
   closeMessage,
-})(Settings);
+})(SettingsPersonal);
