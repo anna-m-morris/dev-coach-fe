@@ -71,7 +71,7 @@ const InterfaceContainer = styled.div`
   }
 `;
 
-class APP extends Component {
+class Code extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -328,4 +328,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(APP);
+export default connect(mapStateToProps)(Code);
