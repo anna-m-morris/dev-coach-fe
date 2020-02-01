@@ -1,23 +1,52 @@
-import React, { useState  } from 'react';
+import React, { useState } from 'react';
 import { withChatkitOneToOne } from '@pusher/chatkit-client-react';
+import styled from 'styled-components';
+import Editor from '../Code/Editor';
+import Interface from '../Code/Interface';
+import Terminal from '../Code/Terminal';
 
-import './Chat.css';
+// import './Chat.css';
+
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: 75vh;
+  width: 100%;
+
+  .code-header-container {
+    height: 12%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 2em;
+  }
+
+  .code-body-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+`;
 
 function Chat(props) {
-  const [pendingMessage, setPendingMessage] = useState('');
+  const [editorState, setEditorState] = useState();
+  const [output, setOutput] = React.useState('');
+  const [language, setLanguage] = React.useState('javascript');
 
-  const handleMessageChange = event => {
-    setPendingMessage(event.target.value);
-    handleSendMessage();
-  };
+  // const handleSendMessage = () => {
+  //   if (editorState === '') {
+  //     return;
+  //   }
 
-  const handleSendMessage = () => {
-    if (pendingMessage === '') {
-      return;
-    }
-
-    props.chatkit.sendSimpleMessage({ text: pendingMessage });
-  };
+  //   props.chatkit.sendSimpleMessage({ text: editorState });
+  // };
 
   const messages = props.chatkit.messages.map(m => ({
     id: m.id,
@@ -30,35 +59,39 @@ function Chat(props) {
     <div className='Chat'>
       <div className='Chat__messages'>
         {messages && messages.length ? (
-          <Message
-            textContent={messages[messages.length - 1].textContent}
-          />
-        ) : null}
-      </div>
-      <div className='Chat__compose'>
-        <input
-          className='Chat__compose__input'
-          type='text'
-          placeholder='Type a message...'
-          value={pendingMessage}
-          onChange={handleMessageChange}
-        />
-        <button
-          className='Chat__compose__button'
-          onClick={handleSendMessage}
-        >
-          Send
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function Message({ textContent }) {
-  return (
-    <div>
-      <div className='Chat__messages__message__content'>
-        {textContent}
+          <FlexContainer>
+            <div className='code-header-container'>
+              <Interface
+                editorState={
+                  messages[messages.length - 1].textContent
+                }
+                // setEditorState={setEditorState}
+                // sendMessage={props.chatkit.sendSimpleMessage}
+                output={output}
+                setOutput={setOutput}
+                language={language}
+                setLanguage={setLanguage}
+              />
+            </div>
+            <div className='code-body-container'>
+              <Editor
+                output={output}
+                setOutput={setOutput}
+                editorState={
+                  messages[messages.length - 1].textContent
+                }
+                setEditorState={setEditorState}
+                sendMessage={props.chatkit.sendSimpleMessage}
+                language={language}
+                setLanguage={setLanguage}
+              />
+              <Terminal initialText='$  ' output={output} />
+            </div>
+          </FlexContainer>
+        ) : // <Message
+        //   textContent={messages[messages.length - 1].textContent}
+        // />
+        null}
       </div>
     </div>
   );
