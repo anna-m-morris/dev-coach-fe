@@ -63,8 +63,7 @@ const Interface = ({
                 setOutput('Unable to run code');
               }
             })
-            .catch(err => {
-            });
+            .catch(err => {});
         }, 2000);
       })
       .catch(err => {
@@ -121,7 +120,7 @@ const Interface = ({
     if (mapLanguageToId(language) === 63) {
       setOutput(`Running tests...\n`);
       testCasesSquare.forEach(el => testCode('square', el));
-    } else {                                                                                                      
+    } else {
       logCode();
     }
   };
