@@ -13,7 +13,7 @@ import {
 import {
   mapLanguageToId,
   mapLanguageToEditorState,
-  mapTestToEditorState,
+  tests,
 } from '../../utils/executionHelpers';
 
 const InterfaceContainer = styled.div`
@@ -134,6 +134,9 @@ const Interface = ({
         // enter code below to square a number
       }
       `,
+      testCases: [5, 10, 2348],
+      testResults: [25, 100, 5513104],
+      solution: el => el * el,
     },
   };
 

@@ -1,5 +1,17 @@
 import Axios from 'axios';
 
+export const tests = {
+  square: {
+    state: `function square(x) {
+      // enter code below to square a number
+    }
+    `,
+    testCases: [5, 10, 2348],
+    testResults: [25, 100, 5513104],
+    solution: el => el * el,
+  },
+};
+
 const javascriptInitialEditorState = `console.log('hello JS!');`;
 
 const pythonInitialEditorState = `# example code: print n fibonacci numbers
