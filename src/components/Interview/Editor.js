@@ -71,7 +71,7 @@ const InterfaceContainer = styled.div`
   }
 `;
 
-class interview extends Component {
+class APP extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -114,7 +114,7 @@ class interview extends Component {
     const data = { ...this.state };
 
     axios
-      .post(`${process.env.REACT_interview_BASE_URL}editor/update`, {
+      .post(`${process.env.REACT_APP_BASE_URL}editor/update`, {
         update: data,
         channelName: this.state.channelName,
       })
@@ -328,4 +328,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(interview);
+export default connect(mapStateToProps)(APP);
