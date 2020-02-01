@@ -16,6 +16,8 @@ import Reschedule from './components/Reschedule/Reschedule';
 import Feedback from './views/Feedback/Feedback';
 import VideoChat from './components/Video/VideoChat';
 import Chat from './components/Chat/ChatScreen';
+import Chati from './components/Chati/Editor';
+
 import StartChat from './components/Chat/Chat';
 
 import Settings from './views/Settings/Settings';
@@ -46,6 +48,7 @@ function App({ user, isLoggedIn }) {
         <Route path={'/start_chat'} component={StartChat} />
       ) : null}
       <Route path={'/chat'} component={Chat} />
+      <Route path={'/chati'} component={Chati} />
       <Route path={'/code'} component={Code} />
       <Route path={'/givefeedback'} component={GiveFeedback} />
       <Redirect to='/dashboard' />
