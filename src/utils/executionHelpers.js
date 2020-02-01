@@ -19,7 +19,23 @@ export const testDataObj = {
       [345, 829],
       [384724323, 23948293819],
     ],
-    testResults: [3, 1174, 24333018142]
+    testResults: [3, 1174, 24333018142],
+  },
+  reverseAString: {
+    state: `function reverse(str) {
+      // enter code below to take as string as input and return the same string, reversed.
+    }
+    `,
+    testCases: [
+      'Hello, world!',
+      'Lor3m 1psum',
+      'Welcome to DevCoach.com!',
+    ],
+    testResults: [
+      '!dlrow ,olleH',
+      'musp1 m3roL',
+      '!moc.hcaoCveD ot emocleW',
+    ],
   },
 };
 

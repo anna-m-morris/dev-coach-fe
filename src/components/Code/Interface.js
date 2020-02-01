@@ -50,7 +50,7 @@ const Interface = ({
       language_id: `${mapLanguageToId(language)}`,
     })
       .then(res => {
-        console.log(res.data.config)
+
         setTimeout(() => {
           Axios.get(
             `https://api.judge0.com/submissions/${res.data.token}`,
@@ -80,11 +80,13 @@ const Interface = ({
       language_id: `${mapLanguageToId(language)}`,
     })
       .then(res => {
+        console.log(res);
         setTimeout(() => {
           Axios.get(
             `https://api.judge0.com/submissions/${res.data.token}`,
           )
             .then(res => {
+              console.log(res);
               if (res.data.stdout) {
                 setOutput(res.data.stdout);
               } else if (res.data.compile_output) {
@@ -121,6 +123,7 @@ const Interface = ({
     if (currentTest) {
       setOutput(`Running tests...\n`);
       const { testCases } = testDataObj[currentTest];
+      console.log(testCases);
       testCases.forEach(el => testCode(currentTest, el));
     } else {
       logCode();
