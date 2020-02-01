@@ -2,7 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { isEqual } from 'lodash';
+// import { isEqual } from 'lodash';
 import {
   Button,
   FormControl,
@@ -63,8 +63,7 @@ const Interface = ({
                 setOutput('Unable to run code');
               }
             })
-            .catch(err => {
-            });
+            .catch(err => {});
         }, 2000);
       })
       .catch(err => {
@@ -101,27 +100,27 @@ const Interface = ({
   }
 
   const testCasesSquare = [5, 10, 2348];
-  const testResultsSquare = [25, 100, 5513104];
-  const squareSolution = el => el * el;
+  // const testResultsSquare = [25, 100, 5513104];
+  // const squareSolution = el => el * el;
 
-  const checkTests = (testCases, expectedValues, solution) => {
-    if (
-      isEqual(
-        testCases.map(el => solution(el)),
-        expectedValues,
-      )
-    ) {
-      return true;
-    }
-    return false;
-  };
+  // const checkTests = (testCases, expectedValues, solution) => {
+  //   if (
+  //     isEqual(
+  //       testCases.map(el => solution(el)),
+  //       expectedValues,
+  //     )
+  //   ) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
 
   const handlePost = () => {
     setOutput([]);
     if (mapLanguageToId(language) === 63) {
       setOutput(`Running tests...\n`);
       testCasesSquare.forEach(el => testCode('square', el));
-    } else {                                                                                                      
+    } else {
       logCode();
     }
   };

@@ -36,8 +36,10 @@ const Terminal = ({ initialText, output }) => {
   return (
     <TerminalContainer>
       <TerminalText
+        suppressContentEditableWarning={true}
         value={output}
         contentEditable='false'
+        readOnly
       ></TerminalText>
     </TerminalContainer>
   );
