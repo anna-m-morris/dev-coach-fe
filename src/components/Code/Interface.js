@@ -45,17 +45,21 @@ const Interface = ({
     `;
   };
   function testCode(testCase, value) {
+    if (typeof value === 'string') {
+      value = `'${value}'`;
+    }
     Axios.post('https://api.judge0.com/submissions?wait=false', {
       source_code: `${invokeCode(editorState, testCase, value)}`,
       language_id: `${mapLanguageToId(language)}`,
     })
       .then(res => {
-
+        console.log(res);
         setTimeout(() => {
           Axios.get(
             `https://api.judge0.com/submissions/${res.data.token}`,
           )
             .then(res => {
+              console.log(res);
               if (res.data.stdout) {
                 setOutput(
                   prevOutput =>
@@ -63,6 +67,8 @@ const Interface = ({
                 );
               } else if (res.data.compile_output) {
                 setOutput(`Error:  + ${res.data.compile_output}`);
+              } else if (res.data.stderr) {
+                setOutput(`Error: + ${res.data.stderr}`);
               } else {
                 setOutput('Unable to run code');
               }
@@ -174,7 +180,7 @@ const Interface = ({
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
           <MenuItem value='fizzbuzz'>Fizzbuzz</MenuItem>
-          <MenuItem value='reverse'>Reverse a string</MenuItem>
+          <MenuItem value='reverseAString'>Reverse a string</MenuItem>
         </Select>
       </FormControl>
       <Button onClick={handlePost}>Run Code</Button>

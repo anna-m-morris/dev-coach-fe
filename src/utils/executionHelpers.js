@@ -22,7 +22,7 @@ export const testDataObj = {
     testResults: [3, 1174, 24333018142],
   },
   reverseAString: {
-    state: `function reverse(str) {
+    state: `function reverseAString(str) {
       // enter code below to take as string as input and return the same string, reversed.
     }
     `,
