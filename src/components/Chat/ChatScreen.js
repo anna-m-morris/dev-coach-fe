@@ -80,7 +80,6 @@ class ChatScreen extends React.Component {
     chatManager
       .connect()
       .then(currentUser => {
-        debugger;
         this.setState({ currentUser });
         return currentUser.subscribeToRoom({
           roomId,
