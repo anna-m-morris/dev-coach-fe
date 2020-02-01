@@ -4,13 +4,15 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Lobby from './Lobby';
 import Room from './Room';
+import Code from '../Interview/Code';
 
 const StyledVideoChat = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 88vh;
+  /* height: 88vh; */
 
   .button {
     width: 100%;
@@ -102,6 +104,7 @@ const VideoChat = ({ user, peerId, history }) => {
           token={token}
           handleLogout={handleLogout}
         />
+        <Code />
       </StyledVideoChat>
     );
   } else {

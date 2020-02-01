@@ -16,7 +16,7 @@ import Reschedule from './components/Reschedule/Reschedule';
 import Feedback from './views/Feedback/Feedback';
 import VideoChat from './components/Video/VideoChat';
 import Chat from './components/Chat/ChatScreen';
-import InterviewCode from './components/Interview/Code';
+// import InterviewCode from './components/Interview/Code';
 
 import StartChat from './components/Chat/Chat';
 
@@ -41,14 +41,14 @@ function App({ user, isLoggedIn }) {
       <Route path={'/appointment'} component={Booking} />
       <Route path={'/reschedule'} component={Reschedule} />
       <Route path={'/feedback'} component={Feedback} />
-      <Route path={'/video'} component={VideoChat} />
+      <Route path={'/interview'} component={VideoChat} />
       <Route path={'/Settings'} component={Settings} />
       <Route path={'/FAQ'} component={MainFaq} />
       {user && user.role_id === 1 ? (
         <Route path={'/start_chat'} component={StartChat} />
       ) : null}
       <Route path={'/chat'} component={Chat} />
-      <Route path={'/interview'} component={InterviewCode} />
+      {/* <Route path={'/interview'} component={InterviewCode} /> */}
       <Route path={'/code'} component={Code} />
       <Route path={'/givefeedback'} component={GiveFeedback} />
       <Redirect to='/dashboard' />
