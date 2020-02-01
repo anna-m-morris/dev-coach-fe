@@ -4,15 +4,8 @@ import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import { message, Upload } from 'antd';
 
-import {
-  showErrorMessage,
-  showSuccessMessage,
-  closeMessage,
-} from '../../state/actions/notificationActions';
 import Notification from '../../components/Notifications/Notification';
-import { updateUserInfo } from '../../state/actions/settingActions';
 
 import StyledSettings from './SettingsStyles';
 
@@ -133,16 +126,3 @@ export function SettingsGeneral(props) {
     </StyledSettings>
   );
 }
-
-const mapStateToProps = state => ({
-  user: state.userReducer.user,
-  success: state.notificationsReducer.success,
-  error: state.notificationsReducer.error,
-});
-
-export default connect(mapStateToProps, {
-  updateUserInfo,
-  showErrorMessage,
-  showSuccessMessage,
-  closeMessage,
-})(SettingsGeneral);

@@ -42,6 +42,8 @@ export function SettingsTabs(props) {
             showErrorMessage={showErrorMessage}
             showSuccessMessage={showSuccessMessage}
             closeMessage={closeMessage}
+            success={success}
+            error={error}
           />
         </TabPane>
         <TabPane tab='General Settings' key='General Settings'>
@@ -52,6 +54,8 @@ export function SettingsTabs(props) {
             showErrorMessage={showErrorMessage}
             showSuccessMessage={showSuccessMessage}
             closeMessage={closeMessage}
+            success={success}
+            error={error}
           />
         </TabPane>
       </Tabs>

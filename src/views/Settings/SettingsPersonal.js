@@ -6,13 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { Upload, message } from 'antd';
 
-import {
-  showErrorMessage,
-  showSuccessMessage,
-  closeMessage,
-} from '../../state/actions/notificationActions';
 import Notification from '../../components/Notifications/Notification';
-import { updateUserInfo } from '../../state/actions/settingActions';
 
 import StyledSettings from './SettingsStyles';
 
@@ -234,16 +228,3 @@ export function SettingsPersonal(props) {
     </StyledSettings>
   );
 }
-
-const mapStateToProps = state => ({
-  user: state.userReducer.user,
-  success: state.notificationsReducer.success,
-  error: state.notificationsReducer.error,
-});
-
-export default connect(mapStateToProps, {
-  updateUserInfo,
-  showErrorMessage,
-  showSuccessMessage,
-  closeMessage,
-})(SettingsPersonal);
