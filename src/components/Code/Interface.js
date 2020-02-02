@@ -42,17 +42,26 @@ const Interface = ({
   testPassedCount,
   setTestPassedCount,
 }) => {
-  const invokeCode = (code, testCase, value) => {
-    if (value) {
+  const invokeCode = (code, testCase, value, language) => {
+    if (language === 'javascript') {
+      if (value) {
+        return `
+        ${code}
+        console.log(${testCase}(${value}));
+        `;
+      }
       return `
-      ${code}
-      console.log(${testCase}(${value}));
-      `;
+        ${code}
+        console.log(${testCase}());
+        `;
     }
-    return `
-      ${code}
-      console.log(${testCase}());
-      `;
+    if (language === 'python') {
+      if (value) {
+        return `${code}\nprint(${testCase}(${value}))
+        `;
+      }
+      return `${code}\nprint(${testCase}())`;
+    }
   };
   // function testCode(testName, value) {
   //   let { testCase } = value;
@@ -137,14 +146,24 @@ const Interface = ({
   }
 
   function executeCode(testName, value) {
+    if (typeof value === 'string') {
+      value = `'${value}'`;
+    }
     return Axios.post(
       'https://api.judge0.com/submissions?wait=false',
       {
-        source_code: `${invokeCode(editorState, testName, value)}`,
+        source_code: `${invokeCode(
+          editorState,
+          testName,
+          value,
+          language,
+        )}`,
         language_id: `${mapLanguageToId(language)}`,
       },
     );
   }
+
+  console.log(invokeCode(editorState, 'square', 5, 'python'))
 
   function fetchExecutedCode(token) {
     return Axios.get(`https://api.judge0.com/submissions/${token}`);
@@ -161,8 +180,13 @@ const Interface = ({
       const executedCode = await executeCode(currentTest, el);
       const { token } = executedCode.data;
       setTimeout(async () => {
-        const response = await fetchExecutedCode(token);
+        const response = await fetchExecutedCode(token)
+        console.log(response);
         const output = response.data.stdout;
+        // const output = response.data.stdout.substring(
+        //   0,
+        //   response.data.stdout.length - 1,
+        // );
         if (output == testResultsArr[idx]) {
           passedTestsArr.push('true');
         }
@@ -170,13 +194,15 @@ const Interface = ({
           prevOutput =>
             `${prevOutput}Test ${idx + 1}: ${currentTest}(${
               testCaseArr[idx]
-            }) received ${output}`,
+            }) received ${output}\n\n`,
         );
         if (
           idx === testCaseArr.length - 1 &&
           passedTestsArr.length === testCaseArr.length
         ) {
-          setOutput(prevOutput => `${prevOutput}\nAll tests passed.`);
+          setOutput(
+            prevOutput => `${prevOutput}\n\nAll tests passed.`,
+          );
         }
       }, 3000);
     }
