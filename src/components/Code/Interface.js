@@ -1,3 +1,5 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
 import React from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
@@ -14,10 +16,8 @@ import {
   mapLanguageToId,
   mapLanguageToEditorState,
   testDataObj,
-  asyncForEach,
+  formatIfArr,
 } from '../../utils/executionHelpers';
-
-let count = 0;
 
 const InterfaceContainer = styled.div`
   width: 90%;
@@ -54,59 +54,59 @@ const Interface = ({
       console.log(${testCase}());
       `;
   };
-  function testCode(testName, value) {
-    let { testCase } = value;
-    const { testResult } = value;
-    if (typeof testCase === 'string') {
-      testCase = `'${testCase}'`;
-    }
-    Axios.post('https://api.judge0.com/submissions?wait=false', {
-      source_code: `${invokeCode(editorState, testName, testCase)}`,
-      language_id: `${mapLanguageToId(language)}`,
-    })
-      .then(res => {
-        console.log(res);
-        setTimeout(() => {
-          Axios.get(
-            `https://api.judge0.com/submissions/${res.data.token}`,
-          )
-            .then(res => {
-              // count++;
-              console.log(count);
-              let result;
-              if (res.data.stdout) {
-                if (res.data.stdout == testResult) {
-                  result = 'Passed';
-                  count++;
-                  setTestPassedCount(prevCount => prevCount + 1);
-                } else {
-                  result = 'Failed';
-                }
-                setOutput(
-                  prevOutput =>
-                    `${prevOutput}Against test input of ${testCase}, your code returned: ${
-                      res.data.stdout
-                    }Test ${result} ${
-                      count === 3
-                        ? `\n\nAll tests passed! ${testPassedCount}`
-                        : ''
-                    } \n`,
-                );
-              } else if (res.data.compile_output) {
-                setOutput(`Error:  + ${res.data.compile_output}`);
-              } else if (res.data.stderr) {
-                setOutput(`Error: + ${res.data.stderr}`);
-              } else {
-                setOutput('Unable to run code');
-              }
-            })
-            .catch(err => {});
-        }, 2000);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+  // function testCode(testName, value) {
+  //   let { testCase } = value;
+  //   const { testResult } = value;
+  //   if (typeof testCase === 'string') {
+  //     testCase = `'${testCase}'`;
+  //   }
+  //   Axios.post('https://api.judge0.com/submissions?wait=false', {
+  //     source_code: `${invokeCode(editorState, testName, testCase)}`,
+  //     language_id: `${mapLanguageToId(language)}`,
+  //   })
+  //     .then(res => {
+  //       console.log(res);
+  //       setTimeout(() => {
+  //         Axios.get(
+  //           `https://api.judge0.com/submissions/${res.data.token}`,
+  //         )
+  //           .then(res => {
+  //             // count++;
+  //             console.log(count);
+  //             let result;
+  //             if (res.data.stdout) {
+  //               if (res.data.stdout == testResult) {
+  //                 result = 'Passed';
+  //                 count++;
+  //                 setTestPassedCount(prevCount => prevCount + 1);
+  //               } else {
+  //                 result = 'Failed';
+  //               }
+  //               setOutput(
+  //                 prevOutput =>
+  //                   `${prevOutput}${testName}(${testCase}): your code returned: ${
+  //                     res.data.stdout
+  //                   }Test ${result} ${
+  //                     count === 3
+  //                       ? `\n\nAll tests passed! ${testPassedCount}`
+  //                       : ''
+  //                   } \n`,
+  //               );
+  //             } else if (res.data.compile_output) {
+  //               setOutput(`Error:  + ${res.data.compile_output}`);
+  //             } else if (res.data.stderr) {
+  //               setOutput(`Error: + ${res.data.stderr}`);
+  //             } else {
+  //               setOutput('Unable to run code');
+  //             }
+  //           })
+  //           .catch(err => {});
+  //       }, 2000);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
   function logCode() {
     Axios.post('https://api.judge0.com/submissions?wait=false', {
       source_code: `${editorState}`,
@@ -136,13 +136,61 @@ const Interface = ({
       .catch(err => {});
   }
 
+  function executeCode(testName, value) {
+    return Axios.post(
+      'https://api.judge0.com/submissions?wait=false',
+      {
+        source_code: `${invokeCode(editorState, testName, value)}`,
+        language_id: `${mapLanguageToId(language)}`,
+      },
+    );
+  }
+
+  function fetchExecutedCode(token) {
+    return Axios.get(`https://api.judge0.com/submissions/${token}`);
+  }
+
+  console.log(testDataObj[currentTest]);
+
+  async function runAllCode(currentTest) {
+    const { testData } = testDataObj[currentTest];
+    const testCaseArr = testData.map(el => el.testCase);
+    const testResultsArr = testData.map(el => el.testResult);
+    const passedTestsArr = [];
+    for (const [idx, el] of testCaseArr.entries()) {
+      const executedCode = await executeCode(currentTest, el);
+      const { token } = executedCode.data;
+      setTimeout(async () => {
+        const response = await fetchExecutedCode(token);
+        const output = response.data.stdout;
+        if (output == testResultsArr[idx]) {
+          passedTestsArr.push('true');
+        }
+        setOutput(
+          prevOutput =>
+            `${prevOutput}Test ${idx + 1}: ${currentTest}(${
+              testCaseArr[idx]
+            }) received ${output}`,
+        );
+        if (
+          idx === testCaseArr.length - 1 &&
+          passedTestsArr.length === testCaseArr.length
+        ) {
+          setOutput(prevOutput => `${prevOutput}\nAll tests passed.`);
+        }
+      }, 3000);
+    }
+  }
+
+  console.log(currentTest);
+
   const handlePost = () => {
     setOutput('');
     if (currentTest) {
       setOutput(`Running tests...\n\n`);
       const { testData } = testDataObj[currentTest];
-      testData.forEach(el => testCode(currentTest, el));
-      console.log('checking tests');
+      // testData.forEach(el => testCode(currentTest, el));
+      runAllCode(currentTest);
     } else {
       logCode();
     }

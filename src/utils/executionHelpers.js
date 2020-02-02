@@ -1,20 +1,11 @@
 import Axios from 'axios';
 
-export async function asyncForEach(array, callback) {
-  for (let index = 0; index < array.length; index++) {
-    // eslint-disable-next-line no-await-in-loop
-    await callback(array[index], index, array);
-  }
-}
-
 export const testDataObj = {
   square: {
     state: `function square(x) {
       // enter code below to return the square of a number
     }
     `,
-    testCases: [5, 10, 2348],
-    testResults: [25, 100, 5513104],
     testData: [
       { testCase: 5, testResult: 25 },
       { testCase: 10, testResult: 100 },
@@ -32,21 +23,24 @@ export const testDataObj = {
       [384724323, 23948293819],
     ],
     testResults: [3, 1174, 24333018142],
+    testData: [
+      { testCase: [1, 2], testResult: 3 },
+      { testCase: [345, 829], testResult: 1174 },
+      { testCase: [384724323, 23948293819], testResult: 24333018142 },
+    ],
   },
   reverseAString: {
     state: `function reverseAString(str) {
       // enter code below to take as string as input and return the same string, reversed.
     }
     `,
-    testCases: [
-      'Hello, world!',
-      'Lor3m 1psum',
-      'Welcome to DevCoach.com!',
-    ],
-    testResults: [
-      '!dlrow ,olleH',
-      'musp1 m3roL',
-      '!moc.hcaoCveD ot emocleW',
+    testData: [
+      { testCase: 'Hello, world!', testResult: '!dlrow ,olleH' },
+      { testCase: 'Lor3m 1psum', testResult: 'musp1 m3roL' },
+      {
+        testCase: 'Welcome to DevCoach.com!',
+        testResult: '!moc.hcaoCveD ot emocleW',
+      },
     ],
   },
   fizzBuzz: {
@@ -190,4 +184,8 @@ export function testCode(value, testCase, code, languageId) {
       }, 2000);
     })
     .catch(err => {});
+}
+
+export function formatIfArr(data) {
+  return Array.isArray(data) ? data.join(',') : data;
 }
