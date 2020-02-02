@@ -1,5 +1,12 @@
 import Axios from 'axios';
 
+export async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    // eslint-disable-next-line no-await-in-loop
+    await callback(array[index], index, array);
+  }
+}
+
 export const testDataObj = {
   square: {
     state: `function square(x) {
@@ -8,6 +15,11 @@ export const testDataObj = {
     `,
     testCases: [5, 10, 2348],
     testResults: [25, 100, 5513104],
+    testData: [
+      { testCase: 5, testResult: 25 },
+      { testCase: 10, testResult: 100 },
+      { testCase: 2348, testResult: 5513104 },
+    ],
   },
   add: {
     state: `function add (x, y) {

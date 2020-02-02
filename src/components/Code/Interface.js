@@ -14,7 +14,10 @@ import {
   mapLanguageToId,
   mapLanguageToEditorState,
   testDataObj,
+  asyncForEach,
 } from '../../utils/executionHelpers';
+
+let count = 0;
 
 const InterfaceContainer = styled.div`
   width: 90%;
@@ -29,7 +32,6 @@ const InterfaceContainer = styled.div`
 `;
 
 const Interface = ({
-  output,
   setOutput,
   language,
   setLanguage,
@@ -37,6 +39,8 @@ const Interface = ({
   setEditorState,
   currentTest,
   setCurrentTest,
+  testPassedCount,
+  setTestPassedCount,
 }) => {
   const invokeCode = (code, testCase, value) => {
     if (value) {
@@ -50,12 +54,14 @@ const Interface = ({
       console.log(${testCase}());
       `;
   };
-  function testCode(testCase, value) {
-    if (typeof value === 'string') {
-      value = `'${value}'`;
+  function testCode(testName, value) {
+    let { testCase } = value;
+    const { testResult } = value;
+    if (typeof testCase === 'string') {
+      testCase = `'${testCase}'`;
     }
     Axios.post('https://api.judge0.com/submissions?wait=false', {
-      source_code: `${invokeCode(editorState, testCase, value)}`,
+      source_code: `${invokeCode(editorState, testName, testCase)}`,
       language_id: `${mapLanguageToId(language)}`,
     })
       .then(res => {
@@ -65,11 +71,26 @@ const Interface = ({
             `https://api.judge0.com/submissions/${res.data.token}`,
           )
             .then(res => {
-              console.log(res);
+              // count++;
+              console.log(count);
+              let result;
               if (res.data.stdout) {
+                if (res.data.stdout == testResult) {
+                  result = 'Passed';
+                  count++;
+                  setTestPassedCount(prevCount => prevCount + 1);
+                } else {
+                  result = 'Failed';
+                }
                 setOutput(
                   prevOutput =>
-                    `${prevOutput}Against test input of ${value}, your code returned: ${res.data.stdout}`,
+                    `${prevOutput}Against test input of ${testCase}, your code returned: ${
+                      res.data.stdout
+                    }Test ${result} ${
+                      count === 3
+                        ? `\n\nAll tests passed! ${testPassedCount}`
+                        : ''
+                    } \n`,
                 );
               } else if (res.data.compile_output) {
                 setOutput(`Error:  + ${res.data.compile_output}`);
@@ -115,6 +136,18 @@ const Interface = ({
       .catch(err => {});
   }
 
+  const handlePost = () => {
+    setOutput('');
+    if (currentTest) {
+      setOutput(`Running tests...\n\n`);
+      const { testData } = testDataObj[currentTest];
+      testData.forEach(el => testCode(currentTest, el));
+      console.log('checking tests');
+    } else {
+      logCode();
+    }
+  };
+
   // const testResultsSquare = [25, 100, 5513104];
   // const squareSolution = el => el * el;
 
@@ -129,18 +162,6 @@ const Interface = ({
   //   }
   //   return false;
   // };
-
-  const handlePost = () => {
-    setOutput('');
-    if (currentTest) {
-      setOutput(`Running tests...\n`);
-      const { testCases } = testDataObj[currentTest];
-      console.log(testCases);
-      testCases.forEach(el => testCode(currentTest, el));
-    } else {
-      logCode();
-    }
-  };
 
   const handleLanguageSelection = event => {
     setLanguage(event.target.value);
