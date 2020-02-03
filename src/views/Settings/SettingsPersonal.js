@@ -19,6 +19,8 @@ export function SettingsPersonal(props) {
     showErrorMessage,
     showSuccessMessage,
     closeMessage,
+    handleCancel,
+    updateErrorMessage,
   } = props;
 
   const initialUserInfo = {
@@ -105,11 +107,6 @@ export function SettingsPersonal(props) {
       showSuccessMessage,
       closeMessage,
     );
-  };
-
-  const handleCancel = e => {
-    e.preventDefault();
-    props.history.push('/dashboard');
   };
 
   return (
@@ -222,7 +219,7 @@ export function SettingsPersonal(props) {
       <Notification
         onClose={closeMessage}
         variant='error'
-        message='unable to update user profile'
+        message={updateErrorMessage}
         open={error}
       />
     </StyledSettings>

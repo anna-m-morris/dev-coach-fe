@@ -18,6 +18,7 @@ export function SettingsGeneral(props) {
     showErrorMessage,
     showSuccessMessage,
     closeMessage,
+    handleCancel,
   } = props;
 
   const initialUserInfo = {
@@ -53,11 +54,6 @@ export function SettingsGeneral(props) {
       showSuccessMessage,
       closeMessage,
     );
-  };
-
-  const handleCancel = e => {
-    e.preventDefault();
-    props.history.push('/dashboard');
   };
 
   return (

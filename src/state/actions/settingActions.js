@@ -14,6 +14,7 @@ export const updateUserInfo = (
   axios
     .put(`${url}user/settings`, userInfo)
     .then(res => {
+      console.log(res);
       showSuccess();
       setTimeout(() => closeMessage(), 5000);
       dispatch({
@@ -22,12 +23,12 @@ export const updateUserInfo = (
         message: res.data.message,
       });
     })
-    .catch(err => {
+    .catch(error => {
       showError();
       setTimeout(() => closeMessage(), 5000);
       dispatch({
         type: types.USER_INFO_UPDATE_FAILED,
-        payload: err.response.message,
+        payload: error.response.data.message,
       });
     });
 };
