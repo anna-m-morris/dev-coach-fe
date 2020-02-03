@@ -17,6 +17,8 @@ const ShortInputContainer = styled.div`
 `;
 
 const RegisterContainer = styled(LoginContainer)`
+  justify-content: center;
+
   .form-card-container {
     height: 32rem;
     width: 25rem;
