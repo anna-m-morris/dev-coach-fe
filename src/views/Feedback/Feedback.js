@@ -11,10 +11,12 @@ import FeedbackCard, {
 } from '../../components/Cards/FeedbackCard';
 import EmptyFeedback from '../../components/Cards/EmptyFeedbackCard';
 import StudentChart from '../../components/DataVisualization/StudentChart';
+import devices from '../../utils/devices';
 
 const StyledFeedback = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
@@ -33,40 +35,63 @@ const StyledFeedback = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-  }
+    @media ${devices.tablet} {
+      flex-direction: column;
+    }
 
-  .feedback-title {
-    margin: 0;
-    color: #595959;
-    font-size: 1.8rem;
-    font-weight: 400;
-  }
+    .feedback-title {
+      margin: 0;
+      color: #595959;
+      font-size: 1.8rem;
+      font-weight: 400;
+      text-align: center;
 
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 2rem;
-    margin-top: 3em;
-  }
+      @media ${devices.tablet} {
+        margin-top: 2rem;
+        text-align: center;
+      }
+    }
 
-  .ant-pagination-item-active {
-    border-color: #4fad65;
-  }
-  .ant-pagination-item-active a {
-    color: #4fad65;
-  }
+    .feedback-card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .chart-display {
+      width: 80%;
+      margin: 0 auto;
+      @media ${devices.tablet} {
+        display: none;
+      }
+    }
 
-  .loaderStyled {
-    margin-top: 20vh;
-    margin-left: -17rem;
-  }
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 2rem;
+      margin-top: 3em;
+    }
 
-  .chart-container {
-    height: 30em;
-    width: 100%;
-    padding: 1em;
+    .ant-pagination-item-active {
+      border-color: #4fad65;
+    }
+    .ant-pagination-item-active a {
+      color: #4fad65;
+    }
+
+    .loaderStyled {
+      margin-top: 20vh;
+      margin-left: -17rem;
+    }
+
+    .chart-container {
+      height: 30em;
+      width: 100%;
+      padding: 1em;
+    }
   }
 `;
 
@@ -97,7 +122,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
   return (
     <StyledFeedback className='feedback-container'>
       {feedback ? (
-        <div className='feedback-content'>
+        <StyledFeedback className='feedback-content'>
           <ChartCardContainer>
             <StudentChart />
           </ChartCardContainer>
@@ -125,7 +150,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
               <EmptyFeedback />
             )}
           </StyledFeedback>
-        </div>
+        </StyledFeedback>
       ) : (
         <div className='loaderStyled'>
           <Loader

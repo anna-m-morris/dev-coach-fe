@@ -7,6 +7,7 @@ import PaymentIcon from '@material-ui/icons/Payment';
 import General from './GeneralFaq';
 import Profile from './ProfileFaq';
 import Payment from './PaymentFaq';
+import devices from '../../utils/devices';
 
 // Main content
 const MainContainer = styled.div`
@@ -22,7 +23,11 @@ const MainContainer = styled.div`
     margin: 0;
     font-family: 'Ubuntu', sans-serif;
     color: #4fad65;
-    font-size: 40px;
+    font-size: 3rem;
+
+    @media ${devices.tablet} {
+      font-size: 2rem;
+    }
   }
 `;
 
@@ -30,11 +35,17 @@ const CategoryContainer = styled.div`
   display: flex;
   margin-bottom: 20px;
 
+  @media ${devices.mobile} {
+    flex-direction: column;
+    margin-bottom: 10vh;
+    margin-top: 10px;
+  }
+
   .styledBox {
-    border-radius: 10px;
-    padding: 3em 5em;
-    margin: 3em;
-    border-width: 10px;
+    border-radius: 1rem;
+    padding: 3rem 5rem;
+    margin: 3rem;
+    border-width: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,6 +53,33 @@ const CategoryContainer = styled.div`
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
     background: white;
     transition: ease-out 0.1s;
+
+    @media only screen and (max-width: 1200px) {
+      border-radius: 0.5rem;
+      padding: 2rem 4rem;
+      margin: 2rem;
+      border-width: 0.5rem;
+    }
+    @media ${devices.tablet} {
+      border-radius: 0.5rem;
+      padding: 1.25rem 2.25rem;
+      margin: 0.5rem;
+      border-width: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @media ${devices.mobile} {
+      width: 17.5rem;
+      border-radius: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      margin: 0.25rem;
+      border-width: 0.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
     &:hover {
       box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.15);
@@ -55,6 +93,10 @@ const CategoryContainer = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      @media ${devices.mobile} {
+        flex-direction: row-reverse;
+      }
     }
 
     h3 {

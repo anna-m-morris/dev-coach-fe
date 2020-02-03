@@ -14,10 +14,11 @@ const FlexContainer = styled.div`
   width: 100vw;
 
   .code-header-container {
-    height: 10%;
+    height: 12%;
     width: 100%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
     padding-bottom: 2em;
   }
 
@@ -35,6 +36,8 @@ function Code() {
   const [editorState, setEditorState] = React.useState();
   const [output, setOutput] = React.useState('');
   const [language, setLanguage] = React.useState('javascript');
+  const [currentTest, setCurrentTest] = React.useState('');
+  const [testPassedCount, setTestPassedCount] = React.useState(0);
   return (
     <FlexContainer>
       <div className='code-header-container'>
@@ -45,6 +48,10 @@ function Code() {
           setOutput={setOutput}
           language={language}
           setLanguage={setLanguage}
+          currentTest={currentTest}
+          setCurrentTest={setCurrentTest}
+          testPassedCount={testPassedCount}
+          setTestPassedCount={setTestPassedCount}
         />
       </div>
       <div className='code-body-container'>
@@ -53,6 +60,8 @@ function Code() {
           setOutput={setOutput}
           editorState={editorState}
           setEditorState={setEditorState}
+          language={language}
+          setLanguage={setLanguage}
         />
         <Terminal initialText='$  ' output={output} />
       </div>

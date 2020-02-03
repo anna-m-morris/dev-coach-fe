@@ -22,6 +22,9 @@ export const CardContainer = styled.div`
 
   @media ${devices.tablet} {
     height: inherit;
+    width: 80%;
+    max-width: 80%;
+    margin: 1rem auto;
   }
 
   &:hover {

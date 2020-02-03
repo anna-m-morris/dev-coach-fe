@@ -97,14 +97,17 @@ export const ListComponent = props => {
         <Link to='/chat' className={classes.listItem}>
           <CustomListItem button>
             <ListItemIcon>
-              <LiveHelpIcon />
+              <i
+                style={{ fontSize: '1.4rem' }}
+                className='fas fa-comments'
+              />
             </ListItemIcon>
             <ListItemText primary='Chats' />
           </CustomListItem>
         </Link>
         <Link to='/code' className={classes.listItem}>
           <CustomListItem button>
-            <ListItemIcon>  
+            <ListItemIcon>
               <CodeIcon />
             </ListItemIcon>
             <ListItemText primary='Code' />

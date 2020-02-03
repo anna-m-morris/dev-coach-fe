@@ -40,9 +40,9 @@ const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
+    background: '#ffffff',
   },
   toolbar: {
-    background: '#f9f9f9',
     zIndex: -10,
   },
 
@@ -138,7 +138,10 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     color: '#4fad65',
   },
-  drawer: {},
+  drawer: {
+    border: 'none',
+    boxShadow: 'rgba(0, 0, 0, 0.1) 0px 0px 10px',
+  },
   link: {
     textDecoration: 'none',
     color: 'rgba(0, 0, 0, 0.87)',

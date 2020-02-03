@@ -8,13 +8,14 @@ export const START_CHAT_FROM_SCRATCH_ERROR =
   'START_CHAT_FROM_SCRATCH_ERROR';
 export const START_CHAT_FROM_SCRATCH_SUCCESSFUL =
   'START_CHAT_FROM_SCRATCH_SUCCESSFUL';
-export const SAVE_FOR_CHAT = 'SAVE_FOR_CHAT';
 export const SAVE_ROOM_ID = 'SAVE_ROOM_ID';
+export const SAVE_PEER = 'SAVE_PEER';
 
 const url = process.env.REACT_APP_BASE_URL;
 
-export const saveForChat = peer => {
-  return { type: SAVE_FOR_CHAT, payload: peer };
+export const savePeer = (peer, props) => {
+  props.history.push('/start_chat');
+  return { type: SAVE_PEER, payload: peer };
 };
 
 export const saveRoomId = roomId => {
@@ -51,45 +52,58 @@ export const startChatFromScratch = (
     .post(`${url}chat/room_id`, {
       roomId: id,
     })
-    .then(() => {
-      saveRoomId(id);
-      dispatch({
-        type: START_CHAT_FROM_SCRATCH_SUCCESSFUL,
-      });
-      props.history.push('/chat');
-    })
-    .catch(() => {
-      axiosWithAuth()
-        .post(`${url}chat`, {
-          username: user.email,
-        })
-        .then(() => {
-          axiosWithAuth()
-            .post(`${url}chat`, {
-              username: peer.email,
-            })
-            .then(() => {
-              axiosWithAuth()
-                .post(`${url}chat/room`, {
-                  creatorId: user.email,
-                  name: id,
-                  userIds: [user.email, peer.email],
-                  id,
-                  customData: {
-                    role_id_one: `${user.first_name} ${user.first_name}`,
-                    role_id_one_url: user.avatar_url,
-                    role_id_two: peer.name,
-                    role_id_two_url: peer.avatar_url,
-                  },
-                })
-                .then(() => {
-                  saveRoomId(id);
-                  dispatch({
-                    type: START_CHAT_FROM_SCRATCH_SUCCESSFUL,
-                  });
-                  props.history.push('/chat');
-                });
-            });
+    .then(res => {
+      if (res.data.message === 'successful') {
+        saveRoomId(id);
+        dispatch({
+          type: START_CHAT_FROM_SCRATCH_SUCCESSFUL,
         });
+        props.history.push('/chat');
+      } else {
+        axiosWithAuth()
+          .post(`${url}chat`, {
+            username: user.email,
+          })
+          .then(() => {
+            axiosWithAuth()
+              .post(`${url}chat`, {
+                username: peer.email,
+              })
+              .then(() => {
+                axiosWithAuth()
+                  .post(`${url}chat/room`, {
+                    creatorId: user.email,
+                    name: id,
+                    userIds: [user.email, peer.email],
+                    id,
+                    customData: {
+                      role_id_one:
+                        user.role_id === 1
+                          ? `${user.first_name} ${user.first_name}`
+                          : `${peer.name}`,
+                      role_id_one_url:
+                        user.role_id === 1
+                          ? user.avatar_url
+                          : peer.avatar_url,
+                      role_id_two:
+                        user.role_id === 1
+                          ? peer.name
+                          : `${user.first_name} ${user.first_name}`,
+                      role_id_two_url:
+                        user.role_id === 1
+                          ? peer.avatar_url
+                          : user.avatar_url,
+                    },
+                  })
+                  .then(() => {
+                    saveRoomId(id);
+                    dispatch({
+                      type: START_CHAT_FROM_SCRATCH_SUCCESSFUL,
+                    });
+                    props.history.push('/chat');
+                  });
+              });
+          });
+      }
     });
 };

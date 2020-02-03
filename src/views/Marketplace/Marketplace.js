@@ -13,10 +13,11 @@ import {
 } from '../../state/actions/marketplaceActions';
 import { saveCoach } from '../../state/actions/bookingActions';
 import { getFeedback } from '../../state/actions/feedbackActions';
-import { saveForChat } from '../../state/actions/chatActions';
+import { savePeer } from '../../state/actions/chatActions';
 import SelectPrice from '../../components/Inputs/SelectPrice';
 import SelectExperience from '../../components/Inputs/SelectExperience';
 import SearchForKeyword from '../../components/Inputs/SearchForKeyword';
+import devices from '../../utils/devices';
 
 const StyledMarketplace = styled.div`
   display: flex;
@@ -31,6 +32,11 @@ const StyledMarketplace = styled.div`
 
     .keyword {
       margin-top: 1rem;
+    }
+
+    @media ${devices.mobile} {
+      flex-direction: column;
+      align-items: center;
     }
   }
 
@@ -63,17 +69,19 @@ const StyledMarketplace = styled.div`
   }
 `;
 
-const Marketplace = ({
-  searchForKeyword,
-  getCoaches,
-  coaches,
-  searchForPrice,
-  searchForExperience,
-  saveCoach,
-  getFeedback,
-  feedback,
-  saveForChat,
-}) => {
+const Marketplace = props => {
+  const {
+    searchForKeyword,
+    getCoaches,
+    coaches,
+    searchForPrice,
+    searchForExperience,
+    saveCoach,
+    getFeedback,
+    feedback,
+    savePeer,
+  } = props;
+
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(6);
 
@@ -109,12 +117,15 @@ const Marketplace = ({
               saveCoach={() => saveCoach(coach)}
               getFeedback={getFeedback}
               feedback={feedback}
-              saveForChat={() =>
-                saveForChat({
-                  email: coach.email,
-                  name: `${coach.first_name} ${coach.last_name}`,
-                  avatar_url: coach.avatar_url,
-                })
+              savePeer={() =>
+                savePeer(
+                  {
+                    email: coach.email,
+                    name: `${coach.first_name} ${coach.last_name}`,
+                    avatar_url: coach.avatar_url,
+                  },
+                  props,
+                )
               }
             />
           ))
@@ -154,5 +165,5 @@ export default connect(mapStateToProps, {
   searchForExperience,
   saveCoach,
   getFeedback,
-  saveForChat,
+  savePeer,
 })(Marketplace);
