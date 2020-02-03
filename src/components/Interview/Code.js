@@ -227,14 +227,14 @@ class Code extends Component {
     const testCasesSquare = [5, 10, 2348];
     this.setState({ output: [] });
     this.syncUpdates();
-    if (mapLanguageToId(this.state.language) === 63) {
+    // if (mapLanguageToId(this.state.language) === 63) {
       // setOutput(`Running tests...\n`);
-      this.setState({ output: `Running tests...\n` });
-      this.syncUpdates();
-      testCasesSquare.forEach(el => this.testCode('square', el));
-    } else {
+    //   this.setState({ output: `Running tests...\n` });
+    //   this.syncUpdates();
+    //   testCasesSquare.forEach(el => this.testCode('square', el));
+    // } else {
       this.logCode();
-    }
+    // }
   };
 
   handleSelection = event => {
