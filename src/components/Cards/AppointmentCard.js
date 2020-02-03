@@ -8,6 +8,8 @@ import CodeIcon from '@material-ui/icons/Code';
 import TodayIcon from '@material-ui/icons/Today';
 import TimelapseIcon from '@material-ui/icons/Timelapse';
 import ScheduleIcon from '@material-ui/icons/Schedule';
+import TelegramIcon from '@material-ui/icons/Telegram';
+import VideoCallIcon from '@material-ui/icons/VideoCall';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -225,7 +227,7 @@ export const AppointmentCard = props => {
             className='send-button'
             variant='contained'
             color='primary'
-            endIcon={<Icon>send</Icon>}
+            endIcon={<TelegramIcon fontsize='large'/>}
             onClick={savePeer}
           >
             Chat
@@ -237,7 +239,7 @@ export const AppointmentCard = props => {
             className='interview-button'
             variant='contained'
             color='primary'
-            endIcon={<Icon>send</Icon>}
+            endIcon={<VideoCallIcon />}
             onClick={startInterview}
           >
             Interview
