@@ -6,17 +6,11 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { Upload, message } from 'antd';
 
-import {
-  showErrorMessage,
-  showSuccessMessage,
-  closeMessage,
-} from '../../state/actions/notificationActions';
 import Notification from '../../components/Notifications/Notification';
-import { updateUserInfo } from '../../state/actions/settingActions';
 
 import StyledSettings from './SettingsStyles';
 
-function Settings(props) {
+export function SettingsPersonal(props) {
   const {
     user,
     updateUserInfo,
@@ -25,6 +19,8 @@ function Settings(props) {
     showErrorMessage,
     showSuccessMessage,
     closeMessage,
+    handleCancel,
+    updateErrorMessage,
   } = props;
 
   const initialUserInfo = {
@@ -34,9 +30,16 @@ function Settings(props) {
     password: '',
     confirm_password: '',
     avatar_url: user && user.avatar_url,
+    linkedin: user && user.linkedin,
+    github: user && user.github,
+    location: user && user.location,
+    hourly_rate: user && user.hourly_rate,
+    role_id: user && user.role_id,
   };
 
   const [userInfo, setUserInfo] = useState(initialUserInfo);
+  console.log('1', user);
+  console.log('2', userInfo);
 
   const handleUpload = ({ file, onSuccess }) => {
     const image = new FormData();
@@ -108,17 +111,12 @@ function Settings(props) {
       showErrorMessage,
       showSuccessMessage,
       closeMessage,
+      user.id,
     );
-  };
-
-  const handleCancel = e => {
-    e.preventDefault();
-    props.history.push('/dashboard');
   };
 
   return (
     <StyledSettings className='setting-container'>
-      <h3 className='settings-title'>Personal Information</h3>
       <div className='paper'>
         <div className='image-container'>
           <Upload
@@ -227,22 +225,9 @@ function Settings(props) {
       <Notification
         onClose={closeMessage}
         variant='error'
-        message='unable to update user profile'
+        message={updateErrorMessage}
         open={error}
       />
     </StyledSettings>
   );
 }
-
-const mapStateToProps = state => ({
-  user: state.userReducer.user,
-  success: state.notificationsReducer.success,
-  error: state.notificationsReducer.error,
-});
-
-export default connect(mapStateToProps, {
-  updateUserInfo,
-  showErrorMessage,
-  showSuccessMessage,
-  closeMessage,
-})(Settings);

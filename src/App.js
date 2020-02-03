@@ -17,14 +17,14 @@ import Feedback from './views/Feedback/Feedback';
 import Interview from './views/Interview/Interview';
 import Chat from './components/Chat/ChatScreen';
 import StartChat from './components/Chat/Chat';
-import Settings from './views/Settings/Settings';
 import SignUp from './components/Onboarding/SignupStepper';
+import SettingsTabs from './views/Settings/SettingsTabs';
 import Code from './views/Code/Code';
 import GiveFeedback from './views/Feedback/GiveFeedback';
 
 const globalTheme = createMuiTheme({
   typography: {
-    fontFamily: ['Ubuntu', 'Abeezee'].join(','),
+    fontFamily: 'Nunito',
   },
 });
 
@@ -39,7 +39,7 @@ function App({ user, isLoggedIn }) {
       <Route path={'/reschedule'} component={Reschedule} />
       <Route path={'/feedback'} component={Feedback} />
       <Route path={'/interview'} component={Interview} />
-      <Route path={'/Settings'} component={Settings} />
+      <Route path={'/Settings'} component={SettingsTabs} />
       <Route path={'/FAQ'} component={MainFaq} />
       {user && user.role_id === 1 ? (
         <Route path={'/start_chat'} component={StartChat} />

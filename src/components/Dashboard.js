@@ -120,10 +120,10 @@ const useStyles = makeStyles(theme => ({
   },
   profileMenu: {
     position: 'absolute',
-    top: 0,
+    top: 4,
     right: 40,
     color: 'grey',
-    transform: 'scale(1.5)',
+    transform: 'scale(1.25)',
   },
   menuButton: {
     marginRight: 36,
@@ -252,7 +252,7 @@ const Dashboard = props => {
               src={user.avatar_url}
               alt='user_avatar'
               style={{
-                width: '25px',
+                width: '35px',
                 height: 'auto',
                 borderRadius: '50%',
               }}
