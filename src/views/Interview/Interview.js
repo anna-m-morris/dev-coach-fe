@@ -13,7 +13,7 @@ const StyledVideoChat = styled.div`
   width: 100%;
 
   .room {
-    height: 30vh;
+    height: 38.6vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -39,15 +39,15 @@ const StyledVideoChat = styled.div`
   }
 
   .videos {
-    width: 500px;
-    height: 420px;
+    width: 534px;
+    height: 425px;
     margin: 0px auto;
     position: relative;
     box-shadow: 1px 1px 11px #9e9e9e;
     border-radius: 6px;
 
     .my-video {
-      width: 130px;
+      width: 132px;
       position: absolute;
       right: 10px;
       bottom: 10px;

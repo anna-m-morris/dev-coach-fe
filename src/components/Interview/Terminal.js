@@ -21,6 +21,7 @@ const TerminalText = styled.textarea`
   margin-top: 0;
   font-family: 'Courier', sans-serif;
   font-size: 1em;
+  resize: none;
 
   :focus {
     outline: none;
