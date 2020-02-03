@@ -64,7 +64,7 @@ const Participant = ({ participant, className, audio }) => {
   }, [audioTracks]);
 
   return (
-    <div>
+    <div className='participant-video-container'>
       <video
         style={{ backgroundColor: 'black' }}
         className={className}
