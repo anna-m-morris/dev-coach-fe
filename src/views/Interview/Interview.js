@@ -13,7 +13,8 @@ const StyledVideoChat = styled.div`
   width: 100%;
 
   .room {
-    height: 88vh;
+    height: 38.6vh;
+    min-width: 534px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -31,24 +32,23 @@ const StyledVideoChat = styled.div`
 
   .settings {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
 
     button {
-      width: 25%;
+      width: 10%;
     }
   }
 
   .videos {
-    width: 500px;
-    height: 380px;
+    width: 100%;
+    height: 425px;
     margin: 0px auto;
-    border: 4px solid #4fad65;
     position: relative;
     box-shadow: 1px 1px 11px #9e9e9e;
     border-radius: 6px;
 
     .my-video {
-      width: 130px;
+      width: 132px;
       position: absolute;
       right: 10px;
       bottom: 10px;
@@ -104,12 +104,12 @@ const VideoChat = ({ user, peerId, history }) => {
   if (token) {
     render = (
       <StyledVideoChat>
-        <Code />
-        <Room
+        <Code Room={{ roomName, token, handleLogout }} />
+        {/* <Room
           roomName={roomName}
           token={token}
           handleLogout={handleLogout}
-        />
+        /> */}
       </StyledVideoChat>
     );
   } else {
