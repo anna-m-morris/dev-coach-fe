@@ -8,7 +8,7 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/python/python';
 import 'codemirror/mode/clike/clike';
 import styled from 'styled-components';
-import Terminal from '../components/Interview/Terminal';
+import Terminal from '../../components/Interview/Terminal';
 import Room from '../../components/Interview/Room';
 import { isEqual } from 'lodash';
 import {
@@ -27,7 +27,7 @@ const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 88vh;
-  width: 60vw;
+  width: 100%;
 
   .code-header-container {
     height: 12%;

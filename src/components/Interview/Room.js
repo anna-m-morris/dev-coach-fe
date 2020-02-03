@@ -73,7 +73,7 @@ const Room = ({ roomName, token, handleLogout }) => {
 
   return (
     <div className='room'>
-      <div className='settings'>
+      {/* <div className='settings'>
         <Button
           className='button'
           variant='contained'
@@ -94,7 +94,7 @@ const Room = ({ roomName, token, handleLogout }) => {
             <i className='fas fa-volume-mute' />
           )}
         </Button>
-      </div>
+      </div> */}
       {room ? (
         <div className='videos'>
           <Participant
