@@ -1,18 +1,16 @@
 import React from 'react';
 import 'antd/lib/tabs/style/index.css';
 import Tabs from 'antd/lib/tabs';
-
+import { connect } from 'react-redux';
 import { SettingsPersonal } from './SettingsPersonal';
 import { SettingsGeneral } from './SettingsGeneral';
 import StyledSettings from './SettingsStyles';
-
 import {
   showErrorMessage,
   showSuccessMessage,
   closeMessage,
 } from '../../state/actions/notificationActions';
 import Notification from '../../components/Notifications/Notification';
-import { connect } from 'react-redux';
 import { updateUserInfo } from '../../state/actions/settingActions';
 
 const { TabPane } = Tabs;

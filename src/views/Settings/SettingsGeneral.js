@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
@@ -105,7 +102,7 @@ export function SettingsGeneral(props) {
                 onChange={handleChange}
               />
             </Grid>
-            {(user.role_id && user.role_id) == 2 ? (
+            {(user.role_id && user.role_id) === 2 ? (
               <Grid item xs={12}>
                 <TextField
                   size='small'
