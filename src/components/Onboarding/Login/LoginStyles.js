@@ -3,7 +3,22 @@ import styled from 'styled-components';
 export const LoginContainer = styled.div`
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  .navigation {
+    width: 100%;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+
+    .list-items .list-item a {
+      color: #494949;
+
+      &:hover {
+        opacity: none;
+      }
+    }
+  }
 
   .form-card-container {
     background: white;
