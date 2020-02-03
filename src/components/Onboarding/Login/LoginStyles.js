@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import devices from '../../../utils/devices';
 
 export const LoginContainer = styled.div`
   height: 100vh;
@@ -12,6 +13,10 @@ export const LoginContainer = styled.div`
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
     margin-bottom: 3rem;
 
+    .logo {
+      padding: 0;
+    }
+
     .list-items-container .list-items .list-item a {
       color: #9b9b9b;
 
@@ -23,8 +28,8 @@ export const LoginContainer = styled.div`
 
   .form-card-container {
     background: white;
-    height: 35em;
-    width: 25em;
+    height: 27rem;
+    width: 22em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,13 +45,14 @@ export const LoginContainer = styled.div`
       background: #4fad65;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
-      padding: 2rem 0;
-      margin-bottom: 2rem;
+      padding: 1.8rem 0;
+      margin-bottom: 0.8rem;
     }
 
     .form-title {
       color: white;
       margin: 0;
+      font-size: 1.6rem;
     }
   }
 
@@ -59,11 +65,7 @@ export const LoginContainer = styled.div`
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      padding: 1rem 2rem;
-    }
-
-    div {
-      margin: 0.5rem 0;
+      padding: 1rem 2rem 0 2rem;
     }
 
     .input-container {
@@ -76,7 +78,7 @@ export const LoginContainer = styled.div`
       background: #f4f4f4;
       border-radius: 2rem;
       width: 92%;
-      padding: 1rem 1rem;
+      padding: 1rem;
       font-size: 1rem;
       outline: none;
       transition: ease-out 0.1s;
@@ -127,6 +129,7 @@ export const LoginContainer = styled.div`
 
     .form-button-container {
       width: 100%;
+      margin-top: 0.5rem;
       .form-button {
         width: 100%;
         border-radius: 2rem;
@@ -139,6 +142,7 @@ export const LoginContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0.5rem 0 0 0;
 
     p {
       font-size: 0.8rem;

@@ -15,6 +15,7 @@ export const NavContainer = styled.nav`
     display: flex;
     align-items: center;
     margin-left: 3.3rem;
+    height: 4.2rem;
 
     @media ${devices.tablet} {
       margin: 0;

@@ -18,8 +18,8 @@ const ShortInputContainer = styled.div`
 
 const RegisterContainer = styled(LoginContainer)`
   .form-card-container {
-    margin-top: 2.4rem;
-    height: 38rem;
+    height: 32rem;
+    width: 25rem;
 
     .message-container {
       text-align: center;
