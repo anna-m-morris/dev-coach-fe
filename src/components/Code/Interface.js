@@ -231,7 +231,7 @@ const Interface = ({
   //   if (
   //     isEqual(
   //       testCases.map(el => solution(el)),
-  //f       expectedValues,
+  // f       expectedValues,
   //     )
   //   ) {
   //     return true;

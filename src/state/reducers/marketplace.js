@@ -49,7 +49,6 @@ function marketplaceReducer(state = initialState, action) {
       };
 
     case types.SEARCH_EXPERIENCE:
-
       return {
         ...state,
         coaches:
