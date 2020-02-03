@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 import React from 'react';
 import { JSHINT } from 'jshint';
 import styled from 'styled-components';
@@ -44,7 +46,7 @@ const Editor = ({ editorState, setEditorState, language }) => {
           styleActiveLine: true,
           autoCloseBrackets: true,
           gutters: ['CodeMirror-lint-markers'],
-          lint: true,
+          lint: { esversion: '6' },
         }}
         onBeforeChange={(editor, data, value) =>
           setEditorState(value)

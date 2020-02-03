@@ -180,7 +180,7 @@ const Interface = ({
 
   return (
     <InterfaceContainer>
-      <h1>Code Editor</h1>
+      <h1>DevCoach IDE</h1>
       <FormControl>
         <InputLabel>Select Programming Language</InputLabel>
         <Select
