@@ -21,7 +21,7 @@ const LoginForm = ({
 }) => {
   return (
     <LoginContainer className='Login-container'>
-      <Navigation />
+      <Navigation class='navigation' />
       <div className='form-card-container'>
         <div className='message-container'>
           <h1 className='form-title'>Welcome back</h1>

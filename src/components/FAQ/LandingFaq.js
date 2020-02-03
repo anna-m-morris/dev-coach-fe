@@ -23,7 +23,7 @@ const MainContainer = styled.div`
     margin-bottom: 3rem;
 
     .list-items .list-item a {
-      color: #494949;
+      color: #9b9b9b;
 
       &:hover {
         opacity: none;

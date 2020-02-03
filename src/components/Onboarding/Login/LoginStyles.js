@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const LoginContainer = styled.div`
   height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,8 +12,8 @@ export const LoginContainer = styled.div`
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
     margin-bottom: 3rem;
 
-    .list-items .list-item a {
-      color: #494949;
+    .list-items-container .list-items .list-item a {
+      color: #9b9b9b;
 
       &:hover {
         opacity: none;
@@ -22,7 +23,6 @@ export const LoginContainer = styled.div`
 
   .form-card-container {
     background: white;
-    margin-top: 8rem;
     height: 35em;
     width: 25em;
     display: flex;
