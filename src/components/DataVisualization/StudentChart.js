@@ -17,7 +17,8 @@ const StudentChart = ({ feedback }) => {
     rating: el.rating,
     time: el.appointment_datetime,
   }));
-  const formatXAxis = tick => moment(tick).format('MMM Do YYYY');
+  const formatXAxis = tick =>
+    moment(new Date(tick)).format('MMMM Do YYYY');
   const CustomTooltip = props => {
     if (props.active) {
       return (
@@ -26,7 +27,7 @@ const StudentChart = ({ feedback }) => {
             {`You received a rating of ${
               props.payload[0].payload.rating
             } for your coaching session on ${moment(
-              props.label,
+              new Date(props.label),
             ).format('MMMM Do YYYY')}.`}
           </p>
         </div>
