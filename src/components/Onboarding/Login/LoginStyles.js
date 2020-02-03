@@ -119,7 +119,7 @@ export const LoginContainer = styled.div`
       transition: ease-out 0.2s;
 
       &:hover {
-        color: #1e3f1f;
+        color: #449156;
         transition: ease-in 0.2s;
       }
     }
@@ -150,7 +150,7 @@ export const LoginContainer = styled.div`
       transition: ease-out 0.2s;
 
       &:hover {
-        color: #1e3f1f;
+        color: #449156;
         transition: ease-in 0.2s;
       }
     }

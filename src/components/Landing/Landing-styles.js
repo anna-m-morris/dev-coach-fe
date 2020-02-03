@@ -72,7 +72,7 @@ export const StyledButton = styled.button`
     cursor: pointer;
     transition: ease-in 0.1s;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    background: #1e3f1f;
+    background: #449156;
   }
 
   :focus {
