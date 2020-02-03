@@ -8,6 +8,8 @@ import CodeIcon from '@material-ui/icons/Code';
 import TodayIcon from '@material-ui/icons/Today';
 import TimelapseIcon from '@material-ui/icons/Timelapse';
 import ScheduleIcon from '@material-ui/icons/Schedule';
+import TelegramIcon from '@material-ui/icons/Telegram';
+import VideoCallIcon from '@material-ui/icons/VideoCall';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -24,7 +26,7 @@ const StyledCoachCard = styled.div`
   border-radius: 0.8rem;
   margin: 0.5rem;
   color: #595959;
-  font-weight: 300;
+  font-weight: 600;
   background: white;
   box-shadow: 0 6px 10px #d3d3d3;
 
@@ -98,11 +100,13 @@ const StyledCoachCard = styled.div`
       text-decoration: none;
     }
 
-    .button {
+    .send-button {
       background-color: #4fad65;
+      width: 108px;
     }
 
     .cancel-button {
+      width: 108px;
     }
 
     @media ${devices.mobile} {
@@ -122,6 +126,12 @@ const StyledCoachCard = styled.div`
     justify-content: center;
     align-items: center;
     padding-top: 0.5rem;
+
+    .interview-button {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
   }
 `;
 
@@ -214,10 +224,10 @@ export const AppointmentCard = props => {
           </Button>
           <Button
             size='small'
-            className='button'
+            className='send-button'
             variant='contained'
             color='primary'
-            endIcon={<Icon>send</Icon>}
+            endIcon={<TelegramIcon fontsize='large'/>}
             onClick={savePeer}
           >
             Chat
@@ -226,10 +236,10 @@ export const AppointmentCard = props => {
         <div className='interview'>
           <Button
             size='small'
-            className='button'
+            className='interview-button'
             variant='contained'
             color='primary'
-            endIcon={<Icon>send</Icon>}
+            endIcon={<VideoCallIcon />}
             onClick={startInterview}
           >
             Interview

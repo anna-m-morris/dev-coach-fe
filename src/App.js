@@ -24,7 +24,7 @@ import GiveFeedback from './views/Feedback/GiveFeedback';
 
 const globalTheme = createMuiTheme({
   typography: {
-    fontFamily: ['Ubuntu', 'Abeezee'].join(','),
+    fontFamily: 'Nunito',
   },
 });
 

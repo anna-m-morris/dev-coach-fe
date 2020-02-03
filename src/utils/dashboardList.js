@@ -8,6 +8,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import CodeIcon from '@material-ui/icons/Code';
 import { Link } from 'react-router-dom';
 
@@ -27,7 +28,6 @@ const customListItemStyles = {
     border: '8px solid white',
     paddingTop: '5px',
     paddingBottom: '5px',
-    marginBottom: '-0.2em',
     marginTop: '-0.2em',
     height: '90%',
     transition: '0.1s',
@@ -97,10 +97,7 @@ export const ListComponent = props => {
         <Link to='/chat' className={classes.listItem}>
           <CustomListItem button>
             <ListItemIcon>
-              <i
-                style={{ fontSize: '1.4rem' }}
-                className='fas fa-comments'
-              />
+              <QuestionAnswerIcon />
             </ListItemIcon>
             <ListItemText primary='Chats' />
           </CustomListItem>
