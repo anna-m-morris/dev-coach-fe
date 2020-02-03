@@ -122,13 +122,11 @@ const Interface = ({
       language_id: `${mapLanguageToId(language)}`,
     })
       .then(res => {
-        console.log(res);
         setTimeout(() => {
           Axios.get(
             `https://api.judge0.com/submissions/${res.data.token}`,
           )
             .then(res => {
-              console.log(res);
               if (res.data.stdout) {
                 setOutput(res.data.stdout);
               } else if (res.data.compile_output) {
@@ -163,13 +161,9 @@ const Interface = ({
     );
   }
 
-  console.log(invokeCode(editorState, 'square', 5, 'python'));
-
   function fetchExecutedCode(token) {
     return Axios.get(`https://api.judge0.com/submissions/${token}`);
   }
-
-  console.log(testDataObj[currentTest]);
 
   async function runAllCode(currentTest) {
     const { testData } = testDataObj[currentTest];
@@ -215,8 +209,6 @@ const Interface = ({
       }, 2000);
     }
   }
-
-  console.log(currentTest);
 
   const handlePost = () => {
     setOutput('');
