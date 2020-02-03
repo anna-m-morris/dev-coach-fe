@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import devices from '../../../utils/devices';
 
 export const LoginContainer = styled.div`
   height: 100vh;
