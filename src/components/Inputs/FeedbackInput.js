@@ -10,6 +10,21 @@ const useStyles = makeStyles(theme => ({
       width: 600,
       background: 'white',
     },
+    [theme.breakpoints.down('md')]: {
+      '& .MuiTextField-root': {
+        width: 450,
+      },
+    },
+    [theme.breakpoints.down('sm')]: {
+      '& .MuiTextField-root': {
+        width: 300,
+      },
+    },
+    [theme.breakpoints.down('xs')]: {
+      '& .MuiTextField-root': {
+        width: 250,
+      },
+    },
   },
 }));
 
