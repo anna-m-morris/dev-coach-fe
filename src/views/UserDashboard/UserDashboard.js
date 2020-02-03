@@ -28,10 +28,14 @@ const DashboardContainer = styled.div`
   align-items: center;
   justify-content: space-around;
 
+  .appointment-title-container {
+    display: flex;
+  }
+
   .appointment-title {
     color: #595959;
-    font-size: 1.8rem;
-    font-weight: 400;
+    font-size: 2rem;
+    font-weight: 500;
 
     @media ${devices.mobile} {
       margin-top: 40px;
@@ -88,7 +92,6 @@ const DashboardContainer = styled.div`
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
-    margin-top: 2em;
 
     @media ${devices.mobile} {
       width: 80%;
@@ -221,7 +224,9 @@ const UserDashboard = props => {
           <p>Upcoming interviews</p>
         </div>
       </div>
-      <h2 className='appointment-title'>Scheduled Interviews</h2>
+      <div className='appointment-title-container'>
+        <h2 className='appointment-title'>Scheduled Interviews</h2>
+      </div>
       {appointments ? (
         <div className='appointment-cards-container'>
           {appointments && appointments.length ? (

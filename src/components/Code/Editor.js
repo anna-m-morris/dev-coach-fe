@@ -1,9 +1,18 @@
 import React from 'react';
+import { JSHINT } from 'jshint';
 import styled from 'styled-components';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/python/python';
 import 'codemirror/mode/clike/clike';
+import 'codemirror/addon/edit/closebrackets';
+import 'codemirror/addon/lint/lint.css';
+import 'codemirror/addon/lint/lint';
+import 'codemirror/addon/lint/json-lint';
+import 'codemirror/addon/lint/javascript-lint';
+import 'codemirror/addon/selection/active-line';
+
+window.JSHINT = JSHINT;
 
 const EditorContainer = styled.div`
   width: 50%;
@@ -28,11 +37,14 @@ const Editor = ({ editorState, setEditorState, language }) => {
               ? 'clike'
               : language
           }`,
-          theme: 'material',
+          indentUnit: 4,
+          theme: 'lucario',
           lineNumbers: true,
           lineWrapping: true,
-          styleActiveLine: { nonEmpty: true },
-          styleActiveSelected: true,
+          styleActiveLine: true,
+          autoCloseBrackets: true,
+          gutters: ['CodeMirror-lint-markers'],
+          lint: true,
         }}
         onBeforeChange={(editor, data, value) =>
           setEditorState(value)

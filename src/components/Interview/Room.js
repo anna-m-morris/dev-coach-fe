@@ -106,19 +106,21 @@ const Room = ({ roomName, token, handleLogout }) => {
           {remoteParticipants}
           <div className='settings' style={{ zIndex: 10 }}>
             <Button
+              size='small'
               className='button'
               variant='contained'
-              color='primary'
+              color='secondary'
               onClick={handleClickOpen}
               style={{ zIndex: 10 }}
             >
               End
             </Button>
             <Button
+              size='small'
               onClick={handleAudio}
               className='button'
               variant='contained'
-              color='primary'
+              color='secondary'
               style={{ zIndex: 10 }}
             >
               {audio ? (

@@ -14,7 +14,7 @@ const StyledVideoChat = styled.div`
 
   .room {
     height: 38.6vh;
-    min-width: 534px;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -23,7 +23,6 @@ const StyledVideoChat = styled.div`
   .button {
     width: 100%;
     background-color: #4fad65;
-    font-weight: bold;
 
     &:hover {
       background: #1e3f1f;
