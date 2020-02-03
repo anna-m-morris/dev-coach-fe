@@ -71,7 +71,7 @@ const Interface = ({
             `https://api.judge0.com/submissions/${res.data.token}`,
           )
             .then(res => {
-              console.log(res.data.time)
+              console.log(res.data.time);
               if (res.data.stdout) {
                 setOutput(res.data.stdout);
               } else if (res.data.compile_output) {
@@ -177,6 +177,20 @@ const Interface = ({
       setEditorState(testDataObj[selectedTest].state);
     }
   };
+
+  React.useEffect(() => {
+    function handlekeydownEvent(event) {
+      if (event.keyCode === 13 && event.ctrlKey) {
+        console.log(language, editorState);
+        logCode();
+      }
+    }
+
+    document.addEventListener('keyup', handlekeydownEvent);
+    return () => {
+      document.removeEventListener('keyup', handlekeydownEvent);
+    };
+  }, [editorState, language]);
 
   return (
     <InterfaceContainer>

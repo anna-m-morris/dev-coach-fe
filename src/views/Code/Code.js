@@ -14,7 +14,7 @@ const FlexContainer = styled.div`
   width: 100vw;
 
   * {
-    font-family: 'Inconsolata'
+    font-family: 'Inconsolata';
   }
 
   .code-header-container {
