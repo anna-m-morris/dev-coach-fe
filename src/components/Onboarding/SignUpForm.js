@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
@@ -12,13 +13,13 @@ import { register } from '../../state/actions/authenticationActions';
 const ShortInputContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
-  align-items: center;
   height: 4rem;
 `;
 
 const RegisterContainer = styled(LoginContainer)`
   .form-card-container {
     margin-top: 2.4rem;
+    height: 38rem;
 
     .message-container {
       text-align: center;
@@ -128,6 +129,10 @@ const SignUpForm = ({
               </StyledButton>
             </div>
           </Form>
+          <div className='alternate-form-container'>
+            <p>Already have an account?</p>
+            <Link to='/login'>Login</Link>
+          </div>
         </div>
       </div>
     </RegisterContainer>

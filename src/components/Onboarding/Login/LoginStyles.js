@@ -101,6 +101,12 @@ export const LoginContainer = styled.div`
     .forgot-password {
       text-decoration: none;
       color: #408f53;
+      transition: ease-out 0.2s;
+
+      &:hover {
+        color: #1e3f1f;
+        transition: ease-in 0.2s;
+      }
     }
 
     .form-button-container {
@@ -126,6 +132,12 @@ export const LoginContainer = styled.div`
     a {
       text-decoration: none;
       color: #408f53;
+      transition: ease-out 0.2s;
+
+      &:hover {
+        color: #1e3f1f;
+        transition: ease-in 0.2s;
+      }
     }
   }
 `;
