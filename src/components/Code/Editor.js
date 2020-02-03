@@ -30,6 +30,9 @@ const Editor = ({ editorState, setEditorState, language }) => {
           }`,
           theme: 'material',
           lineNumbers: true,
+          lineWrapping: true,
+          styleActiveLine: { nonEmpty: true },
+          styleActiveSelected: true,
         }}
         onBeforeChange={(editor, data, value) =>
           setEditorState(value)
@@ -37,6 +40,7 @@ const Editor = ({ editorState, setEditorState, language }) => {
         onChange={(editor, data, value) => {}}
         editorDidMount={editor => {
           editor.setSize('100%', '100%');
+          editor.setOption('styleactiveline', true);
         }}
       />
     </EditorContainer>

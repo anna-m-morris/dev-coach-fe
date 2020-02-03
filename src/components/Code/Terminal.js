@@ -16,7 +16,7 @@ const TerminalText = styled.textarea`
   background: #0e1628;
   border: none;
   width: 100%;
-  height: 20em;
+  height: 35em;
   padding: 1em;
   padding-top: 0.5em;
   margin-top: 0;

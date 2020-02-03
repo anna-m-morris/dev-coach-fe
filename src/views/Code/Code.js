@@ -36,6 +36,8 @@ function Code() {
   const [editorState, setEditorState] = React.useState();
   const [output, setOutput] = React.useState('');
   const [language, setLanguage] = React.useState('javascript');
+  const [currentTest, setCurrentTest] = React.useState('');
+  const [testPassedCount, setTestPassedCount] = React.useState(0);
   return (
     <FlexContainer>
       <div className='code-header-container'>
@@ -46,6 +48,10 @@ function Code() {
           setOutput={setOutput}
           language={language}
           setLanguage={setLanguage}
+          currentTest={currentTest}
+          setCurrentTest={setCurrentTest}
+          testPassedCount={testPassedCount}
+          setTestPassedCount={setTestPassedCount}
         />
       </div>
       <div className='code-body-container'>
