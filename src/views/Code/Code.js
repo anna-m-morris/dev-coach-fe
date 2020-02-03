@@ -13,6 +13,10 @@ const FlexContainer = styled.div`
   height: 75vh;
   width: 100vw;
 
+  * {
+    font-family: 'Inconsolata'
+  }
+
   .code-header-container {
     height: 12%;
     width: 100%;
