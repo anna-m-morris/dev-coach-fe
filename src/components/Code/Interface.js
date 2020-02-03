@@ -224,7 +224,7 @@ const Interface = ({
 
   // const testResultsSquare = [25, 100, 5513104];
   // const squareSolution = el => el * el;
-
+  
   // const checkTests = (testCases, expectedValues, solution) => {
   //   if (
   //     isEqual(
