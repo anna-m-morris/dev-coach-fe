@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import Loader from 'react-loader-spinner';
 
 import { StyledButton, buttonTheme } from '../Landing/Landing-styles';
 import {
@@ -12,7 +13,6 @@ import {
   closeMessage,
 } from '../../state/actions/notificationActions';
 import { updatePasswordViaEmail } from '../../state/actions/settingActions';
-import Loader from 'react-loader-spinner';
 
 import Notification from '../Notifications/Notification';
 import pattern from '../../img/pattern.jpg';
@@ -135,7 +135,8 @@ const AccountRecovery = props => {
         </GreyBackgroundContainer>
       </div>
     );
-  } else if (!resetUser.email) {
+  }
+  if (!resetUser.email) {
     return (
       <div>
         <GreyBackgroundContainer>
@@ -157,16 +158,10 @@ const AccountRecovery = props => {
         </GreyBackgroundContainer>
       </div>
     );
-  } else {
-    return (
-      <Loader
-        type='TailSpin'
-        color='#2BAD60'
-        height={80}
-        width={80}
-      />
-    );
   }
+  return (
+    <Loader type='TailSpin' color='#2BAD60' height={80} width={80} />
+  );
 };
 
 const FormikAccountRecovery = withFormik({

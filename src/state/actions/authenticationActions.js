@@ -68,7 +68,7 @@ export const login = (props, values) => dispatch => {
     .catch(err => {
       dispatch({
         type: types.LOGIN_ERROR,
-        payload: err.data,
+        payload: err.response.data.message,
       });
     });
 };
