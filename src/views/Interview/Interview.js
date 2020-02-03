@@ -2,15 +2,22 @@ import React, { useState, useCallback } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import Lobby from './Lobby';
-import Room from './Room';
+import Lobby from '../../components/Interview/Lobby';
+import Room from '../../components/Interview/Room';
+import Code from '../../components/Interview/Code';
 
 const StyledVideoChat = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 88vh;
+
+  .room {
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
 
   .button {
     width: 100%;
@@ -97,6 +104,7 @@ const VideoChat = ({ user, peerId, history }) => {
   if (token) {
     render = (
       <StyledVideoChat>
+        <Code />
         <Room
           roomName={roomName}
           token={token}
@@ -106,7 +114,7 @@ const VideoChat = ({ user, peerId, history }) => {
     );
   } else {
     render = (
-      <StyledVideoChat>
+      <StyledVideoChat style={{ height: '88vh' }}>
         <Lobby handleSubmit={handleSubmit} />
       </StyledVideoChat>
     );

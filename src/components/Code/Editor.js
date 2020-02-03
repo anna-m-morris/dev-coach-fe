@@ -4,13 +4,6 @@ import { Controlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/python/python';
 import 'codemirror/mode/clike/clike';
-import {
-  mapLanguageToEditorState,
-  mapLanguageToId,
-  invokeCodeJS,
-  logCode,
-  testCode,
-} from '../../utils/executionHelpers';
 
 const EditorContainer = styled.div`
   width: 50%;
@@ -21,27 +14,25 @@ const EditorContainer = styled.div`
   }
 `;
 
-const input1 = 3;
-const input2 = 10;
-const input3 = 329425;
-
-const Editor = ({
-  output,
-  setOutput,
-  language,
-  setLanguage,
-  editorState,
-  setEditorState,
-}) => {
+const Editor = ({ editorState, setEditorState, language }) => {
   return (
     <EditorContainer>
       <CodeMirror
         className='codemirror'
         value={editorState}
         options={{
-          mode: 'javascript',
+          mode: `${
+            language === 'java' ||
+            language === 'c' ||
+            language === 'cpp'
+              ? 'clike'
+              : language
+          }`,
           theme: 'material',
           lineNumbers: true,
+          lineWrapping: true,
+          styleActiveLine: { nonEmpty: true },
+          styleActiveSelected: true,
         }}
         onBeforeChange={(editor, data, value) =>
           setEditorState(value)
@@ -49,6 +40,7 @@ const Editor = ({
         onChange={(editor, data, value) => {}}
         editorDidMount={editor => {
           editor.setSize('100%', '100%');
+          editor.setOption('styleactiveline', true);
         }}
       />
     </EditorContainer>

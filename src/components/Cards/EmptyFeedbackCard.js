@@ -1,32 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Empty } from 'antd';
+import devices from '../../utils/devices';
 
 const StyledContainer = styled.div`
-  width: 700px;
+  width: 48rem;
   height: 100%;
   max-width: 100%;
-  margin-top: 50px;
   background: white;
   box-shadow: 0 6px 10px rgba(50, 50, 93, 0.1);
   padding: 40px;
 
-  @media only screen and (max-width: 600px) {
-    margin-top: 200px;
-    width: 10rem;
-    height: 50%;
-    max-width: 80%;
-    margin-left: -5%;
+  @media ${devices.tablet} {
+    width: 80%;
+    height: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
   }
 
   h3 {
     font-family: 'Roboto', sans-serif;
     text-align: center;
     color: gray;
-
-    @media only screen and (max-width: 600px) {
-      margin-top: 35px;
-    }
+    font-size: 1.2rem;
   }
 
   .imgDiv {
@@ -35,7 +31,11 @@ const StyledContainer = styled.div`
     margin-left: 35%;
     padding-top: 30px;
 
-    @media only screen and (max-width: 600px) {
+    @media ${devices.tablet} {
+      margin-left: 4%;
+    }
+
+    @media ${devices.mobile} {
       display: none;
     }
   }

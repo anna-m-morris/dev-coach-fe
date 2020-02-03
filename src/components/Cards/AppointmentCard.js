@@ -116,6 +116,13 @@ const StyledCoachCard = styled.div`
       }
     }
   }
+
+  .interview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.5rem;
+  }
 `;
 
 const mapExperience = experience => {
@@ -134,7 +141,12 @@ const mapExperience = experience => {
 };
 
 export const AppointmentCard = props => {
-  const { appointment, startInterview, cancelAppointment } = props;
+  const {
+    appointment,
+    startInterview,
+    cancelAppointment,
+    savePeer,
+  } = props;
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -200,6 +212,18 @@ export const AppointmentCard = props => {
           >
             Cancel
           </Button>
+          <Button
+            size='small'
+            className='button'
+            variant='contained'
+            color='primary'
+            endIcon={<Icon>send</Icon>}
+            onClick={savePeer}
+          >
+            Chat
+          </Button>
+        </div>
+        <div className='interview'>
           <Button
             size='small'
             className='button'

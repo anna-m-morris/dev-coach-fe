@@ -17,16 +17,31 @@ const Payment = props => {
   const {
     text1,
     text2,
+    text3,
+    text4,
+    text5,
     image1,
     image2,
+    image3,
+    image4,
+    image5,
     showText1,
     showText2,
+    showText3,
+    showText4,
+    showText5,
     showImage1,
     showImage2,
+    showImage3,
+    showImage4,
+    showImage5,
   } = props;
 
   const getImage1 = () => (image1 ? 'plusIcon' : 'minusIcon');
   const getImage2 = () => (image2 ? 'plusIcon' : 'minusIcon');
+  const getImage3 = () => (image3 ? 'plusIcon' : 'minusIcon');
+  const getImage4 = () => (image4 ? 'plusIcon' : 'minusIcon');
+  const getImage5 = () => (image5 ? 'plusIcon' : 'minusIcon');
 
   return (
     <div>
@@ -80,6 +95,64 @@ const Payment = props => {
               Currently we provide:
               <li>Stripe</li>
               <li>Paypal</li>
+            </AnsweredQuestionDiv>
+          )}
+
+          <AskedQuestionDiv
+            onClick={display => {
+              showText3(display);
+              showImage3(display);
+            }}
+          >
+            <p>
+              Is there a fixed amount to pay to be able to schedule an
+              appoinment?
+            </p>
+            {<img src={icons[getImage3()]} alt='icon' />}
+          </AskedQuestionDiv>
+          {text3 && (
+            <AnsweredQuestionDiv>
+              There's no fixed amount, as prices differ according to
+              the amount stated by the coach
+            </AnsweredQuestionDiv>
+          )}
+
+          <AskedQuestionDiv
+            onClick={display => {
+              showText4(display);
+              showImage4(display);
+            }}
+          >
+            <p>
+              As a coach how many percentage of the payment made by a
+              student do I get?
+            </p>
+            {<img src={icons[getImage4()]} alt='icon' />}
+          </AskedQuestionDiv>
+          {text4 && (
+            <AnsweredQuestionDiv>
+              You get 100% of the payments, $2 only gets deducted when
+              a video chat is made
+            </AnsweredQuestionDiv>
+          )}
+
+          <AskedQuestionDiv
+            onClick={display => {
+              showText5(display);
+              showImage5(display);
+            }}
+          >
+            <p>
+              If I scheduled an appointment but it didn't happen will
+              I get my money back?
+            </p>
+            {<img src={icons[getImage5()]} alt='icon' />}
+          </AskedQuestionDiv>
+          {text5 && (
+            <AnsweredQuestionDiv>
+              Yes. You will get your money refunded, if a scheduled
+              appointment could not take place but you must send an
+              email to 'qualityhub@gmx.de' for verification
             </AnsweredQuestionDiv>
           )}
         </FAQContainer>

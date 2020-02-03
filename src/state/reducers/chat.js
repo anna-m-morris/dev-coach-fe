@@ -8,7 +8,7 @@ const initialState = {
 
 function chatReducer(state = initialState, action) {
   switch (action.type) {
-    case types.SAVE_FOR_CHAT:
+    case types.SAVE_PEER:
       return {
         ...state,
         peer: action.payload,
