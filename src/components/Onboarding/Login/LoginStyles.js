@@ -80,6 +80,7 @@ export const LoginContainer = styled.div`
       font-size: 1rem;
       outline: none;
       transition: ease-out 0.1s;
+      color: #848484;
 
       &:hover {
         transition: ease-in 0.1s;
