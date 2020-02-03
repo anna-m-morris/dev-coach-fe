@@ -49,12 +49,15 @@ function marketplaceReducer(state = initialState, action) {
       };
 
     case types.SEARCH_EXPERIENCE:
-      const filterExperience = state.copyOfCoaches.filter(
-        coach => coach.experience_level === action.payload,
-      );
+
       return {
         ...state,
-        coaches: filterExperience,
+        coaches:
+          action.payload === 1000
+            ? state.copyOfCoaches
+            : state.copyOfCoaches.filter(
+                coach => coach.experience_level === action.payload,
+              ),
       };
 
     default:
