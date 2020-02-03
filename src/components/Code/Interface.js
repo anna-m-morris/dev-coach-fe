@@ -4,7 +4,6 @@ import React from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-// import { isEqual } from 'lodash';
 import {
   Button,
   FormControl,
@@ -16,7 +15,6 @@ import {
   mapLanguageToId,
   mapLanguageToEditorState,
   testDataObj,
-  formatIfArr,
 } from '../../utils/executionHelpers';
 
 const InterfaceContainer = styled.div`
@@ -39,8 +37,6 @@ const Interface = ({
   setEditorState,
   currentTest,
   setCurrentTest,
-  testPassedCount,
-  setTestPassedCount,
 }) => {
   const invokeCode = (code, testCase, value, language) => {
     if (language === 'javascript') {
@@ -63,59 +59,7 @@ const Interface = ({
       return `${code}\nprint(${testCase}())`;
     }
   };
-  // function testCode(testName, value) {
-  //   let { testCase } = value;
-  //   const { testResult } = value;
-  //   if (typeof testCase === 'string') {
-  //     testCase = `'${testCase}'`;
-  //   }
-  //   Axios.post('https://api.judge0.com/submissions?wait=false', {
-  //     source_code: `${invokeCode(editorState, testName, testCase)}`,
-  //     language_id: `${mapLanguageToId(language)}`,
-  //   })
-  //     .then(res => {
-  //       console.log(res);
-  //       setTimeout(() => {
-  //         Axios.get(
-  //           `https://api.judge0.com/submissions/${res.data.token}`,
-  //         )
-  //           .then(res => {
-  //             // count++;
-  //             console.log(count);
-  //             let result;
-  //             if (res.data.stdout) {
-  //               if (res.data.stdout == testResult) {
-  //                 result = 'Passed';
-  //                 count++;
-  //                 setTestPassedCount(prevCount => prevCount + 1);
-  //               } else {
-  //                 result = 'Failed';
-  //               }
-  //               setOutput(
-  //                 prevOutput =>
-  //                   `${prevOutput}${testName}(${testCase}): your code returned: ${
-  //                     res.data.stdout
-  //                   }Test ${result} ${
-  //                     count === 3
-  //                       ? `\n\nAll tests passed! ${testPassedCount}`
-  //                       : ''
-  //                   } \n`,
-  //               );
-  //             } else if (res.data.compile_output) {
-  //               setOutput(`Error:  + ${res.data.compile_output}`);
-  //             } else if (res.data.stderr) {
-  //               setOutput(`Error: + ${res.data.stderr}`);
-  //             } else {
-  //               setOutput('Unable to run code');
-  //             }
-  //           })
-  //           .catch(err => {});
-  //       }, 2000);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }
+
   function logCode() {
     Axios.post('https://api.judge0.com/submissions?wait=false', {
       source_code: `${editorState}`,
@@ -215,28 +159,11 @@ const Interface = ({
     setOutput('');
     if (currentTest) {
       setOutput(`Running tests...\n\n`);
-      const { testData } = testDataObj[currentTest];
-      // testData.forEach(el => testCode(currentTest, el));
       runAllCode(currentTest);
     } else {
       logCode();
     }
   };
-
-  // const testResultsSquare = [25, 100, 5513104];
-  // const squareSolution = el => el * el;
-
-  // const checkTests = (testCases, expectedValues, solution) => {
-  //   if (
-  //     isEqual(
-  //       testCases.map(el => solution(el)),
-  //f       expectedValues,
-  //     )
-  //   ) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
 
   const handleLanguageSelection = event => {
     setLanguage(event.target.value);
@@ -249,9 +176,6 @@ const Interface = ({
     if (testDataObj[selectedTest]) {
       setEditorState(testDataObj[selectedTest].state);
     }
-    // if (testDataObj[selectedTest]) {
-    //   setEditorState(currentTest[selectedTest].state);
-    // }
   };
 
   return (
