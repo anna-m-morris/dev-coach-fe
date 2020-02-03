@@ -49,6 +49,7 @@ function GiveFeedback(props) {
     feedback,
     rating,
     idRole,
+    user,
     saveFeedback,
     saveRating,
     giveFeedback,
@@ -72,7 +73,11 @@ function GiveFeedback(props) {
         <Button
           onClick={() =>
             feedback
-              ? giveFeedback({ ...idRole, rating, feedback }, props)
+              ? giveFeedback(
+                  { ...idRole, rating, feedback },
+                  user,
+                  props,
+                )
               : showInfoMessage()
           }
           className='button'
@@ -88,7 +93,6 @@ function GiveFeedback(props) {
 
 const mapStateToProps = state => {
   return {
-    coaches: state.marketplaceReducer.coaches,
     feedback: state.feedbackReducer.giveFeedback,
     rating: state.feedbackReducer.rating,
     idRole: state.feedbackReducer.idRole,

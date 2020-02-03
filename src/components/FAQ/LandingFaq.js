@@ -8,6 +8,7 @@ import General from './GeneralFaq';
 import Profile from './ProfileFaq';
 import Payment from './PaymentFaq';
 import Navigation from '../Landing/Navigation/Navigation';
+import devices from '../../utils/devices';
 
 // Main content
 const MainContainer = styled.div`
@@ -22,7 +23,7 @@ const MainContainer = styled.div`
     margin-bottom: 3rem;
 
     .list-items .list-item a {
-      color: #494949;
+      color: #9b9b9b;
 
       &:hover {
         opacity: none;
@@ -34,7 +35,11 @@ const MainContainer = styled.div`
     margin: 0;
     font-family: 'Ubuntu', sans-serif;
     color: #4fad65;
-    font-size: 40px;
+    font-size: 3rem;
+
+    @media ${devices.tablet} {
+      font-size: 2rem;
+    }
   }
 `;
 
@@ -42,12 +47,18 @@ const CategoryContainer = styled.div`
   display: flex;
   margin-bottom: 20px;
 
+  @media ${devices.mobile} {
+    flex-direction: column;
+    margin-bottom: 10vh;
+    margin-top: 20px;
+  }
+
   .styledBox {
-    width: 12em;
-    border-radius: 10px;
+    width: 12rem;
+    border-radius: 1rem;
     height: 150px;
-    margin: 3em;
-    border-width: 10px;
+    margin: 3rem;
+    border-width: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,6 +66,36 @@ const CategoryContainer = styled.div`
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
     background: white;
     transition: ease-out 0.1s;
+
+    @media only screen and (max-width: 1200px) {
+      width: 7rem;
+      border-radius: 1rem;
+      padding: 0.5rem 2rem;
+      margin: 2rem;
+      border-width: 0.5rem;
+    }
+    @media ${devices.tablet} {
+      width: 5rem;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      border-width: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @media ${devices.mobile} {
+      width: 22rem;
+      border-radius: 0.5rem;
+      padding: 0rem 0rem;
+      margin: 0.25rem;
+      border-width: 0.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 80px;
+    }
 
     &:hover {
       box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.15);
@@ -68,6 +109,10 @@ const CategoryContainer = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      @media ${devices.mobile} {
+        flex-direction: row-reverse;
+      }
     }
 
     h3 {
