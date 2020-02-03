@@ -17,13 +17,9 @@ import { register } from '../../state/actions/authenticationActions';
 
 const ShortInputContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   height: 4rem;
-
-  .form-input {
-    width: 75%;
-  }
 `;
 
 const RegisterContainer = styled(LoginContainer)`
@@ -33,6 +29,18 @@ const RegisterContainer = styled(LoginContainer)`
     .message-container {
       text-align: center;
       margin-bottom: 0;
+    }
+
+    .short-input {
+      width: 49%;
+
+      .form-input {
+        width: 84%;
+      }
+    }
+
+    #short-input-one {
+      margin-right: 2rem;
     }
   }
 
@@ -75,7 +83,7 @@ const SignUpForm = ({
         <div className='form-container'>
           <Form className='form'>
             <ShortInputContainer className='short-input-container'>
-              <div className='input-container'>
+              <div id='short-input-one' className='short-input'>
                 <Field
                   className='form-input'
                   type='text'
@@ -83,10 +91,10 @@ const SignUpForm = ({
                   placeholder='First Name'
                 />
                 {errors.first_name && touched.first_name && (
-                  <p>{errors.first_name}</p>
+                  <p className='error'>{errors.first_name}</p>
                 )}
               </div>
-              <div className='input-container'>
+              <div className='short-input'>
                 <Field
                   className='form-input'
                   type='text'
@@ -94,7 +102,7 @@ const SignUpForm = ({
                   placeholder='Last Name'
                 />
                 {errors.last_name && touched.last_name && (
-                  <p>{errors.last_name}</p>
+                  <p className='error'>{errors.last_name}</p>
                 )}
               </div>
             </ShortInputContainer>
@@ -106,9 +114,12 @@ const SignUpForm = ({
                 placeholder='Email'
               />
               {userReducer.signUpError ? (
-                <p>{userReducer.signUpError}</p>
+                <p className='error'>{userReducer.signUpError}</p>
               ) : (
-                errors.email && touched.email && <p>{errors.email}</p>
+                errors.email &&
+                touched.email && (
+                  <p className='error'>{errors.email}</p>
+                )
               )}
             </div>
             <div className='input-container'>
@@ -119,7 +130,7 @@ const SignUpForm = ({
                 placeholder='Password'
               />
               {errors.password && touched.password && (
-                <p>{errors.password}</p>
+                <p className='error'>{errors.password}</p>
               )}
             </div>
             <div className='input-container'>
@@ -131,7 +142,7 @@ const SignUpForm = ({
               />
               {errors.confirm_password &&
                 touched.confirm_password && (
-                  <p>{errors.confirm_password}</p>
+                  <p className='error'>{errors.confirm_password}</p>
                 )}
             </div>
 
