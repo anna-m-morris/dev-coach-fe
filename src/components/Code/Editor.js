@@ -4,11 +4,6 @@ import { Controlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/python/python';
 import 'codemirror/mode/clike/clike';
-import 'codemirror/addon/hint/show-hint';
-import 'codemirror/addon/hint/javascript-hint';
-import 'codemirror/addon/hint/show-hint.css';
-import 'codemirror/addon/lint/lint';
-import 'codemirror/addon/lint/javascript-lint';
 
 const EditorContainer = styled.div`
   width: 50%;
@@ -36,8 +31,8 @@ const Editor = ({ editorState, setEditorState, language }) => {
           theme: 'material',
           lineNumbers: true,
           lineWrapping: true,
-          styleActiveLine: true,
-          extraKeys: { 'Ctrl-Space': 'autocomplete' },
+          styleActiveLine: { nonEmpty: true },
+          styleActiveSelected: true,
         }}
         onBeforeChange={(editor, data, value) =>
           setEditorState(value)

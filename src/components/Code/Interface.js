@@ -163,7 +163,7 @@ const Interface = ({
     );
   }
 
-  console.log(invokeCode(editorState, 'square', 5, 'python'))
+  console.log(invokeCode(editorState, 'square', 5, 'python'));
 
   function fetchExecutedCode(token) {
     return Axios.get(`https://api.judge0.com/submissions/${token}`);
@@ -180,13 +180,15 @@ const Interface = ({
       const executedCode = await executeCode(currentTest, el);
       const { token } = executedCode.data;
       setTimeout(async () => {
-        const response = await fetchExecutedCode(token)
+        const response = await fetchExecutedCode(token);
         console.log(response);
-        const output = response.data.stdout;
-        // const output = response.data.stdout.substring(
-        //   0,
-        //   response.data.stdout.length - 1,
-        // );
+        let output = response.data.stdout;
+        if (typeof testResultsArr[idx] === 'string') {
+          output = response.data.stdout.substring(
+            0,
+            response.data.stdout.length - 1,
+          );
+        }
         if (output == testResultsArr[idx]) {
           passedTestsArr.push('true');
         }
@@ -201,10 +203,16 @@ const Interface = ({
           passedTestsArr.length === testCaseArr.length
         ) {
           setOutput(
-            prevOutput => `${prevOutput}\n\nAll tests passed.`,
+            prevOutput =>
+              `${prevOutput}\nAll tests passed! Good job.`,
+          );
+        } else if (idx === testCaseArr.length - 1) {
+          setOutput(
+            prevOutput =>
+              `${prevOutput}\nTests failing, check your code!`,
           );
         }
-      }, 3000);
+      }, 2000);
     }
   }
 
@@ -229,7 +237,7 @@ const Interface = ({
   //   if (
   //     isEqual(
   //       testCases.map(el => solution(el)),
-  //       expectedValues,
+  //f       expectedValues,
   //     )
   //   ) {
   //     return true;
