@@ -116,6 +116,13 @@ const StyledCoachCard = styled.div`
       }
     }
   }
+
+  .interview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.5rem;
+  }
 `;
 
 const mapExperience = experience => {
@@ -211,19 +218,21 @@ export const AppointmentCard = props => {
             variant='contained'
             color='primary'
             endIcon={<Icon>send</Icon>}
-            onClick={startInterview}
+            onClick={savePeer}
           >
-            Interview
+            Chat
           </Button>
+        </div>
+        <div className='interview'>
           <Button
             size='small'
             className='button'
             variant='contained'
             color='primary'
             endIcon={<Icon>send</Icon>}
-            onClick={savePeer}
+            onClick={startInterview}
           >
-            Chat
+            Interview
           </Button>
         </div>
       </StyledCoachCard>
