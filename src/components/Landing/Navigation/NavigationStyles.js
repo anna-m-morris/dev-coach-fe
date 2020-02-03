@@ -27,7 +27,7 @@ export const NavContainer = styled.nav`
   }
 
   .logo-name {
-    color: #408f53;
+    color: #4fad65;
     font-size: 2rem;
 
     @media ${devices.tablet} {
