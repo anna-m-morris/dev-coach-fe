@@ -3,7 +3,6 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Lobby from '../../components/Interview/Lobby';
-import Room from '../../components/Interview/Room';
 import Code from '../../components/Interview/Code';
 
 const StyledVideoChat = styled.div`
@@ -104,11 +103,6 @@ const VideoChat = ({ user, peerId, history }) => {
     render = (
       <StyledVideoChat>
         <Code Room={{ roomName, token, handleLogout }} />
-        {/* <Room
-          roomName={roomName}
-          token={token}
-          handleLogout={handleLogout}
-        /> */}
       </StyledVideoChat>
     );
   } else {
