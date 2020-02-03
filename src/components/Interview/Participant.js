@@ -65,7 +65,12 @@ const Participant = ({ participant, className, audio }) => {
 
   return (
     <div>
-      <video className={className} ref={videoRef} autoPlay={true} />
+      <video
+        style={{ backgroundColor: 'black' }}
+        className={className}
+        ref={videoRef}
+        autoPlay={true}
+      />
       <audio ref={audioRef} autoPlay={true} muted={audio} />
     </div>
   );
