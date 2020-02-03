@@ -225,7 +225,7 @@ class Code extends Component {
 
   handlePost = () => {
     // setOutput([]);
-    const testCasesSquare = [5, 10, 2348];
+    // const testCasesSquare = [5, 10, 2348];
     this.setState({ output: [] });
     this.syncUpdates();
     // if (mapLanguageToId(this.state.language) === 63) {

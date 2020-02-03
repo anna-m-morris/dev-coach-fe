@@ -16,7 +16,7 @@ import {
   mapLanguageToId,
   mapLanguageToEditorState,
   testDataObj,
-  formatIfArr,
+  // formatIfArr,
 } from '../../utils/executionHelpers';
 
 const InterfaceContainer = styled.div`
@@ -62,6 +62,7 @@ const Interface = ({
       }
       return `${code}\nprint(${testCase}())`;
     }
+    return null;
   };
   // function testCode(testName, value) {
   //   let { testCase } = value;
@@ -127,7 +128,7 @@ const Interface = ({
             `https://api.judge0.com/submissions/${res.data.token}`,
           )
             .then(res => {
-              console.log(res.data.time)
+              console.log(res.data.time);
               if (res.data.stdout) {
                 setOutput(res.data.stdout);
               } else if (res.data.compile_output) {
@@ -184,7 +185,7 @@ const Interface = ({
             response.data.stdout.length - 1,
           );
         }
-        if (output == testResultsArr[idx]) {
+        if (output === testResultsArr[idx]) {
           passedTestsArr.push('true');
         }
         setOutput(
@@ -215,7 +216,7 @@ const Interface = ({
     setOutput('');
     if (currentTest) {
       setOutput(`Running tests...\n\n`);
-      const { testData } = testDataObj[currentTest];
+      // const { testData } = testDataObj[currentTest];
       // testData.forEach(el => testCode(currentTest, el));
       runAllCode(currentTest);
     } else {

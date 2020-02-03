@@ -3,7 +3,6 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Lobby from '../../components/Interview/Lobby';
-import Room from '../../components/Interview/Room';
 import Code from '../../components/Interview/Code';
 
 const StyledVideoChat = styled.div`
