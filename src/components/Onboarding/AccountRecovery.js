@@ -15,7 +15,6 @@ import {
 import { updatePasswordViaEmail } from '../../state/actions/settingActions';
 
 import Notification from '../Notifications/Notification';
-import pattern from '../../img/pattern.jpg';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -208,12 +207,11 @@ export const StyledResetButton = styled(StyledButton)`
 
 export const GreyBackgroundContainer = styled.div`
   height: 100vh;
-  background: #f2f2f2;
+  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #11aa44;
-  background-image: url(${pattern});
 `;
 
 export const FormCard = styled.div`

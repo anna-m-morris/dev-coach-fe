@@ -15,6 +15,7 @@ export const NavContainer = styled.nav`
     display: flex;
     align-items: center;
     margin-left: 3.3rem;
+    height: 4.2rem;
 
     @media ${devices.tablet} {
       margin: 0;
@@ -27,7 +28,7 @@ export const NavContainer = styled.nav`
   }
 
   .logo-name {
-    color: #408f53;
+    color: #4fad65;
     font-size: 2rem;
 
     @media ${devices.tablet} {
@@ -56,9 +57,9 @@ export const NavContainer = styled.nav`
         font-size: 1.1rem;
 
         &:hover {
-          color: #408f53;
+          color: #4fad65;
           padding-bottom: 0.3rem;
-          border-bottom: 2px solid #408f53;
+          border-bottom: 2px solid #4fad65;
           transition: ease-in 0.1s;
         }
       }
