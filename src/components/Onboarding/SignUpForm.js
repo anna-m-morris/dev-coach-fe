@@ -1,38 +1,49 @@
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import { connect } from 'react-redux';
-// import styled from 'styled-components';
-// import { withFormik, Form, Field } from 'formik';
-// import * as Yup from 'yup';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
+import { withFormik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
-// import {
-//   StyledButton,
-//   buttonTheme,
-//   Logo,
-// } from '../Landing/Landing-styles';
+import {
+  StyledButton,
+  buttonTheme,
+  Logo,
+} from '../Landing/Landing-styles';
 // import { FormCard, FormContainer } from './LoginForm';
+import { LoginContainer } from './Login/LoginForm';
 
-// import { register } from '../../state/actions/authenticationActions';
+import { register } from '../../state/actions/authenticationActions';
 
-// const ShortInputContainer = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
+const ShortInputContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
 
-//   input {
-//     width: 82%;
-//   }
-// `;
+  .form-input {
+    width: 75%;
+  }
+`;
 
-// const RegisterCard = styled(FormCard)`
-//   width: 30em;
-//   height: 35em;
-//   margin: 2rem 0;
+const RegisterContainer = styled(LoginContainer)`
+  .form-card-container {
+    margin-top: 2.4rem;
 
-//   h1 {
-//     font-size: 24px;
-//   }
-// `;
+    .message-container {
+      text-align: center;
+      margin-bottom: 0;
+    }
+  }
+
+  /* width: 30em;
+  height: 35em;
+  margin: 2rem 0;
+
+  h1 {
+    font-size: 24px;
+  } */
+`;
 
 // const NavLogo = styled(Logo)`
 //   a {
@@ -49,125 +60,131 @@
 //   align-self: flex-start;
 // `;
 
-// const SignUpForm = ({
-//   userReducer,
-//   isSubmitting,
-//   errors,
-//   touched,
-// }) => {
-//   return (
-//     <div>
-//       <RegisterCard>
-//         <Link to='/'>
-//           <NavLogo />
-//         </Link>
-//         <h1>Sign Up To Get Started Now</h1>
-//         <FormContainer>
-//           <Form>
-//             <ShortInputContainer>
-//               <div>
-//                 <Field
-//                   type='text'
-//                   name='first_name'
-//                   placeholder='First Name'
-//                 />
-//                 {errors.first_name && touched.first_name && (
-//                   <StyledError>{errors.first_name}</StyledError>
-//                 )}
-//               </div>
-//               <div>
-//                 <Field
-//                   type='text'
-//                   name='last_name'
-//                   placeholder='Last Name'
-//                 />
-//                 {errors.last_name && touched.last_name && (
-//                   <StyledError>{errors.last_name}</StyledError>
-//                 )}
-//               </div>
-//             </ShortInputContainer>
-//             <div>
-//               <Field type='email' name='email' placeholder='Email' />
-//               {userReducer.signUpError ? (
-//                 <StyledError>{userReducer.signUpError}</StyledError>
-//               ) : (
-//                 errors.email &&
-//                 touched.email && (
-//                   <StyledError>{errors.email}</StyledError>
-//                 )
-//               )}
-//             </div>
-//             <div>
-//               <Field
-//                 type='password'
-//                 name='password'
-//                 placeholder='Password'
-//               />
-//               {errors.password && touched.password && (
-//                 <StyledError>{errors.password}</StyledError>
-//               )}
-//             </div>
-//             <div>
-//               <Field
-//                 type='password'
-//                 name='confirm_password'
-//                 placeholder='Confirm Password'
-//               />
-//               {errors.confirm_password &&
-//                 touched.confirm_password && (
-//                   <StyledError>{errors.confirm_password}</StyledError>
-//                 )}
-//             </div>
+const SignUpForm = ({
+  userReducer,
+  isSubmitting,
+  errors,
+  touched,
+}) => {
+  return (
+    <RegisterContainer className='register-container'>
+      <div className='form-card-container'>
+        <div className='message-container'>
+          <h1 className='form-title'>Sign Up</h1>
+        </div>
+        <div className='form-container'>
+          <Form className='form'>
+            <ShortInputContainer className='short-input-container'>
+              <div className='input-container'>
+                <Field
+                  className='form-input'
+                  type='text'
+                  name='first_name'
+                  placeholder='First Name'
+                />
+                {errors.first_name && touched.first_name && (
+                  <p>{errors.first_name}</p>
+                )}
+              </div>
+              <div className='input-container'>
+                <Field
+                  className='form-input'
+                  type='text'
+                  name='last_name'
+                  placeholder='Last Name'
+                />
+                {errors.last_name && touched.last_name && (
+                  <p>{errors.last_name}</p>
+                )}
+              </div>
+            </ShortInputContainer>
+            <div className='input-container'>
+              <Field
+                className='form-input'
+                type='email'
+                name='email'
+                placeholder='Email'
+              />
+              {userReducer.signUpError ? (
+                <p>{userReducer.signUpError}</p>
+              ) : (
+                errors.email && touched.email && <p>{errors.email}</p>
+              )}
+            </div>
+            <div className='input-container'>
+              <Field
+                className='form-input'
+                type='password'
+                name='password'
+                placeholder='Password'
+              />
+              {errors.password && touched.password && (
+                <p>{errors.password}</p>
+              )}
+            </div>
+            <div className='input-container'>
+              <Field
+                className='form-input'
+                type='password'
+                name='confirm_password'
+                placeholder='Confirm Password'
+              />
+              {errors.confirm_password &&
+                touched.confirm_password && (
+                  <p>{errors.confirm_password}</p>
+                )}
+            </div>
 
-//             <div>
-//               <StyledButton
-//                 disabled={isSubmitting}
-//                 theme={buttonTheme}
-//                 type='submit'
-//               >
-//                 Get Started
-//               </StyledButton>
-//             </div>
-//           </Form>
-//         </FormContainer>
-//       </RegisterCard>
-//     </div>
-//   );
-// };
+            <div className='form-button-container'>
+              <StyledButton
+                className='form-button'
+                disabled={isSubmitting}
+                theme={buttonTheme}
+                type='submit'
+              >
+                Get Started
+              </StyledButton>
+            </div>
+          </Form>
+        </div>
+      </div>
+    </RegisterContainer>
+  );
+};
 
-// const FormikSignUpForm = withFormik({
-//   mapPropsToValues: () => ({
-//     first_name: '',
-//     last_name: '',
-//     email: '',
-//     password: '',
-//     confirm_password: '',
-//   }),
-//   validationSchema: Yup.object().shape({
-//     first_name: Yup.string().required('Please enter first name'),
-//     last_name: Yup.string().required('Please enter last name'),
-//     email: Yup.string()
-//       .email('Please enter a valid email')
-//       .required('Please enter your email'),
-//     password: Yup.string()
-//       .required('Please enter your password')
-//       .min(6, 'Must be 6 character minimum'),
-//     confirm_password: Yup.string()
-//       .oneOf(
-//         [Yup.ref('password'), null],
-//         "Your passwords don't match",
-//       )
-//       .required('Please confirm your password'),
-//   }),
+const FormikSignUpForm = withFormik({
+  mapPropsToValues: () => ({
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+    confirm_password: '',
+  }),
+  validationSchema: Yup.object().shape({
+    first_name: Yup.string().required('Please enter first name'),
+    last_name: Yup.string().required('Please enter last name'),
+    email: Yup.string()
+      .email('Please enter a valid email')
+      .required('Please enter your email'),
+    password: Yup.string()
+      .required('Please enter your password')
+      .min(6, 'Must be 6 character minimum'),
+    confirm_password: Yup.string()
+      .oneOf(
+        [Yup.ref('password'), null],
+        "Your passwords don't match",
+      )
+      .required('Please confirm your password'),
+  }),
 
-//   handleSubmit(values, { props, setSubmitting, resetForm }) {
-//     resetForm();
-//     setSubmitting(false);
+  handleSubmit(values, { props, setSubmitting, resetForm }) {
+    resetForm();
+    setSubmitting(false);
 
-//     props.register(props, values);
-//   },
-// })(SignUpForm);
+    props.register(props, values);
+  },
+})(SignUpForm);
 
-// export default connect(state => state, { register })(
-//   FormikSignUpForm,
-// );
+export default connect(state => state, { register })(
+  FormikSignUpForm,
+);

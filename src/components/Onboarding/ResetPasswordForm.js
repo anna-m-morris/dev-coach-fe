@@ -19,8 +19,6 @@ import {
 import Notification from '../Notifications/Notification';
 import { sendResetPasswordEmail } from '../../state/actions/authenticationActions';
 
-import pattern from '../../img/pattern.jpg';
-
 const ResetPasswordForm = props => {
   const {
     sendResetPasswordEmail,
@@ -154,7 +152,6 @@ export const GreyBackgroundContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #11aa44;
-  background-image: url(${pattern});
 `;
 
 export const FormCard = styled.div`

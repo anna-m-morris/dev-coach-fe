@@ -96,7 +96,7 @@ import { login } from '../../../state/actions/authenticationActions';
 //   }
 // `;
 
-const LoginContainer = styled.div`
+export const LoginContainer = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -125,7 +125,7 @@ const LoginContainer = styled.div`
       margin-bottom: 2rem;
     }
 
-    .login-title {
+    .form-title {
       color: white;
       margin: 0;
     }
@@ -152,7 +152,7 @@ const LoginContainer = styled.div`
       height: 4rem;
     }
 
-    .login-input {
+    .form-input {
       border: none;
       background: #f4f4f4;
       border-radius: 2rem;
@@ -164,8 +164,15 @@ const LoginContainer = styled.div`
 
       &:hover {
         transition: ease-in 0.1s;
-        box-shadow: 0 3px 7px #ccc;
+        box-shadow: 0 2px 4px #d3d3d3;
       }
+    }
+
+    .error {
+      padding: 0;
+      margin: 0;
+      color: red;
+      font-size: 0.8rem;
     }
 
     .options-container {
@@ -192,16 +199,16 @@ const LoginContainer = styled.div`
       color: #408f53;
     }
 
-    .login-button-container {
+    .form-button-container {
       width: 100%;
-      .login-button {
+      .form-button {
         width: 100%;
         border-radius: 2rem;
       }
     }
   }
 
-  .signup-container {
+  .alternate-form-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -219,13 +226,6 @@ const LoginContainer = styled.div`
   }
 `;
 
-const StyledError = styled.p`
-  padding: 0;
-  margin: 0;
-  color: red;
-  font-size: 0.8rem;
-`;
-
 const loadingButtonTheme = {
   text: '#292d38',
   background: 'lightgray',
@@ -241,34 +241,34 @@ const LoginForm = ({
     <LoginContainer className='Login-container'>
       <div className='form-card-container'>
         <div className='message-container'>
-          <h1 className='login-title'>Welcome back</h1>
+          <h1 className='form-title'>Welcome back</h1>
         </div>
         <div className='form-container'>
           <Form className='form'>
             <div className='input-container'>
               <Field
-                className='login-input'
+                className='form-input'
                 type='email'
                 name='email'
                 placeholder='Email'
               />
               {errors.email && touched.email && (
-                <StyledError>{errors.email}</StyledError>
+                <p className='error'>{errors.email}</p>
               )}
             </div>
             <div className='input-container'>
               <Field
-                className='login-input'
+                className='form-input'
                 type='password'
                 name='password'
                 placeholder='Password'
               />
               {userReducer.loginError ? (
-                <StyledError>{userReducer.loginError}</StyledError>
+                <p className='error'>{userReducer.loginError}</p>
               ) : (
                 errors.password &&
                 touched.password && (
-                  <StyledError>{errors.password}</StyledError>
+                  <p className='error'>{errors.password}</p>
                 )
               )}
             </div>
@@ -281,9 +281,9 @@ const LoginForm = ({
                 <p>Forgot your password?</p>
               </Link>
             </div>
-            <div className='login-button-container'>
+            <div className='form-button-container'>
               <StyledButton
-                className='login-button'
+                className='form-button'
                 theme={
                   userReducer.isLoading
                     ? loadingButtonTheme
@@ -296,7 +296,7 @@ const LoginForm = ({
               </StyledButton>
             </div>
           </Form>
-          <div className='signup-container'>
+          <div className='alternate-form-container'>
             <p>Dont't have an account?</p>
             <Link to='/register'>Sign up</Link>
           </div>
