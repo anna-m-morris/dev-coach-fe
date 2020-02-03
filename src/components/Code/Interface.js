@@ -1,3 +1,5 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
 import React from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
@@ -13,6 +15,8 @@ import {
 import {
   mapLanguageToId,
   mapLanguageToEditorState,
+  testDataObj,
+  formatIfArr,
 } from '../../utils/executionHelpers';
 
 const InterfaceContainer = styled.div`
@@ -28,61 +32,101 @@ const InterfaceContainer = styled.div`
 `;
 
 const Interface = ({
-  output,
   setOutput,
   language,
   setLanguage,
   editorState,
   setEditorState,
+  currentTest,
+  setCurrentTest,
+  testPassedCount,
+  setTestPassedCount,
 }) => {
-  const invokeCode = (code, param, value) => {
-    return `
-    ${code}
-    console.log(${param}(${value}));
-    `;
+  const invokeCode = (code, testCase, value, language) => {
+    if (language === 'javascript') {
+      if (value) {
+        return `
+        ${code}
+        console.log(${testCase}(${value}));
+        `;
+      }
+      return `
+        ${code}
+        console.log(${testCase}());
+        `;
+    }
+    if (language === 'python') {
+      if (value) {
+        return `${code}\nprint(${testCase}(${value}))
+        `;
+      }
+      return `${code}\nprint(${testCase}())`;
+    }
   };
-  function testCode(testCase, value) {
-    Axios.post('https://api.judge0.com/submissions?wait=false', {
-      source_code: `${invokeCode(editorState, testCase, value)}`,
-      language_id: `${mapLanguageToId(language)}`,
-    })
-      .then(res => {
-        setTimeout(() => {
-          Axios.get(
-            `https://api.judge0.com/submissions/${res.data.token}`,
-          )
-            .then(res => {
-              if (res.data.stdout) {
-                setOutput(
-                  prevArr =>
-                    `${prevArr}Against test input of ${value}, your code returned: ${res.data.stdout}`,
-                );
-              } else if (res.data.compile_output) {
-                setOutput(`Error:  + ${res.data.compile_output}`);
-              } else {
-                setOutput('Unable to run code');
-              }
-            })
-            .catch(err => {});
-        }, 2000);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+  // function testCode(testName, value) {
+  //   let { testCase } = value;
+  //   const { testResult } = value;
+  //   if (typeof testCase === 'string') {
+  //     testCase = `'${testCase}'`;
+  //   }
+  //   Axios.post('https://api.judge0.com/submissions?wait=false', {
+  //     source_code: `${invokeCode(editorState, testName, testCase)}`,
+  //     language_id: `${mapLanguageToId(language)}`,
+  //   })
+  //     .then(res => {
+  //       console.log(res);
+  //       setTimeout(() => {
+  //         Axios.get(
+  //           `https://api.judge0.com/submissions/${res.data.token}`,
+  //         )
+  //           .then(res => {
+  //             // count++;
+  //             console.log(count);
+  //             let result;
+  //             if (res.data.stdout) {
+  //               if (res.data.stdout == testResult) {
+  //                 result = 'Passed';
+  //                 count++;
+  //                 setTestPassedCount(prevCount => prevCount + 1);
+  //               } else {
+  //                 result = 'Failed';
+  //               }
+  //               setOutput(
+  //                 prevOutput =>
+  //                   `${prevOutput}${testName}(${testCase}): your code returned: ${
+  //                     res.data.stdout
+  //                   }Test ${result} ${
+  //                     count === 3
+  //                       ? `\n\nAll tests passed! ${testPassedCount}`
+  //                       : ''
+  //                   } \n`,
+  //               );
+  //             } else if (res.data.compile_output) {
+  //               setOutput(`Error:  + ${res.data.compile_output}`);
+  //             } else if (res.data.stderr) {
+  //               setOutput(`Error: + ${res.data.stderr}`);
+  //             } else {
+  //               setOutput('Unable to run code');
+  //             }
+  //           })
+  //           .catch(err => {});
+  //       }, 2000);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
   function logCode() {
     Axios.post('https://api.judge0.com/submissions?wait=false', {
       source_code: `${editorState}`,
       language_id: `${mapLanguageToId(language)}`,
     })
       .then(res => {
-        console.log(res);
         setTimeout(() => {
           Axios.get(
             `https://api.judge0.com/submissions/${res.data.token}`,
           )
             .then(res => {
-              console.log(res);
               if (res.data.stdout) {
                 setOutput(res.data.stdout);
               } else if (res.data.compile_output) {
@@ -99,7 +143,85 @@ const Interface = ({
       .catch(err => {});
   }
 
-  const testCasesSquare = [5, 10, 2348];
+  function executeCode(testName, value) {
+    if (typeof value === 'string') {
+      value = `'${value}'`;
+    }
+    return Axios.post(
+      'https://api.judge0.com/submissions?wait=false',
+      {
+        source_code: `${invokeCode(
+          editorState,
+          testName,
+          value,
+          language,
+        )}`,
+        language_id: `${mapLanguageToId(language)}`,
+      },
+    );
+  }
+
+  function fetchExecutedCode(token) {
+    return Axios.get(`https://api.judge0.com/submissions/${token}`);
+  }
+
+  async function runAllCode(currentTest) {
+    const { testData } = testDataObj[currentTest];
+    const testCaseArr = testData.map(el => el.testCase);
+    const testResultsArr = testData.map(el => el.testResult);
+    const passedTestsArr = [];
+    for (const [idx, el] of testCaseArr.entries()) {
+      const executedCode = await executeCode(currentTest, el);
+      const { token } = executedCode.data;
+      setTimeout(async () => {
+        const response = await fetchExecutedCode(token);
+        console.log(response);
+        let output = response.data.stdout;
+        if (typeof testResultsArr[idx] === 'string') {
+          output = response.data.stdout.substring(
+            0,
+            response.data.stdout.length - 1,
+          );
+        }
+        if (output == testResultsArr[idx]) {
+          passedTestsArr.push('true');
+        }
+        setOutput(
+          prevOutput =>
+            `${prevOutput}Test ${idx + 1}: ${currentTest}(${
+              testCaseArr[idx]
+            }) received ${output}\n\n`,
+        );
+        if (
+          idx === testCaseArr.length - 1 &&
+          passedTestsArr.length === testCaseArr.length
+        ) {
+          setOutput(
+            prevOutput =>
+              `${prevOutput}\nAll tests passed! Good job.`,
+          );
+        } else if (idx === testCaseArr.length - 1) {
+          setOutput(
+            prevOutput =>
+              `${prevOutput}\nTests failing, check your code!`,
+          );
+        }
+      }, 2000);
+    }
+  }
+
+  const handlePost = () => {
+    setOutput('');
+    if (currentTest) {
+      setOutput(`Running tests...\n\n`);
+      const { testData } = testDataObj[currentTest];
+      // testData.forEach(el => testCode(currentTest, el));
+      runAllCode(currentTest);
+    } else {
+      logCode();
+    }
+  };
+
   // const testResultsSquare = [25, 100, 5513104];
   // const squareSolution = el => el * el;
 
@@ -107,7 +229,7 @@ const Interface = ({
   //   if (
   //     isEqual(
   //       testCases.map(el => solution(el)),
-  //       expectedValues,
+  //f       expectedValues,
   //     )
   //   ) {
   //     return true;
@@ -115,19 +237,20 @@ const Interface = ({
   //   return false;
   // };
 
-  const handlePost = () => {
-    setOutput([]);
-    if (mapLanguageToId(language) === 63) {
-      setOutput(`Running tests...\n`);
-      testCasesSquare.forEach(el => testCode('square', el));
-    } else {
-      logCode();
-    }
-  };
-
-  const handleSelection = event => {
+  const handleLanguageSelection = event => {
     setLanguage(event.target.value);
     setEditorState(mapLanguageToEditorState(event.target.value));
+  };
+
+  const handleTestSelection = event => {
+    const selectedTest = event.target.value;
+    setCurrentTest(selectedTest);
+    if (testDataObj[selectedTest]) {
+      setEditorState(testDataObj[selectedTest].state);
+    }
+    // if (testDataObj[selectedTest]) {
+    //   setEditorState(currentTest[selectedTest].state);
+    // }
   };
 
   return (
@@ -138,7 +261,7 @@ const Interface = ({
         <Select
           style={{ width: '20em' }}
           value={language}
-          onChange={handleSelection}
+          onChange={handleLanguageSelection}
         >
           <MenuItem value='javascript'>Javascript</MenuItem>
           <MenuItem value='python'>Python</MenuItem>
@@ -149,11 +272,16 @@ const Interface = ({
       </FormControl>
       <FormControl>
         <InputLabel>Select Coding Challenge</InputLabel>
-        <Select readOnly style={{ width: '20em' }} value=''>
+        <Select
+          style={{ width: '20em' }}
+          value={currentTest}
+          onChange={handleTestSelection}
+        >
+          <MenuItem value=''>None</MenuItem>
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
-          <MenuItem value='fizzbuzz'>Fizzbuzz</MenuItem>
-          <MenuItem value='reverse'>Reverse a string</MenuItem>
+          <MenuItem value='fizzBuzz'>Fizzbuzz</MenuItem>
+          <MenuItem value='reverseAString'>Reverse a string</MenuItem>
         </Select>
       </FormControl>
       <Button onClick={handlePost}>Run Code</Button>

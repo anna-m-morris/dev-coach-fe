@@ -172,7 +172,6 @@ class Code extends Component {
         }, 2000);
       })
       .catch(err => {
-        console.log(err);
       });
   };
 
@@ -183,14 +182,12 @@ class Code extends Component {
         language_id: `${mapLanguageToId(this.state.language)}`,
       })
       .then(res => {
-        console.log(res);
         setTimeout(() => {
           axios
             .get(
               `https://api.judge0.com/submissions/${res.data.token}`,
             )
             .then(res => {
-              console.log(res);
               if (res.data.stdout) {
                 this.setState({ output: res.data.stdout });
                 // setOutput(res.data.stdout);

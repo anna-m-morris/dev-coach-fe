@@ -19,6 +19,7 @@
     "date-fns": "^2.8.1",
     "formik": "^2.0.8",
     "formik-material-ui": "^1.0.2",
+    "jshint": "^2.11.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",

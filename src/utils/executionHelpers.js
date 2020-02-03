@@ -1,10 +1,61 @@
 import Axios from 'axios';
 
-const javascriptInitialEditorState = `function square(x) {
-    // challenge #1: write a function that takes a number and returns its square
-  
-  };
-  `;
+export const testDataObj = {
+  square: {
+    state: `function square(x) {
+      // enter code below to return the square of a number
+    }
+    `,
+    testData: [
+      { testCase: 5, testResult: 25 },
+      { testCase: 10, testResult: 100 },
+      { testCase: 2348, testResult: 5513104 },
+    ],
+  },
+  add: {
+    state: `function add (x, y) {
+      // enter code below to add two numbers and return the sum
+    }
+    `,
+    testCases: [
+      [1, 2],
+      [345, 829],
+      [384724323, 23948293819],
+    ],
+    testResults: [3, 1174, 24333018142],
+    testData: [
+      { testCase: [1, 2], testResult: 3 },
+      { testCase: [345, 829], testResult: 1174 },
+      { testCase: [384724323, 23948293819], testResult: 24333018142 },
+    ],
+  },
+  reverseAString: {
+    state: `function reverseAString(str) {
+      // enter code below to take as string as input and return the same string, reversed.
+    }
+    `,
+    testData: [
+      { testCase: 'Hello, world!', testResult: '!dlrow ,olleH' },
+      { testCase: 'Lor3m 1psum', testResult: 'musp1 m3roL' },
+      {
+        testCase: 'Welcome to DevCoach.com!',
+        testResult: '!moc.hcaoCveD ot emocleW',
+      },
+    ],
+  },
+  fizzBuzz: {
+    state: `function fizzBuzz() {
+      // Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz”
+      // instead of the number and for the multiples of five print “Buzz”.
+      // For numbers which are multiples of both three and five print "FizzBuzz".
+    }`,
+    // todo
+    testCases: [],
+    testResults: [],
+  },
+};
+
+const javascriptInitialEditorState = `console.log('hello JS!');`;
 
 const pythonInitialEditorState = `# example code: print n fibonacci numbers
 
@@ -133,4 +184,8 @@ export function testCode(value, testCase, code, languageId) {
       }, 2000);
     })
     .catch(err => {});
+}
+
+export function formatIfArr(data) {
+  return Array.isArray(data) ? data.join(',') : data;
 }
