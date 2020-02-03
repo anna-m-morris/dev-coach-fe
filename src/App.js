@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { connect } from 'react-redux';
-import LoginForm from './components/Onboarding/LoginForm';
+import LoginForm from './components/Onboarding/Login/LoginForm';
 import ResetPasswordForm from './components/Onboarding/ResetPasswordForm';
 import AccountRecovery from './components/Onboarding/AccountRecovery';
 import Dashboard from './components/Dashboard';

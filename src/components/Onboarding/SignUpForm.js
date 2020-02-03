@@ -5,48 +5,43 @@ import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
-import {
-  StyledButton,
-  buttonTheme,
-  Logo,
-} from '../Landing/Landing-styles';
-import { FormCard, FormContainer } from './LoginForm';
+import { StyledButton, buttonTheme } from '../Landing/Landing-styles';
+import { LoginContainer } from './Login/LoginStyles';
 
 import { register } from '../../state/actions/authenticationActions';
 
 const ShortInputContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  input {
-    width: 82%;
-  }
+  justify-content: space-evenly;
+  height: 4rem;
 `;
 
-const RegisterCard = styled(FormCard)`
-  width: 30em;
-  height: 35em;
-  margin: 2rem 0;
+const RegisterContainer = styled(LoginContainer)`
+  .form-card-container {
+    height: 32rem;
+    width: 25rem;
 
-  h1 {
-    font-size: 24px;
+    .message-container {
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    .short-input {
+      width: 49%;
+
+      .form-input {
+        width: 84%;
+      }
+    }
+
+    #short-input-one {
+      margin-right: 1rem;
+    }
+
+    .form-button-container {
+      margin: 0;
+    }
   }
-`;
-
-const NavLogo = styled(Logo)`
-  a {
-    width: 1.5rem;
-    height: 1rem;
-  }
-`;
-
-const StyledError = styled.p`
-  padding: 0;
-  margin: 0;
-  color: red;
-  font-size: 0.8rem;
-  align-self: flex-start;
 `;
 
 const SignUpForm = ({
@@ -56,71 +51,80 @@ const SignUpForm = ({
   touched,
 }) => {
   return (
-    <div>
-      <RegisterCard>
-        <Link to='/'>
-          <NavLogo />
-        </Link>
-        <h1>Sign Up To Get Started Now</h1>
-        <FormContainer>
-          <Form>
-            <ShortInputContainer>
-              <div>
+    <RegisterContainer className='register-container'>
+      <div className='form-card-container'>
+        <div className='message-container'>
+          <h1 className='form-title'>Sign Up</h1>
+        </div>
+        <div className='form-container'>
+          <Form className='form'>
+            <ShortInputContainer className='short-input-container'>
+              <div id='short-input-one' className='short-input'>
                 <Field
+                  className='form-input'
                   type='text'
                   name='first_name'
                   placeholder='First Name'
                 />
                 {errors.first_name && touched.first_name && (
-                  <StyledError>{errors.first_name}</StyledError>
+                  <p className='error'>{errors.first_name}</p>
                 )}
               </div>
-              <div>
+              <div className='short-input'>
                 <Field
+                  className='form-input'
                   type='text'
                   name='last_name'
                   placeholder='Last Name'
                 />
                 {errors.last_name && touched.last_name && (
-                  <StyledError>{errors.last_name}</StyledError>
+                  <p className='error'>{errors.last_name}</p>
                 )}
               </div>
             </ShortInputContainer>
-            <div>
-              <Field type='email' name='email' placeholder='Email' />
+            <div className='input-container'>
+              <Field
+                className='form-input'
+                type='email'
+                name='email'
+                placeholder='Email'
+              />
               {userReducer.signUpError ? (
-                <StyledError>{userReducer.signUpError}</StyledError>
+                <p className='error'>{userReducer.signUpError}</p>
               ) : (
                 errors.email &&
                 touched.email && (
-                  <StyledError>{errors.email}</StyledError>
+                  <p className='error'>{errors.email}</p>
                 )
               )}
             </div>
-            <div>
+            <div className='input-container'>
               <Field
+                className='form-input'
                 type='password'
                 name='password'
                 placeholder='Password'
               />
               {errors.password && touched.password && (
-                <StyledError>{errors.password}</StyledError>
+                <p className='error'>{errors.password}</p>
               )}
             </div>
-            <div>
+            <div className='input-container'>
               <Field
+                className='form-input'
                 type='password'
                 name='confirm_password'
                 placeholder='Confirm Password'
               />
               {errors.confirm_password &&
                 touched.confirm_password && (
-                  <StyledError>{errors.confirm_password}</StyledError>
+                  <p className='error'>{errors.confirm_password}</p>
                 )}
             </div>
 
-            <div>
+            <div className='form-button-container'>
               <StyledButton
+                className='form-button'
                 disabled={isSubmitting}
                 theme={buttonTheme}
                 type='submit'
@@ -129,9 +133,13 @@ const SignUpForm = ({
               </StyledButton>
             </div>
           </Form>
-        </FormContainer>
-      </RegisterCard>
-    </div>
+          <div className='alternate-form-container'>
+            <p>Already have an account?</p>
+            <Link to='/login'>Login</Link>
+          </div>
+        </div>
+      </div>
+    </RegisterContainer>
   );
 };
 

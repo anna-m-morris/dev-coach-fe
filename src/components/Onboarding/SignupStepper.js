@@ -16,7 +16,7 @@ const SignupStepperContainer = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  background: #f2f2f2;
+  background: #fff;
   max-width: 100%;
 
   .MuiStepIcon-root.MuiStepIcon-active,
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     height: '100vh',
-    background: '#f2f2f2',
+    background: '#fff',
     maxWidth: '100%',
   },
   stepper: {

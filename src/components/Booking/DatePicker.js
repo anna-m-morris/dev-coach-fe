@@ -4,6 +4,7 @@ import Calendar from 'antd/lib/calendar';
 import 'antd/lib/calendar/style/index.css';
 import 'antd/lib/select/style/index.css';
 import 'antd/lib/radio/style/index.css';
+import devices from '../../utils/devices';
 
 import TimePicker from './TimePicker';
 
@@ -11,6 +12,10 @@ const StyledCalendar = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+
+  @media ${devices.tablet} {
+    flex-direction: column;
+  }
 
   .calender-container {
     padding: 1rem;
@@ -23,6 +28,12 @@ const StyledCalendar = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
+    h1 {
+      @media ${devices.mobile} {
+        font-size: 1rem;
+      }
+    }
   }
 `;
 
