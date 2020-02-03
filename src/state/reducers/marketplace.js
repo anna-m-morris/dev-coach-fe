@@ -29,18 +29,15 @@ function marketplaceReducer(state = initialState, action) {
     case types.SEARCH_FOR_KEYWORD:
       return {
         ...state,
-        coaches: state.copyOfCoaches.filter(coach => {
-          if (
+        coaches: state.copyOfCoaches.filter(
+          coach =>
             coach.first_name
               .toLowerCase()
-              .includes(action.payload.toLowerCase())
-          ) {
-            return coach.first_name
+              .includes(action.payload.toLowerCase()) ||
+            coach.last_name
               .toLowerCase()
-              .includes(action.payload.toLowerCase());
-          }
-          return coach;
-        }),
+              .includes(action.payload.toLowerCase()),
+        ),
       };
 
     case types.SEARCH_PRICE:
