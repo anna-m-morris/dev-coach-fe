@@ -8,93 +8,9 @@ import * as Yup from 'yup';
 import {
   StyledButton,
   buttonTheme,
-  Logo,
 } from '../../Landing/Landing-styles';
 
 import { login } from '../../../state/actions/authenticationActions';
-
-// export const GreyBackgroundContainer = styled.div`
-//   height: 100vh;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   background-color: #f7f7f7;
-// `;
-
-// export const FormCard = styled.div`
-//   background: white;
-//   height: 30em;
-//   width: 25em;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-//   border-radius: 1rem;
-
-//   .message-container {
-//     width: 100%;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     background: #408f53;
-//     border-top-left-radius: 1rem;
-//     border-top-right-radius: 1rem;
-//     padding: 2rem 0;
-//   }
-
-//   h1 {
-//     color: white;
-//     margin: 0;
-//   }
-// `;
-
-// export const FormContainer = styled.div`
-//   height: 100%;
-//   width: 100%;
-
-//   form {
-//     width: 100%;
-//     height: 95%;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-evenly;
-//     align-items: center;
-
-//     div {
-//       width: 70%;
-//       height: 60px;
-//       align-self: center;
-//     }
-//   }
-
-//   input {
-//     align-self: center;
-//     background: #f7f7f7;
-//     height: 2em;
-//     width: 92%;
-//     font-family: Ubuntu, sans-serif;
-//     border-radius: 4px;
-//     border: 1px solid #c8c8c8;
-//     padding: 0.5em;
-//     font-size: 16px;
-//     color: #808080;
-//     transition: ease-out 0.1s;
-
-//     :hover {
-//       background: #ffffff;
-//       transition: ease-in 0.1s;
-//     }
-
-//     :focus {
-//       outline: none;
-//     }
-//   }
-
-//   button {
-//     width: 98%;
-//   }
-// `;
 
 export const LoginContainer = styled.div`
   height: 100vh;

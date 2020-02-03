@@ -1,16 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
-import {
-  StyledButton,
-  buttonTheme,
-  Logo,
-} from '../Landing/Landing-styles';
-// import { FormCard, FormContainer } from './LoginForm';
+import { StyledButton, buttonTheme } from '../Landing/Landing-styles';
 import { LoginContainer } from './Login/LoginForm';
 
 import { register } from '../../state/actions/authenticationActions';
@@ -43,30 +37,7 @@ const RegisterContainer = styled(LoginContainer)`
       margin-right: 2rem;
     }
   }
-
-  /* width: 30em;
-  height: 35em;
-  margin: 2rem 0;
-
-  h1 {
-    font-size: 24px;
-  } */
 `;
-
-// const NavLogo = styled(Logo)`
-//   a {
-//     width: 1.5rem;
-//     height: 1rem;
-//   }
-// `;
-
-// const StyledError = styled.p`
-//   padding: 0;
-//   margin: 0;
-//   color: red;
-//   font-size: 0.8rem;
-//   align-self: flex-start;
-// `;
 
 const SignUpForm = ({
   userReducer,
