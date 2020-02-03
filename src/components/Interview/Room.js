@@ -104,6 +104,30 @@ const Room = ({ roomName, token, handleLogout }) => {
             participant={room.localParticipant}
           />
           {remoteParticipants}
+          <div className='settings' style={{ zIndex: 10 }}>
+            <Button
+              className='button'
+              variant='contained'
+              color='primary'
+              onClick={handleClickOpen}
+              style={{ zIndex: 10 }}
+            >
+              End
+            </Button>
+            <Button
+              onClick={handleAudio}
+              className='button'
+              variant='contained'
+              color='primary'
+              style={{ zIndex: 10 }}
+            >
+              {audio ? (
+                <i className='fas fa-volume-up' />
+              ) : (
+                <i className='fas fa-volume-mute' />
+              )}
+            </Button>
+          </div>
         </div>
       ) : (
         ''
