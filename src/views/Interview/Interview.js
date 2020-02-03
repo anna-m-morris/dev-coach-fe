@@ -104,12 +104,12 @@ const VideoChat = ({ user, peerId, history }) => {
   if (token) {
     render = (
       <StyledVideoChat>
-        <Code />
-        <Room
+        <Code Room={{ roomName, token, handleLogout }} />
+        {/* <Room
           roomName={roomName}
           token={token}
           handleLogout={handleLogout}
-        />
+        /> */}
       </StyledVideoChat>
     );
   } else {
