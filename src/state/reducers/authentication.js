@@ -126,7 +126,7 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        userUpdateError: action.error,
+        userUpdateError: action.payload,
       };
     case types.FECTH_USER_SUCCESSFULLY:
       return {
