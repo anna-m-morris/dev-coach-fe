@@ -36,8 +36,6 @@ export function SettingsGeneral(props) {
   };
 
   const [userInfo, setUserInfo] = useState(initialUserInfo);
-  console.log(userInfo);
-  console.log('2', user);
 
   const handleChange = e => {
     const { value, name } = e.target;
@@ -73,7 +71,6 @@ export function SettingsGeneral(props) {
                 label={userInfo.location}
                 type='string'
                 placeholder={userInfo.location}
-                // value={userInfo.location}
                 onChange={handleChange}
               />
             </Grid>
@@ -88,7 +85,6 @@ export function SettingsGeneral(props) {
                   userInfo.linkedin ? userInfo.linkedin : 'linkedin'
                 }
                 placeholder={userInfo.linkedin}
-                // value={userInfo.linkedin}
                 onChange={handleChange}
               />
             </Grid>
@@ -106,7 +102,6 @@ export function SettingsGeneral(props) {
                 placeholder={
                   userInfo.github ? userInfo.github : 'github'
                 }
-                // value={userInfo.github}
                 onChange={handleChange}
               />
             </Grid>
@@ -122,7 +117,6 @@ export function SettingsGeneral(props) {
                   id='hourly_rate'
                   label={userInfo.hourly_rate}
                   placeholder={userInfo.hourly_rate}
-                  // value={userInfo.hourly_rate}
                   onChange={handleChange}
                 />
               </Grid>

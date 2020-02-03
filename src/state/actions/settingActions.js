@@ -17,7 +17,6 @@ export const updateUserInfo = (
   axios
     .put('http://localhost:5000/user/settings', updateUserTable)
     .then(res => {
-      debugger;
       if (userInfo.role_id === 2 && userInfo.location) {
         const updateCoachTable = {
           hourly_rate: userInfo.hourly_rate,
@@ -29,7 +28,6 @@ export const updateUserInfo = (
             updateCoachTable,
           )
           .then(res => {
-            debugger;
             showSuccess();
             setTimeout(() => closeMessage(), 5000);
             dispatch({
@@ -49,7 +47,6 @@ export const updateUserInfo = (
       }
     })
     .catch(error => {
-      debugger;
       showError();
       setTimeout(() => closeMessage(), 5000);
       dispatch({

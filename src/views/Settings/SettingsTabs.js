@@ -1,5 +1,4 @@
 import React from 'react';
-// import 'antd/dist/antd.css';
 import 'antd/lib/tabs/style/index.css';
 import Tabs from 'antd/lib/tabs';
 
@@ -29,7 +28,6 @@ export function SettingsTabs(props) {
     closeMessage,
     updateError,
   } = props;
-  console.log(user);
   const handleCancel = e => {
     e.preventDefault();
     props.history.push('/dashboard');
@@ -72,31 +70,6 @@ export function SettingsTabs(props) {
       </Tabs>
     </StyledSettings>
   );
-  // } else {
-  //   return (
-  //     <StyledSettings className='setting-container'>
-  //       <Tabs defaultActiveKey='personal Information'>
-  //         <TabPane
-  //           tab='Personal Information'
-  //           key='Personal Information'
-  //         >
-  //           <SettingsPersonal
-  //             user={user}
-  //             updateUserInfo={updateUserInfo}
-  //             Notification={Notification}
-  //             showErrorMessage={showErrorMessage}
-  //             showSuccessMessage={showSuccessMessage}
-  //             closeMessage={closeMessage}
-  //             success={success}
-  //             updateErrorMessage={updateError}
-  //             error={error}
-  //             handleCancel={handleCancel}
-  //           />
-  //         </TabPane>
-  //       </Tabs>
-  //     </StyledSettings>
-  //   );
-  // }
 }
 
 const mapStateToProps = state => ({
