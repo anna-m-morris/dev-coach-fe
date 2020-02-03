@@ -9,6 +9,7 @@ import {
   buttonTheme,
 } from '../../Landing/Landing-styles';
 import { LoginContainer, loadingButtonTheme } from './LoginStyles';
+import Navigation from '../../Landing/Navigation/Navigation';
 
 import { login } from '../../../state/actions/authenticationActions';
 
@@ -20,6 +21,7 @@ const LoginForm = ({
 }) => {
   return (
     <LoginContainer className='Login-container'>
+      <Navigation />
       <div className='form-card-container'>
         <div className='message-container'>
           <h1 className='form-title'>Welcome back</h1>

@@ -100,7 +100,7 @@ export const LoginContainer = styled.div`
 
     .forgot-password {
       text-decoration: none;
-      color: #408f53;
+      color: #4fad65;
       transition: ease-out 0.2s;
 
       &:hover {
@@ -131,7 +131,7 @@ export const LoginContainer = styled.div`
 
     a {
       text-decoration: none;
-      color: #408f53;
+      color: #4fad65;
       transition: ease-out 0.2s;
 
       &:hover {
