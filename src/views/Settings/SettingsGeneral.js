@@ -109,7 +109,6 @@ export function SettingsGeneral(props) {
                   variant='outlined'
                   fullWidth
                   name='hourly_rate'
-                  label='hourly_rate($)'
                   type='url'
                   id='hourly_rate'
                   label={userInfo.hourly_rate}
