@@ -64,7 +64,7 @@ export const StyledButton = styled.button`
   width: 100%;
   padding: 1em 2em;
   border: none;
-  font-family: Ubuntu;
+  font-family: Nunito;
   font-size: 1rem;
   transition: ease-out 0.1s;
 
