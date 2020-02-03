@@ -5,7 +5,7 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
 import { StyledButton, buttonTheme } from '../Landing/Landing-styles';
-import { LoginContainer } from './Login/LoginForm';
+import { LoginContainer } from './Login/LoginStyles';
 
 import { register } from '../../state/actions/authenticationActions';
 
