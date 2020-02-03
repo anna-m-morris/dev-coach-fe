@@ -15,7 +15,6 @@ import {
 import Notification from '../../components/Notifications/Notification';
 import GiveRating from '../../components/DataVisualization/GiveRating';
 import FeedbackInput from '../../components/Inputs/FeedbackInput';
-import devices from '../../utils/devices';
 
 const StyledGiveFeedback = styled.div`
   margin: 1rem auto;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import devices from '../../utils/devices';
 
 const StyledBooking = styled.div`
   width: 100%;
@@ -31,6 +32,10 @@ const StyledBooking = styled.div`
     .payment-container {
       width: 20rem;
       margin: 0 auto;
+
+      @media ${devices.mobile} {
+        width: 17rem;
+      }
     }
 
     .payment-buttons-container {
