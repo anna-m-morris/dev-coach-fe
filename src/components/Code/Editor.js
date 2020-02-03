@@ -39,7 +39,7 @@ const Editor = ({ editorState, setEditorState, language }) => {
               ? 'clike'
               : language
           }`,
-          indentUnit: 4,
+          indentWithTabs: true,
           theme: 'lucario',
           lineNumbers: true,
           lineWrapping: true,

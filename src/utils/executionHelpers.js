@@ -3,8 +3,8 @@ import Axios from 'axios';
 export const testDataObj = {
   square: {
     state: `function square(x) {
-      // enter code below to return the square of a number
-    }
+  // enter code below to return the square of a number
+}
     `,
     testData: [
       { testCase: 5, testResult: 25 },
@@ -14,8 +14,8 @@ export const testDataObj = {
   },
   add: {
     state: `function add (x, y) {
-      // enter code below to add two numbers and return the sum
-    }
+  // enter code below to add two numbers and return the sum
+}
     `,
     testCases: [
       [1, 2],
@@ -31,8 +31,9 @@ export const testDataObj = {
   },
   reverseAString: {
     state: `function reverseAString(str) {
-      // enter code below to take as string as input and return the same string, reversed.
-    }
+  // enter code below to take a string as input 
+  // and return the same string, reversed.
+}
     `,
     testData: [
       { testCase: 'Hello, world!', testResult: '!dlrow ,olleH' },
@@ -43,15 +44,16 @@ export const testDataObj = {
       },
     ],
   },
-  fizzBuzz: {
-    state: `function fizzBuzz() {
-      // Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz”
-      // instead of the number and for the multiples of five print “Buzz”.
-      // For numbers which are multiples of both three and five print "FizzBuzz".
+  rockPaperScissors: {
+    state: `function rockPaperScissors(numOfRounds) {
+// Write a function called rockPaperScissors that will take a number // n, and output "n" number of possible combinations of 'rock',      // 'paper', and 'scissors'. ;)
     }`,
-    // todo
-    testCases: [],
-    testResults: [],
+    testData: [
+      {
+        testCase: 1,
+        testResult: [['rock'], ['paper'], ['scissors']],
+      },
+    ],
   },
 };
 

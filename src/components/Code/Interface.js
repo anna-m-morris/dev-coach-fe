@@ -219,8 +219,10 @@ const Interface = ({
           <MenuItem value=''>None</MenuItem>
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
-          <MenuItem value='fizzBuzz'>Fizzbuzz</MenuItem>
           <MenuItem value='reverseAString'>Reverse a string</MenuItem>
+          <MenuItem value='rockPaperScissors'>
+            Rock Paper Scissors
+          </MenuItem>
         </Select>
       </FormControl>
       <Button onClick={handlePost}>Run Code</Button>
