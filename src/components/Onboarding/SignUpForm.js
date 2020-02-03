@@ -35,7 +35,11 @@ const RegisterContainer = styled(LoginContainer)`
     }
 
     #short-input-one {
-      margin-right: 2rem;
+      margin-right: 1rem;
+    }
+
+    .form-button-container {
+      margin: 0;
     }
   }
 `;
