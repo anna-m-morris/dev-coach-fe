@@ -25,6 +25,15 @@ const ResetContainer = styled(LoginContainer)`
 
   .form-card-container {
     padding: 1rem;
+    height: 17rem;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  .form {
+    height: 100%;
   }
 
   .form-button-container {
@@ -103,22 +112,22 @@ const ResetPasswordForm = props => {
                 value={resetUser.email}
                 type='email'
                 name='email'
-                placeholder='enter your email address'
+                placeholder='Enter Your Email Address'
               />
               {errors.email && touched.email && (
                 <p className='error'>{errors.email}</p>
               )}
-              <div className='form-button-container'>
-                <StyledButton
-                  className='form-button'
-                  onClick={handleSubmit}
-                  theme={buttonTheme}
-                  type='submit'
-                  disabled={isSubmitting}
-                >
-                  Send email -->
-                </StyledButton>
-              </div>
+            </div>
+            <div className='form-button-container'>
+              <StyledButton
+                className='form-button'
+                onClick={handleSubmit}
+                theme={buttonTheme}
+                type='submit'
+                disabled={isSubmitting}
+              >
+                Send email -->
+              </StyledButton>
             </div>
           </Form>
         </div>

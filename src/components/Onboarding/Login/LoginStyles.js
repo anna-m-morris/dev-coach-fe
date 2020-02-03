@@ -146,6 +146,7 @@ export const LoginContainer = styled.div`
     p {
       font-size: 0.8rem;
       color: #6d6d6d;
+      margin-bottom: 0;
     }
 
     a {
