@@ -24,12 +24,9 @@ import {
 
 const FlexContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  height: 75vh;
-  width: 100vw;
+  flex-direction: column;
+  height: 88vh;
+  width: 60vw;
 
   .code-header-container {
     height: 12%;

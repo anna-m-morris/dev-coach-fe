@@ -14,12 +14,9 @@ import LandingFaq from './components/FAQ/LandingFaq';
 import Booking from './components/Booking/Booking';
 import Reschedule from './components/Reschedule/Reschedule';
 import Feedback from './views/Feedback/Feedback';
-import VideoChat from './components/Video/VideoChat';
+import Interview from './views/Interview/Interview';
 import Chat from './components/Chat/ChatScreen';
-// import InterviewCode from './components/Interview/Code';
-
 import StartChat from './components/Chat/Chat';
-
 import Settings from './views/Settings/Settings';
 import SignUp from './components/Onboarding/SignupStepper';
 import Code from './views/Code/Code';
@@ -41,14 +38,13 @@ function App({ user, isLoggedIn }) {
       <Route path={'/appointment'} component={Booking} />
       <Route path={'/reschedule'} component={Reschedule} />
       <Route path={'/feedback'} component={Feedback} />
-      <Route path={'/interview'} component={VideoChat} />
+      <Route path={'/interview'} component={Interview} />
       <Route path={'/Settings'} component={Settings} />
       <Route path={'/FAQ'} component={MainFaq} />
       {user && user.role_id === 1 ? (
         <Route path={'/start_chat'} component={StartChat} />
       ) : null}
       <Route path={'/chat'} component={Chat} />
-      {/* <Route path={'/interview'} component={InterviewCode} /> */}
       <Route path={'/code'} component={Code} />
       <Route path={'/givefeedback'} component={GiveFeedback} />
       <Redirect to='/dashboard' />
@@ -74,7 +70,7 @@ function App({ user, isLoggedIn }) {
       />
       <Route path='/register' component={SignUp} />
       <Route path='/faq' component={LandingFaq} />
-      <Route path={'/video'} component={VideoChat} />
+      <Route path={'/video'} component={Interview} />
       <Redirect to='/' />
     </Switch>
   );

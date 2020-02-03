@@ -4,15 +4,20 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Lobby from './Lobby';
 import Room from './Room';
-import Code from '../Interview/Code';
+import Code from './Code';
 
 const StyledVideoChat = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  /* height: 88vh; */
+
+  .room {
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
 
   .button {
     width: 100%;
@@ -99,17 +104,17 @@ const VideoChat = ({ user, peerId, history }) => {
   if (token) {
     render = (
       <StyledVideoChat>
+        <Code />
         <Room
           roomName={roomName}
           token={token}
           handleLogout={handleLogout}
         />
-        <Code />
       </StyledVideoChat>
     );
   } else {
     render = (
-      <StyledVideoChat>
+      <StyledVideoChat style={{ height: '88vh' }}>
         <Lobby handleSubmit={handleSubmit} />
       </StyledVideoChat>
     );
