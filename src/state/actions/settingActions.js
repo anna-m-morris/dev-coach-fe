@@ -5,17 +5,17 @@ import axiosWithAuth from '../../utils/axiosWithAuth';
 const url = process.env.REACT_APP_BASE_URL;
 
 export const updateUserInfo = (
-  coachId,
   userInfo,
   showError,
   showSuccess,
   closeMessage,
-) => dispatch => {
+  coachId,
+) => async dispatch => {
   dispatch({ type: types.USER_INFO_UPDATE });
   const updateUserTable = { ...userInfo };
-  delete updateUserTable.hourly_rate;
+  await delete updateUserTable.hourly_rate;
   axios
-    .put('http://localhost:5000/user/settings', updateUserTable)
+    .put(`${url}user/settings`, updateUserTable)
     .then(res => {
       if (userInfo.role_id === 2 && userInfo.location) {
         const updateCoachTable = {
@@ -24,7 +24,7 @@ export const updateUserInfo = (
 
         axiosWithAuth()
           .put(
-            `http://localhost:5000/profile/coachesSettings/${coachId}`,
+            `${url}profile/coachesSettings/${coachId}`,
             updateCoachTable,
           )
           .then(res => {

@@ -49,11 +49,11 @@ export function SettingsGeneral(props) {
     e.preventDefault();
 
     updateUserInfo(
-      user.id,
       { ...userInfo, oldEmail: user.email },
       showErrorMessage,
       showSuccessMessage,
       closeMessage,
+      user.id,
     );
   };
 

@@ -30,6 +30,11 @@ export function SettingsPersonal(props) {
     password: '',
     confirm_password: '',
     avatar_url: user && user.avatar_url,
+    linkedin: user && user.linkedin,
+    github: user && user.github,
+    location: user && user.location,
+    hourly_rate: user && user.hourly_rate,
+    role_id: user && user.role_id,
   };
 
   const [userInfo, setUserInfo] = useState(initialUserInfo);
@@ -106,6 +111,7 @@ export function SettingsPersonal(props) {
       showErrorMessage,
       showSuccessMessage,
       closeMessage,
+      user.id,
     );
   };
 
