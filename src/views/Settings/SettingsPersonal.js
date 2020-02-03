@@ -33,7 +33,7 @@ export function SettingsPersonal(props) {
   };
 
   const [userInfo, setUserInfo] = useState(initialUserInfo);
-  console.log(user);
+  console.log('1', user);
   console.log('2', userInfo);
 
   const handleUpload = ({ file, onSuccess }) => {

@@ -30,75 +30,73 @@ export function SettingsTabs(props) {
     updateError,
   } = props;
   console.log(user);
-
   const handleCancel = e => {
     e.preventDefault();
     props.history.push('/dashboard');
   };
 
-  if ((user.role_id && user.role_id) == 2) {
-    return (
-      <StyledSettings className='setting-container'>
-        <Tabs defaultActiveKey='personal Information'>
-          <TabPane
-            tab='Personal Information'
-            key='Personal Information'
-          >
-            <SettingsPersonal
-              user={user}
-              updateUserInfo={updateUserInfo}
-              Notification={Notification}
-              showErrorMessage={showErrorMessage}
-              showSuccessMessage={showSuccessMessage}
-              closeMessage={closeMessage}
-              success={success}
-              updateErrorMessage={updateError}
-              error={error}
-              handleCancel={handleCancel}
-            />
-          </TabPane>
-          <TabPane tab='General Settings' key='General Settings'>
-            <SettingsGeneral
-              user={user}
-              updateUserInfo={updateUserInfo}
-              Notification={Notification}
-              showErrorMessage={showErrorMessage}
-              showSuccessMessage={showSuccessMessage}
-              closeMessage={closeMessage}
-              success={success}
-              error={error}
-              updateErrorMessage={updateError}
-              handleCancel={handleCancel}
-            />
-          </TabPane>
-        </Tabs>
-      </StyledSettings>
-    );
-  } else {
-    return (
-      <StyledSettings className='setting-container'>
-        <Tabs defaultActiveKey='personal Information'>
-          <TabPane
-            tab='Personal Information'
-            key='Personal Information'
-          >
-            <SettingsPersonal
-              user={user}
-              updateUserInfo={updateUserInfo}
-              Notification={Notification}
-              showErrorMessage={showErrorMessage}
-              showSuccessMessage={showSuccessMessage}
-              closeMessage={closeMessage}
-              success={success}
-              updateErrorMessage={updateError}
-              error={error}
-              handleCancel={handleCancel}
-            />
-          </TabPane>
-        </Tabs>
-      </StyledSettings>
-    );
-  }
+  return (
+    <StyledSettings className='setting-container'>
+      <Tabs defaultActiveKey='personal Information'>
+        <TabPane
+          tab='Personal Information'
+          key='Personal Information'
+        >
+          <SettingsPersonal
+            user={user}
+            updateUserInfo={updateUserInfo}
+            Notification={Notification}
+            showErrorMessage={showErrorMessage}
+            showSuccessMessage={showSuccessMessage}
+            closeMessage={closeMessage}
+            success={success}
+            updateErrorMessage={updateError}
+            error={error}
+            handleCancel={handleCancel}
+          />
+        </TabPane>
+        <TabPane tab='General Settings' key='General Settings'>
+          <SettingsGeneral
+            user={user}
+            updateUserInfo={updateUserInfo}
+            Notification={Notification}
+            showErrorMessage={showErrorMessage}
+            showSuccessMessage={showSuccessMessage}
+            closeMessage={closeMessage}
+            success={success}
+            error={error}
+            updateErrorMessage={updateError}
+            handleCancel={handleCancel}
+          />
+        </TabPane>
+      </Tabs>
+    </StyledSettings>
+  );
+  // } else {
+  //   return (
+  //     <StyledSettings className='setting-container'>
+  //       <Tabs defaultActiveKey='personal Information'>
+  //         <TabPane
+  //           tab='Personal Information'
+  //           key='Personal Information'
+  //         >
+  //           <SettingsPersonal
+  //             user={user}
+  //             updateUserInfo={updateUserInfo}
+  //             Notification={Notification}
+  //             showErrorMessage={showErrorMessage}
+  //             showSuccessMessage={showSuccessMessage}
+  //             closeMessage={closeMessage}
+  //             success={success}
+  //             updateErrorMessage={updateError}
+  //             error={error}
+  //             handleCancel={handleCancel}
+  //           />
+  //         </TabPane>
+  //       </Tabs>
+  //     </StyledSettings>
+  //   );
+  // }
 }
 
 const mapStateToProps = state => ({

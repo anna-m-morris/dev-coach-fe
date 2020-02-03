@@ -1,29 +1,55 @@
 import axios from 'axios';
 import * as types from './actionTypes';
+import axiosWithAuth from '../../utils/axiosWithAuth';
 
 const url = process.env.REACT_APP_BASE_URL;
 
 export const updateUserInfo = (
+  coachId,
   userInfo,
   showError,
   showSuccess,
   closeMessage,
 ) => dispatch => {
   dispatch({ type: types.USER_INFO_UPDATE });
-
+  const updateUserTable = { ...userInfo };
+  delete updateUserTable.hourly_rate;
   axios
-    .put(`${url}user/settings`, userInfo)
+    .put('http://localhost:5000/user/settings', updateUserTable)
     .then(res => {
-      console.log(res);
-      showSuccess();
-      setTimeout(() => closeMessage(), 5000);
-      dispatch({
-        type: types.USER_INFO_UPDATE_SUCCESSFUL,
-        payload: res.data.updatedUser,
-        message: res.data.message,
-      });
+      debugger;
+      if (userInfo.role_id === 2 && userInfo.location) {
+        const updateCoachTable = {
+          hourly_rate: userInfo.hourly_rate,
+        };
+
+        axiosWithAuth()
+          .put(
+            `http://localhost:5000/profile/coachesSettings/${coachId}`,
+            updateCoachTable,
+          )
+          .then(res => {
+            debugger;
+            showSuccess();
+            setTimeout(() => closeMessage(), 5000);
+            dispatch({
+              type: types.USER_INFO_UPDATE_SUCCESSFUL,
+              payload: res.data.coach,
+              message: res.data.message,
+            });
+          });
+      } else {
+        showSuccess();
+        setTimeout(() => closeMessage(), 5000);
+        dispatch({
+          type: types.USER_INFO_UPDATE_SUCCESSFUL,
+          payload: res.data.updatedUser,
+          message: res.data.message,
+        });
+      }
     })
     .catch(error => {
+      debugger;
       showError();
       setTimeout(() => closeMessage(), 5000);
       dispatch({

@@ -28,14 +28,16 @@ export function SettingsGeneral(props) {
     password: '',
     confirm_password: '',
     avatar_url: user && user.avatar_url,
-    linkedIn_url: user && user.linkedIn_url,
-    github_url: user && user.github_url,
+    linkedin: user && user.linkedin,
+    github: user && user.github,
     location: user && user.location,
+    hourly_rate: user && user.hourly_rate,
+    role_id: user && user.role_id,
   };
 
   const [userInfo, setUserInfo] = useState(initialUserInfo);
-  console.log(user);
-  console.log('2', userInfo);
+  console.log(userInfo);
+  console.log('2', user);
 
   const handleChange = e => {
     const { value, name } = e.target;
@@ -49,6 +51,7 @@ export function SettingsGeneral(props) {
     e.preventDefault();
 
     updateUserInfo(
+      user.id,
       { ...userInfo, oldEmail: user.email },
       showErrorMessage,
       showSuccessMessage,
@@ -67,9 +70,10 @@ export function SettingsGeneral(props) {
                 variant='outlined'
                 fullWidth
                 name='location'
-                label='location'
+                label={userInfo.location}
                 type='string'
-                value={userInfo.location}
+                placeholder={userInfo.location}
+                // value={userInfo.location}
                 onChange={handleChange}
               />
             </Grid>
@@ -78,10 +82,13 @@ export function SettingsGeneral(props) {
                 size='small'
                 variant='outlined'
                 fullWidth
-                id='linkedIn_url'
-                name='linkedIn_url'
-                label='linkedIn url'
-                value={userInfo.linkedIn_url}
+                id='linkedin'
+                name='linkedin'
+                label={
+                  userInfo.linkedin ? userInfo.linkedin : 'linkedin'
+                }
+                placeholder={userInfo.linkedin}
+                // value={userInfo.linkedin}
                 onChange={handleChange}
               />
             </Grid>
@@ -89,17 +96,39 @@ export function SettingsGeneral(props) {
             <Grid item xs={12}>
               <TextField
                 size='small'
+                autoComplete='github'
                 variant='outlined'
                 fullWidth
-                name='github_url'
-                label='github url'
-                type='string'
-                id='github_url'
-                value={userInfo.github_url}
+                name='github'
+                type='url'
+                id='github'
+                label={userInfo.github ? userInfo.github : 'github'}
+                placeholder={
+                  userInfo.github ? userInfo.github : 'github'
+                }
+                // value={userInfo.github}
                 onChange={handleChange}
               />
             </Grid>
+            {(user.role_id && user.role_id) == 2 ? (
+              <Grid item xs={12}>
+                <TextField
+                  size='small'
+                  variant='outlined'
+                  fullWidth
+                  name='hourly_rate'
+                  label='hourly_rate($)'
+                  type='url'
+                  id='hourly_rate'
+                  label={userInfo.hourly_rate}
+                  placeholder={userInfo.hourly_rate}
+                  // value={userInfo.hourly_rate}
+                  onChange={handleChange}
+                />
+              </Grid>
+            ) : null}
           </Grid>
+
           <div className='button'>
             <button onClick={handleCancel}>Cancel</button>
             <button onClick={handleSubmit}>Save Changes</button>
