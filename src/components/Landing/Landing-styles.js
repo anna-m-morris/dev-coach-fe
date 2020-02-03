@@ -47,7 +47,7 @@ export const CtaContainer = styled.div`
 
 export const buttonTheme = {
   text: 'white',
-  background: '#408f53',
+  background: '#4fad65',
 };
 
 export const invertTheme = {

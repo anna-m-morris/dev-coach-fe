@@ -22,7 +22,7 @@ export const LoginContainer = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: #408f53;
+      background: #4fad65;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
       padding: 2rem 0;

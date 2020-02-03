@@ -147,7 +147,7 @@ export const StyledResetButton = styled(StyledButton)`
 
 export const GreyBackgroundContainer = styled.div`
   height: 100vh;
-  background: #f2f2f2;
+  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
