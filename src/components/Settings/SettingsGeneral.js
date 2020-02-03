@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
-import Notification from '../../components/Notifications/Notification';
+import Notification from '../Notifications/Notification';
 
 import StyledSettings from './SettingsStyles';
 
@@ -105,14 +102,13 @@ export function SettingsGeneral(props) {
                 onChange={handleChange}
               />
             </Grid>
-            {(user.role_id && user.role_id) == 2 ? (
+            {(user.role_id && user.role_id) === 2 ? (
               <Grid item xs={12}>
                 <TextField
                   size='small'
                   variant='outlined'
                   fullWidth
                   name='hourly_rate'
-                  label='hourly_rate($)'
                   type='url'
                   id='hourly_rate'
                   label={userInfo.hourly_rate}

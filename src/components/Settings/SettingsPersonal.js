@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { Upload, message } from 'antd';
 
-import Notification from '../../components/Notifications/Notification';
+import Notification from '../Notifications/Notification';
 
 import StyledSettings from './SettingsStyles';
 
@@ -38,8 +37,6 @@ export function SettingsPersonal(props) {
   };
 
   const [userInfo, setUserInfo] = useState(initialUserInfo);
-  console.log('1', user);
-  console.log('2', userInfo);
 
   const handleUpload = ({ file, onSuccess }) => {
     const image = new FormData();
