@@ -125,7 +125,7 @@ const Marketplace = props => {
           />
         </div>
         <div className='coaches'>
-          {coaches ? (
+          {coaches &&
             coaches.slice(minValue, maxValue).map(coach => (
               <CoachCard
                 key={coach.email}
@@ -144,17 +144,7 @@ const Marketplace = props => {
                   )
                 }
               />
-            ))
-          ) : (
-            <div className='loaderStyled'>
-              <Loader
-                type='TailSpin'
-                color='#2BAD60'
-                height={80}
-                width={80}
-              />
-            </div>
-          )}
+            ))}
         </div>
         <div className='pagination'>
           <Pagination
