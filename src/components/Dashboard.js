@@ -334,9 +334,6 @@ const Dashboard = props => {
           >
             {props.routes}
           </Grid>
-          {/* <Box pt={4} className={classes.copyright}>
-            <Copyright />
-        </Box> */}
         </Container>
       </main>
     </div>
