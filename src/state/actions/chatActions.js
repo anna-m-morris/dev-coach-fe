@@ -1,6 +1,6 @@
 import axiosWithAuth from '../../utils/axiosWithAuth';
 
-export const GET_ROOMS_START = 'GET_ROOMS_START';
+export const GET_ROOMS_ = 'GET_ROOMS_';
 export const GET_ROOMS_ERROR = 'GET_ROOMS_ERROR';
 export const GET_ROOMS_SUCCESSFUL = 'GET_ROOMS_SUCCESSFUL';
 export const START_CHAT_FROM_SCRATCH_START =
