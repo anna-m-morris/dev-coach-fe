@@ -249,7 +249,7 @@ class Code extends Component {
       .catch(err => {});
   };
 
-  handlekeydownEvent(event) {
+  handlekeydownEvent = (event) => {
     if (event.keyCode === 13 && event.ctrlKey) {
       this.logCode();
     }
