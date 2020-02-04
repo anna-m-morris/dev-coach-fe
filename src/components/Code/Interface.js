@@ -74,7 +74,6 @@ const Interface = ({
   React.useEffect(() => {
     function handlekeydownEvent(event) {
       if (event.keyCode === 13 && event.ctrlKey) {
-        console.log(language, editorState);
         logCode(editorState, language, setOutput);
       }
     }

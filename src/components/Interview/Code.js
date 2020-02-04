@@ -17,7 +17,6 @@ import 'codemirror/addon/selection/active-line';
 import styled from 'styled-components';
 import Terminal from '../../components/Interview/Terminal';
 import Room from '../../components/Interview/Room';
-import { isEqual } from 'lodash';
 import {
   Button,
   FormControl,
@@ -124,6 +123,9 @@ class Code extends Component {
   }
 
   componentDidMount() {
+
+    document.addEventListener('keyup', this.handlekeydownEvent);
+
     this.setState({
       id: pushid(),
     });
@@ -138,6 +140,10 @@ class Code extends Component {
         language: data.language,
       });
     });
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this.handlekeydownEvent)
   }
 
   syncUpdates = () => {
@@ -243,6 +249,13 @@ class Code extends Component {
       .catch(err => {});
   };
 
+  handlekeydownEvent(event) {
+    if (event.keyCode === 13 && event.ctrlKey) {
+      this.logCode();
+    }
+  }
+
+
   runAllCode = async (currentTest, language, editorState) => {
     const { testData } = testDataObj[currentTest];
     const testCaseArr = testData.map(el => el.testCase);
@@ -268,6 +281,7 @@ class Code extends Component {
             response.data.stdout.length - 1,
           );
         }
+        // eslint-disable-next-line
         if (output == testResultsArr[idx]) {
           passedTestsArr.push('true');
         }
@@ -278,6 +292,7 @@ class Code extends Component {
             }) received ${output}\n\n`,
           };
         });
+        this.syncUpdates();
         if (
           idx === testCaseArr.length - 1 &&
           passedTestsArr.length === testCaseArr.length
@@ -287,6 +302,7 @@ class Code extends Component {
               output: `${prevState.output}\nAll tests passed! Good job.`
             }
           })
+          this.syncUpdates();
         } else if (
           idx === testCaseArr.length - 1 &&
           passedTestsArr.length < testCaseArr.length
@@ -296,6 +312,7 @@ class Code extends Component {
               output: `${prevState.output}\nTests failing, check your code!`
             }
           })
+          this.syncUpdates();
         }
         console.log(passedTestsArr)
       }, 2000);
@@ -312,6 +329,7 @@ class Code extends Component {
         this.state.editorState,
       );
     }
+    this.logCode();
   };
 
   handleSelection = event => {

@@ -189,7 +189,6 @@ export function logCode(editorState, language, setOutput) {
           `https://api.judge0.com/submissions/${res.data.token}`,
         )
           .then(res => {
-            console.log(res.data.time);
             if (res.data.stdout) {
               setOutput(`${res.data.stdout}`);
             } else if (res.data.compile_output) {
@@ -245,11 +244,6 @@ export async function runAllCode(
     const { token } = executedCode.data;
     setTimeout(async () => {
       const response = await fetchExecutedCode(token);
-      console.log(
-        JSON.stringify(response.data.stdout),
-        '\n\n',
-        JSON.stringify(testResultsArr[idx]),
-      );
       let output = response.data.stdout;
       if (
         typeof testResultsArr[idx] === 'string' &&
