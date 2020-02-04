@@ -226,7 +226,7 @@ export const AppointmentCard = props => {
             className='send-button'
             variant='contained'
             color='primary'
-            endIcon={<TelegramIcon fontsize='large'/>}
+            endIcon={<TelegramIcon fontSize='large' />}
             onClick={savePeer}
           >
             Chat

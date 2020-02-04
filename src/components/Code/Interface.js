@@ -133,7 +133,7 @@ const Interface = ({
             response.data.stdout.length - 1,
           );
         }
-        if (output == testResultsArr[idx]) {
+        if (output === testResultsArr[idx]) {
           passedTestsArr.push('true');
         }
         setOutput(
