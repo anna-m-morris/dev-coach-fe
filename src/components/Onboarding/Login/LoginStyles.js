@@ -7,10 +7,13 @@ export const LoginContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
+  .navigation-container {
+    width: 100%;
+  }
+
   .navigation {
     width: 100%;
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
-    margin-bottom: 3rem;
 
     .logo {
       padding: 0;
@@ -23,6 +26,14 @@ export const LoginContainer = styled.div`
         opacity: none;
       }
     }
+  }
+
+  .content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
   }
 
   .form-card-container {
@@ -77,7 +88,7 @@ export const LoginContainer = styled.div`
       background: #f4f4f4;
       border-radius: 2rem;
       width: 92%;
-      padding: 1rem;
+      padding: 0.8rem;
       font-size: 1rem;
       outline: none;
       transition: ease-out 0.1s;
@@ -132,6 +143,7 @@ export const LoginContainer = styled.div`
       .form-button {
         width: 100%;
         border-radius: 2rem;
+        padding: 0.8rem;
       }
     }
   }
@@ -146,6 +158,7 @@ export const LoginContainer = styled.div`
     p {
       font-size: 0.8rem;
       color: #6d6d6d;
+      margin-bottom: 0;
     }
 
     a {
