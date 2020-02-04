@@ -190,20 +190,6 @@ const MainContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-  .navigation {
-    width: 100%;
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
-    margin-bottom: 3rem;
-
-    .list-items .list-item a {
-      color: #9b9b9b;
-
-      &:hover {
-        opacity: none;
-      }
-    }
-  }
-
   h2 {
     margin: 0;
     font-family: 'Nunito', sans-serif;
