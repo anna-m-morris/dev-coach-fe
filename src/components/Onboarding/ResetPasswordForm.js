@@ -41,6 +41,7 @@ const ResetContainer = styled(LoginContainer)`
 
       &:hover {
         opacity: none;
+        color: #4fad65;
       }
     }
   }
