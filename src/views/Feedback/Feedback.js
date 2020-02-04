@@ -65,15 +65,6 @@ const StyledFeedback = styled.div`
       }
     }
 
-    .pagination {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      padding: 2rem;
-      margin-top: 3em;
-    }
-
     .ant-pagination-item-active {
       border-color: #4fad65;
     }
@@ -91,6 +82,15 @@ const StyledFeedback = styled.div`
       width: 100%;
       padding: 1em;
     }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
+    margin-top: 3em;
   }
 `;
 

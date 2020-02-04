@@ -106,19 +106,7 @@ const DashboardContainer = styled.div`
       width: 80%;
     }
   }
-  .pagination {
-    padding: 2em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    .ant-pagination-item-active {
-      border-color: #4fad65;
-    }
-    .ant-pagination-item-active a {
-      color: #4fad65;
-    }
-  }
+
   @media (max-width: 768px) {
     max-width: 650px;
     grid-template-columns: repeat(2, 1fr);
@@ -170,7 +158,14 @@ const DashboardContainer = styled.div`
   }
 
   .pagination {
+    margin-top: 2rem;
     padding: 0;
+    .ant-pagination-item-active {
+      border-color: #4fad65;
+    }
+    .ant-pagination-item-active a {
+      color: #4fad65;
+    }
   }
 `;
 
