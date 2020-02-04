@@ -24,7 +24,6 @@ const StyledSendMessage = styled.div`
 
     @media ${devices.mobile} {
       font-size: 0.8rem;
-      /* padding-left: 1.1rem; */
     }
   }
 
