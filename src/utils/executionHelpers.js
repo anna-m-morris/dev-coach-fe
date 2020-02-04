@@ -1,10 +1,14 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-multi-str */
 import Axios from 'axios';
 
 export const testDataObj = {
   square: {
     state: `function square(x) {
-      // enter code below to return the square of a number
-    }
+  // enter code below to return the square of a number
+}
     `,
     testData: [
       { testCase: 5, testResult: 25 },
@@ -14,8 +18,8 @@ export const testDataObj = {
   },
   add: {
     state: `function add (x, y) {
-      // enter code below to add two numbers and return the sum
-    }
+  // enter code below to add two numbers and return the sum
+}
     `,
     testCases: [
       [1, 2],
@@ -31,8 +35,9 @@ export const testDataObj = {
   },
   reverseAString: {
     state: `function reverseAString(str) {
-      // enter code below to take as string as input and return the same string, reversed.
-    }
+  // enter code below to take a string as input 
+  // and return the same string, reversed.
+}
     `,
     testData: [
       { testCase: 'Hello, world!', testResult: '!dlrow ,olleH' },
@@ -43,17 +48,241 @@ export const testDataObj = {
       },
     ],
   },
-  fizzBuzz: {
-    state: `function fizzBuzz() {
-      // Write a program that prints the numbers from 1 to 100. But for multiples of three print “Fizz”
-      // instead of the number and for the multiples of five print “Buzz”.
-      // For numbers which are multiples of both three and five print "FizzBuzz".
-    }`,
-    // todo
-    testCases: [],
-    testResults: [],
+  rockPaperScissors: {
+    state: `function rockPaperScissors(numOfRounds) {
+// Write a function called rockPaperScissors that will take a number // n, and output "n" number of possible combinations of 'rock',      // 'paper', and 'scissors'. ;)
+}`,
+    testData: [
+      {
+        testCase: 1,
+        testResult: "[ [ 'rock' ], [ 'paper' ], [ 'scissors' ] ]",
+      },
+      {
+        testCase: 2,
+        testResult: `[
+  [ 'rock', 'rock' ],
+  [ 'rock', 'paper' ],
+  [ 'rock', 'scissors' ],
+  [ 'paper', 'rock' ],
+  [ 'paper', 'paper' ],
+  [ 'paper', 'scissors' ],
+  [ 'scissors', 'rock' ],
+  [ 'scissors', 'paper' ],
+  [ 'scissors', 'scissors' ]
+]`,
+      },
+      {
+        testCase: 3,
+        testResult: `[
+  [ 'rock', 'rock', 'rock' ],
+  [ 'rock', 'rock', 'paper' ],
+  [ 'rock', 'rock', 'scissors' ],
+  [ 'rock', 'paper', 'rock' ],
+  [ 'rock', 'paper', 'paper' ],
+  [ 'rock', 'paper', 'scissors' ],
+  [ 'rock', 'scissors', 'rock' ],
+  [ 'rock', 'scissors', 'paper' ],
+  [ 'rock', 'scissors', 'scissors' ],
+  [ 'paper', 'rock', 'rock' ],
+  [ 'paper', 'rock', 'paper' ],
+  [ 'paper', 'rock', 'scissors' ],
+  [ 'paper', 'paper', 'rock' ],
+  [ 'paper', 'paper', 'paper' ],
+  [ 'paper', 'paper', 'scissors' ],
+  [ 'paper', 'scissors', 'rock' ],
+  [ 'paper', 'scissors', 'paper' ],
+  [ 'paper', 'scissors', 'scissors' ],
+  [ 'scissors', 'rock', 'rock' ],
+  [ 'scissors', 'rock', 'paper' ],
+  [ 'scissors', 'rock', 'scissors' ],
+  [ 'scissors', 'paper', 'rock' ],
+  [ 'scissors', 'paper', 'paper' ],
+  [ 'scissors', 'paper', 'scissors' ],
+  [ 'scissors', 'scissors', 'rock' ],
+  [ 'scissors', 'scissors', 'paper' ],
+  [ 'scissors', 'scissors', 'scissors' ]
+]`,
+      },
+    ],
+  },
+  fibonacci: {
+    state: `function fibonacci(n) {
+// Given an integer n, calculate the first n numbers in the fibonacci sequence. Return the numbers in an array.
+}`,
+    testData: [
+      {
+        testCase: 8,
+        testResult: `[
+  0, 1, 1,  2,
+  3, 5, 8, 13
+]`,
+      },
+      {
+        testCase: 50,
+        testResult: `[
+          0,          1,          1,          2,
+          3,          5,          8,         13,
+         21,         34,         55,         89,
+        144,        233,        377,        610,
+        987,       1597,       2584,       4181,
+       6765,      10946,      17711,      28657,
+      46368,      75025,     121393,     196418,
+     317811,     514229,     832040,    1346269,
+    2178309,    3524578,    5702887,    9227465,
+   14930352,   24157817,   39088169,   63245986,
+  102334155,  165580141,  267914296,  433494437,
+  701408733, 1134903170, 1836311903, 2971215073,
+ 4807526976, 7778742049
+]`,
+      },
+    ],
   },
 };
+
+export const invokeCode = (code, testCase, value, language) => {
+  if (language === 'javascript') {
+    if (value) {
+      return `
+      ${code}
+      console.log(${testCase}(${value}));
+      `;
+    }
+    return `
+      ${code}
+      console.log(${testCase}());
+      `;
+  }
+  if (language === 'python') {
+    if (value) {
+      return `${code}\nprint(${testCase}(${value}))
+      `;
+    }
+    return `${code}\nprint(${testCase}())`;
+  }
+};
+
+export const mapLanguageToId = language => {
+  switch (language) {
+    default:
+      return 63;
+    case 'javascript':
+      return 63;
+    case 'python':
+      return 71;
+    case 'java':
+      return 62;
+    case 'c':
+      return 50;
+    case 'cpp':
+      return 54;
+  }
+};
+
+export function logCode(editorState, language, setOutput) {
+  Axios.post('https://api.judge0.com/submissions?wait=false', {
+    source_code: `${editorState}`,
+    language_id: `${mapLanguageToId(language)}`,
+  })
+    .then(res => {
+      setTimeout(() => {
+        Axios.get(
+          `https://api.judge0.com/submissions/${res.data.token}`,
+        )
+          .then(res => {
+            if (res.data.stdout) {
+              setOutput(`${res.data.stdout}`);
+            } else if (res.data.compile_output) {
+              setOutput(res.data.compile_output);
+            } else if (res.data.stderr) {
+              setOutput(res.data.stderr);
+            } else {
+              setOutput('Unable to run code');
+            }
+          })
+          .catch(err => {});
+      }, 2000);
+    })
+    .catch(err => {});
+}
+
+export function executeCode(testName, value, editorState, language) {
+  if (typeof value === 'string') {
+    value = `'${value}'`;
+  }
+  return Axios.post('https://api.judge0.com/submissions?wait=false', {
+    source_code: `${invokeCode(
+      editorState,
+      testName,
+      value,
+      language,
+    )}`,
+    language_id: `${mapLanguageToId(language)}`,
+  });
+}
+
+export function fetchExecutedCode(token) {
+  return Axios.get(`https://api.judge0.com/submissions/${token}`);
+}
+
+export async function runAllCode(
+  currentTest,
+  language,
+  editorState,
+  setOutput,
+) {
+  const { testData } = testDataObj[currentTest];
+  const testCaseArr = testData.map(el => el.testCase);
+  const testResultsArr = testData.map(el => el.testResult);
+  const passedTestsArr = [];
+  for (const [idx, el] of testCaseArr.entries()) {
+    const executedCode = await executeCode(
+      currentTest,
+      el,
+      editorState,
+      language,
+    );
+    const { token } = executedCode.data;
+    setTimeout(async () => {
+      const response = await fetchExecutedCode(token);
+      let output = response.data.stdout;
+      if (
+        typeof testResultsArr[idx] === 'string' &&
+        response.data.stdout
+      ) {
+        output = response.data.stdout.substring(
+          0,
+          response.data.stdout.length - 1,
+        );
+      }
+      // eslint-disable-next-line eqeqeq
+      if (output == testResultsArr[idx]) {
+        passedTestsArr.push('true');
+      }
+      setOutput(
+        prevOutput =>
+          `${prevOutput}Test ${idx + 1}: ${currentTest}(${
+            testCaseArr[idx]
+          }) received ${output}\n\n`,
+      );
+      if (
+        idx === testCaseArr.length - 1 &&
+        passedTestsArr.length === testCaseArr.length
+      ) {
+        setOutput(
+          prevOutput => `${prevOutput}\nAll tests passed! Good job.`,
+        );
+      } else if (
+        idx === testCaseArr.length - 1 &&
+        passedTestsArr.length < testCaseArr.length
+      ) {
+        setOutput(
+          prevOutput =>
+            `${prevOutput}\nTests failing, check your code!`,
+        );
+      }
+    }, 2000);
+  }
+}
 
 const javascriptInitialEditorState = `console.log('hello JS!');`;
 
@@ -109,82 +338,6 @@ export const mapLanguageToEditorState = (language, editorState) => {
       return javaInitialState;
   }
 };
-
-export const mapLanguageToId = language => {
-  switch (language) {
-    default:
-      return 63;
-    case 'javascript':
-      return 63;
-    case 'python':
-      return 71;
-    case 'java':
-      return 62;
-    case 'c':
-      return 50;
-    case 'cpp':
-      return 54;
-  }
-};
-
-export const invokeCodeJS = (code, param, value) => {
-  return `
-    ${code}
-    console.log(${param}(${value}));
-    `;
-};
-
-export function logCode(code, language, setOutput) {
-  Axios.post('https://api.judge0.com/submissions?wait=false', {
-    source_code: `${code}`,
-    language_id: `${mapLanguageToId(language)}`,
-  })
-    .then(res => {
-      setTimeout(() => {
-        Axios.get(
-          `https://api.judge0.com/submissions/${res.data.token}`,
-        )
-          .then(res => {
-            if (res.data.stdout) {
-              setOutput(res.data.stdout);
-            }
-            if (res.data.compile_output) {
-              setOutput(res.data.compile_output);
-            }
-            return 'Unable to run code';
-          })
-          .catch(err => {});
-      }, 1000);
-    })
-    .catch(err => {});
-}
-
-export function testCode(value, testCase, code, languageId) {
-  Axios.post('https://api.judge0.com/submissions?wait=false', {
-    source_code: `${invokeCodeJS(code, testCase, value)}`,
-    language_id: `${languageId}`,
-  })
-    .then(res => {
-      setTimeout(() => {
-        Axios.get(
-          `https://api.judge0.com/submissions/${res.data.token}`,
-        )
-          .then(res => {
-            if (res.data.stdout) {
-              console.log(
-                `Against test input of ${value}, your code evaluated to: ${res.data.stdout}`,
-              );
-            } else if (res.data.compile_output) {
-              return `Error: + ${res.data.compile_output}`;
-            } else {
-              return 'Unable to run code';
-            }
-          })
-          .catch(err => {});
-      }, 2000);
-    })
-    .catch(err => {});
-}
 
 export function formatIfArr(data) {
   return Array.isArray(data) ? data.join(',') : data;

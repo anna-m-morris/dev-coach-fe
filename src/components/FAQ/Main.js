@@ -11,13 +11,10 @@ import devices from '../../utils/devices';
 
 // Main content
 const MainContainer = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding-top: 5em;
-  margin: 0 auto;
 
   h2 {
     margin: 0;
@@ -38,12 +35,13 @@ const CategoryContainer = styled.div`
   @media ${devices.mobile} {
     flex-direction: column;
     margin-bottom: 10vh;
-    margin-top: 10px;
+    margin-top: 20px;
   }
 
   .styledBox {
+    width: 12rem;
     border-radius: 1rem;
-    padding: 3rem 5rem;
+    height: 150px;
     margin: 3rem;
     border-width: 1rem;
     display: flex;
@@ -55,14 +53,16 @@ const CategoryContainer = styled.div`
     transition: ease-out 0.1s;
 
     @media only screen and (max-width: 1200px) {
-      border-radius: 0.5rem;
-      padding: 2rem 4rem;
+      width: 7rem;
+      border-radius: 1rem;
+      padding: 0.5rem 2rem;
       margin: 2rem;
       border-width: 0.5rem;
     }
     @media ${devices.tablet} {
+      width: 5rem;
       border-radius: 0.5rem;
-      padding: 1.25rem 2.25rem;
+      padding: 0.5rem 1rem;
       margin: 0.5rem;
       border-width: 0.5rem;
       display: flex;
@@ -71,14 +71,15 @@ const CategoryContainer = styled.div`
     }
 
     @media ${devices.mobile} {
-      width: 17.5rem;
+      width: 22rem;
       border-radius: 0.5rem;
-      padding: 0.75rem 1.25rem;
+      padding: 0rem 0rem;
       margin: 0.25rem;
       border-width: 0.25rem;
       display: flex;
       flex-direction: column;
       align-items: center;
+      height: 80px;
     }
 
     &:hover {

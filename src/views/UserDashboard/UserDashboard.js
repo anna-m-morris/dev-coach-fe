@@ -187,10 +187,8 @@ const UserDashboard = props => {
   const [maxValue, setMaxValue] = React.useState(6);
 
   React.useEffect(() => {
-    setTimeout(() => {
-      getAppointment(user.id, user.role_id);
-      getFeedback(user.id, user.role_id);
-    }, 1000);
+    getAppointment(user.id, user.role_id);
+    getFeedback(user.id, user.role_id);
   }, [getAppointment, getFeedback, user.id, user.role_id]);
 
   const handlePagination = value => {
