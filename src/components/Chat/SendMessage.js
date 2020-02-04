@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SendIcon from '@material-ui/icons/Send';
+import devices from '../../utils/devices';
 
 const StyledSendMessage = styled.div`
   border-top: 1px solid #e0e0e0;
@@ -20,6 +21,11 @@ const StyledSendMessage = styled.div`
     flex: 1;
     font-size: 1rem;
     margin: 1rem 0;
+
+    @media ${devices.mobile} {
+      font-size: 0.8rem;
+      /* padding-left: 1.1rem; */
+    }
   }
 
   button {
@@ -36,11 +42,19 @@ const StyledSendMessage = styled.div`
       background: #078baf;
       transition: ease-in 0.1s;
     }
+
+    @media ${devices.mobile} {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-left: -3rem;
+    }
   }
 `;
 
 const iconStyles = {
   color: 'white',
+  width: '1rem',
+  height: '1rem',
 };
 
 const SendMessageForm = ({ onSubmit, onChange, currentRoom }) => {
