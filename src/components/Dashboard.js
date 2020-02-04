@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -22,19 +21,6 @@ import { ListComponent } from '../utils/dashboardList';
 import logo from '../img/firelogo.png';
 import { logout } from '../state/actions/authenticationActions';
 
-function Copyright() {
-  return (
-    <Typography variant='body2' color='textSecondary' align='center'>
-      {'Copyright © '}
-      <MatLink color='inherit' href='https://dev-coach.com/'>
-        Dev-Coach
-      </MatLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -45,7 +31,6 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     zIndex: -10,
   },
-
   toolbarIcon: {
     width: '100%',
     display: 'flex',
@@ -124,6 +109,7 @@ const useStyles = makeStyles(theme => ({
     right: 40,
     color: 'grey',
     transform: 'scale(1.25)',
+    borderRadius: '50%',
   },
   menuButton: {
     marginRight: 36,
@@ -252,8 +238,9 @@ const Dashboard = props => {
               src={user.avatar_url}
               alt='user_avatar'
               style={{
-                width: '35px',
-                height: 'auto',
+                width: '2.5rem',
+                height: '2.5rem',
+                objectFit: 'cover',
                 borderRadius: '50%',
               }}
             />
