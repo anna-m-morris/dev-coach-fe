@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TerminalContainer = styled.div`
-  width: 45%;
+  width: 100%;
   height: 50%;
   padding-left: 0.5em;
   background: #0e1628;
@@ -16,7 +16,7 @@ const TerminalText = styled.textarea`
   color: white;
   background: #0e1628;
   border: none;
-  height: 19em;
+  height: 100%;
   width: 100%;
   padding: 1em;
   padding-top: 0.5em;
@@ -38,7 +38,7 @@ const Terminal = ({ initialText, output }) => {
     <TerminalContainer>
       <TerminalText
         suppressContentEditableWarning={true}
-        value={output}
+        value={output || '$'}
         contentEditable='false'
         readOnly
       ></TerminalText>

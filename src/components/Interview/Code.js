@@ -84,6 +84,11 @@ const InterfaceContainer = styled.div`
   }
 `;
 
+const TerminalVideoContainer = styled.div`
+  width: 45%;
+  height: 100%;
+`;
+
 class Code extends Component {
   constructor(props) {
     super(props);
@@ -259,13 +264,13 @@ class Code extends Component {
     const selectedTest = event.target.value;
     this.setState({
       currentTest: selectedTest,
-    })
+    });
     if (testDataObj[selectedTest]) {
       this.setState({
         editorState: testDataObj[selectedTest].state,
-      })
+      });
     }
-  }
+  };
 
   render() {
     return (
@@ -289,7 +294,11 @@ class Code extends Component {
             </FormControl>
             <FormControl>
               <InputLabel>Select Coding Challenge</InputLabel>
-              <Select onChange={this.handleTestSelection} style={{ width: '20em' }} value=''>
+              <Select
+                onChange={this.handleTestSelection}
+                style={{ width: '20em' }}
+                value=''
+              >
                 <MenuItem value='square'>Square a number</MenuItem>
                 <MenuItem value='add'>Add two numbers</MenuItem>
                 <MenuItem value='reverse'>Reverse a string</MenuItem>
@@ -335,12 +344,14 @@ class Code extends Component {
               }}
             />
           </EditorContainer>
-          <Terminal initialText='$  ' output={this.state.output} />
-          <Room
-            roomName={this.props.Room.roomName}
-            token={this.props.Room.token}
-            handleLogout={this.props.Room.handleLogout}
-          />
+          <TerminalVideoContainer>
+            <Terminal initialText='$  ' output={this.state.output} />
+            <Room
+              roomName={this.props.Room.roomName}
+              token={this.props.Room.token}
+              handleLogout={this.props.Room.handleLogout}
+            />
+          </TerminalVideoContainer>
         </div>
       </FlexContainer>
     );
