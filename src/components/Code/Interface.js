@@ -101,89 +101,94 @@ const Interface = ({
   //     .catch(err => {});
   // }
 
-  function executeCode(testName, value) {
-    if (typeof value === 'string') {
-      value = `'${value}'`;
-    }
-    return Axios.post(
-      'https://api.judge0.com/submissions?wait=false',
-      {
-        source_code: `${invokeCode(
-          editorState,
-          testName,
-          value,
-          language,
-        )}`,
-        language_id: `${mapLanguageToId(language)}`,
-      },
-    );
-  }
+  // function executeCode(testName, value) {
+  //   if (typeof value === 'string') {
+  //     value = `'${value}'`;
+  //   }
+  //   return Axios.post(
+  //     'https://api.judge0.com/submissions?wait=false',
+  //     {
+  //       source_code: `${invokeCode(
+  //         editorState,
+  //         testName,
+  //         value,
+  //         language,
+  //       )}`,
+  //       language_id: `${mapLanguageToId(language)}`,
+  //     },
+  //   );
+  // }
 
-  function fetchExecutedCode(token) {
-    return Axios.get(`https://api.judge0.com/submissions/${token}`);
-  }
+  // function fetchExecutedCode(token) {
+  //   return Axios.get(`https://api.judge0.com/submissions/${token}`);
+  // }
 
-  async function runAllCode(currentTest) {
-    const { testData } = testDataObj[currentTest];
-    const testCaseArr = testData.map(el => el.testCase);
-    const testResultsArr = testData.map(el => el.testResult);
-    const passedTestsArr = [];
-    for (const [idx, el] of testCaseArr.entries()) {
-      const executedCode = await executeCode(currentTest, el);
-      const { token } = executedCode.data;
-      setTimeout(async () => {
-        const response = await fetchExecutedCode(token);
-        console.log(
-          JSON.stringify(response.data.stdout),
-          '\n\n',
-          JSON.stringify(testResultsArr[idx]),
-        );
-        let output = response.data.stdout;
-        if (
-          typeof testResultsArr[idx] === 'string' &&
-          response.data.stdout
-        ) {
-          output = response.data.stdout.substring(
-            0,
-            response.data.stdout.length - 1,
-          );
-        }
-        // eslint-disable-next-line eqeqeq
-        if (output == testResultsArr[idx]) {
-          passedTestsArr.push('true');
-        }
-        setOutput(
-          prevOutput =>
-            `${prevOutput}Test ${idx + 1}: ${currentTest}(${
-              testCaseArr[idx]
-            }) received ${output}\n\n`,
-        );
-        if (
-          idx === testCaseArr.length - 1 &&
-          passedTestsArr.length === testCaseArr.length
-        ) {
-          setOutput(
-            prevOutput =>
-              `${prevOutput}\nAll tests passed! Good job.`,
-          );
-        } else if (
-          idx === testCaseArr.length - 1 &&
-          passedTestsArr.length < testCaseArr.length
-        ) {
-          setOutput(
-            prevOutput =>
-              `${prevOutput}\nTests failing, check your code!`,
-          );
-        }
-      }, 2000);
-    }
-  }
+  // async function runAllCode(currentTest) {
+  //   const { testData } = testDataObj[currentTest];
+  //   const testCaseArr = testData.map(el => el.testCase);
+  //   const testResultsArr = testData.map(el => el.testResult);
+  //   const passedTestsArr = [];
+  //   for (const [idx, el] of testCaseArr.entries()) {
+  //     const executedCode = await executeCode(
+  //       currentTest,
+  //       el,
+  //       editorState,
+  //       language,
+  //     );
+  //     const { token } = executedCode.data;
+  //     setTimeout(async () => {
+  //       const response = await fetchExecutedCode(token);
+  //       console.log(
+  //         JSON.stringify(response.data.stdout),
+  //         '\n\n',
+  //         JSON.stringify(testResultsArr[idx]),
+  //       );
+  //       let output = response.data.stdout;
+  //       if (
+  //         typeof testResultsArr[idx] === 'string' &&
+  //         response.data.stdout
+  //       ) {
+  //         output = response.data.stdout.substring(
+  //           0,
+  //           response.data.stdout.length - 1,
+  //         );
+  //       }
+  //       // eslint-disable-next-line eqeqeq
+  //       if (output == testResultsArr[idx]) {
+  //         passedTestsArr.push('true');
+  //       }
+  //       setOutput(
+  //         prevOutput =>
+  //           `${prevOutput}Test ${idx + 1}: ${currentTest}(${
+  //             testCaseArr[idx]
+  //           }) received ${output}\n\n`,
+  //       );
+  //       if (
+  //         idx === testCaseArr.length - 1 &&
+  //         passedTestsArr.length === testCaseArr.length
+  //       ) {
+  //         setOutput(
+  //           prevOutput =>
+  //             `${prevOutput}\nAll tests passed! Good job.`,
+  //         );
+  //       } else if (
+  //         idx === testCaseArr.length - 1 &&
+  //         passedTestsArr.length < testCaseArr.length
+  //       ) {
+  //         setOutput(
+  //           prevOutput =>
+  //             `${prevOutput}\nTests failing, check your code!`,
+  //         );
+  //       }
+  //     }, 2000);
+  //   }
+  // }
 
   const handlePost = () => {
     setOutput('');
     if (currentTest) {
       setOutput(`Running tests...\n\n`);
-      runAllCode(currentTest, setOutput);
+      runAllCode(currentTest, language, editorState, setOutput);
     } else {
       logCode(editorState, language, setOutput);
     }

@@ -225,30 +225,42 @@ export function fetchExecutedCode(token) {
   return Axios.get(`https://api.judge0.com/submissions/${token}`);
 }
 
-export async function runAllCode(currentTest, setOutput) {
-  debugger;
+export async function runAllCode(
+  currentTest,
+  language,
+  editorState,
+  setOutput,
+) {
   const { testData } = testDataObj[currentTest];
   const testCaseArr = testData.map(el => el.testCase);
   const testResultsArr = testData.map(el => el.testResult);
   const passedTestsArr = [];
   for (const [idx, el] of testCaseArr.entries()) {
-    const executedCode = await executeCode(currentTest, el);
+    const executedCode = await executeCode(
+      currentTest,
+      el,
+      editorState,
+      language,
+    );
     const { token } = executedCode.data;
     setTimeout(async () => {
       const response = await fetchExecutedCode(token);
-      console.log(response);
       console.log(
         JSON.stringify(response.data.stdout),
         '\n\n',
         JSON.stringify(testResultsArr[idx]),
       );
       let output = response.data.stdout;
-      // if (typeof testResultsArr[idx] === 'string') {
-      //   output = response.data.stdout.substring(
-      //     0,
-      //     response.data.stdout.length - 1,
-      //   );
-      // }
+      if (
+        typeof testResultsArr[idx] === 'string' &&
+        response.data.stdout
+      ) {
+        output = response.data.stdout.substring(
+          0,
+          response.data.stdout.length - 1,
+        );
+      }
+      // eslint-disable-next-line eqeqeq
       if (output == testResultsArr[idx]) {
         passedTestsArr.push('true');
       }
@@ -265,7 +277,10 @@ export async function runAllCode(currentTest, setOutput) {
         setOutput(
           prevOutput => `${prevOutput}\nAll tests passed! Good job.`,
         );
-      } else if (idx === testCaseArr.length - 1) {
+      } else if (
+        idx === testCaseArr.length - 1 &&
+        passedTestsArr.length < testCaseArr.length
+      ) {
         setOutput(
           prevOutput =>
             `${prevOutput}\nTests failing, check your code!`,
