@@ -242,8 +242,21 @@ class Code extends Component {
       .catch(err => {});
   };
 
-  runAllCode = (currentTest, language, editorState, setOutput) => {
-    this
+  runAllCode = async (currentTest, language, editorState, setOutput) => {
+    const { testData } = testDataObj[currentTest];
+    const testCaseArr = testData.map(el => el.testCase);
+    const testResultsArr = testData.map(el => el.testResult);
+    const passedTestsArr = [];
+    for (const [idx, el] of testCaseArr.entries()) {
+      const executedCode = await executeCode(
+        currentTest,
+        el,
+        editorState,
+        language,
+      );
+      const { token } = executedCode.data;
+      console.log(token)
+    }
   }
 
   handlePost = () => {
