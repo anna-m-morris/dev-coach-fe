@@ -11,6 +11,7 @@ import {
   Logo,
 } from '../Landing/Landing-styles';
 import { LoginContainer } from './Login/LoginStyles';
+import Navigation from '../Landing/Navigation/Navigation';
 import {
   showErrorMessage,
   showSuccessMessage,
@@ -22,6 +23,27 @@ import { sendResetPasswordEmail } from '../../state/actions/authenticationAction
 
 const ResetContainer = styled(LoginContainer)`
   justify-content: center;
+
+  .navigation-container {
+    width: 100%;
+  }
+
+  .navigation {
+    width: 100%;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+
+    .logo {
+      padding: 0;
+    }
+
+    .list-items-container .list-items .list-item a {
+      color: #9b9b9b;
+
+      &:hover {
+        opacity: none;
+      }
+    }
+  }
 
   .form-card-container {
     padding: 1rem;
@@ -82,50 +104,55 @@ const ResetPasswordForm = props => {
   };
   return (
     <ResetContainer className='reset-container'>
-      <Notification
-        onClose={closeMessage}
-        variant='success'
-        message='password reset email sent successfully'
-        open={success}
-      />
-      <Notification
-        onClose={closeMessage}
-        variant='error'
-        message='That email address is not recognized. Please try again'
-        open={error}
-      />
-      <div className='form-card-container'>
-        <Link to='/'>
-          <Logo />
-        </Link>
-        <h3>Enter your email to reset your password</h3>
-        <div className='form-container'>
-          <Form className='form'>
-            <div className='input-container'>
-              <Field
-                className='form-input'
-                onChange={handleChange}
-                value={resetUser.email}
-                type='email'
-                name='email'
-                placeholder='Enter Your Email Address'
-              />
-              {errors.email && touched.email && (
-                <p className='error'>{errors.email}</p>
-              )}
-            </div>
-            <div className='form-button-container'>
-              <StyledButton
-                className='form-button'
-                onClick={handleSubmit}
-                theme={buttonTheme}
-                type='submit'
-                disabled={isSubmitting}
-              >
-                Send Email
-              </StyledButton>
-            </div>
-          </Form>
+      <div className='navigation-container'>
+        <Navigation />
+      </div>
+      <div className='content-container'>
+        <Notification
+          onClose={closeMessage}
+          variant='success'
+          message='password reset email sent successfully'
+          open={success}
+        />
+        <Notification
+          onClose={closeMessage}
+          variant='error'
+          message='That email address is not recognized. Please try again'
+          open={error}
+        />
+        <div className='form-card-container'>
+          <Link to='/'>
+            <Logo />
+          </Link>
+          <h3>Enter your email to reset your password</h3>
+          <div className='form-container'>
+            <Form className='form'>
+              <div className='input-container'>
+                <Field
+                  className='form-input'
+                  onChange={handleChange}
+                  value={resetUser.email}
+                  type='email'
+                  name='email'
+                  placeholder='Enter Your Email Address'
+                />
+                {errors.email && touched.email && (
+                  <p className='error'>{errors.email}</p>
+                )}
+              </div>
+              <div className='form-button-container'>
+                <StyledButton
+                  className='form-button'
+                  onClick={handleSubmit}
+                  theme={buttonTheme}
+                  type='submit'
+                  disabled={isSubmitting}
+                >
+                  Send Email
+                </StyledButton>
+              </div>
+            </Form>
+          </div>
         </div>
       </div>
     </ResetContainer>
