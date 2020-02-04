@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { Avatar } from '@material-ui/core';
 import Loader from 'react-loader-spinner';
+import devices from '../../utils/devices';
 
 const StyledMessageList = styled.div`
   flex: 1;
@@ -23,6 +24,9 @@ const StyledMessageList = styled.div`
     margin-top: 2rem;
     color: white;
 
+    @media ${devices.mobile} {
+      margin-top: 1rem;
+    }
     .message {
       display: flex;
       flex-direction: row-reverse;
@@ -32,6 +36,10 @@ const StyledMessageList = styled.div`
     .message-time {
       color: #666363;
       margin: 0.2rem 2.85rem 0 0;
+
+      @media ${devices.mobile} {
+        margin: 0.1rem 2.85rem 0 0;
+      }
     }
 
     .message-text {
@@ -46,6 +54,16 @@ const StyledMessageList = styled.div`
       font-size: 1rem;
       word-break: break-word;
       width: 70%;
+
+      @media ${devices.tablet} {
+        font-size: 0.95rem;
+        padding: 0.35rem 0.8rem;
+      }
+
+      @media ${devices.mobile} {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.8rem;
+      }
     }
   }
 
@@ -58,6 +76,9 @@ const StyledMessageList = styled.div`
     margin-top: 2rem;
     color: #666363;
 
+    @media ${devices.mobile} {
+      margin-top: 1rem;
+    }
     .message {
       display: flex;
       max-width: 100%;
@@ -78,6 +99,16 @@ const StyledMessageList = styled.div`
       font-size: 1rem;
       word-break: break-word;
       width: 70%;
+
+      @media ${devices.tablet} {
+        font-size: 0.95rem;
+        padding: 0.35rem 0.8rem;
+      }
+
+      @media ${devices.mobile} {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.8rem;
+      }
     }
   }
 `;

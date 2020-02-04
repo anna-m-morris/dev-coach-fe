@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
   stepper: {
     width: '100%',
-    padding: '2rem 0 2rem 0',
+    padding: '1rem 0 0 0',
   },
   backButton: {
     marginRight: theme.spacing(1),

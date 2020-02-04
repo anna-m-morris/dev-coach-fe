@@ -171,6 +171,7 @@ const DashboardContainer = styled.div`
 
 const UserDashboard = props => {
   const {
+    loadingAppointment,
     history,
     appointments,
     getAppointment,
@@ -208,87 +209,101 @@ const UserDashboard = props => {
     }));
     return (sum.rating / arr.length).toString().slice(0, 4);
   };
+
   return (
     <DashboardContainer className='dashboard-container'>
-      <div className='dashboard-content'>
-        <div className='top-data-card'>
-          <div className='top-data-section'>
-            <p className='data'>
-              {props.feedback && props.feedback.length
-                ? `${calculateFormattedMean(props.feedback)}`
-                : 0}
-            </p>
-            <p>Average rating</p>
-          </div>
-          <div className='top-data-section'>
-            <p className='data'>
-              {props.feedback ? props.feedback.length : 0}
-            </p>
-            <p>Interviews completed</p>
-          </div>
-          <div className='top-data-section'>
-            <p className='data'>
-              {props.appointments ? props.appointments.length : 0}
-            </p>
-            <p>Upcoming interviews</p>
-          </div>
+      {loadingAppointment ? (
+        <div className='loaderStyled'>
+          <Loader
+            type='TailSpin'
+            color='#2BAD60'
+            height={80}
+            width={80}
+          />
         </div>
-        <div className='appointment-title-container'>
-          <h2 className='appointment-title'>Scheduled Interviews</h2>
-        </div>
-        {appointments ? (
-          <div className='appointment-cards-container'>
-            {appointments && appointments.length ? (
-              <div className='appointments'>
-                {appointments
-                  .slice(minValue, maxValue)
-                  .map(appointment => (
-                    <AppointmentCard
-                      key={uuid()}
-                      appointment={appointment}
-                      cancelAppointment={() => {
-                        cancelAppointment(appointment.id, history, {
-                          id: appointment.id,
-                          first_name: appointment.first_name,
-                          last_name: appointment.last_name,
-                          email: appointment.email,
-                        });
-                      }}
-                      startInterview={() => {
-                        startInterview(appointment.email, props);
-                        saveIdRole(
-                          appointment.role_id,
-                          appointment.id,
-                        );
-                      }}
-                      savePeer={() => {
-                        savePeer(
-                          {
+      ) : (
+        <div className='dashboard-content'>
+          <div className='top-data-card'>
+            <div className='top-data-section'>
+              <p className='data'>
+                {props.feedback && props.feedback.length
+                  ? `${calculateFormattedMean(props.feedback)}`
+                  : 0}
+              </p>
+              <p>Average rating</p>
+            </div>
+            <div className='top-data-section'>
+              <p className='data'>
+                {props.feedback ? props.feedback.length : 0}
+              </p>
+              <p>Interviews completed</p>
+            </div>
+            <div className='top-data-section'>
+              <p className='data'>
+                {props.appointments ? props.appointments.length : 0}
+              </p>
+              <p>Upcoming interviews</p>
+            </div>
+          </div>
+          <div className='appointment-title-container'>
+            <h2 className='appointment-title'>
+              Scheduled Interviews
+            </h2>
+          </div>
+          {appointments ? (
+            <div className='appointment-cards-container'>
+              {appointments && appointments.length ? (
+                <div className='appointments'>
+                  {appointments
+                    .slice(minValue, maxValue)
+                    .map(appointment => (
+                      <AppointmentCard
+                        key={uuid()}
+                        appointment={appointment}
+                        cancelAppointment={() => {
+                          cancelAppointment(appointment.id, history, {
+                            id: appointment.id,
+                            first_name: appointment.first_name,
+                            last_name: appointment.last_name,
                             email: appointment.email,
-                            name: `${appointment.first_name} ${appointment.last_name}`,
-                            avatar_url: appointment.avatar_url,
-                          },
-                          props,
-                        );
-                      }}
-                    />
-                  ))}
-              </div>
-            ) : (
-              <EmptyAppointment role_id={user.role_id} />
-            )}
-          </div>
-        ) : (
-          <div className='loaderStyled'>
-            <Loader
-              type='TailSpin'
-              color='#2BAD60'
-              height={80}
-              width={80}
-            />
-          </div>
-        )}
-      </div>
+                          });
+                        }}
+                        startInterview={() => {
+                          startInterview(appointment.email, props);
+                          saveIdRole(
+                            appointment.role_id,
+                            appointment.id,
+                          );
+                        }}
+                        savePeer={() => {
+                          savePeer(
+                            {
+                              email: appointment.email,
+                              name: `${appointment.first_name} ${appointment.last_name}`,
+                              avatar_url: appointment.avatar_url,
+                            },
+                            props,
+                          );
+                        }}
+                      />
+                    ))}
+                </div>
+              ) : (
+                <EmptyAppointment role_id={user.role_id} />
+              )}
+            </div>
+          ) : (
+            <div className='loaderStyled'>
+              <Loader
+                type='TailSpin'
+                color='#2BAD60'
+                height={80}
+                width={80}
+              />
+            </div>
+          )}
+        </div>
+      )}
       {appointments && appointments.length > 0 && (
         <div className='pagination'>
           <Pagination
@@ -308,6 +323,7 @@ const mapStateToProps = state => {
     coach: state.bookingReducer.coach,
     user: state.userReducer.user,
     appointments: state.appointmentsReducer.appointments,
+    loadingAppointment: state.appointmentsReducer.isLoading,
     feedback: state.feedbackReducer.feedback,
   };
 };
