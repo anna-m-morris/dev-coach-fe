@@ -278,6 +278,16 @@ class Code extends Component {
             }) received ${output}\n\n`,
           };
         });
+        if (
+          idx === testCaseArr.length - 1 &&
+          passedTestsArr.length === testCaseArr.length
+        ) {
+          this.setState(prevOutput => {
+            return {
+              output: `${prevOutput}\nAll tests passed! Good job.`
+            }
+          })
+        }
       }, 2000);
     }
   };
