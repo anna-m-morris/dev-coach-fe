@@ -251,6 +251,9 @@ class Code extends Component {
       this.state.editorState,
       this.setOutput,
     );
+    setTimeout(() => {
+      console.log(this.state)
+    }, 4000)
   };
 
   handleSelection = event => {
