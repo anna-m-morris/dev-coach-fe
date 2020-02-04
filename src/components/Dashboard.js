@@ -186,7 +186,6 @@ const useStyles = makeStyles(theme => ({
     overflow: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    // justifyContent: 'space-around',
     alignItems: 'center',
   },
   container: {
