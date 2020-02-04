@@ -242,6 +242,10 @@ class Code extends Component {
       .catch(err => {});
   };
 
+  runAllCode = (currentTest, language, editorState, setOutput) => {
+    this
+  }
+
   handlePost = () => {
     this.setState({ output: [] });
     this.syncUpdates();
