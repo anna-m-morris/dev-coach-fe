@@ -48,6 +48,7 @@ const StyledFeedback = styled.div`
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+    width: 100%;
     @media ${devices.tablet} {
       flex-direction: column;
     }
@@ -124,7 +125,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
   return (
     <StyledFeedback className='feedback-container'>
       <h2 className='feedback-title'>Interview Feedback</h2>
-      {feedback.length > 0 && (
+      {feedback && feedback.length > 1 && (
         <div className='feedback-content'>
           <ChartCardContainer>
             <StudentChart />
