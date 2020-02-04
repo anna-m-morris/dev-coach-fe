@@ -163,6 +163,7 @@ const DashboardContainer = styled.div`
 
 const UserDashboard = props => {
   const {
+    loadingAppointment,
     history,
     appointments,
     getAppointment,
@@ -200,34 +201,47 @@ const UserDashboard = props => {
     }));
     return (sum.rating / arr.length).toString().slice(0, 4);
   };
-  return (
-    <DashboardContainer>
-      <div className='top-data-card'>
-        <div className='top-data-section'>
-          <p className='data'>
-            {props.feedback && props.feedback.length
-              ? `${calculateFormattedMean(props.feedback)}`
-              : 0}
-          </p>
-          <p>Average rating</p>
+  if (loadingAppointment) {
+    return (
+      <DashboardContainer>
+        <div className='loaderStyled'>
+          <Loader
+            type='TailSpin'
+            color='#2BAD60'
+            height={80}
+            width={80}
+          />
         </div>
-        <div className='top-data-section'>
-          <p className='data'>
-            {props.feedback ? props.feedback.length : 0}
-          </p>
-          <p>Interviews completed</p>
+      </DashboardContainer>
+    );
+  } else {
+    return (
+      <DashboardContainer>
+        <div className='top-data-card'>
+          <div className='top-data-section'>
+            <p className='data'>
+              {props.feedback && props.feedback.length
+                ? `${calculateFormattedMean(props.feedback)}`
+                : 0}
+            </p>
+            <p>Average rating</p>
+          </div>
+          <div className='top-data-section'>
+            <p className='data'>
+              {props.feedback ? props.feedback.length : 0}
+            </p>
+            <p>Interviews completed</p>
+          </div>
+          <div className='top-data-section'>
+            <p className='data'>
+              {props.appointments ? props.appointments.length : 0}
+            </p>
+            <p>Upcoming interviews</p>
+          </div>
         </div>
-        <div className='top-data-section'>
-          <p className='data'>
-            {props.appointments ? props.appointments.length : 0}
-          </p>
-          <p>Upcoming interviews</p>
+        <div className='appointment-title-container'>
+          <h2 className='appointment-title'>Scheduled Interviews</h2>
         </div>
-      </div>
-      <div className='appointment-title-container'>
-        <h2 className='appointment-title'>Scheduled Interviews</h2>
-      </div>
-      {appointments ? (
         <div className='appointment-cards-container'>
           {appointments && appointments.length ? (
             <div className='appointments'>
@@ -274,18 +288,9 @@ const UserDashboard = props => {
             <EmptyAppointment role_id={user.role_id} />
           )}
         </div>
-      ) : (
-        <div className='loaderStyled'>
-          <Loader
-            type='TailSpin'
-            color='#2BAD60'
-            height={80}
-            width={80}
-          />
-        </div>
-      )}
-    </DashboardContainer>
-  );
+      </DashboardContainer>
+    );
+  }
 };
 
 const mapStateToProps = state => {
@@ -293,6 +298,7 @@ const mapStateToProps = state => {
     coach: state.bookingReducer.coach,
     user: state.userReducer.user,
     appointments: state.appointmentsReducer.appointments,
+    loadingAppointment: state.appointmentsReducer.isLoading,
     feedback: state.feedbackReducer.feedback,
   };
 };

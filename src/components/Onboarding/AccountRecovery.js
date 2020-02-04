@@ -54,7 +54,7 @@ const AccountRecovery = props => {
       .catch(error => {
         error.message = error;
       });
-  }, [resetUser.email, match.params.token, resetUser]);
+  }, [match.params.token, resetUser.email]);
 
   const handleChange = e => {
     const { value, name } = e.target;
@@ -254,7 +254,7 @@ export const FormContainer = styled.div`
     background: #f7f7f7;
     height: 2em;
     width: 92%;
-    font-family: 'Nunito', sans-serif;
+    font-family: Nunito, sans-serif;
     border-radius: 4px;
     border: 1px solid #c8c8c8;
     padding: 0.5em;

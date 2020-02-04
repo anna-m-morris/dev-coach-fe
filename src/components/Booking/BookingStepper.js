@@ -166,7 +166,7 @@ const BookingStepper = props => {
                       ? coach.hourly_rate * 100
                       : coach.hourly_rate * 100 * 0.5
                   }
-                  name={'name'}
+                  name={'Stripe'}
                   billingAddress
                   shippingAddress
                 />
