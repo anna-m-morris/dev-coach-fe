@@ -297,6 +297,7 @@ class Code extends Component {
             }
           })
         }
+        console.log(passedTestsArr)
       }, 2000);
     }
   };
