@@ -313,7 +313,6 @@ class Code extends Component {
           })
           this.syncUpdates();
         }
-        console.log(passedTestsArr)
       }, 2500);
     }
   };
