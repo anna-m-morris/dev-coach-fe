@@ -64,4 +64,24 @@ For information on the backend of the app, please see [here](https://github.com/
 
 ## Contributing
 
-If there are any features you'd like to add to this project, feel free to suggest them or submit a PR.
+If you're interested in contributing to DevCoach, thanks for your interest! You can submit a pull request according to the guidelines below. We're particularly interested in improving our app's performance and styling. Please let one of us know beforehand if you plan to to contribute a new feature to the project.
+
+Remember that this project is licensed under the MIT license, and by submitting a pull request, you agree that your work will be, too.
+
+# Coding Style
+
+Our project makes use of the [AirBNB Javascript style guide](https://github.com/airbnb/javascript). Its rules are enforced by ESLint, so you can ensure your code is consistent with our style by checking the console for ESLint warnings.
+
+# Bugs
+
+If you notice a bug on the app, please file an issue letting us know your OS, browser version, what you did, what you expected to see, and what you did see. 
+
+# Submission and Review
+
+Please submit your PR according to the provided template. Your code will need to be approved by at least one other developer prior to being merged, so please at at least two reviewers to your PR.
+
+
+
+Adapted from https://github.com/nayafia/contributing-template/blob/master/CONTRIBUTING-template.md.
+
+
