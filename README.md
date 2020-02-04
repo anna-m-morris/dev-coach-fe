@@ -1,6 +1,26 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7c3d3c09-dc9d-426b-aba2-28da9fee44e3/deploy-status)](https://app.netlify.com/sites/eager-euclid-bdab76/deploys)
 
 # Quality Hub Frontend
+ This is the Frontend code for the Devcoach application, you can find the latest deployed project at https://dev-coach.com
+
+## Team
+|                                           [Liam Sutton](https://github.com/curm90)                                        |                                       [Dom Eccleston](https://github.com/domeccleston)                                        |                                       [Olufunmilayo Talabi](https://github.com/funmi7)                                        |                                       [Oladimeji Ojo](https://github.com/ojokure)                                        |                                       [Jayne Carmichael Norrie](https://github.com/jaynecn)                                        |
+[Benjamin Grabow](https://github.com/benjamingrabow) 
+| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
+|                      [<img src="https://avatars0.githubusercontent.com/u/41268212?s=460&v=4" width = "200" />](https://github.com/curm90)                       |                      [<img src="https://avatars1.githubusercontent.com/u/31101792?s=460&v=4" width = "200" />](https://github.com/domeccleston)                       |                      [<img src="https://avatars0.githubusercontent.com/u/34395743?s=460&v=4" width = "200" />](https://github.com/funmi7)                       |                      [<img src="https://avatars2.githubusercontent.com/u/51193046?s=460&v=4" width = "200" />](https://github.com/ojokure)                       |                      [<img src="https://avatars2.githubusercontent.com/u/39460834?s=460&v=4" width = "200" />](https://github.com/jaynecn)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/curm90)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/domeccleston)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/funmi7)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ojokure)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jaynecn)             |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liam-sutton-86254618b/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/dom-eccleston/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/funmilayo-talabi/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/oladimejiojo/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://linkedin.com/in/jaynecarmichaelnorrie) |
+|                                       [__Benjamin Grabow__](https://github.com/benjamingrabow)                                        |                                       [__Temitope Akinsoto__](https://github.com/temitopeakinsoto)                                        |                                                                               |
+|                      [<img src="https://avatars2.githubusercontent.com/u/47316946?s=460&v=4" width = "200" />](https://github.com/benjamingrabow)                                       |                                             |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/benjamingrabow)                        |                       |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/benjamin-grabow/) | 
+## Project Overview
+[Trello Board](https://trello.com/b/V74GJ53f/labs) <br>
+[Product Canvas](https://www.notion.so/EU3-Recipe-Version-Control-78e62a961eee4f059e1f02c7dcb6d73b) <br>
+[UX Design files](https://www.figma.com/file/rJzG4mFCWol5kJ0suycSfS/Forkbook?node-id=59%3A4) <br>
+
+Eating and by extension, cooking should be a fun activity. If cooking isn’t fun why eat?
+The aim of this project is to make cooking fun, seamless, and most importantly personal.
 
 [dev-coach.com](https://www.dev-coach.com)
 
