@@ -73,7 +73,7 @@ const Interface = ({
             .then(res => {
               console.log(res.data.time);
               if (res.data.stdout) {
-                setOutput(res.data.stdout);
+                setOutput(`${res.data.stdout}`);
               } else if (res.data.compile_output) {
                 setOutput(res.data.compile_output);
               } else if (res.data.stderr) {
@@ -120,7 +120,11 @@ const Interface = ({
       const { token } = executedCode.data;
       setTimeout(async () => {
         const response = await fetchExecutedCode(token);
-        console.log(response.data.stdout, testResultsArr[idx]);
+        console.log(
+          JSON.stringify(response.data.stdout),
+          '\n\n',
+          JSON.stringify(testResultsArr[idx]),
+        );
         let output = response.data.stdout;
         if (typeof testResultsArr[idx] === 'string') {
           output = response.data.stdout.substring(
@@ -223,6 +227,7 @@ const Interface = ({
           <MenuItem value='rockPaperScissors'>
             Rock Paper Scissors
           </MenuItem>
+          <MenuItem value='fibonacci'>Fibonacci</MenuItem>
         </Select>
       </FormControl>
       <Button onClick={handlePost}>Run Code</Button>
