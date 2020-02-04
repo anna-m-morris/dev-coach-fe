@@ -124,44 +124,57 @@ const Feedback = ({ isLoading, user, getFeedback, feedback }) => {
 
   return (
     <StyledFeedback className='feedback-container'>
-      <h2 className='feedback-title'>Interview Feedback</h2>
-      {feedback && feedback.length > 1 && (
-        <div className='feedback-content'>
-          <ChartCardContainer>
-            <StudentChart />
-          </ChartCardContainer>
+      {isLoading ? (
+        <div className='loaderStyled'>
+          <Loader
+            type='TailSpin'
+            color='#2BAD60'
+            height={80}
+            width={80}
+          />
         </div>
-      )}
-      {feedback && (
-        <div className='feedback-card-container'>
-          {feedback && feedback.length ? (
-            feedback
-              .slice(minValue, maxValue)
-              .map(feedback => (
-                <FeedbackCard
-                  key={uuid()}
-                  rating={<FeedbackRating rating={feedback.rating} />}
-                  feedback={feedback.feedback}
-                  topic={feedback.appointment_topic}
-                  date={feedback.appointment_datetime.slice(0, 15)}
-                  coachFirstName={feedback.first_name}
-                  coachLastName={feedback.last_name}
-                  avatarUrl={feedback.avatar_url}
-                />
-              ))
-          ) : (
-            <EmptyFeedback />
+      ) : (
+        <div className='graph-container'>
+          <h2 className='feedback-title'>Interview Feedback</h2>
+          {feedback && feedback.length > 1 && (
+            <div className='feedback-content'>
+              <ChartCardContainer>
+                <StudentChart />
+              </ChartCardContainer>
+            </div>
           )}
+          <div className='feedback-card-container'>
+            {feedback && feedback.length ? (
+              feedback
+                .slice(minValue, maxValue)
+                .map(feedback => (
+                  <FeedbackCard
+                    key={uuid()}
+                    rating={
+                      <FeedbackRating rating={feedback.rating} />
+                    }
+                    feedback={feedback.feedback}
+                    topic={feedback.appointment_topic}
+                    date={feedback.appointment_datetime.slice(0, 15)}
+                    coachFirstName={feedback.first_name}
+                    coachLastName={feedback.last_name}
+                    avatarUrl={feedback.avatar_url}
+                  />
+                ))
+            ) : (
+              <EmptyFeedback />
+            )}
+          </div>
+          <div className='pagination'>
+            <Pagination
+              defaultCurrent={1}
+              defaultPageSize={6}
+              onChange={handlePagination}
+              total={feedback && feedback.length}
+            />
+          </div>
         </div>
       )}
-      <div className='pagination'>
-        <Pagination
-          defaultCurrent={1}
-          defaultPageSize={6}
-          onChange={handlePagination}
-          total={feedback && feedback.length}
-        />
-      </div>
     </StyledFeedback>
   );
 };
