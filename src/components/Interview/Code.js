@@ -28,7 +28,7 @@ import {
 import {
   mapLanguageToId,
   mapLanguageToEditorState,
-  runAllCode,
+  executeCode,
 } from '../../utils/executionHelpers';
 import { testDataObj } from '../../utils/executionHelpers';
 import devices from '../../utils/devices';
@@ -262,15 +262,7 @@ class Code extends Component {
   handlePost = () => {
     this.setState({ output: [] });
     this.syncUpdates();
-    runAllCode(
-      this.state.currentTest,
-      this.state.language,
-      this.state.editorState,
-      this.setOutput,
-    );
-    setTimeout(() => {
-      console.log(this.state)
-    }, 4000)
+    this.runAllCode();
   };
 
   handleSelection = event => {
