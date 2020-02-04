@@ -30,6 +30,20 @@ const StyledFeedback = styled.div`
     width: 100%;
   }
 
+  .chart-container {
+    height: 30em;
+    width: 100%;
+    padding: 1em;
+    @media ${devices.tablet} {
+      display: none;
+    }
+  }
+  
+  .chart-display {
+    width: 80%;
+    margin: 0 auto;
+  }
+
   .feedback-title {
     margin: 0;
     color: #595959;
@@ -51,38 +65,6 @@ const StyledFeedback = styled.div`
     width: 100%;
     @media ${devices.tablet} {
       flex-direction: column;
-    }
-
-    .feedback-card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-    .chart-display {
-      width: 80%;
-      margin: 0 auto;
-      @media ${devices.tablet} {
-        display: none;
-      }
-    }
-
-    .ant-pagination-item-active {
-      border-color: #4fad65;
-    }
-    .ant-pagination-item-active a {
-      color: #4fad65;
-    }
-
-    .loaderStyled {
-      margin-top: 20vh;
-      margin-left: -17rem;
-    }
-
-    .chart-container {
-      height: 30em;
-      width: 100%;
-      padding: 1em;
     }
   }
 
@@ -134,14 +116,12 @@ const Feedback = ({ isLoading, user, getFeedback, feedback }) => {
           />
         </div>
       ) : (
-        <div className='graph-container'>
+        <div className='feedback-content'>
           <h2 className='feedback-title'>Interview Feedback</h2>
           {feedback && feedback.length > 1 && (
-            <div className='feedback-content'>
-              <ChartCardContainer>
-                <StudentChart />
-              </ChartCardContainer>
-            </div>
+            <ChartCardContainer className='chart-container'>
+              <StudentChart className='chart-display' />
+            </ChartCardContainer>
           )}
           <div className='feedback-card-container'>
             {feedback && feedback.length ? (
@@ -165,16 +145,16 @@ const Feedback = ({ isLoading, user, getFeedback, feedback }) => {
               <EmptyFeedback />
             )}
           </div>
-          <div className='pagination'>
-            <Pagination
-              defaultCurrent={1}
-              defaultPageSize={6}
-              onChange={handlePagination}
-              total={feedback && feedback.length}
-            />
-          </div>
         </div>
       )}
+      <div className='pagination'>
+        <Pagination
+          defaultCurrent={1}
+          defaultPageSize={6}
+          onChange={handlePagination}
+          total={feedback && feedback.length}
+        />
+      </div>
     </StyledFeedback>
   );
 };
