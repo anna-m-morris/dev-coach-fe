@@ -42,6 +42,8 @@ function Code() {
   const [language, setLanguage] = React.useState('javascript');
   const [currentTest, setCurrentTest] = React.useState('');
   const [testPassedCount, setTestPassedCount] = React.useState(0);
+
+  console.log(output);
   return (
     <FlexContainer>
       <div className='code-header-container'>
