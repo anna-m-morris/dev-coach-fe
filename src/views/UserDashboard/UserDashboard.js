@@ -26,8 +26,16 @@ const DashboardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  /* margin-top: 2rem; */
+  justify-content: space-between;
+  margin-top: 1rem;
+
+  .dashboard-content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .appointment-title-container {
     display: flex;
