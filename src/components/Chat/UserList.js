@@ -47,7 +47,7 @@ const UserListStyle = styled.div`
 `;
 
 const UserList = props => {
-  const { user, rooms, startChat } = props;
+  const { user, rooms, startChat, isLoading } = props;
   const [clickedIndex, setClickedindex] = useState(0);
 
   const handleClick = index => {
@@ -56,8 +56,14 @@ const UserList = props => {
 
   return (
     <>
-      {rooms && rooms.length ? (
-        rooms &&
+      {isLoading ? (
+        <Loader
+          type='TailSpin'
+          color='#2BAD60'
+          height={50}
+          width={50}
+        />
+      ) : rooms && rooms.length ? (
         rooms.map(room => (
           <UserListStyle
             className='recent-user'
