@@ -80,6 +80,7 @@ const Marketplace = props => {
     getFeedback,
     feedback,
     savePeer,
+    loadingCoaches,
   } = props;
 
   const [minValue, setMinValue] = useState(0);
@@ -98,62 +99,79 @@ const Marketplace = props => {
       setMaxValue(value * 6);
     }
   };
-
-  return (
-    <StyledMarketplace className='marketplace-container'>
-      <div className='top'>
-        <SelectPrice searchForPrice={searchForPrice} />
-        <SearchForKeyword
-          searchForKeyword={e => searchForKeyword(e.target.value)}
-        />
-        <SelectExperience searchForExperience={searchForExperience} />
-      </div>
-      <div className='coaches'>
-        {coaches ? (
-          coaches.slice(minValue, maxValue).map(coach => (
-            <CoachCard
-              key={coach.email}
-              coach={coach}
-              saveCoach={() => saveCoach(coach)}
-              getFeedback={getFeedback}
-              feedback={feedback}
-              savePeer={() =>
-                savePeer(
-                  {
-                    email: coach.email,
-                    name: `${coach.first_name} ${coach.last_name}`,
-                    avatar_url: coach.avatar_url,
-                  },
-                  props,
-                )
-              }
-            />
-          ))
-        ) : (
-          <div className='loaderStyled'>
-            <Loader
-              type='TailSpin'
-              color='#2BAD60'
-              height={80}
-              width={80}
-            />
-          </div>
-        )}
-      </div>
-      <div className='pagination'>
-        <Pagination
-          defaultCurrent={1}
-          defaultPageSize={6}
-          onChange={handlePagination}
-          total={coaches && coaches.length}
-        />
-      </div>
-    </StyledMarketplace>
-  );
+  if (loadingCoaches) {
+    return (
+      <StyledMarketplace className='marketplace-container'>
+        <div className='top'>
+          <Loader
+            type='TailSpin'
+            color='#2BAD60'
+            height={80}
+            width={80}
+          />
+        </div>
+      </StyledMarketplace>
+    );
+  } else {
+    return (
+      <StyledMarketplace className='marketplace-container'>
+        <div className='top'>
+          <SelectPrice searchForPrice={searchForPrice} />
+          <SearchForKeyword
+            searchForKeyword={e => searchForKeyword(e.target.value)}
+          />
+          <SelectExperience
+            searchForExperience={searchForExperience}
+          />
+        </div>
+        <div className='coaches'>
+          {coaches ? (
+            coaches.slice(minValue, maxValue).map(coach => (
+              <CoachCard
+                key={coach.email}
+                coach={coach}
+                saveCoach={() => saveCoach(coach)}
+                getFeedback={getFeedback}
+                feedback={feedback}
+                savePeer={() =>
+                  savePeer(
+                    {
+                      email: coach.email,
+                      name: `${coach.first_name} ${coach.last_name}`,
+                      avatar_url: coach.avatar_url,
+                    },
+                    props,
+                  )
+                }
+              />
+            ))
+          ) : (
+            <div className='loaderStyled'>
+              <Loader
+                type='TailSpin'
+                color='#2BAD60'
+                height={80}
+                width={80}
+              />
+            </div>
+          )}
+        </div>
+        <div className='pagination'>
+          <Pagination
+            defaultCurrent={1}
+            defaultPageSize={6}
+            onChange={handlePagination}
+            total={coaches && coaches.length}
+          />
+        </div>
+      </StyledMarketplace>
+    );
+  }
 };
 const mapStateToProps = state => {
   return {
     coaches: state.marketplaceReducer.coaches,
+    loadingCoaches: state.marketplaceReducer.isLoading,
     feedback: state.feedbackReducer.feedback,
   };
 };
