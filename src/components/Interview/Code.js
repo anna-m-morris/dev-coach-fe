@@ -271,9 +271,9 @@ class Code extends Component {
         if (output === testResultsArr[idx]) {
           passedTestsArr.push('true');
         }
-        this.setState(prevOutput => {
+        this.setState(prevState => {
           return {
-            output: `${prevOutput}Test ${idx + 1}: ${currentTest}(${
+            output: `${prevState.output}Test ${idx + 1}: ${currentTest}(${
               testCaseArr[idx]
             }) received ${output}\n\n`,
           };
@@ -282,9 +282,9 @@ class Code extends Component {
           idx === testCaseArr.length - 1 &&
           passedTestsArr.length === testCaseArr.length
         ) {
-          this.setState(prevOutput => {
+          this.setState(prevState => {
             return {
-              output: `${prevOutput}\nAll tests passed! Good job.`
+              output: `${prevState.output}\nAll tests passed! Good job.`
             }
           })
         } else if (
@@ -293,7 +293,7 @@ class Code extends Component {
         ) {
           this.setState(prevState => {
             return {
-              output: `${prevOutput}\nTests failing, check your code!`
+              output: `${prevState.output}\nTests failing, check your code!`
             }
           })
         }
