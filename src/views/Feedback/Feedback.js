@@ -38,7 +38,7 @@ const StyledFeedback = styled.div`
       display: none;
     }
   }
-  
+
   .chart-display {
     width: 80%;
     margin: 0 auto;
