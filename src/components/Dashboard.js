@@ -180,11 +180,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   gridContainer: { height: '100%' },
-  copyright: {
-    textAlign: 'center',
-    margin: '2rem 0 1rem 0',
-    padding: '0',
-  },
   hidden: {
     visibility: 'hidden',
     opacity: 0,
