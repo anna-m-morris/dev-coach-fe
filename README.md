@@ -18,12 +18,6 @@
 
 
 ## Project Overview
-[Trello Board](https://trello.com/b/V74GJ53f/labs) <br>
-[Product Canvas](https://www.notion.so/EU3-Recipe-Version-Control-78e62a961eee4f059e1f02c7dcb6d73b) <br>
-[UX Design files](https://www.figma.com/file/rJzG4mFCWol5kJ0suycSfS/Forkbook?node-id=59%3A4) <br>
-
-Eating and by extension, cooking should be a fun activity. If cooking isn’t fun why eat?
-The aim of this project is to make cooking fun, seamless, and most importantly personal.
 
 [dev-coach.com](https://www.dev-coach.com)
 
