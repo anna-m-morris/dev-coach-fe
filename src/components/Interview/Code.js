@@ -257,23 +257,40 @@ class Code extends Component {
       );
       const { token } = executedCode.data;
       setTimeout(async () => {
-        const response = await fetchExecutedCode(token)
+        const response = await fetchExecutedCode(token);
         let output = response.data.stdout;
-        if (typeof testResultsArr[idx] === 'string' && response.data.stdout) {
-          output = response.data.stdout.substring(0, response.data.stdout.length - 1);
-        };
+        if (
+          typeof testResultsArr[idx] === 'string' &&
+          response.data.stdout
+        ) {
+          output = response.data.stdout.substring(
+            0,
+            response.data.stdout.length - 1,
+          );
+        }
         if (output === testResultsArr[idx]) {
           passedTestsArr.push('true');
         }
-      }, 2000)
+        this.setState(prevOutput => {
+          return {
+            output: `${prevOutput}Test ${idx + 1}: ${currentTest}(${
+              testCaseArr[idx]
+            }) received ${output}\n\n`,
+          };
+        });
+      }, 2000);
     }
-  }
+  };
 
   handlePost = () => {
     this.setState({ output: [] });
     this.syncUpdates();
     if (this.state.currentTest) {
-      this.runAllCode(this.state.currentTest, this.state.language, this.state.editorState);
+      this.runAllCode(
+        this.state.currentTest,
+        this.state.language,
+        this.state.editorState,
+      );
     }
   };
 
@@ -325,7 +342,10 @@ class Code extends Component {
               <InputLabel className='input-label'>
                 Select Coding Challenge
               </InputLabel>
-              <Select onChange={this.handleTestSelection} value={this.state.currentTest}>
+              <Select
+                onChange={this.handleTestSelection}
+                value={this.state.currentTest}
+              >
                 <MenuItem value='square'>Square a number</MenuItem>
                 <MenuItem value='add'>Add two numbers</MenuItem>
                 <MenuItem value='reverse'>Reverse a string</MenuItem>
