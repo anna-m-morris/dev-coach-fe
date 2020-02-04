@@ -258,7 +258,13 @@ class Code extends Component {
       const { token } = executedCode.data;
       setTimeout(async () => {
         const response = await fetchExecutedCode(token)
-        console.log(response)
+        let output = response.data.stdout;
+        if (typeof testResultsArr[idx] === 'string' && response.data.stdout) {
+          output = response.data.stdout.substring(0, response.data.stdout.length - 1);
+        };
+        if (output === testResultsArr[idx]) {
+          passedTestsArr.push('true');
+        }
       }, 2000)
     }
   }
