@@ -88,7 +88,7 @@ export const LoginContainer = styled.div`
       background: #f4f4f4;
       border-radius: 2rem;
       width: 92%;
-      padding: 1rem;
+      padding: 0.8rem;
       font-size: 1rem;
       outline: none;
       transition: ease-out 0.1s;
@@ -143,6 +143,7 @@ export const LoginContainer = styled.div`
       .form-button {
         width: 100%;
         border-radius: 2rem;
+        padding: 0.8rem;
       }
     }
   }

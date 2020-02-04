@@ -23,6 +23,10 @@ const RegisterContainer = styled(LoginContainer)`
     height: 32rem;
     width: 25rem;
 
+    .form {
+      padding-top: 2rem;
+    }
+
     .message-container {
       text-align: center;
       margin-bottom: 0;
