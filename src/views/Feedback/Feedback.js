@@ -104,7 +104,9 @@ const ChartCardContainer = styled(CardContainer)`
   padding: 3em 2em 2em 0.8em;
 `;
 
-const Feedback = ({ user, getFeedback, feedback }) => {
+const Feedback = ({ isLoading, user, getFeedback, feedback }) => {
+  debugger;
+
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(6);
 
@@ -179,6 +181,7 @@ const mapStateToProps = state => {
   return {
     feedback: state.feedbackReducer.feedback,
     user: state.userReducer.user,
+    isLoading: state.feedbackReducer.isLoading,
   };
 };
 
