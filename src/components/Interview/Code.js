@@ -259,7 +259,7 @@ class Code extends Component {
       setTimeout(async () => {
         const response = await fetchExecutedCode(token)
         console.log(response)
-      })
+      }, 2000)
     }
   }
 
