@@ -18,7 +18,6 @@ const StyledFeedback = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   margin-top: 1rem;
@@ -31,25 +30,25 @@ const StyledFeedback = styled.div`
     width: 100%;
   }
 
+  .feedback-title {
+    margin: 0;
+    color: #595959;
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-align: center;
+
+    @media ${devices.tablet} {
+      margin-top: 2rem;
+      text-align: center;
+    }
+  }
+
   .feedback-card-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     @media ${devices.tablet} {
       flex-direction: column;
-    }
-
-    .feedback-title {
-      margin: 0;
-      color: #595959;
-      font-size: 1.8rem;
-      font-weight: 400;
-      text-align: center;
-
-      @media ${devices.tablet} {
-        margin-top: 2rem;
-        text-align: center;
-      }
     }
 
     .feedback-card-container {
@@ -64,15 +63,6 @@ const StyledFeedback = styled.div`
       @media ${devices.tablet} {
         display: none;
       }
-    }
-
-    .pagination {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      padding: 2rem;
-      margin-top: 3em;
     }
 
     .ant-pagination-item-active {
@@ -91,6 +81,17 @@ const StyledFeedback = styled.div`
       height: 30em;
       width: 100%;
       padding: 1em;
+    }
+  }
+
+  .pagination {
+    margin: 2rem 0 1rem 0;
+    padding: 0;
+    .ant-pagination-item-active {
+      border-color: #4fad65;
+    }
+    .ant-pagination-item-active a {
+      color: #4fad65;
     }
   }
 `;
@@ -121,36 +122,35 @@ const Feedback = ({ user, getFeedback, feedback }) => {
 
   return (
     <StyledFeedback className='feedback-container'>
-      {feedback ? (
-        <StyledFeedback className='feedback-content'>
+      <h2 className='feedback-title'>Interview Feedback</h2>
+      {feedback.length > 0 && (
+        <div className='feedback-content'>
           <ChartCardContainer>
             <StudentChart />
           </ChartCardContainer>
-          <h2 className='feedback-title'>Interview Feedback</h2>
-
-          <StyledFeedback className='feedback-card-container'>
-            {feedback && feedback.length ? (
-              feedback
-                .slice(minValue, maxValue)
-                .map(feedback => (
-                  <FeedbackCard
-                    key={uuid()}
-                    rating={
-                      <FeedbackRating rating={feedback.rating} />
-                    }
-                    feedback={feedback.feedback}
-                    topic={feedback.appointment_topic}
-                    date={feedback.appointment_datetime.slice(0, 15)}
-                    coachFirstName={feedback.first_name}
-                    coachLastName={feedback.last_name}
-                    avatarUrl={feedback.avatar_url}
-                  />
-                ))
-            ) : (
-              <EmptyFeedback />
-            )}
-          </StyledFeedback>
-        </StyledFeedback>
+        </div>
+      )}
+      {feedback ? (
+        <div className='feedback-card-container'>
+          {feedback && feedback.length ? (
+            feedback
+              .slice(minValue, maxValue)
+              .map(feedback => (
+                <FeedbackCard
+                  key={uuid()}
+                  rating={<FeedbackRating rating={feedback.rating} />}
+                  feedback={feedback.feedback}
+                  topic={feedback.appointment_topic}
+                  date={feedback.appointment_datetime.slice(0, 15)}
+                  coachFirstName={feedback.first_name}
+                  coachLastName={feedback.last_name}
+                  avatarUrl={feedback.avatar_url}
+                />
+              ))
+          ) : (
+            <EmptyFeedback />
+          )}
+        </div>
       ) : (
         <div className='loaderStyled'>
           <Loader

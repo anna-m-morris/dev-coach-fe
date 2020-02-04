@@ -153,7 +153,7 @@ export const LoginContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0.5rem 0 0 0;
+    margin: 1.2rem 0 0 0;
 
     p {
       font-size: 0.8rem;
