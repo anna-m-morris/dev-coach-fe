@@ -101,8 +101,6 @@ const ChartCardContainer = styled(CardContainer)`
 `;
 
 const Feedback = ({ user, getFeedback, feedback }) => {
-  console.log(feedback);
-
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(6);
 
