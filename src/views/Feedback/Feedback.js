@@ -105,8 +105,6 @@ const ChartCardContainer = styled(CardContainer)`
 `;
 
 const Feedback = ({ isLoading, user, getFeedback, feedback }) => {
-  debugger;
-
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(6);
 
@@ -134,7 +132,7 @@ const Feedback = ({ isLoading, user, getFeedback, feedback }) => {
           </ChartCardContainer>
         </div>
       )}
-      {feedback ? (
+      {feedback && (
         <div className='feedback-card-container'>
           {feedback && feedback.length ? (
             feedback
@@ -154,15 +152,6 @@ const Feedback = ({ isLoading, user, getFeedback, feedback }) => {
           ) : (
             <EmptyFeedback />
           )}
-        </div>
-      ) : (
-        <div className='loaderStyled'>
-          <Loader
-            type='TailSpin'
-            color='#2BAD60'
-            height={80}
-            width={80}
-          />
         </div>
       )}
       <div className='pagination'>
