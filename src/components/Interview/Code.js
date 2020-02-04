@@ -30,6 +30,7 @@ import {
   mapLanguageToEditorState,
   executeCode,
   testDataObj,
+  fetchExecutedCode,
 } from '../../utils/executionHelpers';
 import devices from '../../utils/devices';
 
@@ -255,7 +256,10 @@ class Code extends Component {
         language,
       );
       const { token } = executedCode.data;
-      console.log(token)
+      setTimeout(async () => {
+        const response = await fetchExecutedCode(token)
+        console.log(response)
+      })
     }
   }
 
