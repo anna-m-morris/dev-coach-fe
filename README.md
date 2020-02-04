@@ -1,12 +1,20 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7c3d3c09-dc9d-426b-aba2-28da9fee44e3/deploy-status)](https://app.netlify.com/sites/eager-euclid-bdab76/deploys)
 
-# Quality Hub Frontend
+# DevCoach
+See the deployed product at [dev-coach.com](https://www.dev-coach.com). We would love to hear your feedback - you can use the Crisp chatbox in the bottom right of the screen, or message a member of the team on Slack.
 
-[dev-coach.com](https://www.dev-coach.com)
+Look through the documents we used to plan and organise the project here:
 
-[Notion Document](https://www.notion.so/EU3-QualityHub-503a434aa6b4425595d2b4fa03a1d406)
+- [Notion Document](https://www.notion.so/EU3-QualityHub-503a434aa6b4425595d2b4fa03a1d406)
 
-[Trello Board](https://trello.com/b/SlF9gway/quality-hub)
+- [Trello Board](https://trello.com/b/SlF9gway/quality-hub)
+
+# Team
+
+[Ben Grabow](https://github.com/BenjaminGrabow) | [Funmilayo Talabi](https://github.com/Funmi7) | [Liam Sutton](https://github.com/curm90) | [Oladimeji Ojo](https://github.com/ojokure) | [Jayne Carmichael Norrie](https://github.com/jaynecn) | [Dom Eccleston](https://github.com/domeccleston)<br>
+| --- | --- | --- | --- | --- | --- |
+[<img src="https://avatars3.githubusercontent.com/u/45399252?s=400&v=4" />](https://github.com/benjamingrabow) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULN0Q2CBC-cd4e7fdb68ec-512" />](https://github.com/funmi7) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULW2F383A-7d224505b235-512" />](https://github.com/curm90) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULVUWMC13-9917d69cee28-512" />](https://github.com/ojokure) | [<img src="https://i.imgur.com/hMB6U3L.png" />](https://github.com/jaynecn) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UF3TL8CLS-45731806fd60-512" />](https://github.com/domeccleston)
+[<img src="https://github.com/favicon.ico" width="15" />](https://github.com/benjamingrabow) | [<img src="https://github.com/favicon.ico" width="15">](https://github.com/funmi7) | [<img src="https://github.com/favicon.ico" width="15" >](https://github.com/curm90) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/ojokure) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/jaynecn) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/domeccleston)
 
 # Table of Content
 
