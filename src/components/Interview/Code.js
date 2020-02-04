@@ -60,7 +60,7 @@ const FlexContainer = styled.div`
 `;
 
 const EditorContainer = styled.div`
-  width: 50%;
+  width: 55%;
   height: 100%;
 
   .codemirror {

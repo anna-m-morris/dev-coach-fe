@@ -20,7 +20,6 @@ const TerminalText = styled.textarea`
   padding: 1em;
   padding-top: 0.5em;
   margin-top: 0;
-  font-family: 'Courier', sans-serif;
   font-size: 1em;
   resize: none;
 
