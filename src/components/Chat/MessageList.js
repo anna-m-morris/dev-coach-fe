@@ -115,6 +115,8 @@ const StyledMessageList = styled.div`
 
 const MessageList = ({ messages, userId, user, currentRoom }) => {
   const messagesEndRef = useRef(null);
+  console.log('1', user);
+  console.log('2', messages);
 
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView();
