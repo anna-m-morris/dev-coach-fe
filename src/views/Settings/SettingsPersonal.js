@@ -38,9 +38,7 @@ export function SettingsPersonal(props) {
   };
 
   const [userInfo, setUserInfo] = useState(initialUserInfo);
-  console.log('1', user);
-  console.log('2', userInfo);
-
+ 
   const handleUpload = ({ file, onSuccess }) => {
     const image = new FormData();
     image.append('upload_preset', 'embouib2');

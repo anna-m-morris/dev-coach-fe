@@ -175,7 +175,6 @@ const UserDashboard = props => {
     savePeer,
   } = props;
 
-  console.log(appointments);
 
   const [minValue, setMinValue] = React.useState(0);
   const [maxValue, setMaxValue] = React.useState(6);
