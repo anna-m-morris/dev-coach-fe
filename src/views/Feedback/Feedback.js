@@ -25,9 +25,10 @@ const StyledFeedback = styled.div`
   .feedback-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 100%;
   }
 
   .chart-container {
@@ -145,16 +146,16 @@ const Feedback = ({ isLoading, user, getFeedback, feedback }) => {
               <EmptyFeedback />
             )}
           </div>
+          <div className='pagination'>
+            <Pagination
+              defaultCurrent={1}
+              defaultPageSize={6}
+              onChange={handlePagination}
+              total={feedback && feedback.length}
+            />
+          </div>
         </div>
       )}
-      <div className='pagination'>
-        <Pagination
-          defaultCurrent={1}
-          defaultPageSize={6}
-          onChange={handlePagination}
-          total={feedback && feedback.length}
-        />
-      </div>
     </StyledFeedback>
   );
 };
