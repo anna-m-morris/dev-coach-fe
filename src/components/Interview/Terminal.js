@@ -4,10 +4,8 @@ import styled from 'styled-components';
 const TerminalContainer = styled.div`
   width: 100%;
   height: 50%;
-  padding-left: 0.5em;
   background: #0e1628;
   * {
-    text-decoration: none;
     font-family: 'Inconsolata', sans-serif;
   }
 `;
@@ -33,15 +31,10 @@ const TerminalText = styled.textarea`
   }
 `;
 
-const Terminal = ({ initialText, output }) => {
+const Terminal = ({ output }) => {
   return (
     <TerminalContainer>
-      <TerminalText
-        suppressContentEditableWarning={true}
-        value={output || '$'}
-        contentEditable='false'
-        readOnly
-      ></TerminalText>
+      <TerminalText value={output || '$'}></TerminalText>
     </TerminalContainer>
   );
 };
