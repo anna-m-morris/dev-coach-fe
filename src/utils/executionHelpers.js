@@ -345,40 +345,6 @@ export const mapLanguageToEditorState = (language, editorState) => {
   }
 };
 
-export const invokeCodeJS = (code, param, value) => {
-  return `
-    ${code}
-    console.log(${param}(${value}));
-    `;
-};
-
-export function testCode(value, testCase, code, languageId) {
-  Axios.post('https://api.judge0.com/submissions?wait=false', {
-    source_code: `${invokeCodeJS(code, testCase, value)}`,
-    language_id: `${languageId}`,
-  })
-    .then(res => {
-      setTimeout(() => {
-        Axios.get(
-          `https://api.judge0.com/submissions/${res.data.token}`,
-        )
-          .then(res => {
-            if (res.data.stdout) {
-              console.log(
-                `Against test input of ${value}, your code evaluated to: ${res.data.stdout}`,
-              );
-            } else if (res.data.compile_output) {
-              return `Error: + ${res.data.compile_output}`;
-            } else {
-              return 'Unable to run code';
-            }
-          })
-          .catch(err => {});
-      }, 2000);
-    })
-    .catch(err => {});
-}
-
 export function formatIfArr(data) {
   return Array.isArray(data) ? data.join(',') : data;
 }
