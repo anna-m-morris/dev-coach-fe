@@ -12,8 +12,8 @@ const StyledVideoChat = styled.div`
   width: 100%;
 
   .room {
-    height: 38.6vh;
-    width: 50%;
+    height: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -104,11 +104,6 @@ const VideoChat = ({ user, peerId, history }) => {
     render = (
       <StyledVideoChat>
         <Code Room={{ roomName, token, handleLogout }} />
-        {/* <Room
-          roomName={roomName}
-          token={token}
-          handleLogout={handleLogout}
-        /> */}
       </StyledVideoChat>
     );
   } else {

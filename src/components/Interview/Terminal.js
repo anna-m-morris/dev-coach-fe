@@ -2,12 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TerminalContainer = styled.div`
-  width: 50%;
+  width: 100%;
   height: 50%;
-  padding-left: 0.5em;
   background: #0e1628;
   * {
-    text-decoration: none;
+    font-family: 'Inconsolata', sans-serif;
   }
 `;
 
@@ -15,13 +14,14 @@ const TerminalText = styled.textarea`
   color: white;
   background: #0e1628;
   border: none;
+  height: 100%;
   width: 100%;
   padding: 1em;
   padding-top: 0.5em;
   margin-top: 0;
-  font-family: 'Courier', sans-serif;
   font-size: 1em;
   resize: none;
+  padding-bottom: 1em;
 
   :focus {
     outline: none;
@@ -32,15 +32,10 @@ const TerminalText = styled.textarea`
   }
 `;
 
-const Terminal = ({ initialText, output }) => {
+const Terminal = ({ output }) => {
   return (
     <TerminalContainer>
-      <TerminalText
-        suppressContentEditableWarning={true}
-        value={output}
-        contentEditable='false'
-        readOnly
-      ></TerminalText>
+      <TerminalText value={output || '$'}></TerminalText>
     </TerminalContainer>
   );
 };
