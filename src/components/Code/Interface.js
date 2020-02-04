@@ -120,7 +120,7 @@ const Interface = ({
       const { token } = executedCode.data;
       setTimeout(async () => {
         const response = await fetchExecutedCode(token);
-        console.log(response.data.time);
+        console.log(response.data.stdout, testResultsArr[idx]);
         let output = response.data.stdout;
         if (typeof testResultsArr[idx] === 'string') {
           output = response.data.stdout.substring(

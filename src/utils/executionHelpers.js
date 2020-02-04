@@ -1,3 +1,4 @@
+/* eslint-disable no-multi-str */
 import Axios from 'axios';
 
 export const testDataObj = {
@@ -47,12 +48,58 @@ export const testDataObj = {
   rockPaperScissors: {
     state: `function rockPaperScissors(numOfRounds) {
 // Write a function called rockPaperScissors that will take a number // n, and output "n" number of possible combinations of 'rock',      // 'paper', and 'scissors'. ;)
-    }`,
+}`,
     testData: [
       {
         testCase: 1,
-        testResult: [['rock'], ['paper'], ['scissors']],
+        testResult: "[ [ 'rock' ], [ 'paper' ], [ 'scissors' ] ]",
       },
+      {
+        testCase: 2,
+        testResult: `[
+  [ 'rock', 'rock' ],
+  [ 'rock', 'paper' ],
+  [ 'rock', 'scissors' ],
+  [ 'paper', 'rock' ],
+  [ 'paper', 'paper' ],
+  [ 'paper', 'scissors' ],
+  [ 'scissors', 'rock' ],
+  [ 'scissors', 'paper' ],
+  [ 'scissors', 'scissors' ]
+]`,
+      },
+      {
+        testCase: 3,
+        testResult: `[
+  [ 'rock', 'rock', 'rock' ],
+  [ 'rock', 'rock', 'paper' ],
+  [ 'rock', 'rock', 'scissors' ],
+  [ 'rock', 'paper', 'rock' ],
+  [ 'rock', 'paper', 'paper' ],
+  [ 'rock', 'paper', 'scissors' ],
+  [ 'rock', 'scissors', 'rock' ],
+  [ 'rock', 'scissors', 'paper' ],
+  [ 'rock', 'scissors', 'scissors' ],
+  [ 'paper', 'rock', 'rock' ],
+  [ 'paper', 'rock', 'paper' ],
+  [ 'paper', 'rock', 'scissors' ],
+  [ 'paper', 'paper', 'rock' ],
+  [ 'paper', 'paper', 'paper' ],
+  [ 'paper', 'paper', 'scissors' ],
+  [ 'paper', 'scissors', 'rock' ],
+  [ 'paper', 'scissors', 'paper' ],
+  [ 'paper', 'scissors', 'scissors' ],
+  [ 'scissors', 'rock', 'rock' ],
+  [ 'scissors', 'rock', 'paper' ],
+  [ 'scissors', 'rock', 'scissors' ],
+  [ 'scissors', 'paper', 'rock' ],
+  [ 'scissors', 'paper', 'paper' ],
+  [ 'scissors', 'paper', 'scissors' ],
+  [ 'scissors', 'scissors', 'rock' ],
+  [ 'scissors', 'scissors', 'paper' ],
+  [ 'scissors', 'scissors', 'scissors' ]
+]`,
+      }
     ],
   },
 };
