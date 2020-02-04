@@ -85,12 +85,14 @@ const StyledFeedback = styled.div`
   }
 
   .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 2rem;
-    margin-top: 3em;
+    margin-top: 2rem;
+    padding: 0;
+    .ant-pagination-item-active {
+      border-color: #4fad65;
+    }
+    .ant-pagination-item-active a {
+      color: #4fad65;
+    }
   }
 `;
 
