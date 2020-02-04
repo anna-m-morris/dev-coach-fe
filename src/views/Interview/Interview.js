@@ -3,7 +3,6 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Lobby from '../../components/Interview/Lobby';
-import Room from '../../components/Interview/Room';
 import Code from '../../components/Interview/Code';
 
 const StyledVideoChat = styled.div`
@@ -65,6 +64,7 @@ const StyledVideoChat = styled.div`
       width: 100%;
       height: 100%;
       z-index: 1;
+      object-fit: fill;
     }
   }
 `;

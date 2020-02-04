@@ -169,8 +169,7 @@ class Code extends Component {
             .catch(err => {});
         }, 2000);
       })
-      .catch(err => {
-      });
+      .catch(err => {});
   };
 
   logCode = () => {
@@ -225,16 +224,16 @@ class Code extends Component {
 
   handlePost = () => {
     // setOutput([]);
-    const testCasesSquare = [5, 10, 2348];
+    // const testCasesSquare = [5, 10, 2348];
     this.setState({ output: [] });
     this.syncUpdates();
     // if (mapLanguageToId(this.state.language) === 63) {
-      // setOutput(`Running tests...\n`);
+    // setOutput(`Running tests...\n`);
     //   this.setState({ output: `Running tests...\n` });
     //   this.syncUpdates();
     //   testCasesSquare.forEach(el => this.testCode('square', el));
     // } else {
-      this.logCode();
+    this.logCode();
     // }
   };
 
@@ -310,7 +309,11 @@ class Code extends Component {
             />
           </EditorContainer>
           <Terminal initialText='$  ' output={this.state.output} />
-          <Room roomName={this.props.Room.roomName} token={this.props.Room.token} handleLogout={this.props.Room.handleLogout} />
+          <Room
+            roomName={this.props.Room.roomName}
+            token={this.props.Room.token}
+            handleLogout={this.props.Room.handleLogout}
+          />
         </div>
       </FlexContainer>
     );
