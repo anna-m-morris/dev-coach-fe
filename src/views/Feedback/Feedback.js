@@ -47,6 +47,7 @@ const StyledFeedback = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
     @media ${devices.tablet} {
       flex-direction: column;
     }

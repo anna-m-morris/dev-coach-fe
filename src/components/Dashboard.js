@@ -4,14 +4,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import MatLink from '@material-ui/core/Link';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -21,19 +18,6 @@ import { Link, withRouter } from 'react-router-dom';
 import { ListComponent } from '../utils/dashboardList';
 import logo from '../img/firelogo.png';
 import { logout } from '../state/actions/authenticationActions';
-
-function Copyright() {
-  return (
-    <Typography variant='body2' color='textSecondary' align='center'>
-      {'Copyright © '}
-      <MatLink color='inherit' href='https://dev-coach.com/'>
-        Dev-Coach
-      </MatLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 
@@ -45,7 +29,6 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     zIndex: -10,
   },
-
   toolbarIcon: {
     width: '100%',
     display: 'flex',
@@ -124,6 +107,7 @@ const useStyles = makeStyles(theme => ({
     right: 40,
     color: 'grey',
     transform: 'scale(1.25)',
+    borderRadius: '50%',
   },
   menuButton: {
     marginRight: 36,
@@ -196,11 +180,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   gridContainer: { height: '100%' },
-  copyright: {
-    textAlign: 'center',
-    margin: '2rem 0 1rem 0',
-    padding: '0',
-  },
   hidden: {
     visibility: 'hidden',
     opacity: 0,
@@ -252,8 +231,9 @@ const Dashboard = props => {
               src={user.avatar_url}
               alt='user_avatar'
               style={{
-                width: '35px',
-                height: 'auto',
+                width: '2.5rem',
+                height: '2.5rem',
+                objectFit: 'cover',
                 borderRadius: '50%',
               }}
             />
@@ -277,7 +257,7 @@ const Dashboard = props => {
           onClose={handleClose}
         >
           <Link className={classes.link} to='/settings'>
-            <MenuItem>Settings</MenuItem>
+            <MenuItem onClick={handleClose}>Settings</MenuItem>
           </Link>
           <MenuItem onClick={handleLogout}>Logout</MenuItem>
         </Menu>
