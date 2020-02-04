@@ -30,25 +30,25 @@ const StyledFeedback = styled.div`
     width: 100%;
   }
 
+  .feedback-title {
+    margin: 0;
+    color: #595959;
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-align: center;
+
+    @media ${devices.tablet} {
+      margin-top: 2rem;
+      text-align: center;
+    }
+  }
+
   .feedback-card-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     @media ${devices.tablet} {
       flex-direction: column;
-    }
-
-    .feedback-title {
-      margin: 0;
-      color: #595959;
-      font-size: 1.8rem;
-      font-weight: 400;
-      text-align: center;
-
-      @media ${devices.tablet} {
-        margin-top: 2rem;
-        text-align: center;
-      }
     }
 
     .feedback-card-container {
@@ -122,16 +122,16 @@ const Feedback = ({ user, getFeedback, feedback }) => {
 
   return (
     <StyledFeedback className='feedback-container'>
+      <h2 className='feedback-title'>Interview Feedback</h2>
       {feedback.length > 0 && (
-        <StyledFeedback className='feedback-content'>
+        <div className='feedback-content'>
           <ChartCardContainer>
             <StudentChart />
           </ChartCardContainer>
-          <h2 className='feedback-title'>Interview Feedback</h2>
-        </StyledFeedback>
+        </div>
       )}
       {feedback ? (
-        <StyledFeedback className='feedback-card-container'>
+        <div className='feedback-card-container'>
           {feedback && feedback.length ? (
             feedback
               .slice(minValue, maxValue)
@@ -150,7 +150,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
           ) : (
             <EmptyFeedback />
           )}
-        </StyledFeedback>
+        </div>
       ) : (
         <div className='loaderStyled'>
           <Loader
