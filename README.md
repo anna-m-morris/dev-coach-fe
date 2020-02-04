@@ -1,21 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7c3d3c09-dc9d-426b-aba2-28da9fee44e3/deploy-status)](https://app.netlify.com/sites/eager-euclid-bdab76/deploys)
 
 # Quality Hub Frontend
- This is the Frontend code for the Devcoach application, you can find the latest deployed project at https://dev-coach.com
-
-## Team
-
-
-[Liam Sutton](https://github.com/curm90) | 
-[Dom Eccleston](https://github.com/domeccleston) | 
-[Olufunmilayo Talabi](https://github.com/funmi7) | 
-[Oladimeji Ojo](https://github.com/ojokure) | 
-[Jayne Carmichael Norrie](https://github.com/jaynecn) | 
-[Benjamin Grabow](https://github.com/benjamingrabow)<br> 
-| --- | --- | --- | --- | --- | --- |
-[<img src="https://avatars0.githubusercontent.com/u/41268212?s=460&v=4" width = "80" />](https://github.com/curm90) | [<img src="https://avatars1.githubusercontent.com/u/31101792?s=460&v=4" width = "80" />](https://github.com/domeccleston) | [<img src="https://avatars0.githubusercontent.com/u/34395743?s=460&v=4" width = "80" />](https://github.com/funmi7) | [<img src="https://avatars2.githubusercontent.com/u/51193046?s=460&v=4" width = "80" />](https://github.com/ojokure) | [<img src="https://avatars2.githubusercontent.com/u/39460834?s=460&v=4" width = "80" />](https://github.com/jaynecn) | [<img src="https://avatars2.githubusercontent.com/u/45399252?s=460&v=4" width = "80" />](https://github.com/benjamingrabow)
-[<img src="https://github.com/favicon.ico" width="20" />](https://github.com/curm90) | [<img src="https://github.com/favicon.ico" width="20">](https://github.com/domeccleston) | [<img src="https://github.com/favicon.ico" width="20" >](https://github.com/funmi7) | [<img src="https://github.com/favicon.ico" width="20" />](https://github.com/ojokure) | [<img src="https://github.com/favicon.ico" width="20" />](https://github.com/jaynecn) | [<img src="https://github.com/favicon.ico" width="20" />](https://github.com/benjamingrabow)
-
 
 ## Project Overview
 
@@ -34,7 +19,7 @@ Look through the documents we used to plan and organise the project here:
 Team Lead: [Benjamin Grabow](https://github.com/BenjaminGrabow) | [Oladimeji Ojo](https://github.com/ojokure)  | [Liam Sutton](https://github.com/curm90) | [Funmilayo Talabi](https://github.com/Funmi7)| [Jayne Carmichael Norrie](https://github.com/jaynecn) | [Dom Eccleston](https://github.com/domeccleston)<br>
 | --- | --- | --- | --- | --- | --- |
 [<img src="https://ca.slack-edge.com/T4JUEB3ME-UGG6CMVMJ-f9508210bec6-512" />](https://github.com/benjamingrabow) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULN0Q2CBC-cd4e7fdb68ec-512" />](https://github.com/ojokure) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULW2F383A-7d224505b235-512" />](https://github.com/curm90) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULVUWMC13-9917d69cee28-512" />](https://github.com/funmi7) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UF3TL8CLS-45731806fd60-512" />](https://github.com/jaynecn) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXH09K8X-gaec6ed8a28c-512" />](https://github.com/domeccleston)
-[<img src="https://github.com/favicon.ico" width="15" />](https://github.com/benjamingrabow) | [<img src="https://github.com/favicon.ico" width="15">](https://github.com/funmi7) | [<img src="https://github.com/favicon.ico" width="15" >](https://github.com/curm90) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/ojokure) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/jaynecn) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/domeccleston)
+[<img src="https://github.com/favicon.ico" width="15" />](https://github.com/benjamingrabow) | [<img src="https://github.com/favicon.ico" width="15">](https://github.com/ojokure) | [<img src="https://github.com/favicon.ico" width="15" >](https://github.com/curm90) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/funmi7) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/jaynecn) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/domeccleston)
 
 # Table of Contents
 
