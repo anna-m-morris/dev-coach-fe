@@ -294,14 +294,16 @@ const UserDashboard = props => {
           </div>
         )}
       </div>
-      <div className='pagination'>
-        <Pagination
-          defaultCurrent={1}
-          defaultPageSize={6}
-          onChange={handlePagination}
-          total={appointments.length}
-        />
-      </div>
+      {appointments && appointments.length > 0 && (
+        <div className='pagination'>
+          <Pagination
+            defaultCurrent={1}
+            defaultPageSize={6}
+            onChange={handlePagination}
+            total={appointments.length}
+          />
+        </div>
+      )}
     </DashboardContainer>
   );
 };
