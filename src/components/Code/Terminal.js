@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const TerminalContainer = styled.div`
   width: 50%;
   height: 100%;
+  padding-left: 0.5em;
   background: #0e1628;
   * {
     text-decoration: none;
