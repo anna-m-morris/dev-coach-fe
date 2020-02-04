@@ -1,5 +1,3 @@
-/*jshint esversion: 6 */
-
 import React from 'react';
 import { JSHINT } from 'jshint';
 import styled from 'styled-components';
@@ -25,7 +23,7 @@ const EditorContainer = styled.div`
   }
 `;
 
-const Editor = ({ editorState, setEditorState, language }) => {
+export const Editor = ({ editorState, setEditorState, language }) => {
   return (
     <EditorContainer>
       <CodeMirror

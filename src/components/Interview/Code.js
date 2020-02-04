@@ -4,12 +4,20 @@ import pushid from 'pushid';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { Controlled as CodeMirror } from 'react-codemirror2';
+import { JSHINT } from 'jshint';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/python/python';
 import 'codemirror/mode/clike/clike';
+import 'codemirror/addon/edit/closebrackets';
+import 'codemirror/addon/lint/lint.css';
+import 'codemirror/addon/lint/lint';
+import 'codemirror/addon/lint/json-lint';
+import 'codemirror/addon/lint/javascript-lint';
+import 'codemirror/addon/selection/active-line';
 import styled from 'styled-components';
 import Terminal from '../../components/Interview/Terminal';
 import Room from '../../components/Interview/Room';
+import Editor from '../../components/Code/Editor';
 import { isEqual } from 'lodash';
 import {
   Button,
@@ -22,6 +30,8 @@ import {
   mapLanguageToId,
   mapLanguageToEditorState,
 } from '../../utils/executionHelpers';
+
+window.JSHINT = JSHINT;
 
 const FlexContainer = styled.div`
   display: flex;
@@ -285,8 +295,13 @@ class Code extends Component {
                     ? 'clike'
                     : this.state.language
                 }`,
-                theme: 'material',
+                theme: 'lucario',
                 lineNumbers: true,
+                lineWrapping: true,
+                styleActiveLine: true,
+                activeCloseBrackets: true,
+                gutters: ['Codemirror-lint-markers'],
+                lint: { esversion: '6' },
               }}
               onBeforeChange={(editor, data, value) => {
                 this.setState({ editorState: value }, () =>
