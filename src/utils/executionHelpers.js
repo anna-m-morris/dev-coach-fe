@@ -1,139 +1,8 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-multi-str */
 import Axios from 'axios';
-
-export const mapLanguageToId = language => {
-  switch (language) {
-    default:
-      return 63;
-    case 'javascript':
-      return 63;
-    case 'python':
-      return 71;
-    case 'java':
-      return 62;
-    case 'c':
-      return 50;
-    case 'cpp':
-      return 54;
-  }
-};
-
-export function logCode(editorState, language, setOutput) {
-  Axios.post('https://api.judge0.com/submissions?wait=false', {
-    source_code: `${editorState}`,
-    language_id: `${mapLanguageToId(language)}`,
-  })
-    .then(res => {
-      setTimeout(() => {
-        Axios.get(
-          `https://api.judge0.com/submissions/${res.data.token}`,
-        )
-          .then(res => {
-            console.log(res.data.time);
-            if (res.data.stdout) {
-              setOutput(`${res.data.stdout}`);
-            } else if (res.data.compile_output) {
-              setOutput(res.data.compile_output);
-            } else if (res.data.stderr) {
-              setOutput(res.data.stderr);
-            } else {
-              setOutput('Unable to run code');
-            }
-          })
-          .catch(err => {});
-      }, 2000);
-    })
-    .catch(err => {});
-}
-
-export function executeCode(testName, value, editorState, language) {
-  if (typeof value === 'string') {
-    value = `'${value}'`;
-  }
-  return Axios.post('https://api.judge0.com/submissions?wait=false', {
-    source_code: `${invokeCode(
-      editorState,
-      testName,
-      value,
-      language,
-    )}`,
-    language_id: `${mapLanguageToId(language)}`,
-  });
-}
-
-export function fetchExecutedCode(token) {
-  return Axios.get(`https://api.judge0.com/submissions/${token}`);
-}
-
-// export async function runAllCode(currentTest) {
-//   const { testData } = testDataObj[currentTest];
-//   const testCaseArr = testData.map(el => el.testCase);
-//   const testResultsArr = testData.map(el => el.testResult);
-//   const passedTestsArr = [];
-//   for (const [idx, el] of testCaseArr.entries()) {
-//     const executedCode = await executeCode(currentTest, el);
-//     const { token } = executedCode.data;
-//     setTimeout(async () => {
-//       const response = await fetchExecutedCode(token);
-//       console.log(
-//         JSON.stringify(response.data.stdout),
-//         '\n\n',
-//         JSON.stringify(testResultsArr[idx]),
-//       );
-//       let output = response.data.stdout;
-//       if (typeof testResultsArr[idx] === 'string') {
-//         output = response.data.stdout.substring(
-//           0,
-//           response.data.stdout.length - 1,
-//         );
-//       }
-//       if (output === testResultsArr[idx]) {
-//         passedTestsArr.push('true');
-//       }
-//       setOutput(
-//         prevOutput =>
-//           `${prevOutput}Test ${idx + 1}: ${currentTest}(${
-//             testCaseArr[idx]
-//           }) received ${output}\n\n`,
-//       );
-//       if (
-//         idx === testCaseArr.length - 1 &&
-//         passedTestsArr.length === testCaseArr.length
-//       ) {
-//         setOutput(
-//           prevOutput => `${prevOutput}\nAll tests passed! Good job.`,
-//         );
-//       } else if (idx === testCaseArr.length - 1) {
-//         setOutput(
-//           prevOutput =>
-//             `${prevOutput}\nTests failing, check your code!`,
-//         );
-//       }
-//     }, 2000);
-//   }
-// }
-
-export const invokeCode = (code, testCase, value, language) => {
-  if (language === 'javascript') {
-    if (value) {
-      return `
-      ${code}
-      console.log(${testCase}(${value}));
-      `;
-    }
-    return `
-      ${code}
-      console.log(${testCase}());
-      `;
-  }
-  if (language === 'python') {
-    if (value) {
-      return `${code}\nprint(${testCase}(${value}))
-      `;
-    }
-    return `${code}\nprint(${testCase}())`;
-  }
-};
 
 export const testDataObj = {
   square: {
@@ -269,6 +138,142 @@ export const testDataObj = {
     ],
   },
 };
+
+export const invokeCode = (code, testCase, value, language) => {
+  if (language === 'javascript') {
+    if (value) {
+      return `
+      ${code}
+      console.log(${testCase}(${value}));
+      `;
+    }
+    return `
+      ${code}
+      console.log(${testCase}());
+      `;
+  }
+  if (language === 'python') {
+    if (value) {
+      return `${code}\nprint(${testCase}(${value}))
+      `;
+    }
+    return `${code}\nprint(${testCase}())`;
+  }
+};
+
+export const mapLanguageToId = language => {
+  switch (language) {
+    default:
+      return 63;
+    case 'javascript':
+      return 63;
+    case 'python':
+      return 71;
+    case 'java':
+      return 62;
+    case 'c':
+      return 50;
+    case 'cpp':
+      return 54;
+  }
+};
+
+export function logCode(editorState, language, setOutput) {
+  Axios.post('https://api.judge0.com/submissions?wait=false', {
+    source_code: `${editorState}`,
+    language_id: `${mapLanguageToId(language)}`,
+  })
+    .then(res => {
+      setTimeout(() => {
+        Axios.get(
+          `https://api.judge0.com/submissions/${res.data.token}`,
+        )
+          .then(res => {
+            console.log(res.data.time);
+            if (res.data.stdout) {
+              setOutput(`${res.data.stdout}`);
+            } else if (res.data.compile_output) {
+              setOutput(res.data.compile_output);
+            } else if (res.data.stderr) {
+              setOutput(res.data.stderr);
+            } else {
+              setOutput('Unable to run code');
+            }
+          })
+          .catch(err => {});
+      }, 2000);
+    })
+    .catch(err => {});
+}
+
+export function executeCode(testName, value, editorState, language) {
+  if (typeof value === 'string') {
+    value = `'${value}'`;
+  }
+  return Axios.post('https://api.judge0.com/submissions?wait=false', {
+    source_code: `${invokeCode(
+      editorState,
+      testName,
+      value,
+      language,
+    )}`,
+    language_id: `${mapLanguageToId(language)}`,
+  });
+}
+
+export function fetchExecutedCode(token) {
+  return Axios.get(`https://api.judge0.com/submissions/${token}`);
+}
+
+export async function runAllCode(currentTest, setOutput) {
+  debugger;
+  const { testData } = testDataObj[currentTest];
+  const testCaseArr = testData.map(el => el.testCase);
+  const testResultsArr = testData.map(el => el.testResult);
+  const passedTestsArr = [];
+  for (const [idx, el] of testCaseArr.entries()) {
+    const executedCode = await executeCode(currentTest, el);
+    const { token } = executedCode.data;
+    setTimeout(async () => {
+      const response = await fetchExecutedCode(token);
+      console.log(response);
+      console.log(
+        JSON.stringify(response.data.stdout),
+        '\n\n',
+        JSON.stringify(testResultsArr[idx]),
+      );
+      let output = response.data.stdout;
+      // if (typeof testResultsArr[idx] === 'string') {
+      //   output = response.data.stdout.substring(
+      //     0,
+      //     response.data.stdout.length - 1,
+      //   );
+      // }
+      if (output == testResultsArr[idx]) {
+        passedTestsArr.push('true');
+      }
+      setOutput(
+        prevOutput =>
+          `${prevOutput}Test ${idx + 1}: ${currentTest}(${
+            testCaseArr[idx]
+          }) received ${output}\n\n`,
+      );
+      if (
+        idx === testCaseArr.length - 1 &&
+        passedTestsArr.length === testCaseArr.length
+      ) {
+        setOutput(
+          prevOutput => `${prevOutput}\nAll tests passed! Good job.`,
+        );
+      } else if (idx === testCaseArr.length - 1) {
+        setOutput(
+          prevOutput =>
+            `${prevOutput}\nTests failing, check your code!`,
+        );
+      }
+    }, 2000);
+  }
+}
 
 const javascriptInitialEditorState = `console.log('hello JS!');`;
 

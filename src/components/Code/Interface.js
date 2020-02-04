@@ -17,17 +17,30 @@ import {
   testDataObj,
   invokeCode,
   logCode,
+  runAllCode,
+  executeCode,
+  fetchExecutedCode,
 } from '../../utils/executionHelpers';
+import devices from '../../utils/devices';
 
 const InterfaceContainer = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 
-  .toggle-button {
-    height: 52px;
-    width: 52px;
+  .title {
+    text-align: center;
+  }
+
+  .form-control {
+    width: 30%;
+  }
+
+  .input-label {
+    @media ${devices.mobile} {
+      display: none;
+    }
   }
 `;
 
@@ -90,27 +103,27 @@ const Interface = ({
   //     .catch(err => {});
   // }
 
-  function executeCode(testName, value) {
-    if (typeof value === 'string') {
-      value = `'${value}'`;
-    }
-    return Axios.post(
-      'https://api.judge0.com/submissions?wait=false',
-      {
-        source_code: `${invokeCode(
-          editorState,
-          testName,
-          value,
-          language,
-        )}`,
-        language_id: `${mapLanguageToId(language)}`,
-      },
-    );
-  }
+  // function executeCode(testName, value) {
+  //   if (typeof value === 'string') {
+  //     value = `'${value}'`;
+  //   }
+  //   return Axios.post(
+  //     'https://api.judge0.com/submissions?wait=false',
+  //     {
+  //       source_code: `${invokeCode(
+  //         editorState,
+  //         testName,
+  //         value,
+  //         language,
+  //       )}`,
+  //       language_id: `${mapLanguageToId(language)}`,
+  //     },
+  //   );
+  // }
 
-  function fetchExecutedCode(token) {
-    return Axios.get(`https://api.judge0.com/submissions/${token}`);
-  }
+  // function fetchExecutedCode(token) {
+  //   return Axios.get(`https://api.judge0.com/submissions/${token}`);
+  // }
 
   async function runAllCode(currentTest) {
     const { testData } = testDataObj[currentTest];
@@ -165,7 +178,7 @@ const Interface = ({
     setOutput('');
     if (currentTest) {
       setOutput(`Running tests...\n\n`);
-      runAllCode(currentTest);
+      runAllCode(currentTest, setOutput);
     } else {
       logCode(editorState, language, setOutput);
     }
@@ -188,7 +201,7 @@ const Interface = ({
     function handlekeydownEvent(event) {
       if (event.keyCode === 13 && event.ctrlKey) {
         console.log(language, editorState);
-        logCode();
+        logCode(editorState, language, setOutput);
       }
     }
 
@@ -201,13 +214,11 @@ const Interface = ({
   return (
     <InterfaceContainer>
       <h1>DevCoach IDE</h1>
-      <FormControl>
-        <InputLabel>Select Programming Language</InputLabel>
-        <Select
-          style={{ width: '20em' }}
-          value={language}
-          onChange={handleLanguageSelection}
-        >
+      <FormControl className='form-control'>
+        <InputLabel className='input-label'>
+          Select Programming Language
+        </InputLabel>
+        <Select value={language} onChange={handleLanguageSelection}>
           <MenuItem value='javascript'>Javascript</MenuItem>
           <MenuItem value='python'>Python</MenuItem>
           <MenuItem value='java'>Java</MenuItem>
@@ -215,13 +226,11 @@ const Interface = ({
           <MenuItem value='cpp'>C++</MenuItem>
         </Select>
       </FormControl>
-      <FormControl>
-        <InputLabel>Select Coding Challenge</InputLabel>
-        <Select
-          style={{ width: '20em' }}
-          value={currentTest}
-          onChange={handleTestSelection}
-        >
+      <FormControl className='form-control'>
+        <InputLabel className='input-label'>
+          Select Coding Challenge
+        </InputLabel>
+        <Select value={currentTest} onChange={handleTestSelection}>
           <MenuItem value=''>None</MenuItem>
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
