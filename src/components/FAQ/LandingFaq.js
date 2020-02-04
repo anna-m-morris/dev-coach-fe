@@ -23,7 +23,7 @@ const MainContainer = styled.div`
     margin-bottom: 3rem;
 
     .list-items .list-item a {
-      color: #494949;
+      color: #9b9b9b;
 
       &:hover {
         opacity: none;
@@ -33,7 +33,7 @@ const MainContainer = styled.div`
 
   h2 {
     margin: 0;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: #4fad65;
     font-size: 3rem;
 

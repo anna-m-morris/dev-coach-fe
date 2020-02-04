@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import Loader from 'react-loader-spinner';
 
 import { StyledButton, buttonTheme } from '../Landing/Landing-styles';
 import {
@@ -12,10 +13,8 @@ import {
   closeMessage,
 } from '../../state/actions/notificationActions';
 import { updatePasswordViaEmail } from '../../state/actions/settingActions';
-import Loader from 'react-loader-spinner';
 
 import Notification from '../Notifications/Notification';
-import pattern from '../../img/pattern.jpg';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -55,7 +54,7 @@ const AccountRecovery = props => {
       .catch(error => {
         error.message = error;
       });
-  }, [match.params.token, resetUser]);
+  }, [resetUser.email, match.params.token, resetUser]);
 
   const handleChange = e => {
     const { value, name } = e.target;
@@ -135,7 +134,8 @@ const AccountRecovery = props => {
         </GreyBackgroundContainer>
       </div>
     );
-  } else if (!resetUser.email) {
+  }
+  if (!resetUser.email) {
     return (
       <div>
         <GreyBackgroundContainer>
@@ -157,16 +157,10 @@ const AccountRecovery = props => {
         </GreyBackgroundContainer>
       </div>
     );
-  } else {
-    return (
-      <Loader
-        type='TailSpin'
-        color='#2BAD60'
-        height={80}
-        width={80}
-      />
-    );
   }
+  return (
+    <Loader type='TailSpin' color='#2BAD60' height={80} width={80} />
+  );
 };
 
 const FormikAccountRecovery = withFormik({
@@ -213,12 +207,11 @@ export const StyledResetButton = styled(StyledButton)`
 
 export const GreyBackgroundContainer = styled.div`
   height: 100vh;
-  background: #f2f2f2;
+  background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #11aa44;
-  background-image: url(${pattern});
 `;
 
 export const FormCard = styled.div`
@@ -261,7 +254,7 @@ export const FormContainer = styled.div`
     background: #f7f7f7;
     height: 2em;
     width: 92%;
-    font-family: Ubuntu, sans-serif;
+    font-family: 'Nunito', sans-serif;
     border-radius: 4px;
     border: 1px solid #c8c8c8;
     padding: 0.5em;

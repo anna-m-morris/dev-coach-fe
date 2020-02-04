@@ -47,7 +47,7 @@ export const CtaContainer = styled.div`
 
 export const buttonTheme = {
   text: 'white',
-  background: '#408f53',
+  background: '#4fad65',
 };
 
 export const invertTheme = {
@@ -58,20 +58,21 @@ export const invertTheme = {
 export const StyledButton = styled.button`
   background: ${props => props.theme.background};
   color: ${props => props.theme.text};
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
   height: 100%;
   width: 100%;
   padding: 1em 2em;
   border: none;
-  font-family: Ubuntu;
+  font-family: Nunito;
   font-size: 1rem;
-  transition: ease-out 0.2s;
+  transition: ease-out 0.1s;
 
   :hover {
     cursor: pointer;
-    transition: ease-in 0.2s;
-    opacity: 0.8;
+    transition: ease-in 0.1s;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    background: #449156;
   }
 
   :focus {
@@ -81,6 +82,5 @@ export const StyledButton = styled.button`
   :active {
     outline: none;
     transform: translateY(1px);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
   }
 `;

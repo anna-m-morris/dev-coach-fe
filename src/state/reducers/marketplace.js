@@ -29,18 +29,15 @@ function marketplaceReducer(state = initialState, action) {
     case types.SEARCH_FOR_KEYWORD:
       return {
         ...state,
-        coaches: state.copyOfCoaches.filter(coach => {
-          if (
+        coaches: state.copyOfCoaches.filter(
+          coach =>
             coach.first_name
               .toLowerCase()
-              .includes(action.payload.toLowerCase())
-          ) {
-            return coach.first_name
+              .includes(action.payload.toLowerCase()) ||
+            coach.last_name
               .toLowerCase()
-              .includes(action.payload.toLowerCase());
-          }
-          return coach;
-        }),
+              .includes(action.payload.toLowerCase()),
+        ),
       };
 
     case types.SEARCH_PRICE:
@@ -52,12 +49,14 @@ function marketplaceReducer(state = initialState, action) {
       };
 
     case types.SEARCH_EXPERIENCE:
-      const filterExperience = state.copyOfCoaches.filter(
-        coach => coach.experience_level === action.payload,
-      );
       return {
         ...state,
-        coaches: filterExperience,
+        coaches:
+          action.payload === 1000
+            ? state.copyOfCoaches
+            : state.copyOfCoaches.filter(
+                coach => coach.experience_level === action.payload,
+              ),
       };
 
     default:

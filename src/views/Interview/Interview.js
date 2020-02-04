@@ -2,20 +2,26 @@ import React, { useState, useCallback } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import Lobby from './Lobby';
-import Room from './Room';
+import Lobby from '../../components/Interview/Lobby';
+import Code from '../../components/Interview/Code';
 
 const StyledVideoChat = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 88vh;
+
+  .room {
+    height: 38.6vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
 
   .button {
     width: 100%;
     background-color: #4fad65;
-    font-weight: bold;
 
     &:hover {
       background: #1e3f1f;
@@ -24,24 +30,23 @@ const StyledVideoChat = styled.div`
 
   .settings {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
 
     button {
-      width: 25%;
+      width: 10%;
     }
   }
 
   .videos {
-    width: 500px;
-    height: 380px;
+    width: 100%;
+    height: 425px;
     margin: 0px auto;
-    border: 4px solid #4fad65;
     position: relative;
     box-shadow: 1px 1px 11px #9e9e9e;
     border-radius: 6px;
 
     .my-video {
-      width: 130px;
+      width: 132px;
       position: absolute;
       right: 10px;
       bottom: 10px;
@@ -59,6 +64,7 @@ const StyledVideoChat = styled.div`
       width: 100%;
       height: 100%;
       z-index: 1;
+      object-fit: fill;
     }
   }
 `;
@@ -97,16 +103,17 @@ const VideoChat = ({ user, peerId, history }) => {
   if (token) {
     render = (
       <StyledVideoChat>
-        <Room
+        <Code Room={{ roomName, token, handleLogout }} />
+        {/* <Room
           roomName={roomName}
           token={token}
           handleLogout={handleLogout}
-        />
+        /> */}
       </StyledVideoChat>
     );
   } else {
     render = (
-      <StyledVideoChat>
+      <StyledVideoChat style={{ height: '88vh' }}>
         <Lobby handleSubmit={handleSubmit} />
       </StyledVideoChat>
     );

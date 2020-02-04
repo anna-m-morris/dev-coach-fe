@@ -9,9 +9,9 @@ import rootReducer from './state/reducers';
 import './index.css';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/mode/python/python';
-import 'codemirror/mode/clike/clike';
+import 'codemirror/theme/oceanic-next.css';
+import 'codemirror/theme/ayu-mirage.css';
+import 'codemirror/theme/lucario.css';
 import App from './App';
 
 function saveToLocalStorage(state) {
@@ -19,7 +19,6 @@ function saveToLocalStorage(state) {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('state', serializedState);
   } catch (e) {
-    console.log(e);
   }
 }
 

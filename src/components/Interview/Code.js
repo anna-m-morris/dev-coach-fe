@@ -8,7 +8,8 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/python/python';
 import 'codemirror/mode/clike/clike';
 import styled from 'styled-components';
-import Terminal from '../Code/Terminal';
+import Terminal from '../../components/Interview/Terminal';
+import Room from '../../components/Interview/Room';
 import { isEqual } from 'lodash';
 import {
   Button,
@@ -24,12 +25,9 @@ import {
 
 const FlexContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  height: 75vh;
-  width: 100vw;
+  flex-direction: column;
+  height: 88vh;
+  width: 100%;
 
   .code-header-container {
     height: 12%;
@@ -171,9 +169,7 @@ class Code extends Component {
             .catch(err => {});
         }, 2000);
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => {});
   };
 
   logCode = () => {
@@ -183,14 +179,12 @@ class Code extends Component {
         language_id: `${mapLanguageToId(this.state.language)}`,
       })
       .then(res => {
-        console.log(res);
         setTimeout(() => {
           axios
             .get(
               `https://api.judge0.com/submissions/${res.data.token}`,
             )
             .then(res => {
-              console.log(res);
               if (res.data.stdout) {
                 this.setState({ output: res.data.stdout });
                 // setOutput(res.data.stdout);
@@ -230,17 +224,17 @@ class Code extends Component {
 
   handlePost = () => {
     // setOutput([]);
-    const testCasesSquare = [5, 10, 2348];
+    // const testCasesSquare = [5, 10, 2348];
     this.setState({ output: [] });
     this.syncUpdates();
-    if (mapLanguageToId(this.state.language) === 63) {
-      // setOutput(`Running tests...\n`);
-      this.setState({ output: `Running tests...\n` });
-      this.syncUpdates();
-      testCasesSquare.forEach(el => this.testCode('square', el));
-    } else {
-      this.logCode();
-    }
+    // if (mapLanguageToId(this.state.language) === 63) {
+    // setOutput(`Running tests...\n`);
+    //   this.setState({ output: `Running tests...\n` });
+    //   this.syncUpdates();
+    //   testCasesSquare.forEach(el => this.testCode('square', el));
+    // } else {
+    this.logCode();
+    // }
   };
 
   handleSelection = event => {
@@ -315,6 +309,11 @@ class Code extends Component {
             />
           </EditorContainer>
           <Terminal initialText='$  ' output={this.state.output} />
+          <Room
+            roomName={this.props.Room.roomName}
+            token={this.props.Room.token}
+            handleLogout={this.props.Room.handleLogout}
+          />
         </div>
       </FlexContainer>
     );
