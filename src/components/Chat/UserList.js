@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import uuid from 'uuid';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
+import devices from '../../utils/devices';
 
 const UserListStyle = styled.div`
   border-bottom: 1px solid #ced4da;
@@ -21,6 +22,11 @@ const UserListStyle = styled.div`
     align-items: center;
     font-size: 1rem;
     padding: 1rem;
+
+    @media ${devices.mobile} {
+      padding: 0.5rem;
+      font-size: 0.75rem;
+    }
   }
 
   .bgClicked {
@@ -32,6 +38,11 @@ const UserListStyle = styled.div`
     align-items: center;
     font-size: 1rem;
     padding: 1rem;
+
+    @media ${devices.mobile} {
+      padding: 0.5rem;
+      font-size: 0.75rem;
+    }
   }
 `;
 

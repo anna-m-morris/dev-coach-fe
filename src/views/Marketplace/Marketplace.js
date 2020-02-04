@@ -23,6 +23,7 @@ const StyledMarketplace = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 88vh;
 
   .top {
     display: flex;
@@ -80,6 +81,7 @@ const Marketplace = props => {
     getFeedback,
     feedback,
     savePeer,
+    loadingCoaches,
   } = props;
 
   const [minValue, setMinValue] = useState(0);
@@ -98,7 +100,20 @@ const Marketplace = props => {
       setMaxValue(value * 6);
     }
   };
-
+  if (loadingCoaches) {
+    return (
+      <StyledMarketplace className='marketplace-container'>
+        <div className='top'>
+          <Loader
+            type='TailSpin'
+            color='#2BAD60'
+            height={80}
+            width={80}
+          />
+        </div>
+      </StyledMarketplace>
+    );
+  }
   return (
     <StyledMarketplace className='marketplace-container'>
       <div className='top'>
@@ -109,7 +124,7 @@ const Marketplace = props => {
         <SelectExperience searchForExperience={searchForExperience} />
       </div>
       <div className='coaches'>
-        {coaches ? (
+        {coaches &&
           coaches.slice(minValue, maxValue).map(coach => (
             <CoachCard
               key={coach.email}
@@ -128,17 +143,7 @@ const Marketplace = props => {
                 )
               }
             />
-          ))
-        ) : (
-          <div className='loaderStyled'>
-            <Loader
-              type='TailSpin'
-              color='#2BAD60'
-              height={80}
-              width={80}
-            />
-          </div>
-        )}
+          ))}
       </div>
       <div className='pagination'>
         <Pagination
@@ -154,6 +159,7 @@ const Marketplace = props => {
 const mapStateToProps = state => {
   return {
     coaches: state.marketplaceReducer.coaches,
+    loadingCoaches: state.marketplaceReducer.isLoading,
     feedback: state.feedbackReducer.feedback,
   };
 };

@@ -17,9 +17,15 @@ const ShortInputContainer = styled.div`
 `;
 
 const RegisterContainer = styled(LoginContainer)`
+  justify-content: center;
+
   .form-card-container {
     height: 32rem;
     width: 25rem;
+
+    .form {
+      padding-top: 2rem;
+    }
 
     .message-container {
       text-align: center;

@@ -7,6 +7,7 @@ import SendMessageForm from './SendMessage';
 import UserList from './UserList';
 import { getRooms } from '../../state/actions/chatActions';
 import TypingIndicator from './TypingIndicator';
+import devices from '../../utils/devices';
 
 const StyledChatScreen = styled.div`
   height: 43.2rem;
@@ -16,6 +17,14 @@ const StyledChatScreen = styled.div`
   justify-content: center;
   padding-top: 4rem;
 
+  @media ${devices.tablet} {
+    width: 95%;
+    margin: 0 auto;
+  }
+  @media ${devices.mobile} {
+    width: 90%;
+    margin: 0 auto;
+  }
   .whos-online-list-container {
     border: 1px solid #ced4da;
     border-bottom-left-radius: 6px;
@@ -33,6 +42,19 @@ const StyledChatScreen = styled.div`
       border-bottom: 1px solid #ced4da;
       font-size: 1.3rem;
       padding: 1rem;
+
+      @media ${devices.tablet} {
+        padding: 0.7rem;
+        font-size: 1.1rem;
+      }
+      @media ${devices.mobile} {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+      }
+      @media only screen and (max-width: 450px) {
+        padding: 0.3rem;
+        font-size: 0.65rem;
+  }
     }
   }
   .chat-list-container {
