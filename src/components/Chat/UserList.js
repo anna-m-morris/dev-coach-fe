@@ -11,7 +11,7 @@ const UserListStyle = styled.div`
 
   &:hover {
     transition: ease-in 0.1s;
-    background: #9acd32;
+    background: #05728f;
     color: white;
   }
 
