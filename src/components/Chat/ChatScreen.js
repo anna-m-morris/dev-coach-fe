@@ -108,7 +108,6 @@ class ChatScreen extends React.Component {
           messageLimit: 100,
           hooks: {
             onMessage: message => {
-              debugger
               this.setState({
                 messages: [...this.state.messages, message],
               });
@@ -132,7 +131,6 @@ class ChatScreen extends React.Component {
         });
       })
       .then(currentRoom => {
-        debugger
         this.setState({ currentRoom });
       })
       .catch(error => this.setState({ error }));

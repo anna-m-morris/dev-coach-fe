@@ -15,7 +15,6 @@ export const SAVE_PEER = 'SAVE_PEER';
 const url = process.env.REACT_APP_BASE_URL;
 
 export const savePeer = (peer, props) => {
-  debugger
   props.history.push('/start_chat');
   return { type: SAVE_PEER, payload: peer };
 };
