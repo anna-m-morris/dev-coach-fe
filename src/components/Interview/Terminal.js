@@ -8,6 +8,7 @@ const TerminalContainer = styled.div`
   background: #0e1628;
   * {
     text-decoration: none;
+    font-family: 'Inconsolata', sans-serif;
   }
 `;
 

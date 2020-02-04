@@ -30,6 +30,7 @@ import {
   mapLanguageToId,
   mapLanguageToEditorState,
 } from '../../utils/executionHelpers';
+import { testDataObj } from '../../utils/executionHelpers';
 
 window.JSHINT = JSHINT;
 
@@ -65,6 +66,10 @@ const EditorContainer = styled.div`
   .codemirror {
     height: 100%;
   }
+
+  * {
+    font-family: 'Inconsolata', sans-serif;
+  }
 `;
 
 const InterfaceContainer = styled.div`
@@ -86,6 +91,7 @@ class Code extends Component {
       id: '',
       output: '',
       editorState: '',
+      currentTest: '',
       language: 'javascript',
       channelName:
         this.props.user.role_id === 1
@@ -179,8 +185,7 @@ class Code extends Component {
             .catch(err => {});
         }, 2000);
       })
-      .catch(err => {
-      });
+      .catch(err => {});
   };
 
   logCode = () => {
@@ -250,12 +255,24 @@ class Code extends Component {
     this.syncUpdates();
   };
 
+  handleTestSelection = event => {
+    const selectedTest = event.target.value;
+    this.setState({
+      currentTest: selectedTest,
+    })
+    if (testDataObj[selectedTest]) {
+      this.setState({
+        editorState: testDataObj[selectedTest].state,
+      })
+    }
+  }
+
   render() {
     return (
       <FlexContainer>
         <div className='code-header-container'>
           <InterfaceContainer>
-            <h1>Code Editor</h1>
+            <h1>DevCoach IDE</h1>
             <FormControl>
               <InputLabel>Select Programming Language</InputLabel>
               <Select
@@ -272,11 +289,14 @@ class Code extends Component {
             </FormControl>
             <FormControl>
               <InputLabel>Select Coding Challenge</InputLabel>
-              <Select readOnly style={{ width: '20em' }} value=''>
+              <Select onChange={this.handleTestSelection} style={{ width: '20em' }} value=''>
                 <MenuItem value='square'>Square a number</MenuItem>
                 <MenuItem value='add'>Add two numbers</MenuItem>
-                <MenuItem value='fizzbuzz'>Fizzbuzz</MenuItem>
                 <MenuItem value='reverse'>Reverse a string</MenuItem>
+                <MenuItem value='rockPaperScissors'>
+                  Rock Paper Scissors
+                </MenuItem>
+                <MenuItem value='fibonacci'>Fibonacci</MenuItem>
               </Select>
             </FormControl>
             <Button onClick={this.handlePost}>Run Code</Button>
@@ -316,7 +336,11 @@ class Code extends Component {
             />
           </EditorContainer>
           <Terminal initialText='$  ' output={this.state.output} />
-          <Room roomName={this.props.Room.roomName} token={this.props.Room.token} handleLogout={this.props.Room.handleLogout} />
+          <Room
+            roomName={this.props.Room.roomName}
+            token={this.props.Room.token}
+            handleLogout={this.props.Room.handleLogout}
+          />
         </div>
       </FlexContainer>
     );
