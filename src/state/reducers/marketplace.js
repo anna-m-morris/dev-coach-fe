@@ -16,7 +16,7 @@ function marketplaceReducer(state = initialState, action) {
       };
 
     case types.GET_COACHES_ERROR:
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, isLoading: false };
 
     case types.GET_COACHES_SUCCESSFUL:
       return {

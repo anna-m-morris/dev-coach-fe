@@ -70,12 +70,7 @@ const UserList = props => {
           </UserListStyle>
         ))
       ) : (
-        <Loader
-          type='TailSpin'
-          color='#2BAD60'
-          height={50}
-          width={50}
-        />
+        <h1>No history</h1>
       )}
     </>
   );
