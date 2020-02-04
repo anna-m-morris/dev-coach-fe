@@ -31,6 +31,7 @@ import {
   mapLanguageToEditorState,
 } from '../../utils/executionHelpers';
 import { testDataObj } from '../../utils/executionHelpers';
+import devices from '../../utils/devices';
 
 window.JSHINT = JSHINT;
 
@@ -73,14 +74,23 @@ const EditorContainer = styled.div`
 `;
 
 const InterfaceContainer = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 
-  .toggle-button {
-    height: 52px;
-    width: 52px;
+  .title {
+    text-align: center;
+  }
+
+  .form-control {
+    width: 30%;
+  }
+
+  .input-label {
+    @media ${devices.mobile} {
+      display: none;
+    }
   }
 `;
 
@@ -277,11 +287,12 @@ class Code extends Component {
       <FlexContainer>
         <div className='code-header-container'>
           <InterfaceContainer>
-            <h1>DevCoach IDE</h1>
-            <FormControl>
-              <InputLabel>Select Programming Language</InputLabel>
+            <h1 className='title'>DevCoach IDE</h1>
+            <FormControl className='form-control'>
+              <InputLabel className='input-label'>
+                Select Programming Language
+              </InputLabel>
               <Select
-                style={{ width: '20em' }}
                 value={this.state.language}
                 onChange={this.handleSelection}
               >
@@ -292,13 +303,11 @@ class Code extends Component {
                 <MenuItem value='cpp'>C++</MenuItem>
               </Select>
             </FormControl>
-            <FormControl>
-              <InputLabel>Select Coding Challenge</InputLabel>
-              <Select
-                onChange={this.handleTestSelection}
-                style={{ width: '20em' }}
-                value=''
-              >
+            <FormControl className='form-control'>
+              <InputLabel className='input-label'>
+                Select Coding Challenge
+              </InputLabel>
+              <Select onChange={this.handleTestSelection} value=''>
                 <MenuItem value='square'>Square a number</MenuItem>
                 <MenuItem value='add'>Add two numbers</MenuItem>
                 <MenuItem value='reverse'>Reverse a string</MenuItem>
