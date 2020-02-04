@@ -54,7 +54,7 @@ const StyledChatScreen = styled.div`
       @media only screen and (max-width: 450px) {
         padding: 0.3rem;
         font-size: 0.65rem;
-  }
+      }
     }
   }
   .chat-list-container {
@@ -108,6 +108,7 @@ class ChatScreen extends React.Component {
           messageLimit: 100,
           hooks: {
             onMessage: message => {
+              debugger
               this.setState({
                 messages: [...this.state.messages, message],
               });
@@ -131,6 +132,7 @@ class ChatScreen extends React.Component {
         });
       })
       .then(currentRoom => {
+        debugger
         this.setState({ currentRoom });
       })
       .catch(error => this.setState({ error }));
@@ -162,6 +164,7 @@ class ChatScreen extends React.Component {
             startChat={this.startChat}
             currentRoom={this.state.currentRoom}
             currentUser={this.state.currentUser}
+            isLoading={this.props.isLoading}
           />
         </aside>
         <section className='chat-list-container'>
@@ -188,9 +191,9 @@ class ChatScreen extends React.Component {
 const mapStateToProps = state => {
   return {
     roomId: state.chatReducer.roomId,
-    messages: state.chatReducer.messages,
     rooms: state.chatReducer.rooms,
     user: state.userReducer.user,
+    isLoading: state.chatReducer.isLoading,
   };
 };
 
