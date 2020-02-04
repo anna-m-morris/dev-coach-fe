@@ -48,7 +48,6 @@ const Interface = ({
   currentTest,
   setCurrentTest,
 }) => {
-
   const handlePost = () => {
     setOutput('');
     if (currentTest) {

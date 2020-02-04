@@ -28,6 +28,7 @@ import {
 import {
   mapLanguageToId,
   mapLanguageToEditorState,
+  runAllCode,
 } from '../../utils/executionHelpers';
 import { testDataObj } from '../../utils/executionHelpers';
 import devices from '../../utils/devices';
@@ -156,51 +157,55 @@ class Code extends Component {
     `;
   };
 
-  testCode = (testCase, value) => {
-    axios
-      .post('https://api.judge0.com/submissions?wait=false', {
-        source_code: `${this.invokeCode(
-          this.state.editorState,
-          testCase,
-          value,
-        )}`,
-        language_id: `${mapLanguageToId(this.state.language)}`,
-      })
-      .then(res => {
-        setTimeout(() => {
-          axios
-            .get(
-              `https://api.judge0.com/submissions/${res.data.token}`,
-            )
-            .then(res => {
-              if (res.data.stdout) {
-                // setOutput(
-                //   prevArr =>
-                //     `${prevArr}Against test input of ${value}, your code returned: ${res.data.stdout}`,
-                // );
-                this.setState({
-                  output: `${this.state.output}Against test input of ${value}, your code returned: ${res.data.stdout}`,
-                });
-                this.syncUpdates();
-              } else if (res.data.compile_output) {
-                // setOutput(`Error:  + ${res.data.compile_output}`);
-                this.setState({
-                  output: `Error:  + ${res.data.compile_output}`,
-                });
-                this.syncUpdates();
-              } else {
-                // setOutput('Unable to run code');
-                this.setState({
-                  output: `Error:  + ${res.data.compile_output}`,
-                });
-                this.syncUpdates();
-              }
-            })
-            .catch(err => {});
-        }, 2000);
-      })
-      .catch(err => {});
+  setOutput = value => {
+    this.setState({ output: value });
   };
+
+  // testCode = (testCase, value) => {
+  //   axios
+  //     .post('https://api.judge0.com/submissions?wait=false', {
+  //       source_code: `${this.invokeCode(
+  //         this.state.editorState,
+  //         testCase,
+  //         value,
+  //       )}`,
+  //       language_id: `${mapLanguageToId(this.state.language)}`,
+  //     })
+  //     .then(res => {
+  //       setTimeout(() => {
+  //         axios
+  //           .get(
+  //             `https://api.judge0.com/submissions/${res.data.token}`,
+  //           )
+  //           .then(res => {
+  //             if (res.data.stdout) {
+  //               // setOutput(
+  //               //   prevArr =>
+  //               //     `${prevArr}Against test input of ${value}, your code returned: ${res.data.stdout}`,
+  //               // );
+  //               this.setState({
+  //                 output: `${this.state.output}Against test input of ${value}, your code returned: ${res.data.stdout}`,
+  //               });
+  //               this.syncUpdates();
+  //             } else if (res.data.compile_output) {
+  //               // setOutput(`Error:  + ${res.data.compile_output}`);
+  //               this.setState({
+  //                 output: `Error:  + ${res.data.compile_output}`,
+  //               });
+  //               this.syncUpdates();
+  //             } else {
+  //               // setOutput('Unable to run code');
+  //               this.setState({
+  //                 output: `Error:  + ${res.data.compile_output}`,
+  //               });
+  //               this.syncUpdates();
+  //             }
+  //           })
+  //           .catch(err => {});
+  //       }, 2000);
+  //     })
+  //     .catch(err => {});
+  // };
 
   logCode = () => {
     axios
@@ -237,25 +242,16 @@ class Code extends Component {
       .catch(err => {});
   };
 
-  // const testResultsSquare = [25, 100, 5513104];
-  // const squareSolution = el => el * el;
-
-  checkTests = (testCases, expectedValues, solution) => {
-    if (
-      isEqual(
-        testCases.map(el => solution(el)),
-        expectedValues,
-      )
-    ) {
-      return true;
-    }
-    return false;
-  };
-
   handlePost = () => {
     this.setState({ output: [] });
     this.syncUpdates();
     this.logCode();
+    runAllCode(
+      this.state.currentTest,
+      this.state.language,
+      this.state.editorState,
+      this.setOutput,
+    );
   };
 
   handleSelection = event => {
@@ -306,7 +302,10 @@ class Code extends Component {
               <InputLabel className='input-label'>
                 Select Coding Challenge
               </InputLabel>
-              <Select onChange={this.handleTestSelection} value=''>
+              <Select
+                onChange={this.handleTestSelection}
+                value={this.state.currentTest}
+              >
                 <MenuItem value='square'>Square a number</MenuItem>
                 <MenuItem value='add'>Add two numbers</MenuItem>
                 <MenuItem value='reverse'>Reverse a string</MenuItem>
