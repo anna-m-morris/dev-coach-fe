@@ -1,6 +1,6 @@
 import axiosWithAuth from '../../utils/axiosWithAuth';
 
-export const GET_ROOMS_ = 'GET_ROOMS_';
+export const GET_ROOMS_START = 'GET_ROOMS_START';
 export const GET_ROOMS_ERROR = 'GET_ROOMS_ERROR';
 export const GET_ROOMS_SUCCESSFUL = 'GET_ROOMS_SUCCESSFUL';
 export const START_CHAT_FROM_SCRATCH_START =
@@ -83,7 +83,7 @@ export const startChatFromScratch = (
                     customData: {
                       role_id_one:
                         user.role_id === 1
-                          ? `${user.first_name} ${user.first_name}`
+                          ? `${user.first_name} ${user.last_name}`
                           : `${peer.name}`,
                       role_id_one_url:
                         user.role_id === 1
@@ -92,7 +92,7 @@ export const startChatFromScratch = (
                       role_id_two:
                         user.role_id === 1
                           ? peer.name
-                          : `${user.first_name} ${user.first_name}`,
+                          : `${user.first_name} ${user.last_name}`,
                       role_id_two_url:
                         user.role_id === 1
                           ? peer.avatar_url
