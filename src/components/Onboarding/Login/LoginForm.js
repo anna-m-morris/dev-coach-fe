@@ -10,7 +10,6 @@ import {
 } from '../../Landing/Landing-styles';
 import { LoginContainer, loadingButtonTheme } from './LoginStyles';
 import Navigation from '../../Landing/Navigation/Navigation';
-import Loader from 'react-loader-spinner';
 
 import { login } from '../../../state/actions/authenticationActions';
 
@@ -69,16 +68,9 @@ const LoginForm = ({
               <StyledButton
                 className='form-button'
                 theme={
-                  userReducer.isLoading ? (
-                    <Loader
-                      type='TailSpin'
-                      color='#2BAD60'
-                      height={40}
-                      width={50}
-                    />
-                  ) : (
-                    buttonTheme
-                  )
+                  userReducer.isLoading
+                    ? loadingButtonTheme
+                    : buttonTheme
                 }
                 type='submit'
                 disabled={isSubmitting}
