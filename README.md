@@ -1,6 +1,23 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7c3d3c09-dc9d-426b-aba2-28da9fee44e3/deploy-status)](https://app.netlify.com/sites/eager-euclid-bdab76/deploys)
 
-# DevCoach
+# Quality Hub Frontend
+ This is the Frontend code for the Devcoach application, you can find the latest deployed project at https://dev-coach.com
+
+## Team
+
+
+[Liam Sutton](https://github.com/curm90) | 
+[Dom Eccleston](https://github.com/domeccleston) | 
+[Olufunmilayo Talabi](https://github.com/funmi7) | 
+[Oladimeji Ojo](https://github.com/ojokure) | 
+[Jayne Carmichael Norrie](https://github.com/jaynecn) | 
+[Benjamin Grabow](https://github.com/benjamingrabow)<br> 
+| --- | --- | --- | --- | --- | --- |
+[<img src="https://avatars0.githubusercontent.com/u/41268212?s=460&v=4" width = "80" />](https://github.com/curm90) | [<img src="https://avatars1.githubusercontent.com/u/31101792?s=460&v=4" width = "80" />](https://github.com/domeccleston) | [<img src="https://avatars0.githubusercontent.com/u/34395743?s=460&v=4" width = "80" />](https://github.com/funmi7) | [<img src="https://avatars2.githubusercontent.com/u/51193046?s=460&v=4" width = "80" />](https://github.com/ojokure) | [<img src="https://avatars2.githubusercontent.com/u/39460834?s=460&v=4" width = "80" />](https://github.com/jaynecn) | [<img src="https://avatars2.githubusercontent.com/u/45399252?s=460&v=4" width = "80" />](https://github.com/benjamingrabow)
+[<img src="https://github.com/favicon.ico" width="20" />](https://github.com/curm90) | [<img src="https://github.com/favicon.ico" width="20">](https://github.com/domeccleston) | [<img src="https://github.com/favicon.ico" width="20" >](https://github.com/funmi7) | [<img src="https://github.com/favicon.ico" width="20" />](https://github.com/ojokure) | [<img src="https://github.com/favicon.ico" width="20" />](https://github.com/jaynecn) | [<img src="https://github.com/favicon.ico" width="20" />](https://github.com/benjamingrabow)
+
+
+## Project Overview
 
 DevCoach provides a platform for junior developers to train and improve their skills efficiently through focused support and feedback. It allows developers to sign up, book coaches, communicate with them over instant messaging and video chat, and work collaboratively on coding challenges. It was built by Ben, Liam, Dom, Ola, Funmi, and Jayne for their Lambda School Labs project.
 
