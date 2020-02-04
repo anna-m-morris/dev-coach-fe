@@ -2,7 +2,7 @@
 
 # DevCoach
 
-DevCoach provides a platform for junior developers to train and improve their skills efficiently through focused support and feedback. It was built by Ben, Liam, Dom, Ola, Funmi, and Jayne for their Lambda School Labs project.
+DevCoach provides a platform for junior developers to train and improve their skills efficiently through focused support and feedback. It allows developers to sign up, book coaches, communicate with them over instant messaging and video chat, and work collaboratively on coding challenges. It was built by Ben, Liam, Dom, Ola, Funmi, and Jayne for their Lambda School Labs project.
 
 See the deployed product at [dev-coach.com](https://www.dev-coach.com). We would love to hear your feedback - you can use the chatbox in the bottom right of the screen, or message a member of the team on Slack.
 
@@ -62,21 +62,61 @@ Other libraries we used:
 
 For information on the backend of the app, please see [here](https://github.com/LABS-EU3/quality_hub_backend).
 
-## Contributing
+## Directory structure
+
+```
+src
+├───components
+│   ├───Booking
+│   ├───Cards
+│   ├───Chat
+│   ├───Code
+│   ├───DataVisualization
+│   ├───FAQ
+│   ├───Inputs
+│   ├───Interview
+│   ├───Landing
+│   │   ├───Footer
+│   │   ├───Header
+│   │   ├───img
+│   │   ├───Main
+│   │   │   └───img
+│   │   └───Navigation
+│   ├───Modals
+│   ├───Notifications
+│   ├───Onboarding
+│   │   └───Login
+│   ├───Reschedule
+│   └───Settings
+├───img
+├───state
+│   ├───actions
+│   └───reducers
+├───utils
+└───views
+    ├───Code
+    ├───Feedback
+    ├───Interview
+    ├───Marketplace
+    ├───Settings
+    └───UserDashboard
+```
+
+# Contributing
 
 If you're interested in contributing to DevCoach, thanks for your interest! You can submit a pull request according to the guidelines below. We're particularly interested in improving our app's performance and styling. Please let one of us know beforehand if you plan to to contribute a new feature to the project.
 
 Remember that this project is licensed under the MIT license, and by submitting a pull request, you agree that your work will be, too.
 
-# Coding Style
+## Coding Style
 
 Our project makes use of the [AirBNB Javascript style guide](https://github.com/airbnb/javascript). Its rules are enforced by ESLint, so you can ensure your code is consistent with our style by checking the console for ESLint warnings.
 
-# Bugs
+## Bugs
 
 If you notice a bug on the app, please file an issue letting us know your OS, browser version, what you did, what you expected to see, and what you did see. 
 
-# Submission and Review
+## Submission and Review
 
 Please submit your PR according to the provided template. Your code will need to be approved by at least one other developer prior to being merged, so please at at least two reviewers to your PR.
 
