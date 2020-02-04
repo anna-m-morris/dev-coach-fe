@@ -131,7 +131,12 @@ const Interface = ({
     const testResultsArr = testData.map(el => el.testResult);
     const passedTestsArr = [];
     for (const [idx, el] of testCaseArr.entries()) {
-      const executedCode = await executeCode(currentTest, el);
+      const executedCode = await executeCode(
+        currentTest,
+        el,
+        editorState,
+        language,
+      );
       const { token } = executedCode.data;
       setTimeout(async () => {
         const response = await fetchExecutedCode(token);
@@ -141,12 +146,16 @@ const Interface = ({
           JSON.stringify(testResultsArr[idx]),
         );
         let output = response.data.stdout;
-        if (typeof testResultsArr[idx] === 'string') {
+        if (
+          typeof testResultsArr[idx] === 'string' &&
+          response.data.stdout
+        ) {
           output = response.data.stdout.substring(
             0,
             response.data.stdout.length - 1,
           );
         }
+        // eslint-disable-next-line eqeqeq
         if (output == testResultsArr[idx]) {
           passedTestsArr.push('true');
         }
