@@ -29,8 +29,8 @@ import {
   mapLanguageToId,
   mapLanguageToEditorState,
   executeCode,
+  testDataObj,
 } from '../../utils/executionHelpers';
-import { testDataObj } from '../../utils/executionHelpers';
 import devices from '../../utils/devices';
 
 window.JSHINT = JSHINT;
@@ -262,7 +262,9 @@ class Code extends Component {
   handlePost = () => {
     this.setState({ output: [] });
     this.syncUpdates();
-    this.runAllCode();
+    if (this.state.currentTest) {
+      this.runAllCode();bu
+    }
   };
 
   handleSelection = event => {
