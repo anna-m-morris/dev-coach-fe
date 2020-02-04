@@ -77,7 +77,7 @@ export const LoginContainer = styled.div`
       background: #f4f4f4;
       border-radius: 2rem;
       width: 92%;
-      padding: 1rem;
+      padding: 0.8rem;
       font-size: 1rem;
       outline: none;
       transition: ease-out 0.1s;
@@ -141,11 +141,12 @@ export const LoginContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0.5rem 0 0 0;
+    margin: 1.2rem 0 0 0;
 
     p {
       font-size: 0.8rem;
       color: #6d6d6d;
+      margin: 0;
     }
 
     a {
