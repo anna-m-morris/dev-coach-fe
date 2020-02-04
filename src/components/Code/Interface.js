@@ -15,6 +15,7 @@ import {
   mapLanguageToId,
   mapLanguageToEditorState,
   testDataObj,
+  invokeCode,
 } from '../../utils/executionHelpers';
 
 const InterfaceContainer = styled.div`
@@ -38,27 +39,27 @@ const Interface = ({
   currentTest,
   setCurrentTest,
 }) => {
-  const invokeCode = (code, testCase, value, language) => {
-    if (language === 'javascript') {
-      if (value) {
-        return `
-        ${code}
-        console.log(${testCase}(${value}));
-        `;
-      }
-      return `
-        ${code}
-        console.log(${testCase}());
-        `;
-    }
-    if (language === 'python') {
-      if (value) {
-        return `${code}\nprint(${testCase}(${value}))
-        `;
-      }
-      return `${code}\nprint(${testCase}())`;
-    }
-  };
+  // const invokeCode = (code, testCase, value, language) => {
+  //   if (language === 'javascript') {
+  //     if (value) {
+  //       return `
+  //       ${code}
+  //       console.log(${testCase}(${value}));
+  //       `;
+  //     }
+  //     return `
+  //       ${code}
+  //       console.log(${testCase}());
+  //       `;
+  //   }
+  //   if (language === 'python') {
+  //     if (value) {
+  //       return `${code}\nprint(${testCase}(${value}))
+  //       `;
+  //     }
+  //     return `${code}\nprint(${testCase}())`;
+  //   }
+  // };
 
   function logCode() {
     Axios.post('https://api.judge0.com/submissions?wait=false', {

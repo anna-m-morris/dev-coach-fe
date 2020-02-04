@@ -1,6 +1,28 @@
 /* eslint-disable no-multi-str */
 import Axios from 'axios';
 
+export const invokeCode = (code, testCase, value, language) => {
+  if (language === 'javascript') {
+    if (value) {
+      return `
+      ${code}
+      console.log(${testCase}(${value}));
+      `;
+    }
+    return `
+      ${code}
+      console.log(${testCase}());
+      `;
+  }
+  if (language === 'python') {
+    if (value) {
+      return `${code}\nprint(${testCase}(${value}))
+      `;
+    }
+    return `${code}\nprint(${testCase}())`;
+  }
+};
+
 export const testDataObj = {
   square: {
     state: `function square(x) {
@@ -109,7 +131,7 @@ export const testDataObj = {
     testData: [
       {
         testCase: 8,
-testResult: `[
+        testResult: `[
   0, 1, 1,  2,
   3, 5, 8, 13
 ]`,
@@ -131,7 +153,7 @@ testResult: `[
   701408733, 1134903170, 1836311903, 2971215073,
  4807526976, 7778742049
 ]`,
-      }
+      },
     ],
   },
 };
