@@ -4,6 +4,7 @@ const initialState = {
   peer: null,
   roomId: null,
   rooms: null,
+  isLoading: false,
 };
 
 function chatReducer(state = initialState, action) {
@@ -20,10 +21,17 @@ function chatReducer(state = initialState, action) {
         roomId: action.payload,
       };
 
+    case types.GET_ROOMS_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
     case types.GET_ROOMS_SUCCESSFUL:
       return {
         ...state,
         rooms: action.payload,
+        isLoading: false,
       };
 
     case types.START_CHAT_FROM_SCRATCH_SUCCESSFUL:

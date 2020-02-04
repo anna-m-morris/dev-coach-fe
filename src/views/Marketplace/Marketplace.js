@@ -22,6 +22,8 @@ import devices from '../../utils/devices';
 const StyledMarketplace = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
 
   .top {
@@ -112,51 +114,48 @@ const Marketplace = props => {
         </div>
       </StyledMarketplace>
     );
-  } else {
-    return (
-      <StyledMarketplace className='marketplace-container'>
-        <div className='top'>
-          <SelectPrice searchForPrice={searchForPrice} />
-          <SearchForKeyword
-            searchForKeyword={e => searchForKeyword(e.target.value)}
-          />
-          <SelectExperience
-            searchForExperience={searchForExperience}
-          />
-        </div>
-        <div className='coaches'>
-          {coaches &&
-            coaches.slice(minValue, maxValue).map(coach => (
-              <CoachCard
-                key={coach.email}
-                coach={coach}
-                saveCoach={() => saveCoach(coach)}
-                getFeedback={getFeedback}
-                feedback={feedback}
-                savePeer={() =>
-                  savePeer(
-                    {
-                      email: coach.email,
-                      name: `${coach.first_name} ${coach.last_name}`,
-                      avatar_url: coach.avatar_url,
-                    },
-                    props,
-                  )
-                }
-              />
-            ))}
-        </div>
-        <div className='pagination'>
-          <Pagination
-            defaultCurrent={1}
-            defaultPageSize={6}
-            onChange={handlePagination}
-            total={coaches && coaches.length}
-          />
-        </div>
-      </StyledMarketplace>
-    );
   }
+  return (
+    <StyledMarketplace className='marketplace-container'>
+      <div className='top'>
+        <SelectPrice searchForPrice={searchForPrice} />
+        <SearchForKeyword
+          searchForKeyword={e => searchForKeyword(e.target.value)}
+        />
+        <SelectExperience searchForExperience={searchForExperience} />
+      </div>
+      <div className='coaches'>
+        {coaches &&
+          coaches.slice(minValue, maxValue).map(coach => (
+            <CoachCard
+              key={coach.email}
+              coach={coach}
+              saveCoach={() => saveCoach(coach)}
+              getFeedback={getFeedback}
+              feedback={feedback}
+              savePeer={() =>
+                savePeer(
+                  {
+                    email: coach.email,
+                    name: `${coach.first_name} ${coach.last_name}`,
+                    avatar_url: coach.avatar_url,
+                  },
+                  props,
+                )
+              }
+            />
+          ))}
+      </div>
+      <div className='pagination'>
+        <Pagination
+          defaultCurrent={1}
+          defaultPageSize={6}
+          onChange={handlePagination}
+          total={coaches && coaches.length}
+        />
+      </div>
+    </StyledMarketplace>
+  );
 };
 const mapStateToProps = state => {
   return {

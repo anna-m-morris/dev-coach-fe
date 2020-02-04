@@ -58,12 +58,16 @@ export const login = (props, values) => dispatch => {
   axios
     .post(`${url}user/login`, values)
     .then(res => {
-      dispatch({
-        type: types.LOGIN_SUCCESSFUL,
-        payload: res.data.user,
-        message: res.data.message,
-      });
       localStorage.setItem('token', res.data.token);
+      setTimeout(
+        () =>
+          dispatch({
+            type: types.LOGIN_SUCCESSFUL,
+            payload: res.data.user,
+            message: res.data.message,
+          }),
+        500,
+      );
     })
     .catch(err => {
       dispatch({

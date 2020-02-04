@@ -41,9 +41,7 @@ function App({ user, isLoggedIn }) {
       <Route path={'/interview'} component={Interview} />
       <Route path={'/Settings'} component={SettingsTabs} />
       <Route path={'/FAQ'} component={MainFaq} />
-      {user && user.role_id === 1 ? (
-        <Route path={'/start_chat'} component={StartChat} />
-      ) : null}
+      <Route path={'/start_chat'} component={StartChat} />
       <Route path={'/chat'} component={Chat} />
       <Route path={'/code'} component={Code} />
       <Route path={'/givefeedback'} component={GiveFeedback} />

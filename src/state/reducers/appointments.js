@@ -25,6 +25,10 @@ function appointmentsReducer(state = initialState, action) {
         },
       );
 
+      filterFutureAndUncanceledAppointments.sort(
+        (a, b) => new Date(b.date) - new Date(a.date),
+      );
+
       return {
         ...state,
         isLoading: false,
@@ -32,20 +36,12 @@ function appointmentsReducer(state = initialState, action) {
       };
 
     case types.APPOINTMENTS_ERROR:
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, isLoading: false };
 
     case types.CANCEL_APPOINTMENT_SUCCESSFUL:
       return {
         ...state,
         isLoading: false,
-        appointments: state.appointments
-          .map(appointment => {
-            if (appointment.id === action.payload.id) {
-              appointment.canceled = action.payload;
-            }
-            return appointment;
-          })
-          .filter(appointment => !appointment.canceled),
         rescheduler: {
           ...action.rescheduler,
           coach_id: action.payload.coach_id,
