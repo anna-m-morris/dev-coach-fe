@@ -1,7 +1,10 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7c3d3c09-dc9d-426b-aba2-28da9fee44e3/deploy-status)](https://app.netlify.com/sites/eager-euclid-bdab76/deploys)
 
 # DevCoach
-See the deployed product at [dev-coach.com](https://www.dev-coach.com). We would love to hear your feedback - you can use the Crisp chatbox in the bottom right of the screen, or message a member of the team on Slack.
+
+DevCoach provides a platform for junior developers to train and improve their skills efficiently through focused support and feedback. It was built by Ben, Liam, Dom, Ola, Funmi, and Jayne for their Lambda School Labs project.
+
+See the deployed product at [dev-coach.com](https://www.dev-coach.com). We would love to hear your feedback - you can use the chatbox in the bottom right of the screen, or message a member of the team on Slack.
 
 Look through the documents we used to plan and organise the project here:
 
@@ -11,57 +14,54 @@ Look through the documents we used to plan and organise the project here:
 
 # Team
 
-[Ben Grabow](https://github.com/BenjaminGrabow) | [Funmilayo Talabi](https://github.com/Funmi7) | [Liam Sutton](https://github.com/curm90) | [Oladimeji Ojo](https://github.com/ojokure) | [Jayne Carmichael Norrie](https://github.com/jaynecn) | [Dom Eccleston](https://github.com/domeccleston)<br>
+Team Lead: [Benjamin Grabow](https://github.com/BenjaminGrabow) | [Oladimeji Ojo](https://github.com/ojokure)  | [Liam Sutton](https://github.com/curm90) | [Funmilayo Talabi](https://github.com/Funmi7)| [Jayne Carmichael Norrie](https://github.com/jaynecn) | [Dom Eccleston](https://github.com/domeccleston)<br>
 | --- | --- | --- | --- | --- | --- |
 [<img src="https://ca.slack-edge.com/T4JUEB3ME-UGG6CMVMJ-f9508210bec6-512" />](https://github.com/benjamingrabow) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULN0Q2CBC-cd4e7fdb68ec-512" />](https://github.com/ojokure) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULW2F383A-7d224505b235-512" />](https://github.com/curm90) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULVUWMC13-9917d69cee28-512" />](https://github.com/funmi7) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UF3TL8CLS-45731806fd60-512" />](https://github.com/jaynecn) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXH09K8X-gaec6ed8a28c-512" />](https://github.com/domeccleston)
 [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/benjamingrabow) | [<img src="https://github.com/favicon.ico" width="15">](https://github.com/funmi7) | [<img src="https://github.com/favicon.ico" width="15" >](https://github.com/curm90) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/ojokure) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/jaynecn) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/domeccleston)
 
-# Table of Content
+# Table of Contents
 
-- Front-End Dependencies
-- react
-- redux
-- redux-thunk
-- react-router
-- styled-components
-- dotenv
-- redux-logger
-- react-scripts
+## How to run this application
 
-## Scripts
+To run this project, you'll need to have Node installed on your machine. It accepts the usual scripts for a [create-react-app](https://github.com/facebook/create-react-app). You'll also need to create an environment variable for the server URL, see below for how to do this.
 
-`npm start`: starts the application on your local machine
+```
+git clone https://github.com/LABS-EU3/quality_hub_frontend.git
+cd quality_hub_frontend
+npm i
+echo "REACT_APP_BASE_URL='https://dev-coach-staging.herokuapp.com/'" > .env
+npm start // starts the app on port :3000
+```
+Other scripts:
+```
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+```
 
 ## Tech-Stack
 
-### Front-End Dependencies ( Production )
+This project was bootstrapped with Create-React-App and its UI was built primarily with React, with Axios for API calls, Redux for state management, Redux-Thunk for handling asynchronous actions, and Redux-Logger for debugging state changes. Routing was handled with React Router. Our styling used CSS-in-JS, primarily styled-components but with some forms making use of Material-UI components. We deployed with Netlify.
 
-### react
 
-React is the current industry standard that offers a lot of out of the box benefits. It is fast, efficient, and scalable. Due to the large community, finding solutions to potential problems and reference material is much easier, even for a potential dev without a lot of experience who would like to contribute to Main Course
+Other libraries we used:
 
-### react-router
+ - Formik (form handling)
+ - Yup (form validation) 
+ - Stripe (payments)
+ - Recharts (data visualization)
+ - Pusher (instant messaging and code sharing over WebSockets)
+ - Twilio-Video (WebRTC-based video chat)
+ - React-Codemirror2 (extensible code editor)
+ - Judge0 (remote code execution API)
+ 
+## Backend
 
-Declarative routing for React. Helps in the Routing of our application
+For information on the backend of the app, please see [here](https://github.com/LABS-EU3/quality_hub_backend).
 
-### dotenv
+## Contributing
 
-Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env. Storing configuration in the environment separate from code is based on The Twelve-Factor App methodology. | View Dependency
-
-### styled components
-
-Has a thriving community and offers the ability to directly style multiple components within a file. The syntax used is familiar to JavaScript and improves code cleanliness and makes it easy to get up and going for those without a lot of css experience. Styled components are also very efficient, improving load time for users.
-
-### redux
-
-Redux is a predictable state container for JavaScript apps.
-It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. On top of that, it provides a great developer experience, such as live code editing combined with a time traveling debugger.
-
-### redux-thunk
-
-redux-thunk middleware, which allows simple asynchronous use of dispatch.
-
-### redux-logger
-
-A middleware which logs dispatched actions and the resulting new state.
-An enhancer which logs the time taken for the reducers to process each action
+If there are any features you'd like to add to this project, feel free to suggest them or submit a PR.
