@@ -242,7 +242,7 @@ class Code extends Component {
       .catch(err => {});
   };
 
-  runAllCode = async (currentTest, language, editorState, setOutput) => {
+  runAllCode = async (currentTest, language, editorState) => {
     const { testData } = testDataObj[currentTest];
     const testCaseArr = testData.map(el => el.testCase);
     const testResultsArr = testData.map(el => el.testResult);
@@ -263,7 +263,7 @@ class Code extends Component {
     this.setState({ output: [] });
     this.syncUpdates();
     if (this.state.currentTest) {
-      this.runAllCode();bu
+      this.runAllCode(this.state.currentTest, this.state.language, this.state.editorState);
     }
   };
 
