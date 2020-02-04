@@ -245,7 +245,6 @@ class Code extends Component {
   handlePost = () => {
     this.setState({ output: [] });
     this.syncUpdates();
-    this.logCode();
     runAllCode(
       this.state.currentTest,
       this.state.language,
