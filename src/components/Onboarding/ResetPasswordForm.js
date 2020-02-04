@@ -25,10 +25,12 @@ const ResetContainer = styled(LoginContainer)`
 
   .form-card-container {
     padding: 1rem;
-    height: 17rem;
+    height: 18rem;
 
     h3 {
       margin: 0;
+      padding: 0 2rem;
+      text-align: center;
     }
   }
 
@@ -126,7 +128,7 @@ const ResetPasswordForm = props => {
                 type='submit'
                 disabled={isSubmitting}
               >
-                Send email -->
+                Send Email
               </StyledButton>
             </div>
           </Form>
