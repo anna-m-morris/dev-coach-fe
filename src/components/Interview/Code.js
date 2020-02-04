@@ -17,7 +17,6 @@ import 'codemirror/addon/selection/active-line';
 import styled from 'styled-components';
 import Terminal from '../../components/Interview/Terminal';
 import Room from '../../components/Interview/Room';
-import Editor from '../../components/Code/Editor';
 import { isEqual } from 'lodash';
 import {
   Button,

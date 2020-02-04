@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import Video from 'twilio-video';
 import Dialog from '@material-ui/core/Dialog';

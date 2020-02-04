@@ -1,7 +1,6 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 import React from 'react';
-import Axios from 'axios';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import {
@@ -12,10 +11,8 @@ import {
   MenuItem,
 } from '@material-ui/core';
 import {
-  mapLanguageToId,
   mapLanguageToEditorState,
   testDataObj,
-  invokeCode,
   logCode,
   runAllCode,
 } from '../../utils/executionHelpers';
@@ -51,138 +48,6 @@ const Interface = ({
   currentTest,
   setCurrentTest,
 }) => {
-  // const invokeCode = (code, testCase, value, language) => {
-  //   if (language === 'javascript') {
-  //     if (value) {
-  //       return `
-  //       ${code}
-  //       console.log(${testCase}(${value}));
-  //       `;
-  //     }
-  //     return `
-  //       ${code}
-  //       console.log(${testCase}());
-  //       `;
-  //   }
-  //   if (language === 'python') {
-  //     if (value) {
-  //       return `${code}\nprint(${testCase}(${value}))
-  //       `;
-  //     }
-  //     return `${code}\nprint(${testCase}())`;
-  //   }
-  // };
-
-  // function logCode() {
-  //   Axios.post('https://api.judge0.com/submissions?wait=false', {
-  //     source_code: `${editorState}`,
-  //     language_id: `${mapLanguageToId(language)}`,
-  //   })
-  //     .then(res => {
-  //       setTimeout(() => {
-  //         Axios.get(
-  //           `https://api.judge0.com/submissions/${res.data.token}`,
-  //         )
-  //           .then(res => {
-  //             console.log(res.data.time);
-  //             if (res.data.stdout) {
-  //               setOutput(`${res.data.stdout}`);
-  //             } else if (res.data.compile_output) {
-  //               setOutput(res.data.compile_output);
-  //             } else if (res.data.stderr) {
-  //               setOutput(res.data.stderr);
-  //             } else {
-  //               alert('Unable to run code');
-  //             }
-  //           })
-  //           .catch(err => {});
-  //       }, 2000);
-  //     })
-  //     .catch(err => {});
-  // }
-
-  // function executeCode(testName, value) {
-  //   if (typeof value === 'string') {
-  //     value = `'${value}'`;
-  //   }
-  //   return Axios.post(
-  //     'https://api.judge0.com/submissions?wait=false',
-  //     {
-  //       source_code: `${invokeCode(
-  //         editorState,
-  //         testName,
-  //         value,
-  //         language,
-  //       )}`,
-  //       language_id: `${mapLanguageToId(language)}`,
-  //     },
-  //   );
-  // }
-
-  // function fetchExecutedCode(token) {
-  //   return Axios.get(`https://api.judge0.com/submissions/${token}`);
-  // }
-
-  // async function runAllCode(currentTest) {
-  //   const { testData } = testDataObj[currentTest];
-  //   const testCaseArr = testData.map(el => el.testCase);
-  //   const testResultsArr = testData.map(el => el.testResult);
-  //   const passedTestsArr = [];
-  //   for (const [idx, el] of testCaseArr.entries()) {
-  //     const executedCode = await executeCode(
-  //       currentTest,
-  //       el,
-  //       editorState,
-  //       language,
-  //     );
-  //     const { token } = executedCode.data;
-  //     setTimeout(async () => {
-  //       const response = await fetchExecutedCode(token);
-  //       console.log(
-  //         JSON.stringify(response.data.stdout),
-  //         '\n\n',
-  //         JSON.stringify(testResultsArr[idx]),
-  //       );
-  //       let output = response.data.stdout;
-  //       if (
-  //         typeof testResultsArr[idx] === 'string' &&
-  //         response.data.stdout
-  //       ) {
-  //         output = response.data.stdout.substring(
-  //           0,
-  //           response.data.stdout.length - 1,
-  //         );
-  //       }
-  //       // eslint-disable-next-line eqeqeq
-  //       if (output == testResultsArr[idx]) {
-  //         passedTestsArr.push('true');
-  //       }
-  //       setOutput(
-  //         prevOutput =>
-  //           `${prevOutput}Test ${idx + 1}: ${currentTest}(${
-  //             testCaseArr[idx]
-  //           }) received ${output}\n\n`,
-  //       );
-  //       if (
-  //         idx === testCaseArr.length - 1 &&
-  //         passedTestsArr.length === testCaseArr.length
-  //       ) {
-  //         setOutput(
-  //           prevOutput =>
-  //             `${prevOutput}\nAll tests passed! Good job.`,
-  //         );
-  //       } else if (
-  //         idx === testCaseArr.length - 1 &&
-  //         passedTestsArr.length < testCaseArr.length
-  //       ) {
-  //         setOutput(
-  //           prevOutput =>
-  //             `${prevOutput}\nTests failing, check your code!`,
-  //         );
-  //       }
-  //     }, 2000);
-  //   }
-  // }
 
   const handlePost = () => {
     setOutput('');
@@ -219,7 +84,7 @@ const Interface = ({
     return () => {
       document.removeEventListener('keyup', handlekeydownEvent);
     };
-  }, [editorState, language]);
+  }, [editorState, language, setOutput]);
 
   return (
     <InterfaceContainer>
