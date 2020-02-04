@@ -18,7 +18,6 @@ const StyledFeedback = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   margin-top: 1rem;
@@ -128,11 +127,11 @@ const Feedback = ({ user, getFeedback, feedback }) => {
           <ChartCardContainer>
             <StudentChart />
           </ChartCardContainer>
+          <h2 className='feedback-title'>Interview Feedback</h2>
         </StyledFeedback>
       )}
       {feedback ? (
         <StyledFeedback className='feedback-card-container'>
-          <h2 className='feedback-title'>Interview Feedback</h2>
           {feedback && feedback.length ? (
             feedback
               .slice(minValue, maxValue)
