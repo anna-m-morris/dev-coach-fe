@@ -33,7 +33,7 @@ const StyledSendMessage = styled.div`
     transition: ease-out 0.1s;
 
     &:hover {
-      background: ##05728f;
+      background: #05728f;
       transition: ease-in 0.1s;
     }
   }
