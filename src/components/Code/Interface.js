@@ -18,8 +18,6 @@ import {
   invokeCode,
   logCode,
   runAllCode,
-  executeCode,
-  fetchExecutedCode,
 } from '../../utils/executionHelpers';
 import devices from '../../utils/devices';
 
@@ -103,27 +101,27 @@ const Interface = ({
   //     .catch(err => {});
   // }
 
-  // function executeCode(testName, value) {
-  //   if (typeof value === 'string') {
-  //     value = `'${value}'`;
-  //   }
-  //   return Axios.post(
-  //     'https://api.judge0.com/submissions?wait=false',
-  //     {
-  //       source_code: `${invokeCode(
-  //         editorState,
-  //         testName,
-  //         value,
-  //         language,
-  //       )}`,
-  //       language_id: `${mapLanguageToId(language)}`,
-  //     },
-  //   );
-  // }
+  function executeCode(testName, value) {
+    if (typeof value === 'string') {
+      value = `'${value}'`;
+    }
+    return Axios.post(
+      'https://api.judge0.com/submissions?wait=false',
+      {
+        source_code: `${invokeCode(
+          editorState,
+          testName,
+          value,
+          language,
+        )}`,
+        language_id: `${mapLanguageToId(language)}`,
+      },
+    );
+  }
 
-  // function fetchExecutedCode(token) {
-  //   return Axios.get(`https://api.judge0.com/submissions/${token}`);
-  // }
+  function fetchExecutedCode(token) {
+    return Axios.get(`https://api.judge0.com/submissions/${token}`);
+  }
 
   async function runAllCode(currentTest) {
     const { testData } = testDataObj[currentTest];
@@ -131,12 +129,7 @@ const Interface = ({
     const testResultsArr = testData.map(el => el.testResult);
     const passedTestsArr = [];
     for (const [idx, el] of testCaseArr.entries()) {
-      const executedCode = await executeCode(
-        currentTest,
-        el,
-        editorState,
-        language,
-      );
+      const executedCode = await executeCode(currentTest, el);
       const { token } = executedCode.data;
       setTimeout(async () => {
         const response = await fetchExecutedCode(token);
@@ -173,7 +166,10 @@ const Interface = ({
             prevOutput =>
               `${prevOutput}\nAll tests passed! Good job.`,
           );
-        } else if (idx === testCaseArr.length - 1) {
+        } else if (
+          idx === testCaseArr.length - 1 &&
+          passedTestsArr.length < testCaseArr.length
+        ) {
           setOutput(
             prevOutput =>
               `${prevOutput}\nTests failing, check your code!`,
