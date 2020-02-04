@@ -22,8 +22,9 @@ import devices from '../../utils/devices';
 const StyledMarketplace = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
-  height: 88vh;
 
   .top {
     display: flex;
