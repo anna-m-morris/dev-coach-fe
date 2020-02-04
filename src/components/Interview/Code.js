@@ -240,7 +240,7 @@ class Code extends Component {
                 this.syncUpdates();
                 // setOutput(res.data.stderr);
               } else {
-                alert('Unable to run code');
+                this.setState('Error executing code');
               }
             })
             .catch(err => {});
@@ -292,7 +292,6 @@ class Code extends Component {
             }) received ${output}\n\n`,
           };
         });
-        this.syncUpdates();
         if (
           idx === testCaseArr.length - 1 &&
           passedTestsArr.length === testCaseArr.length
@@ -315,7 +314,7 @@ class Code extends Component {
           this.syncUpdates();
         }
         console.log(passedTestsArr)
-      }, 2000);
+      }, 2500);
     }
   };
 
