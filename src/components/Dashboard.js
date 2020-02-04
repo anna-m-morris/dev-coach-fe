@@ -186,16 +186,16 @@ const useStyles = makeStyles(theme => ({
     overflow: 'auto',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-around',
     alignItems: 'center',
   },
   container: {
-    height: '100vh',
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  gridContainer: { height: '100%' },
   copyright: {
     textAlign: 'center',
     margin: '2rem 0 1rem 0',
@@ -334,9 +334,6 @@ const Dashboard = props => {
           >
             {props.routes}
           </Grid>
-          <Box pt={4} className={classes.copyright}>
-            <Copyright />
-          </Box>
         </Container>
       </main>
     </div>
