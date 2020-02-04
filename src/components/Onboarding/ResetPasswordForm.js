@@ -25,7 +25,7 @@ const ResetContainer = styled(LoginContainer)`
 
   .form-card-container {
     padding: 1rem;
-    height: 18rem;
+    height: 17rem;
 
     h3 {
       margin: 0;
@@ -36,14 +36,8 @@ const ResetContainer = styled(LoginContainer)`
 
   .form {
     height: 100%;
-  }
-
-  .form-button-container {
-    width: 100%;
-    margin-top: 0.5rem;
-    .form-button {
-      width: 100%;
-      border-radius: 2rem;
+    .form-button-container {
+      margin-top: 0;
     }
   }
 `;
