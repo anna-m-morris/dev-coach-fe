@@ -89,7 +89,7 @@ export const CardContainer = styled.div`
     }
 
     .footer-text {
-      color: #a8a8a8;
+      color: #a0a0a0;
       font-weight: 500;
       margin: 0;
     }
