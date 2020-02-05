@@ -348,7 +348,6 @@ class Code extends Component {
       currentTest: selectedTest,
     });
     if (testDataObj[selectedTest]) {
-      debugger;
       await this.setState({
         editorState: testDataObj[selectedTest].state,
       });
