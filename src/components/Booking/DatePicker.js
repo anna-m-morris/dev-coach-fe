@@ -44,7 +44,6 @@ const StyledCalendar = styled.div`
 `;
 
 const DatePicker = props => {
-  console.log(props);
 
   const mapTopic = id => {
     switch (id) {
