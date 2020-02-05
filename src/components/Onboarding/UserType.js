@@ -14,7 +14,7 @@ const StyledUserType = styled.div`
 
   .users-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin: 2rem 0 4rem 0;
     flex-wrap: wrap;
     align-items: center;
@@ -26,12 +26,12 @@ const StyledUserType = styled.div`
     border-radius: 6px;
     box-shadow: 0 6px 8px #d3d3d3;
     display: flex;
-    flex-direction: column;
-    height: 25rem;
+    height: 22rem;
     justify-content: space-evenly;
-    width: 24rem;
-    padding: 1rem;
-    margin: 0 1rem;
+    width: 22rem;
+    padding: 2rem 1rem;
+    margin: 1rem;
+    flex-direction: column;
   }
 
   .user-description {
@@ -40,15 +40,20 @@ const StyledUserType = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     width: 80%;
+    height: 100%;
 
     ul {
       margin: 0;
       padding: 0;
       font-size: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 100%;
 
       li {
         list-style: none;
-        padding: 1rem 0;
+        /* padding: 0; */
         text-align: center;
         color: #808080;
       }
@@ -56,6 +61,7 @@ const StyledUserType = styled.div`
     h3 {
       font-size: 1.4rem;
       color: #141414;
+      margin: 0;
     }
   }
   .user-decision button {
