@@ -4,12 +4,18 @@ import Modal from 'antd/lib/modal';
 import Avatar from '@material-ui/core/Avatar';
 import styled from 'styled-components';
 import Rating from '../DataVisualization/Rating';
+import devices from '../../utils/devices';
 
 const ModalContainer = styled.div`
   .open-modal-text {
     color: #4fad65;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     cursor: pointer;
+    margin: 1rem 0 0 0;
+
+    @media ${devices.tablet} {
+      margin: 1rem 0;
+    }
   }
 `;
 
@@ -64,7 +70,9 @@ const FeedbackModal = props => {
             style={{ margin: '1.2rem 0' }}
           >
             <p style={{ fontSize: '1.1rem' }}>Feedback</p>
-            <p className='feedback-text'>{feedback}</p>
+            <p className='feedback-text' style={{ fontSize: '1rem' }}>
+              {feedback}
+            </p>
           </div>
           <Divider />
           <div

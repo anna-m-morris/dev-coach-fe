@@ -42,7 +42,7 @@ export const MainContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     background: #292d38;
-    margin: 10rem 0;
+    margin: 8.5rem 0;
     padding: 3rem 1rem;
 
     h4 {
@@ -66,9 +66,9 @@ export const MainContainer = styled.div`
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      height: 25rem;
-      max-width: 25rem;
-      margin-top: 3rem;
+      height: 24rem;
+      width: 23rem;
+      margin: 3rem 0.8rem 0 0.8rem;
 
       @media ${devices.mobile} {
         width: 80%;
@@ -100,7 +100,7 @@ export const MainContainer = styled.div`
       }
 
       p {
-        font-size: 1rem;
+        font-size: 1.2rem;
         padding: 0 2.2rem;
         text-align: center;
         color: #545454;
@@ -111,7 +111,7 @@ export const MainContainer = styled.div`
   }
 
   .user-stories-container {
-    margin-bottom: 10rem;
+    margin-bottom: 8.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
