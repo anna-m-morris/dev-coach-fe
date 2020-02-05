@@ -65,7 +65,7 @@ export const StyledButton = styled.button`
   padding: 1em 2em;
   border: none;
   font-family: Nunito;
-  font-size: 1rem;
+  font-size: 1.2rem;
   transition: ease-out 0.1s;
 
   :hover {
