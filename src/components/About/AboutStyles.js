@@ -71,7 +71,7 @@ export default styled.div`
   }
 
   .name {
-    color: #4fad65;
+    color: #4f5450
     font-size: 2.2rem;
     margin: 1rem 0;
   }
@@ -101,7 +101,7 @@ export default styled.div`
 
   .fab {
     font-size: 2.6rem;
-    color: #333;
+    color: #4f5450;
   }
 
   .fa-github-square {
