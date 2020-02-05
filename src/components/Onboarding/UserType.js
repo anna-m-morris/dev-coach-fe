@@ -8,14 +8,16 @@ const StyledUserType = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
 
   .users-container {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    height: 100%;
     margin: 2rem 0 4rem 0;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
   .user-type-container {
@@ -25,10 +27,11 @@ const StyledUserType = styled.div`
     box-shadow: 0 6px 8px #d3d3d3;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 25rem;
     justify-content: space-evenly;
-    width: 40%;
+    width: 24rem;
     padding: 1rem;
+    margin: 0 1rem;
   }
 
   .user-description {
@@ -41,6 +44,7 @@ const StyledUserType = styled.div`
     ul {
       margin: 0;
       padding: 0;
+      font-size: 1.1rem;
 
       li {
         list-style: none;
@@ -53,6 +57,10 @@ const StyledUserType = styled.div`
       font-size: 1.4rem;
       color: #141414;
     }
+  }
+  .user-decision button {
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem;
   }
 `;
 

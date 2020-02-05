@@ -28,7 +28,7 @@ import About from './components/About/About';
 
 const globalTheme = createMuiTheme({
   typography: {
-    fontFamily: ['Nunito', 'Helvetica', 'sans serif'].join(','),
+    fontFamily: ['Nunito', 'helvetica', 'sans-serif'].join(','),
   },
 });
 
