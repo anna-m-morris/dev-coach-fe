@@ -21,10 +21,33 @@ const StyledCalendar = styled.div`
     padding: 1rem;
     border-radius: 6px;
     box-shadow: 0 6px 10px #d3d3d3;
+    font-family: Nunito;
+
+    .ant-fullcalendar-selected-day {
+      .ant-fullcalendar-value {
+        background: #4fad65;
+        border-color: #4fad65;
+        box-shadow: 0 0 0 1px #4fad65 inset;
+        -webkit-box-shadow: 0 0 0 1px #4fad65 inset;
+      }
+    }
+
+    .ant-fullcalendar-today {
+      .ant-fullcalendar-value {
+        box-shadow: 0 0 0 1px #4fad65 inset;
+        -webkit-box-shadow: 0 0 0 1px #4fad65 inset;
+      }
+    }
+
+    /* .ant-fullcalendar-date {
+      .ant-fullcalendar-value {
+        box-shadow: 0 0 0 1px #4fad65 inset;
+      }
+    } */
   }
 
   .right {
-    height: 24em;
+    height: 25em;
     width: 24em;
     padding: 2em;
     text-align: center;
@@ -44,7 +67,6 @@ const StyledCalendar = styled.div`
 `;
 
 const DatePicker = props => {
-
   const mapTopic = id => {
     switch (id) {
       default:
