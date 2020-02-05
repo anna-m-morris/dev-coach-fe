@@ -54,7 +54,7 @@ const About = () => {
             <a target='blank' href='https://github.com/ojokure'>
               <i className='fab fa-github-square'></i>
             </a>
-            <a href='#'>
+            <a href='https://www.linkedin.com/in/oladimejiojo/'>
               <i className='fab fa-linkedin'></i>
             </a>
           </div>
@@ -74,7 +74,7 @@ const About = () => {
             <a target='blank' href='https://github.com/funmi7'>
               <i className='fab fa-github-square'></i>
             </a>
-            <a href='#'>
+            <a href='https://www.linkedin.com/in/funmilayo-talabi/'>
               <i className='fab fa-linkedin'></i>
             </a>
           </div>
@@ -94,7 +94,7 @@ const About = () => {
             <a target='blank' href='https://github.com/jaynecn'>
               <i className='fab fa-github-square'></i>
             </a>
-            <a href='#'>
+            <a href='https://www.linkedin.com/in/jaynecarmichaelnorrie/'>
               <i className='fab fa-linkedin'></i>
             </a>
           </div>
@@ -114,7 +114,7 @@ const About = () => {
             <a target='blank' href='https://github.com/domeccleston'>
               <i className='fab fa-github-square'></i>
             </a>
-            <a href='#'>
+            <a href='https://www.linkedin.com/in/dom-eccleston/'>
               <i className='fab fa-linkedin'></i>
             </a>
           </div>
@@ -130,7 +130,7 @@ const About = () => {
             <a target='blank' href='https://github.com/curm90'>
               <i className='fab fa-github-square'></i>
             </a>
-            <a href='#'>
+            <a href='https://www.linkedin.com/in/liam-sutton90/'>
               <i className='fab fa-linkedin'></i>
             </a>
           </div>
