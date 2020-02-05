@@ -56,26 +56,13 @@ const StyledCoachCard = styled.div`
     }
   }
 
-  .bullet-points {
-    * {
-    }
-
     .location-bullet {
       .location-icon {
         margin-left: 0.1em;
         padding-right: 0.1em;
       }
     }
-
-    .experience-bullet {
-      .experience-icon {
-      }
-    }
   }
-
-  .description {
-  }
-
   .reviews {
     display: flex;
     justify-content: flex-start;
@@ -97,15 +84,13 @@ const StyledCoachCard = styled.div`
       width: 47%;
     }
 
-
-
-    .button {
-      width: 100%;
+    .chat-button {
       background-color: #4fad65;
+      width: 110px;
+    }
 
-      &:hover {
-        background: #1e3f1f;
-      }
+    .book-button {
+      width: 110px;
     }
   }
 `;
@@ -160,7 +145,7 @@ export const CoachCard = props => {
           <Button
             variant='contained'
             color='primary'
-            className='send-button'
+            className='chat-button'
             endIcon={<TelegramIcon />}
           >
             Chat
@@ -168,7 +153,7 @@ export const CoachCard = props => {
         </Link>
         <Link to='/appointment' onClick={saveCoach}>
           <Button
-            className='button'
+            className='book-button'
             variant='contained'
             color='primary'
             endIcon={<ShoppingCartIcon />}
