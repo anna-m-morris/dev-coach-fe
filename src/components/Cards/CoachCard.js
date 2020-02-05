@@ -15,7 +15,7 @@ const StyledCoachCard = styled.div`
   justify-content: center;
   width: 17rem;
   height: 24rem;
-  padding: 2.4rem;
+  padding: 1.5rem;
   border-radius: 0.8rem;
   margin: 0.5rem;
   color: #595959;
@@ -143,7 +143,7 @@ export const CoachCard = props => {
       </div>
       <div className='description'>
         <p>{`${coach.description &&
-          coach.description.slice(0, 70)}...`}</p>{' '}
+          coach.description.slice(0, 100)}...`}</p>{' '}
       </div>
 
       <div className='reviews'>
