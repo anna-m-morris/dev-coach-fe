@@ -66,9 +66,9 @@ export const MainContainer = styled.div`
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      height: 25rem;
+      height: 24rem;
       width: 23rem;
-      margin: 3rem 0.8rem 0 0.08rem;
+      margin: 3rem 0.8rem 0 0.8rem;
 
       @media ${devices.mobile} {
         width: 80%;
@@ -100,7 +100,7 @@ export const MainContainer = styled.div`
       }
 
       p {
-        font-size: 1rem;
+        font-size: 1.2rem;
         padding: 0 2.2rem;
         text-align: center;
         color: #545454;
