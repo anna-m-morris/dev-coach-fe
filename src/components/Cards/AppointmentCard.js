@@ -3,6 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import CloseIcon from '@material-ui/icons/Close';
 import CodeIcon from '@material-ui/icons/Code';
 import TodayIcon from '@material-ui/icons/Today';
 import TimelapseIcon from '@material-ui/icons/Timelapse';
@@ -14,6 +15,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import devices from '../../utils/devices';
+import { mapExperience } from '../../utils/mappers';
 
 const StyledCoachCard = styled.div`
   display: flex;
@@ -25,7 +27,7 @@ const StyledCoachCard = styled.div`
   border-radius: 0.8rem;
   margin: 0.5rem;
   color: #595959;
-  font-weight: 600;
+  font-weight: 400;
   background: white;
   box-shadow: 0 6px 10px #d3d3d3;
 
@@ -37,6 +39,13 @@ const StyledCoachCard = styled.div`
     justify-content: space-around;
     align-items: center;
     width: 100%;
+
+    .close-icon {
+      margin-top: -2.8em;
+      margin-left: -0.55em;
+      opacity: 0.75;
+    }
+
     .header-text {
       width: 100%;
     }
@@ -101,53 +110,14 @@ const StyledCoachCard = styled.div`
 
     .send-button {
       background-color: #4fad65;
-      width: 108px;
-    }
-
-    .cancel-button {
-      width: 108px;
     }
 
     @media ${devices.mobile} {
       flex-direction: column;
       justify-content: center;
-
-      .button {
-        width: 100%;
-        margin-top: 5px;
-        text-align: center;
-      }
-    }
-  }
-
-  .interview {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 0.5rem;
-
-    .interview-button {
-      width: 100%;
-      height: 100%;
-      margin: 0;
     }
   }
 `;
-
-export const mapExperience = experience => {
-  switch (experience) {
-    default:
-      return '';
-    case 1:
-      return 'Junior developer';
-    case 2:
-      return 'Mid-level developer';
-    case 3:
-      return 'Senior developer';
-    case 4:
-      return 'Highly experienced developer';
-  }
-};
 
 export const AppointmentCard = props => {
   const {
@@ -171,6 +141,10 @@ export const AppointmentCard = props => {
     <>
       <StyledCoachCard>
         <div className='header'>
+          <CloseIcon
+            className='close-icon'
+            onClick={handleClickOpen}
+          ></CloseIcon>
           <div className='header-text'>
             <h3>{`${appointment.first_name} ${appointment.last_name}`}</h3>
             <h4>{mapExperience(appointment.experience_level)}</h4>
@@ -212,33 +186,21 @@ export const AppointmentCard = props => {
         </div>
         <div className='footer'>
           <Button
-            onClick={handleClickOpen}
-            size='small'
-            className='cancel-button'
-            variant='contained'
-            color='secondary'
-            startIcon={<DeleteIcon />}
-          >
-            Cancel
-          </Button>
-          <Button
             size='small'
             className='send-button'
             variant='contained'
             color='primary'
-            endIcon={<TelegramIcon fontSize='large' />}
+            startIcon={<TelegramIcon fontSize='large' />}
             onClick={savePeer}
           >
             Chat
           </Button>
-        </div>
-        <div className='interview'>
           <Button
             size='small'
             className='interview-button'
             variant='contained'
             color='primary'
-            endIcon={<VideoCallIcon />}
+            startIcon={<VideoCallIcon />}
             onClick={startInterview}
           >
             Interview

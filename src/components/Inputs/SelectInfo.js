@@ -60,7 +60,7 @@ const SelectInfo = props => {
         >
           <MenuItem value={1}>Frontend</MenuItem>
           <MenuItem value={2}>Backend</MenuItem>
-          <MenuItem value={3}>Algortihms / Data Structures</MenuItem>
+          <MenuItem value={3}>Algorithms / Data Structures</MenuItem>
           <MenuItem value={4}>Behavorial Interview</MenuItem>
           <MenuItem value={5}>System Design</MenuItem>
           <MenuItem value={6}>React</MenuItem>
