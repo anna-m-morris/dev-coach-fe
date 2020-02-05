@@ -20,12 +20,26 @@ export default styled.div`
     }
   }
 
+  .title {
+    color: #4fad65;
+    font-size: 1.8rem;
+
+    h1 {
+      margin: 0;
+      margin-bottom: 2.5rem;
+    }
+  }
+
   .about-cards-container {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+  }
+
+  .about-card {
+    margin-bottom: 2rem;
   }
 
   .info {
