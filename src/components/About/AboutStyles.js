@@ -5,6 +5,7 @@ export default styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   .navigation {
     width: 100%;
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
@@ -17,5 +18,13 @@ export default styled.div`
         opacity: none;
       }
     }
+  }
+
+  .about-cards-container {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
   }
 `;
