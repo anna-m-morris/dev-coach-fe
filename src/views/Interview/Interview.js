@@ -101,10 +101,10 @@ const VideoChat = ({
   const handleLogout = useCallback(
     event => {
       setToken(null);
-      finishInterview(idRole.id);
+      finishInterview(idRole.appointment_id);
       history.push('/givefeedback');
     },
-    [history],
+    [history, idRole.appointment_id, finishInterview],
   );
 
   let render;
