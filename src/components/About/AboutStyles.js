@@ -87,17 +87,6 @@ export default styled.div`
     margin: 0;
   }
 
-  .contact {
-    color: #4fad65;
-    /* padding: 0.8rem 2.5rem; */
-    text-decoration: none;
-    /* color: white; */
-    margin: 2rem 0;
-    /* border-radius: 2rem; */
-    font-size: 1.6rem;
-    font-weight: bold;
-  }
-
   .social-container {
     width: 10rem;
     display: flex;
