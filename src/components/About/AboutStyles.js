@@ -49,7 +49,7 @@ export default styled.div`
     padding: 1rem;
     border-radius: 3px;
     width: 22rem;
-    background: #d0ead6;
+    background: #daefdf;
   }
 
   .image {
@@ -62,5 +62,12 @@ export default styled.div`
   .name {
     color: #4fad65;
     font-size: 2.2rem;
+    margin: 1rem 0;
+  }
+
+  .position {
+    color: #655f69;
+    font-size: 1.3rem;
+    margin: 0;
   }
 `;

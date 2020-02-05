@@ -20,42 +20,42 @@ const About = () => {
           <img className='image' src={ben} alt='profile-pic' />
           <div className='info'>
             <h4 className='name'>Benjamin Grabow</h4>
-            <p className='postition'>Full Stack Developer</p>
+            <p className='position'>Full Stack Developer</p>
           </div>
         </div>
         <div className='about-card'>
           <img className='image' src={ola} alt='profile-pic' />
           <div className='info'>
             <h4 className='name'>Oladimeji Ojo</h4>
-            <p className='postition'>Full Stack Developer</p>
+            <p className='position'>Full Stack Developer</p>
           </div>
         </div>
         <div className='about-card'>
           <img className='image' src={funmi} alt='profile-pic' />
           <div className='info'>
             <h4 className='name'>Olufunmilayo Talabi</h4>
-            <p className='postition'>Full Stack Developer</p>
+            <p className='position'>Full Stack Developer</p>
           </div>
         </div>
         <div className='about-card'>
           <img className='image' src={jayne} alt='profile-pic' />
           <div className='info'>
             <h4 className='name'>Jayne Norrie</h4>
-            <p className='postition'>Full Stack Developer</p>
+            <p className='position'>Full Stack Developer</p>
           </div>
         </div>
         <div className='about-card'>
           <img className='image' src={dom} alt='profile-pic' />
           <div className='info'>
             <h4 className='name'>Dom Eccleston</h4>
-            <p className='postition'>Full Stack Developer</p>
+            <p className='position'>Full Stack Developer</p>
           </div>
         </div>
         <div className='about-card'>
           <img className='image' src={me} alt='profile-pic' />
           <div className='info'>
             <h4 className='name'>Liam Sutton</h4>
-            <p className='postition'>Full Stack Developer</p>
+            <p className='position'>Full Stack Developer</p>
           </div>
         </div>
       </div>
