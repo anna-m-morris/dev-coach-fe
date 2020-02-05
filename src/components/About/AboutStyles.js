@@ -41,13 +41,13 @@ export default styled.div`
 
   .about-card {
     margin-bottom: 2rem;
-    box-shadow: 4px 4px 4px #ccc;
+    box-shadow: 0 4px 12px #ccc;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    border-radius: 3px;
+    border-radius: 6px;
     width: 22rem;
     background: #daefdf;
   }
@@ -68,6 +68,10 @@ export default styled.div`
     margin-top: -10rem;
     z-index: 1000;
     border: 1rem solid #daefdf;
+  }
+
+  .info {
+    margin: 1rem 0 3rem 0;
   }
 
   .name {
