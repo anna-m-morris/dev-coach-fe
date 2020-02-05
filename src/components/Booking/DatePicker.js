@@ -4,8 +4,8 @@ import Calendar from 'antd/lib/calendar';
 import 'antd/lib/calendar/style/index.css';
 import 'antd/lib/select/style/index.css';
 import 'antd/lib/radio/style/index.css';
+import moment from 'moment';
 import devices from '../../utils/devices';
-
 import TimePicker from './TimePicker';
 
 const StyledCalendar = styled.div`
@@ -24,6 +24,12 @@ const StyledCalendar = styled.div`
   }
 
   .right {
+    height: 24em;
+    width: 24em;
+    padding: 1em;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 6px 10px #d3d3d3;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -38,6 +44,38 @@ const StyledCalendar = styled.div`
 `;
 
 const DatePicker = props => {
+  console.log(props);
+
+  const mapTopic = id => {
+    switch (id) {
+      default:
+        return '';
+      case 1:
+        return 'frontend';
+      case 2:
+        return 'backend';
+      case 3:
+        return 'algorithms & data structures';
+      case 4:
+        return 'behavioural';
+      case 5:
+        return 'system design';
+      case 6:
+        return 'React';
+    }
+  };
+
+  const mapLength = id => {
+    switch (id) {
+      default:
+        return '';
+      case 1:
+        return 'half hour';
+      case 2:
+        return 'one hour';
+    }
+  };
+
   return (
     <StyledCalendar className='appointment-container'>
       <div className='calender-container'>
@@ -52,7 +90,15 @@ const DatePicker = props => {
           saveDate={date => props.saveDate(date)}
           date={props.date}
         />
-        <h1>{props.date ? props.date.slice(0, 21) : null}</h1>
+        <h1>
+          {props.date
+            ? `Your ${mapLength(props.select.length_id)} ${mapTopic(
+                props.select.topic_id,
+              )} interview will take place on ${moment(
+                props.date,
+              ).format('MMMM Do YYYY, h:mm a')}.`
+            : null}
+        </h1>
       </div>
     </StyledCalendar>
   );
