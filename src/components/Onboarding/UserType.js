@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 import { StyledButton, buttonTheme } from '../Landing/Landing-styles';
 import { saveRoleId } from '../../state/actions/authenticationActions';
 
@@ -56,7 +57,7 @@ const StyledUserType = styled.div`
   }
 `;
 
-const UserTypePage = ({ saveRoleId, handleNext }) => {
+const UserTypePage = ({ userReducer, saveRoleId, handleNext }) => {
   return (
     <StyledUserType>
       <div className='users-container'>
@@ -81,6 +82,14 @@ const UserTypePage = ({ saveRoleId, handleNext }) => {
               theme={buttonTheme}
               onClick={() => saveRoleId(handleNext, 2)}
             >
+              {userReducer.isLoading && (
+                <Loader
+                  type='TailSpin'
+                  color='white'
+                  height={20}
+                  width={20}
+                />
+              )}
               Join As Coach
             </StyledButton>
           </div>
@@ -105,6 +114,14 @@ const UserTypePage = ({ saveRoleId, handleNext }) => {
               theme={buttonTheme}
               onClick={() => saveRoleId(handleNext, 1)}
             >
+              {userReducer.isLoading && (
+                <Loader
+                  type='TailSpin'
+                  color='white'
+                  height={20}
+                  width={20}
+                />
+              )}
               Join As Student
             </StyledButton>
           </div>

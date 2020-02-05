@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import Loader from 'react-loader-spinner';
 
 import {
   StyledButton,
@@ -75,6 +76,14 @@ const LoginForm = ({
                 type='submit'
                 disabled={isSubmitting}
               >
+                {userReducer.isLoading && (
+                  <Loader
+                    type='TailSpin'
+                    color='white'
+                    height={20}
+                    width={20}
+                  />
+                )}
                 Sign in
               </StyledButton>
             </div>

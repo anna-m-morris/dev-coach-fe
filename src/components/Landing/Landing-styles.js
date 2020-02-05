@@ -67,6 +67,8 @@ export const StyledButton = styled.button`
   font-family: Nunito;
   font-size: 1rem;
   transition: ease-out 0.1s;
+  display: flex;
+  justify-content: center;
 
   :hover {
     cursor: pointer;
