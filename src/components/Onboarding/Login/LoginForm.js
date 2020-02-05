@@ -22,75 +22,79 @@ const LoginForm = ({
 }) => {
   return (
     <LoginContainer className='Login-container'>
-      <Navigation class='navigation' />
-      <div className='form-card-container'>
-        <div className='message-container'>
-          <h1 className='form-title'>Welcome back</h1>
-        </div>
-        <div className='form-container'>
-          <Form className='form'>
-            <div className='input-container'>
-              <Field
-                className='form-input'
-                type='email'
-                name='email'
-                placeholder='Email'
-              />
-              {errors.email && touched.email && (
-                <p className='error'>{errors.email}</p>
-              )}
-            </div>
-            <div className='input-container'>
-              <Field
-                className='form-input'
-                type='password'
-                name='password'
-                placeholder='Password'
-              />
-              {userReducer.loginError ? (
-                <p className='error'>{userReducer.loginError}</p>
-              ) : (
-                errors.password &&
-                touched.password && (
-                  <p className='error'>{errors.password}</p>
-                )
-              )}
-            </div>
-            <div className='options-container'>
-              <div className='remember-me'>
-                <input type='checkbox' />
-                <p>Remember Me</p>
-              </div>
-              <Link className='forgot-password' to='/resetPassword'>
-                <p>Forgot your password?</p>
-              </Link>
-            </div>
-            <div className='form-button-container'>
-              <StyledButton
-                className='form-button'
-                theme={
-                  userReducer.isLoading
-                    ? loadingButtonTheme
-                    : buttonTheme
-                }
-                type='submit'
-                disabled={isSubmitting}
-              >
-                {userReducer.isLoading && (
-                  <Loader
-                    type='TailSpin'
-                    color='white'
-                    height={20}
-                    width={20}
-                  />
+      <div className='navigation-container'>
+        <Navigation class='navigation' />
+      </div>
+      <div className='content-container'>
+        <div className='form-card-container'>
+          <div className='message-container'>
+            <h1 className='form-title'>Welcome back</h1>
+          </div>
+          <div className='form-container'>
+            <Form className='form'>
+              <div className='input-container'>
+                <Field
+                  className='form-input'
+                  type='email'
+                  name='email'
+                  placeholder='Email'
+                />
+                {errors.email && touched.email && (
+                  <p className='error'>{errors.email}</p>
                 )}
-                Sign in
-              </StyledButton>
+              </div>
+              <div className='input-container'>
+                <Field
+                  className='form-input'
+                  type='password'
+                  name='password'
+                  placeholder='Password'
+                />
+                {userReducer.loginError ? (
+                  <p className='error'>{userReducer.loginError}</p>
+                ) : (
+                  errors.password &&
+                  touched.password && (
+                    <p className='error'>{errors.password}</p>
+                  )
+                )}
+              </div>
+              <div className='options-container'>
+                <div className='remember-me'>
+                  <input type='checkbox' />
+                  <p>Remember Me</p>
+                </div>
+                <Link className='forgot-password' to='/resetPassword'>
+                  <p>Forgot your password?</p>
+                </Link>
+              </div>
+              <div className='form-button-container'>
+                <StyledButton
+                  className='form-button'
+                  theme={
+                    userReducer.isLoading
+                      ? loadingButtonTheme
+                      : buttonTheme
+                  }
+                  type='submit'
+                  disabled={isSubmitting}
+                >
+                  {userReducer.isLoading && (
+                    <Loader
+                      type='TailSpin'
+                      color='white'
+                      height={20}
+                      width={20}
+                    />
+                  )}
+                  Sign in
+                </StyledButton>
+              </div>
+            </Form>
+            <div className='alternate-form-container'>
+              <p>Dont't have an account?</p>
+              <Link to='/register'>Sign up</Link>
             </div>
-          </Form>
-          <div className='alternate-form-container'>
-            <p>Dont't have an account?</p>
-            <Link to='/register'>Sign up</Link>
           </div>
         </div>
       </div>

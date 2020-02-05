@@ -18,12 +18,16 @@ const EditorContainer = styled.div`
   width: 50%;
   height: 100%;
 
+  * {
+    font-family: 'Inconsolata', sans-serif;
+  }
+
   .codemirror {
     height: 100%;
   }
 `;
 
-const Editor = ({ editorState, setEditorState, language }) => {
+export const Editor = ({ editorState, setEditorState, language }) => {
   return (
     <EditorContainer>
       <CodeMirror
@@ -37,14 +41,14 @@ const Editor = ({ editorState, setEditorState, language }) => {
               ? 'clike'
               : language
           }`,
-          indentUnit: 4,
+          indentWithTabs: true,
           theme: 'lucario',
           lineNumbers: true,
           lineWrapping: true,
           styleActiveLine: true,
           autoCloseBrackets: true,
           gutters: ['CodeMirror-lint-markers'],
-          lint: true,
+          lint: { esversion: '6' },
         }}
         onBeforeChange={(editor, data, value) =>
           setEditorState(value)

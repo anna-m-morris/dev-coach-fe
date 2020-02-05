@@ -66,7 +66,7 @@ const Participant = ({ participant, className, audio }) => {
   return (
     <div className='participant-video-container'>
       <video
-        style={{ backgroundColor: 'black' }}
+        style={{  objectFit: 'cover' }}
         className={className}
         ref={videoRef}
         autoPlay={true}

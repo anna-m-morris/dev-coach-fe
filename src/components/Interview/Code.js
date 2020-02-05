@@ -4,13 +4,19 @@ import pushid from 'pushid';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { Controlled as CodeMirror } from 'react-codemirror2';
+import { JSHINT } from 'jshint';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/python/python';
 import 'codemirror/mode/clike/clike';
+import 'codemirror/addon/edit/closebrackets';
+import 'codemirror/addon/lint/lint.css';
+import 'codemirror/addon/lint/lint';
+import 'codemirror/addon/lint/json-lint';
+import 'codemirror/addon/lint/javascript-lint';
+import 'codemirror/addon/selection/active-line';
 import styled from 'styled-components';
 import Terminal from '../../components/Interview/Terminal';
 import Room from '../../components/Interview/Room';
-import { isEqual } from 'lodash';
 import {
   Button,
   FormControl,
@@ -21,7 +27,13 @@ import {
 import {
   mapLanguageToId,
   mapLanguageToEditorState,
+  executeCode,
+  testDataObj,
+  fetchExecutedCode,
 } from '../../utils/executionHelpers';
+import devices from '../../utils/devices';
+
+window.JSHINT = JSHINT;
 
 const FlexContainer = styled.div`
   display: flex;
@@ -49,24 +61,42 @@ const FlexContainer = styled.div`
 `;
 
 const EditorContainer = styled.div`
-  width: 50%;
+  width: 55%;
   height: 100%;
 
   .codemirror {
     height: 100%;
   }
+
+  * {
+    font-family: 'Inconsolata', sans-serif;
+  }
 `;
 
 const InterfaceContainer = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 
-  .toggle-button {
-    height: 52px;
-    width: 52px;
+  .title {
+    text-align: center;
   }
+
+  .form-control {
+    width: 30%;
+  }
+
+  .input-label {
+    @media ${devices.mobile} {
+      display: none;
+    }
+  }
+`;
+
+const TerminalVideoContainer = styled.div`
+  width: 45%;
+  height: 100%;
 `;
 
 class Code extends Component {
@@ -76,6 +106,7 @@ class Code extends Component {
       id: '',
       output: '',
       editorState: '',
+      currentTest: '',
       language: 'javascript',
       channelName:
         this.props.user.role_id === 1
@@ -92,6 +123,8 @@ class Code extends Component {
   }
 
   componentDidMount() {
+    document.addEventListener('keyup', this.handlekeydownEvent);
+
     this.setState({
       id: pushid(),
     });
@@ -106,6 +139,10 @@ class Code extends Component {
         language: data.language,
       });
     });
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this.handlekeydownEvent);
   }
 
   syncUpdates = () => {
@@ -126,51 +163,56 @@ class Code extends Component {
     `;
   };
 
-  testCode = (testCase, value) => {
-    axios
-      .post('https://api.judge0.com/submissions?wait=false', {
-        source_code: `${this.invokeCode(
-          this.state.editorState,
-          testCase,
-          value,
-        )}`,
-        language_id: `${mapLanguageToId(this.state.language)}`,
-      })
-      .then(res => {
-        setTimeout(() => {
-          axios
-            .get(
-              `https://api.judge0.com/submissions/${res.data.token}`,
-            )
-            .then(res => {
-              if (res.data.stdout) {
-                // setOutput(
-                //   prevArr =>
-                //     `${prevArr}Against test input of ${value}, your code returned: ${res.data.stdout}`,
-                // );
-                this.setState({
-                  output: `${this.state.output}Against test input of ${value}, your code returned: ${res.data.stdout}`,
-                });
-                this.syncUpdates();
-              } else if (res.data.compile_output) {
-                // setOutput(`Error:  + ${res.data.compile_output}`);
-                this.setState({
-                  output: `Error:  + ${res.data.compile_output}`,
-                });
-                this.syncUpdates();
-              } else {
-                // setOutput('Unable to run code');
-                this.setState({
-                  output: `Error:  + ${res.data.compile_output}`,
-                });
-                this.syncUpdates();
-              }
-            })
-            .catch(err => {});
-        }, 2000);
-      })
-      .catch(err => {});
+  setOutput = value => {
+    this.setState({ output: value });
+    this.syncUpdates();
   };
+
+  // testCode = (testCase, value) => {
+  //   axios
+  //     .post('https://api.judge0.com/submissions?wait=false', {
+  //       source_code: `${this.invokeCode(
+  //         this.state.editorState,
+  //         testCase,
+  //         value,
+  //       )}`,
+  //       language_id: `${mapLanguageToId(this.state.language)}`,
+  //     })
+  //     .then(res => {
+  //       setTimeout(() => {
+  //         axios
+  //           .get(
+  //             `https://api.judge0.com/submissions/${res.data.token}`,
+  //           )
+  //           .then(res => {
+  //             if (res.data.stdout) {
+  //               // setOutput(
+  //               //   prevArr =>
+  //               //     `${prevArr}Against test input of ${value}, your code returned: ${res.data.stdout}`,
+  //               // );
+  //               this.setState({
+  //                 output: `${this.state.output}Against test input of ${value}, your code returned: ${res.data.stdout}`,
+  //               });
+  //               this.syncUpdates();
+  //             } else if (res.data.compile_output) {
+  //               // setOutput(`Error:  + ${res.data.compile_output}`);
+  //               this.setState({
+  //                 output: `Error:  + ${res.data.compile_output}`,
+  //               });
+  //               this.syncUpdates();
+  //             } else {
+  //               // setOutput('Unable to run code');
+  //               this.setState({
+  //                 output: `Error:  + ${res.data.compile_output}`,
+  //               });
+  //               this.syncUpdates();
+  //             }
+  //           })
+  //           .catch(err => {});
+  //       }, 2000);
+  //     })
+  //     .catch(err => {});
+  // };
 
   logCode = () => {
     axios
@@ -198,7 +240,8 @@ class Code extends Component {
                 this.syncUpdates();
                 // setOutput(res.data.stderr);
               } else {
-                alert('Unable to run code');
+                this.setState('Error executing code');
+                this.syncUpdates();
               }
             })
             .catch(err => {});
@@ -207,44 +250,108 @@ class Code extends Component {
       .catch(err => {});
   };
 
-  // const testResultsSquare = [25, 100, 5513104];
-  // const squareSolution = el => el * el;
-
-  checkTests = (testCases, expectedValues, solution) => {
-    if (
-      isEqual(
-        testCases.map(el => solution(el)),
-        expectedValues,
-      )
-    ) {
-      return true;
+  handlekeydownEvent = event => {
+    if (event.keyCode === 13 && event.ctrlKey) {
+      this.logCode();
     }
-    return false;
+  };
+
+  runAllCode = async (currentTest, language, editorState) => {
+    const { testData } = testDataObj[currentTest];
+    const testCaseArr = testData.map(el => el.testCase);
+    const testResultsArr = testData.map(el => el.testResult);
+    const passedTestsArr = [];
+    for (const [idx, el] of testCaseArr.entries()) {
+      const executedCode = await executeCode(
+        currentTest,
+        el,
+        editorState,
+        language,
+      );
+      const { token } = executedCode.data;
+      setTimeout(async () => {
+        const response = await fetchExecutedCode(token);
+        let output = response.data.stdout;
+        if (
+          typeof testResultsArr[idx] === 'string' &&
+          response.data.stdout
+        ) {
+          output = response.data.stdout.substring(
+            0,
+            response.data.stdout.length - 1,
+          );
+        }
+        if (output === testResultsArr[idx]) {
+          passedTestsArr.push('true');
+        }
+        this.setState(prevState => {
+          return {
+            output: `${prevState.output}Test ${idx +
+              1}: ${currentTest}(${
+              testCaseArr[idx]
+            }) received ${output}\n\n`,
+          };
+        });
+        this.syncUpdates();
+        if (
+          idx === testCaseArr.length - 1 &&
+          passedTestsArr.length === testCaseArr.length
+        ) {
+          this.setState(prevState => {
+            return {
+              output: `${prevState.output}\nAll tests passed! Good job.`,
+            };
+          });
+          this.syncUpdates();
+        } else if (
+          idx === testCaseArr.length - 1 &&
+          passedTestsArr.length < testCaseArr.length
+        ) {
+          this.setState(prevState => {
+            return {
+              output: `${prevState.output}\nTests failing, check your code!`,
+            };
+          });
+          this.syncUpdates();
+        }
+      }, 2500);
+    }
   };
 
   handlePost = () => {
-    // setOutput([]);
-    // const testCasesSquare = [5, 10, 2348];
     this.setState({ output: [] });
     this.syncUpdates();
-    // if (mapLanguageToId(this.state.language) === 63) {
-    // setOutput(`Running tests...\n`);
-    //   this.setState({ output: `Running tests...\n` });
-    //   this.syncUpdates();
-    //   testCasesSquare.forEach(el => this.testCode('square', el));
-    // } else {
+    if (this.state.currentTest) {
+      this.runAllCode(
+        this.state.currentTest,
+        this.state.language,
+        this.state.editorState,
+      );
+    }
     this.logCode();
-    // }
   };
 
-  handleSelection = event => {
+  handleSelection = async event => {
     // setLanguage(event.target.value);
     // setEditorState(mapLanguageToEditorState(event.target.value));
-    this.setState({
+    await this.setState({
       language: event.target.value,
       editorState: mapLanguageToEditorState(event.target.value),
     });
 
+    this.syncUpdates();
+  };
+
+  handleTestSelection = async event => {
+    const selectedTest = event.target.value;
+    await this.setState({
+      currentTest: selectedTest,
+    });
+    if (testDataObj[selectedTest]) {
+      await this.setState({
+        editorState: testDataObj[selectedTest].state,
+      });
+    }
     this.syncUpdates();
   };
 
@@ -253,11 +360,12 @@ class Code extends Component {
       <FlexContainer>
         <div className='code-header-container'>
           <InterfaceContainer>
-            <h1>Code Editor</h1>
-            <FormControl>
-              <InputLabel>Select Programming Language</InputLabel>
+            <h1 className='title'>DevCoach IDE</h1>
+            <FormControl className='form-control'>
+              <InputLabel className='input-label'>
+                Select Programming Language
+              </InputLabel>
               <Select
-                style={{ width: '20em' }}
                 value={this.state.language}
                 onChange={this.handleSelection}
               >
@@ -268,13 +376,23 @@ class Code extends Component {
                 <MenuItem value='cpp'>C++</MenuItem>
               </Select>
             </FormControl>
-            <FormControl>
-              <InputLabel>Select Coding Challenge</InputLabel>
-              <Select readOnly style={{ width: '20em' }} value=''>
+            <FormControl className='form-control'>
+              <InputLabel className='input-label'>
+                Select Coding Challenge
+              </InputLabel>
+              <Select
+                onChange={this.handleTestSelection}
+                value={this.state.currentTest}
+              >
                 <MenuItem value='square'>Square a number</MenuItem>
                 <MenuItem value='add'>Add two numbers</MenuItem>
-                <MenuItem value='fizzbuzz'>Fizzbuzz</MenuItem>
-                <MenuItem value='reverse'>Reverse a string</MenuItem>
+                <MenuItem value='reverseAString'>
+                  Reverse a string
+                </MenuItem>
+                <MenuItem value='rockPaperScissors'>
+                  Rock Paper Scissors
+                </MenuItem>
+                <MenuItem value='fibonacci'>Fibonacci</MenuItem>
               </Select>
             </FormControl>
             <Button onClick={this.handlePost}>Run Code</Button>
@@ -293,8 +411,13 @@ class Code extends Component {
                     ? 'clike'
                     : this.state.language
                 }`,
-                theme: 'material',
+                theme: 'lucario',
                 lineNumbers: true,
+                lineWrapping: true,
+                styleActiveLine: true,
+                activeCloseBrackets: true,
+                gutters: ['Codemirror-lint-markers'],
+                lint: { esversion: '6' },
               }}
               onBeforeChange={(editor, data, value) => {
                 this.setState({ editorState: value }, () =>
@@ -308,12 +431,14 @@ class Code extends Component {
               }}
             />
           </EditorContainer>
-          <Terminal initialText='$  ' output={this.state.output} />
-          <Room
-            roomName={this.props.Room.roomName}
-            token={this.props.Room.token}
-            handleLogout={this.props.Room.handleLogout}
-          />
+          <TerminalVideoContainer>
+            <Terminal initialText='$  ' output={this.state.output} />
+            <Room
+              roomName={this.props.Room.roomName}
+              token={this.props.Room.token}
+              handleLogout={this.props.Room.handleLogout}
+            />
+          </TerminalVideoContainer>
         </div>
       </FlexContainer>
     );

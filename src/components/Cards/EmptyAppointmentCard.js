@@ -11,6 +11,7 @@ const StyledContainer = styled.div`
   background: white;
   box-shadow: 0 6px 10px rgba(50, 50, 93, 0.1);
   padding: 40px;
+  margin-bottom: 2rem;
 
   @media ${devices.tablet} {
     width: 80%;

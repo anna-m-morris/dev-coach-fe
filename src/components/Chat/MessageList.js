@@ -139,8 +139,8 @@ const MessageList = ({ messages, userId, user, currentRoom }) => {
                   <div className='message'>
                     <Avatar
                       src={
-                        message.senderId === user.email &&
-                        user.role_id === 1
+                        message.senderId ===
+                        message.roomId.split(' ')[0]
                           ? currentRoom.customData.role_id_one_url
                           : currentRoom.customData.role_id_two_url
                       }
