@@ -44,6 +44,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
     fontWeight: 'bold',
+    fontSize: '1.5rem',
   },
 }));
 
@@ -135,7 +136,11 @@ const BookingStepper = props => {
         {activeStep === 0 ? (
           <Select />
         ) : activeStep === 1 ? (
-          <DatePicker date={date} saveDate={saveDate} />
+          <DatePicker
+            date={date}
+            saveDate={saveDate}
+            select={select}
+          />
         ) : (
           <div className='payment-container'>
             {Object.keys(select).length > 1 &&

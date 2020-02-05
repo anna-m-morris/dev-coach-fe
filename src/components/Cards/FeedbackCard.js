@@ -67,6 +67,11 @@ export const CardContainer = styled.div`
 
       .feedback-text {
         margin: 0;
+        font-size: 0.9rem;
+
+        @media ${devices.tablet} {
+          margin: 0.5rem 0;
+        }
       }
     }
   }
@@ -84,7 +89,7 @@ export const CardContainer = styled.div`
     }
 
     .footer-text {
-      color: #a8a8a8;
+      color: #a0a0a0;
       font-weight: 500;
       margin: 0;
     }
