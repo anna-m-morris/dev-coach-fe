@@ -253,7 +253,7 @@ export const AppointmentCard = props => {
       >
         <DialogContent>
           <DialogContentText id='alert-dialog-description'>
-            Are you sure you want to cancel appointment ?
+            Are you sure you want to cancel this appointment ?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
