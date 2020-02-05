@@ -67,6 +67,11 @@ export const CardContainer = styled.div`
 
       .feedback-text {
         margin: 0;
+        font-size: 0.9rem;
+
+        @media ${devices.tablet} {
+          margin: 0.5rem 0;
+        }
       }
     }
   }
