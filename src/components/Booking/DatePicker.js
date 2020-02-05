@@ -26,7 +26,7 @@ const StyledCalendar = styled.div`
   .right {
     height: 24em;
     width: 24em;
-    padding: 1em;
+    padding: 2em;
     text-align: center;
     border-radius: 6px;
     box-shadow: 0 6px 10px #d3d3d3;
