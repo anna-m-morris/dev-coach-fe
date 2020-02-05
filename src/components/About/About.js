@@ -17,21 +17,7 @@ const About = () => {
       </div>
       <div className='about-cards-container'>
         <div className='about-card'>
-          <div className='card-image'>
-            <iframe
-              src='https://giphy.com/embed/WoD6JZnwap6s8'
-              width='480'
-              height='384'
-              frameBorder='0'
-              class='giphy-embed'
-              allowFullScreen
-            ></iframe>
-            <p>
-              <a href='https://giphy.com/gifs/the-matrix-WoD6JZnwap6s8'>
-                via GIPHY
-              </a>
-            </p>
-          </div>
+          <div className='card-image'></div>
           <img
             className='profile-image'
             src={ben}
@@ -41,9 +27,6 @@ const About = () => {
             <h4 className='name'>Benjamin Grabow</h4>
             <p className='position'>Project Lead</p>
           </div>
-          <a href='#' className='contact'>
-            Contact
-          </a>
           <div className='social-container'>
             <a
               target='blank'
@@ -51,8 +34,8 @@ const About = () => {
             >
               <i className='fab fa-github-square'></i>
             </a>
-            <a href='#'>
-              <i className='fab fa-twitter-square'></i>
+            <a href='https://www.linkedin.com/in/benjamin-grabow/'>
+              <i className='fab fa-linkedin'></i>
             </a>
           </div>
         </div>
@@ -67,15 +50,12 @@ const About = () => {
             <h4 className='name'>Oladimeji Ojo</h4>
             <p className='position'>Full Stack Developer</p>
           </div>
-          <a href='#' className='contact'>
-            Contact
-          </a>
           <div className='social-container'>
             <a target='blank' href='https://github.com/ojokure'>
               <i className='fab fa-github-square'></i>
             </a>
             <a href='#'>
-              <i className='fab fa-twitter-square'></i>
+              <i className='fab fa-linkedin'></i>
             </a>
           </div>
         </div>
@@ -90,15 +70,12 @@ const About = () => {
             <h4 className='name'>Olufunmilayo Talabi</h4>
             <p className='position'>Full Stack Developer</p>
           </div>
-          <a href='#' className='contact'>
-            Contact
-          </a>
           <div className='social-container'>
             <a target='blank' href='https://github.com/funmi7'>
               <i className='fab fa-github-square'></i>
             </a>
             <a href='#'>
-              <i className='fab fa-twitter-square'></i>
+              <i className='fab fa-linkedin'></i>
             </a>
           </div>
         </div>
@@ -113,15 +90,12 @@ const About = () => {
             <h4 className='name'>Jayne Norrie</h4>
             <p className='position'>Full Stack Developer</p>
           </div>
-          <a href='#' className='contact'>
-            Contact
-          </a>
           <div className='social-container'>
             <a target='blank' href='https://github.com/jaynecn'>
               <i className='fab fa-github-square'></i>
             </a>
             <a href='#'>
-              <i className='fab fa-twitter-square'></i>
+              <i className='fab fa-linkedin'></i>
             </a>
           </div>
         </div>
@@ -136,15 +110,12 @@ const About = () => {
             <h4 className='name'>Dom Eccleston</h4>
             <p className='position'>Full Stack Developer</p>
           </div>
-          <a href='#' className='contact'>
-            Contact
-          </a>
           <div className='social-container'>
             <a target='blank' href='https://github.com/domeccleston'>
               <i className='fab fa-github-square'></i>
             </a>
             <a href='#'>
-              <i className='fab fa-twitter-square'></i>
+              <i className='fab fa-linkedin'></i>
             </a>
           </div>
         </div>
@@ -155,15 +126,12 @@ const About = () => {
             <h4 className='name'>Liam Sutton</h4>
             <p className='position'>Full Stack Developer</p>
           </div>
-          <a href='#' className='contact'>
-            Contact
-          </a>
           <div className='social-container'>
             <a target='blank' href='https://github.com/curm90'>
               <i className='fab fa-github-square'></i>
             </a>
             <a href='#'>
-              <i className='fab fa-twitter-square'></i>
+              <i className='fab fa-linkedin'></i>
             </a>
           </div>
         </div>
