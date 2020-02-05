@@ -108,13 +108,15 @@ const Interface = ({
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
           <MenuItem value='reverseAString'>Reverse a string</MenuItem>
-          <MenuItem value='sortString'>sortString</MenuItem>
+          <MenuItem value='sortString'>SortString</MenuItem>
           <MenuItem value='rockPaperScissors'>
             Rock Paper Scissors
           </MenuItem>
           <MenuItem value='fibonacci'>Fibonacci</MenuItem>
+          <MenuItem value='anagram'>Anagram</MenuItem>
+          <MenuItem value='fizzBuzz'>FizzBuzz</MenuItem>
           <MenuItem value='isArmstrongNumber'>
-            isArmstrongNumber
+            IsArmstrongNumber
           </MenuItem>
         </Select>
       </FormControl>

@@ -166,6 +166,56 @@ export const testDataObj = {
       { testCase: 351, testResult: 'false' },
     ],
   },
+  fizzBuzz: {
+    state: `function fizzBuzz(n) {
+     // Write a function that does the following:
+
+     // console logs the numbers from 1 to n, where n 
+     // is the integer the function takes as its parameter
+     // logs fizz instead of the number for multiples of 3
+     // logs buzz instead of the number for multiples of 5
+     // logs fizzbuzz for numbers that are multiples of both 3 and 5
+
+}
+    `,
+    testData: [
+      {
+        testCase: 3,
+        testResult: [1, 2, 'fizz'],
+      },
+      { testCase: 5, testResult: [1, 2, 'fizz', 4, 'buzz'] },
+      {
+        testCase: 15,
+        testResult: [
+          1,
+          2,
+          'fizz',
+          4,
+          'buzz',
+          'fizz',
+          7,
+          8,
+          'fizz',
+          'buzz',
+          11,
+          'fizz',
+          13,
+          14,
+          'fizzbuzz',
+        ],
+      },
+    ],
+  },
+  anagram: {
+    state: `function anagram(a,b) {
+  
+
+}`,
+    testData: [
+      { testCase: `['hello', 'bye']`, testResult: 'false' },
+      { testCase: `['finder', 'friend']`, testResult: 'true' },
+    ],
+  },
 };
 
 export const invokeCode = (code, testCase, value, language) => {
