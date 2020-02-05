@@ -67,8 +67,8 @@ export const MainContainer = styled.div`
       align-items: center;
       justify-content: space-between;
       height: 25rem;
-      max-width: 25rem;
-      margin-top: 3rem;
+      width: 23rem;
+      margin: 3rem 0.8rem 0 0.08rem;
 
       @media ${devices.mobile} {
         width: 80%;
