@@ -33,7 +33,6 @@ const MainContainer = styled.div`
 
   h2 {
     margin: 0;
-    font-family: 'Nunito', sans-serif;
     color: #4fad65;
     font-size: 3rem;
 
