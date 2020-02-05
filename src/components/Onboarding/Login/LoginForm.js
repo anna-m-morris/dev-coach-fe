@@ -9,9 +9,8 @@ import {
   StyledButton,
   buttonTheme,
 } from '../../Landing/Landing-styles';
-import { LoginContainer, loadingButtonTheme } from './LoginStyles';
+import { LoginContainer, LoaderStyle } from './LoginStyles';
 import Navigation from '../../Landing/Navigation/Navigation';
-
 import { login } from '../../../state/actions/authenticationActions';
 
 const LoginForm = ({
@@ -71,21 +70,19 @@ const LoginForm = ({
               <div className='form-button-container'>
                 <StyledButton
                   className='form-button'
-                  theme={
-                    userReducer.isLoading
-                      ? loadingButtonTheme
-                      : buttonTheme
-                  }
+                  theme={buttonTheme}
                   type='submit'
                   disabled={isSubmitting}
                 >
                   {userReducer.isLoading && (
-                    <Loader
-                      type='TailSpin'
-                      color='white'
-                      height={20}
-                      width={20}
-                    />
+                    <LoaderStyle>
+                      <Loader
+                        type='TailSpin'
+                        color='white'
+                        height={20}
+                        width={20}
+                      />
+                    </LoaderStyle>
                   )}
                   Sign in
                 </StyledButton>

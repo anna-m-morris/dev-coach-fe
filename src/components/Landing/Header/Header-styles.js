@@ -29,6 +29,10 @@ export const HeaderContainer = styled.div`
     width: 15rem;
     margin-top: 2rem;
 
+    .link {
+      text-decoration: none;
+    }
+
     @media ${devices.tablet} {
       margin: 2rem auto;
     }

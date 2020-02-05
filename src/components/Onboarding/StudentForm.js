@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import uuid from 'uuid';
 import { Formik, Form, Field, useField } from 'formik';
 import * as yup from 'yup';
+import Loader from 'react-loader-spinner';
 import {
   FormControl,
   Select,
@@ -14,6 +15,7 @@ import {
   TextField,
   Box,
 } from '@material-ui/core';
+import { LoaderStyle } from './Login/LoginStyles';
 import formOptions from './studentFormState';
 
 import {
@@ -38,6 +40,7 @@ const NavLogo = styled(Logo)`
 export const FormButton = styled(StyledButton)`
   width: 50% !important;
   margin-top: 2em;
+  display: flex;
 `;
 
 export const InfoParagraph = styled.p`
@@ -100,7 +103,7 @@ const useStyles = makeStyles(theme => ({
 
 const StudentForm = props => {
   const classes = useStyles();
-
+  const { userReducer } = props;
   const initialValues = {
     userLocation: '',
     experience: '',
@@ -223,6 +226,16 @@ const StudentForm = props => {
                       disabled={isSubmitting}
                       type='submit'
                     >
+                      {userReducer.isLoading && (
+                        <LoaderStyle>
+                          <Loader
+                            type='TailSpin'
+                            color='white'
+                            height={20}
+                            width={20}
+                          />
+                        </LoaderStyle>
+                      )}
                       Submit
                     </FormButton>
                   </div>

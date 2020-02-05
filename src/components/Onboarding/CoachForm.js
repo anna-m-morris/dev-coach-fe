@@ -5,6 +5,7 @@ import uuid from 'uuid';
 import styled from 'styled-components';
 import { useField, Form, Field, Formik } from 'formik';
 import * as yup from 'yup';
+import Loader from 'react-loader-spinner';
 import {
   FormControl,
   Select,
@@ -15,6 +16,7 @@ import {
   Box,
 } from '@material-ui/core';
 
+import { LoaderStyle } from './Login/LoginStyles';
 import { buttonTheme, Logo } from '../Landing/Landing-styles';
 import { FormButton, InfoParagraph } from './StudentForm';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
@@ -78,6 +80,7 @@ const validationSchema = yup.object().shape({
 
 const CoachForm = props => {
   const classes = useStyles();
+  const { userReducer } = props;
   const initialValues = {
     userLocation: '',
     experience: '',
@@ -134,84 +137,105 @@ const CoachForm = props => {
                     />
                   </div>
                   <div>
-                    <FormControl
-                      className={classes.formControl}
-                      error={!!errors.experience}
-                    >
-                      <InputLabel
-                        style={{ color: '#bdbdbd' }}
-                        className='input-label'
+                    <div>
+                      <FormControl
+                        className={classes.formControl}
+                        error={!!errors.experience}
                       >
-                        Experience
-                      </InputLabel>
-                      <Field
-                        value={values.experience}
-                        name='experience'
-                        as={Select}
+                        <InputLabel
+                          style={{ color: '#bdbdbd' }}
+                          className='input-label'
+                        >
+                          Experience
+                        </InputLabel>
+                        <Field
+                          value={values.experience}
+                          name='experience'
+                          as={Select}
+                        >
+                          {options.expOptions.map(option => (
+                            <MenuItem
+                              value={option.level}
+                              key={uuid()}
+                            >
+                              {option.text}
+                            </MenuItem>
+                          ))}
+                        </Field>
+                      </FormControl>
+                    </div>
+                    <div>
+                      <FormControl
+                        className={classes.formControl}
+                        error={!!errors.skills}
                       >
-                        {options.expOptions.map(option => (
-                          <MenuItem value={option.level} key={uuid()}>
-                            {option.text}
-                          </MenuItem>
-                        ))}
-                      </Field>
-                    </FormControl>
-                  </div>
-                  <div>
-                    <FormControl
-                      className={classes.formControl}
-                      error={!!errors.skills}
-                    >
-                      <InputLabel
-                        style={{ color: '#bdbdbd' }}
-                        className='input-label'
-                      >
-                        Skills
-                      </InputLabel>
-                      <Field
-                        value={values.skills}
-                        name='skills'
-                        type='select'
-                        as={Select}
-                      >
-                        {options.skillOptions.map(option => (
-                          <MenuItem value={option.level} key={uuid()}>
-                            {option.text}
-                          </MenuItem>
-                        ))}
-                      </Field>
-                    </FormControl>
-                  </div>
-                  <div>
-                    <MyTextField
-                      placeholder='Description'
-                      name='description'
-                    />
-                  </div>
-                  <div>
-                    <MyTextField placeholder='GitHub' name='github' />
-                  </div>
-                  <div>
-                    <MyTextField
-                      placeholder='Linkedin'
-                      name='linkedin'
-                    />
-                  </div>
-                  <div>
-                    <MyTextField
-                      placeholder='Hourly price in $'
-                      name='hourly_rate'
-                    />
-                  </div>
+                        <InputLabel
+                          style={{ color: '#bdbdbd' }}
+                          className='input-label'
+                        >
+                          Skills
+                        </InputLabel>
+                        <Field
+                          value={values.skills}
+                          name='skills'
+                          type='select'
+                          as={Select}
+                        >
+                          {options.skillOptions.map(option => (
+                            <MenuItem
+                              value={option.level}
+                              key={uuid()}
+                            >
+                              {option.text}
+                            </MenuItem>
+                          ))}
+                        </Field>
+                      </FormControl>
+                    </div>
+                    <div>
+                      <MyTextField
+                        placeholder='Description'
+                        name='description'
+                      />
+                    </div>
+                    <div>
+                      <MyTextField
+                        placeholder='GitHub'
+                        name='github'
+                      />
+                    </div>
+                    <div>
+                      <MyTextField
+                        placeholder='Linkedin'
+                        name='linkedin'
+                      />
+                    </div>
+                    <div>
+                      <MyTextField
+                        placeholder='Hourly price in $'
+                        name='hourly_rate'
+                      />
+                    </div>
 
-                  <FormButton
-                    className='submit-button'
-                    theme={buttonTheme}
-                    disabled={isSubmitting}
-                    type='submit'
-                  >
-                    Submit
-                  </FormButton>
+                    <FormButton
+                      className='submit-button'
+                      theme={buttonTheme}
+                      disabled={isSubmitting}
+                      type='submit'
+                    >
+                      {userReducer.isLoading && (
+                        <LoaderStyle>
+                          <Loader
+                            type='TailSpin'
+                            color='white'
+                            height={20}
+                            width={20}
+                          />
+                        </LoaderStyle>
+                      )}
+                      Submit
+                    </FormButton>
+                  </div>
                 </Form>
               )}
             </Formik>

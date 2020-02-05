@@ -49,6 +49,7 @@ export const sendResetPasswordEmail = (
 };
 
 export const saveRoleId = (handleNext, role) => dispatch => {
+  dispatch({ type: types.SET_ROLE_ID_START });
   dispatch({ type: types.SET_ROLE_ID, payload: role });
   handleNext();
 };
@@ -72,7 +73,7 @@ export const login = (props, values) => dispatch => {
     .catch(err => {
       dispatch({
         type: types.LOGIN_ERROR,
-        payload: err.response.data.message,
+        payload: err.res.data.message,
       });
     });
 };
@@ -93,13 +94,14 @@ export const register = (props, values) => dispatch => {
     .catch(err => {
       dispatch({
         type: types.SIGN_UP_ERROR,
-        payload: err.response.data.message,
+        payload: err.res.data.message,
       });
     });
 };
 
 export const chooseUserRole = (props, values) => dispatch => {
   const id = localStorage.getItem('id');
+  dispatch({ type: types.USER_ROLE_START });
   axiosWithAuth()
     .put(`${url}user/${id}`, {
       location: values.userLocation,

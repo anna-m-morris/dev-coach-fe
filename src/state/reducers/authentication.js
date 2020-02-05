@@ -16,9 +16,15 @@ const initialState = {
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
+    case types.SET_ROLE_ID_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case types.SET_ROLE_ID:
       return {
         ...state,
+        isLoading: false,
         user: {
           ...state.user,
           role_id: action.payload,
@@ -47,6 +53,11 @@ function userReducer(state = initialState, action) {
         isLoading: false,
         isLoggedIn: false,
       };
+    case types.SIGN_UP_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case types.SIGN_UP_SUCCESSFUL:
       return {
         ...state,
@@ -60,10 +71,16 @@ function userReducer(state = initialState, action) {
         isLoading: false,
         isLoggedIn: false,
       };
+    case types.USER_ROLE_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case types.USER_ROLE_CHOSEN:
       return {
         ...state,
         userHasChosenRole: true,
+        isLoading: false,
         user: {
           ...state.user,
           role_id: state.user.role_id,
