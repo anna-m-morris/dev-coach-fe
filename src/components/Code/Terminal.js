@@ -17,6 +17,7 @@ const TerminalText = styled.textarea`
   border: none;
   width: 100%;
   height: 35em;
+  overflow: auto;
   padding: 1em;
   padding-top: 0.5em;
   margin-top: 0;
@@ -36,10 +37,8 @@ const Terminal = ({ initialText, output }) => {
   return (
     <TerminalContainer>
       <TerminalText
-        suppressContentEditableWarning={true}
-        value={output || '$'}
         contentEditable='false'
-        readOnly
+        value={output || '$'}
       ></TerminalText>
     </TerminalContainer>
   );

@@ -3,12 +3,6 @@ import { Link } from 'react-router-dom';
 import { StyledButton, buttonTheme } from '../Landing-styles';
 import { FooterContainer } from './Footer-styles';
 
-import github from '../img/github-1.png';
-import facebook from '../img/facebook.png';
-import linkdin from '../img/linkedin.png';
-import twitter from '../img/twitter-1.png';
-import instagram from '../img/instagram-logo-1.png';
-
 const Footer = () => (
   <FooterContainer className='footer-container'>
     <div className='footer-top'>
@@ -27,19 +21,19 @@ const Footer = () => (
       </div>
       <div className='footer-content footer-icons'>
         <div className='footer-icon'>
-          <img src={github} alt='github' />
+          <i className='fab fa-github'></i>
         </div>
         <div className='footer-icon'>
-          <img src={facebook} alt='facebook' />
+          <i className='fab fa-facebook'></i>
         </div>
         <div className='footer-icon'>
-          <img src={twitter} alt='twitter' />
+          <i className='fab fa-twitter-square'></i>
         </div>
         <div className='footer-icon'>
-          <img src={linkdin} alt='linkdin' />
+          <i className='fab fa-linkedin'></i>
         </div>
         <div className='footer-icon'>
-          <img src={instagram} alt='instagram' />
+          <i className='fab fa-instagram'></i>
         </div>
       </div>
       <div className='footer-content footer-tribute'>

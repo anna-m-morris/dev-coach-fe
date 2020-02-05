@@ -19,6 +19,7 @@ export const HeaderContainer = styled.div`
     font-weight: bold;
     color: white;
     width: 100%;
+    margin: 1rem 0;
 
     @media ${devices.mobile} {
       font-size: 2.2rem;
@@ -27,7 +28,11 @@ export const HeaderContainer = styled.div`
 
   .cta-button {
     width: 15rem;
-    margin-top: 2rem;
+
+    button {
+      font-size: 1.4rem;
+      padding: 0.8rem;
+    }
 
     .link {
       text-decoration: none;

@@ -1,7 +1,10 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { connect } from 'react-redux';
+import {
+  createMuiTheme,
+  ThemeProvider,
+} from '@material-ui/core/styles';
 import LoginForm from './components/Onboarding/Login/LoginForm';
 import ResetPasswordForm from './components/Onboarding/ResetPasswordForm';
 import AccountRecovery from './components/Onboarding/AccountRecovery';
@@ -21,10 +24,11 @@ import SignUp from './components/Onboarding/SignupStepper';
 import SettingsTabs from './views/Settings/SettingsTabs';
 import Code from './views/Code/Code';
 import GiveFeedback from './views/Feedback/GiveFeedback';
+import About from './components/About/About';
 
 const globalTheme = createMuiTheme({
   typography: {
-    fontFamily: 'Nunito',
+    fontFamily: ['Nunito', 'Helvetica', 'sans-serif'].join(','),
   },
 });
 
@@ -68,6 +72,7 @@ function App({ user, isLoggedIn }) {
       />
       <Route path='/register' component={SignUp} />
       <Route path='/faq' component={LandingFaq} />
+      <Route path='/about' component={About} />
       <Route path={'/video'} component={Interview} />
       <Redirect to='/' />
     </Switch>

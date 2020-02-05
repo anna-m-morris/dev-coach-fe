@@ -12,7 +12,7 @@ export const FooterContainer = styled.div`
   .footer-top {
     display: flex;
     flex-direction: column;
-    margin: 2rem 1rem 4rem 1rem;
+    margin: 3rem 1rem;
     justify-content: center;
 
     .cta-message {
@@ -24,7 +24,13 @@ export const FooterContainer = styled.div`
         font-weight: bold;
         text-align: center;
         line-height: 1.4;
+        margin: 0;
       }
+    }
+
+    .cta-button button {
+      font-size: 1.4rem;
+      padding: 1rem;
     }
   }
 
@@ -56,9 +62,8 @@ export const FooterContainer = styled.div`
     display: flex;
     justify-content: space-between;
 
-    img {
-      width: 25px;
-      height: 25px;
+    .fab {
+      font-size: 2rem;
     }
   }
 

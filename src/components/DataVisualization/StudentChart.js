@@ -57,7 +57,7 @@ const StudentChart = ({ feedback }) => {
             />
           }
         </YAxis>
-        <Tooltip content={feedback.length && <CustomTooltip />} />
+        <Tooltip content={<CustomTooltip />} />
       </LineChart>
     </ResponsiveContainer>
   );

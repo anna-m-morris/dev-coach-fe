@@ -36,7 +36,11 @@ function marketplaceReducer(state = initialState, action) {
               .includes(action.payload.toLowerCase()) ||
             coach.last_name
               .toLowerCase()
-              .includes(action.payload.toLowerCase()),
+              .includes(action.payload.toLowerCase()) ||
+            (coach.description &&
+              coach.description
+                .toLowerCase()
+                .includes(action.payload.toLowerCase())),
         ),
       };
 
