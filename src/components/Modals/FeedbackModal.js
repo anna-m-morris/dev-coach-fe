@@ -70,7 +70,9 @@ const FeedbackModal = props => {
             style={{ margin: '1.2rem 0' }}
           >
             <p style={{ fontSize: '1.1rem' }}>Feedback</p>
-            <p className='feedback-text'>{feedback}</p>
+            <p className='feedback-text' style={{ fontSize: '1rem' }}>
+              {feedback}
+            </p>
           </div>
           <Divider />
           <div
