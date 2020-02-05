@@ -40,7 +40,7 @@ const About = () => {
         <div className='about-card'>
           <img className='image' src={jayne} alt='profile-pic' />
           <div className='info'>
-            <h4 className='name'>Jayne Carmichael Norrie</h4>
+            <h4 className='name'>Jayne Norrie</h4>
             <p className='postition'>Full Stack Developer</p>
           </div>
         </div>

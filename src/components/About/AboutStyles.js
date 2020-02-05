@@ -49,20 +49,18 @@ export default styled.div`
     padding: 1rem;
     border-radius: 3px;
     width: 22rem;
+    background: #d0ead6;
   }
 
   .image {
-    width: 8rem;
-    height: 8rem;
+    width: 12rem;
+    height: 12rem;
     border-radius: 50%;
     object-fit: cover;
   }
 
-  /* .info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  } */
+  .name {
+    color: #4fad65;
+    font-size: 2.2rem;
+  }
 `;
