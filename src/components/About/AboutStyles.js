@@ -80,4 +80,13 @@ export default styled.div`
     font-size: 1.3rem;
     margin: 0;
   }
+
+  .contact {
+    background: #4fad65;
+    padding: 0.8rem 2.5rem;
+    text-decoration: none;
+    color: white;
+    margin: 1rem 0;
+    border-radius: 2rem;
+  }
 `;
