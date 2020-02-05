@@ -42,7 +42,7 @@ export const MainContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     background: #292d38;
-    margin: 10rem 0;
+    margin: 8.5rem 0;
     padding: 3rem 1rem;
 
     h4 {
@@ -111,7 +111,7 @@ export const MainContainer = styled.div`
   }
 
   .user-stories-container {
-    margin-bottom: 10rem;
+    margin-bottom: 8.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
