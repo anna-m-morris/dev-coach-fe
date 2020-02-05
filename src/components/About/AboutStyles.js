@@ -21,7 +21,7 @@ export default styled.div`
   }
 
   .title {
-    color: #4fad65;
+    color: #655f69;
     font-size: 1.8rem;
 
     h1 {
@@ -58,6 +58,7 @@ export default styled.div`
     background: #4fad65;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 49%, 0% 100%);
     clip-path: polygon(0 0, 100% 0, 100% 49%, 0% 100%);
+    border-radius: 6px;
   }
 
   .profile-image {
