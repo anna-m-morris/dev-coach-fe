@@ -46,13 +46,20 @@ export default styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 1rem;
     border-radius: 3px;
     width: 22rem;
     background: #daefdf;
   }
 
-  .image {
+  .card-image {
+    width: 100%;
+    height: 17rem;
+    background: white;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 49%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 49%, 0% 100%);
+  }
+
+  .profile-image {
     width: 12rem;
     height: 12rem;
     border-radius: 50%;

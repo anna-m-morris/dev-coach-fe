@@ -17,7 +17,12 @@ const About = () => {
       </div>
       <div className='about-cards-container'>
         <div className='about-card'>
-          <img className='image' src={ben} alt='profile-pic' />
+          <div className='card-image'></div>
+          <img
+            className='profile-image'
+            src={ben}
+            alt='profile-pic'
+          />
           <div className='info'>
             <h4 className='name'>Benjamin Grabow</h4>
             <p className='position'>Full Stack Developer</p>
@@ -35,7 +40,12 @@ const About = () => {
           </div>
         </div>
         <div className='about-card'>
-          <img className='image' src={ola} alt='profile-pic' />
+          <div className='card-image'></div>
+          <img
+            className='profile-image'
+            src={ola}
+            alt='profile-pic'
+          />
           <div className='info'>
             <h4 className='name'>Oladimeji Ojo</h4>
             <p className='position'>Full Stack Developer</p>
@@ -53,7 +63,12 @@ const About = () => {
           </div>
         </div>
         <div className='about-card'>
-          <img className='image' src={funmi} alt='profile-pic' />
+          <div className='card-image'></div>
+          <img
+            className='profile-image'
+            src={funmi}
+            alt='profile-pic'
+          />
           <div className='info'>
             <h4 className='name'>Olufunmilayo Talabi</h4>
             <p className='position'>Full Stack Developer</p>
@@ -71,7 +86,12 @@ const About = () => {
           </div>
         </div>
         <div className='about-card'>
-          <img className='image' src={jayne} alt='profile-pic' />
+          <div className='card-image'></div>
+          <img
+            className='profile-image'
+            src={jayne}
+            alt='profile-pic'
+          />
           <div className='info'>
             <h4 className='name'>Jayne Norrie</h4>
             <p className='position'>Full Stack Developer</p>
@@ -89,7 +109,12 @@ const About = () => {
           </div>
         </div>
         <div className='about-card'>
-          <img className='image' src={dom} alt='profile-pic' />
+          <div className='card-image'></div>
+          <img
+            className='profile-image'
+            src={dom}
+            alt='profile-pic'
+          />
           <div className='info'>
             <h4 className='name'>Dom Eccleston</h4>
             <p className='position'>Full Stack Developer</p>
@@ -107,7 +132,8 @@ const About = () => {
           </div>
         </div>
         <div className='about-card'>
-          <img className='image' src={me} alt='profile-pic' />
+          <div className='card-image'></div>
+          <img className='profile-image' src={me} alt='profile-pic' />
           <div className='info'>
             <h4 className='name'>Liam Sutton</h4>
             <p className='position'>Full Stack Developer</p>
