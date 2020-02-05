@@ -5,6 +5,7 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 import {
   showErrorMessage,
@@ -21,6 +22,7 @@ import Notification from '../Notifications/Notification';
 
 import Select from '../Inputs/SelectInfo';
 import DatePicker from '../Booking/DatePicker';
+import { components } from 'react-select';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -88,7 +90,7 @@ const RescheduleAppointmentStepper = props => {
   };
 
   return (
-    <>
+    <WrapDiv>
       <h3>
         Kindly reschedule cancelled appointment as bookings are
         non-refundable
@@ -110,7 +112,7 @@ const RescheduleAppointmentStepper = props => {
       <Notification
         onClose={closeMessage}
         variant='error'
-        message={`Reschedule wasn't successful!`}
+        message={`Your reschedule wasn't successful!`}
         open={error}
       />
       <Notification
@@ -178,7 +180,7 @@ const RescheduleAppointmentStepper = props => {
           </Button>
         </div>
       )}
-    </>
+    </WrapDiv>
   );
 };
 
@@ -202,3 +204,8 @@ export default connect(mapStateToProps, {
   rescheduleAppointment,
   showInfoMessage,
 })(RescheduleAppointmentStepper);
+
+const WrapDiv = styled.div`
+  margin: 0 auto;
+  align-items: center;
+`;

@@ -4,7 +4,6 @@ import Tabs from 'antd/lib/tabs';
 import { connect } from 'react-redux';
 import { SettingsPersonal } from '../../components/Settings/SettingsPersonal';
 import { SettingsGeneral } from '../../components/Settings/SettingsGeneral';
-import StyledSettings from '../../components/Settings/SettingsStyles';
 import {
   showErrorMessage,
   showSuccessMessage,
@@ -32,8 +31,8 @@ export function SettingsTabs(props) {
   };
 
   return (
-    <StyledSettings className='setting-container'>
-      <Tabs defaultActiveKey='personal Information'>
+    <div className='card-container' style={{ margin: '0 auto' }}>
+      <Tabs type='card'>
         <TabPane
           tab='Personal Information'
           key='Personal Information'
@@ -51,7 +50,11 @@ export function SettingsTabs(props) {
             handleCancel={handleCancel}
           />
         </TabPane>
-        <TabPane tab='General Settings' key='General Settings'>
+        <TabPane
+          tab='General Settings'
+          key='General Settings'
+          style={{ color: 'red' }}
+        >
           <SettingsGeneral
             user={user}
             updateUserInfo={updateUserInfo}
@@ -66,7 +69,7 @@ export function SettingsTabs(props) {
           />
         </TabPane>
       </Tabs>
-    </StyledSettings>
+    </div>
   );
 }
 
