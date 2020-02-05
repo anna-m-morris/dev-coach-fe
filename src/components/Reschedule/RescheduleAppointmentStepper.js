@@ -22,7 +22,6 @@ import Notification from '../Notifications/Notification';
 
 import Select from '../Inputs/SelectInfo';
 import DatePicker from '../Booking/DatePicker';
-import { components } from 'react-select';
 
 const useStyles = makeStyles(theme => ({
   root: {
