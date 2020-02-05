@@ -40,13 +40,29 @@ export default styled.div`
 
   .about-card {
     margin-bottom: 2rem;
-  }
-
-  .info {
+    box-shadow: 4px 4px 4px #ccc;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding: 1rem;
+    border-radius: 3px;
+    width: 22rem;
   }
+
+  .image {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  /* .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  } */
 `;

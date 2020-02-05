@@ -17,42 +17,42 @@ const About = () => {
       </div>
       <div className='about-cards-container'>
         <div className='about-card'>
-          <img src={ben} alt='profile-pic' />
+          <img className='image' src={ben} alt='profile-pic' />
           <div className='info'>
             <h4 className='name'>Benjamin Grabow</h4>
             <p className='postition'>Full Stack Developer</p>
           </div>
         </div>
         <div className='about-card'>
-          <img src={ola} alt='profile-pic' />
+          <img className='image' src={ola} alt='profile-pic' />
           <div className='info'>
             <h4 className='name'>Oladimeji Ojo</h4>
             <p className='postition'>Full Stack Developer</p>
           </div>
         </div>
         <div className='about-card'>
-          <img src={funmi} alt='profile-pic' />
+          <img className='image' src={funmi} alt='profile-pic' />
           <div className='info'>
             <h4 className='name'>Olufunmilayo Talabi</h4>
             <p className='postition'>Full Stack Developer</p>
           </div>
         </div>
         <div className='about-card'>
-          <img src={jayne} alt='profile-pic' />
+          <img className='image' src={jayne} alt='profile-pic' />
           <div className='info'>
             <h4 className='name'>Jayne Carmichael Norrie</h4>
             <p className='postition'>Full Stack Developer</p>
           </div>
         </div>
         <div className='about-card'>
-          <img src={dom} alt='profile-pic' />
+          <img className='image' src={dom} alt='profile-pic' />
           <div className='info'>
             <h4 className='name'>Dom Eccleston</h4>
             <p className='postition'>Full Stack Developer</p>
           </div>
         </div>
         <div className='about-card'>
-          <img src={me} alt='profile-pic' />
+          <img className='image' src={me} alt='profile-pic' />
           <div className='info'>
             <h4 className='name'>Liam Sutton</h4>
             <p className='postition'>Full Stack Developer</p>
