@@ -260,9 +260,13 @@ export async function runAllCode(
       }
       setOutput(
         prevOutput =>
-          `${prevOutput}Test ${idx + 1}: ${currentTest}(${
+          `${prevOutput}Test ${idx + 1}: expected ${currentTest}(${
             testCaseArr[idx]
-          }) received ${output}\n\n`,
+          }) to equal ${
+            testResultsArr[idx]
+          }.\nResult: ${currentTest}(${
+            testCaseArr[idx]
+          }) returns ${output}\n\n`,
       );
       if (
         idx === testCaseArr.length - 1 &&
