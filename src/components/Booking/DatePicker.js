@@ -38,12 +38,6 @@ const StyledCalendar = styled.div`
         -webkit-box-shadow: 0 0 0 1px #4fad65 inset;
       }
     }
-
-    /* .ant-fullcalendar-date {
-      .ant-fullcalendar-value {
-        box-shadow: 0 0 0 1px #4fad65 inset;
-      }
-    } */
   }
 
   .right {
