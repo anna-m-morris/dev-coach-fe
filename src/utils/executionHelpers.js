@@ -285,7 +285,7 @@ export async function runAllCode(
 }
 
 const javascriptInitialEditorState = `console.log('hello JS!');`;
-o
+
 const pythonInitialEditorState = `# example code: print n fibonacci numbers
 
 a = 10
