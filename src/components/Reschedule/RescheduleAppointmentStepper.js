@@ -129,7 +129,11 @@ const RescheduleAppointmentStepper = props => {
         {activeStep === 0 ? (
           <Select />
         ) : activeStep === 1 ? (
-          <DatePicker date={date} saveDate={saveDate} />
+          <DatePicker
+            date={date}
+            saveDate={saveDate}
+            select={select}
+          />
         ) : (
           <div className='payment-container'>
             {Object.keys(select).length > 1 &&
