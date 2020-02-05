@@ -41,9 +41,10 @@ const StyledCoachCard = styled.div`
     width: 100%;
 
     .close-icon {
-      margin-top: -2.8em;
+      margin-top: -4em;
       margin-left: -0.55em;
       opacity: 0.75;
+      cursor: pointer;
     }
 
     .header-text {
@@ -110,6 +111,12 @@ const StyledCoachCard = styled.div`
 
     .send-button {
       background-color: #4fad65;
+      width: 110px;
+    }
+
+    .interview-button {
+      width: 110px;
+      background-color: #4f6ead;
     }
 
     @media ${devices.mobile} {
@@ -186,24 +193,22 @@ export const AppointmentCard = props => {
         </div>
         <div className='footer'>
           <Button
-            size='small'
             className='send-button'
             variant='contained'
             color='primary'
-            startIcon={<TelegramIcon fontSize='large' />}
+            startIcon={<TelegramIcon  />}
             onClick={savePeer}
           >
             Chat
           </Button>
           <Button
-            size='small'
             className='interview-button'
             variant='contained'
             color='primary'
             startIcon={<VideoCallIcon />}
             onClick={startInterview}
           >
-            Interview
+            Start
           </Button>
         </div>
       </StyledCoachCard>
