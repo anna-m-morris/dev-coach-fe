@@ -112,6 +112,7 @@ const Interface = ({
             Rock Paper Scissors
           </MenuItem>
           <MenuItem value='fibonacci'>Fibonacci</MenuItem>
+          <MenuItem value='sortString'>sortString</MenuItem>
         </Select>
       </FormControl>
       <Button onClick={handlePost}>Run Code</Button>

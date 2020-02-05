@@ -137,6 +137,19 @@ export const testDataObj = {
       },
     ],
   },
+  sortString: {
+    state: `function sortString(str) {
+  // write a function that takes a string of letters and 
+  // returns a string with the letters sorted in alphabetical order.
+
+}
+    `,
+    testData: [
+      { testCase: 'zyx', testResult: 'xyz' },
+      { testCase: 'fedcba', testResult: 'abcdef' },
+      { testCase: 'vul', testResult: 'luv' },
+    ],
+  },
 };
 
 export const invokeCode = (code, testCase, value, language) => {
