@@ -7,7 +7,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import CoachModal from '../Modals/CoachModal';
 import Rating from '../DataVisualization/Rating';
-import { mapExperience } from './AppointmentCard';
+import { mapExperience } from '../../utils/mappers';
 
 const StyledCoachCard = styled.div`
   display: flex;
