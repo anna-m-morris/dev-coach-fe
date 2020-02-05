@@ -7,6 +7,8 @@ import jayne from './img/jayne.jpeg';
 import dom from './img/dom.jpeg';
 import funmi from './img/funmi.jpeg';
 import me from './img/me.jpg';
+import github from '../Landing/img/github-1.png';
+import linkdin from '../Landing/img/linkedin.png';
 
 const About = () => {
   return (
@@ -25,6 +27,7 @@ const About = () => {
           <a href='#' className='contact'>
             Contact
           </a>
+          <i class='fab fa-github-square'></i>
         </div>
         <div className='about-card'>
           <img className='image' src={ola} alt='profile-pic' />
@@ -35,6 +38,7 @@ const About = () => {
           <a href='#' className='contact'>
             Contact
           </a>
+          <i class='fab fa-github-square'></i>
         </div>
         <div className='about-card'>
           <img className='image' src={funmi} alt='profile-pic' />
@@ -45,6 +49,7 @@ const About = () => {
           <a href='#' className='contact'>
             Contact
           </a>
+          <i class='fab fa-github-square'></i>
         </div>
         <div className='about-card'>
           <img className='image' src={jayne} alt='profile-pic' />
@@ -55,6 +60,7 @@ const About = () => {
           <a href='#' className='contact'>
             Contact
           </a>
+          <i class='fab fa-github-square'></i>
         </div>
         <div className='about-card'>
           <img className='image' src={dom} alt='profile-pic' />
@@ -65,6 +71,7 @@ const About = () => {
           <a href='#' className='contact'>
             Contact
           </a>
+          <i class='fab fa-github-square'></i>
         </div>
         <div className='about-card'>
           <img className='image' src={me} alt='profile-pic' />
@@ -75,6 +82,7 @@ const About = () => {
           <a href='#' className='contact'>
             Contact
           </a>
+          <i class='fab fa-github-square'></i>
         </div>
       </div>
     </AboutContainer>
