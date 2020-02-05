@@ -2,14 +2,17 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
+import TelegramIcon from '@material-ui/icons/Telegram';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import CoachModal from '../Modals/CoachModal';
 import Rating from '../DataVisualization/Rating';
+import { mapExperience } from './AppointmentCard';
 
 const StyledCoachCard = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   width: 17rem;
   height: 24rem;
   padding: 2.4rem;
@@ -54,6 +57,20 @@ const StyledCoachCard = styled.div`
   }
 
   .bullet-points {
+    * {
+    }
+
+    .location-bullet {
+      .location-icon {
+        margin-left: 0.1em;
+        padding-right: 0.1em;
+      }
+    }
+
+    .experience-bullet {
+      .experience-icon {
+      }
+    }
   }
 
   .description {
@@ -80,10 +97,11 @@ const StyledCoachCard = styled.div`
       width: 47%;
     }
 
+
+
     .button {
       width: 100%;
       background-color: #4fad65;
-      font-weight: bold;
 
       &:hover {
         background: #1e3f1f;
@@ -112,22 +130,20 @@ export const CoachCard = props => {
       </div>
 
       <div className='bullet-points'>
-        <p>
-          <i className='fas fa-map-marker-alt' />
+        <p className='location-bullet'>
+          <i className='fas fa-map-marker-alt location-icon' />
+          {'   '}
           {coach.location}
         </p>
-        <p>
-          <i className='fas fa-street-view' />{' '}
-          {coach.experience_level === 3
-            ? 'Expert in interviewing'
-            : coach.experience_level === 2
-            ? 'Advanced in interviewing'
-            : 'Beginner in interviewing'}
+        <p className='experience-bullet'>
+          <i className='fas fa-street-view experience-icon' />
+          {'  '}
+          {mapExperience(coach.experience_level)}
         </p>
       </div>
       <div className='description'>
         <p>{`${coach.description &&
-          coach.description.slice(0, 50)}...`}</p>{' '}
+          coach.description.slice(0, 70)}...`}</p>{' '}
       </div>
 
       <div className='reviews'>
@@ -142,9 +158,10 @@ export const CoachCard = props => {
       <div className='footer'>
         <Link to='/start_chat' onClick={savePeer}>
           <Button
-            className='button'
             variant='contained'
             color='primary'
+            className='send-button'
+            endIcon={<TelegramIcon />}
           >
             Chat
           </Button>
@@ -154,6 +171,7 @@ export const CoachCard = props => {
             className='button'
             variant='contained'
             color='primary'
+            endIcon={<ShoppingCartIcon />}
           >
             Book
           </Button>

@@ -134,7 +134,7 @@ const StyledCoachCard = styled.div`
   }
 `;
 
-const mapExperience = experience => {
+export const mapExperience = experience => {
   switch (experience) {
     default:
       return '';
