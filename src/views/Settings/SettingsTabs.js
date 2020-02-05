@@ -31,10 +31,7 @@ export function SettingsTabs(props) {
   };
 
   return (
-    <div
-      className='card-container'
-      style={{ margin: '0 auto', color: 'red' }}
-    >
+    <div className='card-container' style={{ margin: '0 auto' }}>
       <Tabs type='card'>
         <TabPane
           tab='Personal Information'
