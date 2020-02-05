@@ -21,6 +21,7 @@ import SignUp from './components/Onboarding/SignupStepper';
 import SettingsTabs from './views/Settings/SettingsTabs';
 import Code from './views/Code/Code';
 import GiveFeedback from './views/Feedback/GiveFeedback';
+import About from './components/About/About';
 
 const globalTheme = createMuiTheme({
   typography: {
@@ -68,6 +69,7 @@ function App({ user, isLoggedIn }) {
       />
       <Route path='/register' component={SignUp} />
       <Route path='/faq' component={LandingFaq} />
+      <Route path='/about' component={About} />
       <Route path={'/video'} component={Interview} />
       <Redirect to='/' />
     </Switch>
