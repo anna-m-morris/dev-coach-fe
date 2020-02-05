@@ -1,6 +1,10 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import {
+  createMuiTheme,
+  ThemeProvider,
+} from '@material-ui/core/styles';
 import LoginForm from './components/Onboarding/Login/LoginForm';
 import ResetPasswordForm from './components/Onboarding/ResetPasswordForm';
 import AccountRecovery from './components/Onboarding/AccountRecovery';
@@ -21,6 +25,12 @@ import SettingsTabs from './views/Settings/SettingsTabs';
 import Code from './views/Code/Code';
 import GiveFeedback from './views/Feedback/GiveFeedback';
 import About from './components/About/About';
+
+const globalTheme = createMuiTheme({
+  typography: {
+    fontFamily: ['Nunito', 'Helvetica', 'sans-serif'].join(','),
+  },
+});
 
 function App({ user, isLoggedIn }) {
   const routes = (
@@ -44,7 +54,11 @@ function App({ user, isLoggedIn }) {
   );
 
   if (isLoggedIn) {
-    return <Dashboard routes={routes} />;
+    return (
+      <ThemeProvider theme={globalTheme}>
+        <Dashboard routes={routes} />
+      </ThemeProvider>
+    );
   }
 
   return (

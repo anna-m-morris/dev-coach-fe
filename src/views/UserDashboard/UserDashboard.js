@@ -86,6 +86,10 @@ const DashboardContainer = styled.div`
         font-weight: bolder;
         margin: 0.1rem;
       }
+      p {
+        font-size: 1.3rem;
+        margin: 0.8rem 0;
+      }
     }
   }
 
