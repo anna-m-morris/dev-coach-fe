@@ -110,7 +110,7 @@ const DatePicker = props => {
             ? `Your ${mapLength(props.select.length_id)} ${mapTopic(
                 props.select.topic_id,
               )} interview will take place on ${moment(
-                props.date,
+                new Date(props.date),
               ).format('MMMM Do YYYY, h:mm a')}.`
             : null}
         </h1>
