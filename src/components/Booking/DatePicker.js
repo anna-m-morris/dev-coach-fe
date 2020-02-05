@@ -38,12 +38,6 @@ const StyledCalendar = styled.div`
         -webkit-box-shadow: 0 0 0 1px #4fad65 inset;
       }
     }
-
-    /* .ant-fullcalendar-date {
-      .ant-fullcalendar-value {
-        box-shadow: 0 0 0 1px #4fad65 inset;
-      }
-    } */
   }
 
   .right {
@@ -116,7 +110,7 @@ const DatePicker = props => {
             ? `Your ${mapLength(props.select.length_id)} ${mapTopic(
                 props.select.topic_id,
               )} interview will take place on ${moment(
-                props.date,
+                new Date(props.date),
               ).format('MMMM Do YYYY, h:mm a')}.`
             : null}
         </h1>

@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { finishInterview } from '../../state/actions/interviewActions';
 import Lobby from '../../components/Interview/Lobby';
 import Code from '../../components/Interview/Code';
 
@@ -69,7 +70,13 @@ const StyledVideoChat = styled.div`
   }
 `;
 
-const VideoChat = ({ user, peerId, history }) => {
+const VideoChat = ({
+  user,
+  peerId,
+  history,
+  idRole,
+  finishInterview,
+}) => {
   const username = user.email;
   const roomName =
     user.role_id === 1
@@ -94,9 +101,10 @@ const VideoChat = ({ user, peerId, history }) => {
   const handleLogout = useCallback(
     event => {
       setToken(null);
+      finishInterview(idRole.appointment_id);
       history.push('/givefeedback');
     },
-    [history],
+    [history, idRole.appointment_id, finishInterview],
   );
 
   let render;
@@ -120,7 +128,10 @@ const mapStateToProps = state => {
   return {
     user: state.userReducer.user,
     peerId: state.interviewReducer.peerId,
+    idRole: state.feedbackReducer.idRole,
   };
 };
 
-export default connect(mapStateToProps)(VideoChat);
+export default connect(mapStateToProps, { finishInterview })(
+  VideoChat,
+);

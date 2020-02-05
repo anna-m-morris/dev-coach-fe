@@ -6,11 +6,16 @@ const initialState = {
 
 function interviewReducer(state = initialState, action) {
   switch (action.type) {
-    case types.VIDEO_SUCCESSFUL:
+    case types.VIDEO_SUCCESS:
       return {
         ...state,
         isLoading: false,
         peerId: action.payload,
+      };
+
+    case types.FINISH_INTERVIEW_SUCCESS:
+      return {
+        ...state,
       };
 
     default:
