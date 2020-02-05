@@ -40,7 +40,7 @@ export default styled.div`
   }
 
   .about-card {
-    margin-bottom: 2rem;
+    margin: 0 1rem 2rem 1rem;
     box-shadow: 0 4px 12px #ccc;
     display: flex;
     flex-direction: column;
