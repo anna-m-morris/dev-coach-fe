@@ -1,11 +1,12 @@
 import React from 'react';
 import Navigation from '../Landing/Navigation/Navigation';
+import AboutContainer from './AboutStyles';
 
 const About = () => {
   return (
-    <div className='about-container'>
+    <AboutContainer className='about-container'>
       <Navigation />
-    </div>
+    </AboutContainer>
   );
 };
 
