@@ -29,8 +29,8 @@ function appointmentsReducer(state = initialState, action) {
 
       filterFutureAndUncanceledAppointments.sort(
         (a, b) =>
-          new Date(b.appointment_datetime) -
-          new Date(a.appointment_datetime),
+          new Date(a.appointment_datetime) -
+          new Date(b.appointment_datetime),
       );
 
       return {
