@@ -21,19 +21,19 @@ const Footer = () => (
       </div>
       <div className='footer-content footer-icons'>
         <div className='footer-icon'>
-          <i class='fab fa-github'></i>
+          <i className='fab fa-github'></i>
         </div>
         <div className='footer-icon'>
-          <i class='fab fa-facebook'></i>
+          <i className='fab fa-facebook'></i>
         </div>
         <div className='footer-icon'>
-          <i class='fab fa-twitter-square'></i>
+          <i className='fab fa-twitter-square'></i>
         </div>
         <div className='footer-icon'>
-          <i class='fab fa-linkedin'></i>
+          <i className='fab fa-linkedin'></i>
         </div>
         <div className='footer-icon'>
-          <i class='fab fa-instagram'></i>
+          <i className='fab fa-instagram'></i>
         </div>
       </div>
       <div className='footer-content footer-tribute'>

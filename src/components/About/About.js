@@ -17,7 +17,21 @@ const About = () => {
       </div>
       <div className='about-cards-container'>
         <div className='about-card'>
-          <div className='card-image'></div>
+          <div className='card-image'>
+            <iframe
+              src='https://giphy.com/embed/WoD6JZnwap6s8'
+              width='480'
+              height='384'
+              frameBorder='0'
+              class='giphy-embed'
+              allowFullScreen
+            ></iframe>
+            <p>
+              <a href='https://giphy.com/gifs/the-matrix-WoD6JZnwap6s8'>
+                via GIPHY
+              </a>
+            </p>
+          </div>
           <img
             className='profile-image'
             src={ben}
@@ -31,11 +45,14 @@ const About = () => {
             Contact
           </a>
           <div className='social-container'>
-            <a href='https://github.com/benjamingrabow'>
-              <i class='fab fa-github-square'></i>
+            <a
+              target='blank'
+              href='https://github.com/benjamingrabow'
+            >
+              <i className='fab fa-github-square'></i>
             </a>
             <a href='#'>
-              <i class='fab fa-twitter-square'></i>
+              <i className='fab fa-twitter-square'></i>
             </a>
           </div>
         </div>
@@ -54,11 +71,11 @@ const About = () => {
             Contact
           </a>
           <div className='social-container'>
-            <a href='https://github.com/ojokure'>
-              <i class='fab fa-github-square'></i>
+            <a target='blank' href='https://github.com/ojokure'>
+              <i className='fab fa-github-square'></i>
             </a>
             <a href='#'>
-              <i class='fab fa-twitter-square'></i>
+              <i className='fab fa-twitter-square'></i>
             </a>
           </div>
         </div>
@@ -77,11 +94,11 @@ const About = () => {
             Contact
           </a>
           <div className='social-container'>
-            <a href='https://github.com/funmi7'>
-              <i class='fab fa-github-square'></i>
+            <a target='blank' href='https://github.com/funmi7'>
+              <i className='fab fa-github-square'></i>
             </a>
             <a href='#'>
-              <i class='fab fa-twitter-square'></i>
+              <i className='fab fa-twitter-square'></i>
             </a>
           </div>
         </div>
@@ -100,11 +117,11 @@ const About = () => {
             Contact
           </a>
           <div className='social-container'>
-            <a href='https://github.com/jaynecn'>
-              <i class='fab fa-github-square'></i>
+            <a target='blank' href='https://github.com/jaynecn'>
+              <i className='fab fa-github-square'></i>
             </a>
             <a href='#'>
-              <i class='fab fa-twitter-square'></i>
+              <i className='fab fa-twitter-square'></i>
             </a>
           </div>
         </div>
@@ -123,11 +140,11 @@ const About = () => {
             Contact
           </a>
           <div className='social-container'>
-            <a href='https://github.com/domeccleston'>
-              <i class='fab fa-github-square'></i>
+            <a target='blank' href='https://github.com/domeccleston'>
+              <i className='fab fa-github-square'></i>
             </a>
             <a href='#'>
-              <i class='fab fa-twitter-square'></i>
+              <i className='fab fa-twitter-square'></i>
             </a>
           </div>
         </div>
@@ -143,10 +160,10 @@ const About = () => {
           </a>
           <div className='social-container'>
             <a target='blank' href='https://github.com/curm90'>
-              <i class='fab fa-github-square'></i>
+              <i className='fab fa-github-square'></i>
             </a>
             <a href='#'>
-              <i class='fab fa-twitter-square'></i>
+              <i className='fab fa-twitter-square'></i>
             </a>
           </div>
         </div>
