@@ -257,7 +257,6 @@ export const FormContainer = styled.div`
     background: #f7f7f7;
     height: 2em;
     width: 92%;
-    font-family: Nunito, sans-serif;
     border-radius: 4px;
     border: 1px solid #c8c8c8;
     padding: 0.5em;

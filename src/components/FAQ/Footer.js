@@ -8,12 +8,7 @@ import linkedInIcon from '../../img/linkedin.png';
 import twitterIcon from '../../img/twitter-1.png';
 import logo from '../../img/firelogo.png';
 
-// styled-components
-
-// Footer
-
 const NavTitleContainer = styled.div`
-  font-family: 'Nunito', sans-serif';
   font-style: normal;
   font-weight: normal;
   color: grey;
@@ -25,7 +20,6 @@ const FooterConatiner = styled.div`
   width: 100%;
   background: #292d38;
   p {
-    font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -59,7 +53,6 @@ const LogoTitleContainerFooter = styled.div`
 const FooterTextStyle = styled.div`
   margin-top: 2%;
   h3 {
-    font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 12px;
@@ -70,7 +63,6 @@ const FooterTextStyle = styled.div`
     color: #ffffff;
   }
   p {
-    font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
