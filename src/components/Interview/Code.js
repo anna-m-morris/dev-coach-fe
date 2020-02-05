@@ -123,7 +123,6 @@ class Code extends Component {
   }
 
   componentDidMount() {
-
     document.addEventListener('keyup', this.handlekeydownEvent);
 
     this.setState({
@@ -143,7 +142,7 @@ class Code extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keyup', this.handlekeydownEvent)
+    document.removeEventListener('keyup', this.handlekeydownEvent);
   }
 
   syncUpdates = () => {
@@ -166,6 +165,7 @@ class Code extends Component {
 
   setOutput = value => {
     this.setState({ output: value });
+    this.syncUpdates();
   };
 
   // testCode = (testCase, value) => {
@@ -241,6 +241,7 @@ class Code extends Component {
                 // setOutput(res.data.stderr);
               } else {
                 this.setState('Error executing code');
+                this.syncUpdates();
               }
             })
             .catch(err => {});
@@ -249,12 +250,11 @@ class Code extends Component {
       .catch(err => {});
   };
 
-  handlekeydownEvent = (event) => {
+  handlekeydownEvent = event => {
     if (event.keyCode === 13 && event.ctrlKey) {
       this.logCode();
     }
-  }
-
+  };
 
   runAllCode = async (currentTest, language, editorState) => {
     const { testData } = testDataObj[currentTest];
@@ -281,26 +281,27 @@ class Code extends Component {
             response.data.stdout.length - 1,
           );
         }
-        // eslint-disable-next-line
-        if (output == testResultsArr[idx]) {
+        if (output === testResultsArr[idx]) {
           passedTestsArr.push('true');
         }
         this.setState(prevState => {
           return {
-            output: `${prevState.output}Test ${idx + 1}: ${currentTest}(${
+            output: `${prevState.output}Test ${idx +
+              1}: ${currentTest}(${
               testCaseArr[idx]
             }) received ${output}\n\n`,
           };
         });
+        this.syncUpdates();
         if (
           idx === testCaseArr.length - 1 &&
           passedTestsArr.length === testCaseArr.length
         ) {
           this.setState(prevState => {
             return {
-              output: `${prevState.output}\nAll tests passed! Good job.`
-            }
-          })
+              output: `${prevState.output}\nAll tests passed! Good job.`,
+            };
+          });
           this.syncUpdates();
         } else if (
           idx === testCaseArr.length - 1 &&
@@ -308,9 +309,9 @@ class Code extends Component {
         ) {
           this.setState(prevState => {
             return {
-              output: `${prevState.output}\nTests failing, check your code!`
-            }
-          })
+              output: `${prevState.output}\nTests failing, check your code!`,
+            };
+          });
           this.syncUpdates();
         }
       }, 2500);
@@ -330,10 +331,10 @@ class Code extends Component {
     this.logCode();
   };
 
-  handleSelection = event => {
+  handleSelection = async event => {
     // setLanguage(event.target.value);
     // setEditorState(mapLanguageToEditorState(event.target.value));
-    this.setState({
+    await this.setState({
       language: event.target.value,
       editorState: mapLanguageToEditorState(event.target.value),
     });
@@ -341,16 +342,17 @@ class Code extends Component {
     this.syncUpdates();
   };
 
-  handleTestSelection = event => {
+  handleTestSelection = async event => {
     const selectedTest = event.target.value;
-    this.setState({
+    await this.setState({
       currentTest: selectedTest,
     });
     if (testDataObj[selectedTest]) {
-      this.setState({
+      await this.setState({
         editorState: testDataObj[selectedTest].state,
       });
     }
+    this.syncUpdates();
   };
 
   render() {
@@ -384,7 +386,9 @@ class Code extends Component {
               >
                 <MenuItem value='square'>Square a number</MenuItem>
                 <MenuItem value='add'>Add two numbers</MenuItem>
-                <MenuItem value='reverseAString'>Reverse a string</MenuItem>
+                <MenuItem value='reverseAString'>
+                  Reverse a string
+                </MenuItem>
                 <MenuItem value='rockPaperScissors'>
                   Rock Paper Scissors
                 </MenuItem>

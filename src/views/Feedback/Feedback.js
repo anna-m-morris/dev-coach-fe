@@ -25,9 +25,24 @@ const StyledFeedback = styled.div`
   .feedback-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 100%;
+  }
+
+  .chart-container {
+    height: 30em;
+    width: 100%;
+    padding: 1em;
+    @media ${devices.tablet} {
+      display: none;
+    }
+  }
+
+  .chart-display {
+    width: 80%;
+    margin: 0 auto;
   }
 
   .feedback-title {
@@ -48,40 +63,9 @@ const StyledFeedback = styled.div`
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+    width: 100%;
     @media ${devices.tablet} {
       flex-direction: column;
-    }
-
-    .feedback-card-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-    .chart-display {
-      width: 80%;
-      margin: 0 auto;
-      @media ${devices.tablet} {
-        display: none;
-      }
-    }
-
-    .ant-pagination-item-active {
-      border-color: #4fad65;
-    }
-    .ant-pagination-item-active a {
-      color: #4fad65;
-    }
-
-    .loaderStyled {
-      margin-top: 20vh;
-      margin-left: -17rem;
-    }
-
-    .chart-container {
-      height: 30em;
-      width: 100%;
-      padding: 1em;
     }
   }
 
@@ -103,7 +87,7 @@ const ChartCardContainer = styled(CardContainer)`
   padding: 3em 2em 2em 0.8em;
 `;
 
-const Feedback = ({ user, getFeedback, feedback }) => {
+const Feedback = ({ isLoading, user, getFeedback, feedback }) => {
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(6);
 
@@ -123,36 +107,7 @@ const Feedback = ({ user, getFeedback, feedback }) => {
 
   return (
     <StyledFeedback className='feedback-container'>
-      <h2 className='feedback-title'>Interview Feedback</h2>
-      {feedback.length > 0 && (
-        <div className='feedback-content'>
-          <ChartCardContainer>
-            <StudentChart />
-          </ChartCardContainer>
-        </div>
-      )}
-      {feedback ? (
-        <div className='feedback-card-container'>
-          {feedback && feedback.length ? (
-            feedback
-              .slice(minValue, maxValue)
-              .map(feedback => (
-                <FeedbackCard
-                  key={uuid()}
-                  rating={<FeedbackRating rating={feedback.rating} />}
-                  feedback={feedback.feedback}
-                  topic={feedback.appointment_topic}
-                  date={feedback.appointment_datetime.slice(0, 15)}
-                  coachFirstName={feedback.first_name}
-                  coachLastName={feedback.last_name}
-                  avatarUrl={feedback.avatar_url}
-                />
-              ))
-          ) : (
-            <EmptyFeedback />
-          )}
-        </div>
-      ) : (
+      {isLoading ? (
         <div className='loaderStyled'>
           <Loader
             type='TailSpin'
@@ -161,15 +116,46 @@ const Feedback = ({ user, getFeedback, feedback }) => {
             width={80}
           />
         </div>
+      ) : (
+        <div className='feedback-content'>
+          <h2 className='feedback-title'>Interview Feedback</h2>
+          {feedback && feedback.length > 1 && (
+            <ChartCardContainer className='chart-container'>
+              <StudentChart className='chart-display' />
+            </ChartCardContainer>
+          )}
+          <div className='feedback-card-container'>
+            {feedback && feedback.length ? (
+              feedback
+                .slice(minValue, maxValue)
+                .map(feedback => (
+                  <FeedbackCard
+                    key={uuid()}
+                    rating={
+                      <FeedbackRating rating={feedback.rating} />
+                    }
+                    feedback={feedback.feedback}
+                    topic={feedback.appointment_topic}
+                    date={feedback.appointment_datetime.slice(0, 15)}
+                    coachFirstName={feedback.first_name}
+                    coachLastName={feedback.last_name}
+                    avatarUrl={feedback.avatar_url}
+                  />
+                ))
+            ) : (
+              <EmptyFeedback />
+            )}
+          </div>
+          <div className='pagination'>
+            <Pagination
+              defaultCurrent={1}
+              defaultPageSize={6}
+              onChange={handlePagination}
+              total={feedback && feedback.length}
+            />
+          </div>
+        </div>
       )}
-      <div className='pagination'>
-        <Pagination
-          defaultCurrent={1}
-          defaultPageSize={6}
-          onChange={handlePagination}
-          total={feedback && feedback.length}
-        />
-      </div>
     </StyledFeedback>
   );
 };
@@ -178,6 +164,7 @@ const mapStateToProps = state => {
   return {
     feedback: state.feedbackReducer.feedback,
     user: state.userReducer.user,
+    isLoading: state.feedbackReducer.isLoading,
   };
 };
 
