@@ -97,8 +97,11 @@ export default styled.div`
   .fab {
     font-size: 2.6rem;
     color: #4f5450;
-  }
+    transition: ease-out 0.2s;
 
-  .fa-github-square {
+    &:hover {
+      transition: ease-in 0.1s;
+      color: #4fad65;
+    }
   }
 `;
