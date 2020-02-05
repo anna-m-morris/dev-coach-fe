@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { connect } from 'react-redux';
 import LoginForm from './components/Onboarding/Login/LoginForm';
 import ResetPasswordForm from './components/Onboarding/ResetPasswordForm';
@@ -21,12 +20,7 @@ import SignUp from './components/Onboarding/SignupStepper';
 import SettingsTabs from './views/Settings/SettingsTabs';
 import Code from './views/Code/Code';
 import GiveFeedback from './views/Feedback/GiveFeedback';
-
-const globalTheme = createMuiTheme({
-  typography: {
-    fontFamily: 'Nunito',
-  },
-});
+import About from './components/About/About';
 
 function App({ user, isLoggedIn }) {
   const routes = (
@@ -50,11 +44,7 @@ function App({ user, isLoggedIn }) {
   );
 
   if (isLoggedIn) {
-    return (
-      <ThemeProvider theme={globalTheme}>
-        <Dashboard routes={routes} />
-      </ThemeProvider>
-    );
+    return <Dashboard routes={routes} />;
   }
 
   return (
@@ -68,6 +58,7 @@ function App({ user, isLoggedIn }) {
       />
       <Route path='/register' component={SignUp} />
       <Route path='/faq' component={LandingFaq} />
+      <Route path='/about' component={About} />
       <Route path={'/video'} component={Interview} />
       <Redirect to='/' />
     </Switch>

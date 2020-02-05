@@ -56,9 +56,8 @@ export const FooterContainer = styled.div`
     display: flex;
     justify-content: space-between;
 
-    img {
-      width: 25px;
-      height: 25px;
+    .fab {
+      font-size: 2rem;
     }
   }
 
