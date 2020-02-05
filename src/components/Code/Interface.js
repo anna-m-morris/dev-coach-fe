@@ -108,11 +108,14 @@ const Interface = ({
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
           <MenuItem value='reverseAString'>Reverse a string</MenuItem>
+          <MenuItem value='sortString'>sortString</MenuItem>
           <MenuItem value='rockPaperScissors'>
             Rock Paper Scissors
           </MenuItem>
           <MenuItem value='fibonacci'>Fibonacci</MenuItem>
-          <MenuItem value='sortString'>sortString</MenuItem>
+          <MenuItem value='isArmstrongNumber'>
+            isArmstrongNumber
+          </MenuItem>
         </Select>
       </FormControl>
       <Button onClick={handlePost}>Run Code</Button>
