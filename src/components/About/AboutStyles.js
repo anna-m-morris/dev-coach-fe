@@ -64,6 +64,9 @@ export default styled.div`
     height: 12rem;
     border-radius: 50%;
     object-fit: cover;
+    margin-top: -10rem;
+    z-index: 1000;
+    border: 1rem solid #daefdf;
   }
 
   .name {
