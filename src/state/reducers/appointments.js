@@ -20,7 +20,9 @@ function appointmentsReducer(state = initialState, action) {
         appointment => {
           return (
             new Date(appointment.appointment_datetime) >=
-              new Date() && !appointment.canceled
+              new Date() &&
+            !appointment.canceled &&
+            !appointment.finished
           );
         },
       );
