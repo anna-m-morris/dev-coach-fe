@@ -71,25 +71,26 @@ export default styled.div`
   }
 
   .name {
-    color: #4f5450
+    color: #4f5450;
     font-size: 2.2rem;
     margin: 1rem 0;
   }
 
   .position {
     color: #655f69;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin: 0;
   }
 
   .contact {
-    background: #4fad65;
-    padding: 0.8rem 2.5rem;
+    color: #4fad65;
+    /* padding: 0.8rem 2.5rem; */
     text-decoration: none;
-    color: white;
-    margin: 1rem 0;
-    border-radius: 2rem;
-    font-size: 1.2rem;
+    /* color: white; */
+    margin: 2rem 0;
+    /* border-radius: 2rem; */
+    font-size: 1.6rem;
+    font-weight: bold;
   }
 
   .social-container {

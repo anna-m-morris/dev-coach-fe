@@ -25,13 +25,13 @@ const About = () => {
           />
           <div className='info'>
             <h4 className='name'>Benjamin Grabow</h4>
-            <p className='position'>Full Stack Developer</p>
+            <p className='position'>Project Lead</p>
           </div>
           <a href='#' className='contact'>
             Contact
           </a>
           <div className='social-container'>
-            <a href='#'>
+            <a href='https://github.com/benjamingrabow'>
               <i class='fab fa-github-square'></i>
             </a>
             <a href='#'>
@@ -54,7 +54,7 @@ const About = () => {
             Contact
           </a>
           <div className='social-container'>
-            <a href='#'>
+            <a href='https://github.com/ojokure'>
               <i class='fab fa-github-square'></i>
             </a>
             <a href='#'>
@@ -77,7 +77,7 @@ const About = () => {
             Contact
           </a>
           <div className='social-container'>
-            <a href='#'>
+            <a href='https://github.com/funmi7'>
               <i class='fab fa-github-square'></i>
             </a>
             <a href='#'>
@@ -100,7 +100,7 @@ const About = () => {
             Contact
           </a>
           <div className='social-container'>
-            <a href='#'>
+            <a href='https://github.com/jaynecn'>
               <i class='fab fa-github-square'></i>
             </a>
             <a href='#'>
@@ -123,7 +123,7 @@ const About = () => {
             Contact
           </a>
           <div className='social-container'>
-            <a href='#'>
+            <a href='https://github.com/domeccleston'>
               <i class='fab fa-github-square'></i>
             </a>
             <a href='#'>
@@ -142,7 +142,7 @@ const About = () => {
             Contact
           </a>
           <div className='social-container'>
-            <a href='#'>
+            <a target='blank' href='https://github.com/curm90'>
               <i class='fab fa-github-square'></i>
             </a>
             <a href='#'>
