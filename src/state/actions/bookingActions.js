@@ -109,6 +109,10 @@ export const bookAppointment = (
         closeMessage();
       }, 2000);
 
+      dispatch({
+        type: BOOK_APPOINTMENT_SUCCESSFUL,
+      });
+
       const coach_email = {
         email: coach.email,
         text: `Hello ${coach.first_name} ${coach.last_name},
@@ -132,12 +136,7 @@ export const bookAppointment = (
 
           return axiosWithAuth()
             .post(`${url}appointment/email`, student_email)
-            .then(res => {
-              dispatch({
-                type: BOOK_APPOINTMENT_SUCCESSFUL,
-                payload: res.data.appointments,
-              });
-            })
+            .then(res => {})
             .catch(err => {
               dispatch({
                 type: BOOK_APPOINTMENT_ERROR,
@@ -189,7 +188,7 @@ export const rescheduleAppointment = (
     last_name:
       user.role_id === 1 ? user.last_name : rescheduler.last_name,
   };
-  debugger
+
   axiosWithAuth()
     .post(`${url}appointment`, appointment)
     .then(res => {
@@ -198,6 +197,10 @@ export const rescheduleAppointment = (
       setTimeout(() => {
         props.history.push('/dashboard');
       }, 3000);
+
+      dispatch({
+        type: BOOK_APPOINTMENT_SUCCESSFUL,
+      });
 
       const coach_email = {
         email: coach.email,

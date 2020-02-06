@@ -34,13 +34,11 @@ export const cancelAppointment = (
   history,
   rescheduler,
 ) => dispatch => {
-  debugger
   dispatch({ type: CANCEL_APPOINTMENTS_START });
 
   axiosWithAuth()
     .put(`${url}appointment/${appointment_id}`, { canceled: true })
     .then(res => {
-      debugger
       history.push('/reschedule');
       dispatch({
         type: CANCEL_APPOINTMENT_SUCCESSFUL,
