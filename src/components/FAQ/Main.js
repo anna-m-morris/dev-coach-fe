@@ -100,12 +100,12 @@ const CategoryContainer = styled.div`
     }
 
     h3 {
-      color: grey;
+      color: #4fad65;
     }
   }
 
   .activeClassNav {
-    background: #1e3f1f;
+    background: #4fad65;
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
     transition: ease-out 0.1s;
 
@@ -122,7 +122,7 @@ const CategoryContainer = styled.div`
 
 const iconStyles = {
   fontSize: '3.5em',
-  color: '#4fad65',
+  color: '4fad65',
 };
 
 const MainFaq = () => {
