@@ -53,12 +53,6 @@ function appointmentsReducer(state = initialState, action) {
         },
       };
 
-    case types.BOOK_APPOINTMENT_SUCCESSFUL:
-      return {
-        ...state,
-        rescheduler: null,
-      };
-
     default:
       return state;
   }

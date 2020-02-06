@@ -53,6 +53,13 @@ function bookingReducer(state = initialState, action) {
         rescheduled_coach: action.payload,
       };
 
+    case types.BOOK_APPOINTMENT_SUCCESSFUL:
+      return {
+        ...state,
+        select: {},
+        date: null,
+      };
+
     default:
       return state;
   }
