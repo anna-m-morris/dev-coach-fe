@@ -16,7 +16,7 @@ import {
   Box,
 } from '@material-ui/core';
 
-import { LoaderStyle } from './Login/LoginStyles';
+import { loadingButtonTheme } from './Login/LoginStyles';
 import { buttonTheme, Logo } from '../Landing/Landing-styles';
 import { FormButton, InfoParagraph } from './StudentForm';
 import { chooseUserRole } from '../../state/actions/authenticationActions';
@@ -219,20 +219,14 @@ const CoachForm = props => {
 
                     <FormButton
                       className='submit-button'
-                      theme={buttonTheme}
+                      theme={
+                        userReducer.isLoading
+                          ? loadingButtonTheme
+                          : buttonTheme
+                      }
                       disabled={isSubmitting}
                       type='submit'
                     >
-                      {userReducer.isLoading && (
-                        <LoaderStyle>
-                          <Loader
-                            type='TailSpin'
-                            color='white'
-                            height={20}
-                            width={20}
-                          />
-                        </LoaderStyle>
-                      )}
                       Submit
                     </FormButton>
                   </div>

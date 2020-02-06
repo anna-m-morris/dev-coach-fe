@@ -176,6 +176,7 @@ export const LoginContainer = styled.div`
 `;
 
 export const loadingButtonTheme = {
+  text: '#292d38',
   background: 'lightgray',
 };
 

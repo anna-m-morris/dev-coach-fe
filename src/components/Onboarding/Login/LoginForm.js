@@ -11,8 +11,8 @@ import {
 } from '../../Landing/Landing-styles';
 import {
   LoginContainer,
-  LoaderStyle,
   StyledLoader,
+  loadingButtonTheme,
 } from './LoginStyles';
 import Navigation from '../../Landing/Navigation/Navigation';
 import { login } from '../../../state/actions/authenticationActions';
@@ -88,20 +88,14 @@ const LoginForm = ({
               <div className='form-button-container'>
                 <StyledButton
                   className='form-button'
-                  theme={buttonTheme}
+                  theme={
+                    userReducer.isLoading
+                      ? loadingButtonTheme
+                      : buttonTheme
+                  }
                   type='submit'
                   disabled={isSubmitting}
                 >
-                  {userReducer.isLoading && (
-                    <LoaderStyle>
-                      <Loader
-                        type='TailSpin'
-                        color='white'
-                        height={20}
-                        width={20}
-                      />
-                    </LoaderStyle>
-                  )}
                   Sign in
                 </StyledButton>
               </div>

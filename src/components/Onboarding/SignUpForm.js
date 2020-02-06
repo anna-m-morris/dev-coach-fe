@@ -7,7 +7,11 @@ import * as Yup from 'yup';
 import Loader from 'react-loader-spinner';
 
 import { StyledButton, buttonTheme } from '../Landing/Landing-styles';
-import { LoginContainer, LoaderStyle } from './Login/LoginStyles';
+import {
+  LoginContainer,
+  LoaderStyle,
+  loadingButtonTheme,
+} from './Login/LoginStyles';
 
 import { register } from '../../state/actions/authenticationActions';
 
@@ -145,20 +149,13 @@ const SignUpForm = ({
               <StyledButton
                 className='form-button'
                 disabled={isSubmitting}
-                theme={buttonTheme}
+                theme={
+                  userReducer.isLoading
+                    ? loadingButtonTheme
+                    : buttonTheme
+                }
                 type='submit'
               >
-                {' '}
-                {userReducer.isLoading && (
-                  <LoaderStyle>
-                    <Loader
-                      type='TailSpin'
-                      color='white'
-                      height={20}
-                      width={20}
-                    />
-                  </LoaderStyle>
-                )}
                 Get Started
               </StyledButton>
             </div>
