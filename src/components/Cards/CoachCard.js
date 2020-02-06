@@ -8,11 +8,13 @@ import { Link } from 'react-router-dom';
 import CoachModal from '../Modals/CoachModal';
 import Rating from '../DataVisualization/Rating';
 import { mapExperience } from '../../utils/mappers';
+import devices from '../../utils/devices';
 
 const StyledCoachCard = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-start;
   width: 17rem;
   height: 24rem;
   padding: 1.5rem;
@@ -24,28 +26,27 @@ const StyledCoachCard = styled.div`
   background: white;
   box-shadow: 0 6px 10px #d3d3d3;
 
-  h3 {
-    font-weight: 400;
-    font-size: 1rem;
-    color: #3c4043;
-  }
-
   .header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
     max-height: 5.5rem;
     .header-text {
-      width: 100%;
-
+      margin-left: 1rem;
       h3 {
         font-weight: bold;
+        font-size: 1rem;
+        color: #3c4043;
+        margin: 0;
+      }
+      p {
+        margin: 0;
       }
     }
 
     .header-photo {
-      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -56,18 +57,23 @@ const StyledCoachCard = styled.div`
     }
   }
 
-    .location-bullet {
-      .location-icon {
-        margin-left: 0.1em;
-        padding-right: 0.1em;
-      }
+  .bullet-points p {
+    margin: 0;
+    .location-bullet .location-icon {
+      margin-left: 0.1em;
+      padding-right: 0.1em;
     }
   }
+
+  .description p {
+    margin: 0;
+  }
+
   .reviews {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: 1rem 0;
+    margin: 0;
 
     p {
       margin-left: 0.7rem;
@@ -78,19 +84,28 @@ const StyledCoachCard = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-between;
+    @media ${devices.mobile} {
+      flex-direction: column;
+      align-items: center;
+    }
 
     a {
       text-decoration: none;
-      width: 47%;
+      width: 100%;
     }
 
-    .chat-button {
-      background-color: #4fad65;
-      width: 110px;
+    .button {
+      width: 6.7rem;
+      @media ${devices.mobile} {
+        width: 100%;
+      }
     }
 
     .book-button {
-      width: 110px;
+      background-color: #4fad65;
+      @media ${devices.mobile} {
+        margin-top: 0.5rem;
+      }
     }
   }
 `;
@@ -99,7 +114,7 @@ export const CoachCard = props => {
   const { coach, saveCoach, getFeedback, feedback, savePeer } = props;
   console.log(coach.experience_level)
   return (
-    <StyledCoachCard>
+    <StyledCoachCard className='coach-card'>
       <div className='header'>
         <div className='header-text'>
           <h3>{`${coach.first_name} ${coach.last_name}`}</h3>
@@ -128,7 +143,7 @@ export const CoachCard = props => {
       </div>
       <div className='description'>
         <p>{`${coach.description &&
-          coach.description.slice(0, 100)}...`}</p>{' '}
+          coach.description.slice(0, 90)}...`}</p>
       </div>
 
       <div className='reviews'>
@@ -145,7 +160,7 @@ export const CoachCard = props => {
           <Button
             variant='contained'
             color='primary'
-            className='chat-button'
+            className='chat-button button'
             endIcon={<TelegramIcon />}
           >
             Chat
@@ -153,7 +168,7 @@ export const CoachCard = props => {
         </Link>
         <Link to='/appointment' onClick={saveCoach}>
           <Button
-            className='book-button'
+            className='book-button button'
             variant='contained'
             color='primary'
             endIcon={<ShoppingCartIcon />}

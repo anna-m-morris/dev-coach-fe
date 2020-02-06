@@ -18,8 +18,9 @@ const MainContainer = styled.div`
 
   h2 {
     margin: 0;
-    color: #4fad65;
-    font-size: 3rem;
+    color: #595959;
+    font-size: 2rem;
+    font-weight: 500;
 
     @media ${devices.tablet} {
       font-size: 2rem;
@@ -29,19 +30,26 @@ const MainContainer = styled.div`
 
 const CategoryContainer = styled.div`
   display: flex;
-  margin-bottom: 20px;
+  justify-content: center;
+  margin: 2rem 0;
+  width: 100%;
+
+  @media ${devices.tablet} {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 20rem;
+  }
 
   @media ${devices.mobile} {
-    flex-direction: column;
-    margin-bottom: 10vh;
-    margin-top: 20px;
+    width: 100%;
   }
 
   .styledBox {
     width: 12rem;
     border-radius: 1rem;
     height: 150px;
-    margin: 3rem;
+    margin: 0 3rem;
     border-width: 1rem;
     display: flex;
     flex-direction: column;
@@ -51,34 +59,13 @@ const CategoryContainer = styled.div`
     background: white;
     transition: ease-out 0.1s;
 
-    @media only screen and (max-width: 1200px) {
-      width: 7rem;
-      border-radius: 1rem;
-      padding: 0.5rem 2rem;
-      margin: 2rem;
-      border-width: 0.5rem;
-    }
     @media ${devices.tablet} {
-      width: 5rem;
-      border-radius: 0.5rem;
-      padding: 0.5rem 1rem;
-      margin: 0.5rem;
-      border-width: 0.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      height: 5rem;
+      width: 23rem;
     }
 
     @media ${devices.mobile} {
-      width: 22rem;
-      border-radius: 0.5rem;
-      padding: 0rem 0rem;
-      margin: 0.25rem;
-      border-width: 0.25rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 80px;
+      width: 90%;
     }
 
     &:hover {
@@ -94,18 +81,27 @@ const CategoryContainer = styled.div`
       justify-content: center;
       align-items: center;
 
+      @media ${devices.tablet} {
+        flex-direction: row-reverse;
+      }
+
       @media ${devices.mobile} {
         flex-direction: row-reverse;
       }
     }
 
     h3 {
-      color: grey;
+      color: #4fad65;
+    }
+
+    .icon {
+      font-size: 3.5rem;
+      color: #4fad65;
     }
   }
 
   .activeClassNav {
-    background: #1e3f1f;
+    background: #4fad65;
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
     transition: ease-out 0.1s;
 
@@ -114,22 +110,18 @@ const CategoryContainer = styled.div`
       transition: ease-in 0.1s;
     }
 
-    h3 {
+    h3,
+    .icon {
       color: white;
     }
   }
 `;
 
-const iconStyles = {
-  fontSize: '3.5em',
-  color: '#4fad65',
-};
-
 const MainFaq = () => {
   return (
     <MainContainer>
       <h2>FAQ</h2>
-      <CategoryContainer>
+      <CategoryContainer className='category-container'>
         <NavLink
           className='styledBox'
           activeClassName='activeClassNav'
@@ -137,7 +129,7 @@ const MainFaq = () => {
         >
           <div className='link-content'>
             <h3>General</h3>
-            <SearchIcon style={iconStyles} />
+            <SearchIcon className='icon' />
           </div>
         </NavLink>
 
@@ -148,7 +140,7 @@ const MainFaq = () => {
         >
           <div className='link-content'>
             <h3>Profile</h3>
-            <PersonIcon style={iconStyles} />
+            <PersonIcon className='icon' />
           </div>
         </NavLink>
         <NavLink
@@ -158,7 +150,7 @@ const MainFaq = () => {
         >
           <div className='link-content'>
             <h3>Payment</h3>
-            <PaymentIcon style={iconStyles} />
+            <PaymentIcon className='icon' />
           </div>
         </NavLink>
       </CategoryContainer>
