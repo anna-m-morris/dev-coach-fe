@@ -128,7 +128,6 @@ const Interface = ({
           </MenuItem>
           <MenuItem value='fibonacci'>Fibonacci</MenuItem>
           <MenuItem value='anagram'>Anagram</MenuItem>
-          <MenuItem value='fizzBuzz'>FizzBuzz</MenuItem>
           <MenuItem value='isArmstrongNumber'>
             IsArmstrongNumber
           </MenuItem>

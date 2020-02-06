@@ -40,7 +40,6 @@ const FlexContainer = styled.div`
   flex-direction: column;
   height: 92vh;
   width: 100%;
-  overflow: hidden;
 
   .code-header-container {
     width: 100%;
@@ -293,7 +292,8 @@ class Code extends Component {
         }
         this.setState(prevState => {
           return {
-            output: `${prevState.output}Test ${idx + 1}: expected ${currentTest}(${
+            output: `${prevState.output}Test ${idx +
+              1}: expected ${currentTest}(${
               testCaseArr[idx]
             }) to equal ${
               testResultsArr[idx]
@@ -384,6 +384,9 @@ class Code extends Component {
                 <MenuItem value='java'>Java</MenuItem>
                 <MenuItem value='c'>C</MenuItem>
                 <MenuItem value='cpp'>C++</MenuItem>
+                <MenuItem value='haskell'>Haskell</MenuItem>
+                <MenuItem value='go'>Go</MenuItem>
+                <MenuItem value='rust'>Rust</MenuItem>
               </Select>
             </FormControl>
             <FormControl className='form-control'>
@@ -391,6 +394,7 @@ class Code extends Component {
                 Select Coding Challenge
               </InputLabel>
               <Select
+                disabled={this.state.language !== 'javascript'}
                 onChange={this.handleTestSelection}
                 value={this.state.currentTest}
               >
@@ -403,9 +407,15 @@ class Code extends Component {
                   Rock Paper Scissors
                 </MenuItem>
                 <MenuItem value='fibonacci'>Fibonacci</MenuItem>
+                <MenuItem value='anagram'>Anagram</MenuItem>
+                <MenuItem value='isArmstrongNumber'>
+                  IsArmstrongNumber
+                </MenuItem>
               </Select>
             </FormControl>
-            <Button className='run-button' onClick={this.handlePost}>Run Code</Button>
+            <Button className='run-button' onClick={this.handlePost}>
+              Run Code
+            </Button>
           </InterfaceContainer>
         </div>
         <div className='code-body-container'>
