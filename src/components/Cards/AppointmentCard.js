@@ -115,7 +115,7 @@ const StyledCoachCard = styled.div`
 
     .interview-button {
       width: 110px;
-      background-color: #4f6ead;
+      background-color: #303f9f;
     }
 
     @media ${devices.mobile} {
@@ -195,7 +195,7 @@ export const AppointmentCard = props => {
             className='send-button'
             variant='contained'
             color='primary'
-            startIcon={<TelegramIcon  />}
+            startIcon={<TelegramIcon />}
             onClick={savePeer}
           >
             Chat
