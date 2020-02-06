@@ -40,6 +40,10 @@ const CategoryContainer = styled.div`
     height: 20rem;
   }
 
+  @media ${devices.mobile} {
+    width: 100%;
+  }
+
   .styledBox {
     width: 12rem;
     border-radius: 1rem;
@@ -59,34 +63,8 @@ const CategoryContainer = styled.div`
       width: 23rem;
     }
 
-    /* @media only screen and (max-width: 1200px) {
-      width: 7rem;
-      border-radius: 1rem;
-      padding: 0.5rem 2rem;
-      margin: 2rem;
-      border-width: 0.5rem;
-    } */
-    /* @media ${devices.tablet} {
-      width: 5rem;
-      border-radius: 0.5rem;
-      padding: 0.5rem 1rem;
-      margin: 0.5rem;
-      border-width: 0.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    } */
-
     @media ${devices.mobile} {
-      width: 22rem;
-      border-radius: 0.5rem;
-      padding: 0rem 0rem;
-      margin: 0.25rem;
-      border-width: 0.25rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 80px;
+      width: 90%;
     }
 
     &:hover {
@@ -103,8 +81,8 @@ const CategoryContainer = styled.div`
       align-items: center;
 
       @media ${devices.tablet} {
-      flex-direction: row-reverse;
-    }
+        flex-direction: row-reverse;
+      }
 
       @media ${devices.mobile} {
         flex-direction: row-reverse;
