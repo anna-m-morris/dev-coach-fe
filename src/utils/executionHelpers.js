@@ -137,6 +137,92 @@ export const testDataObj = {
       },
     ],
   },
+  sortString: {
+    state: `function sortString(str) {
+  // write a function that takes a string of letters and 
+  // returns a string with the letters sorted in alphabetical order.
+
+}
+    `,
+    testData: [
+      { testCase: 'zyx', testResult: 'xyz' },
+      { testCase: 'fedcba', testResult: 'abcdef' },
+      { testCase: 'vul', testResult: 'luv' },
+    ],
+  },
+  isArmstrongNumber: {
+    state: `function isArmstrongNumber(n) {
+  // An Armstrong number is an n-digit number that is equal to the sum of the n'th powers of its digits.
+  // Determine if the input number is an Armstrong number.  Return either true or false .
+
+  // For example with the number 153 there are 3 digits so you would add together the cubed
+  // values of all the digits like this: 1^3 + 5^3 + 3^3 === 153 
+
+}
+    `,
+    testData: [
+      { testCase: 6, testResult: 'true' },
+      { testCase: 153, testResult: 'true' },
+      { testCase: 351, testResult: 'false' },
+    ],
+  },
+  fizzBuzz: {
+    state: `function fizzBuzz(num) {
+     // Write a function that does the following:
+
+     // console logs the numbers from 1 to n, where n 
+     // is the integer the function takes as its parameter
+     // logs fizz instead of the number for multiples of 3
+     // logs buzz instead of the number for multiples of 5
+     // logs fizzbuzz for numbers that are multiples of both 3 and 5
+
+}
+    `,
+    testData: [
+      {
+        testCase: 3,
+        testResult: `[1, 2, 'fizz']`,
+      },
+      { testCase: 5, testResult: `[1, 2, 'fizz', 4, 'buzz']` },
+      {
+        testCase: 15,
+        testResult: `[
+          1,
+          2,
+          'fizz',
+          4,
+          'buzz',
+          'fizz',
+          7,
+          8,
+          'fizz',
+          'buzz',
+          11,
+          'fizz',
+          13,
+          14,
+          'fizzbuzz',
+        ]`,
+      },
+    ],
+  },
+  anagram: {
+    state: `function anagram(a,b) {
+  // A word is an anagram of another word if both use the same letters 
+  // in the same quantity, but arranged differently.
+
+  // write a function that checks if two provided strings 
+  // are anagrams of each other; letter casing shouldn’t matter. 
+  //  Also, consider only characters, not spaces or punctuation.
+  // For example: anagram('this', 'that') -> false anagram('fired', 'fried') -> true
+
+}`,
+    testData: [
+      { testCase: `['hello', 'bye']`, testResult: 'false' },
+      { testCase: `['finder', 'friend']`, testResult: 'true' },
+      { testCase: `['listen', 'silent']`, testResult: 'true' },
+    ],
+  },
 };
 
 export const invokeCode = (code, testCase, value, language) => {
