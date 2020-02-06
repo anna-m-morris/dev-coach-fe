@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import uuid from 'uuid';
 import { Formik, Form, Field, useField } from 'formik';
 import * as yup from 'yup';
-import Loader from 'react-loader-spinner';
 import {
   FormControl,
   Select,
