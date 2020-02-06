@@ -24,6 +24,10 @@ const InterfaceContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
 
+  .run-button {
+    margin-top: 1em;
+  }
+
   .title {
     color: #595959;
     font-size: 2rem;
@@ -122,7 +126,7 @@ const Interface = ({
           </MenuItem>
         </Select>
       </FormControl>
-      <Button onClick={handlePost}>Run Code</Button>
+      <Button className='run-button' onClick={handlePost}>Run Code</Button>
     </InterfaceContainer>
   );
 };

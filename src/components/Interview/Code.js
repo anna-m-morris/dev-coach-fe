@@ -47,7 +47,7 @@ const FlexContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-around;
-    font-family: 'Inconsolata', sans-serif
+    font-family: 'Inconsolata', sans-serif;
   }
 
   .code-body-container {
@@ -405,7 +405,7 @@ class Code extends Component {
                 <MenuItem value='fibonacci'>Fibonacci</MenuItem>
               </Select>
             </FormControl>
-            <Button onClick={this.handlePost}>Run Code</Button>
+            <Button className='run-button' onClick={this.handlePost}>Run Code</Button>
           </InterfaceContainer>
         </div>
         <div className='code-body-container'>
