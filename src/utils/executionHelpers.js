@@ -167,7 +167,7 @@ export const testDataObj = {
     ],
   },
   fizzBuzz: {
-    state: `function fizzBuzz(n) {
+    state: `function fizzBuzz(num) {
      // Write a function that does the following:
 
      // console logs the numbers from 1 to n, where n 
