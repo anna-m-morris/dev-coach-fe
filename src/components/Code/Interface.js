@@ -109,7 +109,12 @@ const Interface = ({
         <InputLabel className='input-label'>
           Select Coding Challenge
         </InputLabel>
-        <Select value={currentTest} onChange={handleTestSelection}>
+        <Select
+          disabled={language !== 'javascript'}
+          value={currentTest}
+          onChange={handleTestSelection}
+        >
+          {' '}
           <MenuItem value=''>None</MenuItem>
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
@@ -126,7 +131,9 @@ const Interface = ({
           </MenuItem>
         </Select>
       </FormControl>
-      <Button className='run-button' onClick={handlePost}>Run Code</Button>
+      <Button className='run-button' onClick={handlePost}>
+        Run Code
+      </Button>
     </InterfaceContainer>
   );
 };
