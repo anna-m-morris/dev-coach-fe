@@ -30,9 +30,9 @@ const MainContainer = styled.div`
 
 const CategoryContainer = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   margin: 2rem 0;
-  width: 80%;
+  width: 100%;
 
   @media ${devices.tablet} {
     flex-direction: column;
@@ -49,7 +49,7 @@ const CategoryContainer = styled.div`
     width: 12rem;
     border-radius: 1rem;
     height: 150px;
-    margin: 0 1rem;
+    margin: 0 3rem;
     border-width: 1rem;
     display: flex;
     flex-direction: column;
