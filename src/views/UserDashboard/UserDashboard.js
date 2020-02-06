@@ -29,6 +29,10 @@ const DashboardContainer = styled.div`
   justify-content: space-between;
   margin-top: 1rem;
 
+  .loaderStyled {
+    margin-top: 40%;
+  }
+
   .dashboard-content {
     height: 100%;
     width: 100%;
@@ -155,10 +159,6 @@ const DashboardContainer = styled.div`
       font-weight: 600;
       margin-bottom: 0;
     }
-  }
-
-  .loaderStyled {
-    margin-top: 20vh;
   }
 
   .pagination {

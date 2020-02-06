@@ -22,6 +22,10 @@ const StyledFeedback = styled.div`
   justify-content: space-between;
   margin-top: 1rem;
 
+  .loaderStyled {
+    margin-top: 40%;
+  }
+
   .feedback-content {
     display: flex;
     flex-direction: column;
