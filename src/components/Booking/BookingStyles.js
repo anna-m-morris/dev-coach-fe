@@ -17,6 +17,8 @@ const StyledBooking = styled.div`
   .instructions {
     text-align: center;
     margin-top: 1rem;
+    color: #595959;
+    font-weight: 500;
   }
 
   .steps-container {

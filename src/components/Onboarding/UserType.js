@@ -81,7 +81,7 @@ const UserTypePage = ({ saveRoleId, handleNext }) => {
               interview
             </li>
             <li>
-              Help <b>grow</b> this community
+              Help <b>grow</b> the community
             </li>
           </ul>
         </div>
@@ -105,7 +105,7 @@ const UserTypePage = ({ saveRoleId, handleNext }) => {
               Feel <b>confident</b> in the online interview setting
             </li>
             <li>
-              Land your <b>dream</b> job and get dat moneyyssss
+              Land your <b>dream</b> job and start earning!
             </li>
           </ul>
         </div>

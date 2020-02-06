@@ -95,7 +95,7 @@ export function SettingsGeneral(props) {
                 id='github'
                 label='GitHub'
                 placeholder={
-                  userInfo.github ? userInfo.github : 'github'
+                  userInfo.github ? userInfo.github : 'GitHub'
                 }
                 onChange={handleChange}
               />
@@ -110,7 +110,7 @@ export function SettingsGeneral(props) {
                   type='url'
                   id='hourly_rate'
                   label='Hourly Rate'
-                  placeholder={userInfo.hourly_rate.toString()}
+                  placeholder={userInfo.hourly_rate}
                   onChange={handleChange}
                 />
               </Grid>
