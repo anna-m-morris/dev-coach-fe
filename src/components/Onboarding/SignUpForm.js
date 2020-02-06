@@ -4,9 +4,14 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import Loader from 'react-loader-spinner';
 
 import { StyledButton, buttonTheme } from '../Landing/Landing-styles';
-import { LoginContainer } from './Login/LoginStyles';
+import {
+  LoginContainer,
+  LoaderStyle,
+  loadingButtonTheme,
+} from './Login/LoginStyles';
 
 import { register } from '../../state/actions/authenticationActions';
 
@@ -56,6 +61,18 @@ const SignUpForm = ({
   errors,
   touched,
 }) => {
+  if (userReducer.isLoading) {
+    return (
+      <RegisterContainer className='register-container'>
+        <Loader
+          type='TailSpin'
+          color='#2BAD60'
+          height={80}
+          width={80}
+        />
+      </RegisterContainer>
+    );
+  }
   return (
     <RegisterContainer className='register-container'>
       <div className='form-card-container'>
@@ -132,7 +149,11 @@ const SignUpForm = ({
               <StyledButton
                 className='form-button'
                 disabled={isSubmitting}
-                theme={buttonTheme}
+                theme={
+                  userReducer.isLoading
+                    ? loadingButtonTheme
+                    : buttonTheme
+                }
                 type='submit'
               >
                 Get Started

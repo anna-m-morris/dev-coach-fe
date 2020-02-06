@@ -3,14 +3,18 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import Loader from 'react-loader-spinner';
 
 import {
   StyledButton,
   buttonTheme,
 } from '../../Landing/Landing-styles';
-import { LoginContainer, loadingButtonTheme } from './LoginStyles';
+import {
+  LoginContainer,
+  StyledLoader,
+  loadingButtonTheme,
+} from './LoginStyles';
 import Navigation from '../../Landing/Navigation/Navigation';
-
 import { login } from '../../../state/actions/authenticationActions';
 
 const LoginForm = ({
@@ -19,6 +23,20 @@ const LoginForm = ({
   touched,
   isSubmitting,
 }) => {
+  if (userReducer.isLoading) {
+    return (
+      <LoginContainer className='register-container'>
+        <StyledLoader>
+          <Loader
+            type='TailSpin'
+            color='#2BAD60'
+            height={80}
+            width={80}
+          />
+        </StyledLoader>
+      </LoginContainer>
+    );
+  }
   return (
     <LoginContainer className='Login-container'>
       <div className='navigation-container'>

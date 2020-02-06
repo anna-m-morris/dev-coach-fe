@@ -49,6 +49,7 @@ export const sendResetPasswordEmail = (
 };
 
 export const saveRoleId = (handleNext, role) => dispatch => {
+  dispatch({ type: types.SET_ROLE_ID_START });
   dispatch({ type: types.SET_ROLE_ID, payload: role });
   handleNext();
 };
@@ -100,6 +101,7 @@ export const register = (props, values) => dispatch => {
 
 export const chooseUserRole = (props, values) => dispatch => {
   const id = localStorage.getItem('id');
+  dispatch({ type: types.USER_ROLE_START });
   axiosWithAuth()
     .put(`${url}user/${id}`, {
       location: values.userLocation,

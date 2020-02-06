@@ -66,7 +66,7 @@ const StyledUserType = styled.div`
   }
 `;
 
-const UserTypePage = ({ saveRoleId, handleNext }) => {
+const UserTypePage = ({ userReducer, saveRoleId, handleNext }) => {
   return (
     <StyledUserType className='users-container'>
       <div className='user-type-container'>
