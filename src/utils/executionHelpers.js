@@ -50,7 +50,7 @@ export const testDataObj = {
   },
   rockPaperScissors: {
     state: `function rockPaperScissors(numOfRounds) {
-// Write a function called rockPaperScissors that will take a // number, and output "n" number of possible combinations of   // 'rock', 'paper', and 'scissors'.
+/* Write a function called rockPaperScissors that will take a number, and output "n" number of possible combinations of 'rock', 'paper', and 'scissors. */
 }`,
     testData: [
       {

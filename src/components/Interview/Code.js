@@ -38,7 +38,7 @@ window.JSHINT = JSHINT;
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 88vh;
+  height: 92vh;
   width: 100%;
   overflow: hidden;
 
