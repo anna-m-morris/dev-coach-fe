@@ -10,7 +10,6 @@ import Participant from './Participant';
 const Room = ({ roomName, token, handleLogout }) => {
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
-  const [audio, setAudio] = useState(false);
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
@@ -53,15 +52,10 @@ const Room = ({ roomName, token, handleLogout }) => {
   const remoteParticipants = participants.map(participant => (
     <Participant
       className='user-video'
-      audio={false}
       key={participant.sid}
       participant={participant}
     />
   ));
-
-  const handleAudio = () => {
-    setAudio(!audio);
-  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -73,32 +67,9 @@ const Room = ({ roomName, token, handleLogout }) => {
 
   return (
     <div className='room'>
-      {/* <div className='settings'>
-        <Button
-          className='button'
-          variant='contained'
-          color='primary'
-          onClick={handleClickOpen}
-        >
-          End Session
-        </Button>
-        <Button
-          onClick={handleAudio}
-          className='button'
-          variant='contained'
-          color='primary'
-        >
-          {audio ? (
-            <i className='fas fa-volume-up' />
-          ) : (
-            <i className='fas fa-volume-mute' />
-          )}
-        </Button>
-      </div> */}
       {room ? (
         <div className='videos'>
           <Participant
-            audio={audio}
             className='my-video'
             key={room.localParticipant.sid}
             participant={room.localParticipant}
@@ -114,20 +85,6 @@ const Room = ({ roomName, token, handleLogout }) => {
               style={{ zIndex: 10 }}
             >
               End
-            </Button>
-            <Button
-              size='small'
-              onClick={handleAudio}
-              className='button'
-              variant='contained'
-              color='secondary'
-              style={{ zIndex: 10 }}
-            >
-              {audio ? (
-                <i className='fas fa-volume-up' />
-              ) : (
-                <i className='fas fa-volume-mute' />
-              )}
             </Button>
           </div>
         </div>
