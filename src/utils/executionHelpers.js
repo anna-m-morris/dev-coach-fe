@@ -225,15 +225,15 @@ export const testDataObj = {
   },
   balancedBrackets: {
     state: `function balancedBrackets(str) {
-  // Write a function balancedBrackets that accepts
-  // a string and returns true if all types of brackets 
-  // are balanced and false otherwise.    
-  // ignore other characters
+// Write a function balancedBrackets that accepts
+// a string and returns true if all types of brackets 
+// are balanced and false otherwise.    
+// ignore other characters
   
-  // Examples:
-  //  balancedBrackets('[({})]');   // true
-  //  balancedBrackets('[(]{)}'); // false
-  //  balancedBrackets(' const obj  = { x: someFunction() }'); // true
+// Examples:
+//  balancedBrackets('[({})]');   // true
+//  balancedBrackets('[(]{)}'); // false
+//  balancedBrackets(' const obj  = { x: someFunction() }'); // true
 
 }`,
     testData: [
@@ -247,24 +247,24 @@ export const testDataObj = {
   },
   romanNumeralize: {
     state: `function romanNumeralize(n) {
-    // Define a function that takes in a positive integer
-    // and returns the Roman Numeral representation of that number.  
+// Define a function that takes in a positive integer
+// and returns the Roman Numeral representation of that number.  
 
-  // Symbol    Value
-  // I         1
-  // IV        4
-  // V         5
-  // IX        9
-  // X         10
-  // XL        40
-  // L         50
-  // XC        90
-  // C         100
-  // CD        400
-  // D         500
-  // CM        900
-  // M         1,000 
-  
+// Symbol    Value
+// I         1
+// IV        4
+// V         5
+// IX        9
+// X         10
+// XL        40
+// L         50
+// XC        90
+// C         100
+// CD        400
+// D         500
+// CM        900
+// M         1,000 
+
   // Example: romanNumeralize(1973) should return 'MCMLXXIII'.
 }`,
     testData: [
@@ -275,19 +275,22 @@ export const testDataObj = {
   },
   collatzSequence: {
     state: `function collatzSequence(num){
-    // Write a function which takes a positive integer number as an argument and 
-    // returns it's "Collatz chain".The Collatz chain will stop at one. Named 
-    // after Lothar Collatz, the "Collatz conjecture" defines a sequence of numbers.
-    // That sequence is the Collatz "chain". Starting with a positive integer,
-    // the Collatz conjecture determines the next integer in the chain until 
-    // the number 1 is obtained.Your Collatz algorithm will evaluate the integer
-    // and then, depending on the condition of the integer, perform the following tasks:
-    // If the integer is even, then halve the number.
-    // If the integer is not even, then multiply it by 3 and add one.
-    // An example chain starting from the number 23 looks like this:
-    // [23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2, 1]
-    // Boldface signifies the odd numbers.
-    }`,
+// Write a function which takes a positive integer number
+// as an argument and returns it's "Collatz chain".
+// The Collatz chain will stop at one. Named  after Lothar
+// Collatz, the "Collatz conjecture" defines a sequence
+// of numbers. That sequence is the Collatz "chain". 
+// Starting with a positive integer, the Collatz conjecture
+// determines the next integer in the chain until the number
+// 1 is obtained.Your Collatz algorithm will evaluate the 
+// integer and then, depending on the condition of the integer,
+// perform the following tasks: If the integer is even, 
+// then halve the number. If the integer is not even, then
+// multiply it by 3 and add one. An example chain starting
+// from the number 23 looks like this:
+//[23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2, 1]
+//Boldface signifies the odd numbers.
+}`,
     testData: [
       {
         testCase: 23,
