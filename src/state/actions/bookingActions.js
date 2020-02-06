@@ -80,6 +80,7 @@ export const saveCoach = coach => {
   return { type: SAVE_COACH, payload: coach };
 };
 export const saveRescheduledCoach = rescheduledCoach => {
+  debugger
   return { type: SAVE_RESCHEDULED_COACH, payload: rescheduledCoach };
 };
 
@@ -154,8 +155,8 @@ export const bookAppointment = (
 };
 
 export const rescheduleAppointment = (
-  coach,
-  student,
+  rescheduler,
+  user,
   appointment_datetime,
   topic_id,
   length_id,
@@ -166,12 +167,13 @@ export const rescheduleAppointment = (
 ) => dispatch => {
   dispatch({ type: RESCHEDULE_APPOINTMENT_START });
   const appointment = {
-    coach_id: coach.coach_id,
-    student_id: student.id,
+    coach_id: rescheduler.coach_id,
+    student_id: rescheduler.student_id,
     topic_id,
     length_id,
     appointment_datetime,
   };
+  debugger
   axiosWithAuth()
     .post(`${url}appointment`, appointment)
     .then(res => {
@@ -181,46 +183,46 @@ export const rescheduleAppointment = (
         props.history.push('/dashboard');
       }, 3000);
 
-      const coach_email = {
-        email: coach.email,
-        text: `Hello ${coach.first_name} ${coach.last_name},
-          your initial appointment with ${student.first_name} ${student.last_name} has been resheduled for ${appointment_datetime},
-          please get in touch with ${student.first_name} ${student.last_name} if you can't 
-          make it at the date. Their email address is: ${student.email}`,
-        subject: 'Quality Hub appointment',
-      };
+      // const coach_email = {
+      //   email: coach.email,
+      //   text: `Hello ${coach.first_name} ${coach.last_name},
+      //     your initial appointment with ${student.first_name} ${student.last_name} has been resheduled for ${appointment_datetime},
+      //     please get in touch with ${student.first_name} ${student.last_name} if you can't 
+      //     make it at the date. Their email address is: ${student.email}`,
+      //   subject: 'Quality Hub appointment',
+      // };
 
-      return axiosWithAuth()
-        .post(`${url}appointment/email`, coach_email)
-        .then(res => {
-          const student_email = {
-            email: student.email,
-            text: `Hello ${student.first_name} ${student.last_name},
-              you have successfully resheduled your appointment for the date: ${appointment_datetime}`,
-            subject: 'Quality Hub appointment',
-          };
+      // return axiosWithAuth()
+      //   .post(`${url}appointment/email`, coach_email)
+      //   .then(res => {
+      //     const student_email = {
+      //       email: student.email,
+      //       text: `Hello ${student.first_name} ${student.last_name},
+      //         you have successfully resheduled your appointment for the date: ${appointment_datetime}`,
+      //       subject: 'Quality Hub appointment',
+      //     };
 
-          return axiosWithAuth()
-            .post(`${url}appointment/email`, student_email)
-            .then(res => {
-              dispatch({
-                type: RESCHEDULE_APPOINTMENT_SUCCESSFUL,
-                payload: res.data.appointments,
-              });
-            })
-            .catch(err => {
-              dispatch({
-                type: RESCHEDULE_APPOINTMENT_ERROR,
-                payload: err,
-              });
-            });
-        })
-        .catch(err => {
-          dispatch({
-            type: RESCHEDULE_APPOINTMENT_ERROR,
-            payload: err,
-          });
-        });
+      //     return axiosWithAuth()
+      //       .post(`${url}appointment/email`, student_email)
+      //       .then(res => {
+      //         dispatch({
+      //           type: RESCHEDULE_APPOINTMENT_SUCCESSFUL,
+      //           payload: res.data.appointments,
+      //         });
+      //       })
+      //       .catch(err => {
+      //         dispatch({
+      //           type: RESCHEDULE_APPOINTMENT_ERROR,
+      //           payload: err,
+      //         });
+      //       });
+      //   })
+      //   .catch(err => {
+      //     dispatch({
+      //       type: RESCHEDULE_APPOINTMENT_ERROR,
+      //       payload: err,
+      //     });
+      //   });
     })
     .catch(err => {
       showError();
