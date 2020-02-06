@@ -9,7 +9,11 @@ import {
   StyledButton,
   buttonTheme,
 } from '../../Landing/Landing-styles';
-import { LoginContainer, LoaderStyle } from './LoginStyles';
+import {
+  LoginContainer,
+  LoaderStyle,
+  StyledLoader,
+} from './LoginStyles';
 import Navigation from '../../Landing/Navigation/Navigation';
 import { login } from '../../../state/actions/authenticationActions';
 
@@ -19,6 +23,20 @@ const LoginForm = ({
   touched,
   isSubmitting,
 }) => {
+  if (userReducer.isLoading) {
+    return (
+      <LoginContainer className='register-container'>
+        <StyledLoader>
+          <Loader
+            type='TailSpin'
+            color='#2BAD60'
+            height={80}
+            width={80}
+          />
+        </StyledLoader>
+      </LoginContainer>
+    );
+  }
   return (
     <LoginContainer className='Login-container'>
       <div className='navigation-container'>

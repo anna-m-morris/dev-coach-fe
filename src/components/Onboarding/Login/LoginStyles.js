@@ -182,3 +182,7 @@ export const loadingButtonTheme = {
 export const LoaderStyle = styled.div`
   margin-right: 0.5rem;
 `;
+
+export const StyledLoader = styled.div`
+  margin-top: 45vh;
+`;

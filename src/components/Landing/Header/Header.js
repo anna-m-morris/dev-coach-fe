@@ -11,7 +11,7 @@ const Header = () => (
     </h2>
     <div className='cta-button'>
       <Link className='link' to='/register'>
-        <StyledButton theme={buttonTheme}>SIGN UP</StyledButton>
+        <StyledButton theme={buttonTheme}>Sign Up</StyledButton>
       </Link>
     </div>
   </HeaderContainer>

@@ -28,9 +28,13 @@ export const FooterContainer = styled.div`
       }
     }
 
-    .cta-button button {
+    .cta-button {
       font-size: 1.4rem;
       padding: 1rem;
+
+      .link {
+        text-decoration: none;
+      }
     }
   }
 
