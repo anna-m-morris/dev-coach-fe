@@ -267,10 +267,6 @@ export const mapLanguageToId = language => {
       return 60;
     case 'rust':
       return 73;
-    case 'typescript':
-      return 74;
-    case 'elixir':
-      return 57;
   }
 };
 
@@ -285,6 +281,7 @@ export function logCode(editorState, language, setOutput) {
           `https://api.judge0.com/submissions/${res.data.token}`,
         )
           .then(res => {
+            console.log(res); 
             if (res.data.stdout) {
               setOutput(`${res.data.stdout}`);
             } else if (res.data.compile_output) {
@@ -386,18 +383,7 @@ export async function runAllCode(
 
 const javascriptInitialEditorState = `console.log('hello JS!');`;
 
-const pythonInitialEditorState = `# example code: print n fibonacci numbers
-
-a = 10
-  
-def fib(n):
-    a, b = 0, 1
-    for _ in range(n):
-        yield a
-        a, b = b, a + b
-
-print(list(fib(a)))
-`;
+const pythonInitialEditorState = `print('hello, python!)`;
 
 const cppInitialState = `#include <iostream>
 
@@ -414,31 +400,21 @@ const javaInitialState = `public class Main {
 }
 `;
 
-const haskellInitialState = `factorial n = f n 1
-
-f 0 acc = acc
-f n acc = f (n-1) (acc*n)
-
-main = print $ factorial 5`;
+const haskellInitialState = `main :: IO ()
+main = putStrLn "Hello, Haskell!"`;
 
 const goInitialState = `package main
 import "fmt"
 
 func main() {
-    fmt.Println("hello world")
+    fmt.Println("hello Go!")
 }
 `;
 
 const rustInitialState = `fn main() {
-  println!("Hello Rust!");
+  println!("hello Rust!");
 }
 `;
-
-const elixirInitialState = `IO.puts("Hello, World!")`;
-
-const typescriptInitialState = `const s: string = "hello world!";
-
-console.log(s);`
 
 const cInitialState = `/* sample program: print pascal's triangle */\n#include<stdio.h>
 int main() {
@@ -477,12 +453,8 @@ export const mapLanguageToEditorState = (language, editorState) => {
       return haskellInitialState;
     case 'go':
       return goInitialState;
-    case 'typescript':
-      return typescriptInitialState;
     case 'rust':
       return rustInitialState;
-    case 'elixir':
-      return elixirInitialState;
   }
 };
 
@@ -496,8 +468,6 @@ export const mapLanguageToMode = language => {
       return 'clike';
     case 'c':
       return 'clike';
-    case 'typescript':
-      return 'javascript';
   }
 };
 

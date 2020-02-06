@@ -105,6 +105,7 @@ const Interface = ({
           <MenuItem value='cpp'>C++</MenuItem>
           <MenuItem value='haskell'>Haskell</MenuItem>
           <MenuItem value='go'>Go</MenuItem>
+          <MenuItem value='rust'>Rust</MenuItem>
         </Select>
       </FormControl>
       <FormControl className='form-control'>

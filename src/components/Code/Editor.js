@@ -8,7 +8,6 @@ import 'codemirror/mode/clike/clike';
 import 'codemirror/mode/haskell/haskell';
 import 'codemirror/mode/go/go';
 import 'codemirror/mode/rust/rust';
-import 'codemirror/mode/elixir/elixir';
 import 'codemirror/addon/edit/closebrackets';
 import 'codemirror/addon/lint/lint.css';
 import 'codemirror/addon/lint/lint';
