@@ -104,13 +104,12 @@ export const bookAppointment = (
     .post(`${url}appointment`, appointment)
     .then(res => {
       setTimeout(() => {
-        props.history.push('/dashboard');
         closeMessage();
+        props.history.push('/dashboard');
+        dispatch({
+          type: BOOK_APPOINTMENT_SUCCESSFUL,
+        });
       }, 2000);
-
-      dispatch({
-        type: BOOK_APPOINTMENT_SUCCESSFUL,
-      });
 
       const coach_email = {
         email: coach.email,
@@ -192,14 +191,13 @@ export const rescheduleAppointment = (
     .post(`${url}appointment`, appointment)
     .then(res => {
       showSuccess();
-      setTimeout(() => closeMessage(), 2500);
       setTimeout(() => {
+        closeMessage();
         props.history.push('/dashboard');
-      }, 3000);
-
-      dispatch({
-        type: BOOK_APPOINTMENT_SUCCESSFUL,
-      });
+        dispatch({
+          type: BOOK_APPOINTMENT_SUCCESSFUL,
+        });
+      }, 2000);
 
       const coach_email = {
         email: coach.email,
