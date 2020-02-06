@@ -29,6 +29,10 @@ const DashboardContainer = styled.div`
   justify-content: space-between;
   margin-top: 1rem;
 
+  .loaderStyled {
+    margin-top: 38vh;
+  }
+
   .dashboard-content {
     height: 100%;
     width: 100%;
@@ -93,22 +97,12 @@ const DashboardContainer = styled.div`
     }
   }
 
-  .appointment-cards-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .appointments {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
-
-    @media ${devices.mobile} {
-      width: 80%;
-    }
   }
 
   @media (max-width: 768px) {
@@ -155,10 +149,6 @@ const DashboardContainer = styled.div`
       font-weight: 600;
       margin-bottom: 0;
     }
-  }
-
-  .loaderStyled {
-    margin-top: 20vh;
   }
 
   .pagination {
@@ -252,57 +242,41 @@ const UserDashboard = props => {
               Scheduled Interviews
             </h2>
           </div>
-          {appointments ? (
-            <div className='appointment-cards-container'>
-              {appointments && appointments.length ? (
-                <div className='appointments'>
-                  {appointments
-                    .slice(minValue, maxValue)
-                    .map(appointment => (
-                      <AppointmentCard
-                        key={uuid()}
-                        appointment={appointment}
-                        cancelAppointment={() => {
-                          cancelAppointment(appointment.id, history, {
-                            id: appointment.id,
-                            first_name: appointment.first_name,
-                            last_name: appointment.last_name,
-                            email: appointment.email,
-                          });
-                        }}
-                        startInterview={() => {
-                          startInterview(appointment.email, props);
-                          saveIdRole(
-                            appointment.role_id,
-                            appointment.id,
-                          );
-                        }}
-                        savePeer={() => {
-                          savePeer(
-                            {
-                              email: appointment.email,
-                              name: `${appointment.first_name} ${appointment.last_name}`,
-                              avatar_url: appointment.avatar_url,
-                            },
-                            props,
-                          );
-                        }}
-                      />
-                    ))}
-                </div>
-              ) : (
-                <EmptyAppointment role_id={user.role_id} />
-              )}
+          {appointments && appointments.length ? (
+            <div className='appointments'>
+              {appointments
+                .slice(minValue, maxValue)
+                .map(appointment => (
+                  <AppointmentCard
+                    key={uuid()}
+                    appointment={appointment}
+                    cancelAppointment={() => {
+                      cancelAppointment(appointment.id, history, {
+                        id: appointment.id,
+                        first_name: appointment.first_name,
+                        last_name: appointment.last_name,
+                        email: appointment.email,
+                      });
+                    }}
+                    startInterview={() => {
+                      startInterview(appointment.email, props);
+                      saveIdRole(appointment.role_id, appointment.id);
+                    }}
+                    savePeer={() => {
+                      savePeer(
+                        {
+                          email: appointment.email,
+                          name: `${appointment.first_name} ${appointment.last_name}`,
+                          avatar_url: appointment.avatar_url,
+                        },
+                        props,
+                      );
+                    }}
+                  />
+                ))}
             </div>
           ) : (
-            <div className='loaderStyled'>
-              <Loader
-                type='TailSpin'
-                color='#2BAD60'
-                height={80}
-                width={80}
-              />
-            </div>
+            <EmptyAppointment role_id={user.role_id} />
           )}
         </div>
       )}
