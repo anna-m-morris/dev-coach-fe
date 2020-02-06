@@ -56,9 +56,12 @@ const StyledCoachCard = styled.div`
     }
   }
 
-  .location-bullet .location-icon {
-    margin-left: 0.1em;
-    padding-right: 0.1em;
+  .bullet-points {
+    margin: 0;
+    .location-bullet .location-icon {
+      margin-left: 0.1em;
+      padding-right: 0.1em;
+    }
   }
 
   .reviews {
