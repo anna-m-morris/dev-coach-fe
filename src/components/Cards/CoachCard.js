@@ -12,7 +12,7 @@ import { mapExperience } from '../../utils/mappers';
 const StyledCoachCard = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: flex-start;
   width: 17rem;
   height: 24rem;
@@ -56,7 +56,7 @@ const StyledCoachCard = styled.div`
     }
   }
 
-  .bullet-points {
+  .bullet-points p {
     margin: 0;
     .location-bullet .location-icon {
       margin-left: 0.1em;
@@ -64,11 +64,15 @@ const StyledCoachCard = styled.div`
     }
   }
 
+  .description p {
+    margin: 0;
+  }
+
   .reviews {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: 1rem 0;
+    margin: 0;
 
     p {
       margin-left: 0.7rem;
@@ -82,16 +86,15 @@ const StyledCoachCard = styled.div`
 
     a {
       text-decoration: none;
-      width: 47%;
     }
 
     .chat-button {
-      background-color: #4fad65;
-      width: 110px;
+      width: 6.7rem;
     }
 
     .book-button {
-      width: 110px;
+      background-color: #4fad65;
+      width: 6.7rem;
     }
   }
 `;
@@ -129,7 +132,7 @@ export const CoachCard = props => {
       </div>
       <div className='description'>
         <p>{`${coach.description &&
-          coach.description.slice(0, 100)}...`}</p>{' '}
+          coach.description.slice(0, 90)}...`}</p>
       </div>
 
       <div className='reviews'>
