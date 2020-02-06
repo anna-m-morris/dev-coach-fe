@@ -406,7 +406,12 @@ const javaInitialState = `public class Main {
 }
 `;
 
-const haskellInitialState = `main = putStrLn "Hello, World!"`;
+const haskellInitialState = `factorial n = f n 1
+
+f 0 acc = acc
+f n acc = f (n-1) (acc*n)
+
+main = print $ factorial 5`;
 
 const cInitialState = `/* sample program: print pascal's triangle */\n#include<stdio.h>
 int main() {

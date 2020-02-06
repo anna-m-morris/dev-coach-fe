@@ -5,6 +5,7 @@ import { Controlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/python/python';
 import 'codemirror/mode/clike/clike';
+import 'codemirror/mode/haskell/haskell';
 import 'codemirror/addon/edit/closebrackets';
 import 'codemirror/addon/lint/lint.css';
 import 'codemirror/addon/lint/lint';
