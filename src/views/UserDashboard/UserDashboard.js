@@ -97,22 +97,12 @@ const DashboardContainer = styled.div`
     }
   }
 
-  .appointment-cards-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .appointments {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
-
-    @media ${devices.mobile} {
-      width: 80%;
-    }
   }
 
   @media (max-width: 768px) {
@@ -252,47 +242,42 @@ const UserDashboard = props => {
               Scheduled Interviews
             </h2>
           </div>
-          <div className='appointment-cards-container'>
-            {appointments && appointments.length ? (
-              <div className='appointments'>
-                {appointments
-                  .slice(minValue, maxValue)
-                  .map(appointment => (
-                    <AppointmentCard
-                      key={uuid()}
-                      appointment={appointment}
-                      cancelAppointment={() => {
-                        cancelAppointment(appointment.id, history, {
-                          id: appointment.id,
-                          first_name: appointment.first_name,
-                          last_name: appointment.last_name,
+          {appointments && appointments.length ? (
+            <div className='appointments'>
+              {appointments
+                .slice(minValue, maxValue)
+                .map(appointment => (
+                  <AppointmentCard
+                    key={uuid()}
+                    appointment={appointment}
+                    cancelAppointment={() => {
+                      cancelAppointment(appointment.id, history, {
+                        id: appointment.id,
+                        first_name: appointment.first_name,
+                        last_name: appointment.last_name,
+                        email: appointment.email,
+                      });
+                    }}
+                    startInterview={() => {
+                      startInterview(appointment.email, props);
+                      saveIdRole(appointment.role_id, appointment.id);
+                    }}
+                    savePeer={() => {
+                      savePeer(
+                        {
                           email: appointment.email,
-                        });
-                      }}
-                      startInterview={() => {
-                        startInterview(appointment.email, props);
-                        saveIdRole(
-                          appointment.role_id,
-                          appointment.id,
-                        );
-                      }}
-                      savePeer={() => {
-                        savePeer(
-                          {
-                            email: appointment.email,
-                            name: `${appointment.first_name} ${appointment.last_name}`,
-                            avatar_url: appointment.avatar_url,
-                          },
-                          props,
-                        );
-                      }}
-                    />
-                  ))}
-              </div>
-            ) : (
-              <EmptyAppointment role_id={user.role_id} />
-            )}
-          </div>
+                          name: `${appointment.first_name} ${appointment.last_name}`,
+                          avatar_url: appointment.avatar_url,
+                        },
+                        props,
+                      );
+                    }}
+                  />
+                ))}
+            </div>
+          ) : (
+            <EmptyAppointment role_id={user.role_id} />
+          )}
         </div>
       )}
       {appointments && appointments.length > 0 && (
