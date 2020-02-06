@@ -16,10 +16,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import devices from '../../utils/devices';
 import { mapExperience } from '../../utils/mappers';
 
-const StyledCoachCard = styled.div`
+const StyledAppointmentCard = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   width: 17rem;
   height: 22rem;
   padding: 1.5rem;
@@ -35,7 +35,8 @@ const StyledCoachCard = styled.div`
   }
   .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    flex-direction: row-reverse;
     align-items: center;
     width: 100%;
 
@@ -77,13 +78,12 @@ const StyledCoachCard = styled.div`
   }
 
   .bullet-points {
-    margin: 1rem 0;
+    margin: 0;
   }
 
   .bullet {
     display: flex;
     align-items: center;
-    padding: 0.2em;
   }
 
   .icon {
@@ -100,7 +100,6 @@ const StyledCoachCard = styled.div`
   }
 
   .footer {
-    margin-top: 0.5em;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -145,7 +144,7 @@ export const AppointmentCard = props => {
   const date = appointment.appointment_datetime.slice(16, 28);
   return (
     <>
-      <StyledCoachCard>
+      <StyledAppointmentCard className='appointment-card'>
         <div className='header'>
           <CloseIcon
             className='close-icon'
@@ -183,13 +182,13 @@ export const AppointmentCard = props => {
           </div>
         </div>
 
-        <div className='description'>
+        {/* <div className='description'>
           {appointment.description ? (
             <p>{appointment.description.slice(0, 80)}</p>
           ) : (
             ''
           )}
-        </div>
+          </div> */}
         <div className='footer'>
           <Button
             className='send-button'
@@ -210,7 +209,7 @@ export const AppointmentCard = props => {
             Start
           </Button>
         </div>
-      </StyledCoachCard>
+      </StyledAppointmentCard>
       <Dialog
         open={open}
         onClose={handleClose}
