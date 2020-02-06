@@ -40,14 +40,14 @@ const FlexContainer = styled.div`
   flex-direction: column;
   height: 88vh;
   width: 100%;
+  overflow: hidden;
 
   .code-header-container {
-    height: 12%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding-bottom: 2em;
+    font-family: 'Inconsolata', sans-serif
   }
 
   .code-body-container {
@@ -81,6 +81,7 @@ const InterfaceContainer = styled.div`
 
   .title {
     text-align: center;
+    font-family: 'Inconsolata', sans-serif
   }
 
   .form-control {
