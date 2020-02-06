@@ -36,6 +36,7 @@ const StyledAppointmentCard = styled.div`
     flex-direction: row-reverse;
     align-items: center;
     width: 100%;
+    text-align: center;
 
     .close-icon {
       margin-top: -4em;
