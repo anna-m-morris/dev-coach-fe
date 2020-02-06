@@ -413,6 +413,8 @@ f n acc = f (n-1) (acc*n)
 
 main = print $ factorial 5`;
 
+const goInitialState = ``;
+
 const cInitialState = `/* sample program: print pascal's triangle */\n#include<stdio.h>
 int main() {
     int rows = 10, coef=1, space, i, j;
@@ -448,6 +450,23 @@ export const mapLanguageToEditorState = (language, editorState) => {
       return javaInitialState;
     case 'haskell':
       return haskellInitialState;
+    case 'go':
+      return goInitialState;
+  }
+};
+
+export const mapLanguageToMode = language => {
+  switch (language) {
+    default:
+      return language;
+    case 'java':
+      return 'clike';
+    case 'cpp':
+      return 'clike';
+    case 'c':
+      return 'clike';
+    case 'typescript':
+      return 'javascript';
   }
 };
 

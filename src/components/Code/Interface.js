@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 import {
   mapLanguageToEditorState,
+  mapLanguageToMode,
   testDataObj,
   logCode,
   runAllCode,
