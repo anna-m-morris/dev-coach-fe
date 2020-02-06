@@ -25,7 +25,9 @@ const InterfaceContainer = styled.div`
   justify-content: space-evenly;
 
   .title {
-    text-align: center;
+    color: #595959;
+    font-size: 2rem;
+    font-weight: 500;
   }
 
   .form-control {
@@ -44,7 +46,7 @@ const Interface = ({
   language,
   setLanguage,
   editorState,
-  setEditorState, 
+  setEditorState,
   currentTest,
   setCurrentTest,
 }) => {
@@ -86,7 +88,7 @@ const Interface = ({
 
   return (
     <InterfaceContainer>
-      <h1>DevCoach IDE</h1>
+      <h1 className='title'>DevCoach IDE</h1>
       <FormControl className='form-control'>
         <InputLabel className='input-label'>
           Select Programming Language
