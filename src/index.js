@@ -4,7 +4,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
 import rootReducer from './state/reducers';
 import './index.css';
 import 'codemirror/lib/codemirror.css';
@@ -40,7 +39,7 @@ const composeEnhancers =
 const store = createStore(
   rootReducer,
   persistedState,
-  composeEnhancers(applyMiddleware(logger, thunk)),
+  composeEnhancers(applyMiddleware(thunk)),
 );
 
 store.subscribe(() => saveToLocalStorage(store.getState()));
