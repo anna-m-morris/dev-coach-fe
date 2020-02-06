@@ -104,8 +104,11 @@ export const bookAppointment = (
     .post(`${url}appointment`, appointment)
     .then(res => {
       setTimeout(() => {
-        props.history.push('/dashboard');
         closeMessage();
+        props.history.push('/dashboard');
+        dispatch({
+          type: BOOK_APPOINTMENT_SUCCESSFUL,
+        });
       }, 2000);
 
       const coach_email = {
@@ -131,12 +134,7 @@ export const bookAppointment = (
 
           return axiosWithAuth()
             .post(`${url}appointment/email`, student_email)
-            .then(res => {
-              dispatch({
-                type: BOOK_APPOINTMENT_SUCCESSFUL,
-                payload: res.data.appointments,
-              });
-            })
+            .then(res => {})
             .catch(err => {
               dispatch({
                 type: BOOK_APPOINTMENT_ERROR,
@@ -154,8 +152,8 @@ export const bookAppointment = (
 };
 
 export const rescheduleAppointment = (
-  coach,
-  student,
+  rescheduler,
+  user,
   appointment_datetime,
   topic_id,
   length_id,
@@ -166,20 +164,40 @@ export const rescheduleAppointment = (
 ) => dispatch => {
   dispatch({ type: RESCHEDULE_APPOINTMENT_START });
   const appointment = {
-    coach_id: coach.coach_id,
-    student_id: student.id,
+    coach_id: rescheduler.coach_id,
+    student_id: rescheduler.student_id,
     topic_id,
     length_id,
     appointment_datetime,
   };
+
+  const coach = {
+    email: user.role_id === 2 ? user.email : rescheduler.email,
+    first_name:
+      user.role_id === 2 ? user.first_name : rescheduler.first_name,
+    last_name:
+      user.role_id === 2 ? user.last_name : rescheduler.last_name,
+  };
+
+  const student = {
+    email: user.role_id === 1 ? user.email : rescheduler.email,
+    first_name:
+      user.role_id === 1 ? user.first_name : rescheduler.first_name,
+    last_name:
+      user.role_id === 1 ? user.last_name : rescheduler.last_name,
+  };
+
   axiosWithAuth()
     .post(`${url}appointment`, appointment)
     .then(res => {
       showSuccess();
-      setTimeout(() => closeMessage(), 2500);
       setTimeout(() => {
+        closeMessage();
         props.history.push('/dashboard');
-      }, 3000);
+        dispatch({
+          type: BOOK_APPOINTMENT_SUCCESSFUL,
+        });
+      }, 2000);
 
       const coach_email = {
         email: coach.email,
