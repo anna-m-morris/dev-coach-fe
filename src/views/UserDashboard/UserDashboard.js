@@ -30,7 +30,7 @@ const DashboardContainer = styled.div`
   margin-top: 1rem;
 
   .loaderStyled {
-    margin-top: 40%;
+    margin-top: 38vh;
   }
 
   .dashboard-content {
