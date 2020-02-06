@@ -48,14 +48,16 @@ const StyledAppointmentCard = styled.div`
     }
 
     .header-text {
-      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .header-photo {
-      width: 100%;
       display: flex;
-      justify-content: center;
       align-items: center;
+      margin-right: 0.3rem;
       .picture {
         width: 5.5rem;
         height: 5.5rem;
@@ -64,7 +66,6 @@ const StyledAppointmentCard = styled.div`
   }
 
   h3 {
-    text-align: center;
     font-weight: bold;
     font-size: 1rem;
     color: #3c4043;
@@ -78,7 +79,11 @@ const StyledAppointmentCard = styled.div`
   }
 
   .bullet-points {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     margin: 0;
+    height: 55%;
   }
 
   .bullet {
@@ -97,20 +102,19 @@ const StyledAppointmentCard = styled.div`
 
   .footer {
     display: flex;
-    width: 100%;
     justify-content: space-between;
     a {
       text-decoration: none;
     }
 
     .send-button {
-      background-color: #4fad65;
-      width: 110px;
+      width: 6.7rem;
+      background-color: #303f9f;
     }
 
     .interview-button {
-      width: 110px;
-      background-color: #303f9f;
+      background-color: #4fad65;
+      width: 6.7rem;
     }
 
     @media ${devices.mobile} {
