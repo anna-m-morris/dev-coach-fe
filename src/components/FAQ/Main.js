@@ -102,6 +102,11 @@ const CategoryContainer = styled.div`
     h3 {
       color: #4fad65;
     }
+
+    .icon {
+      font-size: 3.5rem;
+      color: #4fad65;
+    }
   }
 
   .activeClassNav {
@@ -114,7 +119,8 @@ const CategoryContainer = styled.div`
       transition: ease-in 0.1s;
     }
 
-    h3 {
+    h3,
+    .icon {
       color: white;
     }
   }
@@ -137,7 +143,7 @@ const MainFaq = () => {
         >
           <div className='link-content'>
             <h3>General</h3>
-            <SearchIcon style={iconStyles} />
+            <SearchIcon className='icon' />
           </div>
         </NavLink>
 
@@ -148,7 +154,7 @@ const MainFaq = () => {
         >
           <div className='link-content'>
             <h3>Profile</h3>
-            <PersonIcon style={iconStyles} />
+            <PersonIcon className='icon' />
           </div>
         </NavLink>
         <NavLink
@@ -158,7 +164,7 @@ const MainFaq = () => {
         >
           <div className='link-content'>
             <h3>Payment</h3>
-            <PaymentIcon style={iconStyles} />
+            <PaymentIcon className='icon' />
           </div>
         </NavLink>
       </CategoryContainer>
