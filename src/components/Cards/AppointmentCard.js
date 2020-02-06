@@ -30,9 +30,6 @@ const StyledAppointmentCard = styled.div`
   background: white;
   box-shadow: 0 6px 10px #d3d3d3;
 
-  @media ${devices.mobile} {
-    width: 14rem;
-  }
   .header {
     display: flex;
     justify-content: space-between;
@@ -84,6 +81,10 @@ const StyledAppointmentCard = styled.div`
     justify-content: space-evenly;
     margin: 0;
     height: 55%;
+
+    @media ${devices.mobile} {
+      margin: 0.5rem 0;
+    }
   }
 
   .bullet {
@@ -103,23 +104,34 @@ const StyledAppointmentCard = styled.div`
   .footer {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+
+    @media ${devices.mobile} {
+      flex-direction: column;
+      align-items: center;
+    }
+
     a {
       text-decoration: none;
     }
 
-    .send-button {
+    button {
       width: 6.7rem;
+
+      @media ${devices.mobile} {
+        width: 100%;
+      }
+    }
+
+    .send-button {
       background-color: #3f51b5;
+      @media ${devices.mobile} {
+        margin-bottom: 0.5rem;
+      }
     }
 
     .interview-button {
       background-color: #4fad65;
-      width: 6.7rem;
-    }
-
-    @media ${devices.mobile} {
-      flex-direction: column;
-      justify-content: center;
     }
   }
 `;
