@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import CoachModal from '../Modals/CoachModal';
 import Rating from '../DataVisualization/Rating';
 import { mapExperience } from '../../utils/mappers';
+import devices from '../../utils/devices';
 
 const StyledCoachCard = styled.div`
   display: flex;
@@ -83,18 +84,28 @@ const StyledCoachCard = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-between;
+    @media ${devices.mobile} {
+      flex-direction: column;
+      align-items: center;
+    }
 
     a {
       text-decoration: none;
+      width: 100%;
     }
 
-    .chat-button {
+    .button {
       width: 6.7rem;
+      @media ${devices.mobile} {
+        width: 100%;
+      }
     }
 
     .book-button {
       background-color: #4fad65;
-      width: 6.7rem;
+      @media ${devices.mobile} {
+        margin-top: 0.5rem;
+      }
     }
   }
 `;
@@ -149,7 +160,7 @@ export const CoachCard = props => {
           <Button
             variant='contained'
             color='primary'
-            className='chat-button'
+            className='chat-button button'
             endIcon={<TelegramIcon />}
           >
             Chat
@@ -157,7 +168,7 @@ export const CoachCard = props => {
         </Link>
         <Link to='/appointment' onClick={saveCoach}>
           <Button
-            className='book-button'
+            className='book-button button'
             variant='contained'
             color='primary'
             endIcon={<ShoppingCartIcon />}
