@@ -52,8 +52,8 @@ const StyledFeedback = styled.div`
   .feedback-title {
     margin: 0;
     color: #595959;
-    font-size: 1.8rem;
-    font-weight: 400;
+    font-size: 2rem;
+    font-weight: 500;
     text-align: center;
 
     @media ${devices.tablet} {

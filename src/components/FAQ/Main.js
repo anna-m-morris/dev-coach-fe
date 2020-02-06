@@ -18,8 +18,9 @@ const MainContainer = styled.div`
 
   h2 {
     margin: 0;
-    color: #4fad65;
-    font-size: 3rem;
+    color: #595959;
+    font-size: 2rem;
+    font-weight: 500;
 
     @media ${devices.tablet} {
       font-size: 2rem;

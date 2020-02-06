@@ -41,6 +41,7 @@ export const CardContainer = styled.div`
   .title {
     font-size: 1.2rem;
     margin: 0;
+    color: #595959;
   }
 
   .feedback {
