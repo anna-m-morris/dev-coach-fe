@@ -181,12 +181,12 @@ export const testDataObj = {
     testData: [
       {
         testCase: 3,
-        testResult: [1, 2, 'fizz'],
+        testResult: `[1, 2, 'fizz']`,
       },
-      { testCase: 5, testResult: [1, 2, 'fizz', 4, 'buzz'] },
+      { testCase: 5, testResult: `[1, 2, 'fizz', 4, 'buzz']` },
       {
         testCase: 15,
-        testResult: [
+        testResult: `[
           1,
           2,
           'fizz',
@@ -202,18 +202,25 @@ export const testDataObj = {
           13,
           14,
           'fizzbuzz',
-        ],
+        ]`,
       },
     ],
   },
   anagram: {
     state: `function anagram(a,b) {
-  
+  // A word is an anagram of another word if both use the same letters 
+  // in the same quantity, but arranged differently.
+
+  // write a function that checks if two provided strings 
+  // are anagrams of each other; letter casing shouldn’t matter. 
+  //  Also, consider only characters, not spaces or punctuation.
+  // For example: anagram('this', 'that') -> false anagram('fired', 'fried') -> true
 
 }`,
     testData: [
       { testCase: `['hello', 'bye']`, testResult: 'false' },
       { testCase: `['finder', 'friend']`, testResult: 'true' },
+      { testCase: `['listen', 'silent']`, testResult: 'true' },
     ],
   },
 };
