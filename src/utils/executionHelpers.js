@@ -294,19 +294,30 @@ export const testDataObj = {
     testData: [
       {
         testCase: 23,
-        testResult: `[ 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2, 1]`,
+        testResult: `[
+            23, 70, 35, 106, 53, 160,↵  80, 40, 20,  10,  5,  16,
+               8,  4,  2,   1
+              ]
+              `,
       },
       {
         testCase: 44,
         testResult: `[
-          44, 22, 11, 34, 17, 52, 26,
-          13, 40, 20, 10,  5, 16,  8,
-           4,  2,  1
-        ]`,
+            44, 22, 11, 34, 17, 52, 26,
+              13, 40, 20, 10,  5, 16,  8,
+                 4,  2,  1
+                ]
+                `,
       },
       {
         testCase: 86,
-        testResult: `[ 86, 43, 130, 65, 196, 98, 49, 148, 74, 37, 112, 56, 28, 14, 7, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1]`,
+        testResult: `[
+            86,  43, 130, 65, 196, 98, 49, 148, 74,
+              37, 112,  56, 28,  14,  7, 22,  11, 34,
+                17,  52,  26, 13,  40, 20, 10,   5, 16,
+                   8,   4,   2,  1
+                  ]
+                  `,
       },
     ],
   },
@@ -417,6 +428,7 @@ export async function runAllCode(
     const { token } = executedCode.data;
     setTimeout(async () => {
       const response = await fetchExecutedCode(token);
+      debugger
       let output = response.data.stdout;
       if (
         typeof testResultsArr[idx] === 'string' &&
