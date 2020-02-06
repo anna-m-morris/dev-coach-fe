@@ -286,10 +286,13 @@ class Code extends Component {
         }
         this.setState(prevState => {
           return {
-            output: `${prevState.output}Test ${idx +
-              1}: ${currentTest}(${
+            output: `${prevState.output}Test ${idx + 1}: expected ${currentTest}(${
               testCaseArr[idx]
-            }) received ${output}\n\n`,
+            }) to equal ${
+              testResultsArr[idx]
+            }.\nResult: ${currentTest}(${
+              testCaseArr[idx]
+            }) returns ${output}\n\n`,
           };
         });
         this.syncUpdates();

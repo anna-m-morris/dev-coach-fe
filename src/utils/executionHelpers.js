@@ -50,7 +50,7 @@ export const testDataObj = {
   },
   rockPaperScissors: {
     state: `function rockPaperScissors(numOfRounds) {
-// Write a function called rockPaperScissors that will take a number // n, and output "n" number of possible combinations of 'rock',      // 'paper', and 'scissors'. ;)
+// Write a function called rockPaperScissors that will take a // number, and output "n" number of possible combinations of   // 'rock', 'paper', and 'scissors'.
 }`,
     testData: [
       {
@@ -260,9 +260,13 @@ export async function runAllCode(
       }
       setOutput(
         prevOutput =>
-          `${prevOutput}Test ${idx + 1}: ${currentTest}(${
+          `${prevOutput}Test ${idx + 1}: expected ${currentTest}(${
             testCaseArr[idx]
-          }) received ${output}\n\n`,
+          }) to equal ${
+            testResultsArr[idx]
+          }.\nResult: ${currentTest}(${
+            testCaseArr[idx]
+          }) returns ${output}\n\n`,
       );
       if (
         idx === testCaseArr.length - 1 &&
@@ -314,10 +318,21 @@ const javaInitialState = `public class Main {
 }
 `;
 
-const cInitialState = `#include <stdio.h>
-
-int main(void) {
-    printf("hello, c! \\n");
+const cInitialState = `/* sample program: print pascal's triangle */\n#include<stdio.h>
+int main() {
+    int rows = 10, coef=1, space, i, j;
+    for (i=0; i<rows; i++) {
+        for (space=1; space <= rows-i; space++)
+            printf("  ");
+        for (j=0; j<=i; j++) {
+            if (j==0 || i==0)
+                coef = 1;
+            else
+                coef=coef*(i-j+1)/j;
+            printf("%4d", coef);
+        }
+        printf("\\n");
+    }
     return 0;
 }
 `;

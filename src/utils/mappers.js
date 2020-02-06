@@ -10,5 +10,9 @@ export const mapExperience = experience => {
       return 'Senior developer';
     case 4:
       return 'Highly experienced developer';
+    case 5:
+      return 'Highly experienced developer';
+    case 6:
+      return 'Highly experienced developer';
   }
 };
