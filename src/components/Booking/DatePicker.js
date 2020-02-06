@@ -51,10 +51,13 @@ const StyledCalendar = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    font-weight: 500;
+    color: #595959;
+    font-size: 0.7rem;
 
     h1 {
       @media ${devices.mobile} {
-        font-size: 1rem;
+        font-size: 0.7rem;
       }
     }
   }
