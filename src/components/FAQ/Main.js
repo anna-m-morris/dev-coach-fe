@@ -29,19 +29,22 @@ const MainContainer = styled.div`
 
 const CategoryContainer = styled.div`
   display: flex;
-  margin-bottom: 20px;
+  justify-content: space-evenly;
+  margin: 2rem 0;
+  width: 80%;
 
-  @media ${devices.mobile} {
+  @media ${devices.tablet} {
     flex-direction: column;
-    margin-bottom: 10vh;
-    margin-top: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 20rem;
   }
 
   .styledBox {
     width: 12rem;
     border-radius: 1rem;
     height: 150px;
-    margin: 3rem;
+    margin: 0 1rem;
     border-width: 1rem;
     display: flex;
     flex-direction: column;
@@ -51,14 +54,19 @@ const CategoryContainer = styled.div`
     background: white;
     transition: ease-out 0.1s;
 
-    @media only screen and (max-width: 1200px) {
+    @media ${devices.tablet} {
+      height: 5rem;
+      width: 23rem;
+    }
+
+    /* @media only screen and (max-width: 1200px) {
       width: 7rem;
       border-radius: 1rem;
       padding: 0.5rem 2rem;
       margin: 2rem;
       border-width: 0.5rem;
-    }
-    @media ${devices.tablet} {
+    } */
+    /* @media ${devices.tablet} {
       width: 5rem;
       border-radius: 0.5rem;
       padding: 0.5rem 1rem;
@@ -67,7 +75,7 @@ const CategoryContainer = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
+    } */
 
     @media ${devices.mobile} {
       width: 22rem;
@@ -93,6 +101,10 @@ const CategoryContainer = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      @media ${devices.tablet} {
+      flex-direction: row-reverse;
+    }
 
       @media ${devices.mobile} {
         flex-direction: row-reverse;
@@ -126,16 +138,11 @@ const CategoryContainer = styled.div`
   }
 `;
 
-const iconStyles = {
-  fontSize: '3.5em',
-  color: '4fad65',
-};
-
 const MainFaq = () => {
   return (
     <MainContainer>
       <h2>FAQ</h2>
-      <CategoryContainer>
+      <CategoryContainer className='category-container'>
         <NavLink
           className='styledBox'
           activeClassName='activeClassNav'
