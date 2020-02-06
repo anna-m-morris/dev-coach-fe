@@ -9,7 +9,6 @@ import Loader from 'react-loader-spinner';
 import { StyledButton, buttonTheme } from '../Landing/Landing-styles';
 import {
   LoginContainer,
-  LoaderStyle,
   loadingButtonTheme,
 } from './Login/LoginStyles';
 
