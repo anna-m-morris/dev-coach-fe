@@ -79,9 +79,15 @@ const InterfaceContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
 
+  * {
+    font-family: 'Inconsolata', sans-serif;
+  }
+
   .title {
     text-align: center;
-    font-family: 'Inconsolata', sans-serif
+    color: #595959;
+    font-size: 2rem;
+    font-weight: 500;
   }
 
   .form-control {
