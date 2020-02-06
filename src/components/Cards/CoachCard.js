@@ -112,7 +112,6 @@ const StyledCoachCard = styled.div`
 
 export const CoachCard = props => {
   const { coach, saveCoach, getFeedback, feedback, savePeer } = props;
-  console.log(coach.experience_level)
   return (
     <StyledCoachCard className='coach-card'>
       <div className='header'>
