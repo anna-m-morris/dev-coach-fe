@@ -7,18 +7,10 @@ import { saveRoleId } from '../../state/actions/authenticationActions';
 const StyledUserType = styled.div`
   align-items: center;
   display: flex;
-  flex-direction: column;
   width: 100%;
   height: 100%;
   justify-content: center;
-
-  .users-container {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0 4rem 0;
-    flex-wrap: wrap;
-    align-items: center;
-  }
+  flex-wrap: wrap;
 
   .user-type-container {
     align-items: center;
@@ -53,7 +45,6 @@ const StyledUserType = styled.div`
 
       li {
         list-style: none;
-        /* padding: 0; */
         text-align: center;
         color: #808080;
       }
@@ -72,56 +63,54 @@ const StyledUserType = styled.div`
 
 const UserTypePage = ({ saveRoleId, handleNext }) => {
   return (
-    <StyledUserType>
-      <div className='users-container'>
-        <div className='user-type-container'>
-          <div className='user-description'>
-            <h3>As A Coach</h3>
-            <ul>
-              <li>
-                Set your own <b>income</b>
-              </li>
-              <li>
-                <b>Coach</b> beginner developers through the technical
-                interview
-              </li>
-              <li>
-                Help <b>grow</b> this community
-              </li>
-            </ul>
-          </div>
-          <div className='user-decision'>
-            <StyledButton
-              theme={buttonTheme}
-              onClick={() => saveRoleId(handleNext, 2)}
-            >
-              Join As Coach
-            </StyledButton>
-          </div>
+    <StyledUserType className='users-container'>
+      <div className='user-type-container'>
+        <div className='user-description'>
+          <h3>As A Coach</h3>
+          <ul>
+            <li>
+              Set your own <b>income</b>
+            </li>
+            <li>
+              <b>Coach</b> beginner developers through the technical
+              interview
+            </li>
+            <li>
+              Help <b>grow</b> this community
+            </li>
+          </ul>
         </div>
-        <div className='user-type-container'>
-          <div className='user-description'>
-            <h3>As A Student</h3>
-            <ul>
-              <li>
-                <b>Master</b> the technical interview
-              </li>
-              <li>
-                Feel <b>confident</b> in the online interview setting
-              </li>
-              <li>
-                Land your <b>dream</b> job and get dat moneyyssss
-              </li>
-            </ul>
-          </div>
-          <div className='user-decision'>
-            <StyledButton
-              theme={buttonTheme}
-              onClick={() => saveRoleId(handleNext, 1)}
-            >
-              Join As Student
-            </StyledButton>
-          </div>
+        <div className='user-decision'>
+          <StyledButton
+            theme={buttonTheme}
+            onClick={() => saveRoleId(handleNext, 2)}
+          >
+            Join As Coach
+          </StyledButton>
+        </div>
+      </div>
+      <div className='user-type-container'>
+        <div className='user-description'>
+          <h3>As A Student</h3>
+          <ul>
+            <li>
+              <b>Master</b> the technical interview
+            </li>
+            <li>
+              Feel <b>confident</b> in the online interview setting
+            </li>
+            <li>
+              Land your <b>dream</b> job and get dat moneyyssss
+            </li>
+          </ul>
+        </div>
+        <div className='user-decision'>
+          <StyledButton
+            theme={buttonTheme}
+            onClick={() => saveRoleId(handleNext, 1)}
+          >
+            Join As Student
+          </StyledButton>
         </div>
       </div>
     </StyledUserType>
