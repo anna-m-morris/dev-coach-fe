@@ -8,12 +8,14 @@ import 'codemirror/mode/clike/clike';
 import 'codemirror/mode/haskell/haskell';
 import 'codemirror/mode/go/go';
 import 'codemirror/mode/rust/rust';
+import 'codemirror/mode/elixir/elixir';
 import 'codemirror/addon/edit/closebrackets';
 import 'codemirror/addon/lint/lint.css';
 import 'codemirror/addon/lint/lint';
 import 'codemirror/addon/lint/json-lint';
 import 'codemirror/addon/lint/javascript-lint';
 import 'codemirror/addon/selection/active-line';
+import { mapLanguageToMode } from '../../utils/executionHelpers';
 
 window.JSHINT = JSHINT;
 
@@ -37,13 +39,7 @@ export const Editor = ({ editorState, setEditorState, language }) => {
         className='codemirror'
         value={editorState}
         options={{
-          mode: `${
-            language === 'java' ||
-            language === 'c' ||
-            language === 'cpp'
-              ? 'clike'
-              : language
-          }`,
+          mode: `${mapLanguageToMode(language)}`,
           indentWithTabs: true,
           theme: 'lucario',
           lineNumbers: true,

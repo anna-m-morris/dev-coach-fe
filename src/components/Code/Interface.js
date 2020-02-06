@@ -12,7 +12,6 @@ import {
 } from '@material-ui/core';
 import {
   mapLanguageToEditorState,
-  mapLanguageToMode,
   testDataObj,
   logCode,
   runAllCode,
@@ -105,6 +104,7 @@ const Interface = ({
           <MenuItem value='c'>C</MenuItem>
           <MenuItem value='cpp'>C++</MenuItem>
           <MenuItem value='haskell'>Haskell</MenuItem>
+          <MenuItem value='go'>Go</MenuItem>
         </Select>
       </FormControl>
       <FormControl className='form-control'>

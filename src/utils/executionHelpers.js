@@ -263,6 +263,14 @@ export const mapLanguageToId = language => {
       return 54;
     case 'haskell':
       return 61;
+    case 'go':
+      return 60;
+    case 'rust':
+      return 73;
+    case 'typescript':
+      return 74;
+    case 'elixir':
+      return 57;
   }
 };
 
@@ -413,7 +421,24 @@ f n acc = f (n-1) (acc*n)
 
 main = print $ factorial 5`;
 
-const goInitialState = ``;
+const goInitialState = `package main
+import "fmt"
+
+func main() {
+    fmt.Println("hello world")
+}
+`;
+
+const rustInitialState = `fn main() {
+  println!("Hello Rust!");
+}
+`;
+
+const elixirInitialState = `IO.puts("Hello, World!")`;
+
+const typescriptInitialState = `const s: string = "hello world!";
+
+console.log(s);`
 
 const cInitialState = `/* sample program: print pascal's triangle */\n#include<stdio.h>
 int main() {
@@ -452,6 +477,12 @@ export const mapLanguageToEditorState = (language, editorState) => {
       return haskellInitialState;
     case 'go':
       return goInitialState;
+    case 'typescript':
+      return typescriptInitialState;
+    case 'rust':
+      return rustInitialState;
+    case 'elixir':
+      return elixirInitialState;
   }
 };
 
