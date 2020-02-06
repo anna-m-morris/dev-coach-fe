@@ -5,7 +5,6 @@ import uuid from 'uuid';
 import styled from 'styled-components';
 import { useField, Form, Field, Formik } from 'formik';
 import * as yup from 'yup';
-import Loader from 'react-loader-spinner';
 import {
   FormControl,
   Select,
