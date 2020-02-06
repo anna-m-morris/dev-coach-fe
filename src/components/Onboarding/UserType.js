@@ -3,21 +3,18 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { StyledButton, buttonTheme } from '../Landing/Landing-styles';
 import { saveRoleId } from '../../state/actions/authenticationActions';
+import devices from '../../utils/devices';
 
 const StyledUserType = styled.div`
   align-items: center;
   display: flex;
-  flex-direction: column;
   width: 100%;
   height: 100%;
   justify-content: center;
+  flex-wrap: wrap;
 
-  .users-container {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0 4rem 0;
-    flex-wrap: wrap;
-    align-items: center;
+  @media ${devices.tablet} {
+    margin-top: 2rem;
   }
 
   .user-type-container {
@@ -28,7 +25,7 @@ const StyledUserType = styled.div`
     display: flex;
     height: 22rem;
     justify-content: space-evenly;
-    width: 22rem;
+    width: 21rem;
     padding: 2rem 1rem;
     margin: 1rem;
     flex-direction: column;
@@ -53,7 +50,6 @@ const StyledUserType = styled.div`
 
       li {
         list-style: none;
-        /* padding: 0; */
         text-align: center;
         color: #808080;
       }
@@ -70,58 +66,56 @@ const StyledUserType = styled.div`
   }
 `;
 
-const UserTypePage = ({ saveRoleId, handleNext }) => {
+const UserTypePage = ({ userReducer, saveRoleId, handleNext }) => {
   return (
-    <StyledUserType>
-      <div className='users-container'>
-        <div className='user-type-container'>
-          <div className='user-description'>
-            <h3>As A Coach</h3>
-            <ul>
-              <li>
-                Set your own <b>income</b>
-              </li>
-              <li>
-                <b>Coach</b> beginner developers through the technical
-                interview
-              </li>
-              <li>
-                Help <b>grow</b> this community
-              </li>
-            </ul>
-          </div>
-          <div className='user-decision'>
-            <StyledButton
-              theme={buttonTheme}
-              onClick={() => saveRoleId(handleNext, 2)}
-            >
-              Join As Coach
-            </StyledButton>
-          </div>
+    <StyledUserType className='users-container'>
+      <div className='user-type-container'>
+        <div className='user-description'>
+          <h3>As A Coach</h3>
+          <ul>
+            <li>
+              Set your own <b>income</b>
+            </li>
+            <li>
+              <b>Coach</b> beginner developers through the technical
+              interview
+            </li>
+            <li>
+              Help <b>grow</b> the community
+            </li>
+          </ul>
         </div>
-        <div className='user-type-container'>
-          <div className='user-description'>
-            <h3>As A Student</h3>
-            <ul>
-              <li>
-                <b>Master</b> the technical interview
-              </li>
-              <li>
-                Feel <b>confident</b> in the online interview setting
-              </li>
-              <li>
-                Land your <b>dream</b> job and get dat moneyyssss
-              </li>
-            </ul>
-          </div>
-          <div className='user-decision'>
-            <StyledButton
-              theme={buttonTheme}
-              onClick={() => saveRoleId(handleNext, 1)}
-            >
-              Join As Student
-            </StyledButton>
-          </div>
+        <div className='user-decision'>
+          <StyledButton
+            theme={buttonTheme}
+            onClick={() => saveRoleId(handleNext, 2)}
+          >
+            Join As Coach
+          </StyledButton>
+        </div>
+      </div>
+      <div className='user-type-container'>
+        <div className='user-description'>
+          <h3>As A Student</h3>
+          <ul>
+            <li>
+              <b>Master</b> the technical interview
+            </li>
+            <li>
+              Feel <b>confident</b> in the online interview setting
+            </li>
+            <li>
+              Land your <b>dream</b> job and start earning!
+            </li>
+          </ul>
+        </div>
+        <div className='user-decision'>
+          <StyledButton
+            theme={buttonTheme}
+            onClick={() => saveRoleId(handleNext, 1)}
+          >
+            Join As Student
+          </StyledButton>
         </div>
       </div>
     </StyledUserType>

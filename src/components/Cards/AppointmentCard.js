@@ -16,10 +16,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import devices from '../../utils/devices';
 import { mapExperience } from '../../utils/mappers';
 
-const StyledCoachCard = styled.div`
+const StyledAppointmentCard = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   width: 17rem;
   height: 22rem;
   padding: 1.5rem;
@@ -30,14 +30,13 @@ const StyledCoachCard = styled.div`
   background: white;
   box-shadow: 0 6px 10px #d3d3d3;
 
-  @media ${devices.mobile} {
-    width: 14rem;
-  }
   .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    flex-direction: row-reverse;
     align-items: center;
     width: 100%;
+    text-align: center;
 
     .close-icon {
       margin-top: -4em;
@@ -47,14 +46,16 @@ const StyledCoachCard = styled.div`
     }
 
     .header-text {
-      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .header-photo {
-      width: 100%;
       display: flex;
-      justify-content: center;
       align-items: center;
+      margin-right: 0.3rem;
       .picture {
         width: 5.5rem;
         height: 5.5rem;
@@ -63,7 +64,6 @@ const StyledCoachCard = styled.div`
   }
 
   h3 {
-    text-align: center;
     font-weight: bold;
     font-size: 1rem;
     color: #3c4043;
@@ -77,21 +77,24 @@ const StyledCoachCard = styled.div`
   }
 
   .bullet-points {
-    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 0;
+    height: 55%;
+
+    @media ${devices.mobile} {
+      margin: 0.5rem 0;
+    }
   }
 
   .bullet {
     display: flex;
     align-items: center;
-    padding: 0.2em;
   }
 
   .icon {
     margin-right: 0.3em;
-  }
-
-  .description {
-    margin-bottom: 0.6em;
   }
 
   .reviews {
@@ -100,27 +103,36 @@ const StyledCoachCard = styled.div`
   }
 
   .footer {
-    margin-top: 0.5em;
     display: flex;
-    width: 100%;
     justify-content: space-between;
+    width: 100%;
+
+    @media ${devices.mobile} {
+      flex-direction: column;
+      align-items: center;
+    }
+
     a {
       text-decoration: none;
     }
 
+    button {
+      width: 6.7rem;
+
+      @media ${devices.mobile} {
+        width: 100%;
+      }
+    }
+
     .send-button {
-      background-color: #4fad65;
-      width: 110px;
+      background-color: #3f51b5;
+      @media ${devices.mobile} {
+        margin-bottom: 0.5rem;
+      }
     }
 
     .interview-button {
-      width: 110px;
-      background-color: #303f9f;
-    }
-
-    @media ${devices.mobile} {
-      flex-direction: column;
-      justify-content: center;
+      background-color: #4fad65;
     }
   }
 `;
@@ -145,7 +157,7 @@ export const AppointmentCard = props => {
   const date = appointment.appointment_datetime.slice(16, 28);
   return (
     <>
-      <StyledCoachCard>
+      <StyledAppointmentCard className='appointment-card'>
         <div className='header'>
           <CloseIcon
             className='close-icon'
@@ -182,14 +194,6 @@ export const AppointmentCard = props => {
             {appointment.appointment_length}
           </div>
         </div>
-
-        <div className='description'>
-          {appointment.description ? (
-            <p>{appointment.description.slice(0, 80)}</p>
-          ) : (
-            ''
-          )}
-        </div>
         <div className='footer'>
           <Button
             className='send-button'
@@ -210,7 +214,7 @@ export const AppointmentCard = props => {
             Start
           </Button>
         </div>
-      </StyledCoachCard>
+      </StyledAppointmentCard>
       <Dialog
         open={open}
         onClose={handleClose}

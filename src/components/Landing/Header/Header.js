@@ -10,7 +10,7 @@ const Header = () => (
       stressful
     </h2>
     <div className='cta-button'>
-      <Link to='/register'>
+      <Link className='link' to='/register'>
         <StyledButton theme={buttonTheme}>Sign Up</StyledButton>
       </Link>
     </div>

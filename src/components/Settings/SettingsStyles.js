@@ -89,6 +89,7 @@ export default styled.div`
       cursor: pointer;
       transition: ease-out 0.2s;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      outline: none;
 
       &:hover {
         transition: ease-in 0.2s;

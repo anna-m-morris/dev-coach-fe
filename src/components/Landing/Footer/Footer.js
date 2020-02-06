@@ -10,7 +10,7 @@ const Footer = () => (
         <h2>What are you waiting for?</h2>
       </div>
       <div className='cta-button'>
-        <Link to='/register'>
+        <Link className='link' to='/register'>
           <StyledButton theme={buttonTheme}>Join Now</StyledButton>
         </Link>
       </div>

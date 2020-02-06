@@ -25,7 +25,9 @@ const InterfaceContainer = styled.div`
   justify-content: space-evenly;
 
   .title {
-    text-align: center;
+    color: #595959;
+    font-size: 2rem;
+    font-weight: 500;
   }
 
   .form-control {
@@ -44,7 +46,7 @@ const Interface = ({
   language,
   setLanguage,
   editorState,
-  setEditorState, 
+  setEditorState,
   currentTest,
   setCurrentTest,
 }) => {
@@ -86,7 +88,7 @@ const Interface = ({
 
   return (
     <InterfaceContainer>
-      <h1>DevCoach IDE</h1>
+      <h1 className='title'>DevCoach IDE</h1>
       <FormControl className='form-control'>
         <InputLabel className='input-label'>
           Select Programming Language
@@ -108,10 +110,16 @@ const Interface = ({
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
           <MenuItem value='reverseAString'>Reverse a string</MenuItem>
+          <MenuItem value='sortString'>SortString</MenuItem>
           <MenuItem value='rockPaperScissors'>
             Rock Paper Scissors
           </MenuItem>
           <MenuItem value='fibonacci'>Fibonacci</MenuItem>
+          <MenuItem value='anagram'>Anagram</MenuItem>
+          <MenuItem value='fizzBuzz'>FizzBuzz</MenuItem>
+          <MenuItem value='isArmstrongNumber'>
+            IsArmstrongNumber
+          </MenuItem>
         </Select>
       </FormControl>
       <Button onClick={handlePost}>Run Code</Button>

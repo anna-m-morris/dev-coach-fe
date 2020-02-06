@@ -146,7 +146,7 @@ export function SettingsPersonal(props) {
                 variant='outlined'
                 fullWidth
                 id='first_name'
-                label={userInfo.first_name}
+                label='First Name'
                 placeholder={userInfo.first_name}
                 onChange={handleChange}
                 autoFocus
@@ -159,7 +159,7 @@ export function SettingsPersonal(props) {
                 fullWidth
                 id='lastName'
                 placeholder={userInfo.last_name}
-                label={userInfo.last_name}
+                label='Last Name'
                 name='last_name'
                 autoComplete='lname'
                 onChange={handleChange}
@@ -171,7 +171,7 @@ export function SettingsPersonal(props) {
                 variant='outlined'
                 fullWidth
                 id='email'
-                label={userInfo.email}
+                label='Email'
                 name='email'
                 autoComplete='email'
                 placeholder={userInfo.email}

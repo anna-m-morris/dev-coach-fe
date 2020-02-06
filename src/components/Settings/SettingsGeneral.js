@@ -65,7 +65,7 @@ export function SettingsGeneral(props) {
                 variant='outlined'
                 fullWidth
                 name='location'
-                label={userInfo.location}
+                label='Location'
                 type='string'
                 placeholder={userInfo.location}
                 onChange={handleChange}
@@ -78,9 +78,7 @@ export function SettingsGeneral(props) {
                 fullWidth
                 id='linkedin'
                 name='linkedin'
-                label={
-                  userInfo.linkedin ? userInfo.linkedin : 'linkedin'
-                }
+                label='Linkedin'
                 placeholder={userInfo.linkedin}
                 onChange={handleChange}
               />
@@ -95,9 +93,9 @@ export function SettingsGeneral(props) {
                 name='github'
                 type='url'
                 id='github'
-                label={userInfo.github ? userInfo.github : 'github'}
+                label='GitHub'
                 placeholder={
-                  userInfo.github ? userInfo.github : 'github'
+                  userInfo.github ? userInfo.github : 'GitHub'
                 }
                 onChange={handleChange}
               />
@@ -111,7 +109,7 @@ export function SettingsGeneral(props) {
                   name='hourly_rate'
                   type='url'
                   id='hourly_rate'
-                  label={userInfo.hourly_rate}
+                  label='Hourly Rate'
                   placeholder={userInfo.hourly_rate}
                   onChange={handleChange}
                 />
