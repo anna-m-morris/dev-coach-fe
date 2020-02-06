@@ -80,7 +80,6 @@ export const saveCoach = coach => {
   return { type: SAVE_COACH, payload: coach };
 };
 export const saveRescheduledCoach = rescheduledCoach => {
-  debugger;
   return { type: SAVE_RESCHEDULED_COACH, payload: rescheduledCoach };
 };
 
