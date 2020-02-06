@@ -261,6 +261,8 @@ export const mapLanguageToId = language => {
       return 50;
     case 'cpp':
       return 54;
+    case 'haskell':
+      return 61;
   }
 };
 
@@ -404,6 +406,8 @@ const javaInitialState = `public class Main {
 }
 `;
 
+const haskellInitialState = `main = putStrLn "Hello, World!"`;
+
 const cInitialState = `/* sample program: print pascal's triangle */\n#include<stdio.h>
 int main() {
     int rows = 10, coef=1, space, i, j;
@@ -437,6 +441,8 @@ export const mapLanguageToEditorState = (language, editorState) => {
       return cppInitialState;
     case 'java':
       return javaInitialState;
+    case 'haskell':
+      return haskellInitialState;
   }
 };
 

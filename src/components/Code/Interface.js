@@ -103,6 +103,7 @@ const Interface = ({
           <MenuItem value='java'>Java</MenuItem>
           <MenuItem value='c'>C</MenuItem>
           <MenuItem value='cpp'>C++</MenuItem>
+          <MenuItem value='haskell'>Haskell</MenuItem>
         </Select>
       </FormControl>
       <FormControl className='form-control'>
