@@ -109,7 +109,7 @@ const StyledAppointmentCard = styled.div`
 
     .send-button {
       width: 6.7rem;
-      background-color: #303f9f;
+      background-color: #3f51b5;
     }
 
     .interview-button {
