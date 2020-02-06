@@ -295,29 +295,80 @@ export const testDataObj = {
       {
         testCase: 23,
         testResult: `[
-            23, 70, 35, 106, 53, 160,↵  80, 40, 20,  10,  5,  16,
-               8,  4,  2,   1
-              ]
-              `,
+  23, 70, 35, 106, 53, 160,
+  80, 40, 20,  10,  5,  16,
+   8,  4,  2,   1
+]`,
       },
       {
         testCase: 44,
         testResult: `[
-            44, 22, 11, 34, 17, 52, 26,
-              13, 40, 20, 10,  5, 16,  8,
-                 4,  2,  1
-                ]
-                `,
+  44, 22, 11, 34, 17, 52, 26,
+  13, 40, 20, 10,  5, 16,  8,
+   4,  2,  1
+]`,
       },
       {
         testCase: 86,
         testResult: `[
-            86,  43, 130, 65, 196, 98, 49, 148, 74,
-              37, 112,  56, 28,  14,  7, 22,  11, 34,
-                17,  52,  26, 13,  40, 20, 10,   5, 16,
-                   8,   4,   2,  1
-                  ]
-                  `,
+  86,  43, 130, 65, 196, 98, 49, 148, 74,
+  37, 112,  56, 28,  14,  7, 22,  11, 34,
+  17,  52,  26, 13,  40, 20, 10,   5, 16,
+   8,   4,   2,  1
+]`,
+      },
+    ],
+  },
+  islandCount: {
+    state: `
+// Given a 2D array binaryMatrix of 0s and 1s, implement a
+// function getNumberOfIslands that returns the number
+// of islands of 1s in binaryMatrix. An island is defined as
+// a group of adjacent values that are all 1s. A cell in
+// binaryMatrix is considered adjacent to another cell
+// if they are next to each either on the same row or
+// column. Note that two values of 1 are not part of
+// the same island if they’re sharing only a mutual
+// “corner” (i.e. they are diagonally neighbors).
+// Example:
+// input:  binaryMatrix = [ [0,    1,    0,    1,    0],
+//                          [0,    0,    1,    1,    1],
+//                          [1,    0,    0,    1,    0],
+//                          [0,    1,    1,    0,    0],
+//                          [1,    0,    1,    0,    1] ]
+// output: 6 # since this is the number of islands in binaryMatrix.
+//# See all 6 islands color-coded below.
+}`,
+    testData: [
+      {
+        testCase: [
+          [1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1],
+        ],
+        testResult: 1,
+      },
+      {
+        testCase: [
+          [0, 1, 0, 1, 0],
+          [0, 0, 1, 1, 1],
+          [1, 0, 0, 1, 0],
+          [0, 1, 1, 0, 0],
+          [1, 0, 1, 0, 1],
+        ],
+        testResult: 6,
+      },
+      {
+        testCase: [
+          [1, 0, 1, 0],
+          [0, 1, 1, 1],
+          [0, 0, 1, 0],
+          [1, 1, 0, 0],
+          [0, 1, 0, 1],
+        ],
+        testResult: 4,
       },
     ],
   },
@@ -428,7 +479,7 @@ export async function runAllCode(
     const { token } = executedCode.data;
     setTimeout(async () => {
       const response = await fetchExecutedCode(token);
-      debugger
+      debugger;
       let output = response.data.stdout;
       if (
         typeof testResultsArr[idx] === 'string' &&
