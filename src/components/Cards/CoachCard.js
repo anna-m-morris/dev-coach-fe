@@ -12,7 +12,8 @@ import { mapExperience } from '../../utils/mappers';
 const StyledCoachCard = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
+  align-items: flex-start;
   width: 17rem;
   height: 24rem;
   padding: 1.5rem;
@@ -24,28 +25,27 @@ const StyledCoachCard = styled.div`
   background: white;
   box-shadow: 0 6px 10px #d3d3d3;
 
-  h3 {
-    font-weight: 400;
-    font-size: 1rem;
-    color: #3c4043;
-  }
-
   .header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
     max-height: 5.5rem;
     .header-text {
-      width: 100%;
-
+      margin-left: 1rem;
       h3 {
         font-weight: bold;
+        font-size: 1rem;
+        color: #3c4043;
+        margin: 0;
+      }
+      p {
+        margin: 0;
       }
     }
 
     .header-photo {
-      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -56,13 +56,11 @@ const StyledCoachCard = styled.div`
     }
   }
 
-    .location-bullet {
-      .location-icon {
-        margin-left: 0.1em;
-        padding-right: 0.1em;
-      }
-    }
+  .location-bullet .location-icon {
+    margin-left: 0.1em;
+    padding-right: 0.1em;
   }
+
   .reviews {
     display: flex;
     justify-content: flex-start;
@@ -99,7 +97,7 @@ export const CoachCard = props => {
   const { coach, saveCoach, getFeedback, feedback, savePeer } = props;
 
   return (
-    <StyledCoachCard>
+    <StyledCoachCard className='coach-card'>
       <div className='header'>
         <div className='header-text'>
           <h3>{`${coach.first_name} ${coach.last_name}`}</h3>
