@@ -80,7 +80,7 @@ export const saveCoach = coach => {
   return { type: SAVE_COACH, payload: coach };
 };
 export const saveRescheduledCoach = rescheduledCoach => {
-  debugger
+  debugger;
   return { type: SAVE_RESCHEDULED_COACH, payload: rescheduledCoach };
 };
 
@@ -173,14 +173,23 @@ export const rescheduleAppointment = (
     length_id,
     appointment_datetime,
   };
-  debugger
-  const coach = {
 
+  const coach = {
+    email: user.role_id === 2 ? user.email : rescheduler.email,
+    first_name:
+      user.role_id === 2 ? user.first_name : rescheduler.first_name,
+    last_name:
+      user.role_id === 2 ? user.last_name : rescheduler.last_name,
   };
 
   const student = {
-
+    email: user.role_id === 1 ? user.email : rescheduler.email,
+    first_name:
+      user.role_id === 1 ? user.first_name : rescheduler.first_name,
+    last_name:
+      user.role_id === 1 ? user.last_name : rescheduler.last_name,
   };
+  debugger
   axiosWithAuth()
     .post(`${url}appointment`, appointment)
     .then(res => {
