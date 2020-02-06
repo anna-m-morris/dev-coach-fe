@@ -90,10 +90,6 @@ const StyledAppointmentCard = styled.div`
     margin-right: 0.3em;
   }
 
-  .description {
-    margin-bottom: 0.6em;
-  }
-
   .reviews {
     display: flex;
     justify-content: space-between;
@@ -181,14 +177,6 @@ export const AppointmentCard = props => {
             {appointment.appointment_length}
           </div>
         </div>
-
-        {/* <div className='description'>
-          {appointment.description ? (
-            <p>{appointment.description.slice(0, 80)}</p>
-          ) : (
-            ''
-          )}
-          </div> */}
         <div className='footer'>
           <Button
             className='send-button'

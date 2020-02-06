@@ -90,10 +90,10 @@ const StyledCoachCard = styled.div`
 
     .chat-button {
       width: 6.7rem;
+      background-color: #4fad65;
     }
 
     .book-button {
-      background-color: #4fad65;
       width: 6.7rem;
     }
   }
