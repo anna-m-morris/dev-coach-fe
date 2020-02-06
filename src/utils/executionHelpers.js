@@ -223,6 +223,54 @@ export const testDataObj = {
       { testCase: `['listen', 'silent']`, testResult: 'true' },
     ],
   },
+  balancedBrackets: {
+    state: `function balancedBrackets(str) {
+  // Write a function balancedBrackets that accepts
+  // a string and returns true if all types of brackets 
+  // are balanced and false otherwise.    
+  // ignore other characters
+  
+  // Examples:
+  //  balancedBrackets('[({})]');   // true
+  //  balancedBrackets('[(]{)}'); // false
+  //  balancedBrackets(' const obj  = { x: someFunction() }'); // true
+
+}`,
+    testData: [
+      { testCase: '[({})]', testResult: 'true' },
+      { testCase: '[(]{)}', testResult: 'false' },
+      {
+        testCase: ' const obj  = { x: someFunction() }',
+        testResult: 'true',
+      },
+    ],
+  },
+  romanNumeralize: `function romanNumeralize(n) {
+    // Define a function that takes in a positive integer
+    // and returns the Roman Numeral representation of that number.  
+
+  // Symbol    Value
+  // I         1
+  // IV        4
+  // V         5
+  // IX        9
+  // X         10
+  // XL        40
+  // L         50
+  // XC        90
+  // C         100
+  // CD        400
+  // D         500
+  // CM        900
+  // M         1,000 
+  
+  // Example: romanNumeralize(1973) should return 'MCMLXXIII'.
+}`,
+  testData: [
+    { testCase: 1973, testResult: 'MCMLXXIII' },
+    { testCase: 2593, testResult: 'MMDXCIII' },
+    { testCase: 3123, testResult: 'MMMCXXIII' },
+  ],
 };
 
 export const invokeCode = (code, testCase, value, language) => {
