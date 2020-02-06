@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { StyledButton, buttonTheme } from '../Landing/Landing-styles';
 import { saveRoleId } from '../../state/actions/authenticationActions';
+import devices from '../../utils/devices';
 
 const StyledUserType = styled.div`
   align-items: center;
@@ -12,6 +13,10 @@ const StyledUserType = styled.div`
   justify-content: center;
   flex-wrap: wrap;
 
+  @media ${devices.tablet} {
+    margin-top: 2rem;
+  }
+
   .user-type-container {
     align-items: center;
     background: #fff;
@@ -20,7 +25,7 @@ const StyledUserType = styled.div`
     display: flex;
     height: 22rem;
     justify-content: space-evenly;
-    width: 22rem;
+    width: 21rem;
     padding: 2rem 1rem;
     margin: 1rem;
     flex-direction: column;
