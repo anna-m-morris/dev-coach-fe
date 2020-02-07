@@ -50,7 +50,7 @@ export const testDataObj = {
   },
   rockPaperScissors: {
     state: `function rockPaperScissors(numOfRounds) {
-// Write a function called rockPaperScissors that will take a // number, and output "n" number of possible combinations of   // 'rock', 'paper', and 'scissors'.
+/* Write a function called rockPaperScissors that will take a number, and output "n" number of possible combinations of 'rock', 'paper', and 'scissors. */
 }`,
     testData: [
       {
@@ -381,6 +381,12 @@ export const mapLanguageToId = language => {
       return 50;
     case 'cpp':
       return 54;
+    case 'haskell':
+      return 61;
+    case 'go':
+      return 60;
+    case 'rust':
+      return 73;
   }
 };
 
@@ -395,6 +401,7 @@ export function logCode(editorState, language, setOutput) {
           `https://api.judge0.com/submissions/${res.data.token}`,
         )
           .then(res => {
+            console.log(res); 
             if (res.data.stdout) {
               setOutput(`${res.data.stdout}`);
             } else if (res.data.compile_output) {
@@ -497,18 +504,7 @@ export async function runAllCode(
 
 const javascriptInitialEditorState = `console.log('hello JS!');`;
 
-const pythonInitialEditorState = `# example code: print n fibonacci numbers
-
-a = 10
-  
-def fib(n):
-    a, b = 0, 1
-    for _ in range(n):
-        yield a
-        a, b = b, a + b
-
-print(list(fib(a)))
-`;
+const pythonInitialEditorState = `print('hello, python!)`;
 
 const cppInitialState = `#include <iostream>
 
@@ -522,6 +518,22 @@ const javaInitialState = `public class Main {
   public static void main(String[] args) {
       System.out.println("hello, java!");
   }
+}
+`;
+
+const haskellInitialState = `main :: IO ()
+main = putStrLn "Hello, Haskell!"`;
+
+const goInitialState = `package main
+import "fmt"
+
+func main() {
+    fmt.Println("hello Go!")
+}
+`;
+
+const rustInitialState = `fn main() {
+  println!("hello Rust!");
 }
 `;
 
@@ -558,6 +570,25 @@ export const mapLanguageToEditorState = (language, editorState) => {
       return cppInitialState;
     case 'java':
       return javaInitialState;
+    case 'haskell':
+      return haskellInitialState;
+    case 'go':
+      return goInitialState;
+    case 'rust':
+      return rustInitialState;
+  }
+};
+
+export const mapLanguageToMode = language => {
+  switch (language) {
+    default:
+      return language;
+    case 'java':
+      return 'clike';
+    case 'cpp':
+      return 'clike';
+    case 'c':
+      return 'clike';
   }
 };
 

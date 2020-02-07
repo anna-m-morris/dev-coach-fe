@@ -24,6 +24,10 @@ const InterfaceContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
 
+  .run-button {
+    margin-top: 1em;
+  }
+
   .title {
     color: #595959;
     font-size: 2rem;
@@ -99,13 +103,21 @@ const Interface = ({
           <MenuItem value='java'>Java</MenuItem>
           <MenuItem value='c'>C</MenuItem>
           <MenuItem value='cpp'>C++</MenuItem>
+          <MenuItem value='haskell'>Haskell</MenuItem>
+          <MenuItem value='go'>Go</MenuItem>
+          <MenuItem value='rust'>Rust</MenuItem>
         </Select>
       </FormControl>
       <FormControl className='form-control'>
         <InputLabel className='input-label'>
           Select Coding Challenge
         </InputLabel>
-        <Select value={currentTest} onChange={handleTestSelection}>
+        <Select
+          disabled={language !== 'javascript'}
+          value={currentTest}
+          onChange={handleTestSelection}
+        >
+          {' '}
           <MenuItem value=''>None</MenuItem>
           <MenuItem value='square'>Square a number</MenuItem>
           <MenuItem value='add'>Add two numbers</MenuItem>
@@ -116,7 +128,6 @@ const Interface = ({
           </MenuItem>
           <MenuItem value='fibonacci'>Fibonacci</MenuItem>
           <MenuItem value='anagram'>Anagram</MenuItem>
-          <MenuItem value='fizzBuzz'>FizzBuzz</MenuItem>
           <MenuItem value='isArmstrongNumber'>
             IsArmstrongNumber
           </MenuItem>
@@ -132,7 +143,9 @@ const Interface = ({
           <MenuItem value='vowelCount'>Vowel Count</MenuItem>
         </Select>
       </FormControl>
-      <Button onClick={handlePost}>Run Code</Button>
+      <Button className='run-button' onClick={handlePost}>
+        Run Code
+      </Button>
     </InterfaceContainer>
   );
 };

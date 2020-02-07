@@ -38,16 +38,15 @@ window.JSHINT = JSHINT;
 const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 88vh;
+  height: 92vh;
   width: 100%;
 
   .code-header-container {
-    height: 12%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding-bottom: 2em;
+    font-family: 'Inconsolata', sans-serif;
   }
 
   .code-body-container {
@@ -79,8 +78,15 @@ const InterfaceContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
 
+  * {
+    font-family: 'Inconsolata', sans-serif;
+  }
+
   .title {
     text-align: center;
+    color: #595959;
+    font-size: 2rem;
+    font-weight: 500;
   }
 
   .form-control {
@@ -286,7 +292,8 @@ class Code extends Component {
         }
         this.setState(prevState => {
           return {
-            output: `${prevState.output}Test ${idx + 1}: expected ${currentTest}(${
+            output: `${prevState.output}Test ${idx +
+              1}: expected ${currentTest}(${
               testCaseArr[idx]
             }) to equal ${
               testResultsArr[idx]
@@ -377,6 +384,9 @@ class Code extends Component {
                 <MenuItem value='java'>Java</MenuItem>
                 <MenuItem value='c'>C</MenuItem>
                 <MenuItem value='cpp'>C++</MenuItem>
+                <MenuItem value='haskell'>Haskell</MenuItem>
+                <MenuItem value='go'>Go</MenuItem>
+                <MenuItem value='rust'>Rust</MenuItem>
               </Select>
             </FormControl>
             <FormControl className='form-control'>
@@ -384,6 +394,7 @@ class Code extends Component {
                 Select Coding Challenge
               </InputLabel>
               <Select
+                disabled={this.state.language !== 'javascript'}
                 onChange={this.handleTestSelection}
                 value={this.state.currentTest}
               >
@@ -396,9 +407,15 @@ class Code extends Component {
                   Rock Paper Scissors
                 </MenuItem>
                 <MenuItem value='fibonacci'>Fibonacci</MenuItem>
+                <MenuItem value='anagram'>Anagram</MenuItem>
+                <MenuItem value='isArmstrongNumber'>
+                  IsArmstrongNumber
+                </MenuItem>
               </Select>
             </FormControl>
-            <Button onClick={this.handlePost}>Run Code</Button>
+            <Button className='run-button' onClick={this.handlePost}>
+              Run Code
+            </Button>
           </InterfaceContainer>
         </div>
         <div className='code-body-container'>
