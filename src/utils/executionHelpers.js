@@ -456,7 +456,6 @@ export async function runAllCode(
     const { token } = executedCode.data;
     setTimeout(async () => {
       const response = await fetchExecutedCode(token);
-      debugger;
       let output = response.data.stdout;
       if (
         typeof testResultsArr[idx] === 'string' &&
