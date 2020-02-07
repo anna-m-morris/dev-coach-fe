@@ -19,9 +19,6 @@ const SearchStyled = styled.div`
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
   }
-  @media ${devices.mobile} {
-    width: 7.5rem;
-  }
 `;
 
 const BootstrapInput = withStyles(theme => ({
