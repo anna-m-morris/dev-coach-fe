@@ -129,6 +129,9 @@ const Interface = ({
           <MenuItem value='collatzSequence'>
             Collatz Sequence
           </MenuItem>
+          <MenuItem value='specificDifference'>
+            Specific Difference
+          </MenuItem>
         </Select>
       </FormControl>
       <Button onClick={handlePost}>Run Code</Button>

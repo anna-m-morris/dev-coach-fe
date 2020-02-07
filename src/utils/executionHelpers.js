@@ -320,7 +320,7 @@ export const testDataObj = {
     ],
   },
   islandCount: {
-    state: `
+    state: `function islandCount(binaryMatrix) {
 // Given a 2D array binaryMatrix of 0s and 1s, implement a
 // function getNumberOfIslands that returns the number
 // of islands of 1s in binaryMatrix. An island is defined as
@@ -337,17 +337,16 @@ export const testDataObj = {
 //                          [0,    1,    1,    0,    0],
 //                          [1,    0,    1,    0,    1] ]
 // output: 6 # since this is the number of islands in binaryMatrix.
-//# See all 6 islands color-coded below.
 }`,
     testData: [
       {
-        testCase: [
-          [1, 1, 1, 1, 1],
-          [1, 1, 1, 1, 1],
-          [1, 1, 1, 1, 1],
-          [1, 1, 1, 1, 1],
-          [1, 1, 1, 1, 1],
-        ],
+        testCase: `[
+  [1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1]
+]`,
         testResult: 1,
       },
       {
