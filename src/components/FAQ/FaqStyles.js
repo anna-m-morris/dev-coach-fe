@@ -48,8 +48,11 @@ export const AskedQuestionDiv = styled.div`
     width: 38em;
     color: #474b4f;
 
-    @media ${devices.mobile} {
+    @media ${devices.tablet} {
       font-size: 1rem;
+    }
+    @media ${devices.mobile} {
+      font-size: 0.8rem;
     }
   }
 
