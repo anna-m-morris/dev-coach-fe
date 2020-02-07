@@ -329,29 +329,20 @@ export const testDataObj = {
 }`,
     testData: [
       {
-        testCase: [0, -1, -2, 2, 1], 1,
-        testResult: 1,
+        testCase: '-bcd-fgh-jklmn-pqrst-vwxyz',
+        testResult: 0,
       },
-      // {
-      //   testCase: [
-      //     [0, 1, 0, 1, 0],
-      //     [0, 0, 1, 1, 1],
-      //     [1, 0, 0, 1, 0],
-      //     [0, 1, 1, 0, 0],
-      //     [1, 0, 1, 0, 1],
-      //   ],
-      //   testResult: 6,
-      // },
-      // {
-      //   testCase: [
-      //     [1, 0, 1, 0],
-      //     [0, 1, 1, 1],
-      //     [0, 0, 1, 0],
-      //     [1, 1, 0, 0],
-      //     [0, 1, 0, 1],
-      //   ],
-      //   testResult: 4,
-      // },
+      {
+        testCase: `Four score and seven years ago our
+         fathers brought forth on this continent, a new nation,
+          conceived in Liberty, and dedicated to the proposition 
+          that all men are created equal.`,
+        testResult: 58,
+      },
+      {
+        testCase: 'All I have ever wanted is to be an Uber driver!',
+        testResult: 16,
+      },
     ],
   },
 };
