@@ -129,7 +129,7 @@ const Interface = ({
           <MenuItem value='collatzSequence'>
             Collatz Sequence
           </MenuItem>
-          <MenuItem value='specificDifference'>
+          <MenuItem value='findPairsWithGivenDifference'>
             Specific Difference
           </MenuItem>
         </Select>
