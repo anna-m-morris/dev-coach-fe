@@ -398,11 +398,13 @@ class Code extends Component {
                 onChange={this.handleTestSelection}
                 value={this.state.currentTest}
               >
+                <MenuItem value=''>None</MenuItem>
                 <MenuItem value='square'>Square a number</MenuItem>
                 <MenuItem value='add'>Add two numbers</MenuItem>
                 <MenuItem value='reverseAString'>
                   Reverse a string
                 </MenuItem>
+                <MenuItem value='sortString'>SortString</MenuItem>
                 <MenuItem value='rockPaperScissors'>
                   Rock Paper Scissors
                 </MenuItem>
@@ -410,6 +412,15 @@ class Code extends Component {
                 <MenuItem value='anagram'>Anagram</MenuItem>
                 <MenuItem value='isArmstrongNumber'>
                   IsArmstrongNumber
+                </MenuItem>
+                <MenuItem value='balancedBrackets'>
+                  Balanced Bracket
+                </MenuItem>
+                <MenuItem value='romanNumeralize'>
+                  Roman Numeralize
+                </MenuItem>
+                <MenuItem value='collatzSequence'>
+                  Collatz Sequence
                 </MenuItem>
               </Select>
             </FormControl>

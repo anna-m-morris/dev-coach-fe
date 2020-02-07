@@ -223,6 +223,125 @@ export const testDataObj = {
       { testCase: `['listen', 'silent']`, testResult: 'true' },
     ],
   },
+  balancedBrackets: {
+    state: `function balancedBrackets(str) {
+// Write a function balancedBrackets that accepts
+// a string and returns true if all types of brackets 
+// are balanced and false otherwise.    
+// ignore other characters
+  
+// Examples:
+//  balancedBrackets('[({})]');   // true
+//  balancedBrackets('[(]{)}'); // false
+//  balancedBrackets(' const obj  = { x: someFunction() }'); // true
+
+}`,
+    testData: [
+      { testCase: '[({})]', testResult: 'true' },
+      { testCase: '[(]{)}', testResult: 'false' },
+      {
+        testCase: ' const obj  = { x: someFunction() }',
+        testResult: 'true',
+      },
+    ],
+  },
+  romanNumeralize: {
+    state: `function romanNumeralize(n) {
+// Define a function that takes in a positive integer
+// and returns the Roman Numeral representation of that number.  
+
+// Symbol    Value
+// I         1
+// IV        4
+// V         5
+// IX        9
+// X         10
+// XL        40
+// L         50
+// XC        90
+// C         100
+// CD        400
+// D         500
+// CM        900
+// M         1,000 
+
+  // Example: romanNumeralize(1973) should return 'MCMLXXIII'.
+}`,
+    testData: [
+      { testCase: 1973, testResult: 'MCMLXXIII' },
+      { testCase: 2593, testResult: 'MMDXCIII' },
+      { testCase: 3123, testResult: 'MMMCXXIII' },
+    ],
+  },
+  collatzSequence: {
+    state: `function collatzSequence(num){
+// Write a function which takes a positive integer number
+// as an argument and returns it's "Collatz chain".
+// The Collatz chain will stop at one. Named  after Lothar
+// Collatz, the "Collatz conjecture" defines a sequence
+// of numbers. That sequence is the Collatz "chain". 
+// Starting with a positive integer, the Collatz conjecture
+// determines the next integer in the chain until the number
+// 1 is obtained.Your Collatz algorithm will evaluate the 
+// integer and then, depending on the condition of the integer,
+// perform the following tasks: If the integer is even, 
+// then halve the number. If the integer is not even, then
+// multiply it by 3 and add one. An example chain starting
+// from the number 23 looks like this:
+//[23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2, 1]
+//Boldface signifies the odd numbers.
+}`,
+    testData: [
+      {
+        testCase: 23,
+        testResult: `[
+  23, 70, 35, 106, 53, 160,
+  80, 40, 20,  10,  5,  16,
+   8,  4,  2,   1
+]`,
+      },
+      {
+        testCase: 44,
+        testResult: `[
+  44, 22, 11, 34, 17, 52, 26,
+  13, 40, 20, 10,  5, 16,  8,
+   4,  2,  1
+]`,
+      },
+      {
+        testCase: 86,
+        testResult: `[
+  86,  43, 130, 65, 196, 98, 49, 148, 74,
+  37, 112,  56, 28,  14,  7, 22,  11, 34,
+  17,  52,  26, 13,  40, 20, 10,   5, 16,
+   8,   4,   2,  1
+]`,
+      },
+    ],
+  },
+  vowelCount: {
+    state: `function vowelCount(str) {
+// Write a function which counts the number of
+// vowels in a given string. Return the count number.
+// Passing the string "Hello world!" as an argument 
+// to your vowelCount() function would result
+// in the number 3 being returned.
+}`,
+    testData: [
+      {
+        testCase: '-bcd-fgh-jklmn-pqrst-vwxyz',
+        testResult: 0,
+      },
+      {
+        testCase: 'e quic bron foumped ove the lazy do.',
+        testResult: 12,
+      },
+      {
+        testCase: 'A I have everanted iso be an Uberriver!',
+        testResult: 16,
+      },
+    ],
+  },
 };
 
 export const invokeCode = (code, testCase, value, language) => {
@@ -281,7 +400,6 @@ export function logCode(editorState, language, setOutput) {
           `https://api.judge0.com/submissions/${res.data.token}`,
         )
           .then(res => {
-            console.log(res); 
             if (res.data.stdout) {
               setOutput(`${res.data.stdout}`);
             } else if (res.data.compile_output) {

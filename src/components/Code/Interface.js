@@ -131,6 +131,16 @@ const Interface = ({
           <MenuItem value='isArmstrongNumber'>
             IsArmstrongNumber
           </MenuItem>
+          <MenuItem value='balancedBrackets'>
+            Balanced Bracket
+          </MenuItem>
+          <MenuItem value='romanNumeralize'>
+            Roman Numeralize
+          </MenuItem>
+          <MenuItem value='collatzSequence'>
+            Collatz Sequence
+          </MenuItem>
+          <MenuItem value='vowelCount'>Vowel Count</MenuItem>
         </Select>
       </FormControl>
       <Button className='run-button' onClick={handlePost}>
