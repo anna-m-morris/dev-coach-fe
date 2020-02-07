@@ -333,12 +333,11 @@ export const testDataObj = {
         testResult: 0,
       },
       {
-        testCase:
-          'Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.',
-        testResult: 58,
+        testCase: 'e quic bron foumped ove the lazy do.',
+        testResult: 12,
       },
       {
-        testCase: 'All I have ever wanted is to be an Uber driver!',
+        testCase: 'A I have everanted iso be an Uberriver!',
         testResult: 16,
       },
     ],

@@ -422,7 +422,6 @@ class Code extends Component {
                 <MenuItem value='collatzSequence'>
                   Collatz Sequence
                 </MenuItem>
-                <MenuItem value='vowelCount'>Vowel Count</MenuItem>
               </Select>
             </FormControl>
             <Button className='run-button' onClick={this.handlePost}>
