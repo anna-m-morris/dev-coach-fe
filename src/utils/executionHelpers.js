@@ -401,7 +401,6 @@ export function logCode(editorState, language, setOutput) {
           `https://api.judge0.com/submissions/${res.data.token}`,
         )
           .then(res => {
-            console.log(res); 
             if (res.data.stdout) {
               setOutput(`${res.data.stdout}`);
             } else if (res.data.compile_output) {
