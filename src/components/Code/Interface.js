@@ -129,9 +129,7 @@ const Interface = ({
           <MenuItem value='collatzSequence'>
             Collatz Sequence
           </MenuItem>
-          <MenuItem value='findPairsWithGivenDifference'>
-            Specific Difference
-          </MenuItem>
+          <MenuItem value='vowelCount'>Vowel Count</MenuItem>
         </Select>
       </FormControl>
       <Button onClick={handlePost}>Run Code</Button>
