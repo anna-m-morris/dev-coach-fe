@@ -5,7 +5,7 @@ import AboutContainer from './AboutStyles';
 const About = () => {
   return (
     <AboutContainer>
-      <Navigation />
+        <Navigation/>
       <div className={'title'}>
         <h1>How does Dev Coach work?</h1>
       </div>

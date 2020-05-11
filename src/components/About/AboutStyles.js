@@ -8,16 +8,8 @@ export default styled.div`
   max-width: 880px;
 
   .navigation {
-    width: 100%;
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
-    margin-bottom: 3rem;
-
     .list-items .list-item a {
-      color: seaGreen;
-
-      &:hover {
-        opacity: none;
-      }
+      color: black;
     }
   }
 
@@ -27,7 +19,7 @@ export default styled.div`
     // align-self: center;
 
     h1 {
-      margin-top:0
+      margin-top:2rem;
       margin-bottom: 3.5rem;
     }
   }
