@@ -5,9 +5,9 @@ import AboutContainer from './AboutStyles';
 const About = () => {
   return (
     <AboutContainer>
-        <Navigation/>
+      <Navigation />
       <div className={'title'}>
-        <h1>How does Dev Coach work?</h1>
+        <h1>How does DevCoach work?</h1>
       </div>
       <section className={'about-cards-container'}>
         <article className={'about-card'}>
