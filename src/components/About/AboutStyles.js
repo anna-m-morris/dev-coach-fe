@@ -9,7 +9,7 @@ export default styled.div`
   flex-direction: column;
   justify-content:center;
  
-  background-image: url("https://i.ibb.co/RDsKkqX/green-dots.png");
+  background-image: url("https://i.ibb.co/7y084jG/green-dots.png");
   background-color: #E6F3E6;
   background-position: center;
   background-repeat: no-repeat;
