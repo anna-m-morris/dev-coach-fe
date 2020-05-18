@@ -18,14 +18,12 @@ h1{
 h2{
     margin: 2rem 0 1rem 0
 }
-
-
-  .navigation {
-      .list-items .list-item a {
-        color: black;
-      }
-    }
+.navigation {
+   .list-items .list-item a {
+   color: black;
+ }
+}
 @media${devices.large}{
-  padding: 0 17rem;
+  padding: 0 15rem;
 }
 `;

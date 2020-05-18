@@ -5,8 +5,9 @@ export default styled.div`
 .CardsContainer{
     display:flex;
     flex-direction:column;
-    justify-content: space-between;
     align-items:center;
+    height:1200px;
+    justify-content: space-evenly;
 }
 .Card{
     display:flex;
@@ -15,7 +16,7 @@ export default styled.div`
     border-width:1px;
     border-radius:10%;
     width:300px
-    padding:15px;
+    padding:20px;
     height:275px
     margin-bottom:2rem
 }
@@ -32,6 +33,15 @@ export default styled.div`
 }
 
 @media${devices.large}{
+    .CardsContainer{
+        flex-direction:row;
+        height:auto;
+        justify-content: space-between;
+    }
+    .Card{
+        margin: 3rem 1rem;
+        height: 246px;
+    }
 }
 
 `;
