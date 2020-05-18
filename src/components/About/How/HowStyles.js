@@ -10,7 +10,6 @@ export default styled.div`
 
     .title {
       display:flex;
-      color: #4FAD65;
       font-size: 1.3rem;
     }
 

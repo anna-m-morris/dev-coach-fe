@@ -10,6 +10,16 @@ background-position: center;
 background-repeat: repeat-y;
 background-size: cover;
 
+h1{
+  color: #4FAD65;
+    font-size: 2.5rem;
+    margin: 2rem 0 1rem 0
+}
+h2{
+    margin: 2rem 0 1rem 0
+}
+
+
   .navigation {
       .list-items .list-item a {
         color: black;
