@@ -6,7 +6,7 @@ import AboutContainer from './AboutStyles';
 
 const About = () => {
   return (
-    <AboutContainer>
+    <AboutContainer className={"aboutContainer"}>
       <Navigation />
       <Search />
       <How />

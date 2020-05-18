@@ -1,19 +1,18 @@
 import React from 'react';
+import SearchContainer from './SearchStyle';
 
 const Search = () => {
   return (
-    <div>
+    <SearchContainer>
       <h1>One-On-One Coaching</h1>
-      <h2>
+      <h2>Live chat, code along, interveiw practice, and more</h2>
+      <p>
         From beginners making a splash in the industry to senior
         engineers, our coaches are ready to help you level up your
         skills.
-      </h2>
-      <p>Live chat, code along, interveiw practice, and more!</p>
-      <div>
-        {/* search bar */}
-      </div>
-    </div>
+      </p>
+      <div>{/* search bar */}</div>
+    </SearchContainer>
   );
 };
 
