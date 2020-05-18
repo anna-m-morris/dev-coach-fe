@@ -12,7 +12,7 @@ background-size: cover;
 
 h1{
   color: #4FAD65;
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin: 2rem 0 1rem 0
 }
 h2{
