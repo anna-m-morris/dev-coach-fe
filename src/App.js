@@ -35,6 +35,7 @@ const globalTheme = createMuiTheme({
 function App({ user, isLoggedIn }) {
   const routes = (
     <Switch>
+      <Route exact path='/' component={Landing} />
       <Route path={'/dashboard'} component={UserDashboard} />
       {user && user.role_id === 1 ? (
         <Route path={'/marketplace'} component={Marketplace} />
@@ -56,7 +57,11 @@ function App({ user, isLoggedIn }) {
   if (isLoggedIn) {
     return (
       <ThemeProvider theme={globalTheme}>
-        <Dashboard routes={routes} />
+        <Switch>
+          <Route exact path='/' component={Landing} />
+          <Route path='/about' component={About} />
+          <Dashboard routes={routes} />
+        </Switch>
       </ThemeProvider>
     );
   }
@@ -74,7 +79,7 @@ function App({ user, isLoggedIn }) {
       <Route path='/faq' component={LandingFaq} />
       <Route path='/about' component={About} />
       <Route path={'/video'} component={Interview} />
-      <Redirect to='/' />
+      {/* <Redirect to='/' /> */}
     </Switch>
   );
 }
