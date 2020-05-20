@@ -16,11 +16,11 @@ export default styled.div`
     .how-cards-container {
       display: flex;
       flex-direction: column;
-      align-items:center;
     }
   
    .how-card {
     margin-bottom:3.5rem;
+    
     display: flex;
     flex-direction: column;
     text-align: start;
@@ -40,6 +40,8 @@ export default styled.div`
         height: 17rem;
         background: #4FAD65;
         box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+        border-radius: 1rem;
+        align-self:center;
     }
 
 //computer

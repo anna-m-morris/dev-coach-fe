@@ -12,13 +12,12 @@ export default styled.div`
 .Card{
     display:flex;
     flex-direction:column;
-    border-style:solid;
-    border-width:1px;
-    border-radius:10%;
+    border-radius:1rem;
     width:300px
     padding:20px;
     height:275px
     margin-bottom:2rem
+    box-shadow:0px 4px 7px rgba(0,0,0,0.2)
 }
 .User{
     display:flex;
