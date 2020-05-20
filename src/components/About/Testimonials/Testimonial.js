@@ -1,5 +1,8 @@
 import React from 'react';
 import TestimonialContainer from './TestimonialStyles';
+import user1 from '../img/person-1.jpg';
+import user2 from '../img/person-2.jpg';
+import user3 from '../img/person-3.jpg';
 
 const Testimonial = () => {
   return (
@@ -8,9 +11,8 @@ const Testimonial = () => {
       <div className={'CardsContainer'}>
         <div className={'Card'}>
           <div className={'User'}>
-            <div className={'circle'}>
-              <img src={'#'} alt={'Profile Img'}></img>
-            </div>
+              <img className={'circle'} src={user1} alt={'Profile Img'}></img>
+            
             <h3>John Davidson</h3>
           </div>
           <p>
@@ -21,21 +23,33 @@ const Testimonial = () => {
         </div>
         <div className={'Card'}>
           <div className={'User'}>
-            <div className={'circle'}>
-              <img src={'#'} alt={'Profile Img'}></img>
-            </div>
-            <h3>Anna Morris</h3>
+            
+              <img className={'circle'} src={user2} alt={'Profile Img'}></img>
+            
+            <h3>Aaron Ruiz</h3>
           </div>
-          <p>It's good stuff.</p>
+          <p>
+            Practicing with DevCoach gave me the confidence I needed
+            to have a fun coding interview and eventually get the
+            offers I wanted. Believe it or not, this time I wasn't
+            even nervous when the day came
+          </p>
         </div>
         <div className={'Card'}>
           <div className={'User'}>
-            <div className={'circle'}>
-              <img src={'#'} alt={'Profile Img'}></img>
-            </div>
-            <h3>Anna Morris</h3>
+            <img
+              className={'circle'}
+              src={user3}
+              alt={'Profile Img'}
+            ></img>
+            <h3>Jessica Booth</h3>
           </div>
-          <p>It's good stuff.</p>
+          <p>
+            DevCoach helped me to get an amazing hands-on technical
+            interview experience. After some preparation, I decided to
+            test my skills in algorithms, so I scheduled a couple of
+            DevCoach interviews.
+          </p>
         </div>
       </div>
     </TestimonialContainer>
