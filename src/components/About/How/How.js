@@ -10,14 +10,11 @@ const How = () => {
       <section className={'how-cards-container'}>
         <article className={'how-card'}>
           <div>
-            <h2>Find Coaches</h2>
-            <p>
-              Search for coaches based on the skills you want to
-              improve.
-            </p>
+            <h2>Coaches set their own prices</h2>
+            <p>Cost per-session typically ranges from $30-$60.</p>
           </div>
           <div className={'card-image'}>
-            <img src='#' alt='search UI screen shot'></img>
+            <img src='#' alt='Market place screen shot'></img>
           </div>
         </article>
         <article className={'how-card'}>
@@ -49,11 +46,14 @@ const How = () => {
         </article>
         <article className={'how-card'}>
           <div>
-            <h2>The Developers</h2>
-            <p>Meet the team behind the app.</p>
+            <h2>Find Coaches</h2>
+            <p>
+              Search for coaches based on the skills you want to
+              improve.
+            </p>
           </div>
           <div className={'card-image'}>
-            <img src='#' alt='developer portait collage'></img>
+            <img src='#' alt='search UI screen shot'></img>
           </div>
         </article>
       </section>
