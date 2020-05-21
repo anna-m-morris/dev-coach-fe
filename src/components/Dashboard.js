@@ -103,8 +103,9 @@ const useStyles = makeStyles(theme => ({
   },
   profileMenu: {
     position: 'absolute',
-    top: 4,
+    top: 6,
     right: 40,
+    padding: 7,
     color: 'grey',
     transform: 'scale(1.25)',
     borderRadius: '50%',
