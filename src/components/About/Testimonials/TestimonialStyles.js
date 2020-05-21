@@ -5,8 +5,7 @@ export default styled.div`
 .CardsContainer{
     display:flex;
     flex-direction:column;
-    align-items:center;
-    height:1200px;
+    align-items:stretch;
     justify-content: space-evenly;
 }
 .Card{
@@ -15,8 +14,7 @@ export default styled.div`
     border-radius:1rem;
     width:300px
     padding:20px;
-    height:275px;
-    margin-bottom:2rem;
+    margin-bottom:3rem;
     box-shadow:0px 4px 7px rgba(0,0,0,0.2);
     background-color:white;
 }
@@ -35,12 +33,10 @@ export default styled.div`
 @media${devices.large}{
     .CardsContainer{
         flex-direction:row;
-        height:auto;
         justify-content: space-between;
     }
     .Card{
         margin: 3rem 1rem;
-        height: 246px;
     }
 }
 
