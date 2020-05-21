@@ -15,9 +15,10 @@ export default styled.div`
     border-radius:1rem;
     width:300px
     padding:20px;
-    height:275px
-    margin-bottom:2rem
-    box-shadow:0px 4px 7px rgba(0,0,0,0.2)
+    height:275px;
+    margin-bottom:2rem;
+    box-shadow:0px 4px 7px rgba(0,0,0,0.2);
+    background-color:white;
 }
 .User{
     display:flex;
