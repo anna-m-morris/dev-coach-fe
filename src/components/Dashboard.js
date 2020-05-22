@@ -244,6 +244,25 @@ const Dashboard = props => {
             <AccountCircle />
           )}
         </IconButton>
+
+        <IconButton
+          className={classes.iconButton}
+          color='inherit'
+          aria-label='home page button'
+        >
+          <Link to='/'>
+            <HomeIcon
+              alt='home_button'
+              style={{
+                fontSize: 40,
+                width: '2.4rem',
+                height: '1.9rem',
+                color: '#4fad65',
+              }}
+            />
+          </Link>
+        </IconButton>
+
         <Menu
           id='menu-appbar'
           anchorEl={anchorEl}
