@@ -21,10 +21,10 @@ const LandingFaqContainer = styled.div`
 
 const LandingFaq = () => {
   return (
-    <LandingFaqContainer className='container'>
-      <Navigation />
-      <MainFaq />
-    </LandingFaqContainer>
+      <LandingFaqContainer className='container'>
+        <Navigation />
+        <MainFaq />
+      </LandingFaqContainer>
   );
 };
 
