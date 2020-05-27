@@ -11,6 +11,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import HomeIcon from '@material-ui/icons/Home';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { connect } from 'react-redux';
@@ -103,8 +104,9 @@ const useStyles = makeStyles(theme => ({
   },
   profileMenu: {
     position: 'absolute',
-    top: 4,
+    top: 6,
     right: 40,
+    padding: 7,
     color: 'grey',
     transform: 'scale(1.25)',
     borderRadius: '50%',
@@ -171,6 +173,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    paddingTop: '1vh',
   },
   container: {
     height: '100%',
@@ -241,6 +244,25 @@ const Dashboard = props => {
             <AccountCircle />
           )}
         </IconButton>
+
+        <IconButton
+          className={classes.iconButton}
+          color='inherit'
+          aria-label='home page button'
+        >
+          <Link to='/'>
+            <HomeIcon
+              alt='home_button'
+              style={{
+                fontSize: 40,
+                width: '2.4rem',
+                height: '1.9rem',
+                color: '#4fad65',
+              }}
+            />
+          </Link>
+        </IconButton>
+
         <Menu
           id='menu-appbar'
           anchorEl={anchorEl}
