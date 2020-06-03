@@ -2,6 +2,7 @@ import React from 'react';
 import { CtaContainer } from './Landing-styles';
 import Navigation from './Navigation/Navigation';
 import Header from './Header/Header';
+import Main from './Main/Main';
 import Footer from './Footer/Footer';
 
 import mainImage from './img/landing-comp.jpg';
@@ -15,6 +16,7 @@ const Landing = () => (
         <Header />
       </div>
     </CtaContainer>
+    <Main />
     <Footer />
   </div>
 );

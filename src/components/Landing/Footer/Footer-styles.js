@@ -3,11 +3,40 @@ import devices from '../../../utils/devices';
 
 export const FooterContainer = styled.div`
   width: 100%;
-  background: white;
+  background: #292d38;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  .footer-top {
+    display: flex;
+    flex-direction: column;
+    margin: 3rem 1rem;
+    justify-content: center;
+
+    .cta-message {
+      margin-bottom: 1.6rem;
+
+      h2 {
+        color: #efefef;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        line-height: 1.4;
+        margin: 0;
+      }
+    }
+
+    .cta-button {
+      font-size: 1.4rem;
+      padding: 1rem;
+
+      .link {
+        text-decoration: none;
+      }
+    }
+  }
 
   .footer-bottom {
     width: 100%;
@@ -15,7 +44,8 @@ export const FooterContainer = styled.div`
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    padding: 1.6rem 0;
+    padding-bottom: 1.6rem;
+    color: #efefef;
 
     @media ${devices.tablet} {
       flex-direction: column;
@@ -23,7 +53,7 @@ export const FooterContainer = styled.div`
 
     .footer-content {
       width: 15rem;
-      opacity: 0.5;
+      opacity: 0.3;
 
       @media ${devices.tablet} {
         padding: 0.5rem 0;
@@ -38,7 +68,6 @@ export const FooterContainer = styled.div`
 
     .fab {
       font-size: 2rem;
-
     }
   }
 
