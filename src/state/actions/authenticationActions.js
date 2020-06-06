@@ -89,7 +89,8 @@ export const register = (props, values) => dispatch => {
       });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('id', res.data.user.id);
-      props.handleNext();
+      document.cookie = `token=${res.data.token}domain=dev-coach.com`
+      props.handleNext('token', res.data.token);
     })
     .catch(err => {
       dispatch({
@@ -125,7 +126,7 @@ export const chooseUserRole = (props, values) => dispatch => {
             });
             localStorage.removeItem('id');
           })
-          .catch(err => {});
+          .catch(err => { });
       } else {
         axiosWithAuth()
           .post(`${url}profile/coaches`, {
@@ -142,7 +143,7 @@ export const chooseUserRole = (props, values) => dispatch => {
             });
             localStorage.removeItem('id');
           })
-          .catch(coachErr => {});
+          .catch(coachErr => { });
       }
     })
     .catch(err =>
