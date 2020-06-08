@@ -7,7 +7,8 @@ export default function axiosWithAuth() {
     baseURL: process.env.REACT_APP_BASE_URL,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: token,
+      Cookie: token,
+      Authorization: token
     },
   });
 
