@@ -2,15 +2,14 @@ import axios from 'axios';
 
 export default function axiosWithAuth() {
   const token =
-    localStorage.getItem('token') || localStorage.getItem('tempuser');
+    localStorage.getItem('token')
   const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL,
     headers: {
       'Content-Type': 'application/json',
-      Cookie: token,
-      Authorization: token
+      authorization: token
+
     },
   });
-
   return axiosInstance;
 }

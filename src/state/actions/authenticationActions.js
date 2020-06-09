@@ -89,7 +89,7 @@ export const register = (props, values) => dispatch => {
       });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('id', res.data.user.id);
-      document.cookie = `token=${res.data.token}domain=dev-coach.com`
+      // document.cookie = `token=${res.data.token}domain=dev-coach.com`
       props.handleNext('token', res.data.token);
     })
     .catch(err => {
