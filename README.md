@@ -68,7 +68,7 @@ For information on the backend of the app, please see [here](https://github.com/
 src
 ├───components
 |   |───About
-|   |    |───How
+|   |   |───How
 |   |   |───img
 |   |   |───Search
 |   |   └───Testimonials
