@@ -52,7 +52,6 @@ const LoginForm = ({
               <div className='input-container'>
                 <Field
                   className='form-input'
-                  type='email'
                   name='email'
                   placeholder='Email'
                 />
@@ -118,8 +117,7 @@ const FormikLoginForm = withFormik({
   }),
   validationSchema: Yup.object().shape({
     email: Yup.string()
-      .email('Please enter a valid email')
-      .required('Please enter an email address'),
+      .required('Please enter an email or username'),
     password: Yup.string()
       .required('Please enter your password')
       .min(3, 'Must be 6 characters minimun'),
