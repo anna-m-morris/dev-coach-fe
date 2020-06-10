@@ -105,7 +105,8 @@ const Payment = props => {
             }}
           >
             <p>
-              How much does an appointment with a coach cost?
+              Is there a fixed amount to pay to be able to schedule an
+              appoinment?
             </p>
             {<img src={icons[getImage3()]} alt='icon' />}
           </AskedQuestionDiv>
@@ -123,13 +124,15 @@ const Payment = props => {
             }}
           >
             <p>
-              How much of the payment do coaches get?
+              As a coach how many percentage of the payment made by a
+              student do I get?
             </p>
             {<img src={icons[getImage4()]} alt='icon' />}
           </AskedQuestionDiv>
           {text4 && (
             <AnsweredQuestionDiv>
-              Two dollars ($2) are deducted for each video call and the rest goes to the coach.
+              You get 100% of the payments, $2 only gets deducted when
+              a video chat is made
             </AnsweredQuestionDiv>
           )}
 
@@ -140,16 +143,16 @@ const Payment = props => {
             }}
           >
             <p>
-              If I scheduled an appointment but it didn't happen, will
+              If I scheduled an appointment but it didn't happen will
               I get my money back?
             </p>
             {<img src={icons[getImage5()]} alt='icon' />}
           </AskedQuestionDiv>
           {text5 && (
             <AnsweredQuestionDiv>
-              Yes, you will get your money refunded. If a scheduled
-              appointment could not take place you must send an
-              email to 'qualityhub@gmx.de' for verification.
+              Yes. You will get your money refunded, if a scheduled
+              appointment could not take place but you must send an
+              email to 'qualityhub@gmx.de' for verification
             </AnsweredQuestionDiv>
           )}
         </FAQContainer>
