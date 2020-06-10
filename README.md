@@ -1,25 +1,23 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7c3d3c09-dc9d-426b-aba2-28da9fee44e3/deploy-status)](https://app.netlify.com/sites/eager-euclid-bdab76/deploys)
-
-# Quality Hub Frontend
+# Dev-Coach Frontend
 
 ## Project Overview
 
-DevCoach provides a platform for junior developers to train and improve their skills efficiently through focused support and feedback. It allows developers to sign up, book coaches, communicate with them over instant messaging and video chat, and work collaboratively on coding challenges. It was built by Ben, Liam, Dom, Ola, Funmi, and Jayne for their Lambda School Labs project.
+DevCoach provides a platform for junior developers to train and improve their skills efficiently through focused support and feedback. It allows developers to sign up, book coaches, communicate with them over instant messaging and video chat, and work collaboratively on coding challenges. It was built by Mandi, Anna, David, Jose and Dallas for their Lambda School Labs project.
 
 See the deployed product at [dev-coach.com](https://www.dev-coach.com). We would love to hear your feedback - you can use the chatbox in the bottom right of the screen, or message a member of the team on Slack.
 
 Look through the documents we used to plan and organise the project here:
 
-- [Notion Document](https://www.notion.so/EU3-QualityHub-503a434aa6b4425595d2b4fa03a1d406)
+- [Notion Document](https://www.notion.so/Dev-Coach-com-503a434aa6b4425595d2b4fa03a1d4066)
 
-- [Trello Board](https://trello.com/b/SlF9gway/quality-hub)
+- [Trello Board](https://trello.com/b/3qTuFm1A/labspt10-dev-coach)
 
 # Team
 
-Team Lead: [Benjamin Grabow](https://github.com/BenjaminGrabow) | [Oladimeji Ojo](https://github.com/ojokure)  | [Liam Sutton](https://github.com/curm90) | [Funmilayo Talabi](https://github.com/Funmi7)| [Jayne Carmichael Norrie](https://github.com/jaynecn) | [Dom Eccleston](https://github.com/domeccleston)<br>
+Team Lead: [Olga Cortez](https://github.com/OlgaCortez) | [Mandi Hamza](https://github.com/Mandihamza)  | [Anna Morris](https://github.com/clay-most) | [David York](https://github.com/daetor2012)| [Jose Reinoso](https://github.com/bigtonito39) | [Dallas James](https://github.com/dallasjames)<br>
 | --- | --- | --- | --- | --- | --- |
-[<img src="https://ca.slack-edge.com/T4JUEB3ME-UGG6CMVMJ-f9508210bec6-512" />](https://github.com/benjamingrabow) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULN0Q2CBC-cd4e7fdb68ec-512" />](https://github.com/ojokure) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULW2F383A-7d224505b235-512" />](https://github.com/curm90) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULVUWMC13-9917d69cee28-512" />](https://github.com/funmi7) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UF3TL8CLS-45731806fd60-512" />](https://github.com/jaynecn) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXH09K8X-gaec6ed8a28c-512" />](https://github.com/domeccleston)
-[<img src="https://github.com/favicon.ico" width="15" />](https://github.com/benjamingrabow) | [<img src="https://github.com/favicon.ico" width="15">](https://github.com/ojokure) | [<img src="https://github.com/favicon.ico" width="15" >](https://github.com/curm90) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/funmi7) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/jaynecn) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/domeccleston)
+[<img src="https://ca.slack-edge.com/ESZCHB482-W012JPZ6T7D-09640f43d85b-512" />](https://github.com/OlgaCortez) | [<img src="https://ca.slack-edge.com/ESZCHB482-W012X6Q8A2D-b5b9c1aaebd2-512" />](https://github.com/Mandihamza) | [<img src="https://ca.slack-edge.com/ESZCHB482-W012BRJCQKY-9c8cf939bd58-512" />](https://github.com/clay-most) | [<img src="https://ca.slack-edge.com/ESZCHB482-W0123RMKS15-3ae81857cd67-512" />](https://github.com/daetor2012) | [<img src="https://ca.slack-edge.com/ESZCHB482-W012JHT2N02-6c13efc5d241-512" />](https://github.com/bigtonito39) | [<img src="https://ca.slack-edge.com/ESZCHB482-W012JHRKY0J-69d20df3f3c3-512" />](https://github.com/dallasjames)
+[<img src="https://github.com/favicon.ico" width="15" />](https://github.com/OlgaCortez) | [<img src="https://github.com/favicon.ico" width="15">](https://github.com/Mandihamza) | [<img src="https://github.com/favicon.ico" width="15" >](https://github.com/clay-most) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/daetor2012) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/bigtonito39) | [<img src="https://github.com/favicon.ico" width="15" />](https://github.com/dallasjames)
 
 # Table of Contents
 
@@ -55,20 +53,25 @@ Other libraries we used:
  - Yup (form validation) 
  - Stripe (payments)
  - Recharts (data visualization)
- - Pusher (instant messaging and code sharing over WebSockets)
+ - Purechat (instant messaging and code sharing over WebSockets)
  - Twilio-Video (WebRTC-based video chat)
  - React-Codemirror2 (extensible code editor)
  - Judge0 (remote code execution API)
  
 ## Backend
 
-For information on the backend of the app, please see [here](https://github.com/LABS-EU3/quality_hub_backend).
+For information on the backend of the app, please see [here](https://github.com/Lambda-School-Labs/dev-coach-be).
 
 ## Directory structure
 
 ```
 src
 ├───components
+|   |───About
+|   |    |───How
+|   |   |───img
+|   |   |───Search
+|   |   └───Testimonials
 │   ├───Booking
 │   ├───Cards
 │   ├───Chat
@@ -81,8 +84,6 @@ src
 │   │   ├───Footer
 │   │   ├───Header
 │   │   ├───img
-│   │   ├───Main
-│   │   │   └───img
 │   │   └───Navigation
 │   ├───Modals
 │   ├───Notifications
