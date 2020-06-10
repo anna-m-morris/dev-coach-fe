@@ -77,8 +77,7 @@ const UserTypePage = ({ userReducer, saveRoleId, handleNext }) => {
               Set your own <b>income</b>
             </li>
             <li>
-              <b>Coach</b> beginner developers through the technical
-              interview
+              <b>Coach</b> beginner developers through technical and interveiw skills
             </li>
             <li>
               Help <b>grow</b> the community
@@ -99,7 +98,7 @@ const UserTypePage = ({ userReducer, saveRoleId, handleNext }) => {
           <h3>As A Student</h3>
           <ul>
             <li>
-              <b>Master</b> the technical interview
+              <b>Master</b> new technologies
             </li>
             <li>
               Feel <b>confident</b> in the online interview setting
