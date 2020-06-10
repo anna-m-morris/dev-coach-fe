@@ -26,10 +26,10 @@ Team Lead: [Olga Cortez](https://github.com/OlgaCortez) | [Mandi Hamza](https://
 To run this project, you'll need to have Node installed on your machine. It accepts the usual scripts for a [create-react-app](https://github.com/facebook/create-react-app). You'll also need to create an environment variable for the server URL, see below for how to do this.
 
 ```
-git clone https://github.com/LABS-EU3/quality_hub_frontend.git
-cd quality_hub_frontend
+git clone https://github.com/Lambda-School-Labs/dev-coach-fe.git
+cd dev-coach-fe
 npm i
-echo "REACT_APP_BASE_URL='https://dev-coach-staging.herokuapp.com/'" > .env
+echo "REACT_APP_BASE_URL='http://devcoahbeenv-env.eba-ft322mee.us-east-1.elasticbeanstalk.com/'" > .env
 npm start // starts the app on port :3000
 ```
 Other scripts:
