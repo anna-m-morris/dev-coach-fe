@@ -48,6 +48,10 @@ const RegisterContainer = styled(LoginContainer)`
       margin-right: 1rem;
     }
 
+    #short-input-two {
+      margin-left: 1rem;
+    }
+
     .form-button-container {
       margin: 0;
     }
@@ -103,7 +107,7 @@ const SignUpForm = ({
                   <p className='error'>{errors.last_name}</p>
                 )}
               </div>
-              <div className='short-input'>
+              <div id='short-input-two' className='short-input'>
                 <Field
                   className='form-input'
                   type='text'

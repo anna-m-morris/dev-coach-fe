@@ -87,7 +87,7 @@ export const LoginContainer = styled.div`
       border: none;
       background: #f4f4f4;
       border-radius: 2rem;
-      width: 92%;
+      width: 95%;
       padding: 0.8rem;
       font-size: 1rem;
       outline: none;
