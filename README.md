@@ -57,6 +57,7 @@ Other libraries we used:
  - Twilio-Video (WebRTC-based video chat)
  - React-Codemirror2 (extensible code editor)
  - Judge0 (remote code execution API)
+ - Jest (for testing)
  
 ## Backend
 
