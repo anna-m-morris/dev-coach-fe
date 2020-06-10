@@ -49,7 +49,7 @@ const Profile = props => {
           </AskedQuestionDiv>
           {text1 && (
             <AnsweredQuestionDiv>
-              <li>Click in the right top corner on the user icon</li>
+              <li>Click on user icon in the top right corner of the app</li>
               <li>Choose Settings</li>
               <li>Update your profile</li>
               <img
@@ -71,9 +71,8 @@ const Profile = props => {
           </AskedQuestionDiv>
           {text2 && (
             <AnsweredQuestionDiv>
-              It is not required to upload a picture. We definitely
-              recommend it for coaches, to get more attention on the
-              marketplace.
+              While It is not required to upload a picture we
+              recommend it. Coaches with pictures get more appontments and it fosters a sense of community.
             </AnsweredQuestionDiv>
           )}
           <AskedQuestionDiv

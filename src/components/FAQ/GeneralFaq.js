@@ -58,10 +58,9 @@ const General = props => {
           {text1 && (
             <AnsweredQuestionDiv>
               DevCoach is a large network of experienced professionals
-              ready to help your next career move be a big success. We
-              help you get access to experienced coaches who can make
-              you become better at both technical and behavioural
-              interviews
+              ready to help improve your skills and further your career. We
+              give you get access to coaches who can advise and prepare you for technical 
+              and professional situations such as "white-board" interveiws.
             </AnsweredQuestionDiv>
           )}
 
@@ -76,9 +75,9 @@ const General = props => {
           </AskedQuestionDiv>
           {text2 && (
             <AnsweredQuestionDiv>
-              <li>Choose a quality you want to improve</li>
+              <li>Choose a skill you want to improve</li>
               <li>Connect with real professionals</li>
-              <li>Iterate on your skills</li>
+              <li>Learn and practice</li>
               <li>Become career ready</li>
             </AnsweredQuestionDiv>
           )}
@@ -94,7 +93,7 @@ const General = props => {
           </AskedQuestionDiv>
           {text3 && (
             <AnsweredQuestionDiv>
-              Either you want to become a coach or student, you need
+              Whether you want to become a coach or student, you need
               to signup so you can access the great features DevCoach
               has to offer.
             </AnsweredQuestionDiv>
@@ -113,9 +112,9 @@ const General = props => {
           </AskedQuestionDiv>
           {text4 && (
             <AnsweredQuestionDiv>
-              You can click on 'cancel' on your scheduled appointments
+              You can click on "cancel" on your scheduled appointments
               in your dashboard, which will direct you to booking
-              another appointment at any time more convenient for you.
+              another appointment at a time more convenient for you.
             </AnsweredQuestionDiv>
           )}
 
@@ -132,9 +131,7 @@ const General = props => {
           </AskedQuestionDiv>
           {text5 && (
             <AnsweredQuestionDiv>
-              You can choose 30 minutes or 1 hour, and will have to
-              book again if you want to still interact more with that
-              particular coach.
+              Each appointment can either last 30 minutes or an hour. After that you will have to book a new session to continue.
             </AnsweredQuestionDiv>
           )}
         </FAQContainer>
