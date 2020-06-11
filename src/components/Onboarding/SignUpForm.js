@@ -103,17 +103,6 @@ const SignUpForm = ({
                   <p className='error'>{errors.last_name}</p>
                 )}
               </div>
-              <div className='short-input'>
-                <Field
-                  className='form-input'
-                  type='text'
-                  name='username'
-                  placeholder='Username'
-                />
-                {errors.username && touched.username && (
-                  <p className='error'>{errors.username}</p>
-                )}
-              </div>
             </ShortInputContainer>
             <div className='input-container'>
               <Field
@@ -184,7 +173,6 @@ const FormikSignUpForm = withFormik({
   mapPropsToValues: () => ({
     first_name: '',
     last_name: '',
-    username: '',
     email: '',
     password: '',
     confirm_password: '',
@@ -192,7 +180,6 @@ const FormikSignUpForm = withFormik({
   validationSchema: Yup.object().shape({
     first_name: Yup.string().required('Please enter first name'),
     last_name: Yup.string().required('Please enter last name'),
-    username: Yup.string().required('Please enter username'),
     email: Yup.string()
       .email('Please enter a valid email')
       .required('Please enter your email'),
