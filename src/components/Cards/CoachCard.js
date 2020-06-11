@@ -80,6 +80,11 @@ const StyledCoachCard = styled.div`
     }
   }
 
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
   .footer {
     display: flex;
     width: 100%;
@@ -138,6 +143,16 @@ export const CoachCard = props => {
           <i className='fas fa-street-view experience-icon' />
           {'  '}
           {mapExperience(coach.experience_level)}
+        </p>
+        <p>
+          <i className='fab fa-github'></i>
+          {'  '}
+          <a href={coach.github}>Github</a>
+        </p>
+        <p>
+          <i className='fab fa-linkedin'></i>
+          {'  '}
+          <a href={coach.linkedin}>LinkedIn</a>
         </p>
       </div>
       <div className='description'>
