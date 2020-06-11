@@ -6,11 +6,13 @@ import Testimonials from './Testimonials/Testimonial';
 import AboutContainer from './AboutStyles';
 import Footer from '../Landing/Footer/Footer';
 
+
 const About = () => {
   return (
     <div>
-      <AboutContainer className={'aboutContainer'}>
-        <Navigation />
+      
+      <Navigation />
+      <AboutContainer className='aboutContainer'>
         <Search />
         <How />
         <Testimonials />

@@ -15,6 +15,7 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 
   h2 {
     margin: 0;
@@ -33,6 +34,7 @@ const CategoryContainer = styled.div`
   justify-content: center;
   margin: 2rem 0;
   width: 100%;
+  
 
   @media ${devices.tablet} {
     flex-direction: column;
