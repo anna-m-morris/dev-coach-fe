@@ -48,6 +48,10 @@ const RegisterContainer = styled(LoginContainer)`
       margin-right: 1rem;
     }
 
+    #short-input-two {
+      margin-left: 1rem;
+    }
+
     .form-button-container {
       margin: 0;
     }
@@ -101,6 +105,17 @@ const SignUpForm = ({
                 />
                 {errors.last_name && touched.last_name && (
                   <p className='error'>{errors.last_name}</p>
+                )}
+              </div>
+              <div id='short-input-two' className='short-input'>
+                <Field
+                  className='form-input'
+                  type='text'
+                  name='username'
+                  placeholder='Username'
+                />
+                {errors.username && touched.username && (
+                  <p className='error'>{errors.username}</p>
                 )}
               </div>
             </ShortInputContainer>
