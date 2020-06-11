@@ -6,7 +6,8 @@ export const NavContainer = styled.nav`
   justify-content: space-between;
   align-items: center;
   z-index: 11;
-
+  box-shadow: 0px 4px 7px rgba(0,0,0,0.1);
+  
   @media ${devices.tablet} {
     flex-direction: column;
   }
@@ -52,7 +53,7 @@ export const NavContainer = styled.nav`
 
       .list-item a {
         text-decoration: none;
-        color: white;
+        color: #A9A9A9;
         transition: ease-in 0.1s;
         font-size: 1.1rem;
 
