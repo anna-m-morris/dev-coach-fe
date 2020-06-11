@@ -79,7 +79,7 @@ function App({ user, isLoggedIn }) {
       <Route path='/faq' component={LandingFaq} />
       <Route path='/about' component={About} />
       <Route path={'/video'} component={Interview} />
-      {/* <Redirect to='/' /> */}
+      <Redirect to='/' />
     </Switch>
   );
 }
