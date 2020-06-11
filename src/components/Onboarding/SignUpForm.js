@@ -188,7 +188,6 @@ const FormikSignUpForm = withFormik({
   mapPropsToValues: () => ({
     first_name: '',
     last_name: '',
-    username: '',
     email: '',
     password: '',
     confirm_password: '',
@@ -196,7 +195,6 @@ const FormikSignUpForm = withFormik({
   validationSchema: Yup.object().shape({
     first_name: Yup.string().required('Please enter first name'),
     last_name: Yup.string().required('Please enter last name'),
-    username: Yup.string().required('Please enter username'),
     email: Yup.string()
       .email('Please enter a valid email')
       .required('Please enter your email'),
