@@ -1,4 +1,6 @@
-# Dev-Coach Frontend
+# DevCoach Frontend
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/56b615d2c655c7c1cfd7/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/dev-coach-fe/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/56b615d2c655c7c1cfd7/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/dev-coach-fe/test_coverage)
 
 ## Project Overview
 
