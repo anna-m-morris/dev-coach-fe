@@ -38,11 +38,18 @@ export default styled.div`
     .card-image{
         width: 25rem;
         height: 17rem;
-        background: #4FAD65;
         box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
         border-radius: 1rem;
         align-self:center;
+        background: white;
     }
+
+    .screenshot{
+      width: auto;
+      height: 100%;
+      border-radius: 1rem;
+      align-self:center;
+  }
 
 //computer
 
