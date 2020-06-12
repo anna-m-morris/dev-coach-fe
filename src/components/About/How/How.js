@@ -14,12 +14,20 @@ const How = () => {
             <p>Cost per-session typically ranges from $30-$60.</p>
           </div>
           <div className={'card-image'}>
-            <img src='#' alt='Market place screen shot'></img>
+            <img
+              className={'screenshot'}
+              src='https://dev-coach-bucket.s3.amazonaws.com/Book+a+coach.PNG'
+              alt='Market place screen shot'
+            ></img>
           </div>
         </article>
         <article className={'how-card'}>
           <div className={'card-image'}>
-            <img src='#' alt='booking UI screen shot'></img>
+            <img
+              className={'screenshot'}
+              src='https://dev-coach-bucket.s3.amazonaws.com/Booking+section.PNG'
+              alt='booking UI screen shot'
+            ></img>
           </div>
           <div>
             <h2>Schedule a Meeting</h2>
@@ -32,16 +40,24 @@ const How = () => {
             <p>Chat via instant message or video call.</p>
           </div>
           <div className={'card-image'}>
-            <img src='#' alt='chat UI screen shot'></img>
+            <img
+              className={'screenshot'}
+              src='https://dev-coach-bucket.s3.amazonaws.com/Chat-UI.png'
+              alt='chat UI screen shot'
+            ></img>
           </div>
         </article>
         <article className={'how-card'}>
           <div className={'card-image'}>
-            <img src='#' alt='resources UI screen shot'></img>
+            <img
+              className={'screenshot'}
+              src='https://dev-coach-bucket.s3.amazonaws.com/Code.PNG'
+              alt='chat UI screen shot'
+            ></img>
           </div>
           <div>
-            <h2>Get Resources</h2>
-            <p>Access curated materials from your coach.</p>
+            <h2>Code with your coach</h2>
+            <p>Pair program with our built in IDE.</p>
           </div>
         </article>
         <article className={'how-card'}>
@@ -53,7 +69,11 @@ const How = () => {
             </p>
           </div>
           <div className={'card-image'}>
-            <img src='#' alt='search UI screen shot'></img>
+            <img
+              className={'screenshot'}
+              src='https://dev-coach-bucket.s3.amazonaws.com/Find+Coaches.PNG'
+              alt='search UI screen shot'
+            ></img>
           </div>
         </article>
       </section>
