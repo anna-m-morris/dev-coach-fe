@@ -2,7 +2,7 @@ import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import * as types from './actionTypes';
 
-const url = process.env.LOCAL_BACKEND_SERVER;
+const url = process.env.LOCAL_BACKEND_SERVER; 
 
 export const sendResetPasswordEmail = (
   props,
