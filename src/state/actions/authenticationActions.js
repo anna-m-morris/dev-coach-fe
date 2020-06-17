@@ -2,7 +2,7 @@ import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import * as types from './actionTypes';
 
-const url = process.env.REACT_APP_BASE_URL;
+const url = process.env.LOCAL_BACKEND_SERVER;
 
 export const sendResetPasswordEmail = (
   props,
@@ -59,7 +59,7 @@ export const login = (props, values) => dispatch => {
   axios
     .post(`${url}user/login`, values)
     .then(res => {
-      console.log("login.res",res)
+      console.log('login.res', res);
       localStorage.setItem('token', res.data.token);
       setTimeout(
         () =>
@@ -84,7 +84,6 @@ export const register = (props, values) => dispatch => {
   axios
     .post(`${url}user/register`, values)
     .then(res => {
-      console.log("register.res",res)
       dispatch({
         type: types.SIGN_UP_SUCCESSFUL,
         payload: res.data.user,
