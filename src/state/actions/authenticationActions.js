@@ -74,7 +74,7 @@ export const login = (props, values) => dispatch => {
     .catch(err => {
       dispatch({
         type: types.LOGIN_ERROR,
-        payload: err.data.message,
+        payload: err.message,
       });
     });
 };
@@ -96,7 +96,7 @@ export const register = (props, values) => dispatch => {
     .catch(err => {
       dispatch({
         type: types.SIGN_UP_ERROR,
-        payload: err.data.message,
+        payload: err.message,
       });
     });
 };
