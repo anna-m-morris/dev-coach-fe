@@ -33,6 +33,7 @@ const globalTheme = createMuiTheme({
 });
 
 function App({ user, isLoggedIn }) {
+  const url = process.env.REACT_APP_BASE_URL
   const routes = (
     <Switch>
       <Route exact path='/' component={Landing} />
@@ -75,7 +76,7 @@ function App({ user, isLoggedIn }) {
         path='/accountRecovery/:token'
         component={AccountRecovery}
       />
-      <Route path='/register' component={SignUp} />
+      <Route path='/register' render={props => <SignUp url={url} {...props}/>} />
       <Route path='/faq' component={LandingFaq} />
       <Route path='/about' component={About} />
       <Route path={'/video'} component={Interview} />
