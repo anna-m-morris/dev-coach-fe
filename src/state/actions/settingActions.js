@@ -14,7 +14,7 @@ export const updateUserInfo = (
   dispatch({ type: types.USER_INFO_UPDATE });
   const updateUserTable = { ...userInfo };
   await delete updateUserTable.hourly_rate;
-  axios
+  axiosWithAuth()
     .put(`${url}user/settings`, updateUserTable)
     .then(res => {
       if (userInfo.role_id === 2 && userInfo.location) {
