@@ -1,6 +1,7 @@
-import axios from 'axios';
+// import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import * as types from './actionTypes';
+import axios from '../../utils/axiosWithoutAuth'
 
 const url = process.env.LOCAL_BACKEND_SERVER;
 
@@ -11,8 +12,8 @@ export const sendResetPasswordEmail = (
   showError,
   closeMessage,
 ) => dispatch => {
-  axios
-    .post(`${url}user/resetPassword`, userInfo)
+  axios()
+    .post(`user/resetPassword`, userInfo)
     .then(res => {
       if (
         res.data.message ===
@@ -56,8 +57,8 @@ export const saveRoleId = (handleNext, role) => dispatch => {
 
 export const login = (props, values) => dispatch => {
   dispatch({ type: types.LOGIN_START });
-  axios
-    .post(`${url}user/login`, values)
+  axios()
+    .post(`user/login`, values)
     .then(res => {
       console.log('login.res', res);
       localStorage.setItem('token', res.data.token);
@@ -74,15 +75,17 @@ export const login = (props, values) => dispatch => {
     .catch(err => {
       dispatch({
         type: types.LOGIN_ERROR,
-        payload: err.response.data.message,
+        payload: err.message,
       });
     });
 };
 
 export const register = (props, values) => dispatch => {
+  console.log(url)
   dispatch({ type: types.SIGN_UP_START });
-  axios
-    .post(`${url}user/register`, values)
+  console.log(props)
+  axios()
+    .post(`user/register`, values)
     .then(res => {
       dispatch({
         type: types.SIGN_UP_SUCCESSFUL,
@@ -95,7 +98,7 @@ export const register = (props, values) => dispatch => {
     .catch(err => {
       dispatch({
         type: types.SIGN_UP_ERROR,
-        payload: err.response.data.message,
+        payload: err.message,
       });
     });
 };
