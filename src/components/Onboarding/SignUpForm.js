@@ -191,7 +191,7 @@ const FormikSignUpForm = withFormik({
     username: '',
     email: '',
     password: '',
-    confirm_password: '',
+    // confirm_password: '',
   }),
   validationSchema: Yup.object().shape({
     first_name: Yup.string().required('Please enter first name'),
@@ -203,12 +203,12 @@ const FormikSignUpForm = withFormik({
     password: Yup.string()
       .required('Please enter your password')
       .min(6, 'Must be 6 character minimum'),
-    confirm_password: Yup.string()
-      .oneOf(
-        [Yup.ref('password'), null],
-        "Your passwords don't match",
-      )
-      .required('Please confirm your password'),
+    // confirm_password: Yup.string()
+    //   .oneOf(
+    //     [Yup.ref('password'), null],
+    //     "Your passwords don't match",
+    //   )
+    //   .required('Please confirm your password'),
   }),
 
   handleSubmit(values, { props, setSubmitting, resetForm }) {
