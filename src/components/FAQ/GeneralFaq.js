@@ -13,7 +13,7 @@ import minusIcon from '../../img/minus-icon.svg';
 
 const icons = { plusIcon, minusIcon };
 
-const General = props => {
+export const General = props => {
   const {
     text1,
     text2,
