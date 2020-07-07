@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount,configure } from 'enzyme';
 import { MemoryRouter } from 'react-router';
-import General from './GeneralFaq';
-import Profile from './ProfileFaq';
-import Payment from './PaymentFaq';
-import Main from './Main';
+import General from '../GeneralFaq';
+import Profile from '../ProfileFaq';
+import Payment from '../PaymentFaq';
+import Main from '../Main';
 import Adapter from 'enzyme-adapter-react-16';
 
 
