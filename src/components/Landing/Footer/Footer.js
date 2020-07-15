@@ -27,7 +27,7 @@ const Footer = () => (
         </div>
       </div>
       <div className='footer-content footer-tribute'>
-        <p>Labs PT10</p>
+        <Link to="/team"> <p>Labs PT10</p> </Link>
       </div>
     </div>
   </FooterContainer>
