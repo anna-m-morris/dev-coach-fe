@@ -14,7 +14,30 @@ const Team = () => {
                     <div className='card-image'></div>
                     <img
                         className='profile-image'
-                        src="https://camo.githubusercontent.com/c09700f4849503687050214e00832a289a25b671/68747470733a2f2f63612e736c61636b2d656467652e636f6d2f45535a4348423438322d573031324a505a365437442d3039363430663433643835622d353132"
+                        src="https://avatars1.githubusercontent.com/u/44625143?s=460&u=10b6701c40dcf9e23ef73549806eac0b3a14ee6c&v=4"
+                        alt='profile-pic'
+                    />
+                    <div className='info'>
+                        <h4 className='name'>Nazifa Hossian</h4>
+                        <p className='position'>Section Lead</p>
+                    </div>
+                    <div className='social-container'>
+                        <a target='blank' href='https://github.com/ampers-and'>
+                            <i className='fab fa-github-square'></i>
+                        </a>
+                        <a
+                            target='blank'
+                            href='https://www.linkedin.com/in/nazifa-hossain-00007/'
+                        >
+                            <i className='fab fa-linkedin'></i>
+                        </a>
+                    </div>
+                </div>
+                <div className='team-card'>
+                    <div className='card-image'></div>
+                    <img
+                        className='profile-image'
+                        src="https://avatars3.githubusercontent.com/u/28116510?s=460&u=a0a728e89ac74eaad3c276cf3193415f7a8e7182&v=4"
                         alt='profile-pic'
                     />
                     <div className='info'>
@@ -40,7 +63,7 @@ const Team = () => {
                     <div className='card-image'></div>
                     <img
                         className='profile-image'
-                        src="https://camo.githubusercontent.com/fcc69216b92c63dde74b3264e89de73586791592/68747470733a2f2f63612e736c61636b2d656467652e636f6d2f45535a4348423438322d57303132583651384132442d6235623963316161656264322d353132"
+                        src="https://avatars3.githubusercontent.com/u/23363171?s=460&u=f1f70988d6fa5e862cabc821e5676fe27a20cc5e&v=4"
                         alt='profile-pic'
                     />
                     <div className='info'>
@@ -63,7 +86,7 @@ const Team = () => {
                     <div className='card-image'></div>
                     <img
                         className='profile-image'
-                        src="https://camo.githubusercontent.com/0614ae2a22d79f34a0e658c93b46ea2ef1a8516d/68747470733a2f2f63612e736c61636b2d656467652e636f6d2f45535a4348423438322d5730313242524a43514b592d3963386366393339626435382d353132"
+                        src="https://avatars0.githubusercontent.com/u/46730958?s=460&u=4899eacb4ea2d8d51d112cbb98bb8a57eca260d8&v=4"
                         alt='profile-pic'
                     />
                     <div className='info'>
@@ -86,30 +109,7 @@ const Team = () => {
                     <div className='card-image'></div>
                     <img
                         className='profile-image'
-                        src="https://camo.githubusercontent.com/77e9912f669b39b25a6a139b7ffcdb14c40b2a22/68747470733a2f2f63612e736c61636b2d656467652e636f6d2f45535a4348423438322d5730313233524d4b5331352d3361653831383537636436372d353132"
-                        alt='profile-pic'
-                    />
-                    <div className='info'>
-                        <h4 className='name'>David York</h4>
-                        <p className='position'>Full Stack Developer</p>
-                    </div>
-                    <div className='social-container'>
-                        <a target='blank' href='https://github.com/daetor2012'>
-                            <i className='fab fa-github-square'></i>
-                        </a>
-                        <a
-                            target='blank'
-                            href='#'
-                        >
-                            <i className='fab fa-linkedin'></i>
-                        </a>
-                    </div>
-                </div>
-                <div className='team-card'>
-                    <div className='card-image'></div>
-                    <img
-                        className='profile-image'
-                        src="https://camo.githubusercontent.com/0aa12e419ef751e7ce9add9db5238d8470dfed5c/68747470733a2f2f63612e736c61636b2d656467652e636f6d2f45535a4348423438322d573031324a4854324e30322d3663313365666335643234312d353132"
+                        src="https://avatars0.githubusercontent.com/u/51039059?s=460&u=ed2105b94d71c55a7e3fb03090c2771290991285&v=4"
                         alt='profile-pic'
                     />
                     <div className='info'>
@@ -117,7 +117,7 @@ const Team = () => {
                         <p className='position'>Full Stack Developer</p>
                     </div>
                     <div className='social-container'>
-                        <a target='blank' href='https://github.com/bigtonito39'>
+                        <a target='blank' href='https://github.com/JoseAReinoso'>
                             <i className='fab fa-github-square'></i>
                         </a>
                         <a
