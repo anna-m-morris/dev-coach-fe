@@ -1,7 +1,7 @@
 import userReducer from "../../../state/reducers/authentication";
 import * as types from '../../../state/actions/actionTypes'
 
-const initialState = {
+let initialState = {
     user: null,
   loginError: '',
   signUpError: '',
@@ -122,6 +122,131 @@ describe ('userReducer that helps new user to join while registering', () => {
            payload:newRoleLoading
        });
        expect(newState.isLoading).toEqual(true)
+     })
+
+     it ('Error message should come up if something went wrong while user choosing role ', () => {
+      
+        let newRole= initialState.userRoleError = "this is an error"
+       
+                 
+       const newState =userReducer(undefined, {
+           type:types.USER_ROLE_ERROR,
+           error:newRole
+       });
+       expect(newState.userRoleError).toEqual("this is an error")
+     })
+
+     it ('new id should be generated when new coach signs up using SET_COACH_ID', () => {
+      
+        let newID= initialState.user= 1
+       
+                 
+       const newState =userReducer(undefined, {
+           type:types.SET_COACH_ID,
+           id:newID
+       });
+       expect(newState.user).toEqual({id:1})
+     })
+
+     it ('new id should be generated when new student signs up using SET_STUDENT_ID', () => {
+      
+        let newID= initialState.user= 1
+       
+                 
+       const newState =userReducer(undefined, {
+           type:types.SET_STUDENT_ID,
+           id:newID
+       });
+       expect(newState.user).toEqual({id:1})
+     })
+
+     it ('When updating a password via email STARTS, it should have a loading time', () => {
+      
+        let loadingPassword= initialState.isLoading= true
+       
+                 
+       const newState =userReducer(undefined, {
+           type:types.UPDATE_PASSWORD_VIA_EMAIL_START,
+           payload:loadingPassword
+       });
+       expect(newState.isLoading).toEqual(true)
+     })
+     it ('if password is sucessfully, a message  through payload should be sent', () => {
+      
+        let passwordSucessful= initialState.userUpdatedViaEmail= "email sent"
+       
+                 
+       const newState =userReducer(undefined, {
+           type:types.UPDATE_PASSWORD_VIA_EMAIL_SUCCESSFUL,
+           payload:passwordSucessful
+       });
+       expect(newState.userUpdatedViaEmail).toEqual("email sent")
+     })
+
+     it ('if user is updating, it should have a waiting time while loading', () => {
+      
+        let isLoading= initialState.isLoading= true
+       
+                 
+       const newState =userReducer(undefined, {
+           type:types.USER_INFO_UPDATE,
+           payload:isLoading
+           
+       });
+       expect(newState.isLoading).toEqual(true)
+     })
+
+     it ('once an user update fails it should stop loading', () => {
+      
+        let stopLoading= initialState.isLoading= false
+       
+                 
+       const newState =userReducer(undefined, {
+           type:types.SER_INFO_UPDATE_FAILED,
+           payload:stopLoading
+           
+       });
+       expect(newState.isLoading).toEqual(false)
+     })
+
+     it ('users info should fecth after logged', () => {
+      
+        let userInfo= initialState.user= "Jose Info"
+       
+                 
+       const newState =userReducer(undefined, {
+           type:types.FECTH_USER_SUCCESSFULLY,
+           payload:userInfo
+           
+       });
+       expect(newState.user).toEqual("Jose Info")
+     })
+
+     it ('user default state should return back once logged out', () => {
+      
+        let userInfo= initialState.user= null
+       
+                 
+       const newState =userReducer(undefined, {
+           type:types.LOGOUT,
+           payload:userInfo
+           
+       });
+       expect(newState.user).toEqual(null)
+     })
+
+     
+     it ('once user logs out user should be as false on the isLoggedIn state', () => {
+      
+        let UserLoggedOut= initialState.isLoggedIn= false
+       
+                 
+       const newState =userReducer(undefined, {
+           type:types.LOGOUT,
+           payload:UserLoggedOut
+           
+       });
+       expect(newState.isLoggedIn).toEqual(false)
      })
 
    
