@@ -25,6 +25,7 @@ import SettingsTabs from './views/Settings/SettingsTabs';
 import Code from './views/Code/Code';
 import GiveFeedback from './views/Feedback/GiveFeedback';
 import About from './components/About/About';
+import Team from "./components/Team/Team"
 
 const globalTheme = createMuiTheme({
   typography: {
@@ -76,10 +77,11 @@ function App({ user, isLoggedIn }) {
         path='/accountRecovery/:token'
         component={AccountRecovery}
       />
-      <Route path='/register' render={props => <SignUp url={url} {...props}/>} />
+      <Route path='/register' render={props => <SignUp url={url} {...props} />} />
       <Route path='/faq' component={LandingFaq} />
       <Route path='/about' component={About} />
       <Route path={'/video'} component={Interview} />
+      <Route path ={"/team"} component={Team} />
       <Redirect to='/' />
     </Switch>
   );
