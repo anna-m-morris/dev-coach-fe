@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect';
 import How from '../How/How';
 import Search from '../Search/Search';
 import Testimonial from '../Testimonials/Testimonial';
-import Footer from '../../Landing/Footer/Footer';
+
 
 test('renders search component', () => {
   const app = rtl.render(<Search />);
@@ -36,10 +36,3 @@ test('renders testimonials component', () => {
   expect(lastLine).toBeVisible();
 });
 
-test('renders footer component', () => {
-  const app = rtl.render(<Footer />);
-  const firstLine = app.getByText(/Copyright © 2020 DevCoach/i);
-  const lastLine = app.getByText(/Labs PT10/i)
-  expect(firstLine).toBeVisible();
-  expect(lastLine).toBeVisible();
-});
