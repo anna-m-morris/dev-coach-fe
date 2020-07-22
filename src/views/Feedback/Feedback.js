@@ -91,7 +91,7 @@ const ChartCardContainer = styled(CardContainer)`
   padding: 3em 2em 2em 0.8em;
 `;
 
-const Feedback = ({ isLoading, user, getFeedback, feedback }) => {
+export const Feedback = ({ isLoading, user, getFeedback, feedback }) => {
   const [minValue, setMinValue] = useState(0);
   const [maxValue, setMaxValue] = useState(6);
 

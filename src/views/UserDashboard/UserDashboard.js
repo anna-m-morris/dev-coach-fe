@@ -163,7 +163,7 @@ const DashboardContainer = styled.div`
   }
 `;
 
-const UserDashboard = props => {
+export const UserDashboard = props => {
   const {
     loadingAppointment,
     history,
@@ -195,7 +195,7 @@ const UserDashboard = props => {
     }
   };
 
-  const calculateFormattedMean = arr => {
+const calculateFormattedMean = arr => {
     const sum = arr.reduce((a, c) => ({
       rating: a.rating + c.rating,
     }));

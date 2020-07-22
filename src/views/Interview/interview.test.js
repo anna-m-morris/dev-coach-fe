@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import Lobby from '../../components/Interview/Lobby';
 import Code from '../../components/Interview/Code';
 import { finishInterview } from '../../state/actions/interviewActions';
+import {VideoChat} from './Interview'
 
 Enzyme.configure({adapter:new Adapter()});
 
@@ -20,8 +21,12 @@ describe(' Interview component ', () => {
         expect(wrapper.length).toBe(1)
  
      })
+     it('VideoChat Component renders', () => {
+      const wrapper = shallow(<VideoChat user={"jose@jose.com"} idRole={1}/>)
+      expect(wrapper.length).toBe(1)
 
-     
+   })
+    
 
 
 })

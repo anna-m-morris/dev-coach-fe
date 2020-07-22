@@ -8,6 +8,7 @@ import feedbackReducer from './feedback';
 import marketplaceReducer from './marketplace';
 import interviewReducer from './interview';
 import chatReducer from './chat';
+import resourceHubReducer from './resourceHub';
 
 const appReducer = combineReducers({
   userReducer,
@@ -19,6 +20,7 @@ const appReducer = combineReducers({
   marketplaceReducer,
   interviewReducer,
   chatReducer,
+  resourceHubReducer,
 });
 
 const rootReducer = (state, action) => {
