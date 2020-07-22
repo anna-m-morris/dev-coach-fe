@@ -18,7 +18,7 @@ import Notification from '../Notifications/Notification';
 
 const url = process.env.REACT_APP_BASE_URL;
 
-const AccountRecovery = props => {
+export const AccountRecovery = props => {
   const {
     updatePasswordViaEmail,
     success,
