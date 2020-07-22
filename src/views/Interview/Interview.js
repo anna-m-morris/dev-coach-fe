@@ -70,7 +70,7 @@ const StyledVideoChat = styled.div`
   }
 `;
 
-const VideoChat = ({
+export const VideoChat = ({
   user,
   peerId,
   history,
