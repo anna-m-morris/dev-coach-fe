@@ -62,3 +62,7 @@ typings/
 
 # avoid conflicts between package-lock.json and yarn.lock
 .package-lock.json
+
+# ignore .vscode config files
+
+.vscode

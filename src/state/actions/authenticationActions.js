@@ -1,7 +1,7 @@
 // import axios from 'axios';
 import axiosWithAuth from '../../utils/axiosWithAuth';
 import * as types from './actionTypes';
-import axios from '../../utils/axiosWithoutAuth'
+import axios from '../../utils/axiosWithoutAuth';
 
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -60,7 +60,7 @@ export const login = (props, values) => dispatch => {
   axios()
     .post(`user/login`, values)
     .then(res => {
-      console.log("login.res",res)
+      console.log('login.res', res);
       localStorage.setItem('token', res.data.token);
       setTimeout(
         () =>
@@ -81,13 +81,13 @@ export const login = (props, values) => dispatch => {
 };
 
 export const register = (props, values) => dispatch => {
-  console.log(url)
+  console.log(url);
   dispatch({ type: types.SIGN_UP_START });
-  console.log(props)
+  console.log(props);
   axios()
     .post(`user/register`, values)
     .then(res => {
-      console.log("register.res",res)
+      console.log('register.res', res);
       dispatch({
         type: types.SIGN_UP_SUCCESSFUL,
         payload: res.data.user,
@@ -130,7 +130,7 @@ export const chooseUserRole = (props, values) => dispatch => {
             });
             localStorage.removeItem('id');
           })
-          .catch(err => { });
+          .catch(err => {});
       } else {
         axiosWithAuth()
           .post(`${url}profile/coaches`, {
@@ -147,7 +147,7 @@ export const chooseUserRole = (props, values) => dispatch => {
             });
             localStorage.removeItem('id');
           })
-          .catch(coachErr => { });
+          .catch(coachErr => {});
       }
     })
     .catch(err =>

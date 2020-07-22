@@ -23,6 +23,7 @@ import StartChat from './components/Chat/Chat';
 import SignUp from './components/Onboarding/SignupStepper';
 import SettingsTabs from './views/Settings/SettingsTabs';
 import Code from './views/Code/Code';
+import ResourceHub from './views/ResourceHub/ResourceHub';
 import GiveFeedback from './views/Feedback/GiveFeedback';
 import About from './components/About/About';
 import Team from "./components/Team/Team"
@@ -34,7 +35,7 @@ const globalTheme = createMuiTheme({
 });
 
 function App({ user, isLoggedIn }) {
-  const url = process.env.REACT_APP_BASE_URL
+  const url = process.env.REACT_APP_BASE_URL;
   const routes = (
     <Switch>
       <Route exact path='/' component={Landing} />
@@ -42,6 +43,7 @@ function App({ user, isLoggedIn }) {
       {user && user.role_id === 1 ? (
         <Route path={'/marketplace'} component={Marketplace} />
       ) : null}
+      <Route path={'/resourcehub'} component={ResourceHub} />
       <Route path={'/appointment'} component={Booking} />
       <Route path={'/reschedule'} component={Reschedule} />
       <Route path={'/feedback'} component={Feedback} />
@@ -77,7 +79,10 @@ function App({ user, isLoggedIn }) {
         path='/accountRecovery/:token'
         component={AccountRecovery}
       />
-      <Route path='/register' render={props => <SignUp url={url} {...props} />} />
+      <Route
+        path='/register'
+        render={props => <SignUp url={url} {...props} />}
+      />
       <Route path='/faq' component={LandingFaq} />
       <Route path='/about' component={About} />
       <Route path={'/video'} component={Interview} />
