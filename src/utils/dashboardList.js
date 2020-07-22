@@ -10,6 +10,7 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import CodeIcon from '@material-ui/icons/Code';
+import ListIcon from '@material-ui/icons/List';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
@@ -108,6 +109,14 @@ export const ListComponent = props => {
               <CodeIcon />
             </ListItemIcon>
             <ListItemText primary='Code' />
+          </CustomListItem>
+        </Link>
+        <Link to='/resourcehub' className={classes.listItem}>
+          <CustomListItem button>
+            <ListItemIcon>
+              <ListIcon />
+            </ListItemIcon>
+            <ListItemText primary='Resource Hub' />
           </CustomListItem>
         </Link>
       </div>
