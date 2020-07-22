@@ -70,7 +70,7 @@ const StyledMarketplace = styled.div`
   }
 `;
 
-const Marketplace = props => {
+export const Marketplace = props => {
   const {
     searchForKeyword,
     getCoaches,
