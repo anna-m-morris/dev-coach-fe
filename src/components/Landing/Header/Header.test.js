@@ -17,7 +17,7 @@ describe('Header component', () => {
     it('Header component show text for .cta-title', () => {
         const wrapper = shallow(<Header/>)
         const text = wrapper.find('.cta-title');
-       expect(text.text()).toBe(`Code, advice, interveiw practice? There's a mentor for that`)
+       expect(text.text()).toBe(`Code, advice, interview practice? There's a mentor for that`)
  
      })
      it('Header component show text for Sign Up', () => {

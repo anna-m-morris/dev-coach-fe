@@ -6,7 +6,7 @@ import { HeaderContainer } from './Header-styles';
 const Header = () => (
   <HeaderContainer>
     <h2 className='cta-title'>
-    Code, advice, interveiw practice? <br/>
+    Code, advice, interview practice? <br/>
     There's a mentor for that
     </h2>
     <div className='cta-button'>
