@@ -195,7 +195,7 @@ export const AppointmentCard = props => {
           </div>
         </div>
         <div className='footer'>
-          <Button
+          {/* <Button
             className='send-button'
             variant='contained'
             color='primary'
@@ -203,7 +203,7 @@ export const AppointmentCard = props => {
             onClick={savePeer}
           >
             Chat
-          </Button>
+          </Button> */}
           <Button
             className='interview-button'
             variant='contained'

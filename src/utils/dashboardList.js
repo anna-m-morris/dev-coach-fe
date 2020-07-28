@@ -95,14 +95,14 @@ export const ListComponent = props => {
             <ListItemText primary='FAQ' />
           </CustomListItem>
         </Link>
-        <Link to='/chat' className={classes.listItem}>
+        {/* <Link to='/chat' className={classes.listItem}>
           <CustomListItem button>
             <ListItemIcon>
               <QuestionAnswerIcon />
             </ListItemIcon>
             <ListItemText primary='Chats' />
           </CustomListItem>
-        </Link>
+        </Link> */}
         <Link to='/code' className={classes.listItem}>
           <CustomListItem button>
             <ListItemIcon>
