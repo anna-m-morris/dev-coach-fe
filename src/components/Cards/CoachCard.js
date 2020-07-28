@@ -171,14 +171,14 @@ export const CoachCard = props => {
 
       <div className='footer'>
         <Link to='/start_chat' onClick={savePeer}>
-          <Button
+          {/* <Button
             variant='contained'
             color='primary'
             className='chat-button button'
             endIcon={<TelegramIcon />}
           >
             Chat
-          </Button>
+          </Button> */}
         </Link>
         <Link to='/appointment' onClick={saveCoach}>
           <Button
