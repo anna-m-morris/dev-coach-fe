@@ -390,14 +390,25 @@ export const mapLanguageToId = language => {
 };
 
 export function logCode(editorState, language, setOutput) {
-  Axios.post('https://api.judge0.com/submissions?wait=false', {
+  const token = 'dc0605b3-1367-4768-91ce-591bf1e1a7e5';
+
+  const config = {
+    headers: {
+      'x-rapidapi-host': 'judge0.p.rapidapi.com',
+      'x-rapidapi-key':
+        '4589903f56msh2bbc7da43df1600p1a86dfjsn6fce0678a83d',
+      'content-type': 'application/json',
+      accept: 'application/json',
+    },
+  };
+  Axios.post('https://judge0.p.rapidapi.com/submissions', config, {
     source_code: `${editorState}`,
     language_id: `${mapLanguageToId(language)}`,
   })
     .then(res => {
       setTimeout(() => {
         Axios.get(
-          `https://api.judge0.com/submissions/${res.data.token}`,
+          `https://judge0.p.rapidapi.com/submissions/${token}`,
         )
           .then(res => {
             if (res.data.stdout) {
@@ -420,19 +431,35 @@ export function executeCode(testName, value, editorState, language) {
   if (typeof value === 'string') {
     value = `'${value}'`;
   }
-  return Axios.post('https://api.judge0.com/submissions?wait=false', {
-    source_code: `${invokeCode(
-      editorState,
-      testName,
-      value,
-      language,
-    )}`,
-    language_id: `${mapLanguageToId(language)}`,
-  });
+  const config = {
+    headers: {
+      'x-rapidapi-host': 'judge0.p.rapidapi.com',
+      'x-rapidapi-key':
+        '4589903f56msh2bbc7da43df1600p1a86dfjsn6fce0678a83d',
+      'content-type': 'application/json',
+      accept: 'application/json',
+    },
+  };
+  return Axios.post(
+    'https://judge0.p.rapidapi.com/submissions', config,
+    {
+      source_code: `${invokeCode(
+        editorState,
+        testName,
+        value,
+        language,
+      )}`,
+      language_id: `${mapLanguageToId(language)}`,
+    },
+  );
 }
 
-export function fetchExecutedCode(token) {
-  return Axios.get(`https://api.judge0.com/submissions/${token}`);
+export function fetchExecutedCode() {
+  const token = 'dc0605b3-1367-4768-91ce-591bf1e1a7e5';
+
+  return Axios.get(
+    `https://judge0.p.rapidapi.com/submissions/${token}`,
+  );
 }
 
 export async function runAllCode(
@@ -452,7 +479,8 @@ export async function runAllCode(
       editorState,
       language,
     );
-    const { token } = executedCode.data;
+    const token = 'dc0605b3-1367-4768-91ce-591bf1e1a7e5';
+
     setTimeout(async () => {
       const response = await fetchExecutedCode(token);
       let output = response.data.stdout;
